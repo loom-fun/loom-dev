@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore models · Loom Dev</title>
+  <meta name="description" content="Every community Loom model, compared with llama.cpp ROCm on the same GGUF.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/loom-data.js"></script>
+  <script src="assets/loom-lib.js"></script>
+  <script src="assets/navbar.js"></script>
+  <script src="assets/footer.js"></script>
+</head>
+<body data-page="models">
+  <div class="navbar-placeholder"></div>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Explore</span>
+        <h1>Every model, <span class="grad">head to head</span>.</h1>
+        <p class="lead" id="exploreLead">Each card compares Loom with llama.cpp ROCm on the same GGUF. Open one for every metric, the correctness gates and a copy-paste quick start.</p>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="toolbar card">
+        <label class="search">
+          <span class="material-symbols-outlined">search</span>
+          <input id="q" type="search" placeholder="Search models, quants, base repos…" autocomplete="off">
+        </label>
+        <div class="filters" id="filters">
+          <button class="filter" data-filter="verified"><span class="material-symbols-outlined">verified</span>All gates pass</button>
+          <button class="filter" data-filter="tools"><span class="material-symbols-outlined">build</span>Tools</button>
+          <button class="filter" data-filter="vision"><span class="material-symbols-outlined">visibility</span>Vision</button>
+          <button class="filter" data-filter="thinking"><span class="material-symbols-outlined">psychology</span>Thinking</button>
+          <button class="filter" data-filter="spec"><span class="material-symbols-outlined">bolt</span>Speculative</button>
+        </div>
+        <select class="select" id="sort" aria-label="Sort by">
+          <option value="score">Sort: overall speedup</option>
+          <option value="decodeScore">Sort: decode speedup</option>
+          <option value="prefillScore">Sort: prefill speedup</option>
+          <option value="streamsScore">Sort: 4-stream speedup</option>
+          <option value="decodeAbs">Sort: fastest decode (tok/s)</option>
+          <option value="small">Sort: smallest download</option>
+          <option value="large">Sort: largest download</option>
+          <option value="newest">Sort: most recently measured</option>
+        </select>
+      </div>
+      <p class="result-count" id="count"></p>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+
+  <div class="drawer-backdrop" id="backdrop"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-modal="true"><div class="drawer-inner" id="drawerBody"></div></aside>
+
+  <div class="footer-placeholder"></div>
+  <script src="assets/explore.js"></script>
+</body>
+</html>
