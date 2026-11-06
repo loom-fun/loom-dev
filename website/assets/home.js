@@ -1,109 +1,166 @@
-// Home page: hero stats, decode race, marquee, podium and heatmap.
+// Home page: telemetry strip, pipeline stepper, gate list and leaderboard.
 
 (() => {
-  const { models, stats, pct, times, num, gb, ctx, esc, heat, gateChip, METRICS, FEATURES, HIGHLIGHT_FEATURES } = LOOM;
+  const { models, stats, esc, ctx, GATES } = LOOM;
   const s = stats();
-  const link = m => `models.html#${encodeURIComponent(m.id)}`;
-
-  document.getElementById('heroPill').textContent = `${s.models} models woven so far · updated ${s.generated}`;
-  document.getElementById('heroStats').innerHTML = [
-    [s.models, 'models on Loom Dev'],
-    [pct(s.bestSpeedup), 'best single-metric gain'],
-    [`${s.wins}/${s.runs}`, 'workloads where Loom wins'],
-    [s.verified, 'pass every gate'],
-  ].map(([v, l]) => `<div class="hero-stat"><div class="v grad">${v}</div><div class="l">${l}</div></div>`).join('');
-
-  // Marquee
-  const items = models.map(m => {
-    const cls = m.score >= 1.005 ? 'up' : m.score <= 0.995 ? 'down' : 'flat';
-    return `<a class="marquee-item" href="${link(m)}">${esc(m.name)} <span class="mono muted" style="font-size:12px">${esc(m.quant)}</span><span class="badge ${cls}">${pct(m.score)}</span></a>`;
-  }).join('');
-  document.getElementById('marquee').innerHTML = items + items;
-
-  // Podium: 2nd, 1st, 3rd
-  const medals = ['🥇', '🥈', '🥉'];
-  const top = models.slice(0, 3);
-  const chipsFor = m => HIGHLIGHT_FEATURES.filter(f => m.features[f] === 'yes').slice(0, 4)
-    .map(f => `<span class="chip"><span class="material-symbols-outlined">${FEATURES[f].icon}</span>${FEATURES[f].label}</span>`).join('');
-  const podiumCard = (m, rank) => `
-    <a class="podium-card card ${rank === 0 ? 'first' : ''}" href="${link(m)}">
-      <span class="podium-rank">#${rank + 1}</span>
-      <span class="podium-medal">${medals[rank]}</span>
-      <div class="podium-name">${esc(m.name)}</div>
-      <div class="podium-meta">${LOOM.sub(m)}</div>
-      <div class="podium-score grad">${times(m.score)}</div>
-      <div class="podium-score-l">overall vs llama.cpp · best ${pct(m.best.speedup)} on ${m.best.label.toLowerCase()} ${m.best.detail}</div>
-      <div class="podium-chips">${gateChip(m)}${chipsFor(m)}</div>
-    </a>`;
-  document.getElementById('podium').innerHTML = [1, 0, 2].filter(i => top[i]).map(i => podiumCard(top[i], i)).join('');
-
-  // Heatmap
-  const head = `<thead><tr><th class="rowh">Model</th>${METRICS.map(m => `<th>${m.label}<small>${m.detail.replace(' document', '').replace(' context', ' ctx').replace('short prompt', 'short')}</small></th>`).join('')}<th>Overall</th></tr></thead>`;
-  const body = models.map(m => {
-    const cells = METRICS.map(k => {
-      const v = m.performance.metrics[k.key];
-      if (!v || v.speedup == null) return '<td class="na">—</td>';
-      return `<td style="background:${heat(v.speedup)}" title="Loom ${num(v.loom)} vs llama.cpp ${num(v.llamacpp)} ${k.unit}">${pct(v.speedup)}</td>`;
-    }).join('');
-    return `<tr class="row" data-href="${link(m)}"><td class="name">${esc(m.name)}<small>${esc(m.quant)}</small></td>${cells}<td class="score" style="background:${heat(m.score)}">${times(m.score)}</td></tr>`;
-  }).join('');
-  const table = document.getElementById('heat');
-  table.innerHTML = head + `<tbody>${body}</tbody>`;
-  table.addEventListener('click', e => {
-    const row = e.target.closest('tr.row');
-    if (row) location.href = row.dataset.href;
-  });
-
-  // Decode race
-  const PASSAGE = `A loom holds a set of lengthwise threads, the warp, under tension. The weaver lifts alternate warp threads to open a gap called the shed, then throws a shuttle carrying the weft through it. A comb-like reed beats the new weft line tight against the cloth. Then the shed flips, the other half of the warp rises, and the shuttle flies back the other way. Over, under, over, under: a few simple moves, repeated thousands of times, turn loose threads into fabric. The trick to weaving faster isn't new threads. It is fewer wasted motions, a lighter shuttle, and a rhythm that never stalls. Fast looms keep every part busy at once, so the cloth grows while the next pass is already on its way. Same threads, same pattern, more cloth per minute.`;
-  const tokens = PASSAGE.match(/\S+\s*/g);
-  const racers = models.filter(m => m.performance.metrics.decode && m.performance.metrics.decode.speedup != null)
-    .sort((a, b) => b.performance.metrics.decode.speedup - a.performance.metrics.decode.speedup);
-  const sel = document.getElementById('raceModel');
-  sel.innerHTML = racers.map((m, i) => `<option value="${i}">${esc(m.name)} · ${esc(m.quant)}</option>`).join('');
   const el = id => document.getElementById(id);
-  let raf = null, timer = null, manual = false;
 
-  function run() {
-    cancelAnimationFrame(raf); clearTimeout(timer);
-    const m = racers[+sel.value];
-    const d = m.performance.metrics.decode;
-    el('loomRate').textContent = `${num(d.loom)} tok/s`;
-    el('llamaRate').textContent = `${num(d.llamacpp)} tok/s`;
-    el('raceVerdict').innerHTML = '&nbsp;';
-    const lanes = [['loom', d.loom], ['llama', d.llamacpp]];
-    const done = {};
-    const t0 = performance.now();
-    const tick = now => {
-      const secs = (now - t0) / 1000;
-      for (const [k, rate] of lanes) {
-        const n = Math.min(tokens.length, Math.floor(secs * rate));
-        el(`${k}Text`).innerHTML = esc(tokens.slice(0, n).join('')) + (n < tokens.length ? '<span class="caret"></span>' : '');
-        el(`${k}Bar`).style.width = `${(n / tokens.length) * 100}%`;
-        if (n >= tokens.length && !done[k]) done[k] = secs;
-      }
-      if (done.loom && done.llama) {
-        const r = done.llama / done.loom;
-        el('raceVerdict').innerHTML = r >= 1
-          ? `<span class="grad">Loom finished ${r.toFixed(2)}× sooner</span>`
-          : `llama.cpp finished ${(1 / r).toFixed(2)}× sooner`;
-        if (!manual) timer = setTimeout(() => { sel.value = (+sel.value + 1) % racers.length; run(); }, 3500);
-        return;
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-  }
+  el('telemetry').innerHTML = [
+    [s.models, 'models indexed'],
+    [s.orgs, 'source orgs'],
+    [ctx(s.maxCtx), 'max context'],
+    [s.verified, 'all gates pass'],
+  ].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
 
-  sel.addEventListener('change', () => { manual = true; run(); });
-  el('raceReplay').addEventListener('click', () => { manual = true; run(); });
-  if (racers.length) {
-    const io = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { run(); io.disconnect(); }
+  // Pipeline
+  const STAGES = [
+    {
+      key: 'gguf', t: 'gguf', d: 'any hf repo',
+      h: 'Start from a GGUF on Hugging Face',
+      p: 'The input is an unmodified GGUF checkpoint, the same file llama.cpp would load. Nothing is retrained or re-quantized.',
+      items: [
+        'Dense transformers and Qwen3.5-style gated delta-net hybrids are covered by the starter kit.',
+        'Vision projectors and speculative-decoding drafters are picked up when the model has them.',
+        'Other architectures go through the hand-port playbook: llama.cpp\'s own compute graph via <code>llama_trace.py</code>, then numpy node-by-node checks.',
+      ],
+      runs: '/loom get &lt;org&gt;/&lt;model&gt; …', time: 'the prompt', files: ['&lt;org&gt;/&lt;model&gt;-GGUF', '*.gguf (header probed first)'],
+    },
+    {
+      key: 'port', t: 'port', d: '~1 min',
+      h: 'Port: GGUF in, Loom package out',
+      p: 'A config-driven starter kit turns the GGUF into Loom programs at the model\'s native context length.',
+      items: [
+        'Header-only probe: are the tensor formats supported, and does it fit in GPU memory?',
+        'Generate the kernels and build the package at the native context.',
+        'Kernel unit tests against reference implementations, then a smoke test through <code>loom-serve</code>.',
+        'Chat glue (tools, reasoning, history reuse) derived from the model\'s Jinja template.',
+      ],
+      runs: 'loom-port-llm/port.sh', time: '≈ 1 min (starter-covered)', files: ['program/*.loom', 'weights.loom', 'model.json · model.json.lock', 'llm_config.json', 'tokenizer.json'],
+    },
+    {
+      key: 'qualify', t: 'qualify', d: '~10 min',
+      h: 'Qualify: set the reference and the targets',
+      p: 'Before optimizing anything, the agent establishes what "correct" and "fast enough" mean for this model on this machine.',
+      items: [
+        'Pick the fastest llama.cpp ROCm build for the GGUF and record its golden outputs.',
+        'Run the correctness gates against that reference and measure both baselines.',
+        'Roofline analysis from the GGUF: per-metric ceilings and targets for decode, prefill and 4 streams.',
+        'Size the optimization budget from what\'s left of the roofline time budget.',
+      ],
+      runs: 'loom-benchmark/scripts/qualify.sh', time: '≈ 10 min', files: ['golden.json', 'compare.json', 'baseline perf', 'roofline targets + budget'],
+    },
+    {
+      key: 'optimize', t: 'optimize', d: 'budgeted',
+      h: 'Optimize without breaking correctness',
+      p: 'A measure, ablate, change, verify loop, using a catalog of optimizations that worked (and ones that didn\'t).',
+      items: [
+        'Kernel A/B helper to compare variants under identical conditions.',
+        'Fast gates after every kept change, so a speedup that breaks output is rolled back.',
+        'A rate-of-approach controller decides to continue, pivot or stop.',
+        'Add a time or a target to the prompt ("optimize it for 3 hours", "until decode is 50 % faster") to change the budget.',
+      ],
+      runs: 'loom-optimize · loom-roofline', time: 'what\'s left of the budget', files: ['perf_log.jsonl', 'kept changes'],
+    },
+    {
+      key: 'finalize', t: 'finalize', d: 'gates + report',
+      h: 'Finalize: full gates, final numbers, report',
+      p: 'The final build goes through the full gate suite, including a full-context probe, and gets measured one more time.',
+      items: [
+        'Full gates, including needle-in-a-haystack at the full context.',
+        'Final performance for both engines, same GGUF, same session.',
+        'An audit of what was optimized, what was skipped and why.',
+        'A single-page report generated from the logs, light and dark.',
+      ],
+      runs: 'loom-benchmark/scripts/finalize.sh', time: 'reserved in the budget', files: ['gates.json', 'report.html · report.md', 'raw logs kept next to it'],
+    },
+    {
+      key: 'publish', t: 'publish', d: 'hf upload',
+      h: 'Publish: a card generated from evidence',
+      p: 'Every published card has the same sections and rows. Only the values differ, and every value points back to a run.',
+      items: [
+        '<code>make_info.py</code> turns the run outputs into evidence files and builds <code>info.json</code> (schema <code>loom-card/1</code>).',
+        '<code>render_card.py</code> renders <code>README.md</code> from <code>info.json</code> alone.',
+        'Upload with <code>hf upload</code>. The card carries the <code>loom</code> and <code>loom-serve</code> tags.',
+        'Anyone can then <code>loom-fetch</code> it: the GGUF is pulled from its own repo and its sha256 checked.',
+      ],
+      runs: 'card/make_info.py · card/render_card.py', time: 'seconds', files: ['info.json', 'README.md', '<a href="submit.html">publishing guide →</a>'],
+    },
+  ];
+
+  const pipe = el('pipe'), detail = el('stageDetail');
+  pipe.innerHTML = STAGES.map((st, i) => `
+    <button class="stage" data-i="${i}" role="tab">
+      <span class="n">${String(i).padStart(2, '0')}</span>
+      <span class="t">${st.t}</span>
+      <span class="d">${st.d}</span>
+      <span class="prog"><i></i></span>
+    </button>`).join('');
+  const btns = [...pipe.querySelectorAll('.stage')];
+  let cur = 0, auto = true, timer = null, t0 = 0;
+  const DWELL = 6500;
+
+  function show(i) {
+    cur = i;
+    btns.forEach((b, j) => {
+      b.classList.toggle('on', j === i);
+      b.classList.toggle('done', j < i);
+      b.setAttribute('aria-selected', j === i);
+      b.querySelector('.prog i').style.width = j < i ? '100%' : '0';
     });
-    io.observe(el('race'));
+    const st = STAGES[i];
+    detail.innerHTML = `
+      <div class="sd-main">
+        <span class="label">stage ${String(i).padStart(2, '0')} · ${st.t}</span>
+        <h3>${st.h}</h3>
+        <p>${st.p}</p>
+        <ul class="sd-list">${st.items.map(x => `<li>${x}</li>`).join('')}</ul>
+      </div>
+      <div class="sd-side">
+        <div><span class="label">runs</span><span class="kv">${st.runs}</span></div>
+        <div><span class="label">time</span><span class="kv">${st.time}</span></div>
+        <div><span class="label">produces</span><ul class="files">${st.files.map(f => `<li>${f}</li>`).join('')}</ul></div>
+      </div>`;
+    t0 = performance.now();
   }
 
+  function tick(now) {
+    if (!auto) return;
+    const f = Math.min(1, (now - t0) / DWELL);
+    btns[cur].querySelector('.prog i').style.width = `${f * 100}%`;
+    if (f >= 1) show((cur + 1) % STAGES.length);
+    timer = requestAnimationFrame(tick);
+  }
+
+  pipe.addEventListener('click', e => {
+    const b = e.target.closest('.stage');
+    if (!b) return;
+    auto = false;
+    cancelAnimationFrame(timer);
+    show(+b.dataset.i);
+    btns[cur].querySelector('.prog i').style.width = '100%';
+  });
+  show(0);
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!still) {
+    const io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && auto) { t0 = performance.now(); timer = requestAnimationFrame(tick); }
+      else cancelAnimationFrame(timer);
+    }, { threshold: 0.3 });
+    io.observe(pipe);
+  }
+
+  // Gate list, using a real model's results as the example
+  const ex = models.find(m => m.verified) || models[0];
+  if (ex) {
+    el('gateExample').textContent = `example: ${ex.name} · ${ex.quant}`;
+    const LABEL = { pass: 'pass', fail: 'fail', unknown: '----', 'n/a': 'n/a' };
+    el('gateList').innerHTML = Object.entries(ex.gates.status).map(([g, st]) => `
+      <div class="gate-row ${st === 'n/a' ? 'na' : st}">
+        <span class="st">[${LABEL[st]}]</span><code>${g}</code><span>${esc(GATES[g] || '')}</span>
+      </div>`).join('');
+  }
+
+  LOOM.mountTable(el('board'), models, { onOpen: m => { location.href = `models.html#${encodeURIComponent(m.id)}`; } });
   LOOM.copyButtons();
   LOOM.reveal();
 })();

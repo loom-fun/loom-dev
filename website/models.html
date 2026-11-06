@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Explore models · Loom Dev</title>
-  <meta name="description" content="Every community Loom model, compared with llama.cpp ROCm on the same GGUF.">
+  <title>models · loom/dev</title>
+  <meta name="description" content="Every community GGUF port to AMD Loom, with per-metric numbers against llama.cpp ROCm on the same GGUF.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <script src="assets/loom-data.js"></script>
   <script src="assets/loom-lib.js"></script>
@@ -20,45 +19,59 @@
   <div class="navbar-placeholder"></div>
 
   <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Explore</span>
-        <h1>Every model, <span class="grad">head to head</span>.</h1>
-        <p class="lead" id="exploreLead">Each card compares Loom with llama.cpp ROCm on the same GGUF. Open one for every metric, the correctness gates and a copy-paste quick start.</p>
+    <section class="page-head">
+      <div class="wrap">
+        <span class="label">models / index</span>
+        <h1>Every port, with its receipts.</h1>
+        <p>Each model below started as a GGUF on Hugging Face and went through loom-skills. Open one for every metric against llama.cpp ROCm on the same GGUF, its features, its correctness gates and a quick start.</p>
       </div>
     </section>
 
-    <section class="container">
-      <div class="toolbar card">
-        <label class="search">
-          <span class="material-symbols-outlined">search</span>
-          <input id="q" type="search" placeholder="Search models, quants, base repos…" autocomplete="off">
-        </label>
-        <div class="filters" id="filters">
-          <button class="filter" data-filter="verified"><span class="material-symbols-outlined">verified</span>All gates pass</button>
-          <button class="filter" data-filter="tools"><span class="material-symbols-outlined">build</span>Tools</button>
-          <button class="filter" data-filter="vision"><span class="material-symbols-outlined">visibility</span>Vision</button>
-          <button class="filter" data-filter="thinking"><span class="material-symbols-outlined">psychology</span>Thinking</button>
-          <button class="filter" data-filter="spec"><span class="material-symbols-outlined">bolt</span>Speculative</button>
+    <section class="wrap">
+      <div class="toolbar">
+        <label class="search"><span>&gt;</span><input id="q" type="search" placeholder="filter: name, quant, source repo" autocomplete="off"></label>
+        <div class="toggles" id="toggles">
+          <button class="tg" data-f="verified">all gates pass</button>
+          <button class="tg" data-f="tools">tools</button>
+          <button class="tg" data-f="vision">vision</button>
+          <button class="tg" data-f="thinking">thinking</button>
+          <button class="tg" data-f="spec">speculative</button>
         </div>
-        <select class="select" id="sort" aria-label="Sort by">
-          <option value="score">Sort: overall speedup</option>
-          <option value="decodeScore">Sort: decode speedup</option>
-          <option value="prefillScore">Sort: prefill speedup</option>
-          <option value="streamsScore">Sort: 4-stream speedup</option>
-          <option value="decodeAbs">Sort: fastest decode (tok/s)</option>
-          <option value="small">Sort: smallest download</option>
-          <option value="large">Sort: largest download</option>
-          <option value="newest">Sort: most recently measured</option>
-        </select>
+        <div class="views" id="views">
+          <button class="on" data-v="table">table</button>
+          <button data-v="matrix">matrix</button>
+        </div>
       </div>
-      <p class="result-count" id="count"></p>
-      <div class="grid" id="grid"></div>
+      <p class="count" id="count"></p>
+
+      <div id="viewTable">
+        <div class="tbl-wrap"><table class="tbl" id="tbl"></table></div>
+        <div class="tbl-legend">
+          <span><b>T</b> tools · <b>V</b> vision · <b>R</b> thinking · <b>S</b> speculative decoding · <b>P</b> sampling</span>
+          <span><i class="g g-pass"></i> gate pass · <i class="g g-fail"></i> fail · <i class="g"></i> no evidence</span>
+          <span><span class="rb"><i class="neg" style="width:30%"></i></span>llama.cpp faster · <span class="rb"><i class="pos" style="width:30%"></i></span>Loom faster</span>
+        </div>
+      </div>
+
+      <div id="viewMatrix" hidden>
+        <div class="tbl-wrap"><table class="matrix" id="matrix"></table></div>
+        <div class="matrix-legend">
+          <span>Loom ÷ llama.cpp, same GGUF:</span>
+          <span><i class="swatch lo" style="background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0 1px,transparent 1px 5px)"></i> below 1.00</span>
+          <span><i class="swatch" style="background:rgba(255,255,255,.08)"></i> 1.00–1.20</span>
+          <span><i class="swatch" style="background:rgba(255,255,255,.3)"></i> ~1.40</span>
+          <span><i class="swatch" style="background:rgba(255,255,255,.62)"></i> 1.80+</span>
+          <span>— not measured</span>
+        </div>
+      </div>
     </section>
   </main>
 
-  <div class="drawer-backdrop" id="backdrop"></div>
-  <aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-modal="true"><div class="drawer-inner" id="drawerBody"></div></aside>
+  <div class="drawer-bg" id="drawerBg"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="dr-top"><span id="drPath"></span><button id="drClose">esc · close</button></div>
+    <div class="dr" id="dr"></div>
+  </aside>
 
   <div class="footer-placeholder"></div>
   <script src="assets/explore.js"></script>

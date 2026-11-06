@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit a model · Loom Dev</title>
-  <meta name="description" content="Port a GGUF to AMD Loom with loom-skills, upload it to Hugging Face, and it shows up on Loom Dev.">
+  <title>publish · loom/dev</title>
+  <meta name="description" content="Port a GGUF to AMD Loom with loom-skills, upload it to Hugging Face, and it shows up on loom/dev.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <script src="assets/loom-data.js"></script>
   <script src="assets/loom-lib.js"></script>
@@ -20,161 +19,135 @@
   <div class="navbar-placeholder"></div>
 
   <main>
-    <section class="page-hero">
-      <div class="container">
-        <span class="eyebrow">Submit a model</span>
-        <h1>From GGUF to the <span class="grad">leaderboard</span><br>in one afternoon.</h1>
-        <p class="lead">There's no form to fill in. Port the model with loom-skills, upload the package to Hugging Face with the card the skills generate, and Loom Dev picks it up from its tags.</p>
+    <section class="page-head">
+      <div class="wrap">
+        <span class="label">publish / guide</span>
+        <h1>From a GGUF on Hugging Face to a row on the board.</h1>
+        <p>There's no form to fill in. Port the model with loom-skills, upload the package with the card the skills generated, and the index picks it up from its tags.</p>
       </div>
     </section>
 
-    <section class="container section-tight" style="padding-top:30px">
-      <div class="submit-layout">
-        <ol class="timeline" style="list-style:none;margin:0;padding:0">
-          <li class="tl-step reveal">
-            <div class="tl-num">1</div>
-            <div class="tl-body card">
-              <h3>Install loom-skills</h3>
-              <p>They work in any agent that supports skills: Claude Code, Cursor, Codex and more. Claude Code is the one they were developed with.</p>
-              <div class="code">
-                <div class="code-head"><span>terminal</span><button class="copy-btn" data-copy=""><span class="material-symbols-outlined">content_copy</span>Copy</button></div>
-                <pre><code>npx skills add loom-fun/loom-skills</code></pre>
-              </div>
-              <div class="note"><span class="material-symbols-outlined">lightbulb</span><span>No Node? Clone <a class="grad" href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> and run <code>install.sh</code>. It copies the skills into <code>~/.agents/skills</code> and links them into <code>~/.claude/skills</code>.</span></div>
+    <section class="sec" style="border-bottom:none;padding-top:40px">
+      <div class="wrap submit-grid">
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step-n"><b>01</b>install</div>
+            <div class="step-body">
+              <h3>Install loom-skills into your agent</h3>
+              <p>Works with any agent that supports skills: Claude Code, Cursor, Codex and others. The skills were developed with Claude Code.</p>
+              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>npx skills add loom-fun/loom-skills</code></pre></div>
+              <div class="note">No Node? Clone <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> and run <code>install.sh</code>. It copies the skills into <code>~/.agents/skills</code> and links them into <code>~/.claude/skills</code>.</div>
             </div>
-          </li>
+          </div>
 
-          <li class="tl-step reveal">
-            <div class="tl-num">2</div>
-            <div class="tl-body card">
-              <h3>Port, optimize and benchmark</h3>
-              <p>One prompt runs the whole pipeline: port, qualify against llama.cpp ROCm, optimize within the roofline budget, then the full gates and a report. It only stops to ask about a gated-model license.</p>
-              <div class="code">
-                <div class="code-head"><span>agent prompt</span><button class="copy-btn" data-copy=""><span class="material-symbols-outlined">content_copy</span>Copy</button></div>
-                <pre class="wrap"><code><span class="p">&gt; </span>/loom get <span class="s">&lt;hf-org&gt;/&lt;model&gt;</span> working on loom-serve, optimize it, and report the performance relative to llamacpp rocm</code></pre>
-              </div>
-              <div class="note"><span class="material-symbols-outlined">timer</span><span>Want more speed? Add a time or a target, like "…optimize it for 3 hours…" or "…until decode is 50 % faster than llama.cpp…". The roofline step tells you up front if a target is out of reach.</span></div>
+          <div class="step reveal">
+            <div class="step-n"><b>02</b>port</div>
+            <div class="step-body">
+              <h3>Port, optimize and benchmark in one prompt</h3>
+              <p>The agent runs port, qualify, optimize and finalize without stopping, within the model's roofline budget. It only asks about gated-model licenses. Loom and the llama.cpp ROCm reference are downloaded for you.</p>
+              <div class="code"><div class="code-head"><span>agent prompt</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">&gt; </span>/loom get <span class="s">&lt;hf-org&gt;/&lt;model&gt;</span> working on loom-serve, optimize it, and report the performance relative to llamacpp rocm</code></pre></div>
+              <div class="note"><b>Budget:</b> add a time or a target, like "…optimize it for 3 hours…" or "…until decode is 50 % faster than llama.cpp…". The roofline step tells you up front if a target is out of reach.</div>
             </div>
-          </li>
+          </div>
 
-          <li class="tl-step reveal">
-            <div class="tl-num">3</div>
-            <div class="tl-body card">
-              <h3>Generate the model card</h3>
-              <p><code>README.md</code> and <code>info.json</code> are generated from the run's own logs, never written by hand. The quickest way is to ask your agent to "generate the Hugging Face model card for this port". Under the hood, loom-benchmark runs:</p>
-              <div class="code">
-                <div class="code-head"><span>terminal</span><button class="copy-btn" data-copy=""><span class="material-symbols-outlined">content_copy</span>Copy</button></div>
-                <pre><code><span class="c"># the card scripts from your loom-skills install</span>
+          <div class="step reveal">
+            <div class="step-n"><b>03</b>card</div>
+            <div class="step-body">
+              <h3>Generate the model card from the run</h3>
+              <p><code>README.md</code> and <code>info.json</code> are generated, never hand-written. The easiest way is to ask your agent to "generate the Hugging Face model card for this port". Under the hood:</p>
+              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="c"># card scripts from your loom-skills install</span>
 CARD=~/.agents/skills/loom-benchmark/scripts/card
 
 <span class="c"># 1. evidence from the benchmark run</span>
 python $CARD/make_info.py perf --perf-log bench/perf_log.jsonl --llamacpp-build <span class="s">bNNNN</span> -o ev_perf.json
 python $CARD/make_info.py gates bench/gates.json -o ev_gates.json
 
-<span class="c"># 2. info.json (schema loom-card/1), then the README rendered from it</span>
+<span class="c"># 2. info.json (schema loom-card/1), then README.md rendered from it</span>
 python $CARD/make_info.py build PKG --repo <span class="s">&lt;you&gt;/&lt;model&gt;-loom</span> --memory-bytes <span class="s">N</span> \
   --output <span class="s">&lt;name&gt;</span> --evidence ev_perf.json ev_gates.json -o PKG/info.json
-python $CARD/render_card.py PKG/info.json -o PKG/README.md</code></pre>
-              </div>
-              <div class="note"><span class="material-symbols-outlined">verified_user</span><span>A value with no evidence shows as "not measured" or "no evidence". That's fine, and it's what keeps the leaderboard honest.</span></div>
+python $CARD/render_card.py PKG/info.json -o PKG/README.md</code></pre></div>
+              <div class="note">A value without evidence renders as <b>not measured</b> or <b>no evidence</b>. That's expected, and it's what keeps the index trustworthy.</div>
             </div>
-          </li>
+          </div>
 
-          <li class="tl-step reveal">
-            <div class="tl-num">4</div>
-            <div class="tl-body card">
-              <h3>Upload to Hugging Face</h3>
-              <p>Push the whole package: the <code>.loom</code> programs, <code>model.json</code> and its lock file, the tokenizer, and the generated card. The GGUF itself isn't copied; <code>loom-fetch</code> pulls it from its original repository and checks its sha256.</p>
-              <div class="code">
-                <div class="code-head"><span>terminal</span><button class="copy-btn" data-copy=""><span class="material-symbols-outlined">content_copy</span>Copy</button></div>
-                <pre><code>pip install -U huggingface_hub
+          <div class="step reveal">
+            <div class="step-n"><b>04</b>upload</div>
+            <div class="step-body">
+              <h3>Upload the package to Hugging Face</h3>
+              <p>Push the <code>.loom</code> programs, <code>model.json</code> and its lock file, the tokenizer and the generated card. The GGUF itself isn't copied: <code>loom-fetch</code> pulls it from its original repo and checks its sha256.</p>
+              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code>pip install -U huggingface_hub
 hf auth login
 hf repo create <span class="s">&lt;you&gt;/&lt;model&gt;-loom</span> --repo-type model
-hf upload <span class="s">&lt;you&gt;/&lt;model&gt;-loom</span> PKG .</code></pre>
-              </div>
-              <div class="note"><span class="material-symbols-outlined">sell</span><span>The generated card already carries the <code>loom</code> and <code>loom-serve</code> tags in its front matter. Keep them; they're how Loom Dev finds you.</span></div>
+hf upload <span class="s">&lt;you&gt;/&lt;model&gt;-loom</span> PKG .</code></pre></div>
+              <div class="note">The generated front matter already carries the <code>loom</code> and <code>loom-serve</code> tags. Keep them; they're how the index finds you.</div>
             </div>
-          </li>
+          </div>
 
-          <li class="tl-step reveal">
-            <div class="tl-num">5</div>
-            <div class="tl-body card">
-              <h3>Watch it show up</h3>
-              <p>Loom Dev indexes public Hugging Face models that carry the Loom tags and an <code>info.json</code> with schema <code>loom-card/1</code>. On the next refresh your model gets a card, a spot on the leaderboard and a row in the heatmap. To update it, rerun the benchmark, regenerate the card and upload <code>README.md</code> and <code>info.json</code> again:</p>
-              <div class="code">
-                <div class="code-head"><span>terminal</span><button class="copy-btn" data-copy=""><span class="material-symbols-outlined">content_copy</span>Copy</button></div>
-                <pre><code>hf upload <span class="s">&lt;you&gt;/&lt;model&gt;-loom</span> PKG . --include README.md info.json</code></pre>
-              </div>
+          <div class="step reveal">
+            <div class="step-n"><b>05</b>listed</div>
+            <div class="step-body">
+              <h3>Show up on loom/dev</h3>
+              <p>The index reads public Hugging Face models with the Loom tags and an <code>info.json</code> of schema <code>loom-card/1</code>. On the next refresh your model gets a row, a detail page and a quick start. To update it, rerun the benchmark, regenerate the card and upload those two files again:</p>
+              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code>hf upload <span class="s">&lt;you&gt;/&lt;model&gt;-loom</span> PKG . --include README.md info.json</code></pre></div>
             </div>
-          </li>
-        </ol>
+          </div>
+        </div>
 
         <aside class="aside">
-          <div class="card reveal">
-            <h4><span class="material-symbols-outlined">sell</span>Tags Loom Dev looks for</h4>
-            <div class="tags">
-              <span class="tag req">loom</span><span class="tag req">loom-serve</span>
-              <span class="tag">gguf</span><span class="tag">strix-halo</span><span class="tag">speculative-decoding</span><span class="tag">vision</span>
+          <div class="panel reveal">
+            <div class="panel-head"><span>tags</span><span>front matter</span></div>
+            <div>
+              <div class="tags"><span class="req">loom</span><span class="req">loom-serve</span><span>gguf</span><span>strix-halo</span><span>speculative-decoding</span><span>vision</span></div>
+              <p class="fine">Outlined tags are required. The rest are added by <code>make_info.py</code> when they apply.</p>
             </div>
-            <p class="fineprint">The first two are required. The rest are added by <code>make_info.py</code> when they apply and power the filters.</p>
           </div>
-          <div class="card reveal">
-            <h4><span class="material-symbols-outlined">memory</span>What you need</h4>
-            <ul>
-              <li><span class="material-symbols-outlined">check</span>An AMD ROCm-class GPU (developed on Strix Halo, gfx1151)</li>
-              <li><span class="material-symbols-outlined">check</span>Linux, or Windows 11 with Git Bash</li>
-              <li><span class="material-symbols-outlined">check</span>Python 3.12+ with venv, and git</li>
-              <li><span class="material-symbols-outlined">check</span>A Hugging Face account with a write token</li>
-            </ul>
-            <p class="fineprint">Loom (<code>hrx-loom</code> from PyPI) and the llama.cpp ROCm reference build are downloaded by the skills.</p>
+          <div class="panel reveal">
+            <div class="panel-head"><span>requirements</span><span></span></div>
+            <div>
+              <ul>
+                <li>AMD ROCm-class GPU (developed on Strix Halo, gfx1151)</li>
+                <li>Linux, or Windows 11 with Git Bash</li>
+                <li>Python ≥ 3.12 with venv, and git</li>
+                <li>Hugging Face account with a write token</li>
+              </ul>
+            </div>
           </div>
-          <div class="card reveal">
-            <h4><span class="material-symbols-outlined">checklist</span>Loom Dev reads</h4>
-            <ul>
-              <li><span class="material-symbols-outlined">check</span><span><code>info.json</code> (schema <code>loom-card/1</code>)</span></li>
-              <li><span class="material-symbols-outlined">check</span>Loom and llama.cpp numbers per metric</li>
-              <li><span class="material-symbols-outlined">check</span>Feature support and gate results</li>
-              <li><span class="material-symbols-outlined">check</span>Links to the benchmark evidence</li>
-            </ul>
+          <div class="panel reveal">
+            <div class="panel-head"><span>index reads</span><span>info.json</span></div>
+            <div>
+              <ul>
+                <li>schema <code>loom-card/1</code></li>
+                <li>per-metric numbers for both engines</li>
+                <li>feature support and gate results</li>
+                <li>links to the benchmark evidence</li>
+              </ul>
+            </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="section-head center reveal">
-          <span class="eyebrow">FAQ</span>
-          <h2 class="h2">Good questions, <span class="grad">straight answers</span>.</h2>
+    <section class="sec" style="border-top:1px solid var(--line)">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-idx"><b>faq</b></div>
+          <div><h2>Questions people ask before their first port.</h2></div>
         </div>
         <div class="faq">
-          <details class="card reveal"><summary>My port is slower than llama.cpp on some workloads. Can I still submit?</summary>
-            <p>Yes, please do. Plenty of models on Loom Dev lose on long-context prefill and win on decode. The heatmap shows both, and a slower number today is a target for the next optimization run.</p></details>
-          <details class="card reveal"><summary>Can I edit the numbers on my card?</summary>
-            <p>No. Cards are rendered from <code>info.json</code>, and <code>info.json</code> is built from benchmark evidence. To change a number, rerun the benchmark and regenerate the card.</p></details>
-          <details class="card reveal"><summary>How is the ranking computed?</summary>
-            <p>The overall score is the geometric mean of Loom's speedup over llama.cpp across every metric the model was measured on: decode at short, 2k and 32k context, prefill on 1k to 32k documents, and 4-stream aggregate decode. Missing metrics are skipped, not counted as zero.</p></details>
-          <details class="card reveal"><summary>Which architectures can loom-skills port?</summary>
-            <p>The starter kit covers dense transformers and Qwen3.5-style gated delta-net hybrids, with vision projectors and speculative-decoding drafters where the model has them. Other architectures go through the hand-port playbook in <code>loom-port-llm</code>, which takes longer and leaves less time for optimization.</p></details>
-          <details class="card reveal"><summary>What do "no evidence" gates mean?</summary>
-            <p>The gate applies to the model, but no recorded run covers it yet. Rerunning the full gates (<code>finalize.sh</code>, or a nightly DevLab run) fills them in. The "All gates pass" badge needs every applicable gate to pass.</p></details>
-          <details class="card reveal"><summary>How do I take my model off Loom Dev?</summary>
+          <details><summary>Which architectures can loom-skills port?</summary>
+            <p>The starter kit covers dense transformers and Qwen3.5-style gated delta-net hybrids, with vision projectors and speculative-decoding drafters where the model has them. Anything else goes through the hand-port playbook in <code>loom-port-llm</code>. That takes longer and leaves less of the budget for optimization.</p></details>
+          <details><summary>My port is slower than llama.cpp on some workloads. Should I still publish?</summary>
+            <p>Yes. The index shows every workload, including the ones where llama.cpp is faster. A working, verified port is the useful part, and a slow metric is a clear target for the next optimization run.</p></details>
+          <details><summary>Can I edit the numbers on my card?</summary>
+            <p>No. Cards are rendered from <code>info.json</code>, which is built from benchmark evidence. To change a number, rerun the benchmark and regenerate the card.</p></details>
+          <details><summary>What does "no evidence" mean on a gate?</summary>
+            <p>The gate applies to the model, but no recorded run covers it yet. Running the full gates (<code>finalize.sh</code>, or a nightly DevLab run) fills it in.</p></details>
+          <details><summary>How is the leaderboard ordered?</summary>
+            <p>By the geometric mean of Loom's throughput over llama.cpp's across every metric the model was measured on: decode at short, 2k and 32k context, prefill on 1k to 32k documents, and 4-stream aggregate decode. Missing metrics are skipped. You can re-sort by any column.</p></details>
+          <details><summary>How do I remove my model?</summary>
             <p>Remove the <code>loom</code> tag from the card, or make the repository private. It drops off on the next refresh.</p></details>
-          <details class="card reveal"><summary>The skills got something wrong. Where do I report it?</summary>
-            <p>Open an issue or a PR on <a class="grad" href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a>. The <code>loom-improve</code> skill even lets your agent run fresh-agent trials to fix the skills themselves: "your goal is to improve the loom skill at X".</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-tight">
-      <div class="container">
-        <div class="cta-band card reveal">
-          <h2 class="h2">See who you're <span class="grad">up against</span>.</h2>
-          <p class="lead" id="submitCtaLead">Browse the models already on Loom Dev and pick one to beat.</p>
-          <div class="hero-ctas">
-            <a class="btn btn-primary" href="models.html"><span class="material-symbols-outlined">travel_explore</span>Explore models</a>
-            <a class="btn" href="index.html#leaderboard"><span class="material-symbols-outlined">emoji_events</span>Leaderboard</a>
-          </div>
+          <details><summary>The skills got something wrong. Where do I report it?</summary>
+            <p>Open an issue or a PR on <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a>. The <code>loom-improve</code> skill lets your agent run fresh-agent trials to fix the skills themselves: "your goal is to improve the loom skill at X".</p></details>
         </div>
       </div>
     </section>
@@ -182,9 +155,6 @@ hf upload <span class="s">&lt;you&gt;/&lt;model&gt;-loom</span> PKG .</code></pr
 
   <div class="footer-placeholder"></div>
   <script>
-    const leader = LOOM.models[0];
-    if (leader) document.getElementById('submitCtaLead').textContent =
-      `${LOOM.models.length} models are on Loom Dev. The one to beat: ${leader.name} at ${LOOM.times(leader.score)} overall.`;
     LOOM.copyButtons();
     LOOM.reveal();
   </script>

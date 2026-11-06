@@ -1,179 +1,165 @@
-// Explore page: filterable model grid and a detail drawer routed by the URL hash.
+// Models page: filterable table, per-metric matrix and a detail drawer routed by the URL hash.
 
 (() => {
-  const { models, METRICS, FEATURES, HIGHLIGHT_FEATURES, GATES, pct, times, num, gb, ctx, esc, hf, quickstart } = LOOM;
-  const state = { q: '', filters: new Set(), sort: 'score' };
+  const { models, METRICS, FEATURES, GATES, times, num, esc, hf, quickstart } = LOOM;
   const el = id => document.getElementById(id);
-  const badgeCls = x => x == null ? 'flat' : x >= 1.005 ? 'up' : x <= 0.995 ? 'down' : 'flat';
-  const rank = new Map(models.map((m, i) => [m.id, i + 1]));
+  const state = { q: '', filters: new Set(), view: 'table' };
 
-  const SORTS = {
-    score: m => -(m.score || 0),
-    decodeScore: m => -(m.decodeScore || 0),
-    prefillScore: m => -(m.prefillScore || 0),
-    streamsScore: m => -(m.streamsScore || 0),
-    decodeAbs: m => -((m.performance.metrics.decode || {}).loom || 0),
-    small: m => m.sizeBytes,
-    large: m => -m.sizeBytes,
-    newest: m => -Date.parse(m.performance.date),
-  };
+  const open = m => { location.hash = encodeURIComponent(m.id); };
+  const table = LOOM.mountTable(el('tbl'), models, { onOpen: open });
 
-  // One row per group on a card: the headline metric if measured, else the first measured one.
-  function headline(m) {
-    return ['decode', 'prefill_2k', 'streams4'].map(key => {
-      const group = LOOM.METRIC[key].group;
-      return m.measured.find(x => x.key === key) || m.measured.find(x => x.group === group);
-    }).filter(Boolean);
+  function filtered() {
+    const q = state.q.toLowerCase();
+    return models
+      .filter(m => !q || [m.name, m.checkpoint, m.quant, m.repo, m.baseRepo].join(' ').toLowerCase().includes(q))
+      .filter(m => [...state.filters].every(f => m[f]));
   }
 
-  function pairRow(x, full) {
-    const max = Math.max(x.loom, x.llamacpp);
-    const right = full
-      ? `<div class="pair-nums"><b>${num(x.loom)}</b> vs ${num(x.llamacpp)} tok/s<br><span class="badge ${badgeCls(x.speedup)}">${pct(x.speedup)}</span></div>`
-      : `<span class="badge ${badgeCls(x.speedup)}">${pct(x.speedup)}</span>`;
-    return `
-      <div class="pair-row">
-        <div class="pair-label">${x.label}<small>${x.detail}</small></div>
-        <div class="pair-bars" title="Loom ${num(x.loom)} · llama.cpp ${num(x.llamacpp)} ${x.unit}">
-          <div class="pair-bar loom" style="width:${(x.loom / max) * 100}%"></div>
-          <div class="pair-bar llama" style="width:${(x.llamacpp / max) * 100}%"></div>
-        </div>
-        ${right}
-      </div>`;
+  function shade(r) {
+    if (r == null) return { cls: 'na', style: '' };
+    if (r < 1) return { cls: 'lo', style: '' };
+    const t = Math.min(1, (r - 1) / 0.8);
+    const a = 0.05 + t * 0.6;
+    return { cls: '', style: `background:rgba(255,255,255,${a.toFixed(3)});color:${a > 0.36 ? '#0a0a0a' : 'var(--hi)'}` };
   }
 
-  function chips(m, limit) {
-    const out = [LOOM.gateChip(m)];
-    HIGHLIGHT_FEATURES.filter(f => m.features[f] === 'yes').forEach(f =>
-      out.push(`<span class="chip"><span class="material-symbols-outlined">${FEATURES[f].icon}</span>${FEATURES[f].label}</span>`));
-    return out.slice(0, limit).join('');
-  }
-
-  const sub = LOOM.sub;
-
-  function card(m) {
-    return `
-      <article class="model-card card" data-id="${esc(m.id)}" tabindex="0">
-        <div class="mc-head">
-          <div>
-            <div class="mc-name">${esc(m.name)}</div>
-            <div class="mc-sub">${sub(m)}</div>
-          </div>
-          <div class="mc-score"><div class="v ${m.score >= 1 ? 'grad' : ''}">${times(m.score)}</div><div class="l">overall</div></div>
-        </div>
-        <div class="mc-chips">${chips(m, 5)}</div>
-        <div class="pairs">${headline(m).map(x => pairRow(x, false)).join('')}</div>
-        <div class="pair-legend"><span><i style="background:var(--thread)"></i>Loom</span><span><i style="background:var(--llama)"></i>llama.cpp ROCm</span><span style="margin-left:auto" class="mono">#${rank.get(m.id)} · ${m.wins}/${m.measured.length} wins</span></div>
-      </article>`;
+  function matrix(list) {
+    el('matrix').innerHTML = `
+      <thead><tr><th>model</th>${METRICS.map(x => `<th>${x.short}</th>`).join('')}<th>geomean</th></tr></thead>
+      <tbody>${list.map(m => `
+        <tr>
+          <td class="mname" data-id="${esc(m.id)}">${esc(m.name)}<small>${esc(m.quant)}</small></td>
+          ${METRICS.map(x => {
+            const v = m.performance.metrics[x.key];
+            const r = v ? v.speedup : null;
+            const s = shade(r);
+            return `<td class="${s.cls}" style="${s.style}" title="${r == null ? 'not measured' : `loom ${num(v.loom)} · llama.cpp ${num(v.llamacpp)} tok/s`}">${r == null ? '—' : r.toFixed(2)}</td>`;
+          }).join('')}
+          ${(() => { const s = shade(m.score); return `<td class="${s.cls}" style="${s.style}">${times(m.score)}</td>`; })()}
+        </tr>`).join('')}
+      </tbody>`;
   }
 
   function render() {
-    const q = state.q.toLowerCase();
-    const list = models
-      .filter(m => !q || [m.name, m.checkpoint, m.quant, m.repo, m.baseRepo].join(' ').toLowerCase().includes(q))
-      .filter(m => [...state.filters].every(f => m[f]))
-      .sort((a, b) => SORTS[state.sort](a) - SORTS[state.sort](b));
-    el('count').textContent = `${list.length} of ${models.length} models`;
-    el('grid').innerHTML = list.length ? list.map(card).join('') : `
-      <div class="empty" style="grid-column:1/-1">
-        <span class="material-symbols-outlined">search_off</span>
-        <p>No model matches yet. Maybe yours should be the first? <a class="grad" href="submit.html">Submit one</a>.</p>
-      </div>`;
+    const list = filtered();
+    el('count').textContent = `${list.length}/${models.length} models${state.filters.size ? ` · filters: ${[...state.filters].join(', ')}` : ''}`;
+    table.update(list);
+    matrix([...list].sort((a, b) => (b.score || 0) - (a.score || 0)));
+  }
+
+  // Drawer
+  function bars(m) {
+    const head = '<div class="mrow mhead"><span>metric</span><span><i class="sw loom"></i>loom <i class="sw ref"></i>llama.cpp</span><span>tok/s</span><span>ratio</span></div>';
+    return head + m.measured.map(x => {
+      const max = Math.max(x.loom, x.llamacpp);
+      const detail = x.detail.replace(' document', '').replace(' context', ' ctx').replace('short prompt', 'short').replace('aggregate decode', 'agg');
+      return `
+        <div class="mrow">
+          <span class="ml">${x.label} <small>${detail}</small></span>
+          <span class="mt"><i class="loom" style="width:${(x.loom / max * 100).toFixed(1)}%"></i><i class="ref" style="width:${(x.llamacpp / max * 100).toFixed(1)}%"></i></span>
+          <span class="mv">${num(x.loom)}<small>${num(x.llamacpp)}</small></span>
+          <span class="mr ${x.speedup < 1 ? 'lo' : ''}">${times(x.speedup)}</span>
+        </div>`;
+    }).join('');
   }
 
   function drawer(m) {
-    const p = m.performance;
-    const kpi = (v, l) => `<div class="kpi"><div class="v ${v != null && v >= 1 ? 'grad' : ''}">${times(v)}</div><div class="l">${l}</div></div>`;
-    const featureRows = Object.keys(FEATURES).filter(f => f in m.features).map(f => {
-      const on = m.features[f] === 'yes';
-      return `<div class="feat ${on ? '' : 'no'}"><span class="material-symbols-outlined">${on ? FEATURES[f].icon : 'block'}</span>${FEATURES[f].label}</div>`;
-    }).join('');
-    const ICON = { pass: 'check_circle', fail: 'cancel', unknown: 'help', 'n/a': 'remove' };
-    const LABEL = { pass: 'pass', fail: 'fail', unknown: 'no evidence', 'n/a': 'not applicable' };
-    const gates = Object.entries(m.gates.status).map(([g, st]) => `
-      <div class="gate ${st === 'n/a' ? 'na' : st}">
-        <span class="material-symbols-outlined">${ICON[st]}</span>
-        <code>${g}</code>
-        <span class="d">${LABEL[st]} · ${esc(GATES[g] || '')}</span>
-      </div>`).join('');
-    const src = p.source;
-    const drafting = p.drafting.loom ? `Speculative decoding on both engines (Loom: ${esc(p.drafting.loom)}; llama.cpp: ${esc(p.drafting.llamacpp)}).` : 'Speculative decoding off on both engines.';
-    const na = METRICS.filter(x => !m.measured.find(y => y.key === x.key)).map(x => `${x.label.toLowerCase()} ${x.detail}`);
-
-    el('drawerBody').innerHTML = `
-      <button class="drawer-close" id="drawerClose" aria-label="Close"><span class="material-symbols-outlined">close</span></button>
-      <span class="eyebrow">#${rank.get(m.id)} on Loom Dev · ${esc(m.service.kind)}</span>
-      <h2>${esc(m.name)}</h2>
-      <div class="mc-sub">${esc(m.quant)} · ${gb(m.sizeBytes)} · ${ctx(m.serve.context_tokens)} context · ${m.serve.rows || '—'} concurrent rows · ${esc(m.license || 'license not stated')}</div>
-      <div class="mc-chips" style="margin-top:14px">${chips(m, 12)}</div>
-      <div class="drawer-hero">
-        ${kpi(m.score, 'overall')}${kpi(m.decodeScore, 'decode')}${kpi(m.prefillScore, 'prefill')}${kpi(m.streamsScore, '4 streams')}
+    const p = m.performance, src = p.source;
+    const drafting = p.drafting.loom
+      ? `speculative decoding on for both engines (loom: ${esc(p.drafting.loom)}; llama.cpp: ${esc(p.drafting.llamacpp)}).`
+      : 'speculative decoding off for both engines.';
+    const na = METRICS.filter(x => !m.measured.find(y => y.key === x.key)).map(x => `${x.label} ${x.detail}`);
+    const LABEL = { pass: 'pass', fail: 'fail', unknown: '----', 'n/a': 'n/a' };
+    el('drPath').textContent = `models / ${m.id}`;
+    el('dr').innerHTML = `
+      <span class="label">#${String(m.rank).padStart(2, '0')} · ${esc(m.service.kind)} · from <a class="u" href="${hf(m.baseRepo)}" target="_blank" rel="noopener">${esc(m.baseRepo)}</a></span>
+      <h2 style="margin-top:10px">${esc(m.name)}</h2>
+      <div class="meta">${LOOM.sub(m)} · ${m.serve.rows || '—'} rows · ${esc(m.license || 'license not stated')}</div>
+      <div class="kv-grid">
+        <div><b>${times(m.score)}</b><span>geomean vs ref</span></div>
+        <div><b>${m.decodeTok ? num(m.decodeTok) : '—'}</b><span>decode tok/s</span></div>
+        <div><b>${m.prefillTok ? num(m.prefillTok) : '—'}</b><span>prefill 2k tok/s</span></div>
+        <div><b>${m.gatesPass}/${m.gatesApplicable}</b><span>gates pass</span></div>
       </div>
 
-      <h3>Head to head with llama.cpp</h3>
-      <div class="pairs">${m.measured.map(x => pairRow(x, true)).join('')}</div>
-      <div class="pair-legend" style="margin-top:14px"><span><i style="background:var(--thread)"></i>Loom</span><span><i style="background:var(--llama)"></i>llama.cpp ROCm ${esc(p.llamacpp_build || '')}</span></div>
-      <p class="fineprint">Same GGUF on both engines, tokens per second. ${drafting} Measured ${esc(p.date)}${src ? ` in a ${src.kind === 'factory' ? 'loom-factory CI run' : 'local run'}${src.url ? ` (<a href="${esc(src.url)}" target="_blank" rel="noopener">evidence</a>)` : ''}` : ''}.${na.length ? ` Not measured: ${na.join(', ')}.` : ''}</p>
-
-      <h3>Run it</h3>
+      <h3>run it</h3>
       <div class="code">
-        <div class="code-head"><span class="dots"><i></i><i></i><i></i></span><button class="copy-btn" data-copy=""><span class="material-symbols-outlined">content_copy</span>Copy</button></div>
+        <div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div>
         <pre><code>${esc(quickstart(m))}</code></pre>
       </div>
-      <p class="fineprint">The server answers OpenAI-style <code>${esc(m.service.endpoint)}</code> requests on <code>127.0.0.1:8080</code>.${m.serve.memory_bytes ? '' : ' Set <code>--memory_bytes</code> to your GPU memory budget; the model card has the value it was tested with.'}</p>
+      <p class="fine">Serves OpenAI-style <code>${esc(m.service.endpoint)}</code> on <code>127.0.0.1:8080</code>.${m.serve.memory_bytes ? '' : ' Set <code>--memory_bytes</code> to your GPU memory budget; the model card lists the value it was tested with.'}</p>
 
-      <h3>Features</h3>
-      <div class="feat-grid">${featureRows}</div>
+      <h3>throughput · loom vs llama.cpp rocm ${esc(p.llamacpp_build || '')}</h3>
+      <div class="mbars">${bars(m)}</div>
+      <p class="fine">Same GGUF on both engines, tokens per second. ${drafting} Measured ${esc(p.date)}${src ? ` in a ${src.kind === 'factory' ? 'loom-factory CI run' : 'local run'}${src.url ? ` (<a href="${esc(src.url)}" target="_blank" rel="noopener">evidence</a>)` : ''}` : ''}.${na.length ? ` Not measured: ${na.join(', ')}.` : ''}</p>
 
-      <h3>Correctness gates · ${m.gates.summary.pass}/${m.gatesApplicable} pass</h3>
-      <div class="gates">${gates}</div>
+      <h3>features</h3>
+      <div class="feat-list">${Object.keys(FEATURES).filter(f => f in m.features).map(f => {
+        const on = m.features[f] === 'yes';
+        return `<div><span class="${on ? 'y' : 'n'}">${FEATURES[f]}</span><span class="${on ? 'y' : 'n'}">${on ? 'yes' : 'no'}</span></div>`;
+      }).join('')}</div>
 
-      <div class="drawer-links">
-        <a class="btn btn-primary btn-sm" href="${hf(m.repo)}" target="_blank" rel="noopener"><span class="hf-emoji">🤗</span>Model card</a>
-        <a class="btn btn-sm" href="${hf(m.baseRepo)}" target="_blank" rel="noopener"><span class="material-symbols-outlined">deployed_code</span>Base GGUF</a>
-        ${src && src.url ? `<a class="btn btn-sm" href="${esc(src.url)}" target="_blank" rel="noopener"><span class="material-symbols-outlined">receipt_long</span>Benchmark run</a>` : ''}
+      <h3>correctness gates</h3>
+      <div class="gate-list">${Object.entries(m.gates.status).map(([g, st]) => `
+        <div class="gate-row ${st === 'n/a' ? 'na' : st}"><span class="st">[${LABEL[st]}]</span><code>${g}</code><span>${esc(GATES[g] || '')}</span></div>`).join('')}
+      </div>
+
+      <h3>weights</h3>
+      <div class="bars">${[
+        ['checkpoint', m.weights.checkpoint],
+        ['drafter', m.weights.drafter],
+        ['projector', m.weights.projector],
+      ].map(([k, w]) => w ? `<span class="l">${k.padEnd(12)}</span>${esc(w.repo)} · ${esc(w.file)}` : `<span class="r">${k.padEnd(12)}none</span>`).join('\n')}</div>
+
+      <div class="links">
+        <a class="btn solid" href="${hf(m.repo)}" target="_blank" rel="noopener">model card ↗</a>
+        <a class="btn" href="${hf(m.baseRepo)}" target="_blank" rel="noopener">source gguf ↗</a>
+        ${src && src.url ? `<a class="btn" href="${esc(src.url)}" target="_blank" rel="noopener">benchmark run ↗</a>` : ''}
       </div>`;
-    el('drawerClose').addEventListener('click', close);
-    LOOM.copyButtons(el('drawerBody'));
+    LOOM.copyButtons(el('dr'));
   }
 
-  function open(id) {
+  function show(id) {
     const m = models.find(x => x.id === id);
     if (!m) return;
     drawer(m);
-    document.body.classList.add('drawer-open');
+    document.body.classList.add('open');
     el('drawer').setAttribute('aria-hidden', 'false');
     el('drawer').scrollTop = 0;
   }
   function close() {
-    document.body.classList.remove('drawer-open');
+    document.body.classList.remove('open');
     el('drawer').setAttribute('aria-hidden', 'true');
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
   }
   const route = () => {
     const id = decodeURIComponent(location.hash.slice(1));
-    id ? open(id) : close();
+    id ? show(id) : close();
   };
 
   el('q').addEventListener('input', e => { state.q = e.target.value; render(); });
-  el('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
-  el('filters').addEventListener('click', e => {
-    const b = e.target.closest('.filter');
+  el('toggles').addEventListener('click', e => {
+    const b = e.target.closest('.tg');
     if (!b) return;
-    const f = b.dataset.filter;
+    const f = b.dataset.f;
     state.filters.has(f) ? state.filters.delete(f) : state.filters.add(f);
     b.classList.toggle('on');
     render();
   });
-  el('grid').addEventListener('click', e => {
-    const c = e.target.closest('.model-card');
-    if (c) location.hash = encodeURIComponent(c.dataset.id);
+  el('views').addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    state.view = b.dataset.v;
+    el('views').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    el('viewTable').hidden = state.view !== 'table';
+    el('viewMatrix').hidden = state.view !== 'matrix';
   });
-  el('grid').addEventListener('keydown', e => {
-    const c = e.target.closest('.model-card');
-    if (c && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); location.hash = encodeURIComponent(c.dataset.id); }
+  el('matrix').addEventListener('click', e => {
+    const td = e.target.closest('td.mname');
+    if (td) open(models.find(m => m.id === td.dataset.id));
   });
-  el('backdrop').addEventListener('click', close);
+  el('drawerBg').addEventListener('click', close);
+  el('drClose').addEventListener('click', close);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   window.addEventListener('hashchange', route);
 
