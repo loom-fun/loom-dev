@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>models · loom/dev</title>
-  <meta name="description" content="Every community GGUF port to AMD Loom, with per-metric numbers against llama.cpp ROCm on the same GGUF.">
+  <meta name="description" content="Every community GGUF port to AMD Loom, with per-workload numbers against llama.cpp ROCm on the same GGUF.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +21,15 @@
   <main>
     <section class="page-head">
       <div class="wrap">
-        <span class="label">models / index</span>
+        <span class="label">models / collection</span>
         <h1>Every port, with its receipts.</h1>
-        <p>Each model below started as a GGUF on Hugging Face and went through loom-skills. Open one for every metric against llama.cpp ROCm on the same GGUF, its features, its correctness gates and a quick start.</p>
+        <p id="headLede">Each model started as a GGUF on Hugging Face. Open one for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.</p>
       </div>
     </section>
 
     <section class="wrap">
       <div class="toolbar">
-        <label class="search"><span>&gt;</span><input id="q" type="search" placeholder="filter: name, quant, source repo" autocomplete="off"></label>
+        <label class="search"><span>&gt;</span><input id="q" type="search" placeholder="filter: name, org, quant, repo" autocomplete="off"></label>
         <div class="toggles" id="toggles">
           <button class="tg" data-f="verified">all gates pass</button>
           <button class="tg" data-f="tools">tools</button>
@@ -37,26 +37,41 @@
           <button class="tg" data-f="thinking">thinking</button>
           <button class="tg" data-f="spec">speculative</button>
         </div>
+        <label class="sel"><span>sort</span><select id="sort">
+          <option value="score">overall ×</option>
+          <option value="decodeScore">decode ×</option>
+          <option value="prefillScore">prefill ×</option>
+          <option value="streamsScore">4 streams ×</option>
+          <option value="decodeTok">decode tok/s</option>
+          <option value="prefillTok">prefill 2k tok/s</option>
+          <option value="sizeBytes">size</option>
+          <option value="ctx">context</option>
+          <option value="date">newest</option>
+        </select></label>
         <div class="views" id="views">
-          <button class="on" data-v="table">table</button>
+          <button class="on" data-v="cards">cards</button>
+          <button data-v="table">table</button>
           <button data-v="matrix">matrix</button>
         </div>
       </div>
       <p class="count" id="count"></p>
 
-      <div id="viewTable">
-        <div class="tbl-wrap"><table class="tbl" id="tbl"></table></div>
+      <div id="viewCards"><div class="grid" id="grid"></div>
+        <div class="tbl-legend"><span><i class="sw loom"></i>loom <i class="sw ref"></i>llama.cpp, tok/s</span><span>numbers: <b>loom</b> over <span class="faint">llama.cpp</span></span></div>
+      </div>
+
+      <div id="viewTable" hidden>
+        <div class="tbl-wrap"><table class="tbl board" id="tbl"></table></div>
         <div class="tbl-legend">
-          <span><b>T</b> tools · <b>V</b> vision · <b>R</b> thinking · <b>S</b> speculative decoding · <b>P</b> sampling</span>
+          <span>tok/s: <b>loom</b> over <span class="faint">llama.cpp</span></span>
           <span><i class="g g-pass"></i> gate pass · <i class="g g-fail"></i> fail · <i class="g"></i> no evidence</span>
-          <span><span class="rb"><i class="neg" style="width:30%"></i></span>llama.cpp faster · <span class="rb"><i class="pos" style="width:30%"></i></span>Loom faster</span>
         </div>
       </div>
 
       <div id="viewMatrix" hidden>
         <div class="tbl-wrap"><table class="matrix" id="matrix"></table></div>
         <div class="matrix-legend">
-          <span>Loom ÷ llama.cpp, same GGUF:</span>
+          <span>loom ÷ llama.cpp, same GGUF:</span>
           <span><i class="swatch lo" style="background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0 1px,transparent 1px 5px)"></i> below 1.00</span>
           <span><i class="swatch" style="background:rgba(255,255,255,.08)"></i> 1.00–1.20</span>
           <span><i class="swatch" style="background:rgba(255,255,255,.3)"></i> ~1.40</span>
@@ -69,7 +84,7 @@
 
   <div class="drawer-bg" id="drawerBg"></div>
   <aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="dr-top"><span id="drPath"></span><button id="drClose">esc · close</button></div>
+    <div class="dr-top"><span id="drPath"></span><span class="dr-nav"><button id="drPrev">← prev</button><button id="drNext">next →</button><button id="drClose">esc · close</button></span></div>
     <div class="dr" id="dr"></div>
   </aside>
 

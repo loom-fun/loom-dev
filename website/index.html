@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>loom/dev · bring a GGUF, run it on Loom</title>
-  <meta name="description" content="Take any GGUF LLM and get it running on AMD Loom with loom-skills: port, verify against llama.cpp, optimize, publish.">
+  <title>loom/dev · community GGUF ports on AMD Loom</title>
+  <meta name="description" content="Every community GGUF port to AMD Loom, measured against llama.cpp ROCm on the same weights: leaderboard, per-workload data, gates and features.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/styles.css">
   <script src="assets/loom-data.js"></script>
   <script src="assets/loom-lib.js"></script>
+  <script src="assets/charts.js"></script>
   <script src="assets/navbar.js"></script>
   <script src="assets/footer.js"></script>
 </head>
@@ -19,163 +20,134 @@
   <div class="navbar-placeholder"></div>
 
   <main>
-    <!-- 00 · hero -->
-    <section class="hero">
-      <div class="wrap hero-grid">
+    <!-- index header -->
+    <section class="ix-head">
+      <div class="wrap ix-grid">
         <div>
-          <div class="kicker"><span class="dot"></span>loom-skills · agent skills for AMD Loom</div>
-          <h1>Bring a GGUF.<br><span class="thin">Leave with it running on Loom.</span></h1>
-          <p class="lede">
-            Point your coding agent at any GGUF on Hugging Face. <b>loom-skills</b> ports it to AMD Loom,
-            checks it token by token against llama.cpp, optimizes it within a time budget, and writes the model card.
-            You don't need to know the kernels in advance.
-          </p>
-          <div class="hero-cmds">
-            <div class="code inline-cmd"><pre><code><span class="p">$ </span>npx skills add loom-fun/loom-skills</code></pre><button class="copy" data-copy>copy</button></div>
-            <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom get <span class="s">&lt;hf-org&gt;/&lt;model&gt;</span> working on loom-serve, optimize it, and report the performance relative to llamacpp rocm</code></pre><button class="copy" data-copy>copy</button></div>
-          </div>
-          <div class="hero-ctas">
-            <a class="btn solid" href="#how">how it works ↓</a>
-            <a class="btn" href="models.html">browse models</a>
-            <a class="btn" href="submit.html">publish yours</a>
-          </div>
-          <div class="telemetry" id="telemetry"></div>
+          <div class="kicker"><span class="dot"></span><span id="ixKicker">community index</span></div>
+          <h1>Community GGUF ports on AMD Loom.<br><span class="thin">Measured against llama.cpp ROCm on the same weights.</span></h1>
+          <p class="lede">Each row is a Hugging Face GGUF that someone ported with <b>weaver</b>. Every number comes from that port's benchmark log: same GGUF, same machine, both engines, including the workloads where llama.cpp is faster.</p>
+          <div class="code inline-cmd port-cmd"><pre><code><span class="p">$ </span>weaver port <span class="s">&lt;hf-org&gt;/&lt;model&gt;</span></code></pre><button class="copy" data-copy>copy</button><a class="pc-link" href="#how">how it works ↓</a></div>
         </div>
-
-        <div class="panel term ticks" id="term">
-          <div class="panel-head"><span class="sq"><i></i><i></i><i></i></span><span id="termTitle">~/models · agent session</span><span>replay</span></div>
-          <div class="term-body" id="termBody"></div>
-          <div class="term-foot">
-            <span class="term-stage" id="termStage"></span>
-            <button type="button" id="termReplay">↻ restart</button>
-          </div>
-        </div>
+        <div class="telemetry" id="telemetry"></div>
       </div>
     </section>
 
-    <!-- 01 · how it works -->
-    <section class="sec" id="how">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <div class="sec-idx"><b>01</b> / how it works</div>
-          <div>
-            <h2>Four scripted steps, with your agent's judgment only where it's needed.</h2>
-            <p>One prompt runs the whole pipeline without stopping. It asks only when a model is gated behind a license. The whole job fits in the model's roofline budget: in recent trials, about 25 minutes for a 0.8B model and about 70 for a 30B dense one.</p>
-          </div>
-        </div>
-        <div class="reveal">
-          <div class="pipe" id="pipe" role="tablist"></div>
-          <div class="stage-detail" id="stageDetail"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 · what a port includes -->
-    <section class="sec" id="includes">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <div class="sec-idx"><b>02</b> / what you get</div>
-          <div>
-            <h2>A complete model server, not a demo.</h2>
-            <p>The chat glue is derived from the model's own Jinja chat template and verified against it, so the port behaves the way the model was trained to be used.</p>
-          </div>
-        </div>
-        <div class="spec reveal">
-          <div><span class="k">ctx</span><h4>Native context length</h4><p>Built at the model's full context, for example 40,960 tokens for Qwen3-0.6B and 262,144 for Qwen3.5-0.8B.</p></div>
-          <div><span class="k">tools</span><h4>Tool calling, in the model's format</h4><p>OpenAI-style <code>tools</code> and <code>tool_calls</code>, rendered exactly the way the template expects.</p></div>
-          <div><span class="k">think</span><h4>Reasoning with an on/off switch</h4><p>Thinking models keep their reasoning, and you can turn it off per request.</p></div>
-          <div><span class="k">cache</span><h4>History reuse between turns</h4><p>Agent loops don't re-prefill the whole conversation on every turn.</p></div>
-          <div><span class="k">sample</span><h4>Per-request sampling</h4><p><code>temperature</code>, <code>top_p</code>, <code>top_k</code> and <code>seed</code>, checked against llama.cpp's first-token distribution.</p></div>
-          <div><span class="k">api</span><h4>OpenAI-compatible endpoint</h4><p><code>loom-serve</code> answers <code>/v1/chat/completions</code>, so existing clients work unchanged.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 · correctness -->
-    <section class="sec" id="gates">
-      <div class="wrap">
-        <div class="sec-head reveal">
-          <div class="sec-idx"><b>03</b> / correctness</div>
-          <div>
-            <h2>The reference is llama.cpp on the same GGUF, never a hand-written model.</h2>
-            <p>Every port is checked by the loom-benchmark gates. Each gate records the run that produced it, and a gate with no run shows as "no evidence" rather than a guess.</p>
-          </div>
-        </div>
-        <div class="gates-wrap reveal">
-          <div class="panel">
-            <div class="panel-head"><span>gates.sh</span><span id="gateExample"></span></div>
-            <div class="gate-list" id="gateList"></div>
-          </div>
-          <div class="panel rails">
-            <h4>Rails built into the skills</h4>
-            <ul>
-              <li>Never serves a model whose weights exceed the GPU's memory budget. A 104 GiB model once hard-crashed a 128 GB machine.</li>
-              <li>Always passes <code>--memory_bytes</code> to <code>loom-serve</code>.</li>
-              <li>Asks before running any downloaded binary, except Loom from PyPI and lemonade-sdk/llamacpp-rocm releases.</li>
-              <li class="y">Caches the llama.cpp reference outputs, so re-running gates on an optimized build only costs the Loom side.</li>
-              <li class="y">Generates the model card from the logs. No number on a card is typed by hand.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 · leaderboard -->
+    <!-- 01 · leaderboard -->
     <section class="sec" id="leaderboard">
       <div class="wrap">
-        <div class="sec-head reveal">
-          <div class="sec-idx"><b>04</b> / leaderboard</div>
+        <div class="sec-head">
+          <div class="sec-idx"><b>01</b> / leaderboard</div>
           <div>
-            <h2>What the community has ported so far.</h2>
-            <p>Sorted by throughput relative to llama.cpp ROCm on the same GGUF and machine: the geometric mean over every measured decode, prefill and multi-stream workload. Click a column to re-sort or a row to open the model.</p>
+            <h2>Ranked by throughput relative to llama.cpp.</h2>
+            <p>The overall score is the geometric mean of Loom ÷ llama.cpp over every workload a model was measured on. The profile column shows all nine at a glance: decode at three context lengths, prefill at five document lengths and 4-stream aggregate decode. Bars point up where Loom is faster and down where it's slower.</p>
           </div>
         </div>
-        <div class="tbl-wrap reveal"><table class="tbl" id="board"></table></div>
+        <div class="podium" id="podium"></div>
+        <div class="tbl-wrap"><table class="tbl board" id="board"></table></div>
         <div class="tbl-legend">
-          <span><b>T</b> tools · <b>V</b> vision · <b>R</b> thinking · <b>S</b> speculative decoding · <b>P</b> sampling</span>
+          <span>tok/s: <b>loom</b> over <span class="faint">llama.cpp</span></span>
+          <span class="lg-pf"><svg viewBox="0 0 30 14" width="30" height="14"><line x1="0" x2="30" y1="7" y2="7" class="pf-mid"/><rect x="3" y="2" width="6" height="5" class="pf-up"/><rect x="12" y="7" width="6" height="3" class="pf-dn"/><rect x="21" y="3" width="6" height="4" class="pf-up"/></svg> per-workload speedup, ±2× full scale</span>
           <span><i class="g g-pass"></i> gate pass · <i class="g g-fail"></i> fail · <i class="g"></i> no evidence</span>
-          <span><span class="rb"><i class="neg" style="width:30%"></i></span>llama.cpp faster · <span class="rb"><i class="pos" style="width:30%"></i></span>Loom faster</span>
-          <a class="u" href="models.html">all models, per-metric matrix →</a>
+          <span><b>T</b> tools · <b>V</b> vision · <b>R</b> thinking · <b>S</b> speculative · <b>P</b> sampling</span>
+          <a class="u" href="models.html">every model, with detail →</a>
         </div>
       </div>
     </section>
 
-    <!-- 05 · publish -->
-    <section class="sec" id="publish">
+    <div id="field">
+      <div class="readout-bar"><div class="wrap readout" id="readout"><span class="faint">hover any mark to trace a model across every chart · click to open it</span></div></div>
+
+      <!-- 02 · by workload -->
+      <section class="sec" id="data">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sec-idx"><b>02</b> / by workload</div>
+            <div>
+              <h2>Where Loom is faster, and where it isn't.</h2>
+              <p id="stripLede">One dot per model for each workload, on a log scale centred on parity. Hollow dots are workloads where llama.cpp is faster. The tick on each row is the median.</p>
+            </div>
+          </div>
+          <div class="panel chart-panel"><div class="panel-head"><span>speedup · loom ÷ llama.cpp</span><span id="stripMeta"></span></div><div class="chart-body" id="strip"></div></div>
+        </div>
+      </section>
+
+      <!-- 03 · throughput vs size -->
+      <section class="sec" id="size">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sec-idx"><b>03</b> / absolute</div>
+            <div>
+              <h2>Tokens per second against weights size.</h2>
+              <p>Ratios hide scale, so this is the raw rate. Each model is a pair joined by a line: a square for Loom and a circle for llama.cpp. A line that runs down from the square means Loom is slower on that workload. Both axes are logarithmic.</p>
+            </div>
+          </div>
+          <div class="panel chart-panel">
+            <div class="panel-head"><span>tok/s vs GB</span><div class="seg" id="scatterTabs"></div></div>
+            <div class="chart-body" id="scatter"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 · context scaling -->
+      <section class="sec" id="scaling">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sec-idx"><b>04</b> / context</div>
+            <div>
+              <h2>How the gap moves with context length.</h2>
+              <p id="scalingLede">One line per model, with the median drawn in bold. The shaded area is where llama.cpp is faster.</p>
+            </div>
+          </div>
+          <div class="pair-charts">
+            <div class="panel chart-panel"><div class="panel-head"><span>prefill speedup · document length</span><span>1k → 32k</span></div><div class="chart-body" id="scalePrefill"></div></div>
+            <div class="panel chart-panel"><div class="panel-head"><span>decode speedup · context length</span><span>short → 32k</span></div><div class="chart-body" id="scaleDecode"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 · receipts -->
+      <section class="sec" id="receipts">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="sec-idx"><b>05</b> / receipts</div>
+            <div>
+              <h2>Correctness gates and features, per model.</h2>
+              <p>Gates compare the port with llama.cpp on the same GGUF. A hollow square means the gate applies but no recorded run covers it yet, and a dot means it doesn't apply. Hover a column header for what it checks.</p>
+            </div>
+          </div>
+          <div class="tbl-wrap"><div id="coverage"></div></div>
+          <div class="tbl-legend">
+            <span><b class="ok">■</b> pass · <b class="bad">■</b> fail · □ no evidence · · n/a</span>
+            <span><b>■</b> feature supported · · not supported</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 06 · how it works -->
+    <section class="sec" id="how">
       <div class="wrap">
-        <div class="sec-head reveal">
-          <div class="sec-idx"><b>05</b> / publish</div>
+        <div class="sec-head">
+          <div class="sec-idx"><b>06</b> / how it works</div>
           <div>
-            <h2>Ported something? Put it on the board.</h2>
-            <p>There's no form. Upload the package to Hugging Face with the card the skills generated. Models tagged <code>loom</code> and <code>loom-serve</code> with an <code>info.json</code> show up here.</p>
+            <h2>Four scripted steps, with your agent's judgment only where it's needed.</h2>
+            <p>weaver runs the loom-skills with a local agent, Pi driving Qwen3.8-27B on loom-serve, so nothing goes to a cloud model. It doesn't stop to ask questions, except to accept a gated model's license. In weaver's own trials, <code>weaver port</code> passed the full gates and the audit in 24.7 minutes for Qwen3.5-0.8B and 97.5 minutes for Bolt-E4B.</p>
           </div>
         </div>
-        <div class="publish reveal">
-          <div>
-            <span class="label">step a</span>
-            <h4>Generate the card</h4>
-            <p>Ask your agent to generate the Hugging Face card for the port. loom-benchmark builds <code>info.json</code> from the logs and renders <code>README.md</code> from it.</p>
-            <div class="code inline-cmd"><pre class="wrap"><code>python $CARD/render_card.py PKG/info.json -o PKG/README.md</code></pre><button class="copy" data-copy>copy</button></div>
-          </div>
-          <div>
-            <span class="label">step b</span>
-            <h4>Upload the package</h4>
-            <p>The <code>.loom</code> programs, <code>model.json</code> and its lock file, the tokenizer and the card. The GGUF stays in its original repo.</p>
-            <div class="code inline-cmd"><pre class="wrap"><code>hf upload <span class="s">&lt;you&gt;/&lt;model&gt;-loom</span> PKG .</code></pre><button class="copy" data-copy>copy</button></div>
-          </div>
-          <div>
-            <span class="label">step c</span>
-            <h4>Show up here</h4>
-            <p>The card's front matter already carries the tags. On the next index refresh your model gets a row, a detail page and a quick start.</p>
-            <a class="btn" href="submit.html">full publishing guide →</a>
-          </div>
+        <div class="pipe" id="pipe" role="tablist"></div>
+        <div class="stage-detail" id="stageDetail"></div>
+        <div class="cmd-strip">
+          <div><span class="label">install</span><div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>curl -fsSL https://github.com/loom-fun/weaver/releases/latest/download/install.sh | bash</code></pre><button class="copy" data-copy>copy</button></div></div>
+          <div><span class="label">port</span><div class="code inline-cmd"><pre><code><span class="p">$ </span>weaver port <span class="s">&lt;org&gt;/&lt;model&gt;</span></code></pre><button class="copy" data-copy>copy</button></div></div>
+          <div><span class="label">publish</span><div class="code inline-cmd"><pre><code><span class="p">$ </span>weaver upload <span class="s">&lt;org&gt;/&lt;model&gt; &lt;hf-org&gt;</span></code></pre><button class="copy" data-copy>copy</button></div></div>
         </div>
+        <p class="fine">Linux x86-64 (Ubuntu 24.04 or newer), an AMD GPU with <code>/dev/kfd</code> access and about 64 GB of RAM. <a href="submit.html">Full publishing guide →</a></p>
       </div>
     </section>
   </main>
 
   <div class="footer-placeholder"></div>
-  <script src="assets/term.js"></script>
   <script src="assets/home.js"></script>
 </body>
 </html>

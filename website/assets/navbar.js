@@ -7,13 +7,14 @@ function createNavbar(active) {
       <div class="nav-inner">
         <a class="wordmark" href="index.html" aria-label="Loom Dev home"><img src="assets/logo.svg" alt="">loom<span>/</span>dev</a>
         <nav class="nav-links">
-          ${link('index.html#how', 'how', 'how it works')}
+          ${link('index.html#leaderboard', 'home', 'leaderboard')}
           ${link('models.html', 'models', 'models')}
-          ${link('index.html#leaderboard', 'leaderboard', 'leaderboard')}
-          ${link('submit.html', 'submit', 'publish')}
+          ${link('index.html#data', 'data', 'data')}
+          ${link('index.html#how', 'how', 'how it works')}
+          ${link('submit.html', 'submit', 'port yours')}
         </nav>
         <div class="nav-ext">
-          <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">github ↗</a>
+          <a href="https://github.com/loom-fun/weaver" target="_blank" rel="noopener">weaver ↗</a>
           <span class="sep">/</span>
           <a href="https://huggingface.co/loom-fun" target="_blank" rel="noopener">hugging face ↗</a>
         </div>

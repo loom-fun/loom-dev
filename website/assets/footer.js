@@ -11,17 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="footer-grid">
           <div>
             <a class="wordmark" href="index.html"><img src="assets/logo.svg" alt="">loom<span>/</span>dev</a>
-            <p>Community GGUF ports to AMD Loom, built with loom-skills and checked against llama.cpp ROCm on the same weights.</p>
+            <p>Community GGUF ports to AMD Loom, built with weaver and loom-skills and checked against llama.cpp ROCm on the same weights.</p>
           </div>
           <div>
             <h5>site</h5>
-            <a href="index.html#how">how it works</a>
-            <a href="models.html">models</a>
             <a href="index.html#leaderboard">leaderboard</a>
-            <a href="submit.html">publish</a>
+            <a href="models.html">models</a>
+            <a href="index.html#data">data</a>
+            <a href="index.html#how">how it works</a>
+            <a href="submit.html">port yours</a>
           </div>
           <div>
             <h5>tools</h5>
+            <a href="https://github.com/loom-fun/weaver" target="_blank" rel="noopener">weaver ↗</a>
             <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills ↗</a>
             <a href="https://github.com/ROCm/hrx-system" target="_blank" rel="noopener">amd loom ↗</a>
             <a href="https://pypi.org/project/hrx-loom/" target="_blank" rel="noopener">hrx-loom on pypi ↗</a>

@@ -1,89 +1,128 @@
-// Home page: telemetry strip, pipeline stepper, gate list and leaderboard.
+// Home page: index telemetry, leaderboard, linked charts and the weaver pipeline stepper.
 
 (() => {
-  const { models, stats, esc, ctx, GATES } = LOOM;
+  const { models, stats, esc, ctx, times, METRIC, median } = LOOM;
   const s = stats();
   const el = id => document.getElementById(id);
+  const open = m => { location.href = LOOM.href(m); };
 
+  el('ixKicker').textContent = `community index · ${s.models} ports · updated ${s.generated}`;
   el('telemetry').innerHTML = [
-    [s.models, 'models indexed'],
-    [s.orgs, 'source orgs'],
-    [ctx(s.maxCtx), 'max context'],
-    [s.verified, 'all gates pass'],
-  ].map(([v, l]) => `<div><b>${v}</b><span>${l}</span></div>`).join('');
+    [s.models, 'models indexed', `from ${s.orgs} source orgs`],
+    [`${s.wins}/${s.runs}`, 'workloads loom faster', `${Math.round(s.wins / s.runs * 100)}% of measurements`],
+    [times(s.median), 'median speedup', 'over every measurement'],
+    [s.best ? times(s.best.speedup) : '—', 'largest gap', s.best ? `${esc(s.best.m.name)} · ${s.best.short}` : ''],
+    [`${s.gatesPass}/${s.gatesApplicable}`, 'gates passing', `${s.verified} models pass all`],
+    [ctx(s.maxCtx), 'max context', 'tokens, served natively'],
+    [`${Math.round(s.bytes / 1e9)} GB`, 'weights indexed', 'GGUFs stay in their repos'],
+    [`${s.tools}/${s.vision}/${s.spec}`, 'tools / vision / spec', 'models with each feature'],
+  ].map(([v, l, d]) => `<div><b>${v}</b><span>${l}</span><small>${d}</small></div>`).join('');
 
-  // Pipeline
+  // Leaderboard
+  el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
+  LOOM.mountTable(el('board'), models, { onOpen: open });
+
+  // Charts, hover-linked through #field
+  el('strip').innerHTML = CHARTS.strip(models);
+  const all = models.flatMap(m => m.measured);
+  const groupLine = g => {
+    const xs = all.filter(x => x.group === g);
+    return `${g} ${xs.filter(x => x.speedup > 1.005).length}/${xs.length} faster, median ${times(median(xs.map(x => x.speedup)))}`;
+  };
+  el('stripMeta').textContent = `${s.runs} measurements · ${s.models} models`;
+  el('stripLede').innerHTML += ` Across the index: ${['decode', 'prefill', 'streams'].map(groupLine).join('; ')}.`;
+
+  const TABS = ['decode', 'decode_32k', 'prefill_2k', 'prefill_32k', 'streams4'];
+  const tabs = el('scatterTabs');
+  tabs.innerHTML = TABS.map((k, i) => `<button data-k="${k}" class="${i ? '' : 'on'}">${METRIC[k].short}</button>`).join('');
+  const drawScatter = k => {
+    el('scatter').innerHTML = CHARTS.scatter(models, k);
+    tabs.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
+  };
+  tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) drawScatter(b.dataset.k); });
+  drawScatter('decode');
+
+  el('scalePrefill').innerHTML = CHARTS.scaling(models, 'prefill');
+  el('scaleDecode').innerHTML = CHARTS.scaling(models, 'decode');
+  const medAt = k => median(models.map(m => m.pair(k)).filter(Boolean).map(p => p.speedup));
+  el('scalingLede').innerHTML += ` The median prefill speedup goes from ${times(medAt('prefill_1k'))} on a 1k document to ${times(medAt('prefill_32k'))} at 32k, and decode from ${times(medAt('decode'))} on a short prompt to ${times(medAt('decode_32k'))} at 32k context.`;
+
+  el('coverage').innerHTML = CHARTS.coverage(models);
+  CHARTS.link(el('field'), el('readout'));
+
+  // Pipeline stepper
   const STAGES = [
     {
-      key: 'gguf', t: 'gguf', d: 'any hf repo',
+      t: 'checkpoint', d: 'any hf gguf',
       h: 'Start from a GGUF on Hugging Face',
-      p: 'The input is an unmodified GGUF checkpoint, the same file llama.cpp would load. Nothing is retrained or re-quantized.',
+      p: 'The input is an unmodified GGUF, the same file llama.cpp would load. Nothing is retrained or re-quantized.',
       items: [
-        'Dense transformers and Qwen3.5-style gated delta-net hybrids are covered by the starter kit.',
-        'Vision projectors and speculative-decoding drafters are picked up when the model has them.',
-        'Other architectures go through the hand-port playbook: llama.cpp\'s own compute graph via <code>llama_trace.py</code>, then numpy node-by-node checks.',
+        'A checkpoint is <code>huggingface://org/repo[:file.gguf]</code>, <code>org/repo</code> or a huggingface.co URL.',
+        'By default weaver picks plain Q4_K_M from your Hugging Face cache.',
+        'Speculative decoding is on whenever the GGUF supports it. <code>--no-spec</code> turns it off.',
+        'The model\'s memory budget is what\'s left after the local agent\'s reservation (about 42 GiB).',
       ],
-      runs: '/loom get &lt;org&gt;/&lt;model&gt; …', time: 'the prompt', files: ['&lt;org&gt;/&lt;model&gt;-GGUF', '*.gguf (header probed first)'],
+      runs: 'weaver port &lt;org&gt;/&lt;model&gt;', time: 'one command', files: ['*.gguf (header probed first)', 'a GPU memory budget for the model'],
     },
     {
-      key: 'port', t: 'port', d: '~1 min',
+      t: 'port', d: '~1 min',
       h: 'Port: GGUF in, Loom package out',
       p: 'A config-driven starter kit turns the GGUF into Loom programs at the model\'s native context length.',
       items: [
-        'Header-only probe: are the tensor formats supported, and does it fit in GPU memory?',
+        'Header-only probe: are the tensor formats supported, and does it fit in the budget?',
         'Generate the kernels and build the package at the native context.',
-        'Kernel unit tests against reference implementations, then a smoke test through <code>loom-serve</code>.',
-        'Chat glue (tools, reasoning, history reuse) derived from the model\'s Jinja template.',
+        'Kernel unit tests, then a smoke test through <code>loom-serve</code>. Chat glue comes from the model\'s Jinja template.',
+        'For an architecture the starter doesn\'t cover, the agent follows <code>loom-port-llm</code> for that stage only, then resumes the build.',
       ],
-      runs: 'loom-port-llm/port.sh', time: '≈ 1 min (starter-covered)', files: ['program/*.loom', 'weights.loom', 'model.json · model.json.lock', 'llm_config.json', 'tokenizer.json'],
+      runs: 'loom-port-llm/port.sh', time: '≈ 1 min (starter-covered)', files: ['program/*.loom', 'model.json · model.json.lock', 'llm_config.json · tokenizer.json'],
     },
     {
-      key: 'qualify', t: 'qualify', d: '~10 min',
-      h: 'Qualify: set the reference and the targets',
-      p: 'Before optimizing anything, the agent establishes what "correct" and "fast enough" mean for this model on this machine.',
+      t: 'qualify', d: '~10 min',
+      h: 'Qualify: set the reference and the baselines',
+      p: 'Before anything is optimized, the agent sets what "correct" and "fast" mean for this model on this machine.',
       items: [
-        'Pick the fastest llama.cpp ROCm build for the GGUF and record its golden outputs.',
-        'Run the correctness gates against that reference and measure both baselines.',
-        'Roofline analysis from the GGUF: per-metric ceilings and targets for decode, prefill and 4 streams.',
-        'Size the optimization budget from what\'s left of the roofline time budget.',
+        'Fetch the llama.cpp ROCm reference and record its golden outputs on the same GGUF.',
+        'Pick the speculative-decoding method by measured speed.',
+        'Run the quick gates and measure both engines\' baselines.',
+        'Roofline analysis: per-workload ceilings for decode, prefill and 4 streams.',
       ],
-      runs: 'loom-benchmark/scripts/qualify.sh', time: '≈ 10 min', files: ['golden.json', 'compare.json', 'baseline perf', 'roofline targets + budget'],
+      runs: 'loom-benchmark/scripts/qualify.sh', time: '≈ 10 min', files: ['golden.json · compare.json', 'baseline perf, both engines', 'roofline targets'],
     },
     {
-      key: 'optimize', t: 'optimize', d: 'budgeted',
+      t: 'optimize', d: 'budgeted',
       h: 'Optimize without breaking correctness',
-      p: 'A measure, ablate, change, verify loop, using a catalog of optimizations that worked (and ones that didn\'t).',
+      p: '<code>weaver port</code> skips this step. <code>weaver optimize</code> ports first if needed, then runs a measure, change and verify loop against a target, within a time budget.',
       items: [
-        'Kernel A/B helper to compare variants under identical conditions.',
-        'Fast gates after every kept change, so a speedup that breaks output is rolled back.',
-        'A rate-of-approach controller decides to continue, pivot or stop.',
-        'Add a time or a target to the prompt ("optimize it for 3 hours", "until decode is 50 % faster") to change the budget.',
+        'TARGET is <code>roofline</code> (the default), <code>beat-llamacpp</code> or something like <code>decode+30%</code>.',
+        'BUDGET is something like <code>90m</code> or <code>3h</code>.',
+        'After each kept change: rebuild, restart, measure, fast gates. A speedup that breaks output is rolled back.',
+        'The controller prints CONTINUE, REVIEW, BUDGET or DONE. At BUDGET the agent reverts to the last kept build.',
       ],
-      runs: 'loom-optimize · loom-roofline', time: 'what\'s left of the budget', files: ['perf_log.jsonl', 'kept changes'],
+      runs: 'weaver optimize &lt;ckpt&gt; [target] [budget]', time: 'your budget', files: ['perf_log.jsonl', 'kept changes only'],
     },
     {
-      key: 'finalize', t: 'finalize', d: 'gates + report',
-      h: 'Finalize: full gates, final numbers, report',
-      p: 'The final build goes through the full gate suite, including a full-context probe, and gets measured one more time.',
+      t: 'finalize', d: 'gates + audit',
+      h: 'Finalize: full gates, final numbers, audit',
+      p: 'The final build goes through the full gate suite and gets measured one more time. weaver only reports success when the gates and the audit pass.',
       items: [
         'Full gates, including needle-in-a-haystack at the full context.',
-        'Final performance for both engines, same GGUF, same session.',
-        'An audit of what was optimized, what was skipped and why.',
-        'A single-page report generated from the logs, light and dark.',
+        'Final performance for both engines: same GGUF, same session.',
+        'An audit of what was optimized, what was skipped and why. It must PASS.',
+        'A report generated from the logs, which the model card is written from.',
       ],
-      runs: 'loom-benchmark/scripts/finalize.sh', time: 'reserved in the budget', files: ['gates.json', 'report.html · report.md', 'raw logs kept next to it'],
+      runs: 'loom-benchmark/scripts/finalize.sh', time: 'reserved in the budget', files: ['gates.json', 'report.md', 'raw logs'],
     },
     {
-      key: 'publish', t: 'publish', d: 'hf upload',
-      h: 'Publish: a card generated from evidence',
-      p: 'Every published card has the same sections and rows. Only the values differ, and every value points back to a run.',
+      t: 'publish', d: 'weaver upload',
+      h: 'Publish: package and card, after a preview',
+      p: 'The package goes to your Hugging Face org. The GGUF isn\'t copied; it stays in its original repo.',
       items: [
-        '<code>make_info.py</code> turns the run outputs into evidence files and builds <code>info.json</code> (schema <code>loom-card/1</code>).',
-        '<code>render_card.py</code> renders <code>README.md</code> from <code>info.json</code> alone.',
-        'Upload with <code>hf upload</code>. The card carries the <code>loom</code> and <code>loom-serve</code> tags.',
-        'Anyone can then <code>loom-fetch</code> it: the GGUF is pulled from its own repo and its sha256 checked.',
+        'Stages the programs, a <code>model.json</code> that points at the upstream GGUF, and <code>model.json.lock</code>.',
+        'The agent writes the card from the benchmark report, and every number on it must come from that report.',
+        'weaver shows a preview and asks before it publishes anything.',
+        'Anyone can then run <code>weaver serve huggingface://&lt;you&gt;/&lt;repo&gt;</code>. Cards tagged <code>loom</code> show up here.',
       ],
-      runs: 'card/make_info.py · card/render_card.py', time: 'seconds', files: ['info.json', 'README.md', '<a href="submit.html">publishing guide →</a>'],
+      runs: 'weaver upload &lt;ckpt&gt; &lt;hf-org&gt;', time: 'seconds', files: ['README.md (model card)', 'model.json · model.json.lock', '<a href="submit.html">publishing guide →</a>'],
     },
   ];
 
@@ -140,8 +179,7 @@
     btns[cur].querySelector('.prog i').style.width = '100%';
   });
   show(0);
-  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!still) {
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const io = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting && auto) { t0 = performance.now(); timer = requestAnimationFrame(tick); }
       else cancelAnimationFrame(timer);
@@ -149,18 +187,5 @@
     io.observe(pipe);
   }
 
-  // Gate list, using a real model's results as the example
-  const ex = models.find(m => m.verified) || models[0];
-  if (ex) {
-    el('gateExample').textContent = `example: ${ex.name} · ${ex.quant}`;
-    const LABEL = { pass: 'pass', fail: 'fail', unknown: '----', 'n/a': 'n/a' };
-    el('gateList').innerHTML = Object.entries(ex.gates.status).map(([g, st]) => `
-      <div class="gate-row ${st === 'n/a' ? 'na' : st}">
-        <span class="st">[${LABEL[st]}]</span><code>${g}</code><span>${esc(GATES[g] || '')}</span>
-      </div>`).join('');
-  }
-
-  LOOM.mountTable(el('board'), models, { onOpen: m => { location.href = `models.html#${encodeURIComponent(m.id)}`; } });
   LOOM.copyButtons();
-  LOOM.reveal();
 })();
