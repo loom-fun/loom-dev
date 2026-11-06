@@ -1,0 +1,135 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "Muse-Glimmer-30B-UD-Q5_K_M",
+  "name": "Muse-Glimmer-30B",
+  "repo": "loom-fun/unsloth-Muse-Glimmer-30B-loom",
+  "revision": "dccd3a67c189e8087ed3091a24ee29dd97561717",
+  "license": null,
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "unsloth/Muse-Glimmer-30B-GGUF",
+      "file": "Muse-Glimmer-30B-UD-Q5_K_M.gguf",
+      "quant": "UD-Q5_K_M",
+      "revision": "faa5b025c584459c13febfa5c59883516710ae39",
+      "sha256": "27c27bc0cc2591344a9ef977d57aa79a9d36ddebee59660bd2abbf738f940f5b",
+      "size": 19194274848
+    },
+    "drafter": {
+      "repo": "z-lab/Muse-Glimmer-30B-DFlash2-GGUF",
+      "file": "Muse-Glimmer-30B-DFlash2-Q4_K_M.gguf",
+      "quant": "Q4_K_M"
+    },
+    "projector": {
+      "repo": "unsloth/Muse-Glimmer-30B-GGUF",
+      "file": "mmproj-Muse-Glimmer-30B-BF16.gguf",
+      "quant": "BF16"
+    }
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 39000000000,
+    "context_tokens": 131072,
+    "rows": 4,
+    "max_tokens": 4096
+  },
+  "features": {
+    "api": "yes",
+    "audio": "no",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "yes",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "no",
+    "sampling": "yes",
+    "speculative_decoding": "yes",
+    "thinking": "yes",
+    "tool_calling": "yes"
+  },
+  "performance": {
+    "date": "2026-11-06",
+    "llamacpp_build": "b1355",
+    "drafting": {
+      "loom": "DFlash, depth 3",
+      "llamacpp": "draft-dflash, n-max 3"
+    },
+    "source": {
+      "kind": "local",
+      "run": null,
+      "url": null
+    },
+    "metrics": {
+      "decode": {
+        "loom": 25.8,
+        "llamacpp": 19.3,
+        "speedup": 1.34
+      },
+      "decode_2k": {
+        "loom": 24.7,
+        "llamacpp": 21.4,
+        "speedup": 1.15
+      },
+      "decode_32k": {
+        "loom": 22.8,
+        "llamacpp": 20.6,
+        "speedup": 1.11
+      },
+      "prefill_1k": {
+        "loom": 475.4,
+        "llamacpp": 313.2,
+        "speedup": 1.52
+      },
+      "prefill_2k": {
+        "loom": 502.1,
+        "llamacpp": 311.0,
+        "speedup": 1.61
+      },
+      "prefill_8k": {
+        "loom": 505.4,
+        "llamacpp": 312.5,
+        "speedup": 1.62
+      },
+      "prefill_16k": {
+        "loom": 503.1,
+        "llamacpp": 304.1,
+        "speedup": 1.65
+      },
+      "prefill_32k": {
+        "loom": 480.1,
+        "llamacpp": 274.6,
+        "speedup": 1.75
+      },
+      "streams4": {
+        "loom": 68.8,
+        "llamacpp": 67.3,
+        "speedup": 1.02
+      }
+    },
+    "not_applicable": []
+  },
+  "gates": {
+    "summary": {
+      "pass": 10,
+      "fail": 0,
+      "unknown": 0,
+      "n/a": 2
+    },
+    "status": {
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "pass",
+      "consistency": "pass",
+      "spec": "pass",
+      "agent": "pass",
+      "agent_think_off": "n/a",
+      "sampling": "pass",
+      "needle": "pass",
+      "needle_full": "pass",
+      "decision": "n/a"
+    }
+  }
+}

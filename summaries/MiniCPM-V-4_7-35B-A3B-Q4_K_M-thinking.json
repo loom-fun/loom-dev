@@ -1,0 +1,127 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "MiniCPM-V-4_7-35B-A3B-Q4_K_M-thinking",
+  "name": "MiniCPM-V-4.7-35B-A3B",
+  "repo": "loom-fun/openbmb-MiniCPM-V-4.7-35B-A3B-loom",
+  "revision": "14e2be441698865b62d6a2da60b20a1c8030ea19",
+  "license": "apache-2.0",
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "openbmb/MiniCPM-V-4.7-35B-A3B-gguf",
+      "file": "thinking/MiniCPM-V-4_7-35B-A3B-Q4_K_M-thinking.gguf",
+      "quant": "Q4_K_M",
+      "revision": "cf943fbe32f840b20ca05ccc146e7dc72baf9a9b",
+      "sha256": "d91899187c794a7a7b99849390a7121726688dada74ad5df3c943762dc90e2b5",
+      "size": 21166255008
+    },
+    "drafter": null,
+    "projector": null
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": null,
+    "context_tokens": 40960,
+    "rows": 4,
+    "max_tokens": 512
+  },
+  "features": {
+    "api": "yes",
+    "audio": "no",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "no",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "no",
+    "sampling": "no",
+    "speculative_decoding": "no",
+    "thinking": "yes",
+    "tool_calling": "no"
+  },
+  "performance": {
+    "date": "2026-10-28",
+    "llamacpp_build": "b1356",
+    "drafting": {
+      "loom": null,
+      "llamacpp": null
+    },
+    "source": {
+      "kind": "factory",
+      "run": "40679621893",
+      "url": "https://github.com/loom-fun/loom-skills/actions/runs/40679621893"
+    },
+    "metrics": {
+      "decode": {
+        "loom": 70.3,
+        "llamacpp": 64.2,
+        "speedup": 1.1
+      },
+      "decode_2k": {
+        "loom": 67.6,
+        "llamacpp": 62.2,
+        "speedup": 1.09
+      },
+      "decode_32k": {
+        "loom": 51.0,
+        "llamacpp": 52.3,
+        "speedup": 0.98
+      },
+      "prefill_1k": {
+        "loom": 1380.4,
+        "llamacpp": 1524.2,
+        "speedup": 0.91
+      },
+      "prefill_2k": {
+        "loom": 1651.1,
+        "llamacpp": 1504.2,
+        "speedup": 1.1
+      },
+      "prefill_8k": {
+        "loom": 1474.3,
+        "llamacpp": 1605.4,
+        "speedup": 0.92
+      },
+      "prefill_16k": {
+        "loom": 1169.6,
+        "llamacpp": 1412.3,
+        "speedup": 0.83
+      },
+      "prefill_32k": {
+        "loom": 835.1,
+        "llamacpp": 1207.5,
+        "speedup": 0.69
+      },
+      "streams4": {
+        "loom": 171.2,
+        "llamacpp": 152.7,
+        "speedup": 1.12
+      }
+    },
+    "not_applicable": []
+  },
+  "gates": {
+    "summary": {
+      "pass": 3,
+      "fail": 0,
+      "unknown": 4,
+      "n/a": 5
+    },
+    "status": {
+      "kernel_tests": "unknown",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "n/a",
+      "consistency": "pass",
+      "spec": "n/a",
+      "agent": "n/a",
+      "agent_think_off": "n/a",
+      "sampling": "unknown",
+      "needle": "unknown",
+      "needle_full": "unknown",
+      "decision": "n/a"
+    }
+  }
+}

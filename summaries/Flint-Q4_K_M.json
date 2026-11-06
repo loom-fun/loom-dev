@@ -1,0 +1,131 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "Flint-Q4_K_M",
+  "name": "Flint",
+  "repo": "loom-fun/ggml-org-Flint-loom",
+  "revision": "40f6b9781304a4488f3ee2dd1f3e70fc5ff2c2f3",
+  "license": null,
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "ggml-org/Flint-GGUF",
+      "file": "Flint-Q4_K_M.gguf",
+      "quant": "Q4_K_M",
+      "revision": "468307a1b38259e9e4c9d4fe53d4e3b76386572c",
+      "sha256": "c3c4d93f9db92627a2fc47ea8fe8c64a094cabd3549db544bcdd2c00e9a9a347",
+      "size": 23387911136
+    },
+    "drafter": {
+      "repo": "incoai/Flint-DFlash2-GGUF",
+      "file": "Flint-DFlash2-Q4_K_M.gguf",
+      "quant": "Q4_K_M"
+    },
+    "projector": null
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 67000000000,
+    "context_tokens": 262144,
+    "rows": 4,
+    "max_tokens": 4096
+  },
+  "features": {
+    "api": "yes",
+    "audio": "no",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "no",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "no",
+    "sampling": "yes",
+    "speculative_decoding": "yes",
+    "thinking": "yes",
+    "tool_calling": "yes"
+  },
+  "performance": {
+    "date": "2026-11-06",
+    "llamacpp_build": "b1355",
+    "drafting": {
+      "loom": "DFlash, depth 3",
+      "llamacpp": "draft-dflash, n-max 3"
+    },
+    "source": {
+      "kind": "local",
+      "run": null,
+      "url": null
+    },
+    "metrics": {
+      "decode": {
+        "loom": 92.4,
+        "llamacpp": 70.6,
+        "speedup": 1.31
+      },
+      "decode_2k": {
+        "loom": 69.7,
+        "llamacpp": 54.1,
+        "speedup": 1.29
+      },
+      "decode_32k": {
+        "loom": 47.8,
+        "llamacpp": 49.5,
+        "speedup": 0.97
+      },
+      "prefill_1k": {
+        "loom": 956.9,
+        "llamacpp": 1038.0,
+        "speedup": 0.92
+      },
+      "prefill_2k": {
+        "loom": 1284.7,
+        "llamacpp": 1043.1,
+        "speedup": 1.23
+      },
+      "prefill_8k": {
+        "loom": 1424.7,
+        "llamacpp": 1094.1,
+        "speedup": 1.3
+      },
+      "prefill_16k": {
+        "loom": 1359.0,
+        "llamacpp": 929.3,
+        "speedup": 1.46
+      },
+      "prefill_32k": {
+        "loom": 1193.9,
+        "llamacpp": 667.6,
+        "speedup": 1.79
+      },
+      "streams4": {
+        "loom": 134.2,
+        "llamacpp": 124.2,
+        "speedup": 1.08
+      }
+    },
+    "not_applicable": []
+  },
+  "gates": {
+    "summary": {
+      "pass": 8,
+      "fail": 0,
+      "unknown": 1,
+      "n/a": 3
+    },
+    "status": {
+      "kernel_tests": "unknown",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "n/a",
+      "consistency": "pass",
+      "spec": "pass",
+      "agent": "pass",
+      "agent_think_off": "n/a",
+      "sampling": "pass",
+      "needle": "pass",
+      "needle_full": "pass",
+      "decision": "n/a"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
+  "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+  "repo": "loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
+  "revision": "b1ae51ec16927ff8a6cd32bcbcb146e796928853",
+  "license": null,
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+      "file": "Nemotron-3.5-Bolt-E4B-Q4_K_M.gguf",
+      "quant": "Q4_K_M",
+      "revision": "1db54d5b12533ff1bcaa8e42cf4c667988a1f1be",
+      "sha256": "c8af2b8aea10a690a1d9491db744a9446660173cb38fc489612b556615a69612",
+      "size": 6180446208
+    },
+    "drafter": {
+      "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-DFlash",
+      "file": "Nemotron-3.5-Bolt-E4B-DFlash-BF16.gguf",
+      "quant": "BF16"
+    },
+    "projector": {
+      "repo": "unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF",
+      "file": "mmproj-F16.gguf",
+      "quant": "F16"
+    }
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 34000000000,
+    "context_tokens": 131072,
+    "rows": 4,
+    "max_tokens": 4096
+  },
+  "features": {
+    "api": "yes",
+    "audio": "no",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "yes",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "no",
+    "sampling": "yes",
+    "speculative_decoding": "yes",
+    "thinking": "yes",
+    "tool_calling": "yes"
+  },
+  "performance": {
+    "date": "2026-11-06",
+    "llamacpp_build": "b1368",
+    "drafting": {
+      "loom": "DFlash, depth 3",
+      "llamacpp": "draft-dflash, n-max 7"
+    },
+    "source": {
+      "kind": "local",
+      "run": null,
+      "url": null
+    },
+    "metrics": {
+      "decode": {
+        "loom": 81.9,
+        "llamacpp": 89.3,
+        "speedup": 0.92
+      },
+      "decode_2k": {
+        "loom": 70.6,
+        "llamacpp": 58.4,
+        "speedup": 1.21
+      },
+      "decode_32k": {
+        "loom": 51.3,
+        "llamacpp": 37.2,
+        "speedup": 1.38
+      },
+      "prefill_1k": {
+        "loom": 2222.5,
+        "llamacpp": 1312.0,
+        "speedup": 1.69
+      },
+      "prefill_2k": {
+        "loom": 2313.2,
+        "llamacpp": 1295.5,
+        "speedup": 1.79
+      },
+      "prefill_8k": {
+        "loom": 1834.5,
+        "llamacpp": 1291.0,
+        "speedup": 1.42
+      },
+      "prefill_16k": {
+        "loom": 1393.7,
+        "llamacpp": 1052.2,
+        "speedup": 1.32
+      },
+      "prefill_32k": {
+        "loom": 928.5,
+        "llamacpp": 731.8,
+        "speedup": 1.27
+      },
+      "streams4": {
+        "loom": 197.4,
+        "llamacpp": 169.0,
+        "speedup": 1.17
+      }
+    },
+    "not_applicable": []
+  },
+  "gates": {
+    "summary": {
+      "pass": 9,
+      "fail": 1,
+      "unknown": 1,
+      "n/a": 1
+    },
+    "status": {
+      "kernel_tests": "unknown",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "pass",
+      "consistency": "fail",
+      "spec": "pass",
+      "agent": "pass",
+      "agent_think_off": "pass",
+      "sampling": "pass",
+      "needle": "pass",
+      "needle_full": "pass",
+      "decision": "n/a"
+    }
+  }
+}
