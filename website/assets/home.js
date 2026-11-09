@@ -7,6 +7,7 @@
   const open = m => { location.href = LOOM.href(m); };
 
   el('ixKicker').textContent = `community index · ${s.models} ports · updated ${s.generated}`;
+  el('ixCount').textContent = s.models;
   el('telemetry').innerHTML = [
     [s.models, 'models indexed', `from ${s.orgs} source orgs`],
     [`${s.wins}/${s.runs}`, 'workloads loom faster', `${Math.round(s.wins / s.runs * 100)}% of measurements`],

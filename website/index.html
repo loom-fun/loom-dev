@@ -9,12 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
-  <script src="assets/loom-data.js"></script>
-  <script src="assets/loom-lib.js"></script>
-  <script src="assets/charts.js"></script>
-  <script src="assets/navbar.js"></script>
-  <script src="assets/footer.js"></script>
+  <link rel="stylesheet" href="assets/styles.css?v=3">
+  <script src="assets/loom-data.js?v=3"></script>
+  <script src="assets/loom-lib.js?v=3"></script>
+  <script src="assets/charts.js?v=3"></script>
+  <script src="assets/navbar.js?v=3"></script>
+  <script src="assets/footer.js?v=3"></script>
 </head>
 <body data-page="home">
   <div class="navbar-placeholder"></div>
@@ -25,8 +25,8 @@
       <div class="wrap ix-grid">
         <div>
           <div class="kicker"><span class="dot"></span><span id="ixKicker">community index</span></div>
-          <h1>Community GGUF ports on AMD Loom.<br><span class="thin">Measured against llama.cpp ROCm on the same weights.</span></h1>
-          <p class="lede">Each row is a Hugging Face GGUF that someone ported with <b>weaver</b>. Every number comes from that port's benchmark log: same GGUF, same machine, both engines, including the workloads where llama.cpp is faster.</p>
+          <h1>The community hub<br>for Loom models.<br><span class="thin">Find, create and share your own.</span></h1>
+          <p class="lede"><b id="ixCount">Dozens of</b> Hugging Face models already run on Loom, each one checked against llama.cpp on the same weights. Porting your own is one command with <b>weaver</b>: point it at a GGUF and it builds, tests and benchmarks the port for you.</p>
           <div class="code inline-cmd port-cmd"><pre><code><span class="p">$ </span>weaver port <span class="s">&lt;hf-org&gt;/&lt;model&gt;</span></code></pre><button class="copy" data-copy>copy</button><a class="pc-link" href="#how">how it works ↓</a></div>
         </div>
         <div class="telemetry" id="telemetry"></div>
@@ -148,6 +148,6 @@
   </main>
 
   <div class="footer-placeholder"></div>
-  <script src="assets/home.js"></script>
+  <script src="assets/home.js?v=3"></script>
 </body>
 </html>

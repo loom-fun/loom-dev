@@ -22,7 +22,7 @@
   el('headLede').textContent = `${s.models} ports from ${s.orgs} source orgs, ${s.runs} measurements, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`;
 
   const open = m => { location.hash = encodeURIComponent(m.id); };
-  const table = LOOM.mountTable(el('tbl'), models, { onOpen: open });
+  const table = LOOM.mountTable(el('tbl'), models, { onOpen: open, pageSize: 20 });
 
   function filtered() {
     const q = state.q.toLowerCase();
