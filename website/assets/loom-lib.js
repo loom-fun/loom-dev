@@ -211,15 +211,15 @@ const LOOM = (() => {
     { key: 'decodeTok', label: 'decode<span class="th-sub">tok/s</span>', get: m => m.decodeTok || 0, cls: 'num tok hide-s' },
     { key: 'prefillTok', label: 'prefill 2k<span class="th-sub">tok/s</span>', get: m => m.prefillTok || 0, cls: 'num tok hide-s' },
     { key: 'streamsTok', label: '4 streams<span class="th-sub">tok/s</span>', get: m => m.streamsTok || 0, cls: 'num tok hide-m' },
-    { key: 'decodeScore', label: 'dec ×', get: m => m.decodeScore || 0, cls: 'num sx hide-m' },
-    { key: 'prefillScore', label: 'pre ×', get: m => m.prefillScore || 0, cls: 'num sx hide-m' },
-    { key: 'streamsScore', label: '4× ×', get: m => m.streamsScore || 0, cls: 'num sx hide-m' },
+    { key: 'decodeScore', label: 'dec ×', get: m => m.decodeScore || 0, cls: 'num sx hide-l' },
+    { key: 'prefillScore', label: 'pre ×', get: m => m.prefillScore || 0, cls: 'num sx hide-l' },
+    { key: 'streamsScore', label: '4× ×', get: m => m.streamsScore || 0, cls: 'num sx hide-l' },
     { key: 'score', label: 'overall', get: m => m.score || 0, cls: 'ratio' },
   ];
   function cell(col, m) {
     switch (col.key) {
       case 'rank': return rk(m);
-      case 'name': return `<b>${esc(m.name)}</b><small>${sub(m)}</small>`;
+      case 'name': return `<b title="${esc(m.name)}">${esc(m.name)}</b><small>${sub(m)}</small>`;
       case 'profile': return profile(m);
       case 'gates': return `<span class="strip">${gateStrip(m)}</span><small>${m.gatesPass}/${m.gatesApplicable}</small>`;
       case 'decodeTok': return tokCell(m.pair('decode'));
@@ -232,23 +232,52 @@ const LOOM = (() => {
     }
   }
 
-  // Sortable leaderboard table. `onOpen(m)` is called when a row is chosen.
-  function mountTable(el, list, { onOpen, sortKey = 'score', onSort } = {}) {
-    let key = sortKey, dir = -1, rows = list;
+  // Pager buttons: prev, page numbers, next, and the range shown.
+  function pagerHtml(page, pages, from, to, total) {
+    const btn = (p, label, cls = '') => `<button type="button" data-p="${p}" class="${cls}"${p < 0 || p >= pages ? ' disabled' : ''}>${label}</button>`;
+    const nums = Array.from({ length: pages }, (_, i) => btn(i, i + 1, i === page ? 'on' : ''));
+    return `${btn(page - 1, '← prev', 'step')}${nums.join('')}${btn(page + 1, 'next →', 'step')}<span class="pg-range">${from}–${to} of ${total}</span>`;
+  }
+
+  // Sortable leaderboard table. `onOpen(m)` is called when a row is chosen. With `pageSize`, rows are shown that many
+  // at a time with a pager after the table.
+  function mountTable(el, list, { onOpen, sortKey = 'score', onSort, pageSize } = {}) {
+    let key = sortKey, dir = -1, rows = list, page = 0;
+    let pager = null;
+    if (pageSize) {
+      pager = document.createElement('div');
+      pager.className = 'pager';
+      (el.closest('.tbl-wrap') || el).after(pager);
+      pager.addEventListener('click', e => {
+        const b = e.target.closest('button[data-p]');
+        if (!b || b.disabled) return;
+        page = +b.dataset.p;
+        render();
+        el.closest('.tbl-wrap').scrollIntoView({ block: 'nearest' });
+      });
+    }
     const render = () => {
       const col = COLUMNS.find(c => c.key === key);
       const sorted = [...rows].sort((a, b) => {
         const x = col.get(a), y = col.get(b);
         return (x < y ? -1 : x > y ? 1 : 0) * dir;
       });
+      const pages = pageSize ? Math.max(1, Math.ceil(sorted.length / pageSize)) : 1;
+      page = Math.min(page, pages - 1);
+      const shown = pageSize ? sorted.slice(page * pageSize, (page + 1) * pageSize) : sorted;
       el.innerHTML = `
         <thead><tr>${COLUMNS.map(c => `<th class="${c.cls}${c.key === key ? ' on' : ''}" data-k="${c.key}">${c.label}${c.key === key ? `<i class="arr">${dir < 0 ? '↓' : '↑'}</i>` : ''}</th>`).join('')}</tr></thead>
-        <tbody>${sorted.map(m => `<tr data-id="${esc(m.id)}" tabindex="0">${COLUMNS.map(c => `<td class="${c.cls}">${cell(c, m)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+        <tbody>${shown.map(m => `<tr data-id="${esc(m.id)}" tabindex="0">${COLUMNS.map(c => `<td class="${c.cls}">${cell(c, m)}</td>`).join('')}</tr>`).join('')}</tbody>`;
       if (!sorted.length) el.querySelector('tbody').innerHTML = `<tr class="empty"><td colspan="${COLUMNS.length}">no model matches · <a href="submit.html">port one →</a></td></tr>`;
+      if (pager) {
+        pager.hidden = pages < 2;
+        pager.innerHTML = pagerHtml(page, pages, page * pageSize + 1, page * pageSize + shown.length, sorted.length);
+      }
     };
     const sortBy = (k, d) => {
       if (k === key && d == null) dir = -dir;
       else { key = k; dir = d != null ? d : (COLUMNS.find(c => c.key === k).asc ? 1 : -1); }
+      page = 0;
       render();
       if (onSort) onSort(key, dir);
     };
@@ -263,7 +292,7 @@ const LOOM = (() => {
       if (tr && e.key === 'Enter' && onOpen) onOpen(models.find(m => m.id === tr.dataset.id));
     });
     render();
-    return { update: l => { rows = l; render(); }, sortBy };
+    return { update: l => { rows = l; page = 0; render(); }, sortBy };
   }
 
   // --- index-wide numbers ---

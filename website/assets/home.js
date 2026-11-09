@@ -20,7 +20,7 @@
 
   // Leaderboard
   el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
-  LOOM.mountTable(el('board'), models, { onOpen: open });
+  LOOM.mountTable(el('board'), models, { onOpen: open, pageSize: 20 });
 
   // Charts, hover-linked through #field
   el('strip').innerHTML = CHARTS.strip(models);
