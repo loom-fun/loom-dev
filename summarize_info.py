@@ -9,6 +9,10 @@ of repos that are no longer in the org are deleted.
 
     python summarize_info.py [--org loom-fun] [--out summaries]
     python summarize_info.py --check    # list repo -> summary file and what a run would change, write nothing
+    python summarize_info.py --skip-unusable    # write the rest when some repos have no usable card yet
+
+Without --skip-unusable a repo with no usable card stops the run before anything is written. With it, that repo is
+reported and left as it is: its summary, if it has one, is kept as it was.
 """
 import argparse
 import glob
@@ -289,24 +293,29 @@ def main():
     p.add_argument("--org", default="loom-fun")
     p.add_argument("--out", default="summaries")
     p.add_argument("--check", action="store_true", help="list repo -> summary file and its state, write nothing")
+    p.add_argument("--skip-unusable", action="store_true",
+                   help="skip repos with no usable card (keeping their summary) instead of writing nothing")
     a = p.parse_args()
 
     api = HfApi()
     if a.check:
         return check(api, a.org, a.out)
 
-    summaries, failed = [], []
+    summaries, failed, skipped = [], [], set()
     for model in sorted(api.list_models(author=a.org), key=lambda m: m.id.lower()):
         _, summary, why = load(api, model.id)
         if summary is None:
             failed.append(f"{model.id}: {why}")
+            skipped.add(model.id)
         else:
             summaries.append(summary)
-    if failed:
+    if failed and not a.skip_unusable:
         sys.exit("not written, these repos have no usable card:\n  " + "\n  ".join(failed))
+    if failed:
+        print("skipped, these repos have no usable card:\n  " + "\n  ".join(failed), file=sys.stderr)
 
     names = file_names(summaries)
-    old = existing(a.out)
+    old = {repo: v for repo, v in existing(a.out).items() if repo not in skipped}
     os.makedirs(a.out, exist_ok=True)
     for s in summaries:
         with open(os.path.join(a.out, names[s["repo"]]), "w", encoding="utf-8", newline="\n") as f:
