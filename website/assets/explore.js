@@ -82,39 +82,12 @@
   const kvList = rows => `<div class="kvl">${rows.filter(Boolean).map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join('')}</div>`;
   const short = h => h ? `<span title="${esc(h)}">${esc(h.slice(0, 12))}…</span>` : '<span class="faint">—</span>';
 
-  let raceFrame = null;
-  function race(m) {
-    const p = m.pair('decode');
-    const box = el('race');
-    if (!box || !p) return;
-    cancelAnimationFrame(raceFrame);
-    const T = 6, max = Math.max(p.loom, p.llamacpp) * T;
-    const lanes = [['loom', p.loom], ['llama.cpp', p.llamacpp]];
-    box.innerHTML = lanes.map(([n, r]) => `<div class="lane"><span class="ln">${n}</span><span class="lb"><i></i></span><span class="lv"><b>0</b> tok</span><span class="lr">${num(r)} tok/s</span></div>`).join('') +
-      `<div class="lane-foot"><span id="raceT">t = 0.0 s</span><button id="raceGo">↻ replay</button></div>`;
-    const fills = [...box.querySelectorAll('.lb i')], counts = [...box.querySelectorAll('.lv b')];
-    let t0 = null;
-    const step = now => {
-      if (t0 == null) t0 = now;
-      const t = Math.min(T, (now - t0) / 1000);
-      lanes.forEach(([, r], i) => {
-        fills[i].style.width = `${(r * t / max * 100).toFixed(2)}%`;
-        counts[i].textContent = Math.floor(r * t);
-      });
-      el('raceT').textContent = `t = ${t.toFixed(1)} s`;
-      if (t < T) raceFrame = requestAnimationFrame(step);
-    };
-    raceFrame = requestAnimationFrame(step);
-    el('raceGo').addEventListener('click', () => race(m));
-  }
-
   function drawer(m) {
     const p = m.performance, src = p.source, w = m.weights, sv = m.serve;
     const drafting = p.drafting.loom
       ? `loom: ${esc(p.drafting.loom)} · llama.cpp: ${esc(p.drafting.llamacpp)}`
       : 'off on both engines';
     const LABEL = { pass: 'pass', fail: 'fail', unknown: '----', 'n/a': 'n/a' };
-    const d = m.pair('decode');
     const weight = (k, x) => x ? [
       [k, `<a class="u" href="${hf(x.repo)}" target="_blank" rel="noopener">${esc(x.repo)}</a>`],
       ['├ file', esc(x.file)],
@@ -142,9 +115,6 @@
         <div><b>${m.wins}/${m.measured.length}</b><span>workloads faster</span></div>
       </div>
 
-      ${d ? `<h3>decode replay · measured rate</h3><div class="race" id="race"></div>
-      <p class="fine">Tokens each engine would produce in 6 seconds at its measured short-prompt decode rate${p.drafting.loom ? ', with speculative decoding on both' : ''}.</p>` : ''}
-
       <h3>prefill · tok/s by document length</h3>
       <div class="chart-box">${LOOM.curve(m, 'prefill', { w: 640, h: 190, axes: true })}</div>
       <h3>decode · tok/s by context length</h3>
@@ -159,7 +129,7 @@
         <div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div>
         <pre><code>${esc(quickstart(m))}</code></pre>
       </div>
-      <p class="fine">Install weaver first: <code>curl -fsSL https://github.com/loom-fun/weaver/releases/latest/download/install.sh | bash</code>. It serves the model on <code>:8080</code> and opens the Loom playground on <code>:8090</code>.</p>
+      <p class="fine">Install weaver first: <code>pip install loom-weaver</code>. It serves the model on <code>:8080</code> and opens the Loom playground on <code>:8090</code>.</p>
 
       <div class="dr-cols">
         <div><h3>serving</h3>${kvList([
@@ -202,7 +172,6 @@
         ${src && src.url ? `<a class="btn" href="${esc(src.url)}" target="_blank" rel="noopener">benchmark run ↗</a>` : ''}
       </div>`;
     LOOM.copyButtons(el('dr'));
-    race(m);
   }
 
   let current = null;
@@ -216,7 +185,6 @@
     el('drawer').scrollTop = 0;
   }
   function close() {
-    cancelAnimationFrame(raceFrame);
     current = null;
     document.body.classList.remove('open');
     el('drawer').setAttribute('aria-hidden', 'true');

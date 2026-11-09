@@ -9,11 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=3">
-  <script src="assets/loom-data.js?v=3"></script>
-  <script src="assets/loom-lib.js?v=3"></script>
-  <script src="assets/navbar.js?v=3"></script>
-  <script src="assets/footer.js?v=3"></script>
+  <link rel="stylesheet" href="assets/styles.css?v=4">
+  <script src="assets/loom-data.js?v=4"></script>
+  <script src="assets/loom-lib.js?v=4"></script>
+  <script src="assets/navbar.js?v=4"></script>
+  <script src="assets/footer.js?v=4"></script>
 </head>
 <body data-page="submit">
   <div class="navbar-placeholder"></div>
@@ -34,9 +34,10 @@
             <div class="step-n"><b>01</b>install</div>
             <div class="step-body">
               <h3>Install weaver</h3>
-              <p>One self-contained bundle: Python, <code>hrx-loom</code>, the Pi agent, the pinned loom-skills and the Loom library. No Python, Node.js, ROCm SDK or git needed.</p>
-              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">$ </span>curl -fsSL https://github.com/loom-fun/weaver/releases/latest/download/install.sh | bash</code></pre></div>
-              <div class="note">At the end, the installer offers to run <code>weaver init</code>. That fetches and serves the local agent model, smoke-tests the agent against it, and pre-fetches the llama.cpp ROCm reference. <code>weaver doctor</code> tells you what the machine is missing.</div>
+              <p>One package from PyPI that brings <code>hrx-loom</code>, the Pi agent, the pinned loom-skills and the Loom library with it. You need Python and pip, but no Node.js, ROCm SDK or git.</p>
+              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install loom-weaver
+<span class="p">$ </span>weaver init</code></pre></div>
+              <div class="note"><code>weaver init</code> runs once. It fetches and serves the local agent model, smoke-tests the agent against it, and pre-fetches the llama.cpp ROCm reference. <code>weaver doctor</code> tells you what the machine is missing.</div>
             </div>
           </div>
 

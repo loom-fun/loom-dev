@@ -1,24 +1,13 @@
 // Home page: index telemetry, leaderboard, linked charts and the weaver pipeline stepper.
 
 (() => {
-  const { models, stats, esc, ctx, times, METRIC, median } = LOOM;
+  const { models, stats, times, METRIC, median } = LOOM;
   const s = stats();
   const el = id => document.getElementById(id);
   const open = m => { location.href = LOOM.href(m); };
 
   el('ixKicker').textContent = `community index · ${s.models} ports · updated ${s.generated}`;
   el('ixCount').textContent = s.models;
-  el('telemetry').innerHTML = [
-    [s.models, 'models indexed', `from ${s.orgs} source orgs`],
-    [`${s.wins}/${s.runs}`, 'workloads loom faster', `${Math.round(s.wins / s.runs * 100)}% of measurements`],
-    [times(s.median), 'median speedup', 'over every measurement'],
-    [s.best ? times(s.best.speedup) : '—', 'largest gap', s.best ? `${esc(s.best.m.name)} · ${s.best.short}` : ''],
-    [`${s.gatesPass}/${s.gatesApplicable}`, 'gates passing', `${s.verified} models pass all`],
-    [ctx(s.maxCtx), 'max context', 'tokens, served natively'],
-    [`${Math.round(s.bytes / 1e9)} GB`, 'weights indexed', 'GGUFs stay in their repos'],
-    [`${s.tools}/${s.vision}/${s.spec}`, 'tools / vision / spec', 'models with each feature'],
-  ].map(([v, l, d]) => `<div><b>${v}</b><span>${l}</span><small>${d}</small></div>`).join('');
-
   // Leaderboard
   el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
   LOOM.mountTable(el('board'), models, { onOpen: open, pageSize: 20 });
