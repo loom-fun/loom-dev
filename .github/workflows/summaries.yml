@@ -20,9 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -53,13 +53,9 @@ jobs:
       - name: Commit and push
         if: steps.diff.outputs.changed == 'true'
         run: |
-          added=$(git diff --cached --name-only --diff-filter=A -- summaries | sed 's|summaries/||; s|\.json$||' | paste -sd, - | sed 's/,/, /g')
-          updated=$(git diff --cached --name-only --diff-filter=M -- summaries | wc -l)
-          removed=$(git diff --cached --name-only --diff-filter=D -- summaries | wc -l)
-          msg="Summaries: ${added:+add $added; }$updated updated, $removed removed"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A summaries website/assets/loom-data.js
-          git commit -m "$msg"
+          git commit -m "Update summaries from the loom-fun org" -m "$(git diff --cached --name-status -- summaries)"
           git pull --rebase origin main
           git push origin HEAD:main
