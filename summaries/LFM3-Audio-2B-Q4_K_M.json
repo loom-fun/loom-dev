@@ -3,7 +3,8 @@
   "checkpoint": "LFM3-Audio-2B-Q4_K_M",
   "name": "LFM3-Audio-2B",
   "repo": "loom-fun/LiquidAI-LFM3-Audio-2B-loom",
-  "revision": "734b1e11a245f04e92aa9c133f74acdab20daf7c",
+  "revision": "2e04065815f5184c8c1d64eab19fe7a036aaf607",
+  "status": null,
   "license": "other",
   "service": {
     "kind": "chat",
@@ -35,9 +36,9 @@
     "context": "yes",
     "image_input": "no",
     "max_output_tokens": "yes",
-    "reasoning_effort": "no",
+    "reasoning_effort": "n/a",
     "sampling": "no",
-    "speculative_decoding": "no",
+    "speculative_decoding": "n/a",
     "thinking": "no",
     "tool_calling": "no"
   },
@@ -98,9 +99,67 @@
         "loom": 441.6,
         "llamacpp": 431.0,
         "speedup": 1.02
+      },
+      "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       }
     },
-    "not_applicable": []
+    "not_applicable": [
+      "spec_acceptance"
+    ],
+    "devlab": {
+      "date": null,
+      "source": null,
+      "metrics": {
+        "decode": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_2k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_32k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_1k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_2k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_8k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_16k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_32k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "streams4": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        }
+      }
+    }
   },
   "gates": {
     "summary": {

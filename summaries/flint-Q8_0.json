@@ -3,7 +3,8 @@
   "checkpoint": "flint-Q8_0",
   "name": "flint",
   "repo": "loom-fun/unsloth-flint-loom",
-  "revision": "fe27c3d23d82d7dcdaa5ffcd677a13894854f90b",
+  "revision": "3056984db80b3904d341c4038913be5d1e0965b6",
+  "status": null,
   "license": "apache-2.0",
   "service": {
     "kind": "chat",
@@ -30,14 +31,14 @@
   },
   "features": {
     "api": "yes",
-    "audio": "no",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "no",
+    "image_input": "n/a",
     "max_output_tokens": "yes",
-    "reasoning_effort": "no",
+    "reasoning_effort": "n/a",
     "sampling": "no",
-    "speculative_decoding": "no",
+    "speculative_decoding": "n/a",
     "thinking": "yes",
     "tool_calling": "no"
   },
@@ -98,9 +99,67 @@
         "loom": 127.9,
         "llamacpp": 119.8,
         "speedup": 1.07
+      },
+      "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       }
     },
-    "not_applicable": []
+    "not_applicable": [
+      "spec_acceptance"
+    ],
+    "devlab": {
+      "date": null,
+      "source": null,
+      "metrics": {
+        "decode": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_2k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_32k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_1k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_2k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_8k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_16k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_32k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "streams4": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        }
+      }
+    }
   },
   "gates": {
     "summary": {

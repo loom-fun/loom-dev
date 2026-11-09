@@ -1,0 +1,188 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "Qwen3-14B-Q4_K_M",
+  "name": "Qwen3-14B",
+  "repo": "loom-fun/ggml-org-Qwen3-14B-loom",
+  "revision": "4b7f80710c54cb1b282e0b1c6cdb43b74a00a238",
+  "status": null,
+  "license": null,
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "ggml-org/Qwen3-14B-GGUF",
+      "file": "Qwen3-14B-Q4_K_M.gguf",
+      "quant": "Q4_K_M",
+      "revision": "af3732ec4e23a1dfff21a0479cd3545ace763e38",
+      "sha256": "5ff1fe7a07aebc8d090682d01b17cf268a1b4680c6477050ce75a600aecb9efb",
+      "size": 9001753376
+    },
+    "drafter": null,
+    "projector": null
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 31000000000,
+    "context_tokens": 40960,
+    "rows": 4,
+    "max_tokens": 4096
+  },
+  "features": {
+    "api": "yes",
+    "audio": "n/a",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "n/a",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "n/a",
+    "sampling": "yes",
+    "speculative_decoding": "yes",
+    "thinking": "yes",
+    "tool_calling": "yes"
+  },
+  "performance": {
+    "date": "2026-11-07",
+    "llamacpp_build": "b1370",
+    "drafting": {
+      "loom": "n-gram prompt lookup, depth 2",
+      "llamacpp": "ngram-simple"
+    },
+    "source": {
+      "kind": "local",
+      "run": null,
+      "url": null
+    },
+    "metrics": {
+      "decode": {
+        "loom": 25.5,
+        "llamacpp": 20.6,
+        "speedup": 1.24
+      },
+      "decode_2k": {
+        "loom": 22.8,
+        "llamacpp": 17.3,
+        "speedup": 1.32
+      },
+      "decode_32k": {
+        "loom": 13.3,
+        "llamacpp": 7.3,
+        "speedup": 1.82
+      },
+      "prefill_1k": {
+        "loom": 967.9,
+        "llamacpp": 571.8,
+        "speedup": 1.69
+      },
+      "prefill_2k": {
+        "loom": 997.8,
+        "llamacpp": 496.5,
+        "speedup": 2.01
+      },
+      "prefill_8k": {
+        "loom": 865.5,
+        "llamacpp": 430.7,
+        "speedup": 2.01
+      },
+      "prefill_16k": {
+        "loom": 712.1,
+        "llamacpp": 305.5,
+        "speedup": 2.33
+      },
+      "prefill_32k": {
+        "loom": 479.4,
+        "llamacpp": 199.0,
+        "speedup": 2.41
+      },
+      "streams4": {
+        "loom": 61.2,
+        "llamacpp": 36.9,
+        "speedup": 1.66
+      },
+      "spec_acceptance": {
+        "loom": 0.1,
+        "llamacpp": null,
+        "speedup": null
+      }
+    },
+    "not_applicable": [],
+    "devlab": {
+      "date": "2026-11-07",
+      "source": {
+        "kind": "devlab",
+        "run": "42406091346",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/42406091346/job/128504020347"
+      },
+      "metrics": {
+        "decode": {
+          "loom": 25.6,
+          "llamacpp": 21.1,
+          "speedup": 1.21
+        },
+        "decode_2k": {
+          "loom": 23.5,
+          "llamacpp": 17.6,
+          "speedup": 1.34
+        },
+        "decode_32k": {
+          "loom": 15.5,
+          "llamacpp": 3.8,
+          "speedup": 4.08
+        },
+        "prefill_1k": {
+          "loom": 927.1,
+          "llamacpp": 601.1,
+          "speedup": 1.54
+        },
+        "prefill_2k": {
+          "loom": 944.9,
+          "llamacpp": 518.5,
+          "speedup": 1.82
+        },
+        "prefill_8k": {
+          "loom": 759.5,
+          "llamacpp": 298.5,
+          "speedup": 2.54
+        },
+        "prefill_16k": {
+          "loom": 592.2,
+          "llamacpp": 234.6,
+          "speedup": 2.52
+        },
+        "prefill_32k": {
+          "loom": 306.3,
+          "llamacpp": 170.9,
+          "speedup": 1.79
+        },
+        "streams4": {
+          "loom": 61.5,
+          "llamacpp": 78.5,
+          "speedup": 0.78
+        }
+      }
+    }
+  },
+  "gates": {
+    "summary": {
+      "pass": 10,
+      "fail": 0,
+      "unknown": 0,
+      "n/a": 2
+    },
+    "status": {
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "n/a",
+      "consistency": "pass",
+      "spec": "pass",
+      "agent": "pass",
+      "agent_think_off": "pass",
+      "sampling": "pass",
+      "needle": "pass",
+      "needle_full": "pass",
+      "decision": "n/a"
+    }
+  }
+}

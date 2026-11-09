@@ -1,0 +1,192 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "Qwen3-8B-Q4_K_M",
+  "name": "Qwen3-8B",
+  "repo": "loom-fun/unsloth-Qwen3-8B-loom",
+  "revision": "2d3d15776b5ae4c9a843dc9e962096860b876f62",
+  "status": null,
+  "license": null,
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "unsloth/Qwen3-8B-GGUF",
+      "file": "Qwen3-8B-Q4_K_M.gguf",
+      "quant": "Q4_K_M",
+      "revision": "a6adef130ffb23ddaf1a62fec9dced968c9bc482",
+      "sha256": "120307ba529eb2439d6c430d94104dabd578497bc7bfe7e322b5d9933b449bd4",
+      "size": 5027784512
+    },
+    "drafter": {
+      "repo": "AtomicChat/Qwen3-8B-DFlash-GGUF",
+      "file": "Qwen3-8B-DFlash.Q8_0.gguf",
+      "quant": "Q8_0"
+    },
+    "projector": null
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 29000000000,
+    "context_tokens": 40960,
+    "rows": 4,
+    "max_tokens": 4096
+  },
+  "features": {
+    "api": "yes",
+    "audio": "n/a",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "n/a",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "n/a",
+    "sampling": "yes",
+    "speculative_decoding": "yes",
+    "thinking": "yes",
+    "tool_calling": "yes"
+  },
+  "performance": {
+    "date": "2026-11-07",
+    "llamacpp_build": "b1368",
+    "drafting": {
+      "loom": "DFlash, depth 3",
+      "llamacpp": "draft-dflash, n-max 3"
+    },
+    "source": {
+      "kind": "local",
+      "run": null,
+      "url": null
+    },
+    "metrics": {
+      "decode": {
+        "loom": 66.1,
+        "llamacpp": 45.0,
+        "speedup": 1.47
+      },
+      "decode_2k": {
+        "loom": 55.9,
+        "llamacpp": 47.8,
+        "speedup": 1.17
+      },
+      "decode_32k": {
+        "loom": 20.3,
+        "llamacpp": 26.8,
+        "speedup": 0.76
+      },
+      "prefill_1k": {
+        "loom": 1563.2,
+        "llamacpp": 991.5,
+        "speedup": 1.58
+      },
+      "prefill_2k": {
+        "loom": 1613.1,
+        "llamacpp": 896.7,
+        "speedup": 1.8
+      },
+      "prefill_8k": {
+        "loom": 1446.4,
+        "llamacpp": 801.0,
+        "speedup": 1.81
+      },
+      "prefill_16k": {
+        "loom": 1191.8,
+        "llamacpp": 595.5,
+        "speedup": 2.0
+      },
+      "prefill_32k": {
+        "loom": 782.0,
+        "llamacpp": 406.7,
+        "speedup": 1.92
+      },
+      "streams4": {
+        "loom": 159.8,
+        "llamacpp": 99.4,
+        "speedup": 1.61
+      },
+      "spec_acceptance": {
+        "loom": 0.55,
+        "llamacpp": null,
+        "speedup": null
+      }
+    },
+    "not_applicable": [],
+    "devlab": {
+      "date": "2026-11-08",
+      "source": {
+        "kind": "devlab",
+        "run": "42429049534",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/42429049534/job/128573654188"
+      },
+      "metrics": {
+        "decode": {
+          "loom": 67.5,
+          "llamacpp": 53.3,
+          "speedup": 1.27
+        },
+        "decode_2k": {
+          "loom": 57.2,
+          "llamacpp": 47.7,
+          "speedup": 1.2
+        },
+        "decode_32k": {
+          "loom": 21.0,
+          "llamacpp": 20.4,
+          "speedup": 1.03
+        },
+        "prefill_1k": {
+          "loom": 1469.7,
+          "llamacpp": 1037.9,
+          "speedup": 1.42
+        },
+        "prefill_2k": {
+          "loom": 1528.8,
+          "llamacpp": 934.6,
+          "speedup": 1.64
+        },
+        "prefill_8k": {
+          "loom": 1272.2,
+          "llamacpp": 569.4,
+          "speedup": 2.23
+        },
+        "prefill_16k": {
+          "loom": 1057.9,
+          "llamacpp": 466.1,
+          "speedup": 2.27
+        },
+        "prefill_32k": {
+          "loom": 683.3,
+          "llamacpp": 357.3,
+          "speedup": 1.91
+        },
+        "streams4": {
+          "loom": 162.2,
+          "llamacpp": 139.1,
+          "speedup": 1.17
+        }
+      }
+    }
+  },
+  "gates": {
+    "summary": {
+      "pass": 10,
+      "fail": 0,
+      "unknown": 0,
+      "n/a": 2
+    },
+    "status": {
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "n/a",
+      "consistency": "pass",
+      "spec": "pass",
+      "agent": "pass",
+      "agent_think_off": "pass",
+      "sampling": "pass",
+      "needle": "pass",
+      "needle_full": "pass",
+      "decision": "n/a"
+    }
+  }
+}

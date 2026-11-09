@@ -1,9 +1,10 @@
 {
   "schema": "loom-summary/1",
-  "checkpoint": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M",
+  "checkpoint": "unsloth-Qwen3-Coder-30B-A3B-Instruct-Q4_K_M",
   "name": "Qwen3-Coder-30B-A3B-Instruct",
   "repo": "loom-fun/unsloth-Qwen3-Coder-30B-A3B-Instruct-loom",
-  "revision": "7af8e299834cbf180979a91058c87df13c81eb30",
+  "revision": "d663de1e24f986456f6e668475da5d1b31fa9a12",
+  "status": null,
   "license": "apache-2.0",
   "service": {
     "kind": "chat",
@@ -30,15 +31,15 @@
   },
   "features": {
     "api": "yes",
-    "audio": "no",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "no",
+    "image_input": "n/a",
     "max_output_tokens": "yes",
-    "reasoning_effort": "no",
+    "reasoning_effort": "n/a",
     "sampling": "no",
-    "speculative_decoding": "no",
-    "thinking": "no",
+    "speculative_decoding": "n/a",
+    "thinking": "n/a",
     "tool_calling": "no"
   },
   "performance": {
@@ -98,9 +99,67 @@
         "loom": 163.4,
         "llamacpp": 160.0,
         "speedup": 1.02
+      },
+      "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       }
     },
-    "not_applicable": []
+    "not_applicable": [
+      "spec_acceptance"
+    ],
+    "devlab": {
+      "date": null,
+      "source": null,
+      "metrics": {
+        "decode": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_2k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_32k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_1k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_2k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_8k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_16k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_32k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "streams4": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        }
+      }
+    }
   },
   "gates": {
     "summary": {

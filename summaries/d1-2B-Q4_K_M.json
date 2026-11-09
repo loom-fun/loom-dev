@@ -3,7 +3,8 @@
   "checkpoint": "d1-2B-Q4_K_M",
   "name": "d1-2B",
   "repo": "loom-fun/LiquidAI-d1-2B-loom",
-  "revision": "03cf072c2b568104277a5708d17596bea87bb220",
+  "revision": "262d75c8a68d065e046780d285b029cb11075fde",
+  "status": null,
   "license": "other",
   "service": {
     "kind": "decision",
@@ -30,7 +31,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "no",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "unknown",
     "image_input": "n/a",
@@ -98,14 +99,71 @@
         "loom": null,
         "llamacpp": null,
         "speedup": null
+      },
+      "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       }
     },
     "not_applicable": [
       "decode",
       "decode_2k",
       "decode_32k",
-      "streams4"
-    ]
+      "streams4",
+      "spec_acceptance"
+    ],
+    "devlab": {
+      "date": null,
+      "source": null,
+      "metrics": {
+        "decode": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_2k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_32k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_1k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_2k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_8k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_16k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_32k": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "streams4": {
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
+        }
+      }
+    }
   },
   "gates": {
     "summary": {
