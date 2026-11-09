@@ -111,7 +111,7 @@ const CHARTS = (() => {
     const rows = list.map(m => {
       const fy = feats.filter(f => m.features[f] === 'yes').length;
       return `<tr data-id="${esc(m.id)}">
-        <td class="cv-name"><a href="${LOOM.href(m)}">${esc(m.name)}</a><small>${esc(m.quant)}</small></td>
+        <td class="cv-name">${LOOM.avatar(m)}<a href="${LOOM.href(m)}">${esc(m.name)}</a><small>${esc(m.quant)}</small></td>
         ${gates.map(g => { const s = m.gates.status[g] || 'n/a'; return `<td class="cv-${s.replace('/', '')}" title="${g}: ${s}">${G[s]}</td>`; }).join('')}
         <td class="cv-gap"></td>
         ${feats.map(f => { const y = m.features[f] === 'yes'; return `<td class="${y ? 'cv-y' : 'cv-n'}" title="${FEATURES[f][1]}: ${y ? 'yes' : 'no'}">${y ? '■' : '·'}</td>`; }).join('')}

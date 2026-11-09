@@ -115,6 +115,10 @@ const LOOM = (() => {
   const hf = repo => `https://huggingface.co/${repo}`;
   const rk = m => String(m.rank).padStart(2, '0');
   const href = m => `models.html#${encodeURIComponent(m.id)}`;
+  const AVATARS = (window.LOOM_DATA && window.LOOM_DATA.avatars) || {};
+  const avatar = (m, cls = '') => AVATARS[m.org]
+    ? `<img class="av ${cls}" src="${esc(AVATARS[m.org])}" alt="" title="${esc(m.org)}" loading="lazy" referrerpolicy="no-referrer">`
+    : `<span class="av av-na ${cls}" title="${esc(m.org)}">${esc(m.org.charAt(0).toUpperCase())}</span>`;
 
   // --- inline marks ---
   // Diverging ratio bar centred on 1.0: left half when the reference is faster.
@@ -184,7 +188,7 @@ const LOOM = (() => {
     return `
       <a class="mcard" href="${href(m)}" data-id="${esc(m.id)}">
         <div class="mc-top"><span class="mc-rank">#${rk(m)}</span><span class="mc-score ${m.score < 1 ? 'lo' : ''}">${times(m.score)}</span></div>
-        <div class="mc-name">${esc(m.name)}</div>
+        <div class="mc-name">${avatar(m)}<span>${esc(m.name)}</span></div>
         <div class="mc-sub">${sub(m)}</div>
         <div class="mc-marks"><span class="flags">${flags(m)}</span><span class="strip">${gateStrip(m)}</span><span class="mc-gt">${m.gatesPass}/${m.gatesApplicable}</span></div>
         <div class="mc-charts">
@@ -219,7 +223,7 @@ const LOOM = (() => {
   function cell(col, m) {
     switch (col.key) {
       case 'rank': return rk(m);
-      case 'name': return `<b title="${esc(m.name)}">${esc(m.name)}</b><small>${sub(m)}</small>`;
+      case 'name': return `<span class="nm">${avatar(m, 'av-lg')}<span><b title="${esc(m.name)}">${esc(m.name)}</b><small>${sub(m)}</small></span></span>`;
       case 'profile': return profile(m);
       case 'gates': return `<span class="strip">${gateStrip(m)}</span><small>${m.gatesPass}/${m.gatesApplicable}</small>`;
       case 'decodeTok': return tokCell(m.pair('decode'));
@@ -353,7 +357,7 @@ const LOOM = (() => {
 
   return {
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean,
-    pct, times, num, gb, ctx, esc, hf, rk, href, niceStep,
+    pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
     ratioBar, gateStrip, flags, sub, profile, curve, card, mountTable, quickstart, copyButtons, reveal,
   };
 })();

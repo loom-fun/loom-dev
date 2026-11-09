@@ -45,7 +45,7 @@
       <thead><tr><th>model</th>${METRICS.map(x => `<th>${x.short}</th>`).join('')}<th>dec ×</th><th>pre ×</th><th>overall</th></tr></thead>
       <tbody>${rows.map(m => `
         <tr>
-          <td class="mname" data-id="${esc(m.id)}">${esc(m.name)}<small>${esc(m.quant)}</small></td>
+          <td class="mname" data-id="${esc(m.id)}">${LOOM.avatar(m)}${esc(m.name)}<small>${esc(m.quant)}</small></td>
           ${METRICS.map(x => { const p = m.pair(x.key); return cellOf(p && p.speedup, p ? `loom ${num(p.loom)} · llama.cpp ${num(p.llamacpp)} tok/s` : 'not measured'); }).join('')}
           ${cellOf(m.decodeScore, 'decode geomean')}${cellOf(m.prefillScore, 'prefill geomean')}${cellOf(m.score, 'overall geomean')}
         </tr>`).join('')}
@@ -100,7 +100,7 @@
     el('drPath').textContent = `models / ${m.id}`;
     el('dr').innerHTML = `
       <span class="label">#${LOOM.rk(m)} of ${models.length} · ${esc(m.service.kind)} · from <a class="u" href="${hf(m.baseRepo)}" target="_blank" rel="noopener">${esc(m.baseRepo)}</a></span>
-      <h2 style="margin-top:10px">${esc(m.name)}</h2>
+      <h2 class="dr-title" style="margin-top:10px">${LOOM.avatar(m, 'av-xl')}${esc(m.name)}</h2>
       <div class="meta">${LOOM.sub(m)} · ${sv.rows || '—'} rows · ${esc(m.license || 'license not stated')}</div>
       <div class="dr-marks"><span class="flags">${LOOM.flags(m)}</span><span class="strip">${LOOM.gateStrip(m)}</span><span class="faint">${m.gatesPass}/${m.gatesApplicable} gates</span>${LOOM.profile(m, { w: 120, h: 28 })}</div>
 
