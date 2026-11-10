@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="footer-grid">
           <div>
             <a class="wordmark" href="index.html"><img src="assets/logo.svg" alt="">HRX Loom</a>
-            <p>Community GGUF ports to AMD Loom, built with loom-skills and checked against llama.cpp ROCm on the same weights.</p>
+            <p>Fetch, serve and share models on Loom. Every port is checked against llama.cpp ROCm on the same weights.</p>
           </div>
           <div>
             <h5>site</h5>

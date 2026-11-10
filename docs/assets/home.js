@@ -6,7 +6,7 @@
   const el = id => document.getElementById(id);
   const open = m => { location.href = LOOM.href(m); };
 
-  el('ixKicker').textContent = `community index · ${s.models} ports · updated ${s.generated}`;
+  el('ixKicker').textContent = `hrx-loom · ${s.models} models ready to serve · updated ${s.generated}`;
   el('ixCount').textContent = s.models;
   // Leaderboard
   el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
