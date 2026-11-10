@@ -39,31 +39,31 @@
           <li>
             <div class="hs-n"><b>Step 1</b>install</div>
             <div class="hs-body">
-              <p>Get <code>loom-fetch</code> and <code>loom-serve</code> from PyPI.</p>
+              <p>Install <code>hrx-loom</code> from PyPI.</p>
               <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>pip install "hrx-loom[hf]"</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n"><b>Step 2</b>fetch</div>
             <div class="hs-body">
-              <p>Pull a model package and its upstream GGUF, checked by sha256.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch https://huggingface.co/<span class="s">loom-fun/bartowski-Qwen3.8-27B-loom</span>/resolve/main/model.json --materialize=copy --output=<span class="s">qwen3.8-27b</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <p>Pull a model from Hugging Face.</p>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch https://huggingface.co/<span class="s">loom-fun/unsloth-Qwen3-0.6B-loom</span>/resolve/main/model.json --materialize=copy --output=<span class="s">qwen3-0.6b</span></code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n"><b>Step 3</b>serve</div>
             <div class="hs-body">
-              <p>Start an OpenAI-compatible server on <code>127.0.0.1:8080</code>.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --model=<span class="s">qwen3.8-27b</span>/model.json --device=amdgpu --memory_bytes=<span class="s">52000000000</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <p>Start a local OpenAI-compatible server</code>.</p>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --model=<span class="s">qwen3-0.6b</span>/model.json --device=amdgpu --memory_bytes=<span class="s">17000000000</span></code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
         </ol>
         <div class="hero-port">
-          <div class="hs-n"><b>Yours</b>port</div>
+          <div class="hs-n"><b>Port<br>Yours</b>port</div>
           <div class="hs-body">
             <p>Model not listed? Install <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> and ask your agent to port and optimize any GGUF.</p>
-            <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom get <span class="s">&lt;hf-org&gt;/&lt;model-gguf&gt;</span> working on loom-serve, optimize it, and report the performance relative to llamacpp rocm</code></pre><button class="copy" data-copy>copy</button></div>
-            <p class="fine"><a href="models.html">Browse every model</a> for its own fetch command, or read the <a href="submit.html">porting guide</a>.</p>
+            <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-org&gt;/&lt;model-gguf&gt;</span>.</code></pre><button class="copy" data-copy>copy</button></div>
+            <p class="fine">See our <a href="submit.html">porting guide</a> for more info.</p>
           </div>
         </div>
         </div>
@@ -94,10 +94,10 @@
     <section class="sec" id="leaderboard">
       <div class="wrap">
         <div class="sec-head">
-          <div class="sec-idx"><b>01</b> / leaderboard</div>
+            <div class="sec-idx"><b>01</b> / try one</div>
           <div>
-            <h2>Ranked community models by throughput.</h2>
-            <p>The overall score is the geometric mean of Loom ÷ llama.cpp over every workload a model was measured on. The profile column shows all nine at a glance: decode at three context lengths, prefill at five document lengths and 4-stream aggregate decode. Bars point up where Loom is faster and down where it's slower.</p>
+            <h2>Models you can fetch and serve today.</h2>
+            <p>Every model here is a community package on Hugging Face, tuned and tested on Strix Halo. Pick one, open it for its <code>loom-fetch</code> and <code>loom-serve</code> commands and the <code>--memory_bytes</code> it needs, and you're serving it in minutes. They're ranked by speedup over llama.cpp ROCm on the same weights, as a geometric mean across decode, prefill and 4-stream workloads. In the profile column, bars point up where Loom is faster and down where it's slower.</p>
           </div>
         </div>
         <div class="podium" id="podium"></div>

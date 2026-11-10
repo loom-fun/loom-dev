@@ -47,8 +47,8 @@
             <div class="step-body">
               <h3>Port, optimize and benchmark in one prompt</h3>
               <p>The agent ports the checkpoint (<code>loom-port-llm/port.sh</code>), qualifies it against llama.cpp ROCm (<code>qualify.sh</code>: gates, baselines, roofline), optimizes it within the model's roofline budget and finalizes it (<code>finalize.sh</code>: full gates, audit, report). It never stops to ask, except to accept a gated model's license.</p>
-              <div class="code"><div class="code-head"><span>agent prompt</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">&gt; </span>/loom get <span class="s">&lt;org&gt;/&lt;model&gt;</span> working on loom-serve, optimize it, and report the performance relative to llamacpp rocm</code></pre></div>
-              <div class="note"><b>Budget:</b> add a time or a target, like "…optimize it for 3 hours…" or "…until decode is 50 % faster than llama.cpp…". The roofline step tells you up front if a target is out of reach. In Codex the skill is <code>$loom</code>, and in Pi it's <code>/skill:loom</code>.</div>
+              <div class="code"><div class="code-head"><span>agent prompt</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-org&gt;/&lt;model-gguf&gt;</span>.</code></pre></div>
+              <div class="note"><b>Budget:</b> add a time or a target at the end, like "…for 3 hours." or "…until decode is 50 % faster than llama.cpp.". The roofline step tells you up front if a target is out of reach. In Codex the skill is <code>$loom</code>, and in Pi it's <code>/skill:loom</code>.</div>
             </div>
           </div>
 
