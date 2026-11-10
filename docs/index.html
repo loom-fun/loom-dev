@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>loom/dev · community GGUF ports on AMD Loom</title>
+  <title>HRX Loom · community GGUF ports on AMD Loom</title>
   <meta name="description" content="Every community GGUF port to AMD Loom, measured against llama.cpp ROCm on the same weights: leaderboard, per-workload data, gates and features.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=7">
-  <script src="assets/loom-data.js?v=7"></script>
-  <script src="assets/loom-lib.js?v=7"></script>
-  <script src="assets/charts.js?v=7"></script>
-  <script src="assets/navbar.js?v=7"></script>
-  <script src="assets/footer.js?v=7"></script>
+  <link rel="stylesheet" href="assets/styles.css?v=8">
+  <script src="assets/loom-data.js?v=8"></script>
+  <script src="assets/loom-lib.js?v=8"></script>
+  <script src="assets/charts.js?v=8"></script>
+  <script src="assets/navbar.js?v=8"></script>
+  <script src="assets/footer.js?v=8"></script>
 </head>
 <body data-page="home">
   <div class="navbar-placeholder"></div>
@@ -26,29 +26,29 @@
         <div>
           <div class="kicker"><span class="dot"></span><span id="ixKicker">community index</span></div>
           <h1>The community hub<br>for Loom models.<br><span class="thin">Find, create and share your own.</span></h1>
-          <p class="lede"><b id="ixCount">Dozens of</b> Hugging Face models already run on Loom, each one checked against llama.cpp on the same weights. Porting your own is one command with <b>weaver</b>: point it at a GGUF and it builds, tests and benchmarks the port for you.</p>
+          <p class="lede"><b id="ixCount">Dozens of</b> Hugging Face models already run on Loom, each one checked against llama.cpp on the same weights. Porting your own is one prompt with <b>loom-skills</b>: point your agent at a GGUF and it builds, tests and benchmarks the port on <b>Loom</b> for you.</p>
         </div>
         <div>
         <ol class="hero-steps">
           <li>
             <div class="hs-n"><b>Step 1</b>install</div>
             <div class="hs-body">
-              <p>Install weaver from PyPI.</p>
-              <div class="code inline-cmd"><pre><code><span class="p">$ </span>pip install weaver-loom</code></pre><button class="copy" data-copy>copy</button></div>
+              <p>Add loom-skills to Claude Code, Codex or Pi. The skills install Loom (<code>hrx-loom</code>, from ROCm/hrx-system) themselves.</p>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>npx skills add loom-fun/loom-skills --skill '*' -g</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n"><b>Step 2</b>port</div>
             <div class="hs-body">
-              <p>Convert any GGUF model to Loom with one command.</p>
-              <div class="code inline-cmd"><pre><code><span class="p">$ </span>weaver port <span class="s">&lt;org&gt;/&lt;model&gt;</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <p>Ask your agent to port, validate and optimize any GGUF model.</p>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom get <span class="s">&lt;org&gt;/&lt;model&gt;</span> working on loom-serve, optimize it, and report the performance relative to llamacpp rocm</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n"><b>Step 3</b>publish</div>
             <div class="hs-body">
-              <p>Publish your model to Hugging Face and to this hub.</p>
-              <div class="code inline-cmd"><pre><code><span class="p">$ </span>weaver upload <span class="s">&lt;org&gt;/&lt;model&gt; &lt;hf-org&gt;</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <p>Generate the card from the benchmark report and upload the package to Hugging Face.</p>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>hf upload <span class="s">&lt;hf-org&gt;/&lt;model&gt;-loom</span> PKG .</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
         </ol>

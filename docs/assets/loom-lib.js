@@ -322,13 +322,20 @@ const LOOM = (() => {
     };
   }
 
-  const quickstart = m => [
-    `weaver serve huggingface://${m.repo}`,
-    '',
-    '# OpenAI-compatible, on :8080',
-    `curl -s localhost:8080${m.service.endpoint} -H 'content-type: application/json' \\`,
-    `  -d '{"messages":[{"role":"user","content":"hello"}]}'`,
-  ].join('\n');
+  function quickstart(m) {
+    const out = m.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-');
+    return [
+      'pip install "hrx-loom[hf]"',
+      `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json \\`,
+      `  --materialize=copy --output=${out}`,
+      `loom-serve --model=${out}/model.json --device=${m.serve.device || 'amdgpu'} \\`,
+      `  --memory_bytes=${m.serve.memory_bytes || '<bytes>'}`,
+      '',
+      '# OpenAI-compatible, on :8080',
+      `curl -s localhost:8080${m.service.endpoint} -H 'content-type: application/json' \\`,
+      `  -d '{"messages":[{"role":"user","content":"hello"}]}'`,
+    ].join('\n');
+  }
 
   function copyButtons(root = document) {
     root.querySelectorAll('[data-copy]').forEach(btn => {

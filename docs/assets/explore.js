@@ -129,7 +129,7 @@
         <div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div>
         <pre><code>${esc(quickstart(m))}</code></pre>
       </div>
-      <p class="fine">Install weaver first: <code>pip install weaver-loom</code>. It serves the model on <code>:8080</code> and opens the Loom playground on <code>:8090</code>.</p>
+      <p class="fine"><code>hrx-loom</code> is the Loom SDK from <a class="u" href="https://github.com/ROCm/hrx-system" target="_blank" rel="noopener">ROCm/hrx-system</a>. <code>loom-fetch</code> pulls the GGUF from its original repo, and <code>loom-serve</code> listens on <code>:8080</code>. For a browser playground, ask an agent with <a class="u" href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> to start the Loom demo UI.</p>
 
       <div class="dr-cols">
         <div><h3>serving</h3>${kvList([

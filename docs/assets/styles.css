@@ -1,4 +1,4 @@
-/* Loom Dev styles: monochrome telemetry */
+/* HRX Loom styles: monochrome telemetry */
 
 :root {
   --bg: #0a0a0a;
@@ -430,7 +430,8 @@ body.open { overflow: hidden; }
 .aside ul { margin: 0; padding: 0; list-style: none; font-size: 13px; }
 .aside li { padding: 5px 0; border-bottom: 1px dashed var(--line); }
 .aside li:last-child { border-bottom: none; }
-.cmd-ref li { display: grid; grid-template-columns: 74px 1fr; gap: 8px; }
+.cmd-ref li { display: grid; grid-template-columns: 96px 1fr; gap: 8px; }
+.cmd-ref code { white-space: nowrap; }
 .cmd-ref code { justify-self: start; }
 .cmd-ref span { color: var(--dim); font-size: 12.5px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; font: 12px var(--mono); }

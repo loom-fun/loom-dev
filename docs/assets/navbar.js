@@ -5,14 +5,16 @@ function createNavbar(active) {
   return `
     <header class="nav" id="nav">
       <div class="nav-inner">
-        <a class="wordmark" href="index.html" aria-label="Loom Dev home"><img src="assets/logo.svg" alt="">loom<span>/</span>dev</a>
+        <a class="wordmark" href="index.html" aria-label="HRX Loom home"><img src="assets/logo.svg" alt="">HRX Loom</a>
         <nav class="nav-links">
-          ${link('index.html#leaderboard', 'home', 'leaderboard')}
-          ${link('models.html', 'models', 'models')}
-          ${link('submit.html', 'submit', 'port yours')}
+          ${link('index.html#leaderboard', 'home', 'Overview')}
+          ${link('models.html', 'models', 'Ported Models')}
+          ${link('submit.html', 'submit', 'Port yours')}
         </nav>
         <div class="nav-ext">
-          <a href="https://github.com/loom-fun/weaver" target="_blank" rel="noopener">weaver ↗</a>
+          <a href="https://github.com/ROCm/hrx-system" target="_blank" rel="noopener">loom ↗</a>
+          <span class="sep">/</span>
+          <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills ↗</a>
           <span class="sep">/</span>
           <a href="https://huggingface.co/loom-fun" target="_blank" rel="noopener">hugging face ↗</a>
         </div>
