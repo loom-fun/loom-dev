@@ -1,13 +1,16 @@
-"""Write one summary per loom-fun model, named after its checkpoint: summaries/<checkpoint file stem>.json.
+"""Write one summary per loom model, named after its checkpoint: summaries/<checkpoint file stem>.json.
+
+The models are every repo in the loom-fun org plus every public repo tagged loom-serve, whoever owns it.
 
 Reads each repo's info.json (schema loom-card/2, loom-skills/skills/loom-benchmark/scripts/card/info_schema.json)
 with the model.json and model.json.lock next to it, and writes the same keys for every model. A value that isn't
 known is null, never left out. Each summary records the repo and revision it was made from: that is the mapping
 from a summary back to its Hugging Face repo. When two repos ship checkpoints with the same file name, both
-summaries are prefixed with the checkpoint's uploader (unsloth-Qwen3-Coder-30B-A3B-Instruct-Q4_K_M). Summaries
-of repos that are no longer in the org are deleted.
+summaries are prefixed with the checkpoint's uploader (unsloth-Qwen3-Coder-30B-A3B-Instruct-Q4_K_M), and if a
+package outside the org still clashes, also with the package's owner. Summaries of repos that are no longer in the
+org or tagged are deleted.
 
-    python summarize_info.py [--org loom-fun] [--out summaries]
+    python summarize_info.py [--org loom-fun] [--tag loom-serve] [--out summaries]
     python summarize_info.py --check    # list repo -> summary file and what a run would change, write nothing
     python summarize_info.py --skip-unusable    # write the rest when some repos have no usable card yet
 
@@ -245,17 +248,26 @@ def load(api, repo_id):
         return info, None, f"{type(e).__name__}: {e}"
 
 
-def file_names(summaries):
-    """{repo: summary file name}: the checkpoint stem, prefixed with the checkpoint's uploader when it is not unique."""
+def file_names(summaries, org):
+    """{repo: summary file name}: the checkpoint stem, prefixed with the checkpoint's uploader when it is not unique,
+    and then for packages outside `org` with the package's owner when that is still not unique."""
     by_stem = {}
     for s in summaries:
         by_stem.setdefault(s["checkpoint"].lower(), []).append(s)
     names = {}
     for group in by_stem.values():
-        for s in group:
-            if len(group) > 1:
+        if len(group) > 1:
+            for s in group:
                 s["checkpoint"] = f"{s['weights']['checkpoint']['repo'].split('/')[0]}-{s['checkpoint']}"
-            names[s["repo"]] = s["checkpoint"] + ".json"
+        by_name = {}
+        for s in group:
+            by_name.setdefault(s["checkpoint"].lower(), []).append(s)
+        for same in by_name.values():
+            for s in same:
+                owner = s["repo"].split("/")[0]
+                if len(same) > 1 and owner != org:
+                    s["checkpoint"] = f"{owner}-{s['checkpoint']}"
+                names[s["repo"]] = s["checkpoint"] + ".json"
     seen = {}
     for repo, name in names.items():
         if name.lower() in seen:
@@ -275,9 +287,15 @@ def existing(out):
     return found
 
 
-def check(api, org, out):
+def list_repos(api, org, tag):
+    """Every model repo in `org` and every public model repo tagged `tag`, sorted case-insensitively."""
+    ids = {m.id for m in api.list_models(author=org)} | {m.id for m in api.list_models(filter=tag)}
+    return sorted(ids, key=str.lower)
+
+
+def check(api, org, tag, out):
     have = existing(out)
-    repos = sorted((m.id for m in api.list_models(author=org)), key=str.lower)
+    repos = list_repos(api, org, tag)
     for repo in repos:
         sha = api.model_info(repo, files_metadata=False).sha
         name, rev = have.get(repo, (None, None))
@@ -291,6 +309,7 @@ def check(api, org, out):
 def main():
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--org", default="loom-fun")
+    p.add_argument("--tag", default="loom-serve", help="also summarize repos outside --org that carry this tag")
     p.add_argument("--out", default="summaries")
     p.add_argument("--check", action="store_true", help="list repo -> summary file and its state, write nothing")
     p.add_argument("--skip-unusable", action="store_true",
@@ -299,14 +318,14 @@ def main():
 
     api = HfApi()
     if a.check:
-        return check(api, a.org, a.out)
+        return check(api, a.org, a.tag, a.out)
 
     summaries, failed, skipped = [], [], set()
-    for model in sorted(api.list_models(author=a.org), key=lambda m: m.id.lower()):
-        _, summary, why = load(api, model.id)
+    for repo in list_repos(api, a.org, a.tag):
+        _, summary, why = load(api, repo)
         if summary is None:
-            failed.append(f"{model.id}: {why}")
-            skipped.add(model.id)
+            failed.append(f"{repo}: {why}")
+            skipped.add(repo)
         else:
             summaries.append(summary)
     if failed and not a.skip_unusable:
@@ -314,7 +333,7 @@ def main():
     if failed:
         print("skipped, these repos have no usable card:\n  " + "\n  ".join(failed), file=sys.stderr)
 
-    names = file_names(summaries)
+    names = file_names(summaries, a.org)
     old = {repo: v for repo, v in existing(a.out).items() if repo not in skipped}
     os.makedirs(a.out, exist_ok=True)
     for s in summaries:

@@ -1,7 +1,7 @@
 name: Update summaries
 
-# Every hour, regenerate summaries/ from the loom-fun Hugging Face org and, when a model was added, updated or
-# removed, rebuild website/assets/loom-data.js and push both straight to main.
+# Every hour, regenerate summaries/ from the loom-fun Hugging Face org and every model tagged loom-serve and, when a
+# model was added, updated or removed, rebuild website/assets/loom-data.js and push both straight to main.
 
 on:
   schedule:
@@ -56,6 +56,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A summaries website/assets/loom-data.js
-          git commit -m "Update summaries from the loom-fun org" -m "$(git diff --cached --name-status -- summaries)"
+          git commit -m "Update summaries from Hugging Face" -m "$(git diff --cached --name-status -- summaries)"
           git pull --rebase origin main
           git push origin HEAD:main
