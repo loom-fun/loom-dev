@@ -9,7 +9,6 @@ function createNavbar(active) {
         <nav class="nav-links">
           ${link('index.html#leaderboard', 'home', 'leaderboard')}
           ${link('models.html', 'models', 'models')}
-          ${link('index.html#data', 'data', 'data')}
           ${link('submit.html', 'submit', 'port yours')}
         </nav>
         <div class="nav-ext">
