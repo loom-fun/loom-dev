@@ -52,10 +52,10 @@
         'Speculative decoding is on whenever the GGUF supports it. <code>--no-spec</code> turns it off.',
         'The model\'s memory budget is what\'s left after the local agent\'s reservation (about 42 GiB).',
       ],
-      runs: 'weaver port &lt;org&gt;/&lt;model&gt;', time: 'one command', files: ['*.gguf (header probed first)', 'a GPU memory budget for the model'],
+      runs: 'weaver port &lt;org&gt;/&lt;model&gt;', files: ['*.gguf (header probed first)', 'a GPU memory budget for the model'],
     },
     {
-      t: 'port', d: '~1 min',
+      t: 'port', d: 'gguf → loom',
       h: 'Port: GGUF in, Loom package out',
       p: 'A config-driven starter kit turns the GGUF into Loom programs at the model\'s native context length.',
       items: [
@@ -64,10 +64,10 @@
         'Kernel unit tests, then a smoke test through <code>loom-serve</code>. Chat glue comes from the model\'s Jinja template.',
         'For an architecture the starter doesn\'t cover, the agent follows <code>loom-port-llm</code> for that stage only, then resumes the build.',
       ],
-      runs: 'loom-port-llm/port.sh', time: '≈ 1 min (starter-covered)', files: ['program/*.loom', 'model.json · model.json.lock', 'llm_config.json · tokenizer.json'],
+      runs: 'loom-port-llm/port.sh', files: ['program/*.loom', 'model.json · model.json.lock', 'llm_config.json · tokenizer.json'],
     },
     {
-      t: 'qualify', d: '~10 min',
+      t: 'qualify', d: 'reference + baselines',
       h: 'Qualify: set the reference and the baselines',
       p: 'Before anything is optimized, the agent sets what "correct" and "fast" mean for this model on this machine.',
       items: [
@@ -76,10 +76,10 @@
         'Run the quick gates and measure both engines\' baselines.',
         'Roofline analysis: per-workload ceilings for decode, prefill and 4 streams.',
       ],
-      runs: 'loom-benchmark/scripts/qualify.sh', time: '≈ 10 min', files: ['golden.json · compare.json', 'baseline perf, both engines', 'roofline targets'],
+      runs: 'loom-benchmark/scripts/qualify.sh', files: ['golden.json · compare.json', 'baseline perf, both engines', 'roofline targets'],
     },
     {
-      t: 'optimize', d: 'budgeted',
+      t: 'optimize', d: 'measure + verify loop',
       h: 'Optimize without breaking correctness',
       p: '<code>weaver port</code> skips this step. <code>weaver optimize</code> ports first if needed, then runs a measure, change and verify loop against a target, within a time budget.',
       items: [
@@ -88,7 +88,7 @@
         'After each kept change: rebuild, restart, measure, fast gates. A speedup that breaks output is rolled back.',
         'The controller prints CONTINUE, REVIEW, BUDGET or DONE. At BUDGET the agent reverts to the last kept build.',
       ],
-      runs: 'weaver optimize &lt;ckpt&gt; [target] [budget]', time: 'your budget', files: ['perf_log.jsonl', 'kept changes only'],
+      runs: 'weaver optimize &lt;ckpt&gt; [target] [budget]', files: ['perf_log.jsonl', 'kept changes only'],
     },
     {
       t: 'finalize', d: 'gates + audit',
@@ -100,7 +100,7 @@
         'An audit of what was optimized, what was skipped and why. It must PASS.',
         'A report generated from the logs, which the model card is written from.',
       ],
-      runs: 'loom-benchmark/scripts/finalize.sh', time: 'reserved in the budget', files: ['gates.json', 'report.md', 'raw logs'],
+      runs: 'loom-benchmark/scripts/finalize.sh', files: ['gates.json', 'report.md', 'raw logs'],
     },
     {
       t: 'publish', d: 'weaver upload',
@@ -112,7 +112,7 @@
         'weaver shows a preview and asks before it publishes anything.',
         'Anyone can then run <code>weaver serve huggingface://&lt;you&gt;/&lt;repo&gt;</code>. Cards tagged <code>loom</code> show up here.',
       ],
-      runs: 'weaver upload &lt;ckpt&gt; &lt;hf-org&gt;', time: 'seconds', files: ['README.md (model card)', 'model.json · model.json.lock', '<a href="submit.html">publishing guide →</a>'],
+      runs: 'weaver upload &lt;ckpt&gt; &lt;hf-org&gt;', files: ['README.md (model card)', 'model.json · model.json.lock', '<a href="submit.html">publishing guide →</a>'],
     },
   ];
 
@@ -146,7 +146,6 @@
       </div>
       <div class="sd-side">
         <div><span class="label">runs</span><span class="kv">${st.runs}</span></div>
-        <div><span class="label">time</span><span class="kv">${st.time}</span></div>
         <div><span class="label">produces</span><ul class="files">${st.files.map(f => `<li>${f}</li>`).join('')}</ul></div>
       </div>`;
     t0 = performance.now();
