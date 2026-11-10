@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="index.html#leaderboard">leaderboard</a>
             <a href="models.html">models</a>
             <a href="index.html#data">data</a>
-            <a href="index.html#how">how it works</a>
             <a href="submit.html">port yours</a>
           </div>
           <div>
