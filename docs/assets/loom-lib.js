@@ -324,12 +324,12 @@ const LOOM = (() => {
 
   function quickstart(m) {
     const out = m.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-');
+    const mem = m.serve.memory_bytes;
+    const memArg = !mem ? '<bytes>' : mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem;
     return [
       'pip install "hrx-loom[hf]"',
-      `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json \\`,
-      `  --materialize=copy --output=${out}`,
-      `loom-serve --model=${out}/model.json --device=${m.serve.device || 'amdgpu'} \\`,
-      `  --memory_bytes=${m.serve.memory_bytes || '<bytes>'}`,
+      `loom-fetch huggingface:${m.repo} --output=${out}`,
+      `loom-serve --model=${out}/model.json --device=${m.serve.device || 'amdgpu'} --memory_bytes=${memArg}`,
       '',
       '# OpenAI-compatible, on :8080',
       `curl -s localhost:8080${m.service.endpoint} -H 'content-type: application/json' \\`,

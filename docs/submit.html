@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css?v=9">
   <script src="assets/loom-data.js?v=9"></script>
-  <script src="assets/loom-lib.js?v=9"></script>
+  <script src="assets/loom-lib.js?v=10"></script>
   <script src="assets/navbar.js?v=9"></script>
   <script src="assets/footer.js?v=9"></script>
 </head>
@@ -47,7 +47,7 @@
             <div class="step-body">
               <h3>Port, optimize and benchmark in one prompt</h3>
               <p>The agent ports the checkpoint (<code>loom-port-llm/port.sh</code>), qualifies it against llama.cpp ROCm (<code>qualify.sh</code>: gates, baselines, roofline), optimizes it within the model's roofline budget and finalizes it (<code>finalize.sh</code>: full gates, audit, report). It never stops to ask, except to accept a gated model's license.</p>
-              <div class="code"><div class="code-head"><span>agent prompt</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-org&gt;/&lt;model-gguf&gt;</span>.</code></pre></div>
+              <div class="code"><div class="code-head"><span>agent prompt</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-gguf&gt;</span>.</code></pre></div>
               <div class="note"><b>Budget:</b> add a time or a target at the end, like "…for 3 hours." or "…until decode is 50 % faster than llama.cpp.". The roofline step tells you up front if a target is out of reach. In Codex the skill is <code>$loom</code>, and in Pi it's <code>/skill:loom</code>.</div>
             </div>
           </div>
@@ -83,10 +83,9 @@ python $CARD/render_card.py PKG/info.json -o PKG/README.md</code></pre></div>
               <h3>Show up on HRX Loom</h3>
               <p>The index reads public Hugging Face models tagged <code>loom</code> and <code>loom-serve</code>. On the next refresh your model gets a leaderboard row, a detail page and a quick start. Anyone can then serve it with <code>hrx-loom</code>:</p>
               <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install "hrx-loom[hf]"
-<span class="p">$ </span>loom-fetch https://huggingface.co/<span class="s">&lt;hf-org&gt;/&lt;repo&gt;</span>/resolve/main/model.json \
-    --materialize=copy --output=<span class="s">&lt;name&gt;</span>
+<span class="p">$ </span>loom-fetch huggingface:<span class="s">&lt;hf-org&gt;/&lt;repo&gt;</span> --output=<span class="s">&lt;name&gt;</span>
 <span class="p">$ </span>loom-serve --model=<span class="s">&lt;name&gt;</span>/model.json --device=amdgpu --memory_bytes=<span class="s">&lt;bytes&gt;</span></code></pre></div>
-              <div class="note">Always pass <code>--memory_bytes</code>: it caps weights, KV pool and workspace. The server answers OpenAI-style requests on <code>127.0.0.1:8080</code>. To update a listed model, rerun the benchmark, regenerate the card and upload just those files: <code>hf upload &lt;hf-org&gt;/&lt;model&gt;-loom PKG . --include README.md info.json</code>.</div>
+              <div class="note">Always pass <code>--memory_bytes</code>, for example <code>--memory_bytes=17gb</code>: it caps weights, KV pool and workspace. The server answers OpenAI-style requests on <code>127.0.0.1:8080</code>. To update a listed model, rerun the benchmark, regenerate the card and upload just those files: <code>hf upload &lt;hf-org&gt;/&lt;model&gt;-loom PKG . --include README.md info.json</code>.</div>
             </div>
           </div>
         </div>

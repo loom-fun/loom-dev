@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css?v=9">
   <script src="assets/loom-data.js?v=9"></script>
-  <script src="assets/loom-lib.js?v=9"></script>
+  <script src="assets/loom-lib.js?v=10"></script>
   <script src="assets/charts.js?v=9"></script>
   <script src="assets/navbar.js?v=9"></script>
   <script src="assets/footer.js?v=9"></script>
@@ -47,14 +47,14 @@
             <div class="hs-n"><b>Step 2</b>fetch</div>
             <div class="hs-body">
               <p>Pull a model from Hugging Face.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch https://huggingface.co/<span class="s">loom-fun/unsloth-Qwen3-0.6B-loom</span>/resolve/main/model.json --materialize=copy --output=<span class="s">qwen3-0.6b</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch huggingface:<span class="s">loom-fun/unsloth-Qwen3-0.6B-loom</span> --output=<span class="s">qwen3-0.6b</span></code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n"><b>Step 3</b>serve</div>
             <div class="hs-body">
               <p>Start a local OpenAI-compatible server</code>.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --model=<span class="s">qwen3-0.6b</span>/model.json --device=amdgpu --memory_bytes=<span class="s">17000000000</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --model=<span class="s">qwen3-0.6b</span>/model.json --device=amdgpu --memory_bytes=<span class="s">17gb</span></code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
         </ol>
@@ -62,7 +62,7 @@
           <div class="hs-n"><b>Port<br>Yours</b>port</div>
           <div class="hs-body">
             <p>Model not listed? Install <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> and ask your agent to port and optimize any GGUF.</p>
-            <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-org&gt;/&lt;model-gguf&gt;</span>.</code></pre><button class="copy" data-copy>copy</button></div>
+            <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-gguf&gt;</span>.</code></pre><button class="copy" data-copy>copy</button></div>
             <p class="fine">See our <a href="submit.html">porting guide</a> for more info.</p>
           </div>
         </div>
