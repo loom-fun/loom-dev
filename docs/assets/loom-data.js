@@ -10722,7 +10722,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
    "name": "Qwen3.8-Flash-Next",
    "repo": "loom-fun/unsloth-Qwen3.8-Flash-Next-loom",
-   "revision": "9c522dd868d1c059060055b44c5a127a68ce176d",
+   "revision": "31ff945754e43a7deb4b890adb65be8e577b834e",
    "status": null,
    "license": null,
    "service": {
@@ -10886,8 +10886,8 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
-     "fail": 1,
+     "pass": 9,
+     "fail": 0,
      "unknown": 1,
      "n/a": 2
     },
@@ -10895,7 +10895,7 @@ window.LOOM_DATA = {
      "kernel_tests": "pass",
      "golden": "pass",
      "compare": "pass",
-     "vision": "fail",
+     "vision": "pass",
      "consistency": "pass",
      "spec": "n/a",
      "agent": "pass",
