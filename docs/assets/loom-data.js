@@ -10722,7 +10722,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
    "name": "Qwen3.8-Flash-Next",
    "repo": "loom-fun/unsloth-Qwen3.8-Flash-Next-loom",
-   "revision": "31ff945754e43a7deb4b890adb65be8e577b834e",
+   "revision": "aaf6525188f0296ad55312508190380695ee4cf2",
    "status": null,
    "license": null,
    "service": {
@@ -10738,7 +10738,11 @@ window.LOOM_DATA = {
      "sha256": "4448186216b3af4cc558bbce2c3213f01608f8f8b2e5267a9767971dd3ec8082",
      "size": 10946624
     },
-    "drafter": null,
+    "drafter": {
+     "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+     "file": "mtp-Qwen3.8-Flash-Next-Q8_0.gguf",
+     "quant": "Q8_0"
+    },
     "projector": {
      "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
      "file": "mmproj-BF16.gguf",
@@ -10761,7 +10765,7 @@ window.LOOM_DATA = {
     "max_output_tokens": "yes",
     "reasoning_effort": "yes",
     "sampling": "yes",
-    "speculative_decoding": "n/a",
+    "speculative_decoding": "yes",
     "thinking": "yes",
     "tool_calling": "yes"
    },
@@ -10769,7 +10773,7 @@ window.LOOM_DATA = {
     "date": null,
     "llamacpp_build": "b1371",
     "drafting": {
-     "loom": null,
+     "loom": "MTP, depth 3",
      "llamacpp": null
     },
     "source": null,
@@ -10825,9 +10829,7 @@ window.LOOM_DATA = {
       "speedup": null
      }
     },
-    "not_applicable": [
-     "spec_acceptance"
-    ],
+    "not_applicable": [],
     "devlab": {
      "date": "2026-11-11",
      "source": {
@@ -10888,8 +10890,8 @@ window.LOOM_DATA = {
     "summary": {
      "pass": 9,
      "fail": 0,
-     "unknown": 1,
-     "n/a": 2
+     "unknown": 2,
+     "n/a": 1
     },
     "status": {
      "kernel_tests": "pass",
@@ -10897,7 +10899,7 @@ window.LOOM_DATA = {
      "compare": "pass",
      "vision": "pass",
      "consistency": "pass",
-     "spec": "n/a",
+     "spec": "unknown",
      "agent": "pass",
      "agent_think_off": "pass",
      "sampling": "pass",
