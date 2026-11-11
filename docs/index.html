@@ -46,15 +46,15 @@
           <li>
             <div class="hs-n"><b>Step 2</b>fetch</div>
             <div class="hs-body">
-              <p>Pull a model from Hugging Face.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch huggingface:<span class="s">loom-fun/unsloth-Qwen3-0.6B-loom</span> --output=<span class="s">qwen3-0.6b</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <p>Pull a model from Hugging Face into <code>./&lt;model-id&gt;</code>.</p>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch huggingface:<span class="s">loom-fun/unsloth-Qwen3-0.6B-loom</span></code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n"><b>Step 3</b>serve</div>
             <div class="hs-body">
-              <p>Start a local OpenAI-compatible server</code>.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --model=<span class="s">qwen3-0.6b</span>/model.json --device=amdgpu --memory_bytes=<span class="s">17gb</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <p>Start a local OpenAI-compatible server on <code>:8080</code>.</p>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --device=amdgpu --model=<span class="s">Qwen/Qwen3-0.6B</span>/model.json</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
         </ol>
