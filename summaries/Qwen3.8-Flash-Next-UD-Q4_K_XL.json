@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
   "name": "Qwen3.8-Flash-Next",
   "repo": "loom-fun/unsloth-Qwen3.8-Flash-Next-loom",
-  "revision": "fb5a65bd43a54009106a8570a61bf01f759af0df",
+  "revision": "9c522dd868d1c059060055b44c5a127a68ce176d",
   "status": null,
   "license": null,
   "service": {
@@ -19,17 +19,17 @@
       "sha256": "4448186216b3af4cc558bbce2c3213f01608f8f8b2e5267a9767971dd3ec8082",
       "size": 10946624
     },
-    "drafter": {
+    "drafter": null,
+    "projector": {
       "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
-      "file": "mtp-Qwen3.8-Flash-Next-Q8_0.gguf",
-      "quant": "Q8_0"
-    },
-    "projector": null
+      "file": "mmproj-BF16.gguf",
+      "quant": "BF16"
+    }
   },
   "serve": {
     "device": "amdgpu",
-    "memory_bytes": 96000000000,
-    "context_tokens": 16384,
+    "memory_bytes": 100000000000,
+    "context_tokens": 262144,
     "rows": 4,
     "max_tokens": 4096
   },
@@ -38,11 +38,11 @@
     "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "no",
+    "image_input": "yes",
     "max_output_tokens": "yes",
     "reasoning_effort": "yes",
     "sampling": "yes",
-    "speculative_decoding": "yes",
+    "speculative_decoding": "n/a",
     "thinking": "yes",
     "tool_calling": "yes"
   },
@@ -50,8 +50,8 @@
     "date": null,
     "llamacpp_build": "b1371",
     "drafting": {
-      "loom": "MTP, depth 3",
-      "llamacpp": "draft-mtp, n-max 3"
+      "loom": null,
+      "llamacpp": null
     },
     "source": null,
     "metrics": {
@@ -101,64 +101,66 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.77,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [],
+    "not_applicable": [
+      "spec_acceptance"
+    ],
     "devlab": {
       "date": "2026-11-11",
       "source": {
         "kind": "devlab",
-        "run": "42958347200",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/42958347200"
+        "run": "43030028020",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43030028020"
       },
       "metrics": {
         "decode": {
-          "loom": 37.5,
-          "llamacpp": 22.5,
-          "speedup": 1.67
+          "loom": 27.1,
+          "llamacpp": 22.8,
+          "speedup": 1.19
         },
         "decode_2k": {
-          "loom": 32.9,
-          "llamacpp": 21.6,
-          "speedup": 1.52
+          "loom": 25.1,
+          "llamacpp": 22.3,
+          "speedup": 1.13
         },
         "decode_32k": {
-          "loom": null,
-          "llamacpp": 20.0,
-          "speedup": null
+          "loom": 26.1,
+          "llamacpp": 18.7,
+          "speedup": 1.4
         },
         "prefill_1k": {
-          "loom": 1000.1,
-          "llamacpp": 419.0,
-          "speedup": 2.39
+          "loom": 1238.4,
+          "llamacpp": 439.8,
+          "speedup": 2.82
         },
         "prefill_2k": {
-          "loom": 954.9,
-          "llamacpp": 422.7,
-          "speedup": 2.26
+          "loom": 1242.4,
+          "llamacpp": 453.3,
+          "speedup": 2.74
         },
         "prefill_8k": {
-          "loom": null,
-          "llamacpp": 351.2,
-          "speedup": null
+          "loom": 1188.7,
+          "llamacpp": 370.5,
+          "speedup": 3.21
         },
         "prefill_16k": {
-          "loom": null,
-          "llamacpp": 317.7,
-          "speedup": null
+          "loom": 1224.9,
+          "llamacpp": 331.9,
+          "speedup": 3.69
         },
         "prefill_32k": {
-          "loom": null,
-          "llamacpp": 285.0,
-          "speedup": null
+          "loom": 1216.0,
+          "llamacpp": 297.4,
+          "speedup": 4.09
         },
         "streams4": {
-          "loom": 4.4,
-          "llamacpp": 49.5,
-          "speedup": 0.09
+          "loom": 62.6,
+          "llamacpp": 55.8,
+          "speedup": 1.12
         }
       }
     }
@@ -166,22 +168,22 @@
   "gates": {
     "summary": {
       "pass": 8,
-      "fail": 0,
-      "unknown": 2,
+      "fail": 1,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
-      "kernel_tests": "unknown",
+      "kernel_tests": "pass",
       "golden": "pass",
       "compare": "pass",
-      "vision": "n/a",
+      "vision": "fail",
       "consistency": "pass",
-      "spec": "pass",
+      "spec": "n/a",
       "agent": "pass",
       "agent_think_off": "pass",
       "sampling": "pass",
-      "needle": "pass",
-      "needle_full": "unknown",
+      "needle": "unknown",
+      "needle_full": "pass",
       "decision": "n/a"
     }
   }
