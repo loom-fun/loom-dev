@@ -103,7 +103,7 @@ code, pre, .mono { font-family: var(--mono); }
 @keyframes blink { 50% { opacity: 0.2; } }
 .ix-grid > div:first-child { container-type: inline-size; }
 .ix-head h1 { font: 600 clamp(18px, 7cqi, 40px)/1.12 var(--sans); letter-spacing: -0.03em; color: var(--hi); margin: 16px 0 16px; }
-.ix-head h1 .thin { color: var(--dim); font-weight: 400; white-space: nowrap; }
+.ix-head h1 .thin { color: var(--dim); font-weight: 400; font-size: 0.8em; white-space: nowrap; }
 .ix-head .lede { font-size: 15px; color: var(--fg); max-width: 560px; margin: 0 0 22px; }
 .ix-head .lede b { color: var(--hi); font-weight: 600; }
 .hero-steps { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line-2); background: var(--panel); }

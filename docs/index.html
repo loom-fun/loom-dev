@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css?v=9">
   <script src="assets/loom-data.js?v=9"></script>
-  <script src="assets/loom-lib.js?v=10"></script>
+  <script src="assets/loom-lib.js?v=11"></script>
   <script src="assets/charts.js?v=9"></script>
   <script src="assets/navbar.js?v=9"></script>
   <script src="assets/footer.js?v=9"></script>
@@ -25,9 +25,9 @@
       <div class="wrap ix-grid">
         <div>
           <div class="kicker"><span class="dot"></span><span id="ixKicker">hrx-loom</span></div>
-          <h1>Loom: Port a model, ship the kernels, skip the engine.<br><span class="thin">Experimental dev preview.</span></h1>
+          <h1>Loom: Model optimization is no longer locked by the engine.<br><span class="thin">Experimental dev preview.</span></span></h1>
           <p class="lede"><b>hrx-loom</b> is a new end-to-end stack (compiler, runtime and serving tools) that lets anyone write, optimize, serve and share kernels and models without modifying the inference engine or the server.</p>
-          <p class="lede">Kernels are written in <code>.loom</code> files, a vector programming model reminiscent of MLIR. It can be hard going for humans but is easy for agents, and C++ is supported too. Each model's kernels ship alongside it on Hugging Face. To show what the stack can do early on, we ported <b id="ixCount">dozens of</b> models as an experiment, and you can fetch and serve them on Linux and Windows today.</p>
+          <p class="lede">Kernels are written in <code>.loom</code> files, a vector programming model reminiscent of MLIR that is easy for agents. To show what the stack can do early on, we ported <b id="ixCount">60+</b> models as an experiment, and you can fetch and serve them today.</p>
           <ul class="ix-links">
             <li><a href="https://github.com/ROCm/hrx-system" target="_blank" rel="noopener">ROCm/hrx-system ↗</a><span>Loom compiler and server</span></li>
             <li><a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-fun/loom-skills ↗</a><span>agent skills to port and optimize</span></li>
@@ -37,21 +37,21 @@
         <div>
         <ol class="hero-steps">
           <li>
-            <div class="hs-n"><b>Install</b></div>
+            <div class="hs-n">Step 1<b>Install</b></div>
             <div class="hs-body">
               <p>Install <code>hrx-loom</code> from PyPI.</p>
               <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>pip install "hrx-loom[hf]"</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
-            <div class="hs-n"><b>Fetch</b></div>
+            <div class="hs-n">Step 2<b>Fetch</b></div>
             <div class="hs-body">
               <p>Pull a Loom model from Hugging Face.</p>
               <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch huggingface:<span class="s">loom-fun/unsloth-Qwen3-0.6B-loom</span></code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
-            <div class="hs-n"><b>Serve</b></div>
+            <div class="hs-n">Step 3<b>Serve</b></div>
             <div class="hs-body">
               <p>Start a local OpenAI-compatible server.</p>
               <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --device=amdgpu --model=<span class="s">Qwen/Qwen3-0.6B</span>/model.json</code></pre><button class="copy" data-copy>copy</button></div>
@@ -59,9 +59,9 @@
           </li>
         </ol>
         <div class="hero-port">
-          <div class="hs-n"><b>Port<br>Yours</b></div>
+          <div class="hs-n">Want more?<b>Port<br>Yours</b></div>
           <div class="hs-body">
-            <p>Model not listed? Install <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> and ask your agent to port and optimize any GGUF.</p>
+            <p>Install <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> and ask your agent to port and optimize any GGUF.</p>
             <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-gguf&gt;</span>.</code></pre><button class="copy" data-copy>copy</button></div>
             <p class="fine">See our <a href="submit.html">porting guide</a> for more info.</p>
           </div>
@@ -121,8 +121,8 @@
           <div class="sec-head">
             <div class="sec-idx"><b>02</b> / by workload</div>
             <div>
-              <h2>Where Loom is faster, and where it isn't.</h2>
-              <p id="stripLede">One dot per model for each workload, on a log scale centred on parity. Hollow dots are workloads where llama.cpp is faster. The tick on each row is the median.</p>
+              <h2>Early experiments, workload by workload.</h2>
+              <p id="stripLede">These are first results, not a ceiling. Each model was ported and tuned by an agent using loom-skills, so the spread reflects how far each port has been optimized so far. One dot per model for each workload, on a log scale centred on parity with llama.cpp. Hollow dots are workloads where llama.cpp is still faster. The tick on each row is the median.</p>
             </div>
           </div>
           <div class="panel chart-panel"><div class="panel-head"><span>speedup · loom ÷ llama.cpp</span><span id="stripMeta"></span></div><div class="chart-body" id="strip"></div></div>

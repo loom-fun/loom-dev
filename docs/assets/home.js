@@ -6,8 +6,8 @@
   const el = id => document.getElementById(id);
   const open = m => { location.href = LOOM.href(m); };
 
-  el('ixKicker').textContent = `hrx-loom · ${s.models} models ready to serve · updated ${s.generated}`;
-  el('ixCount').textContent = s.models;
+  el('ixKicker').textContent = `hrx-loom · 60+ models ready to serve · updated ${s.generated}`;
+  el('ixCount').textContent = '60+';
   // Leaderboard
   el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
   LOOM.mountTable(el('board'), models, { onOpen: open, pageSize: 20 });
@@ -19,7 +19,7 @@
     const xs = all.filter(x => x.group === g);
     return `${g} ${xs.filter(x => x.speedup > 1.005).length}/${xs.length} faster, median ${times(median(xs.map(x => x.speedup)))}`;
   };
-  el('stripMeta').textContent = `${s.runs} measurements · ${s.models} models`;
+  el('stripMeta').textContent = `${s.runs} measurements · 60+ models`;
   el('stripLede').innerHTML += ` Across the index: ${['decode', 'prefill', 'streams'].map(groupLine).join('; ')}.`;
 
   const TABS = ['decode', 'decode_32k', 'prefill_2k', 'prefill_32k', 'streams4'];

@@ -59,8 +59,16 @@ const LOOM = (() => {
     return s.length % 2 ? s[h] : (s[h - 1] + s[h]) / 2;
   };
 
+  // Local sessions win; models whose cards only carry DevLab timings fall back to those.
+  function bench(perf) {
+    const timed = ms => Object.entries(ms || {}).some(([k, v]) => k !== 'spec_acceptance' && v && v.speedup != null);
+    const dl = perf.devlab;
+    if (timed(perf.metrics) || !dl || !timed(dl.metrics)) return { date: perf.date, source: perf.source, metrics: perf.metrics };
+    return { date: dl.date, source: dl.source, metrics: { ...perf.metrics, ...dl.metrics } };
+  }
+
   function enrich(s) {
-    const metrics = s.performance.metrics;
+    const b = bench(s.performance), metrics = b.metrics;
     const pair = k => metrics[k] && metrics[k].speedup != null ? { ...METRIC[k], ...metrics[k] } : null;
     const measured = METRICS.map(m => pair(m.key)).filter(Boolean);
     const byGroup = g => geomean(measured.filter(m => m.group === g).map(m => m.speedup));
@@ -74,6 +82,7 @@ const LOOM = (() => {
       sizeBytes: s.weights.checkpoint.size,
       baseRepo: s.weights.checkpoint.repo,
       org: s.weights.checkpoint.repo.split('/')[0],
+      bench: b,
       measured,
       pair,
       score: geomean(measured.map(m => m.speedup)),

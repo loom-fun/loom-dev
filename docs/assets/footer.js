@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const slot = document.querySelector('.footer-placeholder');
   if (!slot) return;
   const generated = window.LOOM_DATA ? window.LOOM_DATA.generated : '';
-  const count = window.LOOM_DATA ? window.LOOM_DATA.models.length : 0;
   slot.outerHTML = `
     <footer class="footer">
       <div class="wrap">
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <div class="footer-base">
-          <span>index: ${count} models · generated ${generated}</span>
+          <span>index: 60+ models · generated ${generated}</span>
           <span>every number comes from a benchmark log</span>
         </div>
       </div>

@@ -15,11 +15,11 @@
     prefillTok: m => m.prefillTok || 0,
     sizeBytes: m => m.sizeBytes,
     ctx: m => m.serve.context_tokens || 0,
-    date: m => Date.parse(m.performance.date) || 0,
+    date: m => Date.parse(m.bench.date) || 0,
   };
 
   const s = LOOM.stats();
-  el('headLede').textContent = `${s.models} ports from ${s.orgs} source orgs, ${s.runs} measurements, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`;
+  el('headLede').textContent = `60+ ports from ${s.orgs} source orgs, ${s.runs} measurements, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`;
 
   const open = m => { location.hash = encodeURIComponent(m.id); };
   const table = LOOM.mountTable(el('tbl'), models, { onOpen: open, pageSize: 20 });
@@ -83,7 +83,7 @@
   const short = h => h ? `<span title="${esc(h)}">${esc(h.slice(0, 12))}…</span>` : '<span class="faint">—</span>';
 
   function drawer(m) {
-    const p = m.performance, src = p.source, w = m.weights, sv = m.serve;
+    const p = m.performance, src = m.bench.source, w = m.weights, sv = m.serve;
     const drafting = p.drafting.loom
       ? `loom: ${esc(p.drafting.loom)} · llama.cpp: ${esc(p.drafting.llamacpp)}`
       : 'off on both engines';
@@ -142,7 +142,7 @@
           ['max tokens', sv.max_tokens ? sv.max_tokens.toLocaleString('en-US') : '—'],
         ])}</div>
         <div><h3>provenance</h3>${kvList([
-          ['measured', esc(p.date)],
+          ['measured', esc(m.bench.date)],
           ['reference', `llama.cpp rocm ${esc(p.llamacpp_build || '—')}`],
           ['drafting', drafting],
           ['source', src ? (src.url ? `<a class="u" href="${esc(src.url)}" target="_blank" rel="noopener">${src.kind === 'factory' ? 'factory run' : esc(src.kind)} ${esc(src.run || '')} ↗</a>` : `${esc(src.kind)} run`) : '—'],
