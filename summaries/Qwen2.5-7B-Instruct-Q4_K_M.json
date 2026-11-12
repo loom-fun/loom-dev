@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-7B-Instruct-Q4_K_M",
   "name": "Qwen2.5-7B-Instruct",
   "repo": "loom-fun/bartowski-Qwen2.5-7B-Instruct-loom",
-  "revision": "e1a3d9822b7e1b03fd61af76738072dd411a6c74",
+  "revision": "8703e21accda1f3b902469333e9e815a44ce265f",
   "status": null,
   "license": null,
   "service": {
@@ -24,7 +24,7 @@
   },
   "serve": {
     "device": "amdgpu",
-    "memory_bytes": 14000000000,
+    "memory_bytes": 15000000000,
     "context_tokens": 32768,
     "rows": 4,
     "max_tokens": 4096
@@ -97,7 +97,7 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.1,
+        "loom": 0.11,
         "llamacpp": null,
         "speedup": null
       }
