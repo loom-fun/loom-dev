@@ -56,23 +56,10 @@
             <div class="step-n"><b>03</b>upload</div>
             <div class="step-body">
               <h3>Generate the card and publish to Hugging Face</h3>
-              <p><code>info.json</code> and <code>README.md</code> are generated from the run, never written by hand. The easiest way is to ask your agent to "generate the Hugging Face model card for this port". Under the hood it runs the card scripts from loom-skills:</p>
-              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="c"># ~/.claude/skills for Claude Code, ~/.agents/skills for Codex and Pi</span>
-CARD=~/.agents/skills/loom-benchmark/scripts/card
-
-<span class="c"># 1. evidence from the benchmark run</span>
-python $CARD/make_info.py perf --perf-log bench/perf_log.jsonl --llamacpp-build <span class="s">bNNNN</span> -o ev_perf.json
-python $CARD/make_info.py gates bench/gates.json -o ev_gates.json
-
-<span class="c"># 2. info.json, then README.md rendered from it</span>
-python $CARD/make_info.py build PKG --repo <span class="s">&lt;hf-org&gt;/&lt;model&gt;-loom</span> --memory-bytes <span class="s">N</span> \
-  --output <span class="s">&lt;name&gt;</span> --evidence ev_perf.json ev_gates.json -o PKG/info.json
-python $CARD/render_card.py PKG/info.json -o PKG/README.md</code></pre></div>
-              <p>Then upload the package: the <code>.loom</code> programs, <code>model.json</code> and <code>model.json.lock</code>, the tokenizer and the card. The GGUF itself isn't copied, since <code>loom-fetch</code> pulls it from its original repo and checks its sha256.</p>
+              <p>The agent generates <code>info.json</code> and <code>README.md</code> from the run's own logs with the loom-skills card scripts, then uploads the package: the <code>.loom</code> programs, <code>model.json</code> and <code>model.json.lock</code>, the tokenizer and the card. The GGUF itself isn't copied, since <code>loom-fetch</code> pulls it from its original repo and checks its sha256. Log in to Hugging Face once first:</p>
               <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install -U huggingface_hub
-<span class="p">$ </span>hf auth login
-<span class="p">$ </span>hf repo create <span class="s">&lt;hf-org&gt;/&lt;model&gt;-loom</span> --repo-type model
-<span class="p">$ </span>hf upload <span class="s">&lt;hf-org&gt;/&lt;model&gt;-loom</span> PKG .</code></pre></div>
+<span class="p">$ </span>hf auth login</code></pre></div>
+              <div class="code"><div class="code-head"><span>agent prompt</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">&gt; </span>/loom Generate the Hugging Face model card for this port and upload the package to <span class="s">&lt;hf-org&gt;/&lt;model&gt;-loom</span>.</code></pre></div>
               <div class="note">Every number on the card has to come from the report. A value without evidence renders as <b>not measured</b> or <b>no evidence</b>, and that's what keeps the index trustworthy.</div>
             </div>
           </div>
@@ -85,7 +72,7 @@ python $CARD/render_card.py PKG/info.json -o PKG/README.md</code></pre></div>
               <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install "hrx-loom[hf]"
 <span class="p">$ </span>loom-fetch huggingface:<span class="s">&lt;hf-org&gt;/&lt;repo&gt;</span> --output=<span class="s">&lt;name&gt;</span>
 <span class="p">$ </span>loom-serve --model=<span class="s">&lt;name&gt;</span>/model.json --device=amdgpu --memory_bytes=<span class="s">&lt;bytes&gt;</span></code></pre></div>
-              <div class="note">Always pass <code>--memory_bytes</code>, for example <code>--memory_bytes=17gb</code>: it caps weights, KV pool and workspace. The server answers OpenAI-style requests on <code>127.0.0.1:8080</code>. To update a listed model, rerun the benchmark, regenerate the card and upload just those files: <code>hf upload &lt;hf-org&gt;/&lt;model&gt;-loom PKG . --include README.md info.json</code>.</div>
+              <div class="note">Always pass <code>--memory_bytes</code>, for example <code>--memory_bytes=17gb</code>: it caps weights, KV pool and workspace. The server answers OpenAI-style requests on <code>127.0.0.1:8080</code>. To update a listed model, rerun the benchmark and ask your agent to regenerate and re-upload the card.</div>
             </div>
           </div>
         </div>
