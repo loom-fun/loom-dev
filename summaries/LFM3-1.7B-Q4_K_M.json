@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-1.7B-Q4_K_M",
   "name": "LFM3-1.7B",
   "repo": "loom-fun/bartowski-LFM3-1.7B-loom",
-  "revision": "4b8a9ca8269c53473e2f290c0b92295b3803e6cf",
+  "revision": "661802f20a247e7965690fe6de569e396955bcac",
   "status": null,
   "license": null,
   "service": {

@@ -3,7 +3,7 @@
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
   "repo": "loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "df68881d1c7f3450b6e8f4a8a9759343e545507f",
+  "revision": "8a037f849afd7895be37c3b51382214e8a3fae89",
   "status": null,
   "license": null,
   "service": {

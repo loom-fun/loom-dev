@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-14B-Q4_K_M",
   "name": "Qwen3-14B",
   "repo": "loom-fun/ggml-org-Qwen3-14B-loom",
-  "revision": "e212866f5eef0b46d0ea35d188686b091b4d5f52",
+  "revision": "1e90533f3d8b185929fb7d577dd9c44ae9964e4d",
   "status": null,
   "license": null,
   "service": {

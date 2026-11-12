@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-35B-A3B-Q4_K_M",
   "name": "Ornith-1.5-35B-A3B",
   "repo": "loom-fun/bartowski-Ornith-1.5-35B-A3B-loom",
-  "revision": "cd04c65c3ced26eebc1639b2270eabadee141973",
+  "revision": "31e0a54551b28655ef7bd7561926963f8fc02d71",
   "status": null,
   "license": null,
   "service": {

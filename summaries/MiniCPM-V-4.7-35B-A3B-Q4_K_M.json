@@ -3,7 +3,7 @@
   "checkpoint": "MiniCPM-V-4.7-35B-A3B-Q4_K_M",
   "name": "MiniCPM-V-4.7-35B-A3B",
   "repo": "loom-fun/bartowski-MiniCPM-V-4.7-35B-A3B-loom",
-  "revision": "de833a0a801512b389bcfa4e041422db347682a3",
+  "revision": "ddf39365f5c9e100ec7a53670b3121fc38af6933",
   "status": null,
   "license": null,
   "service": {

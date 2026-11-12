@@ -3,7 +3,7 @@
   "checkpoint": "ggml-org-Qwen3-Coder-30B-A3B-Instruct-Q4_K_M",
   "name": "Qwen3-Coder-30B-A3B-Instruct",
   "repo": "loom-fun/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom",
-  "revision": "8ec3782a750414b025c29e387753a2a0855c338b",
+  "revision": "7fed494acaab030a8e5de9201e61ba1923c6c8b1",
   "status": null,
   "license": "apache-2.0",
   "service": {

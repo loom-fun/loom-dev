@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-VL-7B-Instruct-Q4_K_M",
   "name": "Qwen2.5-VL-7B-Instruct",
   "repo": "loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom",
-  "revision": "66f844288b9293f7b3cf8cda82cea391f4349064",
+  "revision": "8b59ca46908f06fda062fca0d508c0cb8d8eca7d",
   "status": null,
   "license": null,
   "service": {

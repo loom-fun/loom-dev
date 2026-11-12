@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.6-35B-A3B-Q4_K_M",
   "name": "Qwen3.6-35B-A3B",
   "repo": "loom-fun/ggml-org-Qwen3.6-35B-A3B-loom",
-  "revision": "cf9d5cb206323cf6f8cf1c8add4f67ccbfbf8762",
+  "revision": "a6d5061bc8e54217d01fd13ae3f1fdae8b68ba32",
   "status": null,
   "license": null,
   "service": {

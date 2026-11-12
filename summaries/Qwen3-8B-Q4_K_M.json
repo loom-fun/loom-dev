@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-8B-Q4_K_M",
   "name": "Qwen3-8B",
   "repo": "loom-fun/unsloth-Qwen3-8B-loom",
-  "revision": "d1c0b75ef49bc1f2ee0c17116666dccbbd5fa6ef",
+  "revision": "49a739acfebf48933782f06334c62bb5ee8daa65",
   "status": null,
   "license": null,
   "service": {
