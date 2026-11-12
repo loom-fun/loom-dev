@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.6-35B-A3B-Q4_K_M",
   "name": "Qwen3.6-35B-A3B",
   "repo": "loom-fun/ggml-org-Qwen3.6-35B-A3B-loom",
-  "revision": "0806b5e2cae575ef646d6c6167e964a7c4908c35",
+  "revision": "56846b224be87d83c3d0cd3af7f002c255399715",
   "status": null,
   "license": null,
   "service": {
@@ -15,9 +15,9 @@
       "repo": "ggml-org/Qwen3.6-35B-A3B-GGUF",
       "file": "Qwen3.6-35B-A3B-Q4_K_M.gguf",
       "quant": "Q4_K_M",
-      "revision": "7878dc9a905c7c9379e5e8d6a1aa9affdd6839c5",
-      "sha256": "671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7",
-      "size": 20419565568
+      "revision": "52f9f9b8052fb9c8b69bba4a95eda0f319ac3d2a",
+      "sha256": "f4ffe03c9139e6a905a5d346f77d9fabdd179367c3280dfd005d1e75ca5ed8c8",
+      "size": 20542732576
     },
     "drafter": {
       "repo": "magnitudedev/Qwen3.6-35B-A3B-DFlash-GGUF",
@@ -52,10 +52,10 @@
   },
   "performance": {
     "date": null,
-    "llamacpp_build": "b1369",
+    "llamacpp_build": "b1373",
     "drafting": {
       "loom": "DFlash, depth 3",
-      "llamacpp": "draft-dflash, n-max 7"
+      "llamacpp": "ngram-simple"
     },
     "source": null,
     "metrics": {
@@ -105,64 +105,64 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.73,
+        "loom": 0.62,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-11",
+      "date": "2026-11-12",
       "source": {
         "kind": "devlab",
-        "run": "43075216088",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43075216088"
+        "run": "43216994388",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43216994388"
       },
       "metrics": {
         "decode": {
-          "loom": 80.8,
-          "llamacpp": 53.4,
-          "speedup": 1.51
+          "loom": 89.8,
+          "llamacpp": 51.5,
+          "speedup": 1.74
         },
         "decode_2k": {
-          "loom": 65.4,
-          "llamacpp": 49.9,
-          "speedup": 1.31
+          "loom": 68.7,
+          "llamacpp": 50.3,
+          "speedup": 1.37
         },
         "decode_32k": {
-          "loom": 50.1,
-          "llamacpp": 43.0,
-          "speedup": 1.17
+          "loom": 51.5,
+          "llamacpp": 45.0,
+          "speedup": 1.14
         },
         "prefill_1k": {
-          "loom": 2254.3,
-          "llamacpp": 1198.4,
-          "speedup": 1.88
+          "loom": 2179.0,
+          "llamacpp": 1218.5,
+          "speedup": 1.79
         },
         "prefill_2k": {
-          "loom": 2463.3,
-          "llamacpp": 1230.6,
-          "speedup": 2.0
+          "loom": 2392.6,
+          "llamacpp": 1244.7,
+          "speedup": 1.92
         },
         "prefill_8k": {
-          "loom": 2620.2,
-          "llamacpp": 914.9,
-          "speedup": 2.86
+          "loom": 2564.7,
+          "llamacpp": 1230.6,
+          "speedup": 2.08
         },
         "prefill_16k": {
-          "loom": 2430.3,
-          "llamacpp": 833.1,
-          "speedup": 2.92
+          "loom": 2343.8,
+          "llamacpp": 1034.6,
+          "speedup": 2.27
         },
         "prefill_32k": {
-          "loom": 2121.4,
-          "llamacpp": 708.8,
-          "speedup": 2.99
+          "loom": 2020.0,
+          "llamacpp": 835.5,
+          "speedup": 2.42
         },
         "streams4": {
-          "loom": 137.2,
-          "llamacpp": 88.5,
-          "speedup": 1.55
+          "loom": 163.9,
+          "llamacpp": 123.9,
+          "speedup": 1.32
         }
       }
     }
