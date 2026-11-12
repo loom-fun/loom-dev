@@ -338,8 +338,8 @@ const LOOM = (() => {
     const mem = m.serve.memory_bytes;
     const memArg = !mem ? '<bytes>' : mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem;
     return [
-      'pip install "hrx-loom[hf]"',
-      `loom-fetch huggingface:${m.repo} --output=${out}`,
+      'pip install "hrx-loom[hf]==0.1.0"',
+      `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json --output=${out}`,
       `loom-serve --model=${out}/model.json --device=${m.serve.device || 'amdgpu'} --memory_bytes=${memArg}`,
       '',
       '# OpenAI-compatible, on :8080',

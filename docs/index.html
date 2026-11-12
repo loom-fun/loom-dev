@@ -42,21 +42,21 @@
             <div class="hs-n">Step 1<b>Install</b></div>
             <div class="hs-body">
               <p>Install <code>hrx-loom</code> from PyPI.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>pip install "hrx-loom[hf]"</code></pre><button class="copy" data-copy>copy</button></div>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>pip install "hrx-loom[hf]==0.1.0"</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n">Step 2<b>Fetch</b></div>
             <div class="hs-body">
               <p>Pull a Loom model from Hugging Face.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span><span class="s">loom-fetch</span> huggingface:loom-fun/unsloth-Qwen3-0.6B-loom</code></pre><button class="copy" data-copy>copy</button></div>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/loom-fun/unsloth-Qwen3-0.6B-loom/resolve/main/model.json --output=qwen3-0.6b</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n">Step 3<b>Serve</b></div>
             <div class="hs-body">
               <p>Start a local OpenAI-compatible server.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span><span class="s">loom-serve</span> --device=amdgpu --model=Qwen/Qwen3-0.6B/model.json</code></pre><button class="copy" data-copy>copy</button></div>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span><span class="s">loom-serve</span> --device=amdgpu --model=qwen3-0.6b/model.json</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
         </ol>

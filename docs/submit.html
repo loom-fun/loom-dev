@@ -69,8 +69,8 @@
             <div class="step-body">
               <h3>Show up on HRX Loom</h3>
               <p>The index reads public Hugging Face models tagged <code>loom</code> and <code>loom-serve</code>. On the next refresh your model gets a leaderboard row, a detail page and a quick start. Anyone can then serve it with <code>hrx-loom</code>:</p>
-              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install "hrx-loom[hf]"
-<span class="p">$ </span>loom-fetch huggingface:<span class="s">&lt;hf-org&gt;/&lt;repo&gt;</span> --output=<span class="s">&lt;name&gt;</span>
+              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install "hrx-loom[hf]==0.1.0"
+<span class="p">$ </span>loom-fetch https://huggingface.co/<span class="s">&lt;hf-org&gt;/&lt;repo&gt;</span>/resolve/main/model.json --output=<span class="s">&lt;name&gt;</span>
 <span class="p">$ </span>loom-serve --model=<span class="s">&lt;name&gt;</span>/model.json --device=amdgpu --memory_bytes=<span class="s">&lt;bytes&gt;</span></code></pre></div>
               <div class="note">Always pass <code>--memory_bytes</code>, for example <code>--memory_bytes=17gb</code>: it caps weights, KV pool and workspace. The server answers OpenAI-style requests on <code>127.0.0.1:8080</code>. To update a listed model, rerun the benchmark and ask your agent to regenerate and re-upload the card.</div>
             </div>
