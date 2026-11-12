@@ -3,7 +3,7 @@
   "checkpoint": "Sage-A1.5-Q4_K_M",
   "name": "Sage-A1.5-Q4_K_M",
   "repo": "loom-fun/InternScience-Sage-A1.5-loom",
-  "revision": "26bc035b5f7a4cb1cdf8bea0490ee1144af8921a",
+  "revision": "e26e2fa7ffaf43aedc1b40d00e01a4b702e9b3de",
   "status": null,
   "license": null,
   "service": {
@@ -101,7 +101,7 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.6,
+        "loom": 0.47,
         "llamacpp": null,
         "speedup": null
       }
