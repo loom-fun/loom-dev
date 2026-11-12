@@ -124,6 +124,7 @@ code, pre, .mono { font-family: var(--mono); }
 .ix-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 40px; border: 1px solid var(--line-2); }
 .ix-facts > div { padding: 16px; border-right: 1px solid var(--line-2); }
 .ix-facts > div:last-child { border-right: none; }
+.sec .ix-facts { margin-top: 0; }
 .ix-facts h3 { margin: 0 0 6px; font: 500 12px var(--mono); color: var(--hi); text-transform: lowercase; }
 .ix-facts p { margin: 0; font-size: 13px; color: var(--fg); }
 

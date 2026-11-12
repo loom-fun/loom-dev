@@ -1,4 +1,4 @@
-// Models page: card grid, table and per-workload matrix, with a detail drawer routed by the URL hash.
+// Models page: card grid, table, per-workload matrix and gates grid, with a detail drawer routed by the URL hash.
 
 (() => {
   const { models, METRICS, FEATURES, GATES, times, num, gb, ctx, esc, hf, quickstart } = LOOM;
@@ -58,6 +58,7 @@
     el('grid').innerHTML = list.length ? list.map(LOOM.card).join('') : `<div class="empty">no model matches · <a class="u" href="submit.html">port one →</a></div>`;
     table.update(list);
     matrix(list);
+    el('coverage').innerHTML = CHARTS.coverage(list);
   }
 
   // --- drawer ---
@@ -216,7 +217,7 @@
     if (!b) return;
     state.view = b.dataset.v;
     el('views').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
-    ['cards', 'table', 'matrix'].forEach(v => { el(`view${v[0].toUpperCase()}${v.slice(1)}`).hidden = state.view !== v; });
+    ['cards', 'table', 'matrix', 'gates'].forEach(v => { el(`view${v[0].toUpperCase()}${v.slice(1)}`).hidden = state.view !== v; });
   });
   el('grid').addEventListener('click', e => {
     const a = e.target.closest('.mcard');

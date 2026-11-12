@@ -37,7 +37,6 @@
   const medAt = k => median(models.map(m => m.pair(k)).filter(Boolean).map(p => p.speedup));
   el('scalingLede').innerHTML += ` The median prefill speedup goes from ${times(medAt('prefill_1k'))} on a 1k document to ${times(medAt('prefill_32k'))} at 32k, and decode from ${times(medAt('decode'))} on a short prompt to ${times(medAt('decode_32k'))} at 32k context.`;
 
-  el('coverage').innerHTML = CHARTS.coverage(models);
   CHARTS.link(el('field'), el('readout'));
 
   LOOM.copyButtons();

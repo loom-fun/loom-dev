@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=9">
+  <link rel="stylesheet" href="assets/styles.css?v=10">
   <script src="assets/loom-data.js?v=9"></script>
   <script src="assets/loom-lib.js?v=11"></script>
   <script src="assets/charts.js?v=9"></script>
@@ -66,26 +66,6 @@
             <p class="fine">See our <a href="submit.html">porting guide</a> for more info.</p>
           </div>
         </div>
-        </div>
-      </div>
-      <div class="wrap">
-        <div class="ix-facts">
-          <div>
-            <h3>A small SDK</h3>
-            <p>The compiler, runtimes and devtools have no dependencies. Download them as a wheel or link them into your own application; they build from source in about a minute and would still fit on a few floppy disks.</p>
-          </div>
-          <div>
-            <h3>Many targets</h3>
-            <p>One stack targets x86, AMD GPU, AMD NPU and generic Vulkan devices.</p>
-          </div>
-          <div>
-            <h3>Standalone or embedded</h3>
-            <p>Run it as an inference server with <code>loom-serve</code>, or plug it into existing engines, like the <a href="https://github.com/ggml-org/llama.cpp/discussions/27219" target="_blank" rel="noopener">experimental HRX backend for llama.cpp</a>.</p>
-          </div>
-          <div>
-            <h3>Tell us what you need</h3>
-            <p>We're still learning how the community will use and deploy new inference stacks, so we'd love your feedback. Open an issue on <a href="https://github.com/ROCm/hrx-system/issues" target="_blank" rel="noopener">hrx-system</a> or <a href="https://github.com/loom-fun/loom-skills/issues" target="_blank" rel="noopener">loom-skills</a>.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -162,25 +142,38 @@
           </div>
         </div>
       </section>
+    </div>
 
-      <!-- 05 · receipts -->
-      <section class="sec" id="receipts">
-        <div class="wrap">
-          <div class="sec-head">
-            <div class="sec-idx"><b>05</b> / receipts</div>
-            <div>
-              <h2>Correctness gates and features, per model.</h2>
-              <p>Gates compare the port with llama.cpp on the same GGUF. A hollow square means the gate applies but no recorded run covers it yet, and a dot means it doesn't apply. Hover a column header for what it checks.</p>
-            </div>
-          </div>
-          <div class="tbl-wrap"><div id="coverage"></div></div>
-          <div class="tbl-legend">
-            <span><b class="ok">■</b> pass · <b class="bad">■</b> fail · □ no evidence · · n/a</span>
-            <span><b>■</b> feature supported · · not supported</span>
+    <!-- 05 · about the stack -->
+    <section class="sec" id="stack">
+      <div class="wrap">
+        <div class="sec-head">
+          <div class="sec-idx"><b>05</b> / the stack</div>
+          <div>
+            <h2>A small SDK that runs almost anywhere.</h2>
+            <p>What's under the hood, how you can deploy it, and how to tell us what you need.</p>
           </div>
         </div>
-      </section>
-    </div>
+        <div class="ix-facts">
+          <div>
+            <h3>A small SDK</h3>
+            <p>The compiler, runtimes and devtools have no dependencies. Download them as a wheel or link them into your own application; they build from source in about a minute and would still fit on a few floppy disks.</p>
+          </div>
+          <div>
+            <h3>Many targets</h3>
+            <p>One stack targets x86, AMD GPU, AMD NPU and generic Vulkan devices.</p>
+          </div>
+          <div>
+            <h3>Standalone or embedded</h3>
+            <p>Run it as an inference server with <code>loom-serve</code>, or plug it into existing engines, like the <a href="https://github.com/ggml-org/llama.cpp/discussions/27219" target="_blank" rel="noopener">experimental HRX backend for llama.cpp</a>.</p>
+          </div>
+          <div>
+            <h3>Tell us what you need</h3>
+            <p>We're still learning how the community will use and deploy new inference stacks, so we'd love your feedback. Open an issue on <a href="https://github.com/ROCm/hrx-system/issues" target="_blank" rel="noopener">hrx-system</a> or <a href="https://github.com/loom-fun/loom-skills/issues" target="_blank" rel="noopener">loom-skills</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <div class="footer-placeholder"></div>

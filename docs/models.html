@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/styles.css?v=9">
   <script src="assets/loom-data.js?v=9"></script>
   <script src="assets/loom-lib.js?v=11"></script>
+  <script src="assets/charts.js?v=9"></script>
   <script src="assets/navbar.js?v=9"></script>
   <script src="assets/footer.js?v=9"></script>
 </head>
@@ -52,6 +53,7 @@
           <button class="on" data-v="cards">cards</button>
           <button data-v="table">table</button>
           <button data-v="matrix">matrix</button>
+          <button data-v="gates">gates</button>
         </div>
       </div>
       <p class="count" id="count"></p>
@@ -79,6 +81,15 @@
           <span>— not measured</span>
         </div>
       </div>
+
+      <div id="viewGates" hidden>
+        <p class="count">Gates compare the port with llama.cpp on the same GGUF. A hollow square means the gate applies but no recorded run covers it yet, and a dot means it doesn't apply. Hover a column header for what it checks.</p>
+        <div class="tbl-wrap"><div id="coverage"></div></div>
+        <div class="tbl-legend">
+          <span><b class="ok">■</b> pass · <b class="bad">■</b> fail · □ no evidence · · n/a</span>
+          <span><b>■</b> feature supported · · not supported</span>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -89,6 +100,6 @@
   </aside>
 
   <div class="footer-placeholder"></div>
-  <script src="assets/explore.js?v=10"></script>
+  <script src="assets/explore.js?v=11"></script>
 </body>
 </html>
