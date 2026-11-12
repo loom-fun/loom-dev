@@ -17,7 +17,7 @@
       "quant": "Q4_K_M",
       "revision": "a8bc08fa33fc3a3e79380bf661a84688c7ea0a50",
       "sha256": "b6947939b09c4591a85da56f552a0e59303637c861f75ebce9a594f4a3a6de46",
-      "size": 40005676608
+      "size": 78921736736
     },
     "drafter": {
       "repo": "kaivoss/Ornith-1.5-122B-DFlash2-GGUF",

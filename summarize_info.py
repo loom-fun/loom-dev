@@ -70,8 +70,17 @@ def package_sources(model, lock):
                     o, lk = origins[m.group(1)], locked.get(f["origin"], {})
                     out[pname] = {"repo": o["repository"], "file": m.group(2), "quant": quant_of(m.group(2)),
                                   "revision": resolved.get(m.group(1)) or o.get("revision"),
-                                  "sha256": lk.get("sha256"), "size": lk.get("size")}
+                                  "sha256": lk.get("sha256"), "size": split_size(f["origin"], locked)}
     return out
+
+
+def split_size(origin, locked):
+    """Size of a file, or of every shard together when it is the first of a split GGUF (model.json names only that one)."""
+    m = re.match(r"(.+)-00001-of-(\d{5})\.gguf$", origin)
+    if not m:
+        return locked.get(origin, {}).get("size")
+    shards = [locked.get(f"{m.group(1)}-{i:05d}-of-{m.group(2)}.gguf", {}).get("size") for i in range(1, int(m.group(2)) + 1)]
+    return None if None in shards else sum(shards)
 
 
 def source(s, full=False):

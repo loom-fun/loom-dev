@@ -179,7 +179,7 @@ const CHARTS = (() => {
     };
     root.addEventListener('mouseover', e => {
       const t = e.target.closest('[data-id]');
-      if (!t || !root.contains(t)) return;
+      if (!t || !root.contains(t)) return set(null);
       const k = e.target.closest('[data-k]');
       set(t.dataset.id, k ? k.dataset.k : null, e.target);
     });

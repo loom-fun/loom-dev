@@ -5861,7 +5861,7 @@ window.LOOM_DATA = {
      "quant": "Q4_K_M",
      "revision": "a8bc08fa33fc3a3e79380bf661a84688c7ea0a50",
      "sha256": "b6947939b09c4591a85da56f552a0e59303637c861f75ebce9a594f4a3a6de46",
-     "size": 40005676608
+     "size": 78921736736
     },
     "drafter": {
      "repo": "kaivoss/Ornith-1.5-122B-DFlash2-GGUF",
@@ -10751,7 +10751,7 @@ window.LOOM_DATA = {
      "quant": "UD-Q4_K_XL",
      "revision": "766911a6b7369840a91dbcd95f9f997acaab6cd6",
      "sha256": "4448186216b3af4cc558bbce2c3213f01608f8f8b2e5267a9767971dd3ec8082",
-     "size": 10946624
+     "size": 111334654784
     },
     "drafter": {
      "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
