@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-4B-Instruct-2507-Q4_K_M",
   "name": "Qwen3-4B-Instruct-2507",
   "repo": "loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom",
-  "revision": "eca338073ad1ae10f6b3aef63d38d35d777bdcae",
+  "revision": "4cf0f2198b65cf19f185e87621fac34fb656916a",
   "status": null,
   "license": null,
   "service": {
@@ -19,16 +19,12 @@
       "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
       "size": 2497281120
     },
-    "drafter": {
-      "repo": "AtomicChat/Qwen3-4B-DFlash-GGUF",
-      "file": "Qwen3-4B-DFlash.Q8_0.gguf",
-      "quant": "Q8_0"
-    },
+    "drafter": null,
     "projector": null
   },
   "serve": {
     "device": "amdgpu",
-    "memory_bytes": 63000000000,
+    "memory_bytes": 55000000000,
     "context_tokens": 262144,
     "rows": 4,
     "max_tokens": 4096
@@ -48,9 +44,9 @@
   },
   "performance": {
     "date": null,
-    "llamacpp_build": "b1368",
+    "llamacpp_build": "b1373",
     "drafting": {
-      "loom": "DFlash, depth 3",
+      "loom": null,
       "llamacpp": "draft-dflash, n-max 3"
     },
     "source": null,
@@ -101,74 +97,76 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.44,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [],
+    "not_applicable": [
+      "spec_acceptance"
+    ],
     "devlab": {
-      "date": "2026-11-11",
+      "date": "2026-11-12",
       "source": {
         "kind": "devlab",
-        "run": "43075216088",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43075216088"
+        "run": "43137971210",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43137971210"
       },
       "metrics": {
         "decode": {
-          "loom": 76.1,
-          "llamacpp": 51.7,
-          "speedup": 1.47
+          "loom": 77.7,
+          "llamacpp": 54.0,
+          "speedup": 1.44
         },
         "decode_2k": {
-          "loom": 55.0,
-          "llamacpp": 46.1,
-          "speedup": 1.19
+          "loom": 66.3,
+          "llamacpp": 46.9,
+          "speedup": 1.41
         },
         "decode_32k": {
-          "loom": 16.4,
-          "llamacpp": 16.9,
+          "loom": 24.7,
+          "llamacpp": 25.5,
           "speedup": 0.97
         },
         "prefill_1k": {
-          "loom": 2891.8,
-          "llamacpp": 1607.2,
-          "speedup": 1.8
+          "loom": 2982.1,
+          "llamacpp": 1664.5,
+          "speedup": 1.79
         },
         "prefill_2k": {
-          "loom": 2974.9,
-          "llamacpp": 1351.4,
+          "loom": 3016.5,
+          "llamacpp": 1372.6,
           "speedup": 2.2
         },
         "prefill_8k": {
-          "loom": 2304.2,
-          "llamacpp": 752.5,
-          "speedup": 3.06
+          "loom": 2395.8,
+          "llamacpp": 1153.5,
+          "speedup": 2.08
         },
         "prefill_16k": {
-          "loom": 1748.2,
-          "llamacpp": 561.5,
-          "speedup": 3.11
+          "loom": 1768.9,
+          "llamacpp": 769.1,
+          "speedup": 2.3
         },
         "prefill_32k": {
-          "loom": 899.3,
-          "llamacpp": 382.1,
-          "speedup": 2.35
+          "loom": 1162.0,
+          "llamacpp": 482.4,
+          "speedup": 2.41
         },
         "streams4": {
-          "loom": 163.5,
-          "llamacpp": 65.1,
-          "speedup": 2.51
+          "loom": 272.0,
+          "llamacpp": 89.3,
+          "speedup": 3.05
         }
       }
     }
   },
   "gates": {
     "summary": {
-      "pass": 9,
+      "pass": 8,
       "fail": 0,
       "unknown": 0,
-      "n/a": 3
+      "n/a": 4
     },
     "status": {
       "kernel_tests": "pass",
@@ -176,7 +174,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "pass",
+      "spec": "n/a",
       "agent": "pass",
       "agent_think_off": "n/a",
       "sampling": "pass",
