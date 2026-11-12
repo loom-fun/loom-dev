@@ -3,7 +3,7 @@
   "checkpoint": "Nanbeige_Nanbeige4.3-33B-Q4_K_M",
   "name": "Nanbeige_Nanbeige4.3-33B",
   "repo": "loom-fun/bartowski-Nanbeige4.3-33B-loom",
-  "revision": "1093f41d1df3bac85ef0b3b62b6b0425f89e1e91",
+  "revision": "3e3ac6ee631c43c2d1e65ebad93c3bce3b0bfe63",
   "status": null,
   "license": null,
   "service": {
@@ -31,22 +31,22 @@
   },
   "features": {
     "api": "yes",
-    "audio": "n/a",
+    "audio": "unknown",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "n/a",
+    "image_input": "unknown",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
-    "speculative_decoding": "yes",
+    "speculative_decoding": "n/a",
     "thinking": "yes",
     "tool_calling": "yes"
   },
   "performance": {
     "date": null,
-    "llamacpp_build": "b1369",
+    "llamacpp_build": "b1373",
     "drafting": {
-      "loom": "n-gram prompt lookup, depth 2",
+      "loom": null,
       "llamacpp": "ngram-simple"
     },
     "source": null,
@@ -97,74 +97,76 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.14,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [],
+    "not_applicable": [
+      "spec_acceptance"
+    ],
     "devlab": {
-      "date": "2026-11-11",
+      "date": "2026-11-12",
       "source": {
         "kind": "devlab",
-        "run": "43075216088",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43075216088"
+        "run": "43166994288",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43166994288"
       },
       "metrics": {
         "decode": {
           "loom": 11.3,
-          "llamacpp": 8.9,
-          "speedup": 1.27
+          "llamacpp": 10.6,
+          "speedup": 1.07
         },
         "decode_2k": {
-          "loom": 11.3,
+          "loom": 10.8,
           "llamacpp": 7.3,
-          "speedup": 1.55
+          "speedup": 1.48
         },
         "decode_32k": {
-          "loom": 5.6,
-          "llamacpp": 1.3,
-          "speedup": 4.31
+          "loom": 7.4,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_1k": {
-          "loom": 433.2,
-          "llamacpp": 290.8,
-          "speedup": 1.49
+          "loom": 420.5,
+          "llamacpp": 291.2,
+          "speedup": 1.44
         },
         "prefill_2k": {
-          "loom": 430.6,
-          "llamacpp": 259.9,
-          "speedup": 1.66
+          "loom": 419.5,
+          "llamacpp": 254.2,
+          "speedup": 1.65
         },
         "prefill_8k": {
-          "loom": 408.9,
-          "llamacpp": 191.2,
-          "speedup": 2.14
+          "loom": 401.0,
+          "llamacpp": 231.6,
+          "speedup": 1.73
         },
         "prefill_16k": {
-          "loom": 362.4,
-          "llamacpp": 154.8,
-          "speedup": 2.34
+          "loom": 345.8,
+          "llamacpp": 172.8,
+          "speedup": 2.0
         },
         "prefill_32k": {
-          "loom": 280.6,
-          "llamacpp": 105.6,
-          "speedup": 2.66
+          "loom": 257.6,
+          "llamacpp": null,
+          "speedup": null
         },
         "streams4": {
-          "loom": 30.2,
-          "llamacpp": 34.4,
-          "speedup": 0.88
+          "loom": 42.5,
+          "llamacpp": 31.4,
+          "speedup": 1.35
         }
       }
     }
   },
   "gates": {
     "summary": {
-      "pass": 10,
+      "pass": 9,
       "fail": 0,
       "unknown": 0,
-      "n/a": 2
+      "n/a": 3
     },
     "status": {
       "kernel_tests": "pass",
@@ -172,7 +174,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "pass",
+      "spec": "n/a",
       "agent": "pass",
       "agent_think_off": "pass",
       "sampling": "pass",
