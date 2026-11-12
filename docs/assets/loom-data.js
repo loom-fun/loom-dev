@@ -5647,7 +5647,7 @@ window.LOOM_DATA = {
    "checkpoint": "Ornith-1.5-35B-A3B-Q4_K_M",
    "name": "Ornith-1.5-35B-A3B",
    "repo": "loom-fun/bartowski-Ornith-1.5-35B-A3B-loom",
-   "revision": "31e0a54551b28655ef7bd7561926963f8fc02d71",
+   "revision": "85070c939ef4ed1dd74fcfe0cb1a3b9f0a4c5668",
    "status": null,
    "license": null,
    "service": {
@@ -5663,7 +5663,11 @@ window.LOOM_DATA = {
      "sha256": "12d8d5c01bae7f23ea4822b2f96ba069d531f827d02a57c31002f2f95e72614a",
      "size": 21864081056
     },
-    "drafter": null,
+    "drafter": {
+     "repo": "na0x2c6/Ornith-1.5-35B-A3B-DFlash-GGUF",
+     "file": "Ornith-1.5-35B-A3B-DFlash-Q8_0.gguf",
+     "quant": "Q8_0"
+    },
     "projector": {
      "repo": "bartowski/Ornith-1.5-35B-A3B-GGUF",
      "file": "mmproj-Ornith-1.5-35B-A3B-f16.gguf",
@@ -9011,7 +9015,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-35B-A3B-Q4_K_M",
    "name": "Qwen3.5-35B-A3B",
    "repo": "loom-fun/unsloth-Qwen3.5-35B-A3B-loom",
-   "revision": "4d572b997858aab0fed7b4375061dfafef1a34f5",
+   "revision": "80d6bee728d913092208f83f69814a559af8dcf9",
    "status": null,
    "license": null,
    "service": {
@@ -9027,11 +9031,7 @@ window.LOOM_DATA = {
      "sha256": "3b46d1066bc91cc2d613e3bc22ce691dd77e6f0d33c9060690d24ce6de494375",
      "size": 22016023168
     },
-    "drafter": {
-     "repo": "Anbeeld/Qwen3.5-35B-A3B-DFlash-GGUF",
-     "file": "Qwen3.5-35B-A3B-DFlash-Q4_K_M.gguf",
-     "quant": "Q4_K_M"
-    },
+    "drafter": null,
     "projector": {
      "repo": "unsloth/Qwen3.5-35B-A3B-GGUF",
      "file": "mmproj-F16.gguf",

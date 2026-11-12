@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-35B-A3B-Q4_K_M",
   "name": "Ornith-1.5-35B-A3B",
   "repo": "loom-fun/bartowski-Ornith-1.5-35B-A3B-loom",
-  "revision": "31e0a54551b28655ef7bd7561926963f8fc02d71",
+  "revision": "85070c939ef4ed1dd74fcfe0cb1a3b9f0a4c5668",
   "status": null,
   "license": null,
   "service": {
@@ -19,7 +19,11 @@
       "sha256": "12d8d5c01bae7f23ea4822b2f96ba069d531f827d02a57c31002f2f95e72614a",
       "size": 21864081056
     },
-    "drafter": null,
+    "drafter": {
+      "repo": "na0x2c6/Ornith-1.5-35B-A3B-DFlash-GGUF",
+      "file": "Ornith-1.5-35B-A3B-DFlash-Q8_0.gguf",
+      "quant": "Q8_0"
+    },
     "projector": {
       "repo": "bartowski/Ornith-1.5-35B-A3B-GGUF",
       "file": "mmproj-Ornith-1.5-35B-A3B-f16.gguf",
