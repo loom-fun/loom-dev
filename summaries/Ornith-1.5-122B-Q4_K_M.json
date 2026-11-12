@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-122B-Q4_K_M",
   "name": "Ornith-1.5-122B",
   "repo": "loom-fun/bartowski-Ornith-1.5-122B-loom",
-  "revision": "cb437b0400ec00f7006deec68ca5bf52709a47ba",
+  "revision": "532b8ffa6499e6c42de09a92733ab920a822cdac",
   "status": null,
   "license": null,
   "service": {
@@ -32,8 +32,8 @@
   },
   "serve": {
     "device": "amdgpu",
-    "memory_bytes": 106000000000,
-    "context_tokens": 67584,
+    "memory_bytes": 101000000000,
+    "context_tokens": 4096,
     "rows": 4,
     "max_tokens": 4096
   },
@@ -54,7 +54,7 @@
     "date": null,
     "llamacpp_build": "b1370",
     "drafting": {
-      "loom": "DFlash, depth 3",
+      "loom": "DFlash, depth 1",
       "llamacpp": "draft-dflash, n-max 3"
     },
     "source": null,
@@ -105,7 +105,7 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.59,
+        "loom": 0.76,
         "llamacpp": null,
         "speedup": null
       }
