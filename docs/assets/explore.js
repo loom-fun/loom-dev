@@ -102,7 +102,7 @@
     el('dr').innerHTML = `
       <span class="label">#${LOOM.rk(m)} of ${models.length} · ${esc(m.service.kind)} · from <a class="u" href="${hf(m.baseRepo)}" target="_blank" rel="noopener">${esc(m.baseRepo)}</a></span>
       <h2 class="dr-title" style="margin-top:10px">${LOOM.avatar(m, 'av-xl')}${esc(m.name)}</h2>
-      <div class="meta">${LOOM.sub(m)} · ${sv.rows || '—'} rows · ${esc(m.license || 'license not stated')}</div>
+      <div class="meta">${LOOM.sub(m)} · ${sv.rows || '—'} rows</div>
       <div class="dr-marks"><span class="flags">${LOOM.flags(m)}</span><span class="strip">${LOOM.gateStrip(m)}</span><span class="faint">${m.gatesPass}/${m.gatesApplicable} gates</span>${LOOM.profile(m, { w: 120, h: 28 })}</div>
 
       <div class="kv-grid">
@@ -149,7 +149,6 @@
           ['source', src ? (src.url ? `<a class="u" href="${esc(src.url)}" target="_blank" rel="noopener">${src.kind === 'factory' ? 'factory run' : esc(src.kind)} ${esc(src.run || '')} ↗</a>` : `${esc(src.kind)} run`) : '—'],
           ['package', `<a class="u" href="${hf(m.repo)}" target="_blank" rel="noopener">${esc(m.repo)}</a>`],
           ['revision', short(m.revision)],
-          ['license', esc(m.license || 'not stated')],
         ])}</div>
       </div>
 
