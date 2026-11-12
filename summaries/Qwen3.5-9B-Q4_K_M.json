@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-9B-Q4_K_M",
   "name": "Qwen3.5-9B",
   "repo": "loom-fun/unsloth-Qwen3.5-9B-loom",
-  "revision": "ed5d6bdaf2e897f1b472e4f102173c3ce19f1be2",
+  "revision": "a01bb02bfa3ac22e2339b1d48c21f43a449c70c7",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -32,7 +32,7 @@
   },
   "serve": {
     "device": "amdgpu",
-    "memory_bytes": 30000000000,
+    "memory_bytes": 32000000000,
     "context_tokens": 262144,
     "rows": 4,
     "max_tokens": 4096
@@ -54,7 +54,7 @@
     "date": null,
     "llamacpp_build": "b1369",
     "drafting": {
-      "loom": "DFlash, depth 7",
+      "loom": "DFlash, depth 3",
       "llamacpp": "draft-dflash, n-max 5"
     },
     "source": null,
@@ -105,7 +105,7 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.72,
         "llamacpp": null,
         "speedup": null
       }
