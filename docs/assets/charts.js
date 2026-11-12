@@ -135,22 +135,51 @@ const CHARTS = (() => {
       return `<span class="ro-n">#${LOOM.rk(m)} ${esc(m.name)}</span> <span class="faint">${esc(m.quant)} · ${gb(m.sizeBytes)}</span> <span class="ro-sep">│</span> ${what}`;
     };
     const idle = readout ? readout.innerHTML : '';
+    // Name the model on every chart, next to the hovered mark or the one for the hovered workload.
+    const label = (m, k, hovered) => {
+      root.querySelectorAll('svg.chart').forEach(s => {
+        const sel = `[data-id="${CSS.escape(m.id)}"]`;
+        if (s.querySelector(`.sc-lab${sel}`)) return;
+        const marks = [...s.querySelectorAll(`${sel}:not(text)`)];
+        if (!marks.length) return;
+        let a = (hovered && s.contains(hovered) && hovered.closest(sel)) || marks.find(e => k && e.dataset.k === k) || marks[marks.length - 1];
+        a = a.querySelector('.sc-loom, .sl-d:last-of-type') || a;
+        const bb = a.getBBox(), vw = s.viewBox.baseVal.width;
+        const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t.setAttribute('class', 'hv-lab');
+        t.innerHTML = `${esc(m.name)} <tspan class="faint">${esc(m.quant)}</tspan>`;
+        s.appendChild(t);
+        const w = t.getComputedTextLength(), cx = bb.x + bb.width / 2;
+        const right = bb.x + bb.width + 7, left = bb.x - 7 - w;
+        let x = Math.max(4, Math.min(vw - w - 4, cx - w / 2)), y = bb.y - 6;
+        if (!s.classList.contains('c-strip')) {
+          if (right + w <= vw - 4) [x, y] = [right, bb.y + bb.height / 2 + 4];
+          else if (left >= 4) [x, y] = [left, bb.y + bb.height / 2 + 4];
+          else if (y < 14) y = bb.y + bb.height + 14;
+        }
+        t.setAttribute('x', x.toFixed(1));
+        t.setAttribute('y', y.toFixed(1));
+      });
+    };
     let cur = null;
-    const set = (id, k) => {
+    const set = (id, k, hovered) => {
       if (id === cur && !k) return;
       cur = id;
       root.querySelectorAll('.hl').forEach(e => e.classList.remove('hl'));
+      root.querySelectorAll('.hv-lab').forEach(e => e.remove());
       root.classList.toggle('hl-on', !!id);
       if (!id) { if (readout) readout.innerHTML = idle; return; }
       root.querySelectorAll(`[data-id="${CSS.escape(id)}"]`).forEach(e => e.classList.add('hl'));
       const m = find(id);
-      if (readout && m) readout.innerHTML = describe(m, k);
+      if (!m) return;
+      label(m, k, hovered);
+      if (readout) readout.innerHTML = describe(m, k);
     };
     root.addEventListener('mouseover', e => {
       const t = e.target.closest('[data-id]');
       if (!t || !root.contains(t)) return;
       const k = e.target.closest('[data-k]');
-      set(t.dataset.id, k ? k.dataset.k : null);
+      set(t.dataset.id, k ? k.dataset.k : null, e.target);
     });
     root.addEventListener('mouseleave', () => set(null));
     root.addEventListener('click', e => {
