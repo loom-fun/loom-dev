@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-Omni-2B-Q4_K_M",
   "name": "LFM3-Omni-2B",
   "repo": "loom-fun/ggml-org-LFM3-Omni-2B-loom",
-  "revision": "c3311a81eedae3c58483f598f6dadaa1e5217f58",
+  "revision": "a5fae1d591652770b0cb37d847dde09b9848ef1f",
   "status": null,
   "license": null,
   "service": {
@@ -104,53 +104,57 @@
     },
     "not_applicable": [],
     "devlab": {
-      "date": null,
-      "source": null,
+      "date": "2026-11-12",
+      "source": {
+        "kind": "devlab",
+        "run": "43160416729-card-a",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43160416729"
+      },
       "metrics": {
         "decode": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 173.2,
+          "llamacpp": 135.1,
+          "speedup": 1.28
         },
         "decode_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 224.6,
+          "llamacpp": 126.8,
+          "speedup": 1.77
         },
         "decode_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 109.1,
+          "llamacpp": 90.7,
+          "speedup": 1.2
         },
         "prefill_1k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 7077.6,
+          "llamacpp": 4808.1,
+          "speedup": 1.47
         },
         "prefill_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 7068.1,
+          "llamacpp": 4895.6,
+          "speedup": 1.44
         },
         "prefill_8k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 6913.8,
+          "llamacpp": 4167.3,
+          "speedup": 1.66
         },
         "prefill_16k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 6436.4,
+          "llamacpp": 3693.2,
+          "speedup": 1.74
         },
         "prefill_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 5584.8,
+          "llamacpp": 2818.2,
+          "speedup": 1.98
         },
         "streams4": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 582.1,
+          "llamacpp": 375.9,
+          "speedup": 1.55
         }
       }
     }
