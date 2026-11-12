@@ -2,7 +2,9 @@
 
 function createNavbar(active) {
   const link = (href, key, text) => `<a href="${href}" class="${active === key ? 'active' : ''}">${text}</a>`;
-  return `
+  const band = sessionStorage.getItem('loom-preview-dismissed') ? '' : `
+    <div class="preview-band" id="previewBand" role="note"><span>Experimental developer preview. APIs, tooling, and model support are evolving and subject to change.</span><button class="pb-close" id="previewClose" aria-label="Dismiss">×</button></div>`;
+  return `${band}
     <header class="nav" id="nav">
       <div class="nav-inner">
         <a class="wordmark" href="index.html" aria-label="HRX Loom home"><img src="assets/logo.svg" alt="">HRX Loom</a>
@@ -27,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const slot = document.querySelector('.navbar-placeholder');
   if (!slot) return;
   slot.outerHTML = createNavbar(document.body.dataset.page);
+  const close = document.getElementById('previewClose');
+  if (close) close.addEventListener('click', () => {
+    document.getElementById('previewBand').remove();
+    sessionStorage.setItem('loom-preview-dismissed', '1');
+  });
   const nav = document.getElementById('nav');
   const toggle = document.getElementById('navToggle');
   toggle.addEventListener('click', () => {
