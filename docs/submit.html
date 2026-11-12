@@ -112,31 +112,6 @@
         </aside>
       </div>
     </section>
-
-    <section class="sec" style="border-top:1px solid var(--line)">
-      <div class="wrap">
-        <div class="sec-head">
-          <div class="sec-idx"><b>faq</b></div>
-          <div><h2>Questions people ask before their first port.</h2></div>
-        </div>
-        <div class="faq">
-          <details><summary>Does anything go to a cloud model?</summary>
-            <p>Only what your agent sends. The port, the gates and the benchmarks all run on your machine; the agent you install loom-skills into decides where the reasoning happens. Pi can drive a local model, including one served by <code>loom-serve</code>.</p></details>
-          <details><summary>Which checkpoint does the agent pick?</summary>
-            <p><code>port.sh</code> probes the GGUF headers and picks a file in a supported format that fits in GPU memory. To pin one, name the GGUF file in your prompt.</p></details>
-          <details><summary>Which architectures can it port?</summary>
-            <p>The starter kit covers dense transformers and Qwen3.5-style gated delta-net hybrids, with vision projectors and speculative-decoding drafters where the model has them. Anything else goes through the hand-port playbook in <code>loom-port-llm</code>, which takes longer.</p></details>
-          <details><summary>My port is slower than llama.cpp on some workloads. Should I still publish?</summary>
-            <p>Yes. The index shows every workload, including the ones where llama.cpp is faster. A working, verified port is the useful part, and a slow workload is a clear target for another round: ask your agent to "optimize this model".</p></details>
-          <details><summary>What does "no evidence" mean on a gate?</summary>
-            <p>The gate applies to the model, but no recorded run covers it yet. A full <code>finalize.sh</code> run fills it in.</p></details>
-          <details><summary>How is the leaderboard ordered?</summary>
-            <p>By the geometric mean of Loom's throughput over llama.cpp's across every workload the model was measured on: decode at short, 2k and 32k context, prefill on 1k to 32k documents, and 4-stream aggregate decode. Missing workloads are skipped. You can re-sort by any column.</p></details>
-          <details><summary>How do I remove my model?</summary>
-            <p>Remove the <code>loom</code> tag from the card, or make the repository private. It drops off on the next refresh.</p></details>
-        </div>
-      </div>
-    </section>
   </main>
 
   <div class="footer-placeholder"></div>
