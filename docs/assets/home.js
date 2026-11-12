@@ -10,7 +10,23 @@
   el('ixCount').textContent = '60+';
   // Leaderboard
   el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
-  LOOM.mountTable(el('board'), models, { onOpen: open, pageSize: 20 });
+  const board = LOOM.mountTable(el('board'), models, { onOpen: open, pageSize: 20 });
+  const q = el('boardQ'), count = el('boardCount');
+  const norm = s => s.toLowerCase().replace(/[\s_-]+/g, '');
+  const search = () => {
+    const terms = q.value.trim().split(/\s+/).filter(Boolean).map(norm);
+    const hits = terms.length ? models.filter(m => terms.every(t => norm(m.name).includes(t))) : models;
+    board.update(hits);
+    count.textContent = terms.length ? `${hits.length} of ${models.length}` : `${models.length} models`;
+  };
+  q.addEventListener('input', search);
+  q.addEventListener('keydown', e => { if (e.key === 'Escape') { q.value = ''; search(); q.blur(); } });
+  document.addEventListener('keydown', e => {
+    if (e.key !== '/' || e.ctrlKey || e.metaKey || /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+    e.preventDefault();
+    q.focus();
+  });
+  search();
 
   // Charts, hover-linked through #field
   el('strip').innerHTML = CHARTS.strip(models);

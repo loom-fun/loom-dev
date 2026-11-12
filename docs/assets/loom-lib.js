@@ -142,6 +142,8 @@ const LOOM = (() => {
     const on = m.features[k] === 'yes';
     return `<i class="flag ${on ? 'on' : ''}" title="${label}: ${on ? 'yes' : 'no'}">${on ? l : '·'}</i>`;
   }).join('');
+  const HOT = new Set(['Qwen3.8-Flash-Next']);
+  const hot = m => HOT.has(m.name) ? '<span class="hot" title="hot model today">🔥</span>' : '';
   const sub = m => [esc(m.org), esc(m.quant), gb(m.sizeBytes),
     m.serve.context_tokens ? `${ctx(m.serve.context_tokens)} ctx` : null,
     m.service.kind !== 'chat' ? esc(m.service.kind) : null].filter(Boolean).join(' · ');
@@ -197,7 +199,7 @@ const LOOM = (() => {
     return `
       <a class="mcard" href="${href(m)}" data-id="${esc(m.id)}">
         <div class="mc-top"><span class="mc-rank">#${rk(m)}</span><span class="mc-score ${m.score < 1 ? 'lo' : ''}">${times(m.score)}</span></div>
-        <div class="mc-name">${avatar(m)}<span>${esc(m.name)}</span></div>
+        <div class="mc-name">${avatar(m)}<span>${esc(m.name)}</span>${hot(m)}</div>
         <div class="mc-sub">${sub(m)}</div>
         <div class="mc-marks"><span class="flags">${flags(m)}</span><span class="strip">${gateStrip(m)}</span><span class="mc-gt">${m.gatesPass}/${m.gatesApplicable}</span></div>
         <div class="mc-charts">
@@ -232,7 +234,7 @@ const LOOM = (() => {
   function cell(col, m) {
     switch (col.key) {
       case 'rank': return rk(m);
-      case 'name': return `<span class="nm">${avatar(m, 'av-lg')}<span><b title="${esc(m.name)}">${esc(m.name)}</b><small>${sub(m)}</small></span></span>`;
+      case 'name': return `<span class="nm">${avatar(m, 'av-lg')}<span><b title="${esc(m.name)}">${esc(m.name)}</b>${hot(m)}<small>${sub(m)}</small></span></span>`;
       case 'profile': return profile(m);
       case 'gates': return `<span class="strip">${gateStrip(m)}</span><small>${m.gatesPass}/${m.gatesApplicable}</small>`;
       case 'decodeTok': return tokCell(m.pair('decode'));
@@ -280,7 +282,7 @@ const LOOM = (() => {
       const shown = pageSize ? sorted.slice(page * pageSize, (page + 1) * pageSize) : sorted;
       el.innerHTML = `
         <thead><tr>${COLUMNS.map(c => `<th class="${c.cls}${c.key === key ? ' on' : ''}" data-k="${c.key}">${c.label}${c.key === key ? `<i class="arr">${dir < 0 ? '↓' : '↑'}</i>` : ''}</th>`).join('')}</tr></thead>
-        <tbody>${shown.map(m => `<tr data-id="${esc(m.id)}" tabindex="0">${COLUMNS.map(c => `<td class="${c.cls}">${cell(c, m)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+        <tbody>${shown.map(m => `<tr data-id="${esc(m.id)}" tabindex="0"${HOT.has(m.name) ? ' class="is-hot"' : ''}>${COLUMNS.map(c => `<td class="${c.cls}">${cell(c, m)}</td>`).join('')}</tr>`).join('')}</tbody>`;
       if (!sorted.length) el.querySelector('tbody').innerHTML = `<tr class="empty"><td colspan="${COLUMNS.length}">no model matches · <a href="submit.html">port one →</a></td></tr>`;
       if (pager) {
         pager.hidden = pages < 2;
@@ -374,6 +376,6 @@ const LOOM = (() => {
   return {
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
-    ratioBar, gateStrip, flags, sub, profile, curve, card, mountTable, quickstart, copyButtons, reveal,
+    ratioBar, gateStrip, flags, sub, hot, profile, curve, card, mountTable, quickstart, copyButtons, reveal,
   };
 })();

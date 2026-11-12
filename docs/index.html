@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=11">
+  <link rel="stylesheet" href="assets/styles.css?v=13">
   <script src="assets/loom-data.js?v=9"></script>
-  <script src="assets/loom-lib.js?v=11"></script>
+  <script src="assets/loom-lib.js?v=13"></script>
   <script src="assets/charts.js?v=10"></script>
   <script src="assets/navbar.js?v=9"></script>
   <script src="assets/footer.js?v=9"></script>
@@ -81,6 +81,7 @@
           </div>
         </div>
         <div class="podium" id="podium"></div>
+        <label class="board-search"><span>&gt;</span><input id="boardQ" type="search" placeholder="search models by name" autocomplete="off" spellcheck="false"><span class="bs-count" id="boardCount"></span><kbd>/</kbd></label>
         <div class="tbl-wrap"><table class="tbl board" id="board"></table></div>
         <div class="tbl-legend">
           <span>tok/s: <b>loom</b> over <span class="faint">llama.cpp</span></span>
@@ -177,6 +178,6 @@
   </main>
 
   <div class="footer-placeholder"></div>
-  <script src="assets/home.js?v=9"></script>
+  <script src="assets/home.js?v=10"></script>
 </body>
 </html>
