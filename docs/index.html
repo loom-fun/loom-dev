@@ -47,14 +47,14 @@
             <div class="hs-n">Step 2<b>Fetch</b></div>
             <div class="hs-body">
               <p>Pull a Loom model from Hugging Face.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch huggingface:<span class="s">loom-fun/unsloth-Qwen3-0.6B-loom</span></code></pre><button class="copy" data-copy>copy</button></div>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span><span class="s">loom-fetch</span> huggingface:loom-fun/unsloth-Qwen3-0.6B-loom</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
             <div class="hs-n">Step 3<b>Serve</b></div>
             <div class="hs-body">
               <p>Start a local OpenAI-compatible server.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --device=amdgpu --model=<span class="s">Qwen/Qwen3-0.6B</span>/model.json</code></pre><button class="copy" data-copy>copy</button></div>
+              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span><span class="s">loom-serve</span> --device=amdgpu --model=Qwen/Qwen3-0.6B/model.json</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
         </ol>
@@ -62,7 +62,7 @@
           <div class="hs-n">Want more?<b>Port<br>Yours</b></div>
           <div class="hs-body">
             <p>Install <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> and ask your agent to port and optimize any GGUF.</p>
-            <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-gguf&gt;</span>.</code></pre><button class="copy" data-copy>copy</button></div>
+            <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span><span class="s">/loom</span> Port, validate and optimize &lt;hf-gguf&gt;.</code></pre><button class="copy" data-copy>copy</button></div>
             <p class="fine">See our <a href="submit.html">porting guide</a> for more info.</p>
           </div>
         </div>
