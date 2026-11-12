@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>port & publish · HRX Loom</title>
-  <meta name="description" content="Port a GGUF to AMD Loom with loom-skills, publish it to Hugging Face, and it shows up on HRX Loom.">
+  <meta name="description" content="Port a GGUF to AMD Loom with loom-skills and publish it to Hugging Face.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +22,8 @@
     <section class="page-head">
       <div class="wrap">
         <span class="label">port / publish</span>
-        <h1>From a GGUF on Hugging Face to a row on the board.</h1>
-        <p>Your coding agent does the work. <a class="u" href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> teach it to port the model to <a class="u" href="https://github.com/ROCm/hrx-system" target="_blank" rel="noopener">AMD Loom</a>, validate it against llama.cpp ROCm and write the model card from the benchmark report. Then you upload the package to Hugging Face. There's no form to fill in.</p>
+        <h1>From a GGUF on Hugging Face to a Loom package.</h1>
+        <p>Your coding agent does the work. <a class="u" href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> teach it to port the model to <a class="u" href="https://github.com/ROCm/hrx-system" target="_blank" rel="noopener">AMD Loom</a>, validate it against llama.cpp ROCm and write the model card from the benchmark report. Then you can publish the package to your own Hugging Face account.</p>
       </div>
     </section>
 
@@ -60,19 +60,7 @@
               <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install -U huggingface_hub
 <span class="p">$ </span>hf auth login</code></pre></div>
               <div class="code"><div class="code-head"><span>agent prompt</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">&gt; </span>/loom Generate the Hugging Face model card for this port and upload the package to <span class="s">&lt;hf-org&gt;/&lt;model&gt;-loom</span>.</code></pre></div>
-              <div class="note">Every number on the card has to come from the report. A value without evidence renders as <b>not measured</b> or <b>no evidence</b>, and that's what keeps the index trustworthy.</div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-n"><b>04</b>listed</div>
-            <div class="step-body">
-              <h3>Show up on HRX Loom</h3>
-              <p>The index reads public Hugging Face models tagged <code>loom</code> and <code>loom-serve</code>. On the next refresh your model gets a leaderboard row, a detail page and a quick start. Anyone can then serve it with <code>hrx-loom</code>:</p>
-              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install "hrx-loom[hf]==0.1.0"
-<span class="p">$ </span>loom-fetch https://huggingface.co/<span class="s">&lt;hf-org&gt;/&lt;repo&gt;</span>/resolve/main/model.json --output=<span class="s">&lt;name&gt;</span>
-<span class="p">$ </span>loom-serve --model=<span class="s">&lt;name&gt;</span>/model.json --device=amdgpu --memory_bytes=<span class="s">&lt;bytes&gt;</span></code></pre></div>
-              <div class="note">Always pass <code>--memory_bytes</code>, for example <code>--memory_bytes=17gb</code>: it caps weights, KV pool and workspace. The server answers OpenAI-style requests on <code>127.0.0.1:8080</code>. To update a listed model, rerun the benchmark and ask your agent to regenerate and re-upload the card.</div>
+              <div class="note">Every number on the card has to come from the report. A value without evidence renders as <b>not measured</b> or <b>no evidence</b>.</div>
             </div>
           </div>
         </div>
@@ -101,15 +89,7 @@
                 <li>A Hugging Face account with a write token, to publish.</li>
               </ul>
             </div>
-          </div>
-          <div class="panel">
-            <div class="panel-head"><span>tags</span><span>front matter</span></div>
-            <div>
-              <div class="tags"><span class="req">loom</span><span class="req">loom-serve</span><span>gguf</span><span>strix-halo</span><span>speculative-decoding</span><span>vision</span></div>
-              <p class="fine">Outlined tags are the ones the index looks for. Keep them on the card.</p>
-            </div>
-          </div>
-        </aside>
+          </div>        </aside>
       </div>
     </section>
   </main>

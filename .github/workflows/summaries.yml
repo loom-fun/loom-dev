@@ -1,7 +1,7 @@
 name: Update summaries
 
-# Every hour, regenerate summaries/ from the loom-fun Hugging Face org and every model tagged loom-serve and, when a
-# model was added, updated or removed, rebuild docs/assets/loom-data.js and push both straight to main.
+# Every hour, regenerate summaries/ from the loom-fun Hugging Face org and, when a model was added, updated or
+# removed, rebuild docs/assets/loom-data.js and push both straight to main.
 
 on:
   schedule:
