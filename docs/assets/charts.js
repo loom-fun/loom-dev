@@ -3,10 +3,12 @@
 
 const CHARTS = (() => {
   const { METRICS, METRIC, DECODE, PREFILL, FEATURES, GATES, models, median, times, num, gb, esc, niceStep } = LOOM;
-  const LO = 0.45, HI = 2.1;
   const lg = Math.log;
+  // The axis follows the data: it never clips a measurement, and never shrinks below the 0.45–2.1× baseline.
+  const all = models.flatMap(m => METRICS.map(x => m.pair(x.key))).filter(Boolean).map(p => p.speedup).filter(v => v > 0);
+  const LO = Math.min(0.45, ...all.map(v => v / 1.05)), HI = Math.max(2.1, ...all.map(v => v * 1.05));
   const ratioX = (r, a, b) => a + (lg(Math.max(LO, Math.min(HI, r))) - lg(LO)) / (lg(HI) - lg(LO)) * (b - a);
-  const RATIO_TICKS = [0.5, 0.67, 0.8, 1, 1.25, 1.5, 2];
+  const RATIO_TICKS = [0.25, 0.33, 0.5, 0.67, 0.8, 1, 1.25, 1.5, 2, 3, 4, 5, 6, 8, 10].filter(r => r >= LO && r <= HI);
   const svg = (w, h, body, cls = '') => `<svg class="chart ${cls}" viewBox="0 0 ${w} ${h}" style="aspect-ratio:${w}/${h}">${body}</svg>`;
   const tk = r => r === 1 ? '1.00×' : `${r}×`;
 
