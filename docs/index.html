@@ -37,29 +37,29 @@
         <div>
         <ol class="hero-steps">
           <li>
-            <div class="hs-n"><b>Step 1</b>install</div>
+            <div class="hs-n"><b>Install</b></div>
             <div class="hs-body">
               <p>Install <code>hrx-loom</code> from PyPI.</p>
               <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>pip install "hrx-loom[hf]"</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
-            <div class="hs-n"><b>Step 2</b>fetch</div>
+            <div class="hs-n"><b>Fetch</b></div>
             <div class="hs-body">
-              <p>Pull a model from Hugging Face into <code>./&lt;model-id&gt;</code>.</p>
+              <p>Pull a Loom model from Hugging Face.</p>
               <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-fetch huggingface:<span class="s">loom-fun/unsloth-Qwen3-0.6B-loom</span></code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
-            <div class="hs-n"><b>Step 3</b>serve</div>
+            <div class="hs-n"><b>Serve</b></div>
             <div class="hs-body">
-              <p>Start a local OpenAI-compatible server on <code>:8080</code>.</p>
+              <p>Start a local OpenAI-compatible server.</p>
               <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span>loom-serve --device=amdgpu --model=<span class="s">Qwen/Qwen3-0.6B</span>/model.json</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
         </ol>
         <div class="hero-port">
-          <div class="hs-n"><b>Port<br>Yours</b>port</div>
+          <div class="hs-n"><b>Port<br>Yours</b></div>
           <div class="hs-body">
             <p>Model not listed? Install <a href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> and ask your agent to port and optimize any GGUF.</p>
             <div class="code inline-cmd"><pre class="wrap"><code><span class="p">&gt; </span>/loom Port, validate and optimize <span class="s">&lt;hf-gguf&gt;</span>.</code></pre><button class="copy" data-copy>copy</button></div>
