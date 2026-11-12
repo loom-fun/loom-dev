@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-30B-A3B-Instruct-2507-Q4_K_M",
   "name": "Qwen3-30B-A3B-Instruct-2507",
   "repo": "loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom",
-  "revision": "1f563739c6e1be64fc17f922e8fc16d58aaf712d",
+  "revision": "e9d2490b04451311ea0abbaf5ca0c91aefc7f8d1",
   "status": null,
   "license": "apache-2.0",
   "service": {

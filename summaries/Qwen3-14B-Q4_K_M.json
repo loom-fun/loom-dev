@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-14B-Q4_K_M",
   "name": "Qwen3-14B",
   "repo": "loom-fun/ggml-org-Qwen3-14B-loom",
-  "revision": "b954eac27dcbd21764549c34fabe86ced1bee3f5",
+  "revision": "e212866f5eef0b46d0ea35d188686b091b4d5f52",
   "status": null,
   "license": null,
   "service": {
@@ -44,10 +44,10 @@
   },
   "performance": {
     "date": null,
-    "llamacpp_build": "b1374",
+    "llamacpp_build": "b1373",
     "drafting": {
       "loom": "n-gram prompt lookup, depth 1",
-      "llamacpp": "ngram-simple"
+      "llamacpp": null
     },
     "source": null,
     "metrics": {
@@ -107,54 +107,54 @@
       "date": "2026-11-12",
       "source": {
         "kind": "devlab",
-        "run": "43270658840",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43270658840"
+        "run": "43284174644",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43284174644"
       },
       "metrics": {
         "decode": {
-          "loom": 26.6,
+          "loom": 26.5,
           "llamacpp": 21.0,
-          "speedup": 1.27
+          "speedup": 1.26
         },
         "decode_2k": {
-          "loom": 24.3,
-          "llamacpp": 17.6,
-          "speedup": 1.38
+          "loom": 24.5,
+          "llamacpp": 17.5,
+          "speedup": 1.4
         },
         "decode_32k": {
-          "loom": 17.3,
-          "llamacpp": 7.5,
-          "speedup": 2.31
+          "loom": 17.2,
+          "llamacpp": 3.7,
+          "speedup": 4.65
         },
         "prefill_1k": {
-          "loom": 983.2,
-          "llamacpp": 586.3,
-          "speedup": 1.68
+          "loom": 984.2,
+          "llamacpp": 580.0,
+          "speedup": 1.7
         },
         "prefill_2k": {
-          "loom": 1016.2,
-          "llamacpp": 505.0,
-          "speedup": 2.01
-        },
-        "prefill_8k": {
-          "loom": 881.7,
-          "llamacpp": 436.8,
+          "loom": 1016.0,
+          "llamacpp": 502.2,
           "speedup": 2.02
         },
+        "prefill_8k": {
+          "loom": 865.9,
+          "llamacpp": 288.9,
+          "speedup": 3.0
+        },
         "prefill_16k": {
-          "loom": 720.9,
-          "llamacpp": 309.3,
-          "speedup": 2.33
+          "loom": 717.1,
+          "llamacpp": 226.4,
+          "speedup": 3.17
         },
         "prefill_32k": {
-          "loom": 574.9,
-          "llamacpp": 200.8,
-          "speedup": 2.86
+          "loom": 574.5,
+          "llamacpp": 165.2,
+          "speedup": 3.48
         },
         "streams4": {
-          "loom": 96.6,
-          "llamacpp": 38.4,
-          "speedup": 2.52
+          "loom": 94.9,
+          "llamacpp": 21.6,
+          "speedup": 4.39
         }
       }
     }

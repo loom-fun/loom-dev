@@ -1,6 +1,6 @@
 {
   "schema": "loom-summary/1",
-  "checkpoint": "bartowski-Qwen3.8-27B-Q4_K_M",
+  "checkpoint": "Qwen3.8-27B-Q4_K_M",
   "name": "Qwen3.8-27B",
   "repo": "loom-fun/bartowski-Qwen3.8-27B-loom",
   "revision": "6089a30c12ca32e04401b113c5fa316e6967c8c9",
