@@ -3,7 +3,7 @@
   "checkpoint": "Spark-X2.6-4B-Q4_K_M",
   "name": "Spark-X2.6-4B",
   "repo": "loom-fun/bartowski-Spark-X2.6-4B-loom",
-  "revision": "d663c5a13ca944ac3ab040e48a6f28814360a959",
+  "revision": "e2fdbca022817c93b6e33e29d561a62c50e8d65c",
   "status": null,
   "license": "apache-2.0",
   "service": {

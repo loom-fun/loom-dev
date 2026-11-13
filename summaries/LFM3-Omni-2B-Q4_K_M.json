@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-Omni-2B-Q4_K_M",
   "name": "LFM3-Omni-2B",
   "repo": "loom-fun/ggml-org-LFM3-Omni-2B-loom",
-  "revision": "09a0f91148462ba89efee24932a8d84aa68e0d13",
+  "revision": "dab05653cc408d18ea8013467cead0ff306486e9",
   "status": null,
   "license": null,
   "service": {

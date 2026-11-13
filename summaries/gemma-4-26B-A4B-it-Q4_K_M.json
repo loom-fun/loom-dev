@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-26B-A4B-it-Q4_K_M",
   "name": "gemma-4-26B-A4B-it",
   "repo": "loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom",
-  "revision": "9d477c01b27ae804ba7254a977cb9698092dc08a",
+  "revision": "7cb41b057f16d386ab3e3b0dbe6d04a62c8006bb",
   "status": null,
   "license": null,
   "service": {
