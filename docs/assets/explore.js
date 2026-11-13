@@ -117,9 +117,9 @@
       </div>
 
       <h3>prefill · tok/s by document length</h3>
-      <div class="chart-box">${LOOM.curve(m, 'prefill', { w: 640, h: 190, axes: true })}</div>
+      <div class="chart-box" id="drPrefill"></div>
       <h3>decode · tok/s by context length</h3>
-      <div class="chart-box">${LOOM.curve(m, 'decode', { w: 640, h: 150, axes: true })}</div>
+      <div class="chart-box" id="drDecode"></div>
       <div class="tbl-legend"><span><i class="sw loom"></i>loom <i class="sw ref"></i>llama.cpp rocm ${esc(p.llamacpp_build || '')}</span></div>
 
       <h3>every workload</h3>
@@ -171,6 +171,8 @@
         <a class="btn" href="${hf(m.baseRepo)}" target="_blank" rel="noopener">source gguf ↗</a>
         ${src && src.url ? `<a class="btn" href="${esc(src.url)}" target="_blank" rel="noopener">benchmark run ↗</a>` : ''}
       </div>`;
+    LOOM.fit(el('drPrefill'), 640, w => LOOM.curve(m, 'prefill', { w, h: 190, axes: true }), 600);
+    LOOM.fit(el('drDecode'), 640, w => LOOM.curve(m, 'decode', { w, h: 150, axes: true }), 600);
     LOOM.copyButtons(el('dr'));
   }
 

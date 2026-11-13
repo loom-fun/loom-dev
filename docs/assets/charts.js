@@ -57,22 +57,13 @@ const CHARTS = (() => {
   }
 
   // Draw the strip into `el` at its real width (capped at 1000) and redraw when that width changes.
-  function mountStrip(el, list, opts = {}) {
-    let w0 = 0;
-    const draw = w => {
-      w = Math.min(1000, Math.round(w));
-      if (!w || w === w0) return;
-      w0 = w;
-      el.innerHTML = strip(list, { ...opts, width: w });
-    };
-    const content = () => { const cs = getComputedStyle(el); return el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); };
-    draw(content() || 1000);
-    if (window.ResizeObserver) new ResizeObserver(() => draw(content())).observe(el);
-  }
+  const mountStrip = (el, list, opts = {}) => LOOM.fit(el, 1000, w => strip(list, { ...opts, width: w }));
 
   // Model size vs absolute throughput, both engines, log-log.
-  function scatter(list, key) {
-    const W = 1000, H = 430, L = 62, R = 170, T = 18, B = 40;
+  // `width` below 640 compacts the layout: shorter plot, labels may sit left of their point instead of in a right margin.
+  function scatter(list, key, width = 1000) {
+    const W = Math.max(300, Math.round(width)), narrow = W < 640;
+    const H = narrow ? 340 : 430, L = 62, R = narrow ? 16 : 170, T = 18, B = 40;
     const pts = list.map(m => [m, m.pair(key)]).filter(([, p]) => p);
     if (!pts.length) return svg(W, H, `<text x="${W / 2}" y="${H / 2}" class="ax-t" text-anchor="middle">not measured</text>`);
     const sz = pts.map(([m]) => m.sizeBytes / 1e9), tv = pts.flatMap(([, p]) => [p.loom, p.llamacpp]);
@@ -80,8 +71,12 @@ const CHARTS = (() => {
     const X = v => L + (lg(v) - lg(x0)) / (lg(x1) - lg(x0)) * (W - L - R);
     const Y = v => T + (1 - (lg(v) - lg(y0)) / (lg(y1) - lg(y0))) * (H - T - B);
     let b = '';
+    let lastTick = -Infinity;
     [0.5, 1, 2, 5, 10, 20, 50, 100].filter(v => v >= x0 && v <= x1).forEach(v => {
-      b += `<line x1="${X(v)}" x2="${X(v)}" y1="${T}" y2="${H - B}" class="ax-grid"/><text x="${X(v)}" y="${H - B + 16}" class="ax-t" text-anchor="middle">${v} GB</text>`;
+      b += `<line x1="${X(v)}" x2="${X(v)}" y1="${T}" y2="${H - B}" class="ax-grid"/>`;
+      if (X(v) - lastTick < 52) return;
+      lastTick = X(v);
+      b += `<text x="${X(v)}" y="${H - B + 16}" class="ax-t" text-anchor="middle">${v} GB</text>`;
     });
     for (let e = Math.floor(Math.log10(y0)); e <= Math.ceil(Math.log10(y1)); e++) [1, 2, 5].forEach(f => {
       const v = f * Math.pow(10, e);
@@ -115,9 +110,9 @@ const CHARTS = (() => {
   }
 
   // Speedup across context length for one metric group; one line per model plus the median.
-  function scaling(list, group) {
+  function scaling(list, group, width = 480) {
     const xs = group === 'prefill' ? PREFILL : DECODE;
-    const W = 480, H = 300, L = 46, R = 16, T = 16, B = 30;
+    const W = Math.max(280, Math.round(width)), H = 300, L = 46, R = 16, T = 16, B = 30;
     const X = i => L + i * (W - L - R) / (xs.length - 1);
     const Y = r => T + (1 - (lg(Math.max(LO, Math.min(HI, r))) - lg(LO)) / (lg(HI) - lg(LO))) * (H - T - B);
     let b = `<rect x="${L}" y="${Y(1)}" width="${W - L - R}" height="${(H - B - Y(1)).toFixed(1)}" class="zone-lo"/>`;
@@ -130,7 +125,8 @@ const CHARTS = (() => {
     });
     const meds = xs.map((x, i) => [i, median(list.map(m => m.pair(x.key)).filter(Boolean).map(p => p.speedup))]).filter(([, v]) => v != null);
     b += `<polyline points="${meds.map(([i, v]) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')}" class="sl-med"/>`;
-    meds.forEach(([i, v]) => { b += `<text x="${X(i)}" y="${Y(v) - 8}" class="ax-v" text-anchor="middle">${v.toFixed(2)}</text>`; });
+    // Below the designed width, the first label starts at its point so it clears the y-axis labels.
+    meds.forEach(([i, v]) => { b += `<text x="${X(i)}" y="${Y(v) - 8}" class="ax-v" text-anchor="${W < 480 && i === 0 ? 'start' : 'middle'}">${v.toFixed(2)}</text>`; });
     return svg(W, H, b, 'c-scaling');
   }
 

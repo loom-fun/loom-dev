@@ -162,6 +162,24 @@ const LOOM = (() => {
     return `<svg class="pf" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-label="per-metric speedup profile">${sep}<line x1="0" x2="${w}" y1="${mid}" y2="${mid}" class="pf-mid"/>${bars}</svg>`;
   }
 
+  // Render into `el` at its content width and re-render when that width changes. Drawing at the real pixel
+  // width keeps chart text readable on narrow screens. At or above `from` (default `max`) it draws at `max`,
+  // the width the chart is designed at, so wide layouts are unchanged. Returns a function that forces a redraw.
+  function fit(el, max, render, from = max) {
+    let w0 = 0;
+    const draw = force => {
+      const cs = getComputedStyle(el);
+      const cw = Math.round(el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
+      const w = !cw || cw >= from ? max : cw;
+      if (w === w0 && force !== true) return;
+      w0 = w;
+      el.innerHTML = render(w);
+    };
+    draw();
+    if (window.ResizeObserver) new ResizeObserver(draw).observe(el);
+    return () => draw(true);
+  }
+
   // Two-engine curve across a metric group (absolute tok/s), for cards and the drawer.
   function curve(m, group, { w = 260, h = 70, axes = false } = {}) {
     const xs = group === 'prefill' ? PREFILL : DECODE;
@@ -376,6 +394,6 @@ const LOOM = (() => {
   return {
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
-    ratioBar, gateStrip, flags, sub, hot, profile, curve, card, mountTable, quickstart, copyButtons, reveal,
+    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, copyButtons, reveal,
   };
 })();

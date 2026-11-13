@@ -41,15 +41,18 @@
   const TABS = ['decode', 'decode_32k', 'prefill_2k', 'prefill_32k', 'streams4'];
   const tabs = el('scatterTabs');
   tabs.innerHTML = TABS.map((k, i) => `<button data-k="${k}" class="${i ? '' : 'on'}">${METRIC[k].short}</button>`).join('');
+  let scatterKey = 'decode';
+  const redrawScatter = LOOM.fit(el('scatter'), 1000, w => CHARTS.scatter(models, scatterKey, w));
   const drawScatter = k => {
-    el('scatter').innerHTML = CHARTS.scatter(models, k);
+    scatterKey = k;
+    redrawScatter();
     tabs.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
   };
   tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) drawScatter(b.dataset.k); });
   drawScatter('decode');
 
-  el('scalePrefill').innerHTML = CHARTS.scaling(models, 'prefill');
-  el('scaleDecode').innerHTML = CHARTS.scaling(models, 'decode');
+  LOOM.fit(el('scalePrefill'), 480, w => CHARTS.scaling(models, 'prefill', w));
+  LOOM.fit(el('scaleDecode'), 480, w => CHARTS.scaling(models, 'decode', w));
   const medAt = k => median(models.map(m => m.pair(k)).filter(Boolean).map(p => p.speedup));
   el('scalingLede').innerHTML += ` The median prefill speedup goes from ${times(medAt('prefill_1k'))} on a 1k document to ${times(medAt('prefill_32k'))} at 32k, and decode from ${times(medAt('decode'))} on a short prompt to ${times(medAt('decode_32k'))} at 32k context.`;
 
