@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M",
   "name": "Qwen3-Coder-30B-A3B-Instruct",
   "repo": "loom-fun/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom",
-  "revision": "f645ef40dc4c74b3eaf8d593546c7275bef1eebc",
+  "revision": "cc2f5d7baea8e0b23b5c92a23dc314e90c9b3b3f",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -19,7 +19,11 @@
       "sha256": "f6050b4da22869aa3fb9d94bb3314e9fc5a027d4741c1f97761c387d6b2b2335",
       "size": 17988419552
     },
-    "drafter": null,
+    "drafter": {
+      "repo": "Anbeeld/Qwen3-Coder-30B-A3B-DFlash-GGUF",
+      "file": "Qwen3-Coder-30B-A3B-DFlash-Q4_K_M.gguf",
+      "quant": "Q4_K_M"
+    },
     "projector": null
   },
   "serve": {
@@ -46,7 +50,7 @@
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
-      "loom": null,
+      "loom": "DFlash, depth 1",
       "llamacpp": null
     },
     "source": null,
@@ -97,14 +101,12 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.67,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [
-      "spec_acceptance"
-    ],
+    "not_applicable": [],
     "devlab": {
       "date": "2026-11-13",
       "source": {
@@ -163,10 +165,10 @@
   },
   "gates": {
     "summary": {
-      "pass": 8,
+      "pass": 9,
       "fail": 0,
       "unknown": 0,
-      "n/a": 4
+      "n/a": 3
     },
     "status": {
       "kernel_tests": "pass",
@@ -174,7 +176,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "n/a",
+      "spec": "pass",
       "agent": "pass",
       "agent_think_off": "n/a",
       "sampling": "pass",

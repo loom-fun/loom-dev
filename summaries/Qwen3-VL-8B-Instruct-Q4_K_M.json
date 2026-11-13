@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-VL-8B-Instruct-Q4_K_M",
   "name": "Qwen3-VL-8B-Instruct",
   "repo": "loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom",
-  "revision": "2b16de795ad534c8bdb45fe36da6bf399ca7833c",
+  "revision": "cb105ccfcfacb3ce5ff95c0266f525c08fbbfb2c",
   "status": null,
   "license": null,
   "service": {
@@ -42,7 +42,7 @@
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
-    "speculative_decoding": "yes",
+    "speculative_decoding": "n/a",
     "thinking": "n/a",
     "tool_calling": "yes"
   },
@@ -50,7 +50,7 @@
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
-      "loom": "n-gram prompt lookup, depth 3",
+      "loom": null,
       "llamacpp": "ngram-simple"
     },
     "source": null,
@@ -101,12 +101,14 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.08,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [],
+    "not_applicable": [
+      "spec_acceptance"
+    ],
     "devlab": {
       "date": "2026-11-13",
       "source": {
@@ -165,10 +167,10 @@
   },
   "gates": {
     "summary": {
-      "pass": 10,
+      "pass": 9,
       "fail": 0,
       "unknown": 0,
-      "n/a": 2
+      "n/a": 3
     },
     "status": {
       "kernel_tests": "pass",
@@ -176,7 +178,7 @@
       "compare": "pass",
       "vision": "pass",
       "consistency": "pass",
-      "spec": "pass",
+      "spec": "n/a",
       "agent": "pass",
       "agent_think_off": "n/a",
       "sampling": "pass",
