@@ -14,6 +14,7 @@ const CHARTS = (() => {
 
   // Rows = workloads, dots = models, on a log ratio axis centred on parity.
   // opts.label(metric) replaces the two-column label/detail text; opts.wins = false drops the wins column.
+  // opts.medTick = false leaves out the median tick on each row (the median column stays).
   // opts.width is the drawing width in px (default 1000); below 640 the layout compacts so text keeps its size.
   function strip(list, opts = {}) {
     const W = Math.max(300, Math.round(opts.width || 1000)), narrow = W < 640;
@@ -43,7 +44,7 @@ const CHARTS = (() => {
         ? `<text x="8" y="${y + 4}" class="ax-l">${label(x)}</text>`
         : `<text x="8" y="${y + 4}" class="ax-l">${x.label}</text><text x="${L - 14}" y="${y + 4}" class="ax-t" text-anchor="end">${x.detail}</text>`;
       b += `<line x1="${L}" x2="${W - R}" y1="${y}" y2="${y}" class="ax-row"/>`;
-      if (med != null) b += `<line x1="${X(med)}" x2="${X(med)}" y1="${y - 10}" y2="${y + 10}" class="med"/>`;
+      if (med != null && opts.medTick !== false) b += `<line x1="${X(med)}" x2="${X(med)}" y1="${y - 10}" y2="${y + 10}" class="med"/>`;
       pts.forEach(([m, p]) => {
         const jy = y + ((m.rank % 5) - 2) * 3;
         b += `<rect x="${(X(p.speedup) - 3.5).toFixed(1)}" y="${(jy - 3.5).toFixed(1)}" width="7" height="7" class="pt ${p.speedup < 1 ? 'pt-lo' : ''}" data-id="${esc(m.id)}" data-k="${x.key}"/>`;
