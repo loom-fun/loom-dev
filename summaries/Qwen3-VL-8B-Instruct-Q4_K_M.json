@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-VL-8B-Instruct-Q4_K_M",
   "name": "Qwen3-VL-8B-Instruct",
   "repo": "loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom",
-  "revision": "7cb288c677f97b95774a4248b97639aaa614c432",
+  "revision": "b223f2857489214eb537c621e017020aae2f99bc",
   "status": null,
   "license": null,
   "service": {
@@ -50,7 +50,7 @@
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
-      "loom": "n-gram prompt lookup, depth 1",
+      "loom": "n-gram prompt lookup, depth 3",
       "llamacpp": "ngram-simple"
     },
     "source": null,
@@ -101,7 +101,7 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.17,
+        "loom": 0.08,
         "llamacpp": null,
         "speedup": null
       }
