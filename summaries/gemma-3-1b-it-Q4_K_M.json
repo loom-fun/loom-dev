@@ -3,7 +3,7 @@
   "checkpoint": "gemma-3-1b-it-Q4_K_M",
   "name": "gemma-3-1b-it",
   "repo": "loom-fun/ggml-org-gemma-3-1b-it-loom",
-  "revision": "24febe6f9ebadf147782df570e368d2378e8ed8a",
+  "revision": "a51f8456648a496ec86eeac0ace3733125dd0fc2",
   "status": null,
   "license": "gemma",
   "service": {

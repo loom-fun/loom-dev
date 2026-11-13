@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-VL-8B-Instruct-Q4_K_M",
   "name": "Qwen3-VL-8B-Instruct",
   "repo": "loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom",
-  "revision": "4195219bdee84000ab30f940626cab36f45c5c5c",
+  "revision": "a5f987bab5668d0d92b580b4c8ba4b8f64252b9b",
   "status": null,
   "license": null,
   "service": {

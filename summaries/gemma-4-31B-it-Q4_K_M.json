@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-31B-it-Q4_K_M",
   "name": "gemma-4-31B-it",
   "repo": "loom-fun/unsloth-gemma-4-31B-it-loom",
-  "revision": "117bc883f39d8e3d91da8bf21db452c21065202c",
+  "revision": "045f0d496047a2d5b22cb5a566ab32aa37e8587a",
   "status": null,
   "license": null,
   "service": {

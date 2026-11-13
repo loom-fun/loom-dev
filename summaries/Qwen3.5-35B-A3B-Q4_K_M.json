@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-35B-A3B-Q4_K_M",
   "name": "Qwen3.5-35B-A3B",
   "repo": "loom-fun/unsloth-Qwen3.5-35B-A3B-loom",
-  "revision": "e155e90593fc7e7f66b188e20190e65c7da6a687",
+  "revision": "890f80b47a1a81d5eda4e5b35789b2891a2ad63d",
   "status": null,
   "license": null,
   "service": {

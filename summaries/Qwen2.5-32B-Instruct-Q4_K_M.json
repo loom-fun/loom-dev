@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-32B-Instruct-Q4_K_M",
   "name": "Qwen2.5-32B-Instruct",
   "repo": "loom-fun/bartowski-Qwen2.5-32B-Instruct-loom",
-  "revision": "a4c99a44eb64dbcb834d884daeaacd810f4182f4",
+  "revision": "3a6e9973b22808a13df0a2125ab83c3f43eb1eb9",
   "status": null,
   "license": null,
   "service": {

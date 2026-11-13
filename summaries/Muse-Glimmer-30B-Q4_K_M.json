@@ -3,7 +3,7 @@
   "checkpoint": "Muse-Glimmer-30B-Q4_K_M",
   "name": "Muse-Glimmer-30B",
   "repo": "loom-fun/ggml-org-Muse-Glimmer-30B-loom",
-  "revision": "0bd91cd7c7ab97c3ee0be5033f5473a4e5a54ba2",
+  "revision": "53f8de2a51b45e89c1526217f1ed698e0e2c58e8",
   "status": null,
   "license": null,
   "service": {

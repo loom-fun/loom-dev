@@ -3,7 +3,7 @@
   "checkpoint": "Laguna-XS-2.1-Q4_K_M",
   "name": "Laguna-XS-2.1",
   "repo": "loom-fun/ggml-org-Laguna-XS-2.1-loom",
-  "revision": "8263c6b1a66c0d3bbff28fd8e0085c1348011cab",
+  "revision": "a2cce7de24f4f6af57a2210a68b4fa7375a9e9ab",
   "status": null,
   "license": null,
   "service": {

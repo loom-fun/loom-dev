@@ -17,7 +17,7 @@ window.LOOM_DATA = {
    "checkpoint": "Flint-Q4_K_M",
    "name": "Flint",
    "repo": "loom-fun/ggml-org-Flint-loom",
-   "revision": "e44e729801b009809c4c364b72a8225a1451c3a4",
+   "revision": "4467730e854799eb90d36aedb9f8bffd3f89cdd1",
    "status": null,
    "license": null,
    "service": {
@@ -205,7 +205,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-3-1b-it-Q4_K_M",
    "name": "gemma-3-1b-it",
    "repo": "loom-fun/ggml-org-gemma-3-1b-it-loom",
-   "revision": "24febe6f9ebadf147782df570e368d2378e8ed8a",
+   "revision": "a51f8456648a496ec86eeac0ace3733125dd0fc2",
    "status": null,
    "license": "gemma",
    "service": {
@@ -393,7 +393,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-12b-it-Q4_K_M",
    "name": "gemma-4-12B-it",
    "repo": "loom-fun/unsloth-gemma-4-12B-it-loom",
-   "revision": "efb92843be01e40941d539f2dcff72f618a3cf3f",
+   "revision": "eb1262df53863a1cca3d8cde538d758ae8c16948",
    "status": null,
    "license": null,
    "service": {
@@ -581,7 +581,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-26B-A4B-it-Q4_K_M",
    "name": "gemma-4-26B-A4B-it",
    "repo": "loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom",
-   "revision": "7cb41b057f16d386ab3e3b0dbe6d04a62c8006bb",
+   "revision": "0dd062a88f885374e0e5f4016651025dc256fcab",
    "status": null,
    "license": null,
    "service": {
@@ -769,7 +769,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-31B-it-Q4_K_M",
    "name": "gemma-4-31B-it",
    "repo": "loom-fun/unsloth-gemma-4-31B-it-loom",
-   "revision": "117bc883f39d8e3d91da8bf21db452c21065202c",
+   "revision": "045f0d496047a2d5b22cb5a566ab32aa37e8587a",
    "status": null,
    "license": null,
    "service": {
@@ -957,7 +957,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-E2B-it-Q4_K_M",
    "name": "gemma-4-E2B-it",
    "repo": "loom-fun/unsloth-gemma-4-E2B-it-loom",
-   "revision": "c4de2da7840e1577512197f4c0e10771e55021fb",
+   "revision": "9f95fc6474e4762cd1c5d12dec227f3f5e7e3517",
    "status": null,
    "license": null,
    "service": {
@@ -1149,7 +1149,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-E4B-it-Q4_K_M",
    "name": "gemma-4-E4B-it",
    "repo": "loom-fun/unsloth-gemma-4-E4B-it-loom",
-   "revision": "cd4beb7510c5415f4a84b5a7c22b0700322acd68",
+   "revision": "0531484a1e1e7df4efe9746f0b842f9603cb5c21",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -1341,7 +1341,7 @@ window.LOOM_DATA = {
    "checkpoint": "gpt-oss-20b-Q4_K_M",
    "name": "gpt-oss-20b",
    "repo": "loom-fun/unsloth-gpt-oss-20b-loom",
-   "revision": "acc890f3abe679abf2db3146615b5c3b0002429f",
+   "revision": "d04e90e003120ca101c82d18a6c9edf34f41315a",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -1527,7 +1527,7 @@ window.LOOM_DATA = {
    "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
    "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
    "repo": "loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-   "revision": "3625bb792a80eaf4a4b0c28c4cddc80218034358",
+   "revision": "072dfe18a680f4ceea981d275f72b5e2505d95da",
    "status": null,
    "license": null,
    "service": {
@@ -1713,7 +1713,7 @@ window.LOOM_DATA = {
    "checkpoint": "Laguna-XS-2.1-Q4_K_M",
    "name": "Laguna-XS-2.1",
    "repo": "loom-fun/ggml-org-Laguna-XS-2.1-loom",
-   "revision": "8263c6b1a66c0d3bbff28fd8e0085c1348011cab",
+   "revision": "a2cce7de24f4f6af57a2210a68b4fa7375a9e9ab",
    "status": null,
    "license": null,
    "service": {
@@ -1901,7 +1901,7 @@ window.LOOM_DATA = {
    "checkpoint": "LFM2.5-24B-A2B-Q4_K_M",
    "name": "LFM2.5-24B-A2B",
    "repo": "loom-fun/ggml-org-LFM2.5-24B-A2B-loom",
-   "revision": "09aa3ef6db4cb6fd87b5a1812def007a6fdb8f6d",
+   "revision": "f8cfceaf8ec9cb3c068a979709ced39dbd9bf28a",
    "status": null,
    "license": null,
    "service": {
@@ -2087,7 +2087,7 @@ window.LOOM_DATA = {
    "checkpoint": "LFM3-1.7B-Q4_K_M",
    "name": "LFM3-1.7B",
    "repo": "loom-fun/bartowski-LFM3-1.7B-loom",
-   "revision": "d1336c1f1e4e17f8a2c4f3f5a9a9f0aee8962f11",
+   "revision": "5738bc2164ea7add8679a9fc9567a9007bc5c270",
    "status": null,
    "license": null,
    "service": {
@@ -2273,7 +2273,7 @@ window.LOOM_DATA = {
    "checkpoint": "LFM3-Omni-2B-Q4_K_M",
    "name": "LFM3-Omni-2B",
    "repo": "loom-fun/ggml-org-LFM3-Omni-2B-loom",
-   "revision": "dab05653cc408d18ea8013467cead0ff306486e9",
+   "revision": "090bb7a7017d4fcd8e81c904d33231aea964b9ad",
    "status": null,
    "license": null,
    "service": {
@@ -2459,7 +2459,7 @@ window.LOOM_DATA = {
    "checkpoint": "Llama-3.2-3B-Instruct-Q4_K_M",
    "name": "Llama-3.2-3B-Instruct",
    "repo": "loom-fun/unsloth-Llama-3.2-3B-Instruct-loom",
-   "revision": "d8f9f515ef253b2513649ac99628c853d39e4898",
+   "revision": "48c88b47439eea4e0c8d9ca994c2609c1019c275",
    "status": null,
    "license": null,
    "service": {
@@ -2645,7 +2645,7 @@ window.LOOM_DATA = {
    "checkpoint": "Mellum2.1-12B-A2.5B-Thinking-Q4_K_M",
    "name": "Mellum2.1-12B-A2.5B-Thinking",
    "repo": "loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom",
-   "revision": "a6289e9bb267994416ebc474db126e2bb147b698",
+   "revision": "8433eb84be2ac823ec495d50abeac4813e6b0ce2",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -2831,7 +2831,7 @@ window.LOOM_DATA = {
    "checkpoint": "MiniCPM-V-4.7-35B-A3B-Q4_K_M",
    "name": "MiniCPM-V-4.7-35B-A3B",
    "repo": "loom-fun/bartowski-MiniCPM-V-4.7-35B-A3B-loom",
-   "revision": "3302747d1511ef597231a87e0e565df8ffa50481",
+   "revision": "0b87ba7fb6fb8cebfc378a148696d4f586c1ff12",
    "status": null,
    "license": null,
    "service": {
@@ -3017,7 +3017,7 @@ window.LOOM_DATA = {
    "checkpoint": "Muse-Glimmer-30B-Q4_K_M",
    "name": "Muse-Glimmer-30B",
    "repo": "loom-fun/ggml-org-Muse-Glimmer-30B-loom",
-   "revision": "0bd91cd7c7ab97c3ee0be5033f5473a4e5a54ba2",
+   "revision": "53f8de2a51b45e89c1526217f1ed698e0e2c58e8",
    "status": null,
    "license": null,
    "service": {
@@ -3209,7 +3209,7 @@ window.LOOM_DATA = {
    "checkpoint": "Nanbeige_Nanbeige4.3-33B-Q4_K_M",
    "name": "Nanbeige_Nanbeige4.3-33B",
    "repo": "loom-fun/bartowski-Nanbeige4.3-33B-loom",
-   "revision": "fa556b48d55efadeb7db5e25b031f195d5615a2d",
+   "revision": "571fdba4d701d6c4a10c1a682d656d8ef6185ce9",
    "status": null,
    "license": null,
    "service": {
@@ -3395,7 +3395,7 @@ window.LOOM_DATA = {
    "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
    "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
    "repo": "loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-   "revision": "f924183d187a684a60e4cfc5742b3e06fe1eca7e",
+   "revision": "3a7f2340372d8a05a2495f5b106409cca9850cb3",
    "status": null,
    "license": null,
    "service": {
@@ -3587,7 +3587,7 @@ window.LOOM_DATA = {
    "checkpoint": "Ornith-1.0-35B-Q4_K_M",
    "name": "Ornith-1.0-35B",
    "repo": "loom-fun/lmstudio-community-Ornith-1.0-35B-loom",
-   "revision": "c9f32dc3b5d69f2d15ba787c7df8eb19be4082b6",
+   "revision": "e9602c384a1e6466e40701f16d4964334666e34c",
    "status": null,
    "license": null,
    "service": {
@@ -3777,7 +3777,7 @@ window.LOOM_DATA = {
    "checkpoint": "Ornith-1.0-9B-Q4_K_M",
    "name": "Ornith-1.0-9B",
    "repo": "loom-fun/unsloth-Ornith-1.0-9B-loom",
-   "revision": "809b8badc730114c75c808acf731161f40b0586b",
+   "revision": "d6eb25f3578826eb213263fd08c8551934548398",
    "status": null,
    "license": null,
    "service": {
@@ -3967,7 +3967,7 @@ window.LOOM_DATA = {
    "checkpoint": "Ornith-1.5-122B-Q4_K_M",
    "name": "Ornith-1.5-122B",
    "repo": "loom-fun/bartowski-Ornith-1.5-122B-loom",
-   "revision": "0fb9c97b8db26fedbdc6eac47771f90c4b81a06c",
+   "revision": "59506d9f0ff4af0bd5a7d4111248e65b672bc829",
    "status": null,
    "license": null,
    "service": {
@@ -4159,7 +4159,7 @@ window.LOOM_DATA = {
    "checkpoint": "Ornith-1.5-35B-A3B-Q4_K_M",
    "name": "Ornith-1.5-35B-A3B",
    "repo": "loom-fun/bartowski-Ornith-1.5-35B-A3B-loom",
-   "revision": "a6762c3b0c7d7699a7ceca82660a8893189975a5",
+   "revision": "c80bd368b1d9da2a811075309cabe9226d9cd1e6",
    "status": null,
    "license": null,
    "service": {
@@ -4351,7 +4351,7 @@ window.LOOM_DATA = {
    "checkpoint": "Ornith-1.5-9B-Q4_K_M",
    "name": "Ornith-1.5-9B",
    "repo": "loom-fun/bartowski-Ornith-1.5-9B-loom",
-   "revision": "9a8969889a2c8ef9734442a7ec873f935d03c819",
+   "revision": "e0087c08a38d6d720415079e177989c4f013a249",
    "status": null,
    "license": "mit",
    "service": {
@@ -4543,7 +4543,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-0.5B-Instruct-Q4_K_M",
    "name": "Qwen2.5-0.5B-Instruct",
    "repo": "loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom",
-   "revision": "228551bfa4d1353c421aa9507c31da421d27612d",
+   "revision": "796fdd93ba49db80ffa8ba2895c99da36e6837bf",
    "status": null,
    "license": null,
    "service": {
@@ -4729,7 +4729,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-1.5B-Instruct-Q4_K_M",
    "name": "Qwen2.5-1.5B-Instruct",
    "repo": "loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom",
-   "revision": "660973eda8e23a44dd0474646702b158f19c82ee",
+   "revision": "c3a313d2605e033ea20f442515b6d251df9da3f8",
    "status": null,
    "license": null,
    "service": {
@@ -4915,7 +4915,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-32B-Instruct-Q4_K_M",
    "name": "Qwen2.5-32B-Instruct",
    "repo": "loom-fun/bartowski-Qwen2.5-32B-Instruct-loom",
-   "revision": "a4c99a44eb64dbcb834d884daeaacd810f4182f4",
+   "revision": "3a6e9973b22808a13df0a2125ab83c3f43eb1eb9",
    "status": null,
    "license": null,
    "service": {
@@ -5101,7 +5101,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-7B-Instruct-Q4_K_M",
    "name": "Qwen2.5-7B-Instruct",
    "repo": "loom-fun/bartowski-Qwen2.5-7B-Instruct-loom",
-   "revision": "93cac362c60b904bd08929702c95d2380911bdd1",
+   "revision": "9dde8cd44ff1e8723f2d991a5bf9a23908200550",
    "status": null,
    "license": null,
    "service": {
@@ -5287,7 +5287,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-VL-7B-Instruct-Q4_K_M",
    "name": "Qwen2.5-VL-7B-Instruct",
    "repo": "loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom",
-   "revision": "6b4f1d00e1f6fe8289518d586a5bd712dac2f786",
+   "revision": "8453db8ea8884565fff93ae7ff7b4116ef591737",
    "status": null,
    "license": null,
    "service": {
@@ -5477,7 +5477,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-0.6B-Q4_K_M",
    "name": "Qwen3-0.6B",
    "repo": "loom-fun/unsloth-Qwen3-0.6B-loom",
-   "revision": "ad24e566880843c84dd326f0a989e6a6d8b6fe4f",
+   "revision": "07edacaa30cf67df31541f828f1d75b4c515e4ab",
    "status": null,
    "license": null,
    "service": {
@@ -5663,7 +5663,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-1.7B-Q4_K_M",
    "name": "Qwen3-1.7B",
    "repo": "loom-fun/ggml-org-Qwen3-1.7B-loom",
-   "revision": "133a83f2e6ce31ca25914fa8e803f82bfb3ba18c",
+   "revision": "ce517a99f891ca35bc5c3dc7e638087151c20ac0",
    "status": null,
    "license": null,
    "service": {
@@ -5849,7 +5849,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-14B-Q4_K_M",
    "name": "Qwen3-14B",
    "repo": "loom-fun/ggml-org-Qwen3-14B-loom",
-   "revision": "2fefb4a37c6988a3a9b4e705ab2896f0d578ecc1",
+   "revision": "17207bf1c898e0996b4bdcdf2a685f95fd42b511",
    "status": null,
    "license": null,
    "service": {
@@ -6035,7 +6035,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-30B-A3B-Instruct-2507-Q4_K_M",
    "name": "Qwen3-30B-A3B-Instruct-2507",
    "repo": "loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom",
-   "revision": "dc429b70a5fbebc2f0608308bc0e4f1dfff4a7b9",
+   "revision": "edf534243114b0432fb1fc107502420bc0b32d7e",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -6221,7 +6221,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-4B-Instruct-2507-Q4_K_M",
    "name": "Qwen3-4B-Instruct-2507",
    "repo": "loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom",
-   "revision": "c17e1c5850396117928e94ac3ba2edbac5873582",
+   "revision": "dc19cc1797efb4c9b5dbae1c333733b267a8d60d",
    "status": null,
    "license": null,
    "service": {
@@ -6407,7 +6407,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-4B-Q4_K_M",
    "name": "Qwen3-4B",
    "repo": "loom-fun/ggml-org-Qwen3-4B-loom",
-   "revision": "a8d917712e327dc9932fc65498a0f8ecaf607384",
+   "revision": "b78cd1450325ac8a160b6b6df374429ae4b2a090",
    "status": null,
    "license": null,
    "service": {
@@ -6595,7 +6595,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-8B-Q4_K_M",
    "name": "Qwen3-8B",
    "repo": "loom-fun/unsloth-Qwen3-8B-loom",
-   "revision": "fa7d7fb3be49a38c67ec2027e179b273e5474b32",
+   "revision": "872ff0b9d0405eb5294a5e3d23b5a08649c936c4",
    "status": null,
    "license": null,
    "service": {
@@ -6783,7 +6783,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M",
    "name": "Qwen3-Coder-30B-A3B-Instruct",
    "repo": "loom-fun/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom",
-   "revision": "56bc615b93a7028046d9e061aef5e43544431b58",
+   "revision": "bf23166815d779643daebaef104f94e3a8babf7d",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -6971,7 +6971,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-VL-4B-Instruct-Q4_K_M",
    "name": "Qwen3-VL-4B-Instruct",
    "repo": "loom-fun/unsloth-Qwen3-VL-4B-Instruct-loom",
-   "revision": "629f6585af2279ae2994b4d35705b50bb554e9bd",
+   "revision": "acd6287b949e971c7d9c13ad5f4a8122d183e0ec",
    "status": null,
    "license": null,
    "service": {
@@ -7161,7 +7161,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-VL-8B-Instruct-Q4_K_M",
    "name": "Qwen3-VL-8B-Instruct",
    "repo": "loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom",
-   "revision": "4195219bdee84000ab30f940626cab36f45c5c5c",
+   "revision": "a5f987bab5668d0d92b580b4c8ba4b8f64252b9b",
    "status": null,
    "license": null,
    "service": {
@@ -7351,7 +7351,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-0.8B-Q4_K_M",
    "name": "Qwen3.5-0.8B",
    "repo": "loom-fun/unsloth-Qwen3.5-0.8B-loom",
-   "revision": "ad19bb68ef2472fa15714998b338c61276369429",
+   "revision": "d535d391b75ab3aaa089163267745de4fb233f78",
    "status": null,
    "license": null,
    "service": {
@@ -7541,7 +7541,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-2B-Q4_K_M",
    "name": "Qwen3.5-2B",
    "repo": "loom-fun/unsloth-Qwen3.5-2B-loom",
-   "revision": "4f8e419985151846a8bd4ee4d77e1c55696e68b0",
+   "revision": "eea871c6bb50aca61dcbff4be0835f57cf4a5cfc",
    "status": null,
    "license": null,
    "service": {
@@ -7731,7 +7731,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-35B-A3B-Q4_K_M",
    "name": "Qwen3.5-35B-A3B",
    "repo": "loom-fun/unsloth-Qwen3.5-35B-A3B-loom",
-   "revision": "e155e90593fc7e7f66b188e20190e65c7da6a687",
+   "revision": "890f80b47a1a81d5eda4e5b35789b2891a2ad63d",
    "status": null,
    "license": null,
    "service": {
@@ -7923,7 +7923,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-4B-Q4_K_M",
    "name": "Qwen3.5-4B",
    "repo": "loom-fun/unsloth-Qwen3.5-4B-loom",
-   "revision": "67c834034fa9a9e06626f131d49c3b71c7f34eb3",
+   "revision": "189cd41968e1a6a94e577b857203066592a057f3",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -8116,7 +8116,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-9B-Q4_K_M",
    "name": "Qwen3.5-9B",
    "repo": "loom-fun/unsloth-Qwen3.5-9B-loom",
-   "revision": "0f59bb2f713dce3d02fad6b36af049c32b5f97c7",
+   "revision": "3910739ab37a9e9dfd2856054c0c7dbca8a9c39f",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -8309,7 +8309,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.6-27B-Q4_K_M",
    "name": "Qwen3.6-27B",
    "repo": "loom-fun/ggml-org-Qwen3.6-27B-loom",
-   "revision": "6f57444026ad80a9b59df64c9173e10eb4810d61",
+   "revision": "2ed5f6ca639591f0c8d45ba082e3f2d16f375bfe",
    "status": null,
    "license": null,
    "service": {
@@ -8501,7 +8501,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.6-35B-A3B-Q4_K_M",
    "name": "Qwen3.6-35B-A3B",
    "repo": "loom-fun/ggml-org-Qwen3.6-35B-A3B-loom",
-   "revision": "60e4c3286429ec4a82ec8d8ac1bafa77d9032c0d",
+   "revision": "955c0ad2be9e2104a596f983f902b582ce231850",
    "status": null,
    "license": null,
    "service": {
@@ -8693,7 +8693,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.8-27B-Q4_K_M",
    "name": "Qwen3.8-27B",
    "repo": "loom-fun/bartowski-Qwen3.8-27B-loom",
-   "revision": "bbb228ffad35cc6631c76250b8dccb0601a22553",
+   "revision": "f3966d7cd81a8b9cf8e979e0ed5fc70ec42c98f3",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -8881,7 +8881,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
    "name": "Qwen3.8-Flash-Next",
    "repo": "loom-fun/unsloth-Qwen3.8-Flash-Next-loom",
-   "revision": "016f2ff8a3eb82b2e8a931072d4533260072b73f",
+   "revision": "0afc7fb9339cbacdbfa6e56245ef90af64a58b5c",
    "status": null,
    "license": null,
    "service": {
@@ -9073,7 +9073,7 @@ window.LOOM_DATA = {
    "checkpoint": "Sage-A1.5-Q4_K_M",
    "name": "Sage-A1.5-Q4_K_M",
    "repo": "loom-fun/InternScience-Sage-A1.5-loom",
-   "revision": "908caaebcf1c5be27e3eb718c3b33b899fad2d1a",
+   "revision": "e88255a3a467776287e4f38a077a53ade471a98b",
    "status": null,
    "license": null,
    "service": {
@@ -9261,7 +9261,7 @@ window.LOOM_DATA = {
    "checkpoint": "Spark-X2.5-4B-Q4_K_M",
    "name": "Spark-X2.5-4B",
    "repo": "loom-fun/XHToken-Spark-X2.5-4B-loom",
-   "revision": "b83c400000c22c756a68d2009127be6660da01bc",
+   "revision": "9bef5116fa0535f708dd60d125ca65ee60da70a7",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -9447,7 +9447,7 @@ window.LOOM_DATA = {
    "checkpoint": "Spark-X2.6-4B-Q4_K_M",
    "name": "Spark-X2.6-4B",
    "repo": "loom-fun/bartowski-Spark-X2.6-4B-loom",
-   "revision": "e2fdbca022817c93b6e33e29d561a62c50e8d65c",
+   "revision": "4dc9cd09f29d68263798cd1274c095794ecbe5e5",
    "status": null,
    "license": "apache-2.0",
    "service": {
