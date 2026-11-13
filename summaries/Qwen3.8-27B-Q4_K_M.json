@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-27B-Q4_K_M",
   "name": "Qwen3.8-27B",
   "repo": "loom-fun/bartowski-Qwen3.8-27B-loom",
-  "revision": "f382bf13a828132c22870628923b179e613edd42",
+  "revision": "5ec76a7f47bb124c9106cd303ccee4f427a39354",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -19,11 +19,7 @@
       "sha256": "880a52af8317974f7b4b064a6bc29ff49e188b91aa218e08eea3078b6b1cc673",
       "size": 17442399968
     },
-    "drafter": {
-      "repo": "z-lab/Qwen3.8-27B-DFlash2-GGUF",
-      "file": "Qwen3.8-27B-DFlash2-Q4_K_M.gguf",
-      "quant": "Q4_K_M"
-    },
+    "drafter": null,
     "projector": {
       "repo": "bartowski/Qwen3.8-27B-GGUF",
       "file": "mmproj-Qwen3.8-27B-f16.gguf",
@@ -54,7 +50,7 @@
     "date": null,
     "llamacpp_build": "b1355",
     "drafting": {
-      "loom": "DFlash, depth 3",
+      "loom": "MTP, depth 3",
       "llamacpp": "draft-dflash, n-max 3"
     },
     "source": null,
@@ -105,7 +101,7 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.76,
+        "loom": 0.66,
         "llamacpp": null,
         "speedup": null
       }

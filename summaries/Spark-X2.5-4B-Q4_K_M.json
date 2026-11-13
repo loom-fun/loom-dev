@@ -3,7 +3,7 @@
   "checkpoint": "Spark-X2.5-4B-Q4_K_M",
   "name": "Spark-X2.5-4B",
   "repo": "loom-fun/XHToken-Spark-X2.5-4B-loom",
-  "revision": "5dc6632709b5ff7bf480fcf7b9795c794b81e0a3",
+  "revision": "59cacdc8b53a5b37e4b69394576fc03fc53ac31a",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -38,7 +38,7 @@
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
-    "speculative_decoding": "yes",
+    "speculative_decoding": "n/a",
     "thinking": "yes",
     "tool_calling": "yes"
   },
@@ -46,7 +46,7 @@
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
-      "loom": "n-gram prompt lookup, depth 1",
+      "loom": null,
       "llamacpp": null
     },
     "source": null,
@@ -97,12 +97,14 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.18,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [],
+    "not_applicable": [
+      "spec_acceptance"
+    ],
     "devlab": {
       "date": "2026-11-13",
       "source": {
@@ -161,10 +163,10 @@
   },
   "gates": {
     "summary": {
-      "pass": 10,
+      "pass": 9,
       "fail": 0,
       "unknown": 0,
-      "n/a": 2
+      "n/a": 3
     },
     "status": {
       "kernel_tests": "pass",
@@ -172,7 +174,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "pass",
+      "spec": "n/a",
       "agent": "pass",
       "agent_think_off": "pass",
       "sampling": "pass",

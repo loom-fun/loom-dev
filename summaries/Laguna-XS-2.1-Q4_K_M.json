@@ -3,7 +3,7 @@
   "checkpoint": "Laguna-XS-2.1-Q4_K_M",
   "name": "Laguna-XS-2.1",
   "repo": "loom-fun/ggml-org-Laguna-XS-2.1-loom",
-  "revision": "708fa91e0f2a876b3a97d1c6e0368b91fd4d916b",
+  "revision": "a3bbeb81a73a0ab370c62485719f6faca92e8e60",
   "status": null,
   "license": null,
   "service": {
@@ -19,7 +19,11 @@
       "sha256": "0a8301bc1b8509b27ed39ec86b98278c03341db6311c065326bd6629cd7304d6",
       "size": 19563570240
     },
-    "drafter": null,
+    "drafter": {
+      "repo": "dev7a/Laguna-XS-2.1-DFlash-GGUF",
+      "file": "Laguna-XS-2.1-DFlash-Q8_0.gguf",
+      "quant": "Q8_0"
+    },
     "projector": null
   },
   "serve": {
@@ -46,7 +50,7 @@
     "date": null,
     "llamacpp_build": "b1373",
     "drafting": {
-      "loom": null,
+      "loom": "DFlash, depth 3",
       "llamacpp": null
     },
     "source": null,
@@ -97,14 +101,12 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.05,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [
-      "spec_acceptance"
-    ],
+    "not_applicable": [],
     "devlab": {
       "date": "2026-11-12",
       "source": {
@@ -163,10 +165,10 @@
   },
   "gates": {
     "summary": {
-      "pass": 9,
+      "pass": 10,
       "fail": 0,
       "unknown": 0,
-      "n/a": 3
+      "n/a": 2
     },
     "status": {
       "kernel_tests": "pass",
@@ -174,7 +176,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "n/a",
+      "spec": "pass",
       "agent": "pass",
       "agent_think_off": "pass",
       "sampling": "pass",

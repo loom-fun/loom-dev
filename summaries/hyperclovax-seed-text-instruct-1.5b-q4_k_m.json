@@ -3,7 +3,7 @@
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
   "repo": "loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "910d7d1bf836e4ea02eddf25b95dad3fbb8fe166",
+  "revision": "d7ce1217c7c6c2f11b757570821269ba106a1885",
   "status": null,
   "license": null,
   "service": {
@@ -38,7 +38,7 @@
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
-    "speculative_decoding": "yes",
+    "speculative_decoding": "n/a",
     "thinking": "n/a",
     "tool_calling": "n/a"
   },
@@ -46,7 +46,7 @@
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
-      "loom": "n-gram prompt lookup, depth 3",
+      "loom": null,
       "llamacpp": "ngram-simple"
     },
     "source": null,
@@ -97,12 +97,14 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.06,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [],
+    "not_applicable": [
+      "spec_acceptance"
+    ],
     "devlab": {
       "date": "2026-11-13",
       "source": {
@@ -161,10 +163,10 @@
   },
   "gates": {
     "summary": {
-      "pass": 8,
+      "pass": 7,
       "fail": 0,
       "unknown": 0,
-      "n/a": 4
+      "n/a": 5
     },
     "status": {
       "kernel_tests": "pass",
@@ -172,7 +174,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "pass",
+      "spec": "n/a",
       "agent": "n/a",
       "agent_think_off": "n/a",
       "sampling": "pass",
