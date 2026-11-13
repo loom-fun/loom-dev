@@ -50,9 +50,48 @@
     .s-steps .n .os-icons { margin: 0 0 0 auto; align-self: center; color: var(--hi); }
     .s-steps code { display: block; font: 12px/1.45 var(--mono); background: #070707; border: 1px solid var(--line-2); padding: 6px 9px; white-space: pre-wrap; }
     .s-steps code .nw { white-space: nowrap; }
+
+    /* camera.html#rainbow: the same dark slide with cheerful rainbow accents. Each chart row gets its own color
+       via its data-k metric key; text stays bright white. */
+    html.rainbow {
+      --r1: #fb7185; --r2: #fb923c; --r3: #facc15; --r4: #4ade80; --r5: #2dd4bf;
+      --r6: #38bdf8; --r7: #818cf8; --r8: #c084fc; --r9: #f472b6;
+    }
+    .rainbow .slide { background-image: radial-gradient(circle at 0 0, rgba(251, 113, 133, .10), transparent 38%), radial-gradient(circle at 100% 100%, rgba(129, 140, 248, .12), transparent 42%); }
+    .rainbow .s-head h1 { display: inline-block; background: linear-gradient(90deg, var(--r1), var(--r2) 20%, var(--r3) 36%, var(--r4) 52%, var(--r6) 70%, var(--r7) 85%, var(--r8)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .rainbow .proof { border-image: linear-gradient(90deg, var(--r1), var(--r3), var(--r4), var(--r6), var(--r8)) 1; }
+    .rainbow .proof > div:nth-child(1) dt { color: var(--r1); }
+    .rainbow .proof > div:nth-child(2) dt { color: var(--r3); }
+    .rainbow .proof > div:nth-child(3) dt { color: var(--r4); }
+    .rainbow .proof > div:nth-child(4) dt { color: var(--r7); }
+    .rainbow .chart [data-k="decode"] { fill: var(--r1); stroke: var(--r1); }
+    .rainbow .chart [data-k="decode_2k"] { fill: var(--r2); stroke: var(--r2); }
+    .rainbow .chart [data-k="decode_32k"] { fill: var(--r3); stroke: var(--r3); }
+    .rainbow .chart [data-k="prefill_1k"] { fill: var(--r4); stroke: var(--r4); }
+    .rainbow .chart [data-k="prefill_2k"] { fill: var(--r5); stroke: var(--r5); }
+    .rainbow .chart [data-k="prefill_8k"] { fill: var(--r6); stroke: var(--r6); }
+    .rainbow .chart [data-k="prefill_16k"] { fill: var(--r7); stroke: var(--r7); }
+    .rainbow .chart [data-k="prefill_32k"] { fill: var(--r8); stroke: var(--r8); }
+    .rainbow .chart [data-k="streams4"] { fill: var(--r9); stroke: var(--r9); }
+    .rainbow .chart .pt-lo[data-k] { fill: var(--bg); stroke-width: 1.4; }
+    .rainbow .s-steps li { border-left-width: 4px; }
+    .rainbow .s-steps li:nth-child(1) { border-left-color: var(--r1); }
+    .rainbow .s-steps li:nth-child(2) { border-left-color: var(--r3); }
+    .rainbow .s-steps li:nth-child(3) { border-left-color: var(--r5); }
+    .rainbow .s-steps li.port { border-left-style: solid; border-left-color: var(--r8); }
+    .rainbow .s-steps li:nth-child(1) .n b { color: var(--r1); }
+    .rainbow .s-steps li:nth-child(2) .n b { color: var(--r3); }
+    .rainbow .s-steps li:nth-child(3) .n b { color: var(--r5); }
+    .rainbow .s-steps li:nth-child(4) .n b { color: var(--r8); }
   </style>
 </head>
 <body>
+  <script>
+    // #rainbow switches on the rainbow accents; set before first paint so there's no flash.
+    const theme = () => document.documentElement.classList.toggle('rainbow', location.hash === '#rainbow');
+    addEventListener('hashchange', theme);
+    theme();
+  </script>
   <div class="stage" id="stage">
     <div class="slide">
       <header class="s-head">
