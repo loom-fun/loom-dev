@@ -19,7 +19,7 @@
   };
 
   const s = LOOM.stats();
-  el('headLede').textContent = `60+ ports from ${s.orgs} source orgs, ${s.runs} measurements, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`;
+  el('headLede').textContent = `50+ ports from ${s.orgs} source orgs, ${s.runs} measurements, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`;
 
   const open = m => { location.hash = encodeURIComponent(m.id); };
   const table = LOOM.mountTable(el('tbl'), models, { onOpen: open, pageSize: 20 });

@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
         <div class="footer-base">
-          <span>index: 60+ models · generated ${generated}</span>
+          <span>index: 50+ models · generated ${generated}</span>
           <span>every number comes from a benchmark log</span>
         </div>
       </div>

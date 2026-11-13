@@ -1,13 +1,13 @@
 """Write one summary per loom model, named after its checkpoint: summaries/<checkpoint file stem>.json.
 
-The models are every repo in the loom-fun org.
+The models are every public repo in the loom-fun org.
 
 Reads each repo's info.json (schema loom-card/2, loom-skills/skills/loom-benchmark/scripts/card/info_schema.json)
 with the model.json and model.json.lock next to it, and writes the same keys for every model. A value that isn't
 known is null, never left out. Each summary records the repo and revision it was made from: that is the mapping
 from a summary back to its Hugging Face repo. When two repos ship checkpoints with the same file name, both
 summaries are prefixed with the checkpoint's uploader (unsloth-Qwen3-Coder-30B-A3B-Instruct-Q4_K_M). Summaries of
-repos that are no longer in the org are deleted.
+repos that are no longer in the org, or are private, are deleted.
 
     python summarize_info.py [--org loom-fun] [--out summaries]
     python summarize_info.py --check    # list repo -> summary file and what a run would change, write nothing
@@ -287,8 +287,8 @@ def existing(out):
 
 
 def list_repos(api, org):
-    """Every model repo in `org`, sorted case-insensitively."""
-    return sorted({m.id for m in api.list_models(author=org)}, key=str.lower)
+    """Every public model repo in `org`, sorted case-insensitively."""
+    return sorted({m.id for m in api.list_models(author=org) if not m.private}, key=str.lower)
 
 
 def check(api, org, out):
