@@ -3,7 +3,7 @@
   "checkpoint": "MiniCPM-V-4.7-35B-A3B-Q4_K_M",
   "name": "MiniCPM-V-4.7-35B-A3B",
   "repo": "loom-fun/bartowski-MiniCPM-V-4.7-35B-A3B-loom",
-  "revision": "ddf39365f5c9e100ec7a53670b3121fc38af6933",
+  "revision": "febde346ab7c7528c9491caaca3e6e6ab643d3a0",
   "status": null,
   "license": null,
   "service": {
@@ -44,10 +44,10 @@
   },
   "performance": {
     "date": null,
-    "llamacpp_build": "b1373",
+    "llamacpp_build": "b1374",
     "drafting": {
       "loom": null,
-      "llamacpp": "ngram-simple"
+      "llamacpp": null
     },
     "source": null,
     "metrics": {
@@ -106,57 +106,57 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-12",
+      "date": "2026-11-13",
       "source": {
         "kind": "devlab",
-        "run": "43192577370",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43192577370/job/131095495160"
+        "run": "43376548212",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300488"
       },
       "metrics": {
         "decode": {
-          "loom": 60.5,
-          "llamacpp": 50.4,
-          "speedup": 1.2
+          "loom": 59.0,
+          "llamacpp": 52.6,
+          "speedup": 1.12
         },
         "decode_2k": {
-          "loom": 58.8,
-          "llamacpp": 49.6,
-          "speedup": 1.19
+          "loom": 57.3,
+          "llamacpp": 51.8,
+          "speedup": 1.11
         },
         "decode_32k": {
-          "loom": 47.2,
-          "llamacpp": 39.9,
-          "speedup": 1.18
+          "loom": 48.2,
+          "llamacpp": 44.9,
+          "speedup": 1.07
         },
         "prefill_1k": {
-          "loom": 2446.7,
-          "llamacpp": 1283.2,
-          "speedup": 1.91
+          "loom": 2322.7,
+          "llamacpp": 1271.6,
+          "speedup": 1.83
         },
         "prefill_2k": {
-          "loom": 2567.4,
-          "llamacpp": 1258.2,
-          "speedup": 2.04
+          "loom": 2518.3,
+          "llamacpp": 1373.1,
+          "speedup": 1.83
         },
         "prefill_8k": {
-          "loom": 2721.2,
-          "llamacpp": 935.2,
-          "speedup": 2.91
+          "loom": 2630.1,
+          "llamacpp": 1376.1,
+          "speedup": 1.91
         },
         "prefill_16k": {
-          "loom": 2437.7,
-          "llamacpp": 837.1,
-          "speedup": 2.91
+          "loom": 2383.5,
+          "llamacpp": 1260.9,
+          "speedup": 1.89
         },
         "prefill_32k": {
-          "loom": 2101.1,
-          "llamacpp": 709.4,
-          "speedup": 2.96
+          "loom": 2055.5,
+          "llamacpp": 1068.8,
+          "speedup": 1.92
         },
         "streams4": {
-          "loom": 153.3,
-          "llamacpp": 122.0,
-          "speedup": 1.26
+          "loom": 155.5,
+          "llamacpp": 126.1,
+          "speedup": 1.23
         }
       }
     }

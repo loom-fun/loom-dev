@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-32B-Instruct-Q4_K_M",
   "name": "Qwen2.5-32B-Instruct",
   "repo": "loom-fun/bartowski-Qwen2.5-32B-Instruct-loom",
-  "revision": "8c3bf8fc3821514e98320e7b5e5cbfa287aedc74",
+  "revision": "6873f105e953a32e126db7697eca4c95a962dccd",
   "status": null,
   "license": null,
   "service": {
@@ -38,7 +38,7 @@
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
-    "speculative_decoding": "yes",
+    "speculative_decoding": "n/a",
     "thinking": "n/a",
     "tool_calling": "yes"
   },
@@ -46,7 +46,7 @@
     "date": null,
     "llamacpp_build": "b1373",
     "drafting": {
-      "loom": "n-gram prompt lookup, depth 1",
+      "loom": null,
       "llamacpp": null
     },
     "source": null,
@@ -97,12 +97,14 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.16,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [],
+    "not_applicable": [
+      "spec_acceptance"
+    ],
     "devlab": {
       "date": "2026-11-12",
       "source": {
@@ -161,10 +163,10 @@
   },
   "gates": {
     "summary": {
-      "pass": 9,
+      "pass": 8,
       "fail": 0,
       "unknown": 0,
-      "n/a": 3
+      "n/a": 4
     },
     "status": {
       "kernel_tests": "pass",
@@ -172,7 +174,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "pass",
+      "spec": "n/a",
       "agent": "pass",
       "agent_think_off": "n/a",
       "sampling": "pass",
