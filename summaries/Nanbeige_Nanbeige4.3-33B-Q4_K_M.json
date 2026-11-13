@@ -3,7 +3,7 @@
   "checkpoint": "Nanbeige_Nanbeige4.3-33B-Q4_K_M",
   "name": "Nanbeige_Nanbeige4.3-33B",
   "repo": "loom-fun/bartowski-Nanbeige4.3-33B-loom",
-  "revision": "560e03e4b66c80b91b7401ee3f813ff9cf99cc9c",
+  "revision": "c65002506c1e8e5b77e8651fc3f2d15fc230f322",
   "status": null,
   "license": null,
   "service": {
@@ -31,10 +31,10 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "n/a",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -44,10 +44,10 @@
   },
   "performance": {
     "date": null,
-    "llamacpp_build": "b1373",
+    "llamacpp_build": "b1374",
     "drafting": {
       "loom": null,
-      "llamacpp": "ngram-simple"
+      "llamacpp": null
     },
     "source": null,
     "metrics": {
@@ -106,57 +106,57 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-12",
+      "date": "2026-11-13",
       "source": {
         "kind": "devlab",
-        "run": "43307937733",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43307937733"
+        "run": "43376548212",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300420"
       },
       "metrics": {
         "decode": {
-          "loom": 11.3,
-          "llamacpp": 9.0,
-          "speedup": 1.26
+          "loom": 11.2,
+          "llamacpp": 10.6,
+          "speedup": 1.06
         },
         "decode_2k": {
-          "loom": 10.8,
-          "llamacpp": 7.3,
-          "speedup": 1.48
+          "loom": 10.7,
+          "llamacpp": 9.7,
+          "speedup": 1.1
         },
         "decode_32k": {
           "loom": 8.1,
-          "llamacpp": 1.3,
-          "speedup": 6.23
+          "llamacpp": 2.4,
+          "speedup": 3.38
         },
         "prefill_1k": {
-          "loom": 430.0,
-          "llamacpp": 286.7,
-          "speedup": 1.5
+          "loom": 420.3,
+          "llamacpp": 322.6,
+          "speedup": 1.3
         },
         "prefill_2k": {
-          "loom": 428.7,
-          "llamacpp": 257.6,
-          "speedup": 1.66
+          "loom": 418.5,
+          "llamacpp": 323.0,
+          "speedup": 1.3
         },
         "prefill_8k": {
-          "loom": 404.3,
-          "llamacpp": 189.6,
-          "speedup": 2.13
+          "loom": 397.5,
+          "llamacpp": 287.6,
+          "speedup": 1.38
         },
         "prefill_16k": {
-          "loom": 350.1,
-          "llamacpp": 153.5,
-          "speedup": 2.28
+          "loom": 345.2,
+          "llamacpp": 244.7,
+          "speedup": 1.41
         },
         "prefill_32k": {
-          "loom": 262.0,
-          "llamacpp": 104.6,
-          "speedup": 2.5
+          "loom": 258.4,
+          "llamacpp": 186.2,
+          "speedup": 1.39
         },
         "streams4": {
-          "loom": 42.8,
-          "llamacpp": 33.9,
-          "speedup": 1.26
+          "loom": 42.6,
+          "llamacpp": 34.1,
+          "speedup": 1.25
         }
       }
     }
