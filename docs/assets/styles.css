@@ -524,7 +524,7 @@ body.open { overflow: hidden; }
   .hs-n b { display: inline; margin-right: 8px; }
   .grid { grid-template-columns: minmax(0, 1fr); }
   .chart-panel .chart-body { overflow-x: auto; }
-  .c-strip, .c-scatter { min-width: 720px; }
+  .c-scatter { min-width: 720px; }
   .board td.name b, .board td.name small { max-width: 150px; }
   .board .rb { display: none; }
   .readout { font-size: 11px; }

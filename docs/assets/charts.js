@@ -13,12 +13,23 @@ const CHARTS = (() => {
   const tk = r => r === 1 ? '1.00×' : `${r}×`;
 
   // Rows = workloads, dots = models, on a log ratio axis centred on parity.
-  function strip(list) {
-    const W = 1000, L = 210, R = 128, top = 34, rowH = 30, H = top + METRICS.length * rowH + 26;
+  // opts.label(metric) replaces the two-column label/detail text; opts.wins = false drops the wins column.
+  // opts.width is the drawing width in px (default 1000); below 640 the layout compacts so text keeps its size.
+  function strip(list, opts = {}) {
+    const W = Math.max(300, Math.round(opts.width || 1000)), narrow = W < 640;
+    const label = opts.label || (narrow ? (x => x.short) : null);
+    const showWins = opts.wins !== false && !narrow;
+    const L = label ? (narrow ? 90 : 110) : 210, R = showWins ? 128 : (narrow ? 60 : 84), vx = W - R + (narrow ? 10 : 16);
+    const top = 34, rowH = 30, H = top + METRICS.length * rowH + 26;
     const X = r => ratioX(r, L, W - R);
     let b = `<rect x="${L}" y="${top - 6}" width="${(X(1) - L).toFixed(1)}" height="${METRICS.length * rowH + 4}" class="zone-lo"/>`;
-    b += `<text x="${X(1) - 8}" y="${top - 14}" class="ax-t" text-anchor="end">← llama.cpp faster</text><text x="${X(1) + 8}" y="${top - 14}" class="ax-t">loom faster →</text>`;
-    RATIO_TICKS.forEach(r => {
+    b += `<text x="${X(1) - 8}" y="${top - 14}" class="ax-t" text-anchor="end">← llama.cpp${narrow ? '' : ' faster'}</text><text x="${X(1) + 8}" y="${top - 14}" class="ax-t">loom${narrow ? '' : ' faster'} →</text>`;
+    // Keep tick labels from colliding when the plot is narrow; parity (1.00×) always stays.
+    const ticks = [];
+    [1, ...RATIO_TICKS.filter(r => r > 1), ...RATIO_TICKS.filter(r => r < 1).reverse()].forEach(r => {
+      if (ticks.every(q => Math.abs(X(q) - X(r)) >= 50)) ticks.push(r);
+    });
+    ticks.forEach(r => {
       b += `<line x1="${X(r)}" x2="${X(r)}" y1="${top - 6}" y2="${H - 22}" class="${r === 1 ? 'ax-par' : 'ax-grid'}"/>`;
       b += `<text x="${X(r)}" y="${H - 8}" class="ax-t" text-anchor="middle">${tk(r)}</text>`;
     });
@@ -28,17 +39,35 @@ const CHARTS = (() => {
       const rs = pts.map(([, p]) => p.speedup), med = median(rs);
       const wins = rs.filter(r => r > 1.005).length;
       if (i && METRICS[i - 1].group !== x.group) b += `<line x1="8" x2="${W - 8}" y1="${y - rowH / 2}" y2="${y - rowH / 2}" class="ax-sep"/>`;
-      b += `<text x="8" y="${y + 4}" class="ax-l">${x.label}</text><text x="${L - 14}" y="${y + 4}" class="ax-t" text-anchor="end">${x.detail}</text>`;
+      b += label
+        ? `<text x="8" y="${y + 4}" class="ax-l">${label(x)}</text>`
+        : `<text x="8" y="${y + 4}" class="ax-l">${x.label}</text><text x="${L - 14}" y="${y + 4}" class="ax-t" text-anchor="end">${x.detail}</text>`;
       b += `<line x1="${L}" x2="${W - R}" y1="${y}" y2="${y}" class="ax-row"/>`;
       if (med != null) b += `<line x1="${X(med)}" x2="${X(med)}" y1="${y - 10}" y2="${y + 10}" class="med"/>`;
       pts.forEach(([m, p]) => {
         const jy = y + ((m.rank % 5) - 2) * 3;
         b += `<rect x="${(X(p.speedup) - 3.5).toFixed(1)}" y="${(jy - 3.5).toFixed(1)}" width="7" height="7" class="pt ${p.speedup < 1 ? 'pt-lo' : ''}" data-id="${esc(m.id)}" data-k="${x.key}"/>`;
       });
-      b += `<text x="${W - R + 16}" y="${y + 4}" class="ax-v">${med == null ? '—' : times(med)}</text><text x="${W - 8}" y="${y + 4}" class="ax-t" text-anchor="end">${wins}/${rs.length}</text>`;
+      b += `<text x="${vx}" y="${y + 4}" class="ax-v">${med == null ? '—' : times(med)}</text>`;
+      if (showWins) b += `<text x="${W - 8}" y="${y + 4}" class="ax-t" text-anchor="end">${wins}/${rs.length}</text>`;
     });
-    b += `<text x="${W - R + 16}" y="${top - 14}" class="ax-t">median</text><text x="${W - 8}" y="${top - 14}" class="ax-t" text-anchor="end">wins</text>`;
+    b += `<text x="${vx}" y="${top - 14}" class="ax-t">median</text>`;
+    if (showWins) b += `<text x="${W - 8}" y="${top - 14}" class="ax-t" text-anchor="end">wins</text>`;
     return svg(W, H, b, 'c-strip');
+  }
+
+  // Draw the strip into `el` at its real width (capped at 1000) and redraw when that width changes.
+  function mountStrip(el, list, opts = {}) {
+    let w0 = 0;
+    const draw = w => {
+      w = Math.min(1000, Math.round(w));
+      if (!w || w === w0) return;
+      w0 = w;
+      el.innerHTML = strip(list, { ...opts, width: w });
+    };
+    const content = () => { const cs = getComputedStyle(el); return el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); };
+    draw(content() || 1000);
+    if (window.ResizeObserver) new ResizeObserver(() => draw(content())).observe(el);
   }
 
   // Model size vs absolute throughput, both engines, log-log.
@@ -190,5 +219,5 @@ const CHARTS = (() => {
     });
   }
 
-  return { strip, scatter, scaling, coverage, link };
+  return { strip, mountStrip, scatter, scaling, coverage, link };
 })();

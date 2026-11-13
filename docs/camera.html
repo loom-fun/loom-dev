@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Loom: speedup by workload</title>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css?v=19">
+  <script src="assets/loom-data.js?v=9"></script>
+  <script src="assets/loom-lib.js?v=13"></script>
+  <script src="assets/charts.js?v=13"></script>
+  <style>
+    /* Camera-ready snapshot of the home page's "by workload" chart: every label in the bright text color. */
+    body { background: var(--bg); }
+    .cam { max-width: 1040px; margin: 40px auto; padding: 0 20px; }
+    .cam .panel-head { color: var(--hi); font-size: 13px; }
+    .cam .chart .ax-t, .cam .chart .ax-v, .cam .chart .ax-l { fill: var(--hi); }
+    .cam .chart .ax-t { font-size: 12px; }
+    .cam .chart .ax-v { font-size: 13px; }
+    .cam .chart .ax-l { font-size: 14px; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <main class="cam">
+    <div class="panel chart-panel"><div class="panel-head"><span>speedup · loom ÷ llama.cpp</span><span id="meta"></span></div><div class="chart-body" id="strip"></div></div>
+  </main>
+  <script>
+    (() => {
+      // tg = token generation (decode), pp = prompt processing (prefill), at the given context/document size.
+      const LABELS = {
+        decode: 'tg@short', decode_2k: 'tg@2k', decode_32k: 'tg@32k',
+        prefill_1k: 'pp@1k', prefill_2k: 'pp@2k', prefill_8k: 'pp@8k', prefill_16k: 'pp@16k', prefill_32k: 'pp@32k',
+        streams4: '4 streams',
+      };
+      CHARTS.mountStrip(document.getElementById('strip'), LOOM.models, { label: x => LABELS[x.key] || x.label, wins: false });
+      document.getElementById('meta').textContent = `${LOOM.stats().runs} measurements · 50+ models`;
+    })();
+  </script>
+</body>
+</html>

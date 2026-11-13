@@ -29,7 +29,7 @@
   search();
 
   // Charts, hover-linked through #field
-  el('strip').innerHTML = CHARTS.strip(models);
+  CHARTS.mountStrip(el('strip'), models);
   const all = models.flatMap(m => m.measured);
   const groupLine = g => {
     const xs = all.filter(x => x.group === g);
