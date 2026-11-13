@@ -142,7 +142,7 @@ const LOOM = (() => {
     const on = m.features[k] === 'yes';
     return `<i class="flag ${on ? 'on' : ''}" title="${label}: ${on ? 'yes' : 'no'}">${on ? l : '·'}</i>`;
   }).join('');
-  const HOT = new Set(['Qwen3.8-Flash-Next']);
+  const HOT = new Set();
   const hot = m => HOT.has(m.name) ? '<span class="hot" title="hot model today">🔥</span>' : '';
   const sub = m => [esc(m.org), esc(m.quant), gb(m.sizeBytes),
     m.serve.context_tokens ? `${ctx(m.serve.context_tokens)} ctx` : null,
