@@ -3,7 +3,7 @@
   "checkpoint": "Llama-3.1-8B-Instruct-Q4_K_M",
   "name": "Llama-3.1-8B-Instruct",
   "repo": "loom-fun/unsloth-Llama-3.1-8B-Instruct-loom",
-  "revision": "f58c17307412774ac9ca1c919f881db5816e2c77",
+  "revision": "76ccdaf81f9557317d3ad19cd3eb62c69263bf7b",
   "status": null,
   "license": null,
   "service": {

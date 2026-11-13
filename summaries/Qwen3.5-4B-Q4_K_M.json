@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-4B-Q4_K_M",
   "name": "Qwen3.5-4B",
   "repo": "loom-fun/unsloth-Qwen3.5-4B-loom",
-  "revision": "ddb40201ed857afae3e128027a4d1485e1b7aa66",
+  "revision": "a17921489ed0dfc182d6b2efda020293e7a00a66",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -20,8 +20,8 @@
       "size": 2740937888
     },
     "drafter": {
-      "repo": "AtomicChat/Qwen3.5-4B-DFlash-GGUF",
-      "file": "Qwen3.5-4B-DFlash.Q8_0.gguf",
+      "repo": "magnitudedev/Qwen3.5-4B-DFlash-GGUF",
+      "file": "Qwen3.5-4B-DFlash-Q8_0.gguf",
       "quant": "Q8_0"
     },
     "projector": {
