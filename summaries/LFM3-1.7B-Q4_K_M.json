@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-1.7B-Q4_K_M",
   "name": "LFM3-1.7B",
   "repo": "loom-fun/bartowski-LFM3-1.7B-loom",
-  "revision": "661802f20a247e7965690fe6de569e396955bcac",
+  "revision": "ea8117c6ef6f5f8535e0f61eb77af3147ffe8710",
   "status": null,
   "license": null,
   "service": {
@@ -38,15 +38,15 @@
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
-    "speculative_decoding": "yes",
+    "speculative_decoding": "n/a",
     "thinking": "yes",
     "tool_calling": "yes"
   },
   "performance": {
     "date": null,
-    "llamacpp_build": "b1370",
+    "llamacpp_build": "b1374",
     "drafting": {
-      "loom": "n-gram prompt lookup, depth 2",
+      "loom": null,
       "llamacpp": null
     },
     "source": null,
@@ -97,74 +97,76 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.11,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [],
+    "not_applicable": [
+      "spec_acceptance"
+    ],
     "devlab": {
-      "date": "2026-11-11",
+      "date": "2026-11-13",
       "source": {
         "kind": "devlab",
-        "run": "43075216088",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43075216088"
+        "run": "43366369607",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43366369607"
       },
       "metrics": {
         "decode": {
-          "loom": 155.9,
-          "llamacpp": 125.0,
-          "speedup": 1.25
+          "loom": 169.5,
+          "llamacpp": 126.8,
+          "speedup": 1.34
         },
         "decode_2k": {
-          "loom": 164.1,
-          "llamacpp": 120.8,
-          "speedup": 1.36
+          "loom": 162.6,
+          "llamacpp": 121.5,
+          "speedup": 1.34
         },
         "decode_32k": {
-          "loom": 112.1,
-          "llamacpp": 86.8,
-          "speedup": 1.29
+          "loom": 126.6,
+          "llamacpp": 84.8,
+          "speedup": 1.49
         },
         "prefill_1k": {
-          "loom": 7144.9,
-          "llamacpp": 4915.2,
-          "speedup": 1.45
+          "loom": 7206.1,
+          "llamacpp": 4772.2,
+          "speedup": 1.51
         },
         "prefill_2k": {
-          "loom": 7330.6,
-          "llamacpp": 4830.8,
-          "speedup": 1.52
+          "loom": 7174.1,
+          "llamacpp": 4765.7,
+          "speedup": 1.51
         },
         "prefill_8k": {
-          "loom": 7309.7,
-          "llamacpp": 4264.9,
-          "speedup": 1.71
+          "loom": 7158.3,
+          "llamacpp": 4595.0,
+          "speedup": 1.56
         },
         "prefill_16k": {
-          "loom": 6757.1,
-          "llamacpp": 3671.5,
-          "speedup": 1.84
+          "loom": 6664.1,
+          "llamacpp": 3857.0,
+          "speedup": 1.73
         },
         "prefill_32k": {
-          "loom": 5992.2,
-          "llamacpp": 2815.1,
-          "speedup": 2.13
+          "loom": 5724.0,
+          "llamacpp": 2821.3,
+          "speedup": 2.03
         },
         "streams4": {
-          "loom": 425.4,
-          "llamacpp": 324.1,
-          "speedup": 1.31
+          "loom": 616.2,
+          "llamacpp": 311.6,
+          "speedup": 1.98
         }
       }
     }
   },
   "gates": {
     "summary": {
-      "pass": 10,
+      "pass": 9,
       "fail": 0,
       "unknown": 0,
-      "n/a": 2
+      "n/a": 3
     },
     "status": {
       "kernel_tests": "pass",
@@ -172,7 +174,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "pass",
+      "spec": "n/a",
       "agent": "pass",
       "agent_think_off": "pass",
       "sampling": "pass",
