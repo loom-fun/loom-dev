@@ -1,0 +1,193 @@
+{
+ "checkpoint": "gemma-4-12b-it-Q4_K_M",
+ "devices": {
+  "strix-halo": {
+   "required_bytes": null,
+   "state": "not_measured"
+  }
+ },
+ "features": {
+  "api": "yes",
+  "audio": "no",
+  "concurrency": "yes",
+  "context": "yes",
+  "image_input": "no",
+  "max_output_tokens": "yes",
+  "reasoning_effort": "n/a",
+  "sampling": "yes",
+  "speculative_decoding": "yes",
+  "thinking": "yes",
+  "tool_calling": "yes"
+ },
+ "gates": {
+  "status": {
+   "agent": "pass",
+   "agent_think_off": "pass",
+   "compare": "pass",
+   "consistency": "pass",
+   "decision": "n/a",
+   "golden": "pass",
+   "kernel_tests": "pass",
+   "sampling": "pass",
+   "spec": "pass",
+   "vision": "n/a"
+  },
+  "summary": {
+   "fail": 0,
+   "n/a": 2,
+   "pass": 8,
+   "unknown": 0
+  }
+ },
+ "license": "lic",
+ "name": "gemma-4-12B-it",
+ "performance": {
+  "date": null,
+  "devlab": {
+   "date": "2026-11-14",
+   "metrics": {
+    "decode": {
+     "llamacpp": 67.7,
+     "loom": 126.3,
+     "speedup": 1.87
+    },
+    "decode_2k": {
+     "llamacpp": 59.6,
+     "loom": 96.6,
+     "speedup": 1.62
+    },
+    "decode_32k": {
+     "llamacpp": 48.1,
+     "loom": 81.8,
+     "speedup": 1.7
+    },
+    "prefill_16k": {
+     "llamacpp": 1791.3,
+     "loom": 3142.0,
+     "speedup": 1.75
+    },
+    "prefill_1k": {
+     "llamacpp": 1907.9,
+     "loom": 3177.7,
+     "speedup": 1.67
+    },
+    "prefill_2k": {
+     "llamacpp": 2055.9,
+     "loom": 3463.4,
+     "speedup": 1.68
+    },
+    "prefill_32k": {
+     "llamacpp": 1403.6,
+     "loom": 2742.4,
+     "speedup": 1.95
+    },
+    "prefill_8k": {
+     "llamacpp": 2064.3,
+     "loom": 3336.6,
+     "speedup": 1.62
+    },
+    "streams4": {
+     "llamacpp": 166.0,
+     "loom": 261.4,
+     "speedup": 1.57
+    }
+   },
+   "source": {
+    "kind": "devlab",
+    "run": "43560650043",
+    "url": "https://github.com/loom-fun/loom-skills/actions/runs/43560650043/job/132343364693"
+   }
+  },
+  "drafting": {
+   "llamacpp": "draft-dflash, n-max 16",
+   "loom": "DFlash, depth 3"
+  },
+  "llamacpp_build": "b1375",
+  "metrics": {
+   "decode": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "decode_2k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "decode_32k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_16k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_1k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_2k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_32k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_8k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "spec_acceptance": {
+    "llamacpp": null,
+    "loom": 0.43,
+    "speedup": null
+   },
+   "streams4": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   }
+  },
+  "not_applicable": [],
+  "source": null
+ },
+ "primary_device": "radeon-r9700",
+ "repo": "loom-fun-staging/unsloth-gemma-4-12B-it-loom",
+ "revision": "rev",
+ "schema": "loom-summary/1",
+ "serve": {
+  "context_tokens": 160768,
+  "device": "amdgpu",
+  "max_tokens": 4096,
+  "memory_bytes": 81000000000,
+  "rows": 4
+ },
+ "service": {
+  "endpoint": "/v1/chat/completions",
+  "kind": "chat"
+ },
+ "status": null,
+ "weights": {
+  "checkpoint": {
+   "file": "gemma-4-12b-it-Q4_K_M.gguf",
+   "quant": "Q4_K_M",
+   "repo": "unsloth/gemma-4-12B-it-GGUF",
+   "revision": "fc034cfff751157913579611efad8462ac1be606",
+   "sha256": "0a270ec9fe6b34f4a0d33992b6135117b484ebc4766ab76b51d4ae8c457e4c42",
+   "size": 7121861440
+  },
+  "drafter": {
+   "file": "gemma4-12B-it-DFlash-Q4_K_M.gguf",
+   "quant": "Q4_K_M",
+   "repo": "Anbeeld/gemma4-12B-it-DFlash-GGUF"
+  },
+  "projector": null
+ }
+}

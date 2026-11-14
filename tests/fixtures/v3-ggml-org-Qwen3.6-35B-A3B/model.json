@@ -1,0 +1,127 @@
+{
+ "schema_version": 1,
+ "model": {
+  "id": "Qwen/Qwen3.6-35B-A3B",
+  "name": "Qwen3.6-35B-A3B (Loom port, GGUF)"
+ },
+ "programs": {
+  "source": {
+   "inputs": [
+    {
+     "path": "program/prepare.loom",
+     "data": [
+      "weights.loom",
+      "head_weights.loom"
+     ]
+    },
+    "program/control.loom",
+    "program/storage.loom",
+    "program/service.loom",
+    "program/vision_prepare.loom",
+    "program/vision_control.loom"
+   ],
+   "libraries": [
+    "program/llm.loom",
+    "program/vision_stages.loom",
+    "program/vision_encoder.loom"
+   ]
+  }
+ },
+ "services": {
+  "chat": {
+   "kind": "text",
+   "version": 1,
+   "components": {
+    "image": {
+     "version": 1
+    }
+   }
+  }
+ },
+ "variants": {
+  "gguf": {
+   "services": {
+    "chat": {
+     "programs": [
+      "source"
+     ],
+     "config": {
+      "llm.card": true
+     },
+     "parameters": {
+      "model": {
+       "files": [
+        {
+         "path": "parameter/Qwen3.6-35B-A3B-Q4_K_M.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/Qwen3.6-35B-A3B-Q4_K_M.gguf"
+        }
+       ]
+      },
+      "draft": {
+       "files": [
+        {
+         "path": "parameter/Qwen3.6-35B-A3B-DFlash-Q8_0.gguf",
+         "format": "gguf",
+         "origin": "@drafter/Qwen3.6-35B-A3B-DFlash-Q8_0.gguf"
+        }
+       ]
+      },
+      "vision": {
+       "files": [
+        {
+         "path": "parameter/mmproj-Qwen3.6-35B-A3B-BF16.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/mmproj-Qwen3.6-35B-A3B-BF16.gguf"
+        }
+       ]
+      }
+     },
+     "tokenizers": {
+      "text": "tokenizer.json"
+     }
+    }
+   }
+  }
+ },
+ "presets": {
+  "chat": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 262144,
+    "pool_capacity": 327680,
+    "prefill_capacity": 4096,
+    "max_tokens": 4096,
+    "draft_depth": 3
+   }
+  },
+  "chat-r9700": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 84992,
+    "pool_capacity": 84992,
+    "prefill_capacity": 2048,
+    "max_tokens": 4096,
+    "draft_depth": 3
+   }
+  }
+ },
+ "origins": {
+  "checkpoint": {
+   "kind": "hf",
+   "repository": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+   "revision": "52f9f9b8052fb9c8b69bba4a95eda0f319ac3d2a"
+  },
+  "drafter": {
+   "kind": "hf",
+   "repository": "magnitudedev/Qwen3.6-35B-A3B-DFlash-GGUF",
+   "revision": "4f5e4df8dc4520256bdc0bc8752c7010bbfb1eec"
+  }
+ }
+}

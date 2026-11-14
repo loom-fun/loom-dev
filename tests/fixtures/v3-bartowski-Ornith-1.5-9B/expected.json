@@ -1,0 +1,197 @@
+{
+ "checkpoint": "Ornith-1.5-9B-Q4_K_M",
+ "devices": {
+  "strix-halo": {
+   "required_bytes": null,
+   "state": "not_measured"
+  }
+ },
+ "features": {
+  "api": "yes",
+  "audio": "n/a",
+  "concurrency": "yes",
+  "context": "yes",
+  "image_input": "yes",
+  "max_output_tokens": "yes",
+  "reasoning_effort": "n/a",
+  "sampling": "yes",
+  "speculative_decoding": "yes",
+  "thinking": "yes",
+  "tool_calling": "yes"
+ },
+ "gates": {
+  "status": {
+   "agent": "pass",
+   "agent_think_off": "pass",
+   "compare": "pass",
+   "consistency": "pass",
+   "decision": "n/a",
+   "golden": "pass",
+   "kernel_tests": "pass",
+   "sampling": "pass",
+   "spec": "pass",
+   "vision": "pass"
+  },
+  "summary": {
+   "fail": 0,
+   "n/a": 1,
+   "pass": 9,
+   "unknown": 0
+  }
+ },
+ "license": "mit",
+ "name": "Ornith-1.5-9B",
+ "performance": {
+  "date": null,
+  "devlab": {
+   "date": "2026-11-14",
+   "metrics": {
+    "decode": {
+     "llamacpp": 90.6,
+     "loom": 151.2,
+     "speedup": 1.67
+    },
+    "decode_2k": {
+     "llamacpp": 96.4,
+     "loom": 127.6,
+     "speedup": 1.32
+    },
+    "decode_32k": {
+     "llamacpp": 67.8,
+     "loom": 90.2,
+     "speedup": 1.33
+    },
+    "prefill_16k": {
+     "llamacpp": 3414.7,
+     "loom": 5271.8,
+     "speedup": 1.54
+    },
+    "prefill_1k": {
+     "llamacpp": 3268.3,
+     "loom": 4881.6,
+     "speedup": 1.49
+    },
+    "prefill_2k": {
+     "llamacpp": 3428.5,
+     "loom": 5222.6,
+     "speedup": 1.52
+    },
+    "prefill_32k": {
+     "llamacpp": 3166.5,
+     "loom": 4806.8,
+     "speedup": 1.52
+    },
+    "prefill_8k": {
+     "llamacpp": 3525.7,
+     "loom": 5499.1,
+     "speedup": 1.56
+    },
+    "streams4": {
+     "llamacpp": 231.8,
+     "loom": 337.3,
+     "speedup": 1.46
+    }
+   },
+   "source": {
+    "kind": "devlab",
+    "run": "43560709637",
+    "url": "https://github.com/loom-fun/loom-skills/actions/runs/43560709637/job/132343556116"
+   }
+  },
+  "drafting": {
+   "llamacpp": "draft-dflash, n-max 8",
+   "loom": "DFlash, depth 3"
+  },
+  "llamacpp_build": "b1375",
+  "metrics": {
+   "decode": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "decode_2k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "decode_32k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_16k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_1k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_2k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_32k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_8k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "spec_acceptance": {
+    "llamacpp": null,
+    "loom": 0.7,
+    "speedup": null
+   },
+   "streams4": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   }
+  },
+  "not_applicable": [],
+  "source": null
+ },
+ "primary_device": "radeon-r9700",
+ "repo": "loom-fun-staging/bartowski-Ornith-1.5-9B-loom",
+ "revision": "rev",
+ "schema": "loom-summary/1",
+ "serve": {
+  "context_tokens": 262144,
+  "device": "amdgpu",
+  "max_tokens": 4096,
+  "memory_bytes": 32000000000,
+  "rows": 4
+ },
+ "service": {
+  "endpoint": "/v1/chat/completions",
+  "kind": "chat"
+ },
+ "status": null,
+ "weights": {
+  "checkpoint": {
+   "file": "Ornith-1.5-9B-Q4_K_M.gguf",
+   "quant": "Q4_K_M",
+   "repo": "bartowski/Ornith-1.5-9B-GGUF",
+   "revision": "1fc60d6805eaa18bbed4088391db9336eb9581c4",
+   "sha256": "886e98b1d7f6e7d7f277a261d692f1a38edd08e24d28c5f9bcf689169ed4b266",
+   "size": 5910782848
+  },
+  "drafter": {
+   "file": "Ornith-1.5-9B-DFlash-Q4_K_M.gguf",
+   "quant": "Q4_K_M",
+   "repo": "abenzerps/Ornith-1.5-9B-DFlash-GGUF"
+  },
+  "projector": {
+   "file": "mmproj-Ornith-1.5-9B-f16.gguf",
+   "quant": null,
+   "repo": "bartowski/Ornith-1.5-9B-GGUF"
+  }
+ }
+}

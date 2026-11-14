@@ -1,0 +1,113 @@
+{
+ "schema_version": 1,
+ "model": {
+  "id": "ornith-ai/Ornith-1.5-9B",
+  "name": "Ornith 1.5 9B (Loom port, GGUF)"
+ },
+ "programs": {
+  "source": {
+   "inputs": [
+    {
+     "path": "program/prepare.loom",
+     "data": [
+      "weights.loom"
+     ]
+    },
+    "program/control.loom",
+    "program/storage.loom",
+    "program/service.loom",
+    "program/vision_prepare.loom",
+    "program/vision_control.loom"
+   ],
+   "libraries": [
+    "program/llm.loom",
+    "program/vision_stages.loom",
+    "program/vision_encoder.loom"
+   ]
+  }
+ },
+ "services": {
+  "chat": {
+   "kind": "text",
+   "version": 1,
+   "components": {
+    "image": {
+     "version": 1
+    }
+   }
+  }
+ },
+ "variants": {
+  "gguf": {
+   "services": {
+    "chat": {
+     "programs": [
+      "source"
+     ],
+     "config": {
+      "llm.card": true
+     },
+     "parameters": {
+      "model": {
+       "files": [
+        {
+         "path": "parameter/Ornith-1.5-9B-Q4_K_M.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/Ornith-1.5-9B-Q4_K_M.gguf"
+        }
+       ]
+      },
+      "draft": {
+       "files": [
+        {
+         "path": "parameter/Ornith-1.5-9B-DFlash-Q4_K_M.gguf",
+         "format": "gguf",
+         "origin": "@drafter/Ornith-1.5-9B-DFlash-Q4_K_M.gguf"
+        }
+       ]
+      },
+      "vision": {
+       "files": [
+        {
+         "path": "parameter/mmproj-Ornith-1.5-9B-f16.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/mmproj-Ornith-1.5-9B-f16.gguf"
+        }
+       ]
+      }
+     },
+     "tokenizers": {
+      "text": "tokenizer.json"
+     }
+    }
+   }
+  }
+ },
+ "presets": {
+  "chat": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 262144,
+    "pool_capacity": 327680,
+    "prefill_capacity": 1024,
+    "max_tokens": 4096,
+    "draft_depth": 3
+   }
+  }
+ },
+ "origins": {
+  "checkpoint": {
+   "kind": "hf",
+   "repository": "bartowski/Ornith-1.5-9B-GGUF",
+   "revision": "1fc60d6805eaa18bbed4088391db9336eb9581c4"
+  },
+  "drafter": {
+   "kind": "hf",
+   "repository": "abenzerps/Ornith-1.5-9B-DFlash-GGUF",
+   "revision": "4ba29c7a17fb17ba07deb79e25ebdeb00fd01e01"
+  }
+ }
+}

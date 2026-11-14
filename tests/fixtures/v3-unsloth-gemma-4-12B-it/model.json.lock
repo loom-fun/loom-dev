@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "scope": "assets",
+  "origins": {
+    "checkpoint": {
+      "requested": {
+        "kind": "hf",
+        "repository": "unsloth/gemma-4-12B-it-GGUF",
+        "revision": "fc034cfff751157913579611efad8462ac1be606"
+      },
+      "resolved": {
+        "revision": "fc034cfff751157913579611efad8462ac1be606"
+      }
+    },
+    "drafter": {
+      "requested": {
+        "kind": "hf",
+        "repository": "Anbeeld/gemma4-12B-it-DFlash-GGUF",
+        "revision": "586b6ba31beba0d9dff7927b49d684728c4dfd69"
+      },
+      "resolved": {
+        "revision": "586b6ba31beba0d9dff7927b49d684728c4dfd69"
+      }
+    }
+  },
+  "files": [
+    {
+      "origin": "@checkpoint/gemma-4-12b-it-Q4_K_M.gguf",
+      "size": 7121861440,
+      "sha256": "0a270ec9fe6b34f4a0d33992b6135117b484ebc4766ab76b51d4ae8c457e4c42"
+    },
+    {
+      "origin": "@drafter/gemma4-12B-it-DFlash-Q4_K_M.gguf",
+      "size": 442399712,
+      "sha256": "008539fa129bce2f8726d58880b8217ccdb590b4eb2454b498b5145eb43bab3d"
+    },
+    {
+      "origin": "tokenizer.json",
+      "size": 15142596,
+      "sha256": "e92c51df732d012f3ba8a7dbd5f869dcefba01c555b140e21daec13bae102fe3"
+    }
+  ]
+}

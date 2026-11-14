@@ -1,0 +1,108 @@
+{
+ "schema_version": 1,
+ "model": {
+  "id": "google/gemma-4-12B-it",
+  "name": "Gemma-4-12B-It (Loom port, GGUF)"
+ },
+ "programs": {
+  "source": {
+   "inputs": [
+    {
+     "path": "program/prepare.loom",
+     "data": [
+      "weights.loom"
+     ]
+    },
+    "program/control.loom",
+    "program/storage.loom",
+    "program/service.loom"
+   ],
+   "libraries": [
+    "program/llm.loom"
+   ]
+  }
+ },
+ "services": {
+  "chat": {
+   "kind": "text",
+   "version": 1
+  }
+ },
+ "variants": {
+  "gguf": {
+   "services": {
+    "chat": {
+     "programs": [
+      "source"
+     ],
+     "config": {
+      "llm.card": true
+     },
+     "parameters": {
+      "model": {
+       "files": [
+        {
+         "path": "parameter/gemma-4-12b-it-Q4_K_M.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/gemma-4-12b-it-Q4_K_M.gguf"
+        }
+       ]
+      },
+      "draft": {
+       "files": [
+        {
+         "path": "parameter/gemma4-12B-it-DFlash-Q4_K_M.gguf",
+         "format": "gguf",
+         "origin": "@drafter/gemma4-12B-it-DFlash-Q4_K_M.gguf"
+        }
+       ]
+      }
+     },
+     "tokenizers": {
+      "text": "tokenizer.json"
+     }
+    }
+   }
+  }
+ },
+ "presets": {
+  "chat": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 160768,
+    "pool_capacity": 160768,
+    "prefill_capacity": 1024,
+    "max_tokens": 4096,
+    "draft_depth": 3
+   }
+  },
+  "chat-r9700": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 51200,
+    "pool_capacity": 51200,
+    "prefill_capacity": 1024,
+    "max_tokens": 4096,
+    "draft_depth": 3
+   }
+  }
+ },
+ "origins": {
+  "checkpoint": {
+   "kind": "hf",
+   "repository": "unsloth/gemma-4-12B-it-GGUF",
+   "revision": "fc034cfff751157913579611efad8462ac1be606"
+  },
+  "drafter": {
+   "kind": "hf",
+   "repository": "Anbeeld/gemma4-12B-it-DFlash-GGUF",
+   "revision": "586b6ba31beba0d9dff7927b49d684728c4dfd69"
+  }
+ }
+}
