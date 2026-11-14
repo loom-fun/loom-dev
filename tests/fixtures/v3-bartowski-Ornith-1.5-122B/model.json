@@ -1,0 +1,119 @@
+{
+ "schema_version": 1,
+ "model": {
+  "id": "ornith-ai/Ornith-1.5-122B",
+  "name": "Ornith 1.5 122B (Loom port, GGUF)"
+ },
+ "programs": {
+  "source": {
+   "inputs": [
+    {
+     "path": "program/prepare.loom",
+     "data": [
+      "weights.loom",
+      "head_weights.loom"
+     ]
+    },
+    "program/control.loom",
+    "program/storage.loom",
+    "program/service.loom",
+    "program/vision_prepare.loom",
+    "program/vision_control.loom"
+   ],
+   "libraries": [
+    "program/llm.loom",
+    "program/vision_stages.loom",
+    "program/vision_encoder.loom"
+   ]
+  }
+ },
+ "services": {
+  "chat": {
+   "kind": "text",
+   "version": 1,
+   "components": {
+    "image": {
+     "version": 1
+    }
+   }
+  }
+ },
+ "variants": {
+  "gguf": {
+   "services": {
+    "chat": {
+     "programs": [
+      "source"
+     ],
+     "config": {
+      "llm.card": true
+     },
+     "parameters": {
+      "model": {
+       "files": [
+        {
+         "path": "parameter/Ornith-1.5-122B-Q4_K_M-00001-of-00002.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/Ornith-1.5-122B-Q4_K_M/Ornith-1.5-122B-Q4_K_M-00001-of-00002.gguf"
+        },
+        {
+         "path": "parameter/Ornith-1.5-122B-Q4_K_M-00002-of-00002.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/Ornith-1.5-122B-Q4_K_M/Ornith-1.5-122B-Q4_K_M-00002-of-00002.gguf"
+        }
+       ]
+      },
+      "draft": {
+       "files": [
+        {
+         "path": "parameter/Ornith-1.5-122B-DFlash2-Q4_K_M.gguf",
+         "format": "gguf",
+         "origin": "@drafter/Ornith-1.5-122B-DFlash2-Q4_K_M.gguf"
+        }
+       ]
+      },
+      "vision": {
+       "files": [
+        {
+         "path": "parameter/mmproj-Ornith-1.5-122B-f16.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/mmproj-Ornith-1.5-122B-f16.gguf"
+        }
+       ]
+      }
+     },
+     "tokenizers": {
+      "text": "tokenizer.json"
+     }
+    }
+   }
+  }
+ },
+ "presets": {
+  "chat": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 108544,
+    "pool_capacity": 108544,
+    "prefill_capacity": 4096,
+    "max_tokens": 4096,
+    "draft_depth": 1
+   }
+  }
+ },
+ "origins": {
+  "checkpoint": {
+   "kind": "hf",
+   "repository": "bartowski/Ornith-1.5-122B-GGUF",
+   "revision": "a8bc08fa33fc3a3e79380bf661a84688c7ea0a50"
+  },
+  "drafter": {
+   "kind": "hf",
+   "repository": "kaivoss/Ornith-1.5-122B-DFlash2-GGUF",
+   "revision": "d8a9bcba85eedb76c1ee97bde2057fda631b6f65"
+  }
+ }
+}

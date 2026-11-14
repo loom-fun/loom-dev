@@ -1,0 +1,191 @@
+{
+ "checkpoint": "Qwen2.5-0.5B-Instruct-Q4_K_M",
+ "devices": {
+  "strix-halo": {
+   "required_bytes": null,
+   "state": "not_measured"
+  }
+ },
+ "features": {
+  "api": "yes",
+  "audio": "n/a",
+  "concurrency": "yes",
+  "context": "yes",
+  "image_input": "n/a",
+  "max_output_tokens": "yes",
+  "reasoning_effort": "n/a",
+  "sampling": "yes",
+  "speculative_decoding": "n/a",
+  "thinking": "n/a",
+  "tool_calling": "yes"
+ },
+ "gates": {
+  "status": {
+   "agent": "pass",
+   "agent_think_off": "n/a",
+   "compare": "pass",
+   "consistency": "pass",
+   "decision": "n/a",
+   "golden": "pass",
+   "kernel_tests": "pass",
+   "sampling": "pass",
+   "spec": "n/a",
+   "vision": "n/a"
+  },
+  "summary": {
+   "fail": 0,
+   "n/a": 4,
+   "pass": 6,
+   "unknown": 0
+  }
+ },
+ "license": "lic",
+ "name": "Qwen2.5-0.5B-Instruct",
+ "performance": {
+  "date": null,
+  "devlab": {
+   "date": "2026-11-14",
+   "metrics": {
+    "decode": {
+     "llamacpp": 373.3,
+     "loom": 644.8,
+     "speedup": 1.73
+    },
+    "decode_2k": {
+     "llamacpp": 357.9,
+     "loom": 513.2,
+     "speedup": 1.43
+    },
+    "decode_32k": {
+     "llamacpp": 256.2,
+     "loom": 326.7,
+     "speedup": 1.28
+    },
+    "prefill_16k": {
+     "llamacpp": 25381.4,
+     "loom": 36131.2,
+     "speedup": 1.42
+    },
+    "prefill_1k": {
+     "llamacpp": 32190.5,
+     "loom": 44461.5,
+     "speedup": 1.38
+    },
+    "prefill_2k": {
+     "llamacpp": 34481.9,
+     "loom": 50976.8,
+     "speedup": 1.48
+    },
+    "prefill_32k": {
+     "llamacpp": 17777.2,
+     "loom": 26041.3,
+     "speedup": 1.46
+    },
+    "prefill_8k": {
+     "llamacpp": 31601.9,
+     "loom": 44955.9,
+     "speedup": 1.42
+    },
+    "streams4": {
+     "llamacpp": 979.1,
+     "loom": 2238.0,
+     "speedup": 2.29
+    }
+   },
+   "source": {
+    "kind": "devlab",
+    "run": "43560879399",
+    "url": "https://github.com/loom-fun/loom-skills/actions/runs/43560879399/job/132344086310"
+   }
+  },
+  "drafting": {
+   "llamacpp": null,
+   "loom": null
+  },
+  "llamacpp_build": "b1375",
+  "metrics": {
+   "decode": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "decode_2k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "decode_32k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_16k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_1k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_2k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_32k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_8k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "spec_acceptance": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "streams4": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   }
+  },
+  "not_applicable": [
+   "spec_acceptance"
+  ],
+  "source": null
+ },
+ "primary_device": "radeon-r9700",
+ "repo": "loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom",
+ "revision": "rev",
+ "schema": "loom-summary/1",
+ "serve": {
+  "context_tokens": 32768,
+  "device": "amdgpu",
+  "max_tokens": 4096,
+  "memory_bytes": 5000000000,
+  "rows": 4
+ },
+ "service": {
+  "endpoint": "/v1/chat/completions",
+  "kind": "chat"
+ },
+ "status": null,
+ "weights": {
+  "checkpoint": {
+   "file": "Qwen2.5-0.5B-Instruct-Q4_K_M.gguf",
+   "quant": "Q4_K_M",
+   "repo": "bartowski/Qwen2.5-0.5B-Instruct-GGUF",
+   "revision": "41ba88dbac95fed2528c92514c131d73eb5a174b",
+   "sha256": "6eb923e7d26e9cea28811e1a8e852009b21242fb157b26149d3b188f3a8c8653",
+   "size": 397808192
+  },
+  "drafter": null,
+  "projector": null
+ }
+}

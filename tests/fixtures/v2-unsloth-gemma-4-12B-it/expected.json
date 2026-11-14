@@ -1,0 +1,186 @@
+{
+ "checkpoint": "gemma-4-12b-it-Q4_K_M",
+ "features": {
+  "api": "yes",
+  "audio": "no",
+  "concurrency": "yes",
+  "context": "yes",
+  "image_input": "no",
+  "max_output_tokens": "yes",
+  "reasoning_effort": "n/a",
+  "sampling": "yes",
+  "speculative_decoding": "yes",
+  "thinking": "yes",
+  "tool_calling": "yes"
+ },
+ "gates": {
+  "status": {
+   "agent": "pass",
+   "agent_think_off": "pass",
+   "compare": "pass",
+   "consistency": "pass",
+   "decision": "n/a",
+   "golden": "pass",
+   "kernel_tests": "pass",
+   "sampling": "pass",
+   "spec": "pass",
+   "vision": "n/a"
+  },
+  "summary": {
+   "fail": 0,
+   "n/a": 2,
+   "pass": 8,
+   "unknown": 0
+  }
+ },
+ "license": "lic",
+ "name": "gemma-4-12B-it",
+ "performance": {
+  "date": null,
+  "devlab": {
+   "date": "2026-11-13",
+   "metrics": {
+    "decode": {
+     "llamacpp": 29.7,
+     "loom": 52.3,
+     "speedup": 1.76
+    },
+    "decode_2k": {
+     "llamacpp": 27.9,
+     "loom": 39.7,
+     "speedup": 1.42
+    },
+    "decode_32k": {
+     "llamacpp": 20.6,
+     "loom": 34.6,
+     "speedup": 1.68
+    },
+    "prefill_16k": {
+     "llamacpp": 627.9,
+     "loom": 832.4,
+     "speedup": 1.33
+    },
+    "prefill_1k": {
+     "llamacpp": 662.1,
+     "loom": 972.2,
+     "speedup": 1.47
+    },
+    "prefill_2k": {
+     "llamacpp": 694.0,
+     "loom": 997.8,
+     "speedup": 1.44
+    },
+    "prefill_32k": {
+     "llamacpp": 525.0,
+     "loom": 730.7,
+     "speedup": 1.39
+    },
+    "prefill_8k": {
+     "llamacpp": 687.3,
+     "loom": 877.2,
+     "speedup": 1.28
+    },
+    "streams4": {
+     "llamacpp": 79.4,
+     "loom": 105.7,
+     "speedup": 1.33
+    }
+   },
+   "source": {
+    "kind": "devlab",
+    "run": "43376548212",
+    "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300399"
+   }
+  },
+  "drafting": {
+   "llamacpp": "draft-dflash, n-max 16",
+   "loom": "DFlash, depth 3"
+  },
+  "llamacpp_build": "b1374",
+  "metrics": {
+   "decode": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "decode_2k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "decode_32k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_16k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_1k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_2k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_32k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "prefill_8k": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   },
+   "spec_acceptance": {
+    "llamacpp": null,
+    "loom": 0.53,
+    "speedup": null
+   },
+   "streams4": {
+    "llamacpp": null,
+    "loom": null,
+    "speedup": null
+   }
+  },
+  "not_applicable": [],
+  "source": null
+ },
+ "repo": "loom-fun/unsloth-gemma-4-12B-it-loom",
+ "revision": "rev",
+ "schema": "loom-summary/1",
+ "serve": {
+  "context_tokens": 160768,
+  "device": "amdgpu",
+  "max_tokens": 4096,
+  "memory_bytes": 81000000000,
+  "rows": 4
+ },
+ "service": {
+  "endpoint": "/v1/chat/completions",
+  "kind": "chat"
+ },
+ "status": null,
+ "weights": {
+  "checkpoint": {
+   "file": "gemma-4-12b-it-Q4_K_M.gguf",
+   "quant": "Q4_K_M",
+   "repo": "unsloth/gemma-4-12B-it-GGUF",
+   "revision": "fc034cfff751157913579611efad8462ac1be606",
+   "sha256": "0a270ec9fe6b34f4a0d33992b6135117b484ebc4766ab76b51d4ae8c457e4c42",
+   "size": 7121861440
+  },
+  "drafter": {
+   "file": "gemma4-12B-it-DFlash-Q4_K_M.gguf",
+   "quant": "Q4_K_M",
+   "repo": "Anbeeld/gemma4-12B-it-DFlash-GGUF"
+  },
+  "projector": null
+ }
+}

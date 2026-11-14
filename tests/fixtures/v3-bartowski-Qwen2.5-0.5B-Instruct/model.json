@@ -1,0 +1,92 @@
+{
+ "schema_version": 1,
+ "model": {
+  "id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "name": "Qwen2.5 0.5B Instruct (Loom port, GGUF)"
+ },
+ "programs": {
+  "source": {
+   "inputs": [
+    {
+     "path": "program/prepare.loom",
+     "data": [
+      "weights.loom"
+     ]
+    },
+    "program/control.loom",
+    "program/storage.loom",
+    "program/service.loom"
+   ],
+   "libraries": [
+    "program/llm.loom"
+   ]
+  }
+ },
+ "services": {
+  "chat": {
+   "kind": "text",
+   "version": 1
+  }
+ },
+ "variants": {
+  "gguf": {
+   "services": {
+    "chat": {
+     "programs": [
+      "source"
+     ],
+     "config": {
+      "llm.card": true
+     },
+     "parameters": {
+      "model": {
+       "files": [
+        {
+         "path": "parameter/Qwen2.5-0.5B-Instruct-Q4_K_M.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/Qwen2.5-0.5B-Instruct-Q4_K_M.gguf"
+        }
+       ]
+      }
+     },
+     "tokenizers": {
+      "text": "tokenizer.json"
+     }
+    }
+   }
+  }
+ },
+ "presets": {
+  "chat": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 32768,
+    "pool_capacity": 98304,
+    "prefill_capacity": 1024,
+    "max_tokens": 4096
+   }
+  },
+  "chat-r9700": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 32768,
+    "pool_capacity": 98304,
+    "prefill_capacity": 4096,
+    "max_tokens": 4096
+   }
+  }
+ },
+ "origins": {
+  "checkpoint": {
+   "kind": "hf",
+   "repository": "bartowski/Qwen2.5-0.5B-Instruct-GGUF",
+   "revision": "41ba88dbac95fed2528c92514c131d73eb5a174b"
+  }
+ }
+}
