@@ -33,12 +33,13 @@ CARD_SCHEMAS = ("loom-card/2", "loom-card/3")
 LEGACY_SCHEMAS = ("loom-card/2",)   # one GPU: Strix Halo, gates/performance/roofline at the top level
 DEFAULT_GPU = "strix-halo"
 GPUS = ("strix-halo", "radeon-r9700")   # display order; must match loom-skills card_lib.GPUS
-RETIRED_GATES = ("needle", "needle_full")   # tolerated in old cards, dropped on read (card_lib.RETIRED_GATES)
+RETIRED_GATES = ("needle", "needle_full", "gufo")   # tolerated in old cards, dropped on read (card_lib.RETIRED_GATES)
 METRICS = ["decode", "decode_2k", "decode_32k", "prefill_1k", "prefill_2k", "prefill_8k", "prefill_16k",
            "prefill_32k", "streams4", "spec_acceptance"]
 TIMED = set(METRICS) - {"spec_acceptance"}
 GATES = ["kernel_tests", "golden", "compare", "vision", "consistency", "spec", "agent", "agent_think_off", "sampling",
          "decision"]
+LOGITS_GATE = "logits"   # loom-card/3 only (card_lib.GATES): n/a for a package whose model.json declares no llm.logits
 METHOD = {"dflash": "DFlash", "mtp": "MTP", "ngram": "n-gram prompt lookup", "assist": "assistant drafter"}
 DEVICE = "amdgpu"
 _QUANT = r"(?<![A-Za-z0-9])((?:UD-)?I?Q[0-9]%s|BF16|F16|F32)(?![a-z0-9])"
@@ -215,15 +216,38 @@ def llamacpp_drafting(args):
     return f"{t.group(1)}, n-max {n.group(1)}" if n else t.group(1)
 
 
-def device_results(card, kind, feats, sd):
+def declares_logits(model):
+    """True when a model.json carries the `llm.logits` capability key anywhere (card_lib.declares_logits)."""
+    if isinstance(model, dict):
+        return "llm.logits" in model or any(declares_logits(v) for v in model.values())
+    return isinstance(model, list) and any(declares_logits(v) for v in model)
+
+
+def remeasure_summary(dev):
+    """What the card says about how a GPU's table was re-measured (the `remeasure` block), or None."""
+    rm = (dev or {}).get("remeasure")
+    if not rm:
+        return None
+    proof = rm.get("proof") or {}
+    return {"date": rm.get("date"), "result": rm.get("result"), "band": rm.get("band"), "source": rm.get("source"),
+            "programs_sha256": rm.get("programs_sha256"),
+            "carried_programs": sorted({rm.get("compared_programs"), *rm.get("carried_programs", [])} - {None}),
+            "proof": proof.get("summary"),
+            "improved": sorted(rm.get("improved") or {}), "exceptions": sorted(rm.get("exceptions") or {}),
+            "previous": remeasure_summary({"remeasure": rm["previous"]}) if rm.get("previous") else None}
+
+
+def device_results(card, kind, feats, sd, logits=None):
     """The performance and gates of one GPU's view of the card (the keys "performance" and "gates" of a summary)."""
     perf, sessions = card["performance"], card["performance"]["sessions"]
     date, src, metrics = measured(card, kind, feats, METRICS)
     dl_date, dl_src, dl_metrics = measured(card, kind, feats, [k for k in METRICS if k in TIMED], devlab=True)
-    gates = {}
-    for g in GATES + sorted(set(card["gates"]) - set(GATES)):
+    gates, known = {}, GATES + ([LOGITS_GATE] if logits is not None else [])
+    for g in known + sorted(set(card["gates"]) - set(known)):
         if g in card["gates"]:
             gates[g] = card["gates"][g]["status"]
+        elif g == LOGITS_GATE:
+            gates[g] = "unknown" if logits else "n/a"
         elif g in GATES:
             gates[g] = "unknown" if gate_applies(g, kind, feats) else "n/a"
     counts = {s: sum(1 for v in gates.values() if v == s) for s in ("pass", "fail", "unknown", "n/a")}
@@ -248,9 +272,11 @@ def summarize(card, model, lock, revision, license):
     gpu = primary_gpu(card)
     if gpu is None:
         raise ValueError("card has no GPU with performance results")
-    out = summarize_gpu(gpu_view(card, gpu), model, lock, revision, license)
-    if card.get("schema") not in LEGACY_SCHEMAS:
+    legacy = card.get("schema") in LEGACY_SCHEMAS
+    out = summarize_gpu(gpu_view(card, gpu), model, lock, revision, license, logits=None if legacy else declares_logits(model))
+    if not legacy:
         out["primary_device"] = gpu
+        out["remeasure"] = remeasure_summary(card["devices"][gpu])
         out["devices"] = {}
         for g in (g for g in GPUS if g in card["devices"] and g != gpu):
             d = card["devices"][g]
@@ -260,14 +286,14 @@ def summarize(card, model, lock, revision, license):
             view = gpu_view(card, g)
             kind = "decision" if out["service"]["kind"] == "decision" else "chat"
             feats = card["card"]["features"]
-            perf, gates = device_results(view, kind, feats, value(feats, "speculative_decoding"))
-            out["devices"][g] = {"state": None, "memory_bytes": d.get("memory_bytes"),
+            perf, gates = device_results(view, kind, feats, value(feats, "speculative_decoding"), declares_logits(model))
+            out["devices"][g] = {"state": None, "remeasure": remeasure_summary(d), "memory_bytes": d.get("memory_bytes"),
                                  "context_tokens": d.get("served_context") or out["serve"]["context_tokens"],
                                  "performance": perf, "gates": gates}
     return out
 
 
-def summarize_gpu(card, model, lock, revision, license):
+def summarize_gpu(card, model, lock, revision, license, logits=None):
     srcs = package_sources(model, lock)
     if "model" not in srcs:
         raise ValueError("model.json loads no checkpoint from an @origin (parameters.model)")
@@ -277,7 +303,7 @@ def summarize_gpu(card, model, lock, revision, license):
     kind = "decision" if model.get("services", {}).get(preset.get("service"), {}).get("kind") == "decision" else "chat"
     feats = card["card"]["features"]
     sd = value(feats, "speculative_decoding")
-    perf, gates = device_results(card, kind, feats, sd)
+    perf, gates = device_results(card, kind, feats, sd, logits)
     return {
         "schema": SCHEMA,
         "checkpoint": stem(ckpt["file"]),

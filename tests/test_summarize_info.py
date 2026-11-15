@@ -48,7 +48,7 @@ class Summaries(unittest.TestCase):
         for name in NAMES:
             card, model, lock, _ = load(name)
             gates = S.summarize(card, model, lock, "rev", "lic")["gates"]["status"]
-            self.assertFalse({"needle", "needle_full"} & set(gates), name)
+            self.assertFalse({"needle", "needle_full", "gufo"} & set(gates), name)
         self.assertNotIn("needle", S.GATES)
 
     def test_v2_has_no_device_keys(self):
@@ -65,23 +65,63 @@ class Summaries(unittest.TestCase):
         self.assertEqual(out["devices"]["radeon-r9700"]["state"], "unsupported")
 
     def test_v3_both_gpus_with_results(self):
-        # a card whose Strix section also holds results: the top level is Strix Halo's, R9700 is listed under devices
-        r9700, model, lock, _ = load("v3-ggml-org-Qwen3.6-35B-A3B")
-        strix_card, _, _, _ = load("v2-unsloth-gemma-4-12B-it")
-        card = copy.deepcopy(r9700)
-        strix = {k: strix_card[k] for k in ("gates", "performance", "roofline")}
-        card["sources"].update(strix_card["sources"])
-        card["devices"]["strix-halo"] = strix
+        # a current staging card holds results on both GPUs: the top level is Strix Halo's, R9700 is listed under devices
+        card, model, lock, _ = load("v3-ggml-org-Qwen3.6-35B-A3B")
         out = S.summarize(card, model, lock, "rev", "lic")
         self.assertEqual(out["primary_device"], "strix-halo")
         r = out["devices"]["radeon-r9700"]
         self.assertIsNone(r["state"])
         self.assertIsNotNone(r["performance"]["devlab"]["metrics"]["decode"]["loom"])
         self.assertEqual(sum(r["gates"]["summary"].values()), len(r["gates"]["status"]))
-        # the top level equals what the /2 card alone gives
-        alone = S.summarize({**strix_card, "card": card["card"]}, model, lock, "rev", "lic")
-        for k in ("performance", "gates"):
-            self.assertEqual(out[k], alone[k])
+        # the top level is the gpu_view of the Strix section, read like a /2 card
+        alone = S.summarize(S.gpu_view(S.normalize(card), "strix-halo") | {"schema": "loom-card/2"}, model, lock, "rev", "lic")
+        self.assertEqual(out["performance"], alone["performance"])
+
+    def test_gufo_gate_is_dropped(self):
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        card = copy.deepcopy(card)
+        gate = dict(card["devices"]["strix-halo"]["gates"]["logits"])
+        card["devices"]["strix-halo"]["gates"]["gufo"] = gate
+        self.assertNotIn("gufo", S.summarize(card, model, lock, "rev", "lic")["gates"]["status"])
+
+    def test_logits_gate(self):
+        # judged where the card has it; n/a for a package with no llm.logits (Flash-Next); a /2 card never gets the key
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        self.assertEqual(S.summarize(card, model, lock, "rev", "lic")["gates"]["status"]["logits"], "pass")
+        card, model, lock, _ = load("v3-unsloth-Qwen3.8-Flash-Next")
+        out = S.summarize(card, model, lock, "rev", "lic")
+        self.assertEqual(out["gates"]["status"]["logits"], "n/a")
+        self.assertNotIn("logits", S.summarize(*load("v2-unsloth-gemma-4-12B-it")[:3], "rev", "lic")["gates"]["status"])
+        # a package that declares the capability but has no evidence yet is unknown
+        card, model, lock, _ = load("v3-bartowski-Ornith-1.5-9B")
+        card = copy.deepcopy(card)
+        for d in card["devices"].values():
+            d["gates"].pop("logits", None)
+        self.assertEqual(S.summarize(card, model, lock, "rev", "lic")["gates"]["status"]["logits"], "unknown")
+
+    def test_remeasure(self):
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        out = S.summarize(card, model, lock, "rev", "lic")
+        self.assertEqual(out["remeasure"]["result"], "identical")
+        self.assertTrue(out["remeasure"]["carried_programs"])
+        self.assertEqual(out["devices"]["radeon-r9700"]["remeasure"]["result"], "identical")
+        # no remeasure block (Flash-Next on Strix Halo): null, never left out
+        card, model, lock, _ = load("v3-unsloth-Qwen3.8-Flash-Next")
+        self.assertIsNone(S.summarize(card, model, lock, "rev", "lic")["remeasure"])
+
+    def test_remeasure_improved_and_previous(self):
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        card = copy.deepcopy(card)
+        d = card["devices"]["strix-halo"]
+        d["remeasure"] = {**d["remeasure"], "result": "improved", "improved": {"decode": {"published": 1, "loom": 2, "runs": [2, 2]}},
+                          "previous": dict(d["remeasure"])}
+        rm = S.summarize(card, model, lock, "rev", "lic")["remeasure"]
+        self.assertEqual(rm["improved"], ["decode"])
+        self.assertEqual(rm["previous"]["result"], "identical")
+
+    def test_v2_has_no_remeasure_key(self):
+        for name in (n for n in NAMES if n.startswith("v2-")):
+            self.assertNotIn("remeasure", S.summarize(*load(name)[:3], "rev", "lic"))
 
     def test_unknown_schema_is_unusable(self):
         self.assertNotIn("loom-card/9", S.CARD_SCHEMAS)

@@ -76,91 +76,83 @@
   "strix-halo": {
    "gates": {
     "agent": {
-     "date": "2026-11-12",
+     "date": "2026-11-14",
      "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
+     "level": "dev",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
      "status": "pass"
     },
     "agent_think_off": {
-     "date": "2026-11-12",
+     "date": "2026-11-14",
      "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
+     "level": "dev",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
      "status": "pass"
     },
     "compare": {
-     "date": "2026-11-12",
+     "date": "2026-11-14",
      "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
+     "level": "dev",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
      "status": "pass"
     },
     "consistency": {
-     "date": "2026-11-12",
+     "date": "2026-11-14",
      "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
+     "level": "dev",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
      "status": "pass"
     },
     "golden": {
-     "date": "2026-11-12",
+     "date": "2026-11-14",
      "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
+     "level": "dev",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
      "status": "pass"
     },
     "kernel_tests": {
-     "date": "2026-11-12",
-     "detail": "60/60",
+     "date": "2026-11-14",
+     "detail": "65/66; failed: moe_gemm_12",
      "level": null,
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
-     "status": "pass"
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
+     "status": "fail"
     },
-    "needle": {
-     "date": "2026-11-12",
-     "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
-     "status": "pass"
-    },
-    "needle_full": {
-     "date": "2026-11-09",
-     "detail": null,
-     "level": "full",
-     "programs_sha256": "520a390e6c0ca7e020296546dac954b3bac6f7d4f0b542d4b7f44d0275a3a3ff",
-     "source": "devlab-42544842366-job128927514292",
-     "status": "pass"
+    "logits": {
+     "date": "2026-11-15",
+     "detail": "llama.cpp top-k differs; embed_probe not fully verified",
+     "level": "dev",
+     "programs_sha256": "f274301b5c0d47fa09126ef40695b3e8702e1ed85460512a4d47ebd0ab4f2a29",
+     "source": "devlab-43706098134-job132787428090",
+     "status": "fail"
     },
     "sampling": {
-     "date": "2026-11-12",
+     "date": "2026-11-14",
      "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
+     "level": "dev",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
      "status": "pass"
     },
     "spec": {
-     "date": "2026-11-12",
+     "date": "2026-11-14",
      "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
+     "level": "dev",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
      "status": "pass"
     },
     "vision": {
-     "date": "2026-11-12",
+     "date": "2026-11-14",
      "detail": null,
-     "level": "full",
-     "programs_sha256": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
-     "source": "devlab-43320824063",
+     "level": "dev",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "source": "devlab-43636425163-job132574149755",
      "status": "pass"
     }
    },
@@ -743,6 +735,56 @@
      }
     ]
    },
+   "remeasure": {
+    "band": 0,
+    "carried_programs": [
+     "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b"
+    ],
+    "compared_programs": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+    "date": "2026-11-15",
+    "previous": {
+     "band": 0.04,
+     "bands": {
+      "decode": 0.035,
+      "decode_2k": 0.04,
+      "decode_32k": 0.03,
+      "prefill_16k": 0.02,
+      "prefill_1k": 0.03,
+      "prefill_2k": 0.03,
+      "prefill_32k": 0.02,
+      "prefill_8k": 0.02,
+      "spec_acceptance": 0.03,
+      "streams4": 0.04
+     },
+     "compared_programs": "4dcce66059f8a2c779a325f708a12e5fac983f453d24b3bc59f751faeb288e4b",
+     "date": "2026-11-14",
+     "programs_sha256": "80b132c8f96e82fa19f63e7117d1d376ef7d9c768f6d04ac240a35badfb27e08",
+     "ratios": {
+      "decode": 1.0,
+      "decode_2k": 0.996,
+      "decode_32k": 0.9763,
+      "prefill_16k": 1.0106,
+      "prefill_1k": 0.9973,
+      "prefill_2k": 1.0048,
+      "prefill_32k": 1.0192,
+      "prefill_8k": 1.0007,
+      "streams4": 1.0149
+     },
+     "result": "within",
+     "source": "devlab-43636425163-job132574149755",
+     "worst_metric": "decode_32k",
+     "worst_ratio": 0.9763
+    },
+    "programs_sha256": "f274301b5c0d47fa09126ef40695b3e8702e1ed85460512a4d47ebd0ab4f2a29",
+    "proof": {
+     "summary": "fleet/stage_equiv.py at d2be0384d7 against the measured revision d4501d79f0; storage, prepare and control differ only inside the logits blocks",
+     "tool": "fleet/stage_equiv.py",
+     "url": null
+    },
+    "result": "identical",
+    "source": "local"
+   },
    "roofline": {
     "checkpoint": "Ornith-1.5-122B-Q4_K_M-00001-of-00002.gguf",
     "device": {
@@ -953,9 +995,54 @@
    "kind": "devlab",
    "run": "43392400146",
    "url": "https://github.com/loom-fun/loom-skills/actions/runs/43392400146/job/131775276661"
+  },
+  "devlab-43636425163-job132574149755": {
+   "device": {
+    "cpu": "AMD Strix Halo (DevLab Dispatch runner X2-LA03-S01-D05)",
+    "os": "Linux"
+   },
+   "hrx_loom": {
+    "artifact_id": null,
+    "basis": "install.log of the run",
+    "branch": null,
+    "hrx_loom": "0.1.0",
+    "hrx_system_sha": "d01d1c18b154",
+    "recovered": true,
+    "source": "pypi",
+    "wheel_sha256": null
+   },
+   "kind": "devlab",
+   "run": "43636425163",
+   "url": "https://github.com/loom-fun/loom-skills/actions/runs/43636425163/job/132574149755"
+  },
+  "devlab-43706098134-job132787428090": {
+   "device": {
+    "cpu": "AMD Strix Halo (DevLab Dispatch runner X2-LA03-S03-D01)",
+    "os": "Linux"
+   },
+   "hrx_loom": {
+    "artifact_id": null,
+    "basis": "install.log of the run",
+    "branch": null,
+    "hrx_loom": "0.1.0",
+    "hrx_system_sha": "d01d1c18b154",
+    "recovered": true,
+    "source": "pypi",
+    "wheel_sha256": null
+   },
+   "kind": "devlab",
+   "run": "43706098134",
+   "url": "https://github.com/loom-fun/loom-skills/actions/runs/43706098134/job/132787428090"
+  },
+  "local": {
+   "device": null,
+   "hrx_loom": null,
+   "kind": "local",
+   "run": null,
+   "url": null
   }
  },
  "versions": {
-  "card_generator": "2fc7aa35f9e1fdd9d682e5a9a09780a05fe15aa4"
+  "card_generator": "d2be0384d7ee4ffe37581b6ce72a70b38f1a9298"
  }
 }

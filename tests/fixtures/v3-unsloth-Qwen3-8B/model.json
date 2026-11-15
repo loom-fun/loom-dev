@@ -1,0 +1,96 @@
+{
+ "schema_version": 1,
+ "model": {
+  "id": "Qwen/Qwen3-8B",
+  "name": "Qwen3-8B (Loom port, GGUF)"
+ },
+ "programs": {
+  "source": {
+   "inputs": [
+    {
+     "path": "program/prepare.loom",
+     "data": [
+      "weights.loom"
+     ]
+    },
+    "program/control.loom",
+    "program/storage.loom",
+    "program/service.loom"
+   ],
+   "libraries": [
+    "program/llm.loom"
+   ]
+  }
+ },
+ "services": {
+  "chat": {
+   "kind": "text",
+   "version": 1
+  }
+ },
+ "variants": {
+  "gguf": {
+   "services": {
+    "chat": {
+     "programs": [
+      "source"
+     ],
+     "config": {
+      "llm.card": true,
+      "llm.logits": false
+     },
+     "parameters": {
+      "model": {
+       "files": [
+        {
+         "path": "parameter/Qwen3-8B-Q4_K_M.gguf",
+         "format": "gguf",
+         "origin": "@checkpoint/Qwen3-8B-Q4_K_M.gguf"
+        }
+       ]
+      },
+      "draft": {
+       "files": [
+        {
+         "path": "parameter/Qwen3-8B-DFlash.Q8_0.gguf",
+         "format": "gguf",
+         "origin": "@drafter/Qwen3-8B-DFlash.Q8_0.gguf"
+        }
+       ]
+      }
+     },
+     "tokenizers": {
+      "text": "tokenizer.json"
+     }
+    }
+   }
+  }
+ },
+ "presets": {
+  "chat": {
+   "service": "chat",
+   "variant": "gguf",
+   "programs": "source",
+   "execution": {
+    "rows": 4,
+    "context_capacity": 40960,
+    "pool_capacity": 106496,
+    "prefill_capacity": 1024,
+    "max_tokens": 4096,
+    "draft_depth": 3
+   }
+  }
+ },
+ "origins": {
+  "checkpoint": {
+   "kind": "hf",
+   "repository": "unsloth/Qwen3-8B-GGUF",
+   "revision": "a6adef130ffb23ddaf1a62fec9dced968c9bc482"
+  },
+  "drafter": {
+   "kind": "hf",
+   "repository": "AtomicChat/Qwen3-8B-DFlash-GGUF",
+   "revision": "603692f6ac1fac016e03f3ad47321312614f3581"
+  }
+ }
+}

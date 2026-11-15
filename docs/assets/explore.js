@@ -85,6 +85,15 @@
 
   // loom-card/3 summaries: the top-level numbers are the primary GPU's; the other GPUs sit under m.devices.
   const GPU_NAME = { 'strix-halo': 'Strix Halo', 'radeon-r9700': 'Radeon AI PRO R9700' };
+  // loom-card/3: a table re-measured on this package's build (remeasure) or carried over by an identical-stages proof.
+  function remeasureNote(rm) {
+    if (!rm) return '';
+    const what = rm.result === 'identical' ? `identical stages (${esc(rm.proof || 'proved')})`
+      : rm.result === 'improved' ? `re-measured, faster rows: ${esc((rm.improved || []).join(', '))}`
+      : `re-measured within ±${esc(rm.band)}`;
+    return `<p class="fine">Numbers carried over from an earlier build of this package: ${what}${rm.date ? `, ${esc(rm.date)}` : ''}.</p>`;
+  }
+
   function otherGpus(m) {
     const devs = Object.entries(m.devices || {});
     if (!devs.length) return '';
@@ -94,7 +103,7 @@
       const mm = LOOM.bench(d.performance).metrics, t = k => (mm[k] || {}).loom, sp = k => (mm[k] || {}).speedup;
       const cell = (label, k) => t(k) != null ? `${label} ${num(t(k))} tok/s${sp(k) != null ? ` (${times(sp(k))})` : ''}` : null;
       const gs = d.gates.summary;
-      return [name, [cell('decode', 'decode'), cell('prefill 2k', 'prefill_2k'), cell('4 streams', 'streams4'), `gates ${gs.pass}/${gs.pass + gs.fail + gs.unknown}`].filter(Boolean).join(' · ')];
+      return [name, [d.remeasure ? '<span title="re-measured or carried over from an earlier build">↻</span>' : null, cell('decode', 'decode'), cell('prefill 2k', 'prefill_2k'), cell('4 streams', 'streams4'), `gates ${gs.pass}/${gs.pass + gs.fail + gs.unknown}`].filter(Boolean).join(' · ')];
     });
     const primary = GPU_NAME[m.primary_device] || m.primary_device;
     return `<h3>other GPUs</h3><p class="fine">The numbers above are from ${esc(primary)}.</p>${kvList(rows)}`;
@@ -169,6 +178,7 @@
         ])}</div>
       </div>
 
+      ${remeasureNote(m.remeasure)}
       ${otherGpus(m)}
 
       <h3>weights</h3>
