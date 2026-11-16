@@ -11,11 +11,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=24">
-  <script src="assets/data-source.js?v=9"></script>
-  <script src="assets/loom-lib.js?v=14"></script>
+  <link rel="stylesheet" href="assets/styles.css?v=25">
+  <script src="assets/data-source.js?v=10"></script>
+  <script src="assets/loom-lib.js?v=15"></script>
   <script src="assets/charts.js?v=16"></script>
-  <script src="assets/navbar.js?v=14"></script>
+  <script src="assets/navbar.js?v=15"></script>
   <script src="assets/footer.js?v=9"></script>
 </head>
 <body data-page="home">
@@ -49,7 +49,7 @@
             <div class="hs-n">Step 2<b>Fetch</b></div>
             <div class="hs-body">
               <p>Pull a Loom model from Hugging Face.</p>
-              <div class="code inline-cmd"><pre class="wrap"><code><span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/loom-fun/unsloth-Qwen3-0.6B-loom/resolve/main/model.json --output=qwen3-0.6b</code></pre><button class="copy" data-copy>copy</button></div>
+              <div class="code inline-cmd"><pre class="wrap"><code id="heroFetch"><span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/loom-fun/unsloth-Qwen3-0.6B-loom/resolve/main/model.json --output=qwen3-0.6b</code></pre><button class="copy" data-copy>copy</button></div>
             </div>
           </li>
           <li>
@@ -72,6 +72,15 @@
       </div>
     </section>
 
+    <!-- the fold: which GPU the results below and the commands above are for (docks into the nav when scrolled past) -->
+    <div class="gpu-fold" data-gpu-toggle>
+      <div class="wrap gpu-fold-in">
+        <span class="gpu-fold-l">results and commands for</span>
+        <span data-gpu-slot></span>
+        <span class="gpu-fold-r"><span data-gpu="spec"></span> · <span id="gpuCount"></span></span>
+      </div>
+    </div>
+
     <!-- 01 · leaderboard -->
     <section class="sec" id="leaderboard">
       <div class="wrap">
@@ -79,7 +88,7 @@
             <div class="sec-idx"><b>01</b> / try one</div>
           <div>
             <h2>Models you can fetch and serve today.</h2>
-            <p>Every model here is a model package on Hugging Face, tuned and tested on Strix Halo. Pick one, open it for its <code>loom-fetch</code> and <code>loom-serve</code> commands and the <code>--memory_bytes</code> it needs, and you're serving it in minutes. They're ranked by speedup over llama.cpp ROCm on the same weights, as a geometric mean across decode, prefill and 4-stream workloads. In the profile column, bars point up where Loom is faster and down where it's slower.</p>
+            <p>Every model here is a model package on Hugging Face, tuned and tested on <span data-gpu="short">Strix Halo</span>. Pick one, open it for its <code>loom-fetch</code> and <code>loom-serve</code> commands and the <code>--memory_bytes</code> it needs, and you're serving it in minutes. They're ranked by speedup over llama.cpp ROCm on the same weights, as a geometric mean across decode, prefill and 4-stream workloads. In the profile column, bars point up where Loom is faster and down where it's slower.</p>
           </div>
         </div>
         <div class="podium" id="podium"></div>
@@ -180,6 +189,6 @@
   </main>
 
   <div class="footer-placeholder"></div>
-  <script src="assets/home.js?v=12"></script>
+  <script src="assets/home.js?v=13"></script>
 </body>
 </html>

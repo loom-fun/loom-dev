@@ -19,7 +19,7 @@
   };
 
   const s = LOOM.stats();
-  el('headLede').textContent = `50+ ports from ${s.orgs} source orgs, ${s.runs} measurements, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`;
+  el('headLede').textContent = `50+ ports from ${s.orgs} source orgs, ${s.runs} measurements on ${LOOM.GPU.short}, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`;
 
   const open = m => { location.hash = encodeURIComponent(m.id); };
   const table = LOOM.mountTable(el('tbl'), models, { onOpen: open, pageSize: 20 });
@@ -83,8 +83,6 @@
   const kvList = rows => `<div class="kvl">${rows.filter(Boolean).map(([k, v]) => `<div><span>${k}</span><span>${v}</span></div>`).join('')}</div>`;
   const short = h => h ? `<span title="${esc(h)}">${esc(h.slice(0, 12))}…</span>` : '<span class="faint">—</span>';
 
-  // loom-card/3 summaries: the top-level numbers are the primary GPU's; the other GPUs sit under m.devices.
-  const GPU_NAME = { 'strix-halo': 'Strix Halo', 'radeon-r9700': 'Radeon AI PRO R9700' };
   // loom-card/3: a table re-measured on this package's build (remeasure) or carried over by an identical-stages proof.
   function remeasureNote(rm) {
     if (!rm) return '';
@@ -94,19 +92,32 @@
     return `<p class="fine">Numbers carried over from an earlier build of this package: ${what}${rm.date ? `, ${esc(rm.date)}` : ''}.</p>`;
   }
 
+  // The model's results on the other GPUs (one line each, linking to this model with that GPU selected).
   function otherGpus(m) {
-    const devs = Object.entries(m.devices || {});
+    const devs = Object.entries(m.gpuViews || {}).filter(([g]) => g !== LOOM.GPU.id);
     if (!devs.length) return '';
     const rows = devs.map(([g, d]) => {
-      const name = GPU_NAME[g] || g;
+      const gpu = LOOM.gpuOf(g), name = esc(gpu.short);
       if (!d.performance) return [name, `<span class="faint">${esc((d.state || 'not measured').replace(/_/g, ' '))}</span>`];
       const mm = LOOM.bench(d.performance).metrics, t = k => (mm[k] || {}).loom, sp = k => (mm[k] || {}).speedup;
       const cell = (label, k) => t(k) != null ? `${label} ${num(t(k))} tok/s${sp(k) != null ? ` (${times(sp(k))})` : ''}` : null;
       const gs = d.gates.summary;
-      return [name, [d.remeasure ? '<span title="re-measured or carried over from an earlier build">↻</span>' : null, cell('decode', 'decode'), cell('prefill 2k', 'prefill_2k'), cell('4 streams', 'streams4'), `gates ${gs.pass}/${gs.pass + gs.fail + gs.unknown}`].filter(Boolean).join(' · ')];
+      const go = `<a class="u" data-keep-href href="${esc(LOOM.gpuLink(gpu, `models.html#${encodeURIComponent(m.id)}`))}">show →</a>`;
+      return [name, [d.remeasure ? '<span title="re-measured or carried over from an earlier build">↻</span>' : null, cell('decode', 'decode'), cell('prefill 2k', 'prefill_2k'), cell('4 streams', 'streams4'), `gates ${gs.pass}/${gs.pass + gs.fail + gs.unknown}`, go].filter(Boolean).join(' · ')];
     });
-    const primary = GPU_NAME[m.primary_device] || m.primary_device;
-    return `<h3>other GPUs</h3><p class="fine">The numbers above are from ${esc(primary)}.</p>${kvList(rows)}`;
+    return `<h3>other GPUs</h3><p class="fine">The numbers above are from ${esc(LOOM.GPU.name)}.</p>${kvList(rows)}`;
+  }
+
+  // A link to a model that has no results on the selected GPU: say so, and link to the GPUs that have them.
+  function absent(id) {
+    const s0 = LOOM.all.find(x => x.checkpoint === id);
+    if (!s0) return false;
+    const on = Object.entries(LOOM.views(s0)).filter(([, d]) => d.performance).map(([g]) => LOOM.gpuOf(g));
+    el('drPath').textContent = `models / ${id}`;
+    el('dr').innerHTML = `
+      <h2 class="dr-title" style="margin-top:10px">${esc(s0.name)}</h2>
+      <p>No results on ${esc(LOOM.GPU.name)} yet.${on.length ? ` Measured on ${on.map(g => `<a class="u" data-keep-href href="${esc(LOOM.gpuLink(g, `models.html#${encodeURIComponent(id)}`))}">${esc(g.short)}</a>`).join(', ')}.` : ''}</p>`;
+    return true;
   }
 
   function drawer(m) {
@@ -208,9 +219,9 @@
   let current = null;
   function show(id) {
     const m = models.find(x => x.id === id);
-    if (!m) return;
-    current = m;
-    drawer(m);
+    if (!m && !absent(id)) return;
+    current = m || null;
+    if (m) drawer(m);
     document.body.classList.add('open');
     el('drawer').setAttribute('aria-hidden', 'false');
     el('drawer').scrollTop = 0;
@@ -270,4 +281,5 @@
 
   render();
   route();
+  addEventListener('load', LOOM.restoreScroll);
 })();

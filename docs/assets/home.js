@@ -6,6 +6,15 @@
   const el = id => document.getElementById(id);
   const open = m => { location.href = LOOM.href(m); };
 
+  // The hero's fetch command: the package and --preset for the selected GPU.
+  const qs = LOOM.all.find(x => /\/unsloth-Qwen3-0\.6B-loom$/.test(x.repo));
+  if (qs) {
+    const p = LOOM.preset(qs);
+    el('heroFetch').innerHTML = `<span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/${LOOM.esc(qs.repo)}/resolve/main/model.json --output=qwen3-0.6b${p ? ` --preset ${LOOM.esc(p)}` : ''}`;
+  }
+  const others = LOOM.all.length - models.length;
+  el('gpuCount').textContent = `${models.length} models${others ? `, ${others} not measured here yet` : ''}`;
+
   el('ixKicker').textContent = `hrx-loom · 50+ models ready to serve · updated ${s.generated}`;
   el('ixCount').textContent = '50+';
   // Leaderboard
@@ -59,4 +68,5 @@
   CHARTS.link(el('field'), el('readout'));
 
   LOOM.copyButtons();
+  addEventListener('load', LOOM.restoreScroll);
 })();

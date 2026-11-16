@@ -13,6 +13,7 @@ function createNavbar(active) {
           ${link('models.html', 'models', 'Ported Models')}
           ${link('submit.html', 'submit', 'Port yours')}
         </nav>
+        <div class="nav-gpu" id="navGpu"></div>
         <div class="nav-ext">
           <a href="https://github.com/ROCm/hrx-system" target="_blank" rel="noopener">loom ↗</a>
           <span class="sep">/</span>
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.setItem('loom-preview-dismissed', '1');
   });
   const nav = document.getElementById('nav');
+  dockGpu(nav);
   const toggle = document.getElementById('navToggle');
   toggle.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
@@ -42,3 +44,20 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.textContent = open ? 'close' : 'menu';
   });
 });
+
+// The GPU toggle in the nav. On a page with an in-page toggle ([data-gpu-toggle], the home page's fold) it docks
+// into the nav only once that toggle has scrolled up under the nav; on other pages it is always there.
+function dockGpu(nav) {
+  const slot = document.getElementById('navGpu');
+  if (typeof LOOM === 'undefined' || LOOM.GPUS.length < 2) { slot.remove(); return; }
+  slot.innerHTML = LOOM.gpuToggle({ compact: true });
+  const fold = document.querySelector('[data-gpu-toggle]:not([hidden]) .gpu-tg');
+  if (!fold) { nav.classList.add('gpu-docked'); return; }
+  // A scroll check, not an IntersectionObserver: a jump past the fold (a restored scroll, a #link) must dock too.
+  let queued = false;
+  const check = () => { queued = false; nav.classList.toggle('gpu-docked', fold.getBoundingClientRect().bottom < nav.offsetHeight); };
+  const later = () => { if (!queued) { queued = true; requestAnimationFrame(check); } };
+  addEventListener('scroll', later, { passive: true });
+  addEventListener('resize', later);
+  check();
+}

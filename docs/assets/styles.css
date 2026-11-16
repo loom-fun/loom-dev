@@ -69,6 +69,30 @@ code, pre, .mono { font-family: var(--mono); }
 .nav-ext .sep { color: var(--line-3); }
 .nav-toggle { display: none; background: none; border: 1px solid var(--line-2); color: var(--fg); font: 12px var(--mono); padding: 3px 8px; cursor: pointer; margin-left: auto; }
 
+/* ?org= other than loom-fun (data-source.js) */
+.org-band { background: #4a3410; color: #f0dcb4; padding: 6px 16px; font: 12.5px/1.4 var(--mono); text-align: center; border-bottom: 1px solid #6b4c1a; }
+.org-band b { color: #fff; font-weight: 600; }
+.org-band a { color: #fff; text-decoration: underline; margin-left: 8px; }
+
+/* === GPU toggle: at the home page's fold, and docked into the nav (navbar.js) === */
+.gpu-tg { display: inline-flex; border: 1px solid var(--line-3); background: var(--bg); }
+.gpu-tg a { display: inline-flex; align-items: baseline; gap: 8px; padding: 7px 16px; font: 500 13px var(--mono); color: var(--dim); white-space: nowrap; transition: color .12s, background .12s; }
+.gpu-tg a + a { border-left: 1px solid var(--line-3); }
+.gpu-tg a:hover { color: var(--hi); }
+.gpu-tg a.on { background: var(--hi); color: #0a0a0a; }
+.gpu-tg a small { font-size: 11px; color: var(--faint); }
+.gpu-tg a.on small { color: #555; }
+.gpu-tg a.on::before { content: '▸'; margin-right: -2px; }
+.gpu-tg.compact { border-color: var(--line-2); }
+.gpu-tg.compact a { padding: 3px 10px; font-size: 11.5px; }
+.gpu-tg.compact a + a { border-left-color: var(--line-2); }
+.gpu-fold { border-bottom: 1px solid var(--line); background: var(--panel); }
+.gpu-fold-in { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; min-height: 64px; padding-top: 12px; padding-bottom: 12px; }
+.gpu-fold-l { font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--faint); }
+.gpu-fold-r { font: 12px var(--mono); color: var(--faint); margin-left: auto; }
+.nav-gpu { display: flex; align-items: center; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s ease, transform .18s ease, visibility 0s .18s; }
+.nav.gpu-docked .nav-gpu { opacity: 1; visibility: visible; transform: none; transition: opacity .18s ease, transform .18s ease; }
+
 /* === Section scaffolding === */
 .sec { padding: 88px 0; border-bottom: 1px solid var(--line); position: relative; }
 .sec-head { display: grid; grid-template-columns: 220px 1fr; gap: 32px; margin-bottom: 40px; }
@@ -511,6 +535,12 @@ body.open { overflow: hidden; }
   .board td.name b, .board td.name small { max-width: 170px; }
   .nav-links, .nav-ext { display: none; }
   .nav-toggle { display: block; }
+  .nav-inner { gap: 12px; }
+  .wordmark { white-space: nowrap; }
+  .nav-gpu { margin-left: auto; }
+  .nav:not(.gpu-docked) .nav-gpu { display: none; }   /* no room to hold its place on narrow screens */
+  .nav.gpu-docked .nav-gpu ~ .nav-toggle { margin-left: 0; }
+  .nav.open .nav-gpu { order: 1; }
   .nav.open .nav-inner { height: auto; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
   .nav.open .nav-links, .nav.open .nav-ext { display: flex; flex-direction: column; align-items: flex-start; width: 100%; order: 2; flex: none; }
   .nav.open .nav-links a, .nav.open .nav-ext a { padding: 6px 0; }
@@ -558,8 +588,13 @@ body.open { overflow: hidden; }
   .feat-list div:nth-child(odd) { border-right: none; }
   .hide-s { display: none; }
   .views { margin-left: 0; }
+  .gpu-fold-r { margin-left: 0; width: 100%; }
+  .gpu-tg.compact a { padding: 3px 7px; font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
+}
+@media (max-width: 420px) {
+  .nav.gpu-docked .wordmark { font-size: 0; gap: 0; }   /* logo only while the GPU toggle is docked */
 }

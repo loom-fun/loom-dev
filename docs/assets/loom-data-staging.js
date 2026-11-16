@@ -12,6 +12,24 @@ window.LOOM_DATA = {
   "unsloth": "https://cdn-avatars.huggingface.co/v1/production/uploads/62ecdc18b72a69615d6bd857/E4lkPz1TZNLzIFr_dR273.png",
   "XHToken": "https://cdn-avatars.huggingface.co/v1/production/uploads/6a0ee603b6daaf98026065eb/WGs-xWH0c5Se3UQwpGSXY.png"
  },
+ "gpus": [
+  {
+   "id": "strix-halo",
+   "name": "AMD Ryzen AI Max+ 395 (Strix Halo)",
+   "short": "Strix Halo",
+   "spec": "gfx1151, 128 GB unified memory",
+   "preset_suffix": "",
+   "models": 51
+  },
+  {
+   "id": "radeon-r9700",
+   "name": "AMD Radeon AI PRO R9700",
+   "short": "Radeon R9700",
+   "spec": "gfx1201, 32 GB",
+   "preset_suffix": "-r9700",
+   "models": 50
+  }
+ ],
  "models": [
   {
    "schema": "loom-summary/1",
@@ -46,7 +64,11 @@ window.LOOM_DATA = {
     "memory_bytes": 69000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -422,7 +444,11 @@ window.LOOM_DATA = {
     "memory_bytes": 7000000000,
     "context_tokens": 32768,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -810,7 +836,11 @@ window.LOOM_DATA = {
     "memory_bytes": 81000000000,
     "context_tokens": 160768,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -1187,7 +1217,11 @@ window.LOOM_DATA = {
     "memory_bytes": 81000000000,
     "context_tokens": 201728,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -1562,7 +1596,11 @@ window.LOOM_DATA = {
     "memory_bytes": 80000000000,
     "context_tokens": 53248,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -1941,7 +1979,11 @@ window.LOOM_DATA = {
     "memory_bytes": 16000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -2320,7 +2362,10 @@ window.LOOM_DATA = {
     "memory_bytes": 31000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -2691,7 +2736,10 @@ window.LOOM_DATA = {
     "memory_bytes": 28000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -3068,7 +3116,11 @@ window.LOOM_DATA = {
     "memory_bytes": 24000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -3447,7 +3499,11 @@ window.LOOM_DATA = {
     "memory_bytes": 81000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -3818,7 +3874,10 @@ window.LOOM_DATA = {
     "memory_bytes": 24000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -4193,7 +4252,11 @@ window.LOOM_DATA = {
     "memory_bytes": 13000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -4568,7 +4631,11 @@ window.LOOM_DATA = {
     "memory_bytes": 10000000000,
     "context_tokens": 128000,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -4945,7 +5012,10 @@ window.LOOM_DATA = {
     "memory_bytes": 29000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -5320,7 +5390,10 @@ window.LOOM_DATA = {
     "memory_bytes": 27000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -5700,7 +5773,11 @@ window.LOOM_DATA = {
     "memory_bytes": 36000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -6081,7 +6158,11 @@ window.LOOM_DATA = {
     "memory_bytes": 51000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -6280,7 +6361,11 @@ window.LOOM_DATA = {
     "memory_bytes": 44000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -6651,7 +6736,11 @@ window.LOOM_DATA = {
     "memory_bytes": 81000000000,
     "context_tokens": 242688,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -7038,7 +7127,11 @@ window.LOOM_DATA = {
     "memory_bytes": 36000000000,
     "context_tokens": 131072,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -7413,7 +7506,11 @@ window.LOOM_DATA = {
     "memory_bytes": 36000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -7794,7 +7891,10 @@ window.LOOM_DATA = {
     "memory_bytes": 22000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -8177,7 +8277,10 @@ window.LOOM_DATA = {
     "memory_bytes": 106000000000,
     "context_tokens": 108544,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -8403,7 +8506,11 @@ window.LOOM_DATA = {
     "memory_bytes": 49000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -8784,7 +8891,10 @@ window.LOOM_DATA = {
     "memory_bytes": 32000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -9155,7 +9265,11 @@ window.LOOM_DATA = {
     "memory_bytes": 5000000000,
     "context_tokens": 32768,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -9532,7 +9646,11 @@ window.LOOM_DATA = {
     "memory_bytes": 8000000000,
     "context_tokens": 32768,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -9907,7 +10025,11 @@ window.LOOM_DATA = {
     "memory_bytes": 50000000000,
     "context_tokens": 32768,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -10282,7 +10404,10 @@ window.LOOM_DATA = {
     "memory_bytes": 15000000000,
     "context_tokens": 32768,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -10661,7 +10786,10 @@ window.LOOM_DATA = {
     "memory_bytes": 21000000000,
     "context_tokens": 128000,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -11036,7 +11164,11 @@ window.LOOM_DATA = {
     "memory_bytes": 17000000000,
     "context_tokens": 40960,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -11411,7 +11543,11 @@ window.LOOM_DATA = {
     "memory_bytes": 17000000000,
     "context_tokens": 40960,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -11786,7 +11922,10 @@ window.LOOM_DATA = {
     "memory_bytes": 31000000000,
     "context_tokens": 40960,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -12161,7 +12300,11 @@ window.LOOM_DATA = {
     "memory_bytes": 63000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -12536,7 +12679,11 @@ window.LOOM_DATA = {
     "memory_bytes": 55000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -12918,7 +13065,10 @@ window.LOOM_DATA = {
     "memory_bytes": 25000000000,
     "context_tokens": 40960,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -13296,7 +13446,10 @@ window.LOOM_DATA = {
     "memory_bytes": 29000000000,
     "context_tokens": 40960,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -13671,7 +13824,11 @@ window.LOOM_DATA = {
     "memory_bytes": 62000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -14046,7 +14203,11 @@ window.LOOM_DATA = {
     "memory_bytes": 56000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -14428,7 +14589,11 @@ window.LOOM_DATA = {
     "memory_bytes": 59000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -14807,7 +14972,10 @@ window.LOOM_DATA = {
     "memory_bytes": 9000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -15191,7 +15359,10 @@ window.LOOM_DATA = {
     "memory_bytes": 10000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -15574,7 +15745,11 @@ window.LOOM_DATA = {
     "memory_bytes": 49000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -15955,7 +16130,10 @@ window.LOOM_DATA = {
     "memory_bytes": 28000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -16339,7 +16517,10 @@ window.LOOM_DATA = {
     "memory_bytes": 32000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
    },
    "features": {
     "api": "yes",
@@ -16719,7 +16900,11 @@ window.LOOM_DATA = {
     "memory_bytes": 57000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -17098,7 +17283,11 @@ window.LOOM_DATA = {
     "memory_bytes": 48000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -17478,7 +17667,11 @@ window.LOOM_DATA = {
     "memory_bytes": 52000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -17834,7 +18027,10 @@ window.LOOM_DATA = {
     "memory_bytes": 100000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "vision-mtp"
+    ]
    },
    "features": {
     "api": "yes",
@@ -18029,7 +18225,11 @@ window.LOOM_DATA = {
     "memory_bytes": 41000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -18406,7 +18606,11 @@ window.LOOM_DATA = {
     "memory_bytes": 55000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",
@@ -18781,7 +18985,11 @@ window.LOOM_DATA = {
     "memory_bytes": 55000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700"
+    ]
    },
    "features": {
     "api": "yes",

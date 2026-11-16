@@ -324,6 +324,7 @@ def summarize_gpu(card, model, lock, revision, license, logits=None):
             "context_tokens": value(feats, "context").get("tokens"),
             "rows": value(feats, "concurrency").get("rows"),
             "max_tokens": value(feats, "max_output_tokens").get("max_tokens"),
+            "presets": list(model.get("presets", {})),   # model.json's preset names; a GPU's is <first><its preset_suffix>
         },
         "features": {k: v["status"] for k, v in sorted(feats.items())},
         "performance": perf,

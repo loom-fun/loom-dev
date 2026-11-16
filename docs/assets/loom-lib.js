@@ -1,6 +1,42 @@
 // Shared data helpers, renderers and SVG charts. Models come from loom-data.js (generated from summaries/).
 
 const LOOM = (() => {
+  // --- GPU: the site shows one GPU's results and instructions at a time (?gpu=, see data-source.js) ---
+  // LOOM_DATA.gpus lists the GPUs with results (build_data.py, from gpus.json); the first is the default.
+  const DATA = window.LOOM_DATA || { models: [] };
+  const GPUS = DATA.gpus && DATA.gpus.length ? DATA.gpus
+    : [{ id: 'strix-halo', name: 'AMD Ryzen AI Max+ 395 (Strix Halo)', short: 'Strix Halo', spec: 'gfx1151, 128 GB unified memory', preset_suffix: '' }];
+  const GPU = GPUS.find(g => g.id === window.LOOM_GPU_ASKED) || GPUS[0];
+  const gpuOf = id => GPUS.find(g => g.id === id) || { id, name: id, short: id, preset_suffix: null };
+  if (window.LOOM_PARAMS) window.LOOM_PARAMS.gpu = GPU === GPUS[0] ? null : GPU.id;
+  const link = (href, set) => window.LOOM_LINK ? window.LOOM_LINK(href, set) : href;
+  const gpuLink = (g, href = location.href) => link(href, { gpu: g.id === GPUS[0].id ? null : g.id });
+
+  // Every GPU's view of a summary: the primary GPU's results are at the top level, the others under "devices"
+  // (with a state instead of results when they have none). A loom-card/2 summary is Strix Halo only.
+  function views(s) {
+    const out = { [s.primary_device || 'strix-halo']: { state: null, performance: s.performance, gates: s.gates,
+      remeasure: s.remeasure || null, memory_bytes: s.serve.memory_bytes, context_tokens: s.serve.context_tokens } };
+    for (const [g, d] of Object.entries(s.devices || {})) out[g] = d;
+    return out;
+  }
+  // The summary as seen on `gpu`, or null when the card has no results there. A GPU without its own memory budget
+  // or context runs the primary GPU's (the card records them only where they differ).
+  function onGpu(s, gpu) {
+    const all = views(s), d = all[gpu.id];
+    if (!d || !d.performance) return null;
+    return { ...s, gpuViews: all, performance: d.performance, gates: d.gates, remeasure: d.remeasure || null,
+      serve: { ...s.serve, memory_bytes: d.memory_bytes || s.serve.memory_bytes, context_tokens: d.context_tokens || s.serve.context_tokens } };
+  }
+  // The --preset a model is fetched with on `gpu`: model.json's first preset plus the GPU's suffix when the package
+  // has that preset, else the first. Null when the package has one preset (loom-fetch needs no --preset then).
+  function preset(m, gpu = GPU) {
+    const ps = m.serve.presets || [];
+    if (ps.length < 2) return null;
+    const own = gpu.preset_suffix ? ps[0] + gpu.preset_suffix : null;
+    return own && ps.includes(own) ? own : ps[0];
+  }
+
   const METRICS = [
     { key: 'decode', group: 'decode', label: 'decode', detail: 'short prompt', short: 'dec', x: 'short' },
     { key: 'decode_2k', group: 'decode', label: 'decode', detail: '2k context', short: 'dec 2k', x: '2k' },
@@ -106,7 +142,7 @@ const LOOM = (() => {
     };
   }
 
-  const models = (window.LOOM_DATA ? window.LOOM_DATA.models : []).map(enrich)
+  const models = DATA.models.map(s => onGpu(s, GPU)).filter(Boolean).map(enrich)
     .sort((a, b) => (b.score || 0) - (a.score || 0));
   models.forEach((m, i) => { m.rank = i + 1; });
 
@@ -123,8 +159,8 @@ const LOOM = (() => {
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const hf = repo => `https://huggingface.co/${repo}`;
   const rk = m => String(m.rank).padStart(2, '0');
-  const href = m => `models.html${window.LOOM_ORG && window.LOOM_ORG !== 'loom-fun' ? `?org=${encodeURIComponent(window.LOOM_ORG)}` : ''}#${encodeURIComponent(m.id)}`;
-  const AVATARS = (window.LOOM_DATA && window.LOOM_DATA.avatars) || {};
+  const href = m => link(`models.html#${encodeURIComponent(m.id)}`);
+  const AVATARS = DATA.avatars || {};
   const avatar = (m, cls = '') => AVATARS[m.org]
     ? `<img class="av ${cls}" src="${esc(AVATARS[m.org])}" alt="" title="${esc(m.org)}" loading="lazy" referrerpolicy="no-referrer">`
     : `<span class="av av-na ${cls}" title="${esc(m.org)}">${esc(m.org.charAt(0).toUpperCase())}</span>`;
@@ -347,7 +383,7 @@ const LOOM = (() => {
       spec: models.filter(m => m.spec).length,
       verified: models.filter(m => m.verified).length,
       maxCtx: Math.max(...models.map(m => m.serve.context_tokens || 0)),
-      generated: window.LOOM_DATA ? window.LOOM_DATA.generated : null,
+      generated: DATA.generated || null,
     };
   }
 
@@ -355,15 +391,47 @@ const LOOM = (() => {
     const out = m.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-');
     const mem = m.serve.memory_bytes;
     const memArg = !mem ? '<bytes>' : mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem;
+    const p = preset(m);
     return [
       'pip install "hrx-loom[hf]==0.1.0"',
-      `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json --output=${out}`,
+      `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json --output=${out}${p ? ` --preset ${p}` : ''}`,
       `loom-serve --model=${out}/model.json --device=${m.serve.device || 'amdgpu'} --memory_bytes=${memArg}`,
       '',
       '# OpenAI-compatible, on :8080',
       `curl -s localhost:8080${m.service.endpoint} -H 'content-type: application/json' \\`,
       `  -d '{"messages":[{"role":"user","content":"hello"}]}'`,
     ].join('\n');
+  }
+
+  // The GPU toggle: one link per GPU (a link, so it can be opened in a new tab or shared). `compact` is the nav's.
+  function gpuToggle({ compact = false } = {}) {
+    return `<nav class="gpu-tg${compact ? ' compact' : ''}" aria-label="GPU">${GPUS.map(g => {
+      const on = g.id === GPU.id;
+      return `<a href="${esc(gpuLink(g))}" data-keep-href data-gpu-id="${esc(g.id)}" class="${on ? 'on' : ''}"${on ? ' aria-current="true"' : ''} title="${esc(g.name)}${g.spec ? ` · ${esc(g.spec)}` : ''} · ${g.models} models">${esc(g.short)}${compact ? '' : `<small>${g.models}</small>`}</a>`;
+    }).join('')}</nav>`;
+  }
+
+  // Fill [data-gpu="<field>"] elements with the selected GPU's field (short, name, spec), mount the toggle into
+  // [data-gpu-toggle], and keep the scroll position across a switch (the page reloads with the new ?gpu=).
+  function mountGpu(root = document) {
+    root.querySelectorAll('[data-gpu]').forEach(e => { const v = GPU[e.dataset.gpu]; if (v != null) e.textContent = v; });
+    root.querySelectorAll('[data-gpu-toggle]').forEach(e => {
+      if (GPUS.length < 2) { e.hidden = true; return; }
+      e.querySelector('[data-gpu-slot]').innerHTML = gpuToggle();
+    });
+    document.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('a[data-gpu-id]');
+      if (a && !e.metaKey && !e.ctrlKey && !e.shiftKey) try { sessionStorage.setItem('loom-gpu-scroll', String(scrollY)); } catch (_) {}
+    });
+  }
+  function restoreScroll() {
+    let y = null;
+    try { y = sessionStorage.getItem('loom-gpu-scroll'); sessionStorage.removeItem('loom-gpu-scroll'); } catch (_) {}
+    if (y != null && !location.hash) {
+      document.documentElement.style.scrollBehavior = 'auto';
+      scrollTo(0, +y);
+      document.documentElement.style.scrollBehavior = '';
+    }
   }
 
   function copyButtons(root = document) {
@@ -391,7 +459,10 @@ const LOOM = (() => {
     els.forEach(e => io.observe(e));
   }
 
+  document.addEventListener('DOMContentLoaded', () => mountGpu());   // before navbar.js docks the toggle
+
   return {
+    GPUS, GPU, gpuOf, gpuLink, link, views, preset, gpuToggle, mountGpu, restoreScroll, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
     ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, copyButtons, reveal,
