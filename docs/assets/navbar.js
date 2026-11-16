@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function dockGpu(nav) {
   const slot = document.getElementById('navGpu');
   if (typeof LOOM === 'undefined' || LOOM.GPUS.length < 2) { slot.remove(); return; }
-  slot.innerHTML = LOOM.gpuToggle({ compact: true });
-  const fold = document.querySelector('[data-gpu-toggle]:not([hidden]) .gpu-tg');
+  slot.innerHTML = LOOM.gpuToggle({ compact: true });   // LOOM redraws it on a switch
+  const fold = document.querySelector('[data-gpu-toggle]:not([hidden])');   // the band, not its toggle (redrawn on a switch)
   if (!fold) { nav.classList.add('gpu-docked'); return; }
   // A scroll check, not an IntersectionObserver: a jump past the fold (a restored scroll, a #link) must dock too.
   let queued = false;

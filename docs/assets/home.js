@@ -1,23 +1,14 @@
-// Home page: index telemetry, leaderboard and linked charts.
+// Home page: index telemetry, leaderboard and linked charts. Everything that depends on the selected GPU is drawn by
+// paint(), which runs again in place when the GPU toggle switches (LOOM's 'loom:gpu' event).
 
 (() => {
-  const { models, stats, times, METRIC, median } = LOOM;
-  const s = stats();
+  const { models, stats, times, METRIC, median } = LOOM;   // `models` is refilled in place on a GPU switch
   const el = id => document.getElementById(id);
   const open = m => { location.href = LOOM.href(m); };
 
-  // The hero's fetch command: the package and --preset for the selected GPU.
-  const qs = LOOM.all.find(x => /\/unsloth-Qwen3-0\.6B-loom$/.test(x.repo));
-  if (qs) {
-    const p = LOOM.preset(qs);
-    el('heroFetch').innerHTML = `<span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/${LOOM.esc(qs.repo)}/resolve/main/model.json --output=qwen3-0.6b${p ? ` --preset ${LOOM.esc(p)}` : ''}`;
-  }
-  el('gpuCount').textContent = `${models.length} models`;
-
-  el('ixKicker').textContent = `hrx-loom · 50+ models ready to serve · updated ${s.generated}`;
   el('ixCount').textContent = '50+';
+
   // Leaderboard
-  el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
   const board = LOOM.mountTable(el('board'), models, { onOpen: open, pageSize: 20 });
   const q = el('boardQ'), count = el('boardCount');
   const norm = s => s.toLowerCase().replace(/[\s_-]+/g, '');
@@ -34,18 +25,10 @@
     e.preventDefault();
     q.focus();
   });
-  search();
 
-  // Charts, hover-linked through #field
-  CHARTS.mountStrip(el('strip'), models);
-  const all = models.flatMap(m => m.measured);
-  const groupLine = g => {
-    const xs = all.filter(x => x.group === g);
-    return `${g} ${xs.filter(x => x.speedup > 1.005).length}/${xs.length} faster, median ${times(median(xs.map(x => x.speedup)))}`;
-  };
-  el('stripMeta').textContent = `${s.runs} measurements · 50+ models`;
-  el('stripLede').innerHTML += ` Across the index: ${['decode', 'prefill', 'streams'].map(groupLine).join('; ')}.`;
-
+  // Charts, hover-linked through #field. The fit() redraw functions close over `models`, so a forced redraw shows
+  // the current GPU.
+  const redrawStrip = CHARTS.mountStrip(el('strip'), models);
   const TABS = ['decode', 'decode_32k', 'prefill_2k', 'prefill_32k', 'streams4'];
   const tabs = el('scatterTabs');
   tabs.innerHTML = TABS.map((k, i) => `<button data-k="${k}" class="${i ? '' : 'on'}">${METRIC[k].short}</button>`).join('');
@@ -57,15 +40,38 @@
     tabs.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
   };
   tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) drawScatter(b.dataset.k); });
-  drawScatter('decode');
-
-  LOOM.fit(el('scalePrefill'), 480, w => CHARTS.scaling(models, 'prefill', w));
-  LOOM.fit(el('scaleDecode'), 480, w => CHARTS.scaling(models, 'decode', w));
-  const medAt = k => median(models.map(m => m.pair(k)).filter(Boolean).map(p => p.speedup));
-  el('scalingLede').innerHTML += ` The median prefill speedup goes from ${times(medAt('prefill_1k'))} on a 1k document to ${times(medAt('prefill_32k'))} at 32k, and decode from ${times(medAt('decode'))} on a short prompt to ${times(medAt('decode_32k'))} at 32k context.`;
-
+  const redrawPrefill = LOOM.fit(el('scalePrefill'), 480, w => CHARTS.scaling(models, 'prefill', w));
+  const redrawDecode = LOOM.fit(el('scaleDecode'), 480, w => CHARTS.scaling(models, 'decode', w));
   CHARTS.link(el('field'), el('readout'));
 
+  const stripLede = el('stripLede').innerHTML, scalingLede = el('scalingLede').innerHTML;
+  const qs = LOOM.all.find(x => /\/unsloth-Qwen3-0\.6B-loom$/.test(x.repo));
+
+  function paint(first) {
+    const s = stats();
+    // The hero's fetch command: the package and --preset for the selected GPU.
+    if (qs) {
+      const p = LOOM.preset(qs);
+      el('heroFetch').innerHTML = `<span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/${LOOM.esc(qs.repo)}/resolve/main/model.json --output=qwen3-0.6b${p ? ` --preset ${LOOM.esc(p)}` : ''}`;
+    }
+    el('gpuCount').textContent = `${models.length} models`;
+    el('ixKicker').textContent = `hrx-loom · 50+ models ready to serve · updated ${s.generated}`;
+    el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
+    search();
+
+    const all = models.flatMap(m => m.measured);
+    const groupLine = g => {
+      const xs = all.filter(x => x.group === g);
+      return `${g} ${xs.filter(x => x.speedup > 1.005).length}/${xs.length} faster, median ${times(median(xs.map(x => x.speedup)))}`;
+    };
+    el('stripMeta').textContent = `${s.runs} measurements · 50+ models`;
+    el('stripLede').innerHTML = `${stripLede} Across the index: ${['decode', 'prefill', 'streams'].map(groupLine).join('; ')}.`;
+    const medAt = k => median(models.map(m => m.pair(k)).filter(Boolean).map(p => p.speedup));
+    el('scalingLede').innerHTML = `${scalingLede} The median prefill speedup goes from ${times(medAt('prefill_1k'))} on a 1k document to ${times(medAt('prefill_32k'))} at 32k, and decode from ${times(medAt('decode'))} on a short prompt to ${times(medAt('decode_32k'))} at 32k context.`;
+    if (!first) { redrawStrip(); redrawScatter(); redrawPrefill(); redrawDecode(); }
+  }
+  paint(true);
+  document.addEventListener('loom:gpu', () => paint(false));
+
   LOOM.copyButtons();
-  addEventListener('load', LOOM.restoreScroll);
 })();

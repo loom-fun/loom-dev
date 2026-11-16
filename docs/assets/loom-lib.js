@@ -6,9 +6,10 @@ const LOOM = (() => {
   const DATA = window.LOOM_DATA || { models: [] };
   const GPUS = DATA.gpus && DATA.gpus.length ? DATA.gpus
     : [{ id: 'strix-halo', name: 'AMD Ryzen AI Max+ 395 (Strix Halo)', short: 'Strix Halo', spec: 'gfx1151, 128 GB unified memory', preset_suffix: '' }];
-  const GPU = GPUS.find(g => g.id === window.LOOM_GPU_ASKED) || GPUS[0];
+  let GPU = GPUS.find(g => g.id === window.LOOM_GPU_ASKED) || GPUS[0];
   const gpuOf = id => GPUS.find(g => g.id === id) || { id, name: id, short: id, preset_suffix: null };
-  if (window.LOOM_PARAMS) window.LOOM_PARAMS.gpu = GPU === GPUS[0] ? null : GPU.id;
+  const setParam = () => { if (window.LOOM_PARAMS) window.LOOM_PARAMS.gpu = GPU === GPUS[0] ? null : GPU.id; };
+  setParam();
   const link = (href, set) => window.LOOM_LINK ? window.LOOM_LINK(href, set) : href;
   const gpuLink = (g, href = location.href) => link(href, { gpu: g.id === GPUS[0].id ? null : g.id });
 
@@ -142,9 +143,16 @@ const LOOM = (() => {
     };
   }
 
-  const models = DATA.models.map(s => onGpu(s, GPU)).filter(Boolean).map(enrich)
-    .sort((a, b) => (b.score || 0) - (a.score || 0));
-  models.forEach((m, i) => { m.rank = i + 1; });
+  // The selected GPU's models, best first. One array for the page's lifetime: a GPU switch refills it in place, so
+  // every renderer holding it sees the new GPU.
+  const models = [];
+  function compute() {
+    models.length = 0;
+    models.push(...DATA.models.map(s => onGpu(s, GPU)).filter(Boolean).map(enrich)
+      .sort((a, b) => (b.score || 0) - (a.score || 0)));
+    models.forEach((m, i) => { m.rank = i + 1; });
+  }
+  compute();
 
   // --- formatting ---
   const pct = x => {
@@ -411,27 +419,39 @@ const LOOM = (() => {
     }).join('')}</nav>`;
   }
 
-  // Fill [data-gpu="<field>"] elements with the selected GPU's field (short, name, spec), mount the toggle into
-  // [data-gpu-toggle], and keep the scroll position across a switch (the page reloads with the new ?gpu=).
-  function mountGpu(root = document) {
-    root.querySelectorAll('[data-gpu]').forEach(e => { const v = GPU[e.dataset.gpu]; if (v != null) e.textContent = v; });
-    root.querySelectorAll('[data-gpu-toggle]').forEach(e => {
-      if (GPUS.length < 2) { e.hidden = true; return; }
-      e.querySelector('[data-gpu-slot]').innerHTML = gpuToggle();
-    });
+  // Fill [data-gpu="<field>"] elements with the selected GPU's field (short, name, spec) and (re)draw every toggle:
+  // [data-gpu-toggle] holds the full one, #navGpu the compact one.
+  function paintGpu() {
+    document.querySelectorAll('[data-gpu]').forEach(e => { const v = GPU[e.dataset.gpu]; if (v != null) e.textContent = v; });
+    document.querySelectorAll('[data-gpu-toggle] [data-gpu-slot]').forEach(e => { e.innerHTML = gpuToggle(); });
+    const nav = document.getElementById('navGpu');
+    if (nav) nav.innerHTML = gpuToggle({ compact: true });
+  }
+
+  // Switch GPU in place: no reload (no flicker, scroll kept). The URL gets the new ?gpu= (a history entry, so Back
+  // switches back), links between pages are rewritten, and pages re-render on the 'loom:gpu' event.
+  function setGpu(id, { push = true } = {}) {
+    const g = GPUS.find(x => x.id === id) || GPUS[0];
+    if (g === GPU) return;
+    GPU = g;
+    setParam();
+    compute();
+    if (push) history.pushState(null, '', gpuLink(g));
+    paintGpu();
+    if (window.LOOM_CARRY_ALL) window.LOOM_CARRY_ALL();
+    document.dispatchEvent(new CustomEvent('loom:gpu', { detail: g }));
+  }
+
+  function mountGpu() {
+    document.querySelectorAll('[data-gpu-toggle]').forEach(e => { e.hidden = GPUS.length < 2; });
+    paintGpu();
     document.addEventListener('click', e => {
       const a = e.target.closest && e.target.closest('a[data-gpu-id]');
-      if (a && !e.metaKey && !e.ctrlKey && !e.shiftKey) try { sessionStorage.setItem('loom-gpu-scroll', String(scrollY)); } catch (_) {}
+      if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;   // new tab etc.: the plain link
+      e.preventDefault();
+      setGpu(a.dataset.gpuId);
     });
-  }
-  function restoreScroll() {
-    let y = null;
-    try { y = sessionStorage.getItem('loom-gpu-scroll'); sessionStorage.removeItem('loom-gpu-scroll'); } catch (_) {}
-    if (y != null && !location.hash) {
-      document.documentElement.style.scrollBehavior = 'auto';
-      scrollTo(0, +y);
-      document.documentElement.style.scrollBehavior = '';
-    }
+    addEventListener('popstate', () => setGpu(new URLSearchParams(location.search).get('gpu'), { push: false }));
   }
 
   function copyButtons(root = document) {
@@ -462,7 +482,7 @@ const LOOM = (() => {
   document.addEventListener('DOMContentLoaded', () => mountGpu());   // before navbar.js docks the toggle
 
   return {
-    GPUS, GPU, gpuOf, gpuLink, link, views, preset, gpuToggle, mountGpu, restoreScroll, all: DATA.models,
+    get GPU() { return GPU; }, GPUS, gpuOf, gpuLink, link, views, preset, gpuToggle, setGpu, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
     ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, copyButtons, reveal,

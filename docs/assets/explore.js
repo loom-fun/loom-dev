@@ -18,8 +18,8 @@
     date: m => Date.parse(m.bench.date) || 0,
   };
 
-  const s = LOOM.stats();
-  el('headLede').textContent = `50+ ports from ${s.orgs} source orgs, ${s.runs} measurements on ${LOOM.GPU.short}, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`;
+  const lede = () => { const s = LOOM.stats(); el('headLede').textContent = `50+ ports from ${s.orgs} source orgs, ${s.runs} measurements on ${LOOM.GPU.short}, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`; };
+  lede();
 
   const open = m => { location.hash = encodeURIComponent(m.id); };
   const table = LOOM.mountTable(el('tbl'), models, { onOpen: open, pageSize: 20 });
@@ -102,7 +102,7 @@
       const mm = LOOM.bench(d.performance).metrics, t = k => (mm[k] || {}).loom, sp = k => (mm[k] || {}).speedup;
       const cell = (label, k) => t(k) != null ? `${label} ${num(t(k))} tok/s${sp(k) != null ? ` (${times(sp(k))})` : ''}` : null;
       const gs = d.gates.summary;
-      const go = `<a class="u" data-keep-href href="${esc(LOOM.gpuLink(gpu, `models.html#${encodeURIComponent(m.id)}`))}">show →</a>`;
+      const go = `<a class="u" data-keep-href data-gpu-id="${esc(g)}" href="${esc(LOOM.gpuLink(gpu, `models.html#${encodeURIComponent(m.id)}`))}">show →</a>`;
       return [name, [d.remeasure ? '<span title="re-measured or carried over from an earlier build">↻</span>' : null, cell('decode', 'decode'), cell('prefill 2k', 'prefill_2k'), cell('4 streams', 'streams4'), `gates ${gs.pass}/${gs.pass + gs.fail + gs.unknown}`, go].filter(Boolean).join(' · ')];
     });
     return `<h3>other GPUs</h3><p class="fine">The numbers above are from ${esc(LOOM.GPU.name)}.</p>${kvList(rows)}`;
@@ -116,7 +116,7 @@
     el('drPath').textContent = `models / ${id}`;
     el('dr').innerHTML = `
       <h2 class="dr-title" style="margin-top:10px">${esc(s0.name)}</h2>
-      <p>No results on ${esc(LOOM.GPU.name)} yet.${on.length ? ` Measured on ${on.map(g => `<a class="u" data-keep-href href="${esc(LOOM.gpuLink(g, `models.html#${encodeURIComponent(id)}`))}">${esc(g.short)}</a>`).join(', ')}.` : ''}</p>`;
+      <p>No results on ${esc(LOOM.GPU.name)} yet.${on.length ? ` Measured on ${on.map(g => `<a class="u" data-keep-href data-gpu-id="${esc(g.id)}" href="${esc(LOOM.gpuLink(g, `models.html#${encodeURIComponent(id)}`))}">${esc(g.short)}</a>`).join(', ')}.` : ''}</p>`;
     return true;
   }
 
@@ -281,5 +281,5 @@
 
   render();
   route();
-  addEventListener('load', LOOM.restoreScroll);
+  document.addEventListener('loom:gpu', () => { lede(); render(); route(); });   // a GPU switch, in place
 })();

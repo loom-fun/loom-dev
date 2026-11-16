@@ -33,7 +33,8 @@
   };
   document.addEventListener('click', e => { const a = e.target.closest && e.target.closest('a[href]'); if (a) carry(a); }, true);
   document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => document.querySelectorAll('a[href]').forEach(carry));   // after the injected navbar and footer
+    window.LOOM_CARRY_ALL = () => document.querySelectorAll('a[href]').forEach(carry);
+    setTimeout(window.LOOM_CARRY_ALL);   // after the injected navbar and footer
     if (org === DEFAULT_ORG) return;
     const band = document.createElement('div');
     band.className = 'org-band';
