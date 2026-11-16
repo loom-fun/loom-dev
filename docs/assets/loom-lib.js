@@ -401,7 +401,7 @@ const LOOM = (() => {
     const memArg = !mem ? '<bytes>' : mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem;
     const p = preset(m);
     return [
-      'pip install "hrx-loom[hf]==0.1.0"',
+      'pipx install "hrx-loom[hf]==0.1.0"',
       `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json --output=${out}${p ? ` --preset ${p}` : ''}`,
       `loom-serve --model=${out}/model.json --device=${m.serve.device || 'amdgpu'} --memory_bytes=${memArg}`,
       '',
@@ -454,6 +454,22 @@ const LOOM = (() => {
     addEventListener('popstate', () => setGpu(new URLSearchParams(location.search).get('gpu'), { push: false }));
   }
 
+  // The Clipboard API exists only on https and localhost; anywhere else (a preview over plain http) copy through a
+  // hidden textarea with execCommand, which still works there.
+  async function copyText(text) {
+    try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; } } catch (e) {}
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    ta.remove();
+    return ok;
+  }
+
   function copyButtons(root = document) {
     root.querySelectorAll('[data-copy]').forEach(btn => {
       if (btn.dataset.bound) return;
@@ -462,11 +478,9 @@ const LOOM = (() => {
         const code = btn.closest('.code').querySelector('code').cloneNode(true);
         code.querySelectorAll('.p, .gpu-alt:not(.on)').forEach(n => n.remove());   // prompts, other GPUs' commands
         const text = code.textContent;
-        try {
-          await navigator.clipboard.writeText(text.trim());
-          btn.textContent = 'copied';
-          setTimeout(() => { btn.textContent = 'copy'; }, 1400);
-        } catch (e) { btn.textContent = 'select + ctrl-c'; }
+        const ok = await copyText(text.trim());
+        btn.textContent = ok ? 'copied' : 'select + ctrl-c';
+        setTimeout(() => { btn.textContent = 'copy'; }, 1400);
       });
     });
   }
