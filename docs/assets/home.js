@@ -12,8 +12,7 @@
     const p = LOOM.preset(qs);
     el('heroFetch').innerHTML = `<span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/${LOOM.esc(qs.repo)}/resolve/main/model.json --output=qwen3-0.6b${p ? ` --preset ${LOOM.esc(p)}` : ''}`;
   }
-  const others = LOOM.all.length - models.length;
-  el('gpuCount').textContent = `${models.length} models${others ? `, ${others} not measured here yet` : ''}`;
+  el('gpuCount').textContent = `${models.length} models`;
 
   el('ixKicker').textContent = `hrx-loom · 50+ models ready to serve · updated ${s.generated}`;
   el('ixCount').textContent = '50+';
