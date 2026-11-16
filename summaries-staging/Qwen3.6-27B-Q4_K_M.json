@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.6-27B-Q4_K_M",
   "name": "Qwen3.6-27B",
   "repo": "loom-fun-staging/ggml-org-Qwen3.6-27B-loom",
-  "revision": "efff9a0bbd31725e93effa8b15d254885a995f1a",
+  "revision": "9ffd2f469302bc4113d0c8a17b246dc1febdd7e2",
   "status": null,
   "license": null,
   "service": {

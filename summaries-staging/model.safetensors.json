@@ -3,7 +3,7 @@
   "checkpoint": "model.safetensors",
   "name": "Qwen3.8-27B-Quark-AWQ-MXFP4",
   "repo": "loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom",
-  "revision": "1f240a79acb54d773194382c4eac47b63ecd9f2d",
+  "revision": "83eeeb8c071791abd5764eaba5a164b68d006118",
   "status": null,
   "license": null,
   "service": {

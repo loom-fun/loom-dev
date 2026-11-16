@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.6-27B-Q4_K_M",
   "name": "Qwen3.6-27B",
   "repo": "loom-fun/ggml-org-Qwen3.6-27B-loom",
-  "revision": "2ed5f6ca639591f0c8d45ba082e3f2d16f375bfe",
+  "revision": "2d649b26c502b99cbd620caf6eff299b848a7e25",
   "status": null,
   "license": null,
   "service": {
@@ -35,7 +35,11 @@
     "memory_bytes": 57000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+      "chat",
+      "chat-r9700"
+    ]
   },
   "features": {
     "api": "yes",
@@ -169,7 +173,7 @@
   },
   "gates": {
     "summary": {
-      "pass": 11,
+      "pass": 10,
       "fail": 0,
       "unknown": 0,
       "n/a": 1
@@ -184,9 +188,196 @@
       "agent": "pass",
       "agent_think_off": "pass",
       "sampling": "pass",
-      "needle": "pass",
-      "needle_full": "pass",
-      "decision": "n/a"
+      "decision": "n/a",
+      "logits": "pass"
+    }
+  },
+  "primary_device": "strix-halo",
+  "remeasure": {
+    "date": "2026-11-15",
+    "result": "identical",
+    "band": 0,
+    "source": "local",
+    "programs_sha256": "8c63a4acd7e557ec1eb1ea3b872b902787067e9827c5ad0eec31b19608a54429",
+    "carried_programs": [
+      "b7978e14f33fae83e6646b1fcf0f3ef5d6284bd365e2e350bd95a97fd17f90ef",
+      "c5549fc874c2ee10f8bdca17c3636ea5b93ca051d0db78fe5e5d38b6063cf134"
+    ],
+    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision fcd68c6212; storage, prepare and control differ only inside the logits blocks",
+    "improved": [],
+    "exceptions": [],
+    "previous": {
+      "date": "2026-11-15",
+      "result": "within",
+      "band": 0.04,
+      "source": "devlab-43670579634-job132679519118",
+      "programs_sha256": "b7978e14f33fae83e6646b1fcf0f3ef5d6284bd365e2e350bd95a97fd17f90ef",
+      "carried_programs": [
+        "c5549fc874c2ee10f8bdca17c3636ea5b93ca051d0db78fe5e5d38b6063cf134"
+      ],
+      "proof": null,
+      "improved": [],
+      "exceptions": [],
+      "previous": null
+    }
+  },
+  "devices": {
+    "radeon-r9700": {
+      "state": null,
+      "remeasure": {
+        "date": "2026-11-15",
+        "result": "identical",
+        "band": 0,
+        "source": "local",
+        "programs_sha256": "8c63a4acd7e557ec1eb1ea3b872b902787067e9827c5ad0eec31b19608a54429",
+        "carried_programs": [
+          "b7978e14f33fae83e6646b1fcf0f3ef5d6284bd365e2e350bd95a97fd17f90ef"
+        ],
+        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision fcd68c6212; storage, prepare and control differ only inside the logits blocks",
+        "improved": [],
+        "exceptions": [],
+        "previous": null
+      },
+      "memory_bytes": 34000000000,
+      "context_tokens": 69632,
+      "performance": {
+        "date": null,
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": "DFlash, depth 3",
+          "llamacpp": "draft-dflash, n-max 15"
+        },
+        "source": null,
+        "metrics": {
+          "decode": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "decode_2k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "decode_32k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_1k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_2k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_8k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_16k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_32k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "streams4": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "spec_acceptance": {
+            "loom": 0.8,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [],
+        "devlab": {
+          "date": "2026-11-14",
+          "source": {
+            "kind": "devlab",
+            "run": "43560709637",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43560709637/job/132343556137"
+          },
+          "metrics": {
+            "decode": {
+              "loom": 60.1,
+              "llamacpp": 38.9,
+              "speedup": 1.54
+            },
+            "decode_2k": {
+              "loom": 53.2,
+              "llamacpp": 38.2,
+              "speedup": 1.39
+            },
+            "decode_32k": {
+              "loom": 50.7,
+              "llamacpp": 33.7,
+              "speedup": 1.5
+            },
+            "prefill_1k": {
+              "loom": 1523.2,
+              "llamacpp": 1200.8,
+              "speedup": 1.27
+            },
+            "prefill_2k": {
+              "loom": 1595.1,
+              "llamacpp": 1284.4,
+              "speedup": 1.24
+            },
+            "prefill_8k": {
+              "loom": 1684.7,
+              "llamacpp": 1332.0,
+              "speedup": 1.26
+            },
+            "prefill_16k": {
+              "loom": 1623.5,
+              "llamacpp": 1276.0,
+              "speedup": 1.27
+            },
+            "prefill_32k": {
+              "loom": 1503.2,
+              "llamacpp": 1164.3,
+              "speedup": 1.29
+            },
+            "streams4": {
+              "loom": 113.4,
+              "llamacpp": 80.2,
+              "speedup": 1.41
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 10,
+          "fail": 0,
+          "unknown": 0,
+          "n/a": 1
+        },
+        "status": {
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "pass",
+          "consistency": "pass",
+          "spec": "pass",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
+          "decision": "n/a",
+          "logits": "pass"
+        }
+      }
     }
   }
 }

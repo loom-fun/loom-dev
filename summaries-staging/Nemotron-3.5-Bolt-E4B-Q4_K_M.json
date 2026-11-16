@@ -3,7 +3,7 @@
   "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
   "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
   "repo": "loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-  "revision": "c023eab1949974f16ffad2974ce94d94e5410a95",
+  "revision": "27995cc069095e061804dcbeb0d52d5db0d3916b",
   "status": null,
   "license": null,
   "service": {

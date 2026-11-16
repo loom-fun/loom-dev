@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-4B-Q4_K_M",
   "name": "Qwen3.5-4B",
   "repo": "loom-fun/unsloth-Qwen3.5-4B-loom",
-  "revision": "189cd41968e1a6a94e577b857203066592a057f3",
+  "revision": "6e8e69042ec764ba92c560d4be4f7d7c8141f2f8",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -35,7 +35,10 @@
     "memory_bytes": 28000000000,
     "context_tokens": 262144,
     "rows": 4,
-    "max_tokens": 4096
+    "max_tokens": 4096,
+    "presets": [
+      "chat"
+    ]
   },
   "features": {
     "api": "yes",
@@ -155,9 +158,9 @@
           "speedup": 1.64
         },
         "prefill_32k": {
-          "loom": 2305.7,
+          "loom": 2368.5,
           "llamacpp": 1352.6,
-          "speedup": 1.7
+          "speedup": 1.75
         },
         "streams4": {
           "loom": 223.4,
@@ -169,7 +172,7 @@
   },
   "gates": {
     "summary": {
-      "pass": 12,
+      "pass": 11,
       "fail": 0,
       "unknown": 0,
       "n/a": 1
@@ -184,10 +187,201 @@
       "agent": "pass",
       "agent_think_off": "pass",
       "sampling": "pass",
-      "needle": "pass",
-      "needle_full": "pass",
       "decision": "n/a",
+      "logits": "pass",
       "over_capacity": "pass"
+    }
+  },
+  "primary_device": "strix-halo",
+  "remeasure": {
+    "date": "2026-11-15",
+    "result": "identical",
+    "band": 0,
+    "source": "local-2",
+    "programs_sha256": "1b31c062dd79b879688ee43d5510d2d86a3af7c08e9cb260d22a3ec55c96d96b",
+    "carried_programs": [
+      "6648e8b0480389633628a5a85bc4d8ebbbb5f1edc989a3ff4359fbcbb64dd2ce",
+      "a1becf843343ab3e7fbbfbc5e8734a33ec6041f9a680e326de186da9369d749d"
+    ],
+    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 1399b19128; storage, prepare and control differ only inside the logits blocks",
+    "improved": [],
+    "exceptions": [],
+    "previous": {
+      "date": "2026-11-14",
+      "result": "improved",
+      "band": 0.04,
+      "source": "devlab-43644948726-job132600553571",
+      "programs_sha256": "6648e8b0480389633628a5a85bc4d8ebbbb5f1edc989a3ff4359fbcbb64dd2ce",
+      "carried_programs": [
+        "a1becf843343ab3e7fbbfbc5e8734a33ec6041f9a680e326de186da9369d749d"
+      ],
+      "proof": null,
+      "improved": [
+        "prefill_32k"
+      ],
+      "exceptions": [
+        "prefill_8k"
+      ],
+      "previous": null
+    }
+  },
+  "devices": {
+    "radeon-r9700": {
+      "state": null,
+      "remeasure": {
+        "date": "2026-11-15",
+        "result": "identical",
+        "band": 0,
+        "source": "local-2",
+        "programs_sha256": "1b31c062dd79b879688ee43d5510d2d86a3af7c08e9cb260d22a3ec55c96d96b",
+        "carried_programs": [
+          "6648e8b0480389633628a5a85bc4d8ebbbb5f1edc989a3ff4359fbcbb64dd2ce"
+        ],
+        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 1399b19128; storage, prepare and control differ only inside the logits blocks",
+        "improved": [],
+        "exceptions": [],
+        "previous": null
+      },
+      "memory_bytes": null,
+      "context_tokens": 262144,
+      "performance": {
+        "date": null,
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": "DFlash, depth 3",
+          "llamacpp": "draft-dflash, n-max 7"
+        },
+        "source": null,
+        "metrics": {
+          "decode": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "decode_2k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "decode_32k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_1k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_2k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_8k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_16k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_32k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "streams4": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "spec_acceptance": {
+            "loom": 0.53,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [],
+        "devlab": {
+          "date": "2026-11-14",
+          "source": {
+            "kind": "devlab",
+            "run": "43633451014",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43633451014/job/132565026297"
+          },
+          "metrics": {
+            "decode": {
+              "loom": 200.0,
+              "llamacpp": 94.0,
+              "speedup": 2.13
+            },
+            "decode_2k": {
+              "loom": 192.2,
+              "llamacpp": 109.9,
+              "speedup": 1.75
+            },
+            "decode_32k": {
+              "loom": 141.1,
+              "llamacpp": 100.9,
+              "speedup": 1.4
+            },
+            "prefill_1k": {
+              "loom": 7546.0,
+              "llamacpp": 4985.2,
+              "speedup": 1.51
+            },
+            "prefill_2k": {
+              "loom": 8184.2,
+              "llamacpp": 5555.1,
+              "speedup": 1.47
+            },
+            "prefill_8k": {
+              "loom": 8600.9,
+              "llamacpp": 5811.0,
+              "speedup": 1.48
+            },
+            "prefill_16k": {
+              "loom": 8039.4,
+              "llamacpp": 5496.7,
+              "speedup": 1.46
+            },
+            "prefill_32k": {
+              "loom": 7030.0,
+              "llamacpp": 4896.7,
+              "speedup": 1.44
+            },
+            "streams4": {
+              "loom": 535.5,
+              "llamacpp": 332.4,
+              "speedup": 1.61
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 10,
+          "fail": 0,
+          "unknown": 0,
+          "n/a": 1
+        },
+        "status": {
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "pass",
+          "consistency": "pass",
+          "spec": "pass",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
+          "decision": "n/a",
+          "logits": "pass"
+        }
+      }
     }
   }
 }
