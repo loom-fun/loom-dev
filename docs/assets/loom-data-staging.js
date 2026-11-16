@@ -6130,7 +6130,7 @@ window.LOOM_DATA = {
    "checkpoint": "model.safetensors",
    "name": "Qwen3.8-27B-Quark-AWQ-MXFP4",
    "repo": "loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom",
-   "revision": "83eeeb8c071791abd5764eaba5a164b68d006118",
+   "revision": "508161d4aed33ed968420a50b3eacfe5385f70b1",
    "status": null,
    "license": null,
    "service": {
