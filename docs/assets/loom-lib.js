@@ -123,7 +123,7 @@ const LOOM = (() => {
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const hf = repo => `https://huggingface.co/${repo}`;
   const rk = m => String(m.rank).padStart(2, '0');
-  const href = m => `models.html#${encodeURIComponent(m.id)}`;
+  const href = m => `models.html${window.LOOM_ORG && window.LOOM_ORG !== 'loom-fun' ? `?org=${encodeURIComponent(window.LOOM_ORG)}` : ''}#${encodeURIComponent(m.id)}`;
   const AVATARS = (window.LOOM_DATA && window.LOOM_DATA.avatars) || {};
   const avatar = (m, cls = '') => AVATARS[m.org]
     ? `<img class="av ${cls}" src="${esc(AVATARS[m.org])}" alt="" title="${esc(m.org)}" loading="lazy" referrerpolicy="no-referrer">`

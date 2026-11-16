@@ -1,7 +1,8 @@
 name: Update summaries
 
-# Every hour, regenerate summaries/ from the loom-fun Hugging Face org and, when a model was added, updated or
-# removed, rebuild docs/assets/loom-data.js and push both straight to main.
+# Every hour, regenerate summaries/ from the loom-fun Hugging Face org (and summaries-staging/ from loom-fun-staging,
+# the site's ?org=loom-fun-staging view) and, when a model was added, updated or removed, rebuild
+# docs/assets/loom-data.js (and loom-data-staging.js) and push them straight to main.
 
 on:
   schedule:
@@ -32,30 +33,34 @@ jobs:
       - name: Regenerate summaries
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python summarize_info.py --skip-unusable
+        run: |
+          python summarize_info.py --skip-unusable
+          python summarize_info.py --skip-unusable --org loom-fun-staging --out summaries-staging
 
       - name: Check for changes
         id: diff
         run: |
-          git add -A summaries
-          if git diff --cached --quiet -- summaries; then
+          git add -A summaries summaries-staging
+          if git diff --cached --quiet -- summaries summaries-staging; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No model changes."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            git diff --cached --stat -- summaries
+            git diff --cached --stat -- summaries summaries-staging
           fi
 
       - name: Rebuild website data
         if: steps.diff.outputs.changed == 'true'
-        run: python docs/build_data.py
+        run: |
+          python docs/build_data.py
+          python docs/build_data.py --summaries summaries-staging --out docs/assets/loom-data-staging.js
 
       - name: Commit and push
         if: steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A summaries docs/assets/loom-data.js
-          git commit -m "Update summaries from Hugging Face" -m "$(git diff --cached --name-status -- summaries)"
+          git add -A summaries summaries-staging docs/assets/loom-data.js docs/assets/loom-data-staging.js
+          git commit -m "Update summaries from Hugging Face" -m "$(git diff --cached --name-status -- summaries summaries-staging)"
           git pull --rebase origin main
           git push origin HEAD:main
