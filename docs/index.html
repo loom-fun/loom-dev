@@ -88,7 +88,7 @@
             <div class="sec-idx"><b>01</b> / try one</div>
           <div>
             <h2>Models you can fetch and serve today.</h2>
-            <p>Every model here is a model package on Hugging Face, tuned and tested on <span data-gpu="short">Strix Halo</span>. Pick one, open it for its <code>loom-fetch</code> and <code>loom-serve</code> commands and the <code>--memory_bytes</code> it needs, and you're serving it in minutes. They're ranked by speedup over llama.cpp ROCm on the same weights, as a geometric mean across decode, prefill and 4-stream workloads. In the profile column, bars point up where Loom is faster and down where it's slower.</p>
+            <p>Every model here is a model package on Hugging Face, tuned and tested on <span data-gpu="short">Strix Halo</span>. Pick one, open it for its <code>loom-fetch</code> and <code>loom-serve</code> commands, and you're serving it in minutes. They're ranked by speedup over llama.cpp ROCm on the same weights, as a geometric mean across decode, prefill and 4-stream workloads.</p>
           </div>
         </div>
         <div class="podium" id="podium"></div>
@@ -113,8 +113,8 @@
           <div class="sec-head">
             <div class="sec-idx"><b>02</b> / by workload</div>
             <div>
-              <h2>Early experiments, workload by workload.</h2>
-              <p id="stripLede">These are first results, not a ceiling. Each model was ported and tuned by an agent using loom-skills, so the spread reflects how far each port has been optimized so far. One dot per model for each workload, on a log scale centred on parity with llama.cpp. Hollow dots are workloads where llama.cpp is still faster. The tick on each row is the median.</p>
+              <h2>Performance overview.</h2>
+              <p id="stripLede">Each model was ported and tuned by an agent using loom-skills, so the spread reflects how far each port has been optimized so far. One dot per model for each workload, on a log scale centred on parity with llama.cpp.</p>
             </div>
           </div>
           <div class="panel chart-panel"><div class="panel-head"><span>speedup · loom ÷ llama.cpp</span><span id="stripMeta"></span></div><div class="chart-body" id="strip"></div></div>
@@ -128,7 +128,7 @@
             <div class="sec-idx"><b>03</b> / absolute</div>
             <div>
               <h2>Tokens per second against weights size.</h2>
-              <p>Ratios hide scale, so this is the raw rate. Each model is a pair joined by a line: a square for Loom and a circle for llama.cpp. A line that runs down from the square means Loom is slower on that workload. Both axes are logarithmic.</p>
+              <p>Each model is a pair joined by a line: a square for Loom and a circle for llama.cpp. A line that runs down from the square means Loom is slower on that workload. Both axes are logarithmic.</p>
             </div>
           </div>
           <div class="panel chart-panel">
@@ -144,7 +144,7 @@
           <div class="sec-head">
             <div class="sec-idx"><b>04</b> / context</div>
             <div>
-              <h2>How the gap moves with context length.</h2>
+              <h2>Speedup by context length.</h2>
               <p id="scalingLede">One line per model, with the median drawn in bold. The shaded area is where llama.cpp is faster.</p>
             </div>
           </div>
