@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=24">
-  <script src="assets/loom-data.js?v=9"></script>
-  <script src="assets/loom-lib.js?v=14"></script>
-  <script src="assets/navbar.js?v=14"></script>
+  <link rel="stylesheet" href="assets/styles.css?v=26">
+  <script src="assets/data-source.js?v=11"></script>
+  <script src="assets/loom-lib.js?v=18"></script>
+  <script src="assets/navbar.js?v=16"></script>
   <script src="assets/footer.js?v=9"></script>
 </head>
 <body data-page="submit">
@@ -57,7 +57,7 @@
             <div class="step-body">
               <h3>Generate the card and publish to Hugging Face</h3>
               <p>The agent generates <code>info.json</code> and <code>README.md</code> from the run's own logs with the loom-skills card scripts, then uploads the package: the <code>.loom</code> programs, <code>model.json</code> and <code>model.json.lock</code>, the tokenizer and the card. The GGUF itself isn't copied, since <code>loom-fetch</code> pulls it from its original repo and checks its sha256. Log in to Hugging Face once first:</p>
-              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pip install -U huggingface_hub
+              <div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code><span class="p">$ </span>pipx install huggingface_hub
 <span class="p">$ </span>hf auth login</code></pre></div>
               <div class="code"><div class="code-head"><span>agent prompt</span><button class="copy" data-copy>copy</button></div><pre class="wrap"><code><span class="p">&gt; </span>/loom Generate the Hugging Face model card for this port and upload the package to <span class="s">&lt;hf-org&gt;/&lt;model&gt;-loom</span>.</code></pre></div>
               <div class="note">Every number on the card has to come from the report. A value without evidence renders as <b>not measured</b> or <b>no evidence</b>.</div>

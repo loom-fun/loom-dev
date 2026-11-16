@@ -1,6 +1,43 @@
 // Shared data helpers, renderers and SVG charts. Models come from loom-data.js (generated from summaries/).
 
 const LOOM = (() => {
+  // --- GPU: the site shows one GPU's results and instructions at a time (?gpu=, see data-source.js) ---
+  // LOOM_DATA.gpus lists the GPUs with results (build_data.py, from gpus.json); the first is the default.
+  const DATA = window.LOOM_DATA || { models: [] };
+  const GPUS = DATA.gpus && DATA.gpus.length ? DATA.gpus
+    : [{ id: 'strix-halo', name: 'AMD Ryzen AI Max+ 395 (Strix Halo)', short: 'Strix Halo', spec: 'gfx1151, 128 GB unified memory', preset_suffix: '' }];
+  let GPU = GPUS.find(g => g.id === window.LOOM_GPU_ASKED) || GPUS[0];
+  const gpuOf = id => GPUS.find(g => g.id === id) || { id, name: id, short: id, preset_suffix: null };
+  const setParam = () => { if (window.LOOM_PARAMS) window.LOOM_PARAMS.gpu = GPU === GPUS[0] ? null : GPU.id; };
+  setParam();
+  const link = (href, set) => window.LOOM_LINK ? window.LOOM_LINK(href, set) : href;
+  const gpuLink = (g, href = location.href) => link(href, { gpu: g.id === GPUS[0].id ? null : g.id });
+
+  // Every GPU's view of a summary: the primary GPU's results are at the top level, the others under "devices"
+  // (with a state instead of results when they have none). A loom-card/2 summary is Strix Halo only.
+  function views(s) {
+    const out = { [s.primary_device || 'strix-halo']: { state: null, performance: s.performance, gates: s.gates,
+      remeasure: s.remeasure || null, memory_bytes: s.serve.memory_bytes, context_tokens: s.serve.context_tokens } };
+    for (const [g, d] of Object.entries(s.devices || {})) out[g] = d;
+    return out;
+  }
+  // The summary as seen on `gpu`, or null when the card has no results there. A GPU without its own memory budget
+  // or context runs the primary GPU's (the card records them only where they differ).
+  function onGpu(s, gpu) {
+    const all = views(s), d = all[gpu.id];
+    if (!d || !d.performance) return null;
+    return { ...s, gpuViews: all, performance: d.performance, gates: d.gates, remeasure: d.remeasure || null,
+      serve: { ...s.serve, memory_bytes: d.memory_bytes || s.serve.memory_bytes, context_tokens: d.context_tokens || s.serve.context_tokens } };
+  }
+  // The --preset a model is fetched with on `gpu`: model.json's first preset plus the GPU's suffix when the package
+  // has that preset, else the first. Null when the package has one preset (loom-fetch needs no --preset then).
+  function preset(m, gpu = GPU) {
+    const ps = m.serve.presets || [];
+    if (ps.length < 2) return null;
+    const own = gpu.preset_suffix ? ps[0] + gpu.preset_suffix : null;
+    return own && ps.includes(own) ? own : ps[0];
+  }
+
   const METRICS = [
     { key: 'decode', group: 'decode', label: 'decode', detail: 'short prompt', short: 'dec', x: 'short' },
     { key: 'decode_2k', group: 'decode', label: 'decode', detail: '2k context', short: 'dec 2k', x: '2k' },
@@ -106,9 +143,16 @@ const LOOM = (() => {
     };
   }
 
-  const models = (window.LOOM_DATA ? window.LOOM_DATA.models : []).map(enrich)
-    .sort((a, b) => (b.score || 0) - (a.score || 0));
-  models.forEach((m, i) => { m.rank = i + 1; });
+  // The selected GPU's models, best first. One array for the page's lifetime: a GPU switch refills it in place, so
+  // every renderer holding it sees the new GPU.
+  const models = [];
+  function compute() {
+    models.length = 0;
+    models.push(...DATA.models.map(s => onGpu(s, GPU)).filter(Boolean).map(enrich)
+      .sort((a, b) => (b.score || 0) - (a.score || 0)));
+    models.forEach((m, i) => { m.rank = i + 1; });
+  }
+  compute();
 
   // --- formatting ---
   const pct = x => {
@@ -123,8 +167,8 @@ const LOOM = (() => {
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const hf = repo => `https://huggingface.co/${repo}`;
   const rk = m => String(m.rank).padStart(2, '0');
-  const href = m => `models.html#${encodeURIComponent(m.id)}`;
-  const AVATARS = (window.LOOM_DATA && window.LOOM_DATA.avatars) || {};
+  const href = m => link(`models.html#${encodeURIComponent(m.id)}`);
+  const AVATARS = DATA.avatars || {};
   const avatar = (m, cls = '') => AVATARS[m.org]
     ? `<img class="av ${cls}" src="${esc(AVATARS[m.org])}" alt="" title="${esc(m.org)}" loading="lazy" referrerpolicy="no-referrer">`
     : `<span class="av av-na ${cls}" title="${esc(m.org)}">${esc(m.org.charAt(0).toUpperCase())}</span>`;
@@ -347,7 +391,7 @@ const LOOM = (() => {
       spec: models.filter(m => m.spec).length,
       verified: models.filter(m => m.verified).length,
       maxCtx: Math.max(...models.map(m => m.serve.context_tokens || 0)),
-      generated: window.LOOM_DATA ? window.LOOM_DATA.generated : null,
+      generated: DATA.generated || null,
     };
   }
 
@@ -355,9 +399,10 @@ const LOOM = (() => {
     const out = m.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-');
     const mem = m.serve.memory_bytes;
     const memArg = !mem ? '<bytes>' : mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem;
+    const p = preset(m);
     return [
-      'pip install "hrx-loom[hf]==0.1.0"',
-      `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json --output=${out}`,
+      'pipx install "hrx-loom[hf]==0.1.0"',
+      `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json --output=${out}${p ? ` --preset ${p}` : ''}`,
       `loom-serve --model=${out}/model.json --device=${m.serve.device || 'amdgpu'} --memory_bytes=${memArg}`,
       '',
       '# OpenAI-compatible, on :8080',
@@ -366,18 +411,76 @@ const LOOM = (() => {
     ].join('\n');
   }
 
+  // The GPU toggle: one link per GPU (a link, so it can be opened in a new tab or shared). `compact` is the nav's.
+  function gpuToggle({ compact = false } = {}) {
+    return `<nav class="gpu-tg${compact ? ' compact' : ''}" aria-label="GPU">${GPUS.map(g => {
+      const on = g.id === GPU.id;
+      return `<a href="${esc(gpuLink(g))}" data-keep-href data-gpu-id="${esc(g.id)}" class="${on ? 'on' : ''}"${on ? ' aria-current="true"' : ''} title="${esc(g.name)}${g.spec ? ` · ${esc(g.spec)}` : ''} · ${g.models} models">${esc(g.short)}${compact ? '' : `<small>${g.models}</small>`}</a>`;
+    }).join('')}</nav>`;
+  }
+
+  // Fill [data-gpu="<field>"] elements with the selected GPU's field (short, name, spec) and (re)draw every toggle:
+  // [data-gpu-toggle] holds the full one, #navGpu the compact one.
+  function paintGpu() {
+    document.querySelectorAll('[data-gpu]').forEach(e => { const v = GPU[e.dataset.gpu]; if (v != null) e.textContent = v; });
+    document.querySelectorAll('[data-gpu-toggle] [data-gpu-slot]').forEach(e => { e.innerHTML = gpuToggle(); });
+    const nav = document.getElementById('navGpu');
+    if (nav) nav.innerHTML = gpuToggle({ compact: true });
+  }
+
+  // Switch GPU in place: no reload (no flicker, scroll kept). The URL gets the new ?gpu= (a history entry, so Back
+  // switches back), links between pages are rewritten, and pages re-render on the 'loom:gpu' event.
+  function setGpu(id, { push = true } = {}) {
+    const g = GPUS.find(x => x.id === id) || GPUS[0];
+    if (g === GPU) return;
+    GPU = g;
+    setParam();
+    compute();
+    if (push) history.pushState(null, '', gpuLink(g));
+    paintGpu();
+    if (window.LOOM_CARRY_ALL) window.LOOM_CARRY_ALL();
+    document.dispatchEvent(new CustomEvent('loom:gpu', { detail: g }));
+  }
+
+  function mountGpu() {
+    document.querySelectorAll('[data-gpu-toggle]').forEach(e => { e.hidden = GPUS.length < 2; });
+    paintGpu();
+    document.addEventListener('click', e => {
+      const a = e.target.closest && e.target.closest('a[data-gpu-id]');
+      if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;   // new tab etc.: the plain link
+      e.preventDefault();
+      setGpu(a.dataset.gpuId);
+    });
+    addEventListener('popstate', () => setGpu(new URLSearchParams(location.search).get('gpu'), { push: false }));
+  }
+
+  // The Clipboard API exists only on https and localhost; anywhere else (a preview over plain http) copy through a
+  // hidden textarea with execCommand, which still works there.
+  async function copyText(text) {
+    try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; } } catch (e) {}
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;pointer-events:none';
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    ta.remove();
+    return ok;
+  }
+
   function copyButtons(root = document) {
     root.querySelectorAll('[data-copy]').forEach(btn => {
       if (btn.dataset.bound) return;
       btn.dataset.bound = '1';
       btn.addEventListener('click', async () => {
-        const code = btn.closest('.code').querySelector('code');
-        const text = [...code.childNodes].map(n => n.classList && n.classList.contains('p') ? '' : n.textContent).join('');
-        try {
-          await navigator.clipboard.writeText(text.trim());
-          btn.textContent = 'copied';
-          setTimeout(() => { btn.textContent = 'copy'; }, 1400);
-        } catch (e) { btn.textContent = 'select + ctrl-c'; }
+        const code = btn.closest('.code').querySelector('code').cloneNode(true);
+        code.querySelectorAll('.p, .gpu-alt:not(.on)').forEach(n => n.remove());   // prompts, other GPUs' commands
+        const text = code.textContent;
+        const ok = await copyText(text.trim());
+        btn.textContent = ok ? 'copied' : 'select + ctrl-c';
+        setTimeout(() => { btn.textContent = 'copy'; }, 1400);
       });
     });
   }
@@ -391,7 +494,10 @@ const LOOM = (() => {
     els.forEach(e => io.observe(e));
   }
 
+  document.addEventListener('DOMContentLoaded', () => mountGpu());   // before navbar.js docks the toggle
+
   return {
+    get GPU() { return GPU; }, GPUS, gpuOf, gpuLink, link, views, preset, gpuToggle, setGpu, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
     ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, copyButtons, reveal,

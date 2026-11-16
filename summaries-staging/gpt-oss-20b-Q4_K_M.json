@@ -1,0 +1,380 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "gpt-oss-20b-Q4_K_M",
+  "name": "gpt-oss-20b",
+  "repo": "loom-fun-staging/unsloth-gpt-oss-20b-loom",
+  "revision": "ba56994f62dbcc2c260675088e8aaf812d486941",
+  "status": null,
+  "license": "apache-2.0",
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "unsloth/gpt-oss-20b-GGUF",
+      "file": "gpt-oss-20b-Q4_K_M.gguf",
+      "quant": "Q4_K_M",
+      "revision": "d449b42d93e1c2c7bda5312f5c25c8fb91dfa9b4",
+      "sha256": "c27536640e410032865dc68781d80a08b98f8db5e93575919af8ccc0568aeb4f",
+      "size": 11624759488
+    },
+    "drafter": null,
+    "projector": null
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 28000000000,
+    "context_tokens": 131072,
+    "rows": 4,
+    "max_tokens": 4096,
+    "presets": [
+      "chat"
+    ]
+  },
+  "features": {
+    "api": "yes",
+    "audio": "n/a",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "n/a",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "yes",
+    "sampling": "yes",
+    "speculative_decoding": "n/a",
+    "thinking": "yes",
+    "tool_calling": "yes"
+  },
+  "performance": {
+    "date": null,
+    "llamacpp_build": "b1374",
+    "drafting": {
+      "loom": null,
+      "llamacpp": null
+    },
+    "source": null,
+    "metrics": {
+      "decode": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "decode_2k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "decode_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_1k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_2k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_8k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_16k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "streams4": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      }
+    },
+    "not_applicable": [
+      "spec_acceptance"
+    ],
+    "devlab": {
+      "date": "2026-11-13",
+      "source": {
+        "kind": "devlab",
+        "run": "43392400146",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43392400146/job/131775276660"
+      },
+      "metrics": {
+        "decode": {
+          "loom": 80.2,
+          "llamacpp": 78.1,
+          "speedup": 1.03
+        },
+        "decode_2k": {
+          "loom": 75.9,
+          "llamacpp": 75.9,
+          "speedup": 1.0
+        },
+        "decode_32k": {
+          "loom": 54.7,
+          "llamacpp": 60.0,
+          "speedup": 0.91
+        },
+        "prefill_1k": {
+          "loom": 2200.9,
+          "llamacpp": 1535.9,
+          "speedup": 1.43
+        },
+        "prefill_2k": {
+          "loom": 2338.8,
+          "llamacpp": 1653.9,
+          "speedup": 1.41
+        },
+        "prefill_8k": {
+          "loom": 2350.5,
+          "llamacpp": 1651.9,
+          "speedup": 1.42
+        },
+        "prefill_16k": {
+          "loom": 2193.0,
+          "llamacpp": 1545.9,
+          "speedup": 1.42
+        },
+        "prefill_32k": {
+          "loom": 1890.3,
+          "llamacpp": 1301.6,
+          "speedup": 1.45
+        },
+        "streams4": {
+          "loom": 164.1,
+          "llamacpp": 145.4,
+          "speedup": 1.13
+        }
+      }
+    }
+  },
+  "gates": {
+    "summary": {
+      "pass": 7,
+      "fail": 0,
+      "unknown": 0,
+      "n/a": 4
+    },
+    "status": {
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "n/a",
+      "consistency": "pass",
+      "spec": "n/a",
+      "agent": "pass",
+      "agent_think_off": "n/a",
+      "sampling": "pass",
+      "decision": "n/a",
+      "logits": "pass"
+    }
+  },
+  "primary_device": "strix-halo",
+  "remeasure": {
+    "date": "2026-11-15",
+    "result": "identical",
+    "band": 0,
+    "source": "local",
+    "programs_sha256": "fc849845e596175771938c7425f0249e770a7bf5daa039650b522ece335526f8",
+    "carried_programs": [
+      "32adc5e3fac6551437ec5cb9c96aae62ecfa3785b85352422764fd285fb13282",
+      "5fd8f0f3acec7f16bde9f177702fc1677aeee3fbfcb471e2fa7cf3f36d05892c"
+    ],
+    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 00fe01a1c3; storage, prepare and control differ only inside the logits blocks",
+    "improved": [],
+    "exceptions": [],
+    "previous": {
+      "date": "2026-11-15",
+      "result": "improved",
+      "band": 0.04,
+      "source": "devlab-43660312149-job132647988228",
+      "programs_sha256": "5fd8f0f3acec7f16bde9f177702fc1677aeee3fbfcb471e2fa7cf3f36d05892c",
+      "carried_programs": [
+        "32adc5e3fac6551437ec5cb9c96aae62ecfa3785b85352422764fd285fb13282"
+      ],
+      "proof": null,
+      "improved": [
+        "prefill_1k"
+      ],
+      "exceptions": [],
+      "previous": null
+    }
+  },
+  "devices": {
+    "radeon-r9700": {
+      "state": null,
+      "remeasure": {
+        "date": "2026-11-15",
+        "result": "identical",
+        "band": 0,
+        "source": "local",
+        "programs_sha256": "fc849845e596175771938c7425f0249e770a7bf5daa039650b522ece335526f8",
+        "carried_programs": [
+          "5fd8f0f3acec7f16bde9f177702fc1677aeee3fbfcb471e2fa7cf3f36d05892c"
+        ],
+        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 00fe01a1c3; storage, prepare and control differ only inside the logits blocks",
+        "improved": [],
+        "exceptions": [],
+        "previous": null
+      },
+      "memory_bytes": null,
+      "context_tokens": 131072,
+      "performance": {
+        "date": null,
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": null,
+          "llamacpp": null
+        },
+        "source": null,
+        "metrics": {
+          "decode": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "decode_2k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "decode_32k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_1k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_2k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_8k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_16k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_32k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "streams4": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "spec_acceptance": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [
+          "spec_acceptance"
+        ],
+        "devlab": {
+          "date": "2026-11-15",
+          "source": {
+            "kind": "devlab",
+            "run": "43666323013",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43666323013/job/132666426819"
+          },
+          "metrics": {
+            "decode": {
+              "loom": 195.2,
+              "llamacpp": 150.6,
+              "speedup": 1.3
+            },
+            "decode_2k": {
+              "loom": 182.4,
+              "llamacpp": 142.1,
+              "speedup": 1.28
+            },
+            "decode_32k": {
+              "loom": 124.9,
+              "llamacpp": 126.5,
+              "speedup": 0.99
+            },
+            "prefill_1k": {
+              "loom": 5995.5,
+              "llamacpp": 4896.4,
+              "speedup": 1.22
+            },
+            "prefill_2k": {
+              "loom": 6587.9,
+              "llamacpp": 5374.2,
+              "speedup": 1.23
+            },
+            "prefill_8k": {
+              "loom": 6709.4,
+              "llamacpp": 5459.1,
+              "speedup": 1.23
+            },
+            "prefill_16k": {
+              "loom": 6204.4,
+              "llamacpp": 5111.1,
+              "speedup": 1.21
+            },
+            "prefill_32k": {
+              "loom": 5319.2,
+              "llamacpp": 4367.5,
+              "speedup": 1.22
+            },
+            "streams4": {
+              "loom": 353.9,
+              "llamacpp": 325.9,
+              "speedup": 1.09
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 6,
+          "fail": 1,
+          "unknown": 0,
+          "n/a": 4
+        },
+        "status": {
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "n/a",
+          "consistency": "pass",
+          "spec": "n/a",
+          "agent": "pass",
+          "agent_think_off": "n/a",
+          "sampling": "pass",
+          "decision": "n/a",
+          "logits": "fail"
+        }
+      }
+    }
+  }
+}

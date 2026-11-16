@@ -161,6 +161,9 @@
   "context_tokens": 32768,
   "device": "amdgpu",
   "max_tokens": 4096,
+  "presets": [
+   "chat"
+  ],
   "memory_bytes": 5000000000,
   "rows": 4
  },
