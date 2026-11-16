@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-Omni-2B-Q4_K_M",
   "name": "LFM3-Omni-2B",
   "repo": "loom-fun-staging/ggml-org-LFM3-Omni-2B-loom",
-  "revision": "1f2fc4f3dbd3762d8edd1936aba3ae506f4d6f29",
+  "revision": "cd3977a61ee4b5bb135e211e585467ce8e8d2d9d",
   "status": null,
   "license": null,
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

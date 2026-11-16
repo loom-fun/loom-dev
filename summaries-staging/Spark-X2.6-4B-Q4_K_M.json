@@ -3,7 +3,7 @@
   "checkpoint": "Spark-X2.6-4B-Q4_K_M",
   "name": "Spark-X2.6-4B",
   "repo": "loom-fun-staging/bartowski-Spark-X2.6-4B-loom",
-  "revision": "0dae7c7ca2768d8b6e17e8f3cd41d00f11340e2a",
+  "revision": "2be917c46d90cce074346f08c08b69114c165b41",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

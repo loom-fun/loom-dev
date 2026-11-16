@@ -3,7 +3,7 @@
   "checkpoint": "Flint-Q4_K_M",
   "name": "Flint",
   "repo": "loom-fun-staging/ggml-org-Flint-loom",
-  "revision": "13db0d3b738c817eb5423210bb1b2cd57bd8e24a",
+  "revision": "f1118d6d3ae70eae243770d11d496f0fc500e381",
   "status": null,
   "license": null,
   "service": {
@@ -33,8 +33,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

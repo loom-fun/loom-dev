@@ -3,7 +3,7 @@
   "checkpoint": "Spark-X2.5-4B-Q4_K_M",
   "name": "Spark-X2.5-4B",
   "repo": "loom-fun-staging/XHToken-Spark-X2.5-4B-loom",
-  "revision": "19c86e18daa9128da234c5defc4b5743a7733bf6",
+  "revision": "c4f9c469cdfca399776c67313715729f1148268b",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.0-35B-Q4_K_M",
   "name": "Ornith-1.0-35B",
   "repo": "loom-fun-staging/lmstudio-community-Ornith-1.0-35B-loom",
-  "revision": "302af012adabf0af580a4b9447a301da5c6778c9",
+  "revision": "5e827dfdc20811c0d5d071f05f8a26bf23616155",
   "status": null,
   "license": null,
   "service": {
@@ -33,8 +33,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

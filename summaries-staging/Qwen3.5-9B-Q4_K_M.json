@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-9B-Q4_K_M",
   "name": "Qwen3.5-9B",
   "repo": "loom-fun-staging/unsloth-Qwen3.5-9B-loom",
-  "revision": "b227938efcbe11035addca69a970d74b1eabd651",
+  "revision": "d204ddedafb684cf43443e76b8db69321c4a5ea7",
   "status": null,
   "license": "apache-2.0",
   "service": {

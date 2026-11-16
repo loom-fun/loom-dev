@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-35B-A3B-Q4_K_M",
   "name": "Ornith-1.5-35B-A3B",
   "repo": "loom-fun-staging/bartowski-Ornith-1.5-35B-A3B-loom",
-  "revision": "3c13542bac775d960086bb47ad86fd0f926164bb",
+  "revision": "1e045f55bed11fe401abf5703648bfbe16e86f5a",
   "status": null,
   "license": null,
   "service": {
@@ -37,8 +37,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

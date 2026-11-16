@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-35B-A3B-Q4_K_M",
   "name": "Qwen3.5-35B-A3B",
   "repo": "loom-fun-staging/unsloth-Qwen3.5-35B-A3B-loom",
-  "revision": "36d385abf2d1a36c919b0f22861782e286bc1cfa",
+  "revision": "0c0ddef3d2cabed67e62148974a807405497abe3",
   "status": null,
   "license": null,
   "service": {
@@ -37,8 +37,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

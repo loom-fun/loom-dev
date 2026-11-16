@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.0-9B-Q4_K_M",
   "name": "Ornith-1.0-9B",
   "repo": "loom-fun-staging/unsloth-Ornith-1.0-9B-loom",
-  "revision": "180aa4a52ad48e946d30e6743782f9a5c5b44413",
+  "revision": "9688ebbdf513c68a04ae8f0f753c5e4008833d65",
   "status": null,
   "license": null,
   "service": {

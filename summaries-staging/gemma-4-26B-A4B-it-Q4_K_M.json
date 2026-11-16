@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-26B-A4B-it-Q4_K_M",
   "name": "gemma-4-26B-A4B-it",
   "repo": "loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom",
-  "revision": "57a9cb2dcdc3d1a62c11df8db30ae39e9c468e53",
+  "revision": "055160aabfabb8f4b537a7fedf33cedf95e2a769",
   "status": null,
   "license": null,
   "service": {
@@ -33,8 +33,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

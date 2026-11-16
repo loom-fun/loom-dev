@@ -3,7 +3,7 @@
   "checkpoint": "Nanbeige_Nanbeige4.3-33B-Q4_K_M",
   "name": "Nanbeige_Nanbeige4.3-33B",
   "repo": "loom-fun-staging/bartowski-Nanbeige4.3-33B-loom",
-  "revision": "ef9330c0525fa71cdb5b8835e39b753d7234b63e",
+  "revision": "0647a386bf07f05064d2157a6bd77c3b1d104913",
   "status": null,
   "license": null,
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

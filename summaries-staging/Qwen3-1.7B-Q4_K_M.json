@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-1.7B-Q4_K_M",
   "name": "Qwen3-1.7B",
   "repo": "loom-fun-staging/ggml-org-Qwen3-1.7B-loom",
-  "revision": "fa149170743f9f7f3322eacf11cb2a488cc6b012",
+  "revision": "d870c152c453db5c1a32a761c2459c070b18867f",
   "status": null,
   "license": null,
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

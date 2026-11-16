@@ -3,7 +3,7 @@
   "checkpoint": "Laguna-XS-2.1-Q4_K_M",
   "name": "Laguna-XS-2.1",
   "repo": "loom-fun-staging/ggml-org-Laguna-XS-2.1-loom",
-  "revision": "df931eb5fe6180d0ebbb613c3f9339c62192612a",
+  "revision": "344c2d2476fe888bc254be042e6cde7dde371b05",
   "status": null,
   "license": null,
   "service": {
@@ -33,8 +33,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

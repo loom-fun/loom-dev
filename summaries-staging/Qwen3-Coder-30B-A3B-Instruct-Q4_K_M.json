@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M",
   "name": "Qwen3-Coder-30B-A3B-Instruct",
   "repo": "loom-fun-staging/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom",
-  "revision": "cfe5b65d41f85068b127adbae082e2883459d2b3",
+  "revision": "8e06c55adf45222d9fbb823ae01fea6ceb79e512",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -33,8 +33,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

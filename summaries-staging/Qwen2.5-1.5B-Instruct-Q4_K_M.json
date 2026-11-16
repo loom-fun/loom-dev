@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-1.5B-Instruct-Q4_K_M",
   "name": "Qwen2.5-1.5B-Instruct",
   "repo": "loom-fun-staging/bartowski-Qwen2.5-1.5B-Instruct-loom",
-  "revision": "00901f55e3723583c90ca48b35818cf3ef39beb7",
+  "revision": "88d35c28bc01bdf3713dd14a298c8433dfe902b0",
   "status": null,
   "license": null,
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

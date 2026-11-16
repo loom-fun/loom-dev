@@ -3,7 +3,7 @@
   "checkpoint": "Muse-Glimmer-30B-Q4_K_M",
   "name": "Muse-Glimmer-30B",
   "repo": "loom-fun-staging/ggml-org-Muse-Glimmer-30B-loom",
-  "revision": "b71095bf736f78702127fbc4a65ebb21d511157b",
+  "revision": "cb8277fe40350c2729c68d4d84a4c865a3690b1b",
   "status": null,
   "license": null,
   "service": {
@@ -37,8 +37,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

@@ -3,7 +3,7 @@
   "checkpoint": "MiniCPM-V-4.7-35B-A3B-Q4_K_M",
   "name": "MiniCPM-V-4.7-35B-A3B",
   "repo": "loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom",
-  "revision": "459adf5589fa0c62590dbdc6ec6dba73475b99ba",
+  "revision": "1dc03ba7fa2308f92c9d17c514d6271d454f5c75",
   "status": null,
   "license": null,
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

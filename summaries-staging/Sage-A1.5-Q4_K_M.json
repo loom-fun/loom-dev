@@ -3,7 +3,7 @@
   "checkpoint": "Sage-A1.5-Q4_K_M",
   "name": "Sage-A1.5-Q4_K_M",
   "repo": "loom-fun-staging/InternScience-Sage-A1.5-loom",
-  "revision": "b3be1155be737ecfcfb6f4e12dc94c5c029e1138",
+  "revision": "c49ba17e7038aa5840b171fd9ad3604b31d7521d",
   "status": null,
   "license": null,
   "service": {
@@ -33,8 +33,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

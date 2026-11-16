@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-E2B-it-Q4_K_M",
   "name": "gemma-4-E2B-it",
   "repo": "loom-fun-staging/unsloth-gemma-4-E2B-it-loom",
-  "revision": "286558b86b254573bdf54decb76866a5823ecee3",
+  "revision": "65d9fe3ad7b855cbdaeebc7da8c80726843f3d7c",
   "status": null,
   "license": null,
   "service": {
@@ -37,8 +37,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

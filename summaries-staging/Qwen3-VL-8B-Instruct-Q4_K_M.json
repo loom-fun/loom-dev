@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-VL-8B-Instruct-Q4_K_M",
   "name": "Qwen3-VL-8B-Instruct",
   "repo": "loom-fun-staging/unsloth-Qwen3-VL-8B-Instruct-loom",
-  "revision": "4ff1f373541ee24500e60c341e6bc27ebf2b9d0f",
+  "revision": "63b7a73283dcb13f08e6aa00c9f5fd667211f79f",
   "status": null,
   "license": null,
   "service": {
@@ -33,8 +33,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

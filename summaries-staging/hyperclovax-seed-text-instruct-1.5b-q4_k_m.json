@@ -3,7 +3,7 @@
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
   "repo": "loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "244482c95c6b3f85a64cae3c89dbbe86ce4b5e4d",
+  "revision": "0937f6edf333f2d86ebad30bbe2fe20c015dccd8",
   "status": null,
   "license": null,
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {

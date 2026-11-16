@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-30B-A3B-Instruct-2507-Q4_K_M",
   "name": "Qwen3-30B-A3B-Instruct-2507",
   "repo": "loom-fun-staging/unsloth-Qwen3-30B-A3B-Instruct-2507-loom",
-  "revision": "74d067eb61efc4f3c97d1de34ae1ac2996b26598",
+  "revision": "920633f84db5441f3f95615aa375e915a0b57d1a",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -29,8 +29,7 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat",
-      "chat-r9700"
+      "chat"
     ]
   },
   "features": {
