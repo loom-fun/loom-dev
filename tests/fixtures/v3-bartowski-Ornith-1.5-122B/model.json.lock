@@ -1,0 +1,53 @@
+{
+  "schema_version": 2,
+  "scope": "assets",
+  "origins": {
+    "checkpoint": {
+      "requested": {
+        "kind": "hf",
+        "repository": "bartowski/Ornith-1.5-122B-GGUF",
+        "revision": "a8bc08fa33fc3a3e79380bf661a84688c7ea0a50"
+      },
+      "resolved": {
+        "revision": "a8bc08fa33fc3a3e79380bf661a84688c7ea0a50"
+      }
+    },
+    "drafter": {
+      "requested": {
+        "kind": "hf",
+        "repository": "kaivoss/Ornith-1.5-122B-DFlash2-GGUF",
+        "revision": "d8a9bcba85eedb76c1ee97bde2057fda631b6f65"
+      },
+      "resolved": {
+        "revision": "d8a9bcba85eedb76c1ee97bde2057fda631b6f65"
+      }
+    }
+  },
+  "files": [
+    {
+      "origin": "@checkpoint/Ornith-1.5-122B-Q4_K_M/Ornith-1.5-122B-Q4_K_M-00001-of-00002.gguf",
+      "size": 40005676608,
+      "sha256": "b6947939b09c4591a85da56f552a0e59303637c861f75ebce9a594f4a3a6de46"
+    },
+    {
+      "origin": "@checkpoint/Ornith-1.5-122B-Q4_K_M/Ornith-1.5-122B-Q4_K_M-00002-of-00002.gguf",
+      "size": 38916060128,
+      "sha256": "86f6c767579fd93bae701fe801b7e351d3b8f89374040f9a822e734d578eb861"
+    },
+    {
+      "origin": "@checkpoint/mmproj-Ornith-1.5-122B-f16.gguf",
+      "size": 908724576,
+      "sha256": "f17b37e3939ea58d878cc4e7c9b3df8538255cbad5340b5b813192ce593ca6d0"
+    },
+    {
+      "origin": "@drafter/Ornith-1.5-122B-DFlash2-Q4_K_M.gguf",
+      "size": 551110784,
+      "sha256": "5668de76d7277cb257039ce4521edcbe5bc5e99b5a4f88d172e04b27e0dd44f8"
+    },
+    {
+      "origin": "tokenizer.json",
+      "size": 9832586,
+      "sha256": "cf360f770fae77c3e5e783bce81eb01aebda1627cdc38736b4a0d30f8c5f4fe7"
+    }
+  ]
+}

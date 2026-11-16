@@ -1,0 +1,21 @@
+name: tests
+
+on:
+  pull_request:
+    paths: ["summarize_info.py", "tests/**", "docs/assets/**", ".github/workflows/tests.yml"]
+  push:
+    branches: [main]
+    paths: ["summarize_info.py", "tests/**", ".github/workflows/tests.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  summarize-info:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: python -m unittest discover -s tests -v

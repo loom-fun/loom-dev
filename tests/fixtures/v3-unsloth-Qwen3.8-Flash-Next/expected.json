@@ -1,0 +1,199 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
+  "name": "Qwen3.8-Flash-Next",
+  "repo": "loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom",
+  "revision": "rev",
+  "status": null,
+  "license": "lic",
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+      "file": "UD-Q4_K_XL/Qwen3.8-Flash-Next-UD-Q4_K_XL-00001-of-00004.gguf",
+      "quant": "UD-Q4_K_XL",
+      "revision": "766911a6b7369840a91dbcd95f9f997acaab6cd6",
+      "sha256": "4448186216b3af4cc558bbce2c3213f01608f8f8b2e5267a9767971dd3ec8082",
+      "size": 111334654784
+    },
+    "drafter": {
+      "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+      "file": "mtp-Qwen3.8-Flash-Next-Q8_0.gguf",
+      "quant": "Q8_0"
+    },
+    "projector": {
+      "repo": "unsloth/Qwen3.8-Flash-Next-GGUF",
+      "file": "mmproj-BF16.gguf",
+      "quant": "BF16"
+    }
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 100000000000,
+    "context_tokens": 262144,
+    "rows": 4,
+    "max_tokens": 4096
+  },
+  "features": {
+    "api": "yes",
+    "audio": "n/a",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "yes",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "yes",
+    "sampling": "yes",
+    "speculative_decoding": "yes",
+    "thinking": "yes",
+    "tool_calling": "yes"
+  },
+  "performance": {
+    "date": null,
+    "llamacpp_build": "b1371",
+    "drafting": {
+      "loom": "MTP, depth 3",
+      "llamacpp": "draft-mtp"
+    },
+    "source": null,
+    "metrics": {
+      "decode": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "decode_2k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "decode_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_1k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_2k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_8k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_16k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "streams4": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "spec_acceptance": {
+        "loom": 0.77,
+        "llamacpp": null,
+        "speedup": null
+      }
+    },
+    "not_applicable": [],
+    "devlab": {
+      "date": "2026-11-13",
+      "source": {
+        "kind": "devlab",
+        "run": "43376548212",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300576"
+      },
+      "metrics": {
+        "decode": {
+          "loom": 41.9,
+          "llamacpp": 34.4,
+          "speedup": 1.22
+        },
+        "decode_2k": {
+          "loom": 35.2,
+          "llamacpp": 30.8,
+          "speedup": 1.14
+        },
+        "decode_32k": {
+          "loom": 33.2,
+          "llamacpp": 24.2,
+          "speedup": 1.37
+        },
+        "prefill_1k": {
+          "loom": 1143.9,
+          "llamacpp": 417.9,
+          "speedup": 2.74
+        },
+        "prefill_2k": {
+          "loom": 1154.6,
+          "llamacpp": 442.3,
+          "speedup": 2.61
+        },
+        "prefill_8k": {
+          "loom": 1179.0,
+          "llamacpp": 451.8,
+          "speedup": 2.61
+        },
+        "prefill_16k": {
+          "loom": 1203.6,
+          "llamacpp": 425.5,
+          "speedup": 2.83
+        },
+        "prefill_32k": {
+          "loom": 1196.2,
+          "llamacpp": 378.7,
+          "speedup": 3.16
+        },
+        "streams4": {
+          "loom": 67.6,
+          "llamacpp": 57.2,
+          "speedup": 1.18
+        }
+      }
+    }
+  },
+  "gates": {
+    "summary": {
+      "pass": 9,
+      "fail": 0,
+      "unknown": 0,
+      "n/a": 2
+    },
+    "status": {
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "pass",
+      "consistency": "pass",
+      "spec": "pass",
+      "agent": "pass",
+      "agent_think_off": "pass",
+      "sampling": "pass",
+      "decision": "n/a",
+      "logits": "n/a"
+    }
+  },
+  "primary_device": "strix-halo",
+  "remeasure": null,
+  "devices": {
+    "radeon-r9700": {
+      "state": "unsupported",
+      "required_bytes": 118400000000
+    }
+  }
+}

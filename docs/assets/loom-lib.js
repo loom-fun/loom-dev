@@ -47,8 +47,8 @@ const LOOM = (() => {
     agent: ['agent', 'multi-turn tool-calling loop vs llama.cpp'],
     agent_think_off: ['ag-off', 'the tool-calling loop with thinking off'],
     sampling: ['samp', 'temperature, top_k and seed behave as specified'],
-    needle: ['ndl', 'needle-in-a-haystack up to half the context'],
-    needle_full: ['ndl-f', 'needle-in-a-haystack at the full context'],
+    logits: ['logit', 'host logits readback: argmax = the device token, top-k = llama.cpp'],
+    over_capacity: ['ovcap', 'a prompt over the context is refused, not truncated'],
     decision: ['dec', 'decision answers vs llama.cpp'],
   };
 
@@ -392,7 +392,7 @@ const LOOM = (() => {
   }
 
   return {
-    METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean,
+    METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
     ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, copyButtons, reveal,
   };

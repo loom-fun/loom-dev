@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "scope": "assets",
+  "origins": {
+    "checkpoint": {
+      "requested": {
+        "kind": "hf",
+        "repository": "bartowski/Qwen2.5-0.5B-Instruct-GGUF",
+        "revision": "41ba88dbac95fed2528c92514c131d73eb5a174b"
+      },
+      "resolved": {
+        "revision": "41ba88dbac95fed2528c92514c131d73eb5a174b"
+      }
+    }
+  },
+  "files": [
+    {
+      "origin": "@checkpoint/Qwen2.5-0.5B-Instruct-Q4_K_M.gguf",
+      "size": 397808192,
+      "sha256": "6eb923e7d26e9cea28811e1a8e852009b21242fb157b26149d3b188f3a8c8653"
+    },
+    {
+      "origin": "tokenizer.json",
+      "size": 5212067,
+      "sha256": "20f3f185bfd9a4f9f69c9e605911d6c4d9b004c9993ac29c1bc7c666d1b33877"
+    }
+  ]
+}

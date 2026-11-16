@@ -1,0 +1,48 @@
+{
+ "schema_version": 2,
+ "scope": "assets",
+ "origins": {
+  "checkpoint": {
+   "requested": {
+    "kind": "hf",
+    "repository": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+    "revision": "52f9f9b8052fb9c8b69bba4a95eda0f319ac3d2a"
+   },
+   "resolved": {
+    "revision": "52f9f9b8052fb9c8b69bba4a95eda0f319ac3d2a"
+   }
+  },
+  "drafter": {
+   "requested": {
+    "kind": "hf",
+    "repository": "magnitudedev/Qwen3.6-35B-A3B-DFlash-GGUF",
+    "revision": "4f5e4df8dc4520256bdc0bc8752c7010bbfb1eec"
+   },
+   "resolved": {
+    "revision": "4f5e4df8dc4520256bdc0bc8752c7010bbfb1eec"
+   }
+  }
+ },
+ "files": [
+  {
+   "origin": "@checkpoint/Qwen3.6-35B-A3B-Q4_K_M.gguf",
+   "size": 20542732576,
+   "sha256": "f4ffe03c9139e6a905a5d346f77d9fabdd179367c3280dfd005d1e75ca5ed8c8"
+  },
+  {
+   "origin": "@checkpoint/mmproj-Qwen3.6-35B-A3B-BF16.gguf",
+   "size": 902822144,
+   "sha256": "360c746ddf38fb67c06f83a0a88742492aa231e59e335cd980e6302f59ea6089"
+  },
+  {
+   "origin": "@drafter/Qwen3.6-35B-A3B-DFlash-Q8_0.gguf",
+   "size": 421060896,
+   "sha256": "70ae9123ab1060719c3a22fbf3c830a2de1c558e73e2bf54317d380373ed03f3"
+  },
+  {
+   "origin": "tokenizer.json",
+   "size": 9832586,
+   "sha256": "cf360f770fae77c3e5e783bce81eb01aebda1627cdc38736b4a0d30f8c5f4fe7"
+  }
+ ]
+}

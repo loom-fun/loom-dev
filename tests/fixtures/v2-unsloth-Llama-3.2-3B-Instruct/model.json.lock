@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "scope": "assets",
+  "origins": {
+    "checkpoint": {
+      "requested": {
+        "kind": "hf",
+        "repository": "unsloth/Llama-3.2-3B-Instruct-GGUF",
+        "revision": "e7d0997e49c9cb00d88b4c1a6a16aa894b0bbc31"
+      },
+      "resolved": {
+        "revision": "e7d0997e49c9cb00d88b4c1a6a16aa894b0bbc31"
+      }
+    }
+  },
+  "files": [
+    {
+      "origin": "@checkpoint/Llama-3.2-3B-Instruct-Q4_K_M.gguf",
+      "size": 2019377600,
+      "sha256": "6c99cc00ae910f6a532a80022cb4bc1939094527a089c29294b841c0bd87f74d"
+    },
+    {
+      "origin": "tokenizer.json",
+      "size": 6622524,
+      "sha256": "f3020410ed9547ce259b3f3236a3492f384bcd5ac200c4d847dff569b597932d"
+    }
+  ]
+}
