@@ -49,12 +49,15 @@
 
   function paint(first) {
     const s = stats();
-    // The hero's fetch command: the package and --preset for the selected GPU.
+    // The hero's fetch command: the package and --preset for the selected GPU. Every GPU's version is laid out in
+    // the same grid cell (only the selected one visible), so the hero keeps the height of the longest on a switch.
     if (qs) {
-      const p = LOOM.preset(qs);
-      el('heroFetch').innerHTML = `<span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/${LOOM.esc(qs.repo)}/resolve/main/model.json --output=qwen3-0.6b${p ? ` --preset ${LOOM.esc(p)}` : ''}`;
+      el('heroFetch').innerHTML = `<span class="gpu-alts">${LOOM.GPUS.map(g => {
+        const p = LOOM.preset(qs, g);
+        return `<span class="gpu-alt${g.id === LOOM.GPU.id ? ' on' : ''}"><span class="p">$ </span><span class="s">loom-fetch</span> https://huggingface.co/${LOOM.esc(qs.repo)}/resolve/main/model.json --output=qwen3-0.6b${p ? ` --preset ${LOOM.esc(p)}` : ''}</span>`;
+      }).join('')}</span>`;
     }
-    el('gpuCount').textContent = `${models.length} models`;
+    el('gpuFoldR').innerHTML = `<span class="gpu-alts">${LOOM.GPUS.map(g => `<span class="gpu-alt${g.id === LOOM.GPU.id ? ' on' : ''}">${LOOM.esc([g.spec, `${g.models} models`].filter(Boolean).join(' · '))}</span>`).join('')}</span>`;
     el('ixKicker').textContent = `hrx-loom · 50+ models ready to serve · updated ${s.generated}`;
     el('podium').innerHTML = models.slice(0, 3).map(LOOM.card).join('');
     search();

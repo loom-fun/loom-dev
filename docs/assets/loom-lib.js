@@ -459,8 +459,9 @@ const LOOM = (() => {
       if (btn.dataset.bound) return;
       btn.dataset.bound = '1';
       btn.addEventListener('click', async () => {
-        const code = btn.closest('.code').querySelector('code');
-        const text = [...code.childNodes].map(n => n.classList && n.classList.contains('p') ? '' : n.textContent).join('');
+        const code = btn.closest('.code').querySelector('code').cloneNode(true);
+        code.querySelectorAll('.p, .gpu-alt:not(.on)').forEach(n => n.remove());   // prompts, other GPUs' commands
+        const text = code.textContent;
         try {
           await navigator.clipboard.writeText(text.trim());
           btn.textContent = 'copied';

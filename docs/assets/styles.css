@@ -90,6 +90,9 @@ code, pre, .mono { font-family: var(--mono); }
 .gpu-fold-in { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; min-height: 64px; padding-top: 12px; padding-bottom: 12px; }
 .gpu-fold-l { font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--faint); }
 .gpu-fold-r { font: 12px var(--mono); color: var(--faint); margin-left: auto; }
+.gpu-alts { display: grid; }   /* every GPU's version of a command in one cell: sized by the longest */
+.gpu-alt { grid-area: 1 / 1; visibility: hidden; }
+.gpu-alt.on { visibility: visible; }
 .nav-gpu { display: flex; align-items: center; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s ease, transform .18s ease, visibility 0s .18s; }
 .nav.gpu-docked .nav-gpu { opacity: 1; visibility: visible; transform: none; transition: opacity .18s ease, transform .18s ease; }
 
