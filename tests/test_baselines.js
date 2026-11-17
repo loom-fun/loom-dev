@@ -51,6 +51,37 @@ test('max selects each workload independently, handles missing cells, and holds 
   assert.equal(JSON.stringify(perf), original);
 });
 
+test('Vulkan-only current measurements rank with best and Vulkan, but not ROCm', () => {
+  const initial = site();
+  const source = initial.loom.all.find(x => x.repo === 'loom-fun/unsloth-Qwen3-8B-loom');
+  assert.ok(source);
+  const summary = JSON.parse(JSON.stringify(source));
+  summary.performance.metrics = { decode: { loom: 120, llamacpp: null, speedup: null } };
+  delete summary.performance.devlab;
+  summary.performance.baselines = { vulkan: { date: '2026-11-17', source: { kind: 'devlab', run: 'vulkan-only' },
+    metrics: { decode: { llamacpp: 100 } } } };
+  const { loom } = site('?baseline=vulkan', 'loom-data.js', [summary]);
+  let m = loom.models.find(x => x.repo === summary.repo);
+  assert.ok(m);
+  assert.equal(m.comparisonAvailable, true);
+  assert.equal(m.score, 1.2);
+  assert.equal(m.pair('decode').backend, 'vulkan');
+  assert.equal(loom.rk(m), '01');
+
+  loom.setBaseline('best');
+  m = loom.models.find(x => x.repo === summary.repo);
+  assert.equal(m.comparisonAvailable, true);
+  assert.equal(m.pair('decode').speedup, 1.2);
+  assert.equal(loom.rk(m), '01');
+
+  loom.setBaseline('rocm');
+  m = loom.models.find(x => x.repo === summary.repo);
+  assert.equal(m.comparisonAvailable, false);
+  assert.equal(m.score, null);
+  assert.equal(m.pair('decode'), null);
+  assert.equal(loom.rk(m), '—');
+});
+
 test('real published and staging models recompute for every GPU and backend without mutating source data', () => {
   for (const file of ['loom-data.js', 'loom-data-staging.js']) {
     const { loom } = site('', file);

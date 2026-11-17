@@ -169,11 +169,10 @@ const LOOM = (() => {
   }
 
   function enrich(s) {
-    const hasCurrentComparison = [s.performance.metrics, s.performance.devlab?.metrics]
-      .flatMap(group => Object.values(group || {}))
-      .some(m => m.loom != null && m.llamacpp != null && m.speedup != null);
-    const comparisonAvailable = llamaComparable(s) && s.performance.program_identity !== 'unknown' && hasCurrentComparison;
-    const b = bench(s.performance, comparisonAvailable), metrics = b.metrics;
+    const eligible = llamaComparable(s) && s.performance.program_identity !== 'unknown';
+    const b = bench(s.performance, eligible), metrics = b.metrics;
+    const comparisonAvailable = eligible && Object.values(metrics).some(m => m.loom > 0
+      && m.llamacpp > 0 && Number.isFinite(m.speedup) && m.speedup > 0);
     const pair = k => metrics[k] && metrics[k].speedup != null ? { ...METRIC[k], ...metrics[k] } : null;
     const measured = METRICS.map(m => pair(m.key)).filter(Boolean);
     const byGroup = g => geomean(measured.filter(m => m.group === g).map(m => m.speedup));
