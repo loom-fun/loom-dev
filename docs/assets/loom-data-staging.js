@@ -31,8 +31,8 @@ window.LOOM_DATA = {
   },
   {
    "id": "gfx1201-16gb",
-   "name": "Radeon gfx1201, 16 GB (RX 9070 XT, RX 9070)",
-   "short": "gfx1201 16 GB",
+   "name": "Radeon 9070XT",
+   "short": "Radeon 9070XT",
    "spec": "gfx1201, 16 GB",
    "preset_suffix": "-16gb",
    "models": 5
