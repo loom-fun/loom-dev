@@ -216,3 +216,12 @@ class QuickstartSource(unittest.TestCase):
             self.assertNotIn('DO NOT SHOW', str(q['blocks']))
         self.assertEqual(S.quickstart('## Quick start\n```bash\nloom-fetch x\n```', 'strix-halo'), {})
         self.assertEqual(S.quickstart(text.replace('## Quick start', '## Other')), {})
+
+    def test_multiline_commands_stay_complete(self):
+        from pathlib import Path
+        text = Path(HERE, 'quickstart_cards/bartowski-Ornith-1.5-122B.md').read_text()
+        text = text.replace(' --materialize=copy', ' '+chr(92)+'\n  --materialize=copy')
+        text = text.replace(' --pool_backing=fixed', ' '+chr(92)+'\n  --pool_backing=fixed')
+        q = S.quickstart(text, 'strix-halo')['strix-halo']
+        self.assertIn('\n  --materialize=copy', q['fetch'])
+        self.assertIn('\n  --pool_backing=fixed', q['serve'])

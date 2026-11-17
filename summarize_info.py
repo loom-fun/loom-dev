@@ -123,12 +123,22 @@ def quickstart(readme, default_gpu=None):
     def entry(body):
         parts = blocks(body)
         code = "\n".join(b["text"] for b in parts if b["kind"] == "code")
-        fetch = re.search(r"^loom-fetch .+$", code, re.M)
-        serve = re.search(r"^loom-serve .+$", code, re.M)
-        install = re.search(r"^(?:pipx|pip|uv) .*hrx-loom.*$", code, re.M)
+        def command(pattern):
+            match = re.search(pattern, code, re.M)
+            if not match:
+                return None
+            end = match.end()
+            while code[match.start():end].rstrip().endswith("\\") and end < len(code):
+                next_end = code.find("\n", end + 1)
+                end = len(code) if next_end == -1 else next_end
+            return code[match.start():end]
+
+        fetch = command(r"^loom-fetch .+$")
+        serve = command(r"^loom-serve .+$")
+        install = command(r"^(?:pipx|pip|uv) .*hrx-loom.*$")
         if not (fetch and serve and install):
             return None
-        return {"blocks": parts, "install": install.group(), "fetch": fetch.group(), "serve": serve.group()}
+        return {"blocks": parts, "install": install, "fetch": fetch, "serve": serve}
 
     if not details:
         value = entry(text)
