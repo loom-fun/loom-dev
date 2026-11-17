@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-Omni-2B-Q4_K_M",
   "name": "LFM3-Omni-2B",
   "repo": "loom-fun/ggml-org-LFM3-Omni-2B-loom",
-  "revision": "f8e5f08de810c1cbb63fcac0b42bc5f8fdd8a2cc",
+  "revision": "9df2feb1d3fdabcf6d9396dde72fc518555e4fb2",
   "status": null,
   "license": null,
   "service": {
@@ -423,12 +423,150 @@
       }
     },
     "gfx1201-16gb": {
-      "state": "not_measured",
-      "required_bytes": null,
-      "fits": true,
-      "shares_section_with": null,
+      "state": null,
+      "remeasure": null,
       "memory_bytes": 15000000000,
-      "context_tokens": 128000
+      "context_tokens": 128000,
+      "performance": {
+        "date": "2026-11-17",
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": null,
+          "llamacpp": null
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null
+        },
+        "metrics": {
+          "decode": {
+            "loom": 383.4,
+            "llamacpp": 249.5,
+            "speedup": 1.54
+          },
+          "decode_2k": {
+            "loom": 362.6,
+            "llamacpp": 244.7,
+            "speedup": 1.48
+          },
+          "decode_32k": {
+            "loom": 283.2,
+            "llamacpp": 206.8,
+            "speedup": 1.37
+          },
+          "prefill_1k": {
+            "loom": 24138.8,
+            "llamacpp": 13846.0,
+            "speedup": 1.74
+          },
+          "prefill_2k": {
+            "loom": 26056.4,
+            "llamacpp": 15788.8,
+            "speedup": 1.65
+          },
+          "prefill_8k": {
+            "loom": 25723.2,
+            "llamacpp": 16532.1,
+            "speedup": 1.56
+          },
+          "prefill_16k": {
+            "loom": 23735.4,
+            "llamacpp": 15483.4,
+            "speedup": 1.53
+          },
+          "prefill_32k": {
+            "loom": 20471.4,
+            "llamacpp": 13461.5,
+            "speedup": 1.52
+          },
+          "streams4": {
+            "loom": 1386.6,
+            "llamacpp": 684.0,
+            "speedup": 2.03
+          },
+          "spec_acceptance": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [
+          "spec_acceptance"
+        ],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 0,
+          "fail": 0,
+          "unknown": 8,
+          "n/a": 3
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "unknown",
+          "compare": "unknown",
+          "vision": "n/a",
+          "consistency": "unknown",
+          "spec": "n/a",
+          "agent": "unknown",
+          "agent_think_off": "unknown",
+          "sampling": "unknown",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
     }
   },
   "quickstart": {

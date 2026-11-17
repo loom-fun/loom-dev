@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-7B-Instruct-Q4_K_M",
   "name": "Qwen2.5-7B-Instruct",
   "repo": "loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom",
-  "revision": "b14b0eb3b6b9c5b8def803774f04982f26051f38",
+  "revision": "8574211de7d4298a368b56182cb67f4b6b62fc31",
   "status": null,
   "license": null,
   "service": {
@@ -422,12 +422,150 @@
       }
     },
     "gfx1201-16gb": {
-      "state": "not_measured",
-      "required_bytes": null,
-      "fits": true,
-      "shares_section_with": null,
+      "state": null,
+      "remeasure": null,
       "memory_bytes": 15000000000,
-      "context_tokens": 32768
+      "context_tokens": 32768,
+      "performance": {
+        "date": "2026-11-17",
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": null,
+          "llamacpp": null
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null
+        },
+        "metrics": {
+          "decode": {
+            "loom": 117.1,
+            "llamacpp": 109.4,
+            "speedup": 1.07
+          },
+          "decode_2k": {
+            "loom": 107.7,
+            "llamacpp": 105.2,
+            "speedup": 1.02
+          },
+          "decode_32k": {
+            "loom": 69.2,
+            "llamacpp": 70.9,
+            "speedup": 0.98
+          },
+          "prefill_1k": {
+            "loom": 6105.7,
+            "llamacpp": 4351.5,
+            "speedup": 1.4
+          },
+          "prefill_2k": {
+            "loom": 6462.0,
+            "llamacpp": 4370.6,
+            "speedup": 1.48
+          },
+          "prefill_8k": {
+            "loom": 6031.8,
+            "llamacpp": 3893.4,
+            "speedup": 1.55
+          },
+          "prefill_16k": {
+            "loom": 5321.3,
+            "llamacpp": 3331.6,
+            "speedup": 1.6
+          },
+          "prefill_32k": {
+            "loom": 3826.8,
+            "llamacpp": 2621.6,
+            "speedup": 1.46
+          },
+          "streams4": {
+            "loom": 429.2,
+            "llamacpp": 302.0,
+            "speedup": 1.42
+          },
+          "spec_acceptance": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [
+          "spec_acceptance"
+        ],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 0,
+          "fail": 0,
+          "unknown": 7,
+          "n/a": 4
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "unknown",
+          "compare": "unknown",
+          "vision": "n/a",
+          "consistency": "unknown",
+          "spec": "n/a",
+          "agent": "unknown",
+          "agent_think_off": "n/a",
+          "sampling": "unknown",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
     }
   },
   "quickstart": {
