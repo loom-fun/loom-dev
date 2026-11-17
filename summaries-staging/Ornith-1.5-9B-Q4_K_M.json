@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-9B-Q4_K_M",
   "name": "Ornith-1.5-9B",
   "repo": "loom-fun-staging/bartowski-Ornith-1.5-9B-loom",
-  "revision": "3daed79ca84f7689437747ff1d596eb662e6b544",
+  "revision": "fe74a1d61c70976805c64c3adf833dccd4294b52",
   "status": null,
   "license": "mit",
   "service": {

@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-7B-Instruct-Q4_K_M",
   "name": "Qwen2.5-7B-Instruct",
   "repo": "loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom",
-  "revision": "e67fabc8961b47bcfbea0abebea6bc907b585207",
+  "revision": "b14b0eb3b6b9c5b8def803774f04982f26051f38",
   "status": null,
   "license": null,
   "service": {

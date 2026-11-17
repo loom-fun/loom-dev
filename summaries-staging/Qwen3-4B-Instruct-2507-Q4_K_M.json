@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-4B-Instruct-2507-Q4_K_M",
   "name": "Qwen3-4B-Instruct-2507",
   "repo": "loom-fun-staging/unsloth-Qwen3-4B-Instruct-2507-loom",
-  "revision": "5e8e362064f99a2331c05f498d15bd5200c19bb6",
+  "revision": "025fe07b344bd997977bf697572eb6a147a51069",
   "status": null,
   "license": null,
   "service": {

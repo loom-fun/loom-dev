@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-12b-it-Q4_K_M",
   "name": "gemma-4-12B-it",
   "repo": "loom-fun-staging/unsloth-gemma-4-12B-it-loom",
-  "revision": "3de41338f45bc7efac4d9644fac21009353c627f",
+  "revision": "b4e5996d81543b10b6b7a517895acf700f7dd89d",
   "status": null,
   "license": null,
   "service": {
