@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-1.7B-Q4_K_M",
   "name": "LFM3-1.7B",
   "repo": "loom-fun-staging/bartowski-LFM3-1.7B-loom",
-  "revision": "630f36e8f1ff9f3ec61f37d2625115771972cd90",
+  "revision": "275f98fc047b38a265870091bf889550a48ad52f",
   "status": null,
   "license": null,
   "service": {
@@ -109,55 +109,55 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-13",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43376548212",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300441"
+        "run": "43993297363",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993297363/job/133739126152"
       },
       "metrics": {
         "decode": {
-          "loom": 169.0,
+          "loom": 168.0,
           "llamacpp": 137.4,
-          "speedup": 1.23
+          "speedup": 1.22
         },
         "decode_2k": {
-          "loom": 163.3,
+          "loom": 161.2,
           "llamacpp": 122.4,
-          "speedup": 1.33
+          "speedup": 1.32
         },
         "decode_32k": {
-          "loom": 126.0,
+          "loom": 125.0,
           "llamacpp": 99.8,
-          "speedup": 1.26
+          "speedup": 1.25
         },
         "prefill_1k": {
-          "loom": 6945.1,
+          "loom": 7016.4,
           "llamacpp": 4817.7,
-          "speedup": 1.44
+          "speedup": 1.46
         },
         "prefill_2k": {
-          "loom": 7066.5,
+          "loom": 6789.4,
           "llamacpp": 5099.9,
-          "speedup": 1.39
+          "speedup": 1.33
         },
         "prefill_8k": {
-          "loom": 6988.3,
+          "loom": 7025.5,
           "llamacpp": 5149.2,
           "speedup": 1.36
         },
         "prefill_16k": {
-          "loom": 6537.6,
+          "loom": 6284.2,
           "llamacpp": 4838.4,
-          "speedup": 1.35
+          "speedup": 1.3
         },
         "prefill_32k": {
-          "loom": 5627.2,
+          "loom": 5503.4,
           "llamacpp": 4128.5,
-          "speedup": 1.36
+          "speedup": 1.33
         },
         "streams4": {
-          "loom": 610.7,
+          "loom": 610.0,
           "llamacpp": 308.1,
           "speedup": 1.98
         }
@@ -186,51 +186,11 @@
     }
   },
   "primary_device": "strix-halo",
-  "remeasure": {
-    "date": "2026-11-15",
-    "result": "identical",
-    "band": 0,
-    "source": "local",
-    "programs_sha256": "e8e9f05bf832972c3da73d5805d42841fd4677bcdd1c9c70a0d88cbfd18a3514",
-    "carried_programs": [
-      "1bce5250c5519adafa32054359dbf41052031bf8577b04fe0f73e0ce47eb854d",
-      "a024152be0f146f1d19795b47636cd27d52ad83c6379cded6cca0b056f6e48bf"
-    ],
-    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision b8165db090; storage, prepare and control differ only inside the logits blocks",
-    "improved": [],
-    "exceptions": [],
-    "previous": {
-      "date": "2026-11-14",
-      "result": "within",
-      "band": 0.04,
-      "source": "devlab-43633464433-job132565078109",
-      "programs_sha256": "1bce5250c5519adafa32054359dbf41052031bf8577b04fe0f73e0ce47eb854d",
-      "carried_programs": [
-        "a024152be0f146f1d19795b47636cd27d52ad83c6379cded6cca0b056f6e48bf"
-      ],
-      "proof": null,
-      "improved": [],
-      "exceptions": [],
-      "previous": null
-    }
-  },
+  "remeasure": null,
   "devices": {
     "radeon-r9700": {
       "state": null,
-      "remeasure": {
-        "date": "2026-11-15",
-        "result": "identical",
-        "band": 0,
-        "source": "local",
-        "programs_sha256": "e8e9f05bf832972c3da73d5805d42841fd4677bcdd1c9c70a0d88cbfd18a3514",
-        "carried_programs": [
-          "1bce5250c5519adafa32054359dbf41052031bf8577b04fe0f73e0ce47eb854d"
-        ],
-        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision b8165db090; storage, prepare and control differ only inside the logits blocks",
-        "improved": [],
-        "exceptions": [],
-        "previous": null
-      },
+      "remeasure": null,
       "memory_bytes": null,
       "context_tokens": 262144,
       "performance": {

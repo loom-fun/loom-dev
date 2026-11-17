@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.6-27B-Q4_K_M",
   "name": "Qwen3.6-27B",
   "repo": "loom-fun-staging/ggml-org-Qwen3.6-27B-loom",
-  "revision": "7a442850030b6d73fd0922e18f9f89621644f8c5",
+  "revision": "80e2a1905b2da688957b48dd5a2efe9675aaac5f",
   "status": null,
   "license": null,
   "service": {
@@ -108,18 +108,18 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.76,
+        "loom": 0.8,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-13",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43376548212",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300448"
+        "run": "43993322138",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993322138/job/133739189915"
       },
       "metrics": {
         "decode": {
@@ -128,44 +128,44 @@
           "speedup": 1.44
         },
         "decode_2k": {
-          "loom": 21.3,
+          "loom": 20.8,
           "llamacpp": 15.0,
-          "speedup": 1.42
+          "speedup": 1.39
         },
         "decode_32k": {
-          "loom": 18.4,
+          "loom": 18.5,
           "llamacpp": 13.5,
-          "speedup": 1.36
+          "speedup": 1.37
         },
         "prefill_1k": {
-          "loom": 527.3,
+          "loom": 508.5,
           "llamacpp": 354.7,
-          "speedup": 1.49
+          "speedup": 1.43
         },
         "prefill_2k": {
-          "loom": 533.2,
+          "loom": 517.5,
           "llamacpp": 366.7,
-          "speedup": 1.45
+          "speedup": 1.41
         },
         "prefill_8k": {
-          "loom": 535.4,
+          "loom": 522.3,
           "llamacpp": 369.4,
-          "speedup": 1.45
+          "speedup": 1.41
         },
         "prefill_16k": {
-          "loom": 510.8,
+          "loom": 499.1,
           "llamacpp": 351.5,
-          "speedup": 1.45
+          "speedup": 1.42
         },
         "prefill_32k": {
-          "loom": 462.7,
+          "loom": 451.0,
           "llamacpp": 317.2,
-          "speedup": 1.46
+          "speedup": 1.42
         },
         "streams4": {
-          "loom": 43.9,
+          "loom": 43.5,
           "llamacpp": 36.3,
-          "speedup": 1.21
+          "speedup": 1.2
         }
       }
     }
@@ -192,51 +192,11 @@
     }
   },
   "primary_device": "strix-halo",
-  "remeasure": {
-    "date": "2026-11-15",
-    "result": "identical",
-    "band": 0,
-    "source": "local",
-    "programs_sha256": "8c63a4acd7e557ec1eb1ea3b872b902787067e9827c5ad0eec31b19608a54429",
-    "carried_programs": [
-      "b7978e14f33fae83e6646b1fcf0f3ef5d6284bd365e2e350bd95a97fd17f90ef",
-      "c5549fc874c2ee10f8bdca17c3636ea5b93ca051d0db78fe5e5d38b6063cf134"
-    ],
-    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision fcd68c6212; storage, prepare and control differ only inside the logits blocks",
-    "improved": [],
-    "exceptions": [],
-    "previous": {
-      "date": "2026-11-15",
-      "result": "within",
-      "band": 0.04,
-      "source": "devlab-43670579634-job132679519118",
-      "programs_sha256": "b7978e14f33fae83e6646b1fcf0f3ef5d6284bd365e2e350bd95a97fd17f90ef",
-      "carried_programs": [
-        "c5549fc874c2ee10f8bdca17c3636ea5b93ca051d0db78fe5e5d38b6063cf134"
-      ],
-      "proof": null,
-      "improved": [],
-      "exceptions": [],
-      "previous": null
-    }
-  },
+  "remeasure": null,
   "devices": {
     "radeon-r9700": {
       "state": null,
-      "remeasure": {
-        "date": "2026-11-15",
-        "result": "identical",
-        "band": 0,
-        "source": "local",
-        "programs_sha256": "8c63a4acd7e557ec1eb1ea3b872b902787067e9827c5ad0eec31b19608a54429",
-        "carried_programs": [
-          "b7978e14f33fae83e6646b1fcf0f3ef5d6284bd365e2e350bd95a97fd17f90ef"
-        ],
-        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision fcd68c6212; storage, prepare and control differ only inside the logits blocks",
-        "improved": [],
-        "exceptions": [],
-        "previous": null
-      },
+      "remeasure": null,
       "memory_bytes": 34000000000,
       "context_tokens": 69632,
       "performance": {

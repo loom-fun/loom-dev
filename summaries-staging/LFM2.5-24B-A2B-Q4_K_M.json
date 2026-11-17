@@ -3,7 +3,7 @@
   "checkpoint": "LFM2.5-24B-A2B-Q4_K_M",
   "name": "LFM2.5-24B-A2B",
   "repo": "loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom",
-  "revision": "addc36223add02bd80a14451c437e75a5c8c9102",
+  "revision": "66c246aa3f072d4cc8f0ab52c0db41be80270d75",
   "status": null,
   "license": null,
   "service": {
@@ -109,57 +109,57 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-13",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43376548212",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300381"
+        "run": "43993313315",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993313315/job/133739167161"
       },
       "metrics": {
         "decode": {
-          "loom": 110.4,
+          "loom": 107.3,
           "llamacpp": 99.2,
-          "speedup": 1.11
+          "speedup": 1.08
         },
         "decode_2k": {
-          "loom": 105.2,
+          "loom": 102.0,
           "llamacpp": 96.9,
-          "speedup": 1.09
+          "speedup": 1.05
         },
         "decode_32k": {
-          "loom": 77.7,
+          "loom": 75.7,
           "llamacpp": 74.5,
-          "speedup": 1.04
+          "speedup": 1.02
         },
         "prefill_1k": {
-          "loom": 3064.4,
+          "loom": 2926.9,
           "llamacpp": 2150.9,
-          "speedup": 1.42
+          "speedup": 1.36
         },
         "prefill_2k": {
-          "loom": 3304.4,
+          "loom": 3221.6,
           "llamacpp": 2218.3,
-          "speedup": 1.49
+          "speedup": 1.45
         },
         "prefill_8k": {
-          "loom": 3357.2,
+          "loom": 3276.4,
           "llamacpp": 2278.6,
-          "speedup": 1.47
+          "speedup": 1.44
         },
         "prefill_16k": {
-          "loom": 3248.8,
+          "loom": 3158.9,
           "llamacpp": 2158.4,
-          "speedup": 1.51
+          "speedup": 1.46
         },
         "prefill_32k": {
-          "loom": 2909.9,
+          "loom": 2833.2,
           "llamacpp": 1911.2,
-          "speedup": 1.52
+          "speedup": 1.48
         },
         "streams4": {
-          "loom": 216.9,
+          "loom": 212.1,
           "llamacpp": 160.9,
-          "speedup": 1.35
+          "speedup": 1.32
         }
       }
     }
@@ -186,51 +186,11 @@
     }
   },
   "primary_device": "strix-halo",
-  "remeasure": {
-    "date": "2026-11-15",
-    "result": "identical",
-    "band": 0,
-    "source": "local",
-    "programs_sha256": "3e566e38c1700d2a0b3152535347cebd93ee152cba487ace53b528a8a10c82cf",
-    "carried_programs": [
-      "2300d75031a0552e7b00da422d5555a9c830cd22be221236863a4adcc3545f2c",
-      "62a90e7ccbab1672495e1f3d2814e63df12b79b7154c1f0fb405f31b84063037"
-    ],
-    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 0e0900b197; storage, prepare and control differ only inside the logits blocks",
-    "improved": [],
-    "exceptions": [],
-    "previous": {
-      "date": "2026-11-14",
-      "result": "within",
-      "band": 0.04,
-      "source": "devlab-43633426669-job132564945562",
-      "programs_sha256": "62a90e7ccbab1672495e1f3d2814e63df12b79b7154c1f0fb405f31b84063037",
-      "carried_programs": [
-        "2300d75031a0552e7b00da422d5555a9c830cd22be221236863a4adcc3545f2c"
-      ],
-      "proof": null,
-      "improved": [],
-      "exceptions": [],
-      "previous": null
-    }
-  },
+  "remeasure": null,
   "devices": {
     "radeon-r9700": {
       "state": null,
-      "remeasure": {
-        "date": "2026-11-15",
-        "result": "identical",
-        "band": 0,
-        "source": "local",
-        "programs_sha256": "3e566e38c1700d2a0b3152535347cebd93ee152cba487ace53b528a8a10c82cf",
-        "carried_programs": [
-          "62a90e7ccbab1672495e1f3d2814e63df12b79b7154c1f0fb405f31b84063037"
-        ],
-        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 0e0900b197; storage, prepare and control differ only inside the logits blocks",
-        "improved": [],
-        "exceptions": [],
-        "previous": null
-      },
+      "remeasure": null,
       "memory_bytes": null,
       "context_tokens": 131072,
       "performance": {
