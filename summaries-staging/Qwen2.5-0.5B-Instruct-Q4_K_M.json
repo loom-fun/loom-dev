@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-0.5B-Instruct-Q4_K_M",
   "name": "Qwen2.5-0.5B-Instruct",
   "repo": "loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom",
-  "revision": "fbf0ccddbe4db5c3636d27d1a274722243f4c581",
+  "revision": "1fe43f2abb39dc6c24a6e4685428a96cd4c60ff9",
   "status": null,
   "license": null,
   "service": {
@@ -29,7 +29,8 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat"
+      "chat",
+      "chat-r9700"
     ]
   },
   "features": {
@@ -186,53 +187,11 @@
     }
   },
   "primary_device": "strix-halo",
-  "remeasure": {
-    "date": "2026-11-15",
-    "result": "identical",
-    "band": 0,
-    "source": "local",
-    "programs_sha256": "7042cd02ac7f74b23131e95354437c45f4d36bb245176de45bf93dcd65e7101c",
-    "carried_programs": [
-      "50ea0952a99d9daef01f27769ebaebab6fd222fb119ecc7539767586ebc843dc",
-      "73d0a49aa7afecc53e8ef954244c555013cac0035997224fd00534722f904c56"
-    ],
-    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 21391f4839; storage, prepare and control differ only inside the logits blocks",
-    "improved": [],
-    "exceptions": [],
-    "previous": {
-      "date": "2026-11-15",
-      "result": "improved",
-      "band": 0.04,
-      "source": "devlab-43659277905-job132644777252",
-      "programs_sha256": "73d0a49aa7afecc53e8ef954244c555013cac0035997224fd00534722f904c56",
-      "carried_programs": [
-        "50ea0952a99d9daef01f27769ebaebab6fd222fb119ecc7539767586ebc843dc"
-      ],
-      "proof": null,
-      "improved": [
-        "streams4"
-      ],
-      "exceptions": [],
-      "previous": null
-    }
-  },
+  "remeasure": null,
   "devices": {
     "radeon-r9700": {
       "state": null,
-      "remeasure": {
-        "date": "2026-11-15",
-        "result": "identical",
-        "band": 0,
-        "source": "local",
-        "programs_sha256": "7042cd02ac7f74b23131e95354437c45f4d36bb245176de45bf93dcd65e7101c",
-        "carried_programs": [
-          "73d0a49aa7afecc53e8ef954244c555013cac0035997224fd00534722f904c56"
-        ],
-        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 21391f4839; storage, prepare and control differ only inside the logits blocks",
-        "improved": [],
-        "exceptions": [],
-        "previous": null
-      },
+      "remeasure": null,
       "memory_bytes": null,
       "context_tokens": 32768,
       "performance": {
@@ -299,57 +258,57 @@
           "spec_acceptance"
         ],
         "devlab": {
-          "date": "2026-11-14",
+          "date": "2026-11-17",
           "source": {
             "kind": "devlab",
-            "run": "43633449157",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43633449157/job/132565020368"
+            "run": "43993223590",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993223590/job/133738848937"
           },
           "metrics": {
             "decode": {
-              "loom": 646.4,
+              "loom": 686.1,
               "llamacpp": 390.2,
-              "speedup": 1.66
+              "speedup": 1.76
             },
             "decode_2k": {
-              "loom": 516.2,
+              "loom": 536.6,
               "llamacpp": 364.5,
-              "speedup": 1.42
-            },
-            "decode_32k": {
-              "loom": 333.5,
-              "llamacpp": 257.2,
-              "speedup": 1.3
-            },
-            "prefill_1k": {
-              "loom": 44215.7,
-              "llamacpp": 32118.6,
-              "speedup": 1.38
-            },
-            "prefill_2k": {
-              "loom": 51005.1,
-              "llamacpp": 34742.8,
               "speedup": 1.47
             },
+            "decode_32k": {
+              "loom": 304.5,
+              "llamacpp": 257.2,
+              "speedup": 1.18
+            },
+            "prefill_1k": {
+              "loom": 46132.9,
+              "llamacpp": 32118.6,
+              "speedup": 1.44
+            },
+            "prefill_2k": {
+              "loom": 52861.0,
+              "llamacpp": 34742.8,
+              "speedup": 1.52
+            },
             "prefill_8k": {
-              "loom": 44704.4,
+              "loom": 45389.2,
               "llamacpp": 31706.8,
-              "speedup": 1.41
+              "speedup": 1.43
             },
             "prefill_16k": {
-              "loom": 36158.4,
+              "loom": 36386.9,
               "llamacpp": 25408.3,
-              "speedup": 1.42
+              "speedup": 1.43
             },
             "prefill_32k": {
-              "loom": 26021.5,
+              "loom": 25952.6,
               "llamacpp": 17812.2,
               "speedup": 1.46
             },
             "streams4": {
-              "loom": 2273.9,
+              "loom": 2297.2,
               "llamacpp": 1005.4,
-              "speedup": 2.26
+              "speedup": 2.28
             }
           }
         }
