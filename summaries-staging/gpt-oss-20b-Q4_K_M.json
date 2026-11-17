@@ -334,6 +334,177 @@
           "logits": "fail"
         }
       }
+    },
+    "gfx1201-16gb": {
+      "state": null,
+      "remeasure": null,
+      "memory_bytes": 15000000000,
+      "context_tokens": 38912,
+      "performance": {
+        "date": "2026-11-16",
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": null,
+          "llamacpp": null
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null
+        },
+        "metrics": {
+          "decode": {
+            "loom": 199.2,
+            "llamacpp": 147.4,
+            "speedup": 1.35
+          },
+          "decode_2k": {
+            "loom": 184.2,
+            "llamacpp": 143.6,
+            "speedup": 1.28
+          },
+          "decode_32k": {
+            "loom": 126.5,
+            "llamacpp": 121.6,
+            "speedup": 1.04
+          },
+          "prefill_1k": {
+            "loom": 5531.8,
+            "llamacpp": 4939.6,
+            "speedup": 1.12
+          },
+          "prefill_2k": {
+            "loom": 6091.3,
+            "llamacpp": 5436.2,
+            "speedup": 1.12
+          },
+          "prefill_8k": {
+            "loom": 6378.1,
+            "llamacpp": 5558.5,
+            "speedup": 1.15
+          },
+          "prefill_16k": {
+            "loom": 5959.6,
+            "llamacpp": 5170.5,
+            "speedup": 1.15
+          },
+          "prefill_32k": {
+            "loom": 4862.8,
+            "llamacpp": 4413.9,
+            "speedup": 1.1
+          },
+          "streams4": {
+            "loom": 364.5,
+            "llamacpp": 329.9,
+            "speedup": 1.1
+          },
+          "spec_acceptance": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [
+          "spec_acceptance"
+        ],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 0,
+          "fail": 0,
+          "unknown": 7,
+          "n/a": 4
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "unknown",
+          "compare": "unknown",
+          "vision": "n/a",
+          "consistency": "unknown",
+          "spec": "n/a",
+          "agent": "unknown",
+          "agent_think_off": "n/a",
+          "sampling": "unknown",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
+    }
+  },
+  "quickstart": {
+    "strix-halo": {
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
+    },
+    "radeon-r9700": {
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
+    },
+    "gfx1201-16gb": {
+      "preset": "chat-16gb",
+      "serve_args": [
+        "--memory_bytes=15000000000",
+        "--state_slab_bytes=4mib",
+        "--weight_slab_bytes=64mib",
+        "--parameter_mode=preload"
+      ]
     }
   }
 }

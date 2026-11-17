@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-32B-Instruct-Q4_K_M",
   "name": "Qwen2.5-32B-Instruct",
   "repo": "loom-fun/bartowski-Qwen2.5-32B-Instruct-loom",
-  "revision": "e2a2460f20c7be50f35169c03b50f05982ce8423",
+  "revision": "d22a15d9cea32e9044d5e6c9fb25140ea0302458",
   "status": null,
   "license": null,
   "service": {
@@ -110,11 +110,11 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-13",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43399002251",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43399002251/job/131796943033"
+        "run": "44088665443",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088665443/job/134057825590"
       },
       "metrics": {
         "decode": {
@@ -123,44 +123,44 @@
           "speedup": 1.03
         },
         "decode_2k": {
-          "loom": 11.0,
+          "loom": 10.9,
           "llamacpp": 10.4,
-          "speedup": 1.06
+          "speedup": 1.05
         },
         "decode_32k": {
-          "loom": 7.7,
+          "loom": 7.8,
           "llamacpp": 4.2,
-          "speedup": 1.83
+          "speedup": 1.86
         },
         "prefill_1k": {
-          "loom": 438.8,
+          "loom": 451.1,
           "llamacpp": 312.3,
-          "speedup": 1.41
+          "speedup": 1.44
         },
         "prefill_2k": {
-          "loom": 453.0,
+          "loom": 465.5,
           "llamacpp": 310.7,
-          "speedup": 1.46
+          "speedup": 1.5
         },
         "prefill_8k": {
-          "loom": 400.2,
+          "loom": 418.6,
           "llamacpp": 273.8,
-          "speedup": 1.46
+          "speedup": 1.53
         },
         "prefill_16k": {
-          "loom": 349.1,
+          "loom": 359.4,
           "llamacpp": 231.5,
-          "speedup": 1.51
+          "speedup": 1.55
         },
         "prefill_32k": {
-          "loom": 297.9,
+          "loom": 307.7,
           "llamacpp": 175.4,
-          "speedup": 1.7
+          "speedup": 1.75
         },
         "streams4": {
-          "loom": 43.8,
+          "loom": 43.5,
           "llamacpp": 34.7,
-          "speedup": 1.26
+          "speedup": 1.25
         }
       }
     }
@@ -187,51 +187,11 @@
     }
   },
   "primary_device": "strix-halo",
-  "remeasure": {
-    "date": "2026-11-15",
-    "result": "identical",
-    "band": 0,
-    "source": "local",
-    "programs_sha256": "2cf2567ea10086848e332181cc301a115d39210034c4c8f0b72ebe137f24af1c",
-    "carried_programs": [
-      "54559e86513c4d6fc928cfe7c343a99781f3dc9776c858dac08c874dd5b7776d",
-      "651fde75632669e83f14d4102301245cf584832dfbe94bea1201aa66cbce4210"
-    ],
-    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision cd7a3473d8; storage, prepare and control differ only inside the logits blocks",
-    "improved": [],
-    "exceptions": [],
-    "previous": {
-      "date": "2026-11-15",
-      "result": "within",
-      "band": 0.04,
-      "source": "devlab-43649821117-job132615633327",
-      "programs_sha256": "651fde75632669e83f14d4102301245cf584832dfbe94bea1201aa66cbce4210",
-      "carried_programs": [
-        "54559e86513c4d6fc928cfe7c343a99781f3dc9776c858dac08c874dd5b7776d"
-      ],
-      "proof": null,
-      "improved": [],
-      "exceptions": [],
-      "previous": null
-    }
-  },
+  "remeasure": null,
   "devices": {
     "radeon-r9700": {
       "state": null,
-      "remeasure": {
-        "date": "2026-11-15",
-        "result": "identical",
-        "band": 0,
-        "source": "local",
-        "programs_sha256": "2cf2567ea10086848e332181cc301a115d39210034c4c8f0b72ebe137f24af1c",
-        "carried_programs": [
-          "651fde75632669e83f14d4102301245cf584832dfbe94bea1201aa66cbce4210"
-        ],
-        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision cd7a3473d8; storage, prepare and control differ only inside the logits blocks",
-        "improved": [],
-        "exceptions": [],
-        "previous": null
-      },
+      "remeasure": null,
       "memory_bytes": 34000000000,
       "context_tokens": 24576,
       "performance": {
@@ -298,51 +258,51 @@
           "spec_acceptance"
         ],
         "devlab": {
-          "date": "2026-11-14",
+          "date": "2026-11-17",
           "source": {
             "kind": "devlab",
-            "run": "43633449157",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43633449157/job/132565020373"
+            "run": "43993223590",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993223590/job/133738848967"
           },
           "metrics": {
             "decode": {
-              "loom": 30.0,
+              "loom": 29.9,
               "llamacpp": 28.2,
               "speedup": 1.06
             },
             "decode_2k": {
-              "loom": 28.3,
+              "loom": 28.2,
               "llamacpp": 26.9,
               "speedup": 1.05
             },
             "decode_32k": {
               "loom": null,
-              "llamacpp": 18.8,
+              "llamacpp": null,
               "speedup": null
             },
             "prefill_1k": {
-              "loom": 1391.9,
+              "loom": 1402.9,
               "llamacpp": 1007.7,
-              "speedup": 1.38
+              "speedup": 1.39
             },
             "prefill_2k": {
-              "loom": 1464.7,
+              "loom": 1481.4,
               "llamacpp": 1010.5,
-              "speedup": 1.45
+              "speedup": 1.47
             },
             "prefill_8k": {
-              "loom": 1377.0,
+              "loom": 1397.2,
               "llamacpp": 908.8,
-              "speedup": 1.52
+              "speedup": 1.54
             },
             "prefill_16k": {
-              "loom": 1245.6,
+              "loom": 1264.9,
               "llamacpp": 786.6,
-              "speedup": 1.58
+              "speedup": 1.61
             },
             "prefill_32k": {
               "loom": null,
-              "llamacpp": 607.0,
+              "llamacpp": null,
               "speedup": null
             },
             "streams4": {
@@ -374,6 +334,22 @@
           "logits": "pass"
         }
       }
+    }
+  },
+  "quickstart": {
+    "strix-halo": {
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
+    },
+    "radeon-r9700": {
+      "preset": "chat-r9700",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
     }
   }
 }

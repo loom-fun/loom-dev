@@ -198,5 +198,6 @@
       "state": "unsupported",
       "required_bytes": 118400000000
     }
-  }
+  },
+  "quickstart": {}
 }

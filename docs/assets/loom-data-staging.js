@@ -28,6 +28,22 @@ window.LOOM_DATA = {
    "spec": "gfx1201, 32 GB",
    "preset_suffix": "-r9700",
    "models": 50
+  },
+  {
+   "id": "gfx1201-16gb",
+   "name": "Radeon gfx1201, 16 GB (RX 9070 XT, RX 9070)",
+   "short": "gfx1201 16 GB",
+   "spec": "gfx1201, 16 GB",
+   "preset_suffix": "-16gb",
+   "models": 5
+  },
+  {
+   "id": "gfx1150",
+   "name": "AMD Ryzen AI 300 (Strix Point)",
+   "short": "Strix Point",
+   "spec": "gfx1150, Radeon 890M, shared memory",
+   "preset_suffix": "-gfx1150",
+   "models": 1
   }
  ],
  "models": [
@@ -367,6 +383,22 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -711,6 +743,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 32768
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -1051,6 +1116,39 @@ window.LOOM_DATA = {
        "logits": "fail"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 12288
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -1391,6 +1489,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -1729,6 +1843,22 @@ window.LOOM_DATA = {
        "logits": "fail"
       }
      }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -2073,6 +2203,39 @@ window.LOOM_DATA = {
        "logits": "fail"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 131072
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -2416,6 +2579,175 @@ window.LOOM_DATA = {
        "logits": "fail"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": null,
+     "remeasure": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 73728,
+     "performance": {
+      "date": "2026-11-16",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": "assistant drafter, depth 3",
+       "llamacpp": "draft-mtp"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 195.0,
+        "llamacpp": 119.1,
+        "speedup": 1.64
+       },
+       "decode_2k": {
+        "loom": 200.9,
+        "llamacpp": 123.9,
+        "speedup": 1.62
+       },
+       "decode_32k": {
+        "loom": 141.6,
+        "llamacpp": 98.4,
+        "speedup": 1.44
+       },
+       "prefill_1k": {
+        "loom": 7717.3,
+        "llamacpp": 7120.4,
+        "speedup": 1.08
+       },
+       "prefill_2k": {
+        "loom": 8750.7,
+        "llamacpp": 7961.3,
+        "speedup": 1.1
+       },
+       "prefill_8k": {
+        "loom": 8658.1,
+        "llamacpp": 8073.0,
+        "speedup": 1.07
+       },
+       "prefill_16k": {
+        "loom": 8041.1,
+        "llamacpp": 7007.5,
+        "speedup": 1.15
+       },
+       "prefill_32k": {
+        "loom": 6550.0,
+        "llamacpp": 5492.6,
+        "speedup": 1.19
+       },
+       "streams4": {
+        "loom": 507.1,
+        "llamacpp": 306.8,
+        "speedup": 1.65
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 10,
+       "n/a": 1
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "unknown",
+       "consistency": "unknown",
+       "spec": "unknown",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -2755,6 +3087,177 @@ window.LOOM_DATA = {
        "logits": "fail"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": null,
+     "remeasure": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 38912,
+     "performance": {
+      "date": "2026-11-16",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 199.2,
+        "llamacpp": 147.4,
+        "speedup": 1.35
+       },
+       "decode_2k": {
+        "loom": 184.2,
+        "llamacpp": 143.6,
+        "speedup": 1.28
+       },
+       "decode_32k": {
+        "loom": 126.5,
+        "llamacpp": 121.6,
+        "speedup": 1.04
+       },
+       "prefill_1k": {
+        "loom": 5531.8,
+        "llamacpp": 4939.6,
+        "speedup": 1.12
+       },
+       "prefill_2k": {
+        "loom": 6091.3,
+        "llamacpp": 5436.2,
+        "speedup": 1.12
+       },
+       "prefill_8k": {
+        "loom": 6378.1,
+        "llamacpp": 5558.5,
+        "speedup": 1.15
+       },
+       "prefill_16k": {
+        "loom": 5959.6,
+        "llamacpp": 5170.5,
+        "speedup": 1.15
+       },
+       "prefill_32k": {
+        "loom": 4862.8,
+        "llamacpp": 4413.9,
+        "speedup": 1.1
+       },
+       "streams4": {
+        "loom": 364.5,
+        "llamacpp": 329.9,
+        "speedup": 1.1
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 7,
+       "n/a": 4
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "n/a",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -3095,6 +3598,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 131072
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -3435,6 +3971,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -3773,6 +4325,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 3072
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -4113,6 +4698,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 262144
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -4453,6 +5071,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 128000
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -4792,6 +5443,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 104448
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -5131,6 +5815,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 43008
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -5471,6 +6188,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -5670,7 +6403,8 @@ window.LOOM_DATA = {
      "state": "not_a_target",
      "required_bytes": null
     }
-   }
+   },
+   "quickstart": {}
   },
   {
    "schema": "loom-summary/1",
@@ -6013,6 +6747,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -6351,6 +7101,22 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -6694,6 +7460,39 @@ window.LOOM_DATA = {
        "logits": "fail"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 35840
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -7038,6 +7837,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -7380,6 +8195,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 224256
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -7583,7 +8431,8 @@ window.LOOM_DATA = {
      "state": "unsupported",
      "required_bytes": 82400000000
     }
-   }
+   },
+   "quickstart": {}
   },
   {
    "schema": "loom-summary/1",
@@ -7925,6 +8774,22 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -8268,6 +9133,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 93184
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -8608,6 +9506,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 32768
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -8948,6 +9879,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 32768
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -9288,6 +10252,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -9626,6 +10606,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 32768
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -9969,6 +10982,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 128000
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -10309,6 +11355,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 40960
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -10649,6 +11728,39 @@ window.LOOM_DATA = {
        "logits": "fail"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 40960
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -10988,6 +12100,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 27648
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -11328,6 +12473,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -11667,6 +12828,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 76800
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -12006,6 +13200,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 40960
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -12345,6 +13572,175 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": null,
+     "remeasure": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 36864,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": "DFlash, depth 3",
+       "llamacpp": "draft-dflash, n-max 15"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 164.2,
+        "llamacpp": 93.9,
+        "speedup": 1.75
+       },
+       "decode_2k": {
+        "loom": 129.4,
+        "llamacpp": 95.4,
+        "speedup": 1.36
+       },
+       "decode_32k": {
+        "loom": 56.5,
+        "llamacpp": 59.0,
+        "speedup": 0.96
+       },
+       "prefill_1k": {
+        "loom": 5317.4,
+        "llamacpp": 4055.7,
+        "speedup": 1.31
+       },
+       "prefill_2k": {
+        "loom": 5671.0,
+        "llamacpp": 4078.3,
+        "speedup": 1.39
+       },
+       "prefill_8k": {
+        "loom": 5232.0,
+        "llamacpp": 3569.5,
+        "speedup": 1.47
+       },
+       "prefill_16k": {
+        "loom": 4084.1,
+        "llamacpp": 2972.2,
+        "speedup": 1.37
+       },
+       "prefill_32k": {
+        "loom": 2629.4,
+        "llamacpp": 2252.8,
+        "speedup": 1.17
+       },
+       "streams4": {
+        "loom": 416.5,
+        "llamacpp": 265.6,
+        "speedup": 1.57
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 9,
+       "n/a": 2
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "unknown",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -12684,6 +14080,22 @@ window.LOOM_DATA = {
        "logits": "fail"
       }
      }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -13028,6 +14440,177 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": null,
+     "remeasure": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 76800,
+     "performance": {
+      "date": "2026-11-16",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 182.2,
+        "llamacpp": 140.8,
+        "speedup": 1.29
+       },
+       "decode_2k": {
+        "loom": 151.7,
+        "llamacpp": 129.2,
+        "speedup": 1.17
+       },
+       "decode_32k": {
+        "loom": 71.7,
+        "llamacpp": 66.9,
+        "speedup": 1.07
+       },
+       "prefill_1k": {
+        "loom": 8898.0,
+        "llamacpp": 6402.5,
+        "speedup": 1.39
+       },
+       "prefill_2k": {
+        "loom": 9241.0,
+        "llamacpp": 6334.9,
+        "speedup": 1.46
+       },
+       "prefill_8k": {
+        "loom": 7827.6,
+        "llamacpp": 5154.9,
+        "speedup": 1.52
+       },
+       "prefill_16k": {
+        "loom": 5723.0,
+        "llamacpp": 3990.1,
+        "speedup": 1.43
+       },
+       "prefill_32k": {
+        "loom": 3669.8,
+        "llamacpp": 2786.3,
+        "speedup": 1.32
+       },
+       "streams4": {
+        "loom": 623.0,
+        "llamacpp": 390.0,
+        "speedup": 1.6
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 8,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "unknown",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "n/a",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -13372,6 +14955,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 59392
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -13715,6 +15331,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 262144
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -14058,6 +15707,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 262144
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -14401,6 +16083,22 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -14746,6 +16444,326 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": null,
+     "remeasure": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 151552,
+     "performance": {
+      "date": "2026-11-16",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": "DFlash, depth 3",
+       "llamacpp": "draft-dflash, n-max 7"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 202.5,
+        "llamacpp": 94.6,
+        "speedup": 2.14
+       },
+       "decode_2k": {
+        "loom": 197.7,
+        "llamacpp": 107.6,
+        "speedup": 1.84
+       },
+       "decode_32k": {
+        "loom": 146.3,
+        "llamacpp": 101.1,
+        "speedup": 1.45
+       },
+       "prefill_1k": {
+        "loom": 8016.4,
+        "llamacpp": 5134.4,
+        "speedup": 1.56
+       },
+       "prefill_2k": {
+        "loom": 8526.0,
+        "llamacpp": 5565.4,
+        "speedup": 1.53
+       },
+       "prefill_8k": {
+        "loom": 8609.7,
+        "llamacpp": 5804.9,
+        "speedup": 1.48
+       },
+       "prefill_16k": {
+        "loom": 8073.1,
+        "llamacpp": 5461.8,
+        "speedup": 1.48
+       },
+       "prefill_32k": {
+        "loom": 6936.4,
+        "llamacpp": 4850.8,
+        "speedup": 1.43
+       },
+       "streams4": {
+        "loom": 542.2,
+        "llamacpp": 333.5,
+        "speedup": 1.63
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 10,
+       "n/a": 1
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "unknown",
+       "consistency": "unknown",
+       "spec": "unknown",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
+    },
+    "gfx1150": {
+     "state": null,
+     "remeasure": null,
+     "memory_bytes": 14000000000,
+     "context_tokens": 63488,
+     "performance": {
+      "date": "2026-11-16",
+      "llamacpp_build": "b1374",
+      "drafting": {
+       "loom": "DFlash, depth 3",
+       "llamacpp": "draft-dflash, n-max 7"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 31.1,
+        "llamacpp": 21.7,
+        "speedup": 1.43
+       },
+       "decode_2k": {
+        "loom": 28.2,
+        "llamacpp": 24.0,
+        "speedup": 1.18
+       },
+       "decode_32k": {
+        "loom": 22.4,
+        "llamacpp": 17.2,
+        "speedup": 1.3
+       },
+       "prefill_1k": {
+        "loom": 995.5,
+        "llamacpp": 702.7,
+        "speedup": 1.42
+       },
+       "prefill_2k": {
+        "loom": 1016.4,
+        "llamacpp": 703.4,
+        "speedup": 1.44
+       },
+       "prefill_8k": {
+        "loom": 1021.2,
+        "llamacpp": 624.7,
+        "speedup": 1.63
+       },
+       "prefill_16k": {
+        "loom": 1040.7,
+        "llamacpp": 497.2,
+        "speedup": 2.09
+       },
+       "prefill_32k": {
+        "loom": 929.2,
+        "llamacpp": 356.8,
+        "speedup": 2.6
+       },
+       "streams4": {
+        "loom": 82.3,
+        "llamacpp": 74.4,
+        "speedup": 1.11
+       },
+       "spec_acceptance": {
+        "loom": 0.53,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 8,
+       "fail": 0,
+       "unknown": 2,
+       "n/a": 1
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "pass",
+       "consistency": "pass",
+       "spec": "pass",
+       "agent": "pass",
+       "agent_think_off": "pass",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1150": {
+     "preset": "chat-gfx1150",
+     "serve_args": [
+      "--memory_bytes=14000000000",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -15090,6 +17108,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 87040
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -15434,6 +17485,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -15777,6 +17844,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -16116,6 +18199,22 @@ window.LOOM_DATA = {
       }
      }
     }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    }
    }
   },
   {
@@ -16318,7 +18417,8 @@ window.LOOM_DATA = {
      "state": "unsupported",
      "required_bytes": 118400000000
     }
-   }
+   },
+   "quickstart": {}
   },
   {
    "schema": "loom-summary/1",
@@ -16656,6 +18756,22 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -16996,6 +19112,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 75776
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -17336,6 +19485,39 @@ window.LOOM_DATA = {
        "logits": "pass"
       }
      }
+    },
+    "gfx1201-16gb": {
+     "state": "not_measured",
+     "required_bytes": null,
+     "fits": true,
+     "shares_section_with": null,
+     "memory_bytes": 15000000000,
+     "context_tokens": 75776
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "radeon-r9700": {
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
+    },
+    "gfx1201-16gb": {
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   }

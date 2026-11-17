@@ -3,7 +3,7 @@
   "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
   "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
   "repo": "loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-  "revision": "3d5406edc9a4d340fb4f2b6e536b136a63940b96",
+  "revision": "b6c3819f331f56b4fdbbd70db05239f82bef2791",
   "status": null,
   "license": null,
   "service": {
@@ -38,7 +38,7 @@
     "max_tokens": 4096,
     "presets": [
       "chat",
-      "chat-r9700"
+      "chat-16gb"
     ]
   },
   "features": {
@@ -109,64 +109,64 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.66,
+        "loom": 0.63,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-13",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43400470470",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43400470470/job/131801831202"
+        "run": "44088689861",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909463"
       },
       "metrics": {
         "decode": {
-          "loom": 97.9,
+          "loom": 96.0,
           "llamacpp": 54.9,
-          "speedup": 1.78
+          "speedup": 1.75
         },
         "decode_2k": {
-          "loom": 82.3,
+          "loom": 81.0,
           "llamacpp": 51.5,
-          "speedup": 1.6
-        },
-        "decode_32k": {
-          "loom": 63.1,
-          "llamacpp": 41.8,
-          "speedup": 1.51
-        },
-        "prefill_1k": {
-          "loom": 2478.5,
-          "llamacpp": 1672.1,
-          "speedup": 1.48
-        },
-        "prefill_2k": {
-          "loom": 2683.3,
-          "llamacpp": 1711.0,
           "speedup": 1.57
         },
+        "decode_32k": {
+          "loom": 63.4,
+          "llamacpp": 41.8,
+          "speedup": 1.52
+        },
+        "prefill_1k": {
+          "loom": 2461.1,
+          "llamacpp": 1672.1,
+          "speedup": 1.47
+        },
+        "prefill_2k": {
+          "loom": 2663.5,
+          "llamacpp": 1711.0,
+          "speedup": 1.56
+        },
         "prefill_8k": {
-          "loom": 2462.1,
+          "loom": 2629.7,
           "llamacpp": 1641.6,
-          "speedup": 1.5
+          "speedup": 1.6
         },
         "prefill_16k": {
-          "loom": 2299.1,
+          "loom": 2363.5,
           "llamacpp": 1480.9,
-          "speedup": 1.55
+          "speedup": 1.6
         },
         "prefill_32k": {
-          "loom": 1969.1,
+          "loom": 2004.6,
           "llamacpp": 1218.7,
-          "speedup": 1.62
+          "speedup": 1.64
         },
         "streams4": {
-          "loom": 219.4,
+          "loom": 216.9,
           "llamacpp": 163.9,
-          "speedup": 1.34
+          "speedup": 1.32
         }
       }
     }
@@ -193,51 +193,11 @@
     }
   },
   "primary_device": "strix-halo",
-  "remeasure": {
-    "date": "2026-11-15",
-    "result": "identical",
-    "band": 0,
-    "source": "local",
-    "programs_sha256": "87c2b99ed8fefdd445db3ef2c2d060e544105342c55df19d2f2ba1f7ae9e59e1",
-    "carried_programs": [
-      "5dcc5f00a0cdda3866cd68e79354369e74e710d90a55f4acd2360651b527c270",
-      "73d6c9b76fc62d66d02fcee8e98338465c7c9e2894e9a5b7d4d5b03493091325"
-    ],
-    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 1af453cac4; storage, prepare and control differ only inside the logits blocks",
-    "improved": [],
-    "exceptions": [],
-    "previous": {
-      "date": "2026-11-14",
-      "result": "within",
-      "band": 0.04,
-      "source": "devlab-43640416721-job132586612786",
-      "programs_sha256": "5dcc5f00a0cdda3866cd68e79354369e74e710d90a55f4acd2360651b527c270",
-      "carried_programs": [
-        "73d6c9b76fc62d66d02fcee8e98338465c7c9e2894e9a5b7d4d5b03493091325"
-      ],
-      "proof": null,
-      "improved": [],
-      "exceptions": [],
-      "previous": null
-    }
-  },
+  "remeasure": null,
   "devices": {
     "radeon-r9700": {
       "state": null,
-      "remeasure": {
-        "date": "2026-11-15",
-        "result": "identical",
-        "band": 0,
-        "source": "local",
-        "programs_sha256": "87c2b99ed8fefdd445db3ef2c2d060e544105342c55df19d2f2ba1f7ae9e59e1",
-        "carried_programs": [
-          "5dcc5f00a0cdda3866cd68e79354369e74e710d90a55f4acd2360651b527c270"
-        ],
-        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 1af453cac4; storage, prepare and control differ only inside the logits blocks",
-        "improved": [],
-        "exceptions": [],
-        "previous": null
-      },
+      "remeasure": null,
       "memory_bytes": 34000000000,
       "context_tokens": 131072,
       "performance": {
@@ -302,57 +262,57 @@
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-14",
+          "date": "2026-11-17",
           "source": {
             "kind": "devlab",
-            "run": "43633487644",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43633487644/job/132565146980"
+            "run": "43993245028",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993245028/job/133738926289"
           },
           "metrics": {
             "decode": {
-              "loom": 225.2,
+              "loom": 227.7,
               "llamacpp": 102.7,
-              "speedup": 2.19
+              "speedup": 2.22
             },
             "decode_2k": {
-              "loom": 188.2,
+              "loom": 196.9,
               "llamacpp": 98.4,
-              "speedup": 1.91
+              "speedup": 2.0
             },
             "decode_32k": {
-              "loom": 150.5,
+              "loom": 144.4,
               "llamacpp": 75.8,
-              "speedup": 1.99
+              "speedup": 1.91
             },
             "prefill_1k": {
-              "loom": 7576.2,
+              "loom": 7699.6,
               "llamacpp": 4789.0,
-              "speedup": 1.58
+              "speedup": 1.61
             },
             "prefill_2k": {
-              "loom": 8720.1,
+              "loom": 8720.2,
               "llamacpp": 5158.2,
               "speedup": 1.69
             },
             "prefill_8k": {
-              "loom": 8521.0,
+              "loom": 8650.0,
               "llamacpp": 4907.7,
-              "speedup": 1.74
+              "speedup": 1.76
             },
             "prefill_16k": {
-              "loom": 8073.2,
+              "loom": 8173.7,
               "llamacpp": 4223.5,
-              "speedup": 1.91
+              "speedup": 1.94
             },
             "prefill_32k": {
-              "loom": 6932.0,
+              "loom": 6987.4,
               "llamacpp": 3263.3,
-              "speedup": 2.12
+              "speedup": 2.14
             },
             "streams4": {
-              "loom": 508.5,
+              "loom": 508.7,
               "llamacpp": 313.0,
-              "speedup": 1.62
+              "speedup": 1.63
             }
           }
         }
@@ -378,6 +338,39 @@
           "logits": "fail"
         }
       }
+    },
+    "gfx1201-16gb": {
+      "state": "not_measured",
+      "required_bytes": null,
+      "fits": true,
+      "shares_section_with": null,
+      "memory_bytes": 15000000000,
+      "context_tokens": 35840
+    }
+  },
+  "quickstart": {
+    "strix-halo": {
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
+    },
+    "radeon-r9700": {
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
+    },
+    "gfx1201-16gb": {
+      "preset": "chat-16gb",
+      "serve_args": [
+        "--memory_bytes=15000000000",
+        "--state_slab_bytes=4mib",
+        "--weight_slab_bytes=64mib",
+        "--parameter_mode=preload"
+      ]
     }
   }
 }

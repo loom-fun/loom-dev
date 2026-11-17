@@ -340,6 +340,326 @@
           "logits": "pass"
         }
       }
+    },
+    "gfx1201-16gb": {
+      "state": null,
+      "remeasure": null,
+      "memory_bytes": 15000000000,
+      "context_tokens": 151552,
+      "performance": {
+        "date": "2026-11-16",
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": "DFlash, depth 3",
+          "llamacpp": "draft-dflash, n-max 7"
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null
+        },
+        "metrics": {
+          "decode": {
+            "loom": 202.5,
+            "llamacpp": 94.6,
+            "speedup": 2.14
+          },
+          "decode_2k": {
+            "loom": 197.7,
+            "llamacpp": 107.6,
+            "speedup": 1.84
+          },
+          "decode_32k": {
+            "loom": 146.3,
+            "llamacpp": 101.1,
+            "speedup": 1.45
+          },
+          "prefill_1k": {
+            "loom": 8016.4,
+            "llamacpp": 5134.4,
+            "speedup": 1.56
+          },
+          "prefill_2k": {
+            "loom": 8526.0,
+            "llamacpp": 5565.4,
+            "speedup": 1.53
+          },
+          "prefill_8k": {
+            "loom": 8609.7,
+            "llamacpp": 5804.9,
+            "speedup": 1.48
+          },
+          "prefill_16k": {
+            "loom": 8073.1,
+            "llamacpp": 5461.8,
+            "speedup": 1.48
+          },
+          "prefill_32k": {
+            "loom": 6936.4,
+            "llamacpp": 4850.8,
+            "speedup": 1.43
+          },
+          "streams4": {
+            "loom": 542.2,
+            "llamacpp": 333.5,
+            "speedup": 1.63
+          },
+          "spec_acceptance": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 0,
+          "fail": 0,
+          "unknown": 10,
+          "n/a": 1
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "unknown",
+          "compare": "unknown",
+          "vision": "unknown",
+          "consistency": "unknown",
+          "spec": "unknown",
+          "agent": "unknown",
+          "agent_think_off": "unknown",
+          "sampling": "unknown",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
+    },
+    "gfx1150": {
+      "state": null,
+      "remeasure": null,
+      "memory_bytes": 14000000000,
+      "context_tokens": 63488,
+      "performance": {
+        "date": "2026-11-16",
+        "llamacpp_build": "b1374",
+        "drafting": {
+          "loom": "DFlash, depth 3",
+          "llamacpp": "draft-dflash, n-max 7"
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null
+        },
+        "metrics": {
+          "decode": {
+            "loom": 31.1,
+            "llamacpp": 21.7,
+            "speedup": 1.43
+          },
+          "decode_2k": {
+            "loom": 28.2,
+            "llamacpp": 24.0,
+            "speedup": 1.18
+          },
+          "decode_32k": {
+            "loom": 22.4,
+            "llamacpp": 17.2,
+            "speedup": 1.3
+          },
+          "prefill_1k": {
+            "loom": 995.5,
+            "llamacpp": 702.7,
+            "speedup": 1.42
+          },
+          "prefill_2k": {
+            "loom": 1016.4,
+            "llamacpp": 703.4,
+            "speedup": 1.44
+          },
+          "prefill_8k": {
+            "loom": 1021.2,
+            "llamacpp": 624.7,
+            "speedup": 1.63
+          },
+          "prefill_16k": {
+            "loom": 1040.7,
+            "llamacpp": 497.2,
+            "speedup": 2.09
+          },
+          "prefill_32k": {
+            "loom": 929.2,
+            "llamacpp": 356.8,
+            "speedup": 2.6
+          },
+          "streams4": {
+            "loom": 82.3,
+            "llamacpp": 74.4,
+            "speedup": 1.11
+          },
+          "spec_acceptance": {
+            "loom": 0.53,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 8,
+          "fail": 0,
+          "unknown": 2,
+          "n/a": 1
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "pass",
+          "consistency": "pass",
+          "spec": "pass",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
+    }
+  },
+  "quickstart": {
+    "strix-halo": {
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
+    },
+    "radeon-r9700": {
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
+    },
+    "gfx1201-16gb": {
+      "preset": "chat-16gb",
+      "serve_args": [
+        "--memory_bytes=15000000000",
+        "--state_slab_bytes=4mib",
+        "--weight_slab_bytes=64mib",
+        "--parameter_mode=preload"
+      ]
+    },
+    "gfx1150": {
+      "preset": "chat-gfx1150",
+      "serve_args": [
+        "--memory_bytes=14000000000",
+        "--parameter_mode=preload"
+      ]
     }
   }
 }
