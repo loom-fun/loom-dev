@@ -3,7 +3,7 @@
   "checkpoint": "Muse-Glimmer-30B-Q4_K_M",
   "name": "Muse-Glimmer-30B",
   "repo": "loom-fun-staging/ggml-org-Muse-Glimmer-30B-loom",
-  "revision": "cb8277fe40350c2729c68d4d84a4c865a3690b1b",
+  "revision": "70418f393ee955bb7da8b9ee971fb08e06bb26b6",
   "status": null,
   "license": null,
   "service": {
@@ -108,64 +108,64 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.71,
+        "loom": 0.82,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-13",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43376548212",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300479"
+        "run": "43993313315",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993313315/job/133739167030"
       },
       "metrics": {
         "decode": {
-          "loom": 28.2,
+          "loom": 27.9,
           "llamacpp": 21.0,
-          "speedup": 1.34
+          "speedup": 1.33
         },
         "decode_2k": {
-          "loom": 24.5,
+          "loom": 24.9,
           "llamacpp": 19.4,
-          "speedup": 1.26
+          "speedup": 1.28
         },
         "decode_32k": {
-          "loom": 24.2,
+          "loom": 23.8,
           "llamacpp": 21.0,
-          "speedup": 1.15
+          "speedup": 1.13
         },
         "prefill_1k": {
-          "loom": 477.0,
+          "loom": 476.9,
           "llamacpp": 361.0,
           "speedup": 1.32
         },
         "prefill_2k": {
-          "loom": 504.6,
+          "loom": 503.6,
           "llamacpp": 369.7,
           "speedup": 1.36
         },
         "prefill_8k": {
-          "loom": 496.6,
+          "loom": 502.9,
           "llamacpp": 379.2,
-          "speedup": 1.31
+          "speedup": 1.33
         },
         "prefill_16k": {
-          "loom": 493.7,
+          "loom": 498.1,
           "llamacpp": 373.8,
-          "speedup": 1.32
+          "speedup": 1.33
         },
         "prefill_32k": {
-          "loom": 472.3,
+          "loom": 476.0,
           "llamacpp": 357.9,
-          "speedup": 1.32
+          "speedup": 1.33
         },
         "streams4": {
-          "loom": 49.2,
+          "loom": 48.8,
           "llamacpp": 40.1,
-          "speedup": 1.23
+          "speedup": 1.22
         }
       }
     }
@@ -192,51 +192,11 @@
     }
   },
   "primary_device": "strix-halo",
-  "remeasure": {
-    "date": "2026-11-15",
-    "result": "identical",
-    "band": 0,
-    "source": "local",
-    "programs_sha256": "6462c3a6edfa3a2c43c8a8852342a6c5d3df04d5642abe9a85cc2b999bf429b2",
-    "carried_programs": [
-      "1150ffac6116cc39ec5e835bee59a4c4f0f462fa4ffc730b01a2452d22b97290",
-      "f42a112019333f4835162e3063043c13e018512a9df781fd8f66b4f7419acb23"
-    ],
-    "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 877355d32e; storage, prepare and control differ only inside the logits blocks",
-    "improved": [],
-    "exceptions": [],
-    "previous": {
-      "date": "2026-11-15",
-      "result": "within",
-      "band": 0.04,
-      "source": "devlab-43653648982-job132627376306",
-      "programs_sha256": "f42a112019333f4835162e3063043c13e018512a9df781fd8f66b4f7419acb23",
-      "carried_programs": [
-        "1150ffac6116cc39ec5e835bee59a4c4f0f462fa4ffc730b01a2452d22b97290"
-      ],
-      "proof": null,
-      "improved": [],
-      "exceptions": [],
-      "previous": null
-    }
-  },
+  "remeasure": null,
   "devices": {
     "radeon-r9700": {
       "state": null,
-      "remeasure": {
-        "date": "2026-11-15",
-        "result": "identical",
-        "band": 0,
-        "source": "local",
-        "programs_sha256": "6462c3a6edfa3a2c43c8a8852342a6c5d3df04d5642abe9a85cc2b999bf429b2",
-        "carried_programs": [
-          "f42a112019333f4835162e3063043c13e018512a9df781fd8f66b4f7419acb23"
-        ],
-        "proof": "fleet/stage_equiv.py at d2be0384d7 against the measured revision 877355d32e; storage, prepare and control differ only inside the logits blocks",
-        "improved": [],
-        "exceptions": [],
-        "previous": null
-      },
+      "remeasure": null,
       "memory_bytes": 34000000000,
       "context_tokens": 32768,
       "performance": {

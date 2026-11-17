@@ -3,7 +3,7 @@
   "checkpoint": "Nanbeige_Nanbeige4.3-33B-Q4_K_M",
   "name": "Nanbeige_Nanbeige4.3-33B",
   "repo": "loom-fun-staging/bartowski-Nanbeige4.3-33B-loom",
-  "revision": "99f9fe31722c17ef3ac453045e111601c9b8e725",
+  "revision": "906c7e1c8da4f63c888d5533088961dbce9eea2d",
   "status": null,
   "license": null,
   "service": {
@@ -110,17 +110,17 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-13",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43376548212",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300420"
+        "run": "43993297363",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993297363/job/133739126150"
       },
       "metrics": {
         "decode": {
-          "loom": 11.2,
+          "loom": 11.3,
           "llamacpp": 10.6,
-          "speedup": 1.06
+          "speedup": 1.07
         },
         "decode_2k": {
           "loom": 10.7,
@@ -133,32 +133,32 @@
           "speedup": 3.38
         },
         "prefill_1k": {
-          "loom": 420.3,
+          "loom": 421.4,
           "llamacpp": 322.6,
-          "speedup": 1.3
+          "speedup": 1.31
         },
         "prefill_2k": {
-          "loom": 418.5,
+          "loom": 422.7,
           "llamacpp": 323.0,
-          "speedup": 1.3
+          "speedup": 1.31
         },
         "prefill_8k": {
-          "loom": 397.5,
+          "loom": 404.6,
           "llamacpp": 287.6,
-          "speedup": 1.38
-        },
-        "prefill_16k": {
-          "loom": 345.2,
-          "llamacpp": 244.7,
           "speedup": 1.41
         },
+        "prefill_16k": {
+          "loom": 350.6,
+          "llamacpp": 244.7,
+          "speedup": 1.43
+        },
         "prefill_32k": {
-          "loom": 271.1,
+          "loom": 263.0,
           "llamacpp": 186.2,
-          "speedup": 1.46
+          "speedup": 1.41
         },
         "streams4": {
-          "loom": 42.6,
+          "loom": 42.5,
           "llamacpp": 34.1,
           "speedup": 1.25
         }
