@@ -432,27 +432,61 @@
   },
   "quickstart": {
     "strix-halo": {
-      "preset": "chat",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B\nloom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B",
+      "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
     },
     "radeon-r9700": {
-      "preset": "chat",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B\nloom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B",
+      "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
     },
     "gfx1201-16gb": {
-      "preset": "chat-16gb",
-      "serve_args": [
-        "--memory_bytes=15000000000",
-        "--state_slab_bytes=4mib",
-        "--weight_slab_bytes=64mib",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat-16gb --materialize=copy --output=LFM2.5-24B-A2B\nloom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 3,072 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat-16gb --materialize=copy --output=LFM2.5-24B-A2B",
+      "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
     }
   }
 }

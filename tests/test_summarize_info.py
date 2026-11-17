@@ -108,18 +108,20 @@ class Summaries(unittest.TestCase):
                                               "shares_section_with": "radeon-r9700",
                                               "serve_args": ["--memory_bytes=15000000000", "--state_slab_bytes=4mib"]}
         card["devices"]["gfx1150"] = {"state": "not_measured", "serve_args": [], "served_context": 16384}
-        readme = ("<details>\n<summary>Radeon gfx1201, 16 GB (RX 9070 XT, RX 9070)</summary>\n\n```bash\n"
+        readme = ("## Quick start\n<details>\n<summary>Radeon gfx1201, 16 GB (RX 9070 XT, RX 9070)</summary>\n\n```bash\n"
+                  'pipx install "hrx-loom[hf]==9.0"\n'
                   "loom-fetch huggingface:loom-fun/x-loom:chat-16gb --materialize=copy --output=X\n"
                   "loom-serve --model=X '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib\n"
                   "```\n</details>\n<details>\n<summary>AMD Radeon 890M (gfx1150)</summary>\n```bash\n"
+                  'pipx install "hrx-loom[hf]==9.0"\n'
                   "loom-fetch huggingface:loom-fun/x-loom --materialize=copy --output=X\n"
                   "loom-serve --model=X '--device=amdgpu://?completion_spin_ns=4294967295'\n```\n</details>")
         out = S.summarize(card, model, lock, "rev", "lic", readme)
         x = out["devices"]["gfx1201-16gb"]
         self.assertEqual((x["fits"], x["shares_section_with"], x["context_tokens"]), (True, "radeon-r9700", 18432))
-        self.assertEqual(out["quickstart"]["gfx1201-16gb"],
-                         {"preset": "chat-16gb", "serve_args": ["--memory_bytes=15000000000", "--state_slab_bytes=4mib"]})
-        self.assertEqual(out["quickstart"]["gfx1150"], {"preset": None, "serve_args": []})
+        self.assertIn(":chat-16gb", out["quickstart"]["gfx1201-16gb"]["fetch"])
+        self.assertIn("--state_slab_bytes=4mib", out["quickstart"]["gfx1201-16gb"]["serve"])
+        self.assertTrue(out["quickstart"]["gfx1150"]["blocks"])
         self.assertTrue(out["devices"]["gfx1150"]["fits"])
         self.assertNotIn("quickstart", S.summarize(card, model, lock, "rev", "lic"))
 
@@ -176,3 +178,41 @@ class Summaries(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class QuickstartSource(unittest.TestCase):
+    def test_published_layouts_and_mutations(self):
+        from pathlib import Path
+        for path in Path(HERE, 'quickstart_cards').glob('*.md'):
+            text = path.read_text()
+            gpu = 'radeon-r9700' if 'MXFP4' in path.name else 'strix-halo'
+            out = S.quickstart(text, gpu)
+            self.assertIn(gpu, out, path.name)
+            if '<details>' not in text:
+                self.assertEqual(list(out), [gpu])
+            for device, q in out.items():
+                self.assertIn(q['install'], text)
+                self.assertIn(q['fetch'], text)
+                self.assertIn(q['serve'], text)
+                if device != 'gfx1201-16gb':
+                    self.assertIn('--pool_backing=fixed', q['serve'])
+            changed = text.replace('0.2.0', '99.4.1').replace('--output=', '--output=/new/').replace('--pool_backing=fixed', '--future_flag=yes')
+            new = S.quickstart(changed, gpu)[gpu]
+            self.assertIn('--output=/new/', new['fetch'])
+            self.assertIn('--future_flag=yes', new['serve'])
+            if '0.2.0' in text:
+                self.assertIn('99.4.1', new['install'])
+            if 'stock host' in text:
+                self.assertIn('systemd-run', str(out[gpu]['blocks']))
+
+    def test_shared_request_notes_and_section_boundary(self):
+        from pathlib import Path
+        text = Path(HERE, 'quickstart_cards/unsloth-Qwen3-0.6B.md').read_text()
+        request = '''curl localhost:8080/v1/chat/completions \\
+  -d '{"model":"exact","chat_template_kwargs":{"enable_thinking":false}}' '''
+        text += '\n```bash\n' + request + '\n```\n\nExplain `--future_flag`.\n## Benchmarks\nDO NOT SHOW\n'
+        for q in S.quickstart(text).values():
+            self.assertIn(request, [b['text'] for b in q['blocks'] if b['kind'] == 'code'])
+            self.assertIn('Explain `--future_flag`.', str(q['blocks']))
+            self.assertNotIn('DO NOT SHOW', str(q['blocks']))
+        self.assertEqual(S.quickstart('## Quick start\n```bash\nloom-fetch x\n```', 'strix-halo'), {})
+        self.assertEqual(S.quickstart(text.replace('## Quick start', '## Other')), {})

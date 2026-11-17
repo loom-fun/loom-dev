@@ -1,7 +1,7 @@
 // Models page: card grid, table, per-workload matrix and gates grid, with a detail drawer routed by the URL hash.
 
 (() => {
-  const { models, METRICS, FEATURES, GATES, times, num, gb, ctx, esc, hf, quickstart } = LOOM;
+  const { models, METRICS, FEATURES, GATES, times, num, gb, ctx, esc, hf, quickstartHtml } = LOOM;
   const el = id => document.getElementById(id);
   const state = { q: '', filters: new Set(), view: 'cards', sort: 'score' };
   let list = models;
@@ -123,7 +123,7 @@
     el('drPath').textContent = `models / ${id}`;
     el('dr').innerHTML = `
       <h2 class="dr-title" style="margin-top:10px">${esc(s0.name)}</h2>
-      <p>${serves ? `Serves on ${esc(LOOM.GPU.name)}; performance is not measured there yet.` : `No results on ${esc(LOOM.GPU.name)} yet.`}${on.length ? ` Measured on ${on.map(g => `<a class="u" data-keep-href data-gpu-id="${esc(g.id)}" href="${esc(LOOM.gpuLink(g, `models.html#${encodeURIComponent(id)}`))}">${esc(g.short)}</a>`).join(', ')}.` : ''}</p>${serves ? `<div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code>${esc(quickstart(s0))}</code></pre></div>` : ''}`;
+      <p>${serves ? `Serves on ${esc(LOOM.GPU.name)}; performance is not measured there yet.` : `No results on ${esc(LOOM.GPU.name)} yet.`}${on.length ? ` Measured on ${on.map(g => `<a class="u" data-keep-href data-gpu-id="${esc(g.id)}" href="${esc(LOOM.gpuLink(g, `models.html#${encodeURIComponent(id)}`))}">${esc(g.short)}</a>`).join(', ')}.` : ''}</p>${serves ? quickstartHtml(s0) : ''}`;
     LOOM.copyButtons(el('dr'));
     return true;
   }
@@ -174,11 +174,7 @@
       <div class="mbars">${bars(m)}</div>
 
       <h3>run it</h3>
-      <div class="code">
-        <div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div>
-        <pre><code>${esc(quickstart(m))}</code></pre>
-      </div>
-      <p class="fine"><code>hrx-loom</code> is the Loom SDK from <a class="u" href="https://github.com/ROCm/hrx-system" target="_blank" rel="noopener">ROCm/hrx-system</a>. <code>loom-fetch</code> pulls the GGUF from its original repo, and <code>loom-serve</code> listens on <code>:8080</code>. For a browser playground, ask an agent with <a class="u" href="https://github.com/loom-fun/loom-skills" target="_blank" rel="noopener">loom-skills</a> to start the Loom demo UI.</p>
+      ${quickstartHtml(m)}
 
       <div class="dr-cols">
         <div><h3>serving</h3>${kvList([

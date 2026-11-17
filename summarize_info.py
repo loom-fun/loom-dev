@@ -24,7 +24,6 @@ import glob
 import json
 import os
 import re
-import shlex
 import sys
 
 from huggingface_hub import HfApi, hf_hub_download
@@ -97,26 +96,53 @@ def gpu_view(info, gpu):
     return out
 
 
-def quickstart(readme):
-    """{gpu: {"preset": name or None, "serve_args": [...]}} from the card README's per-GPU Quick start blocks (<details>): the
-    preset its loom-fetch names and the loom-serve flags beyond --model and --device. The card is the one place that knows
-    them (GPU flags, --parameter_mode=preload, package flags), so the site shows exactly what the card prints. {} for a card
-    with no such blocks (a card before the per-GPU Quick start)."""
+def quickstart(readme, default_gpu=None):
+    """Preserve source commands and notes, scoped to the card's Quick start section.
+
+    Details identify GPUs explicitly. A plain fenced layout belongs only to the
+    card's primary measured GPU; it must never become a fallback for other GPUs.
+    Text remains Markdown text, never trusted HTML in the browser.
+    """
+    section = re.search(r"^## Quick start[^\n]*\n(.*?)(?=^## |\Z)", readme or "", re.M | re.S)
+    if not section:
+        return {}
+    text = section.group(1)
+    details = list(re.finditer(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", text, re.S))
+
+    def blocks(body):
+        out, end = [], 0
+        for match in re.finditer(r"^```([^\n]*)\n(.*?)^```[ \t]*$", body, re.M | re.S):
+            if body[end:match.start()].strip():
+                out.append({"kind": "text", "text": body[end:match.start()].strip()})
+            out.append({"kind": "code", "text": match.group(2).rstrip("\n")})
+            end = match.end()
+        if body[end:].strip():
+            out.append({"kind": "text", "text": body[end:].strip()})
+        return out
+
+    def entry(body):
+        parts = blocks(body)
+        code = "\n".join(b["text"] for b in parts if b["kind"] == "code")
+        fetch = re.search(r"^loom-fetch .+$", code, re.M)
+        serve = re.search(r"^loom-serve .+$", code, re.M)
+        install = re.search(r"^(?:pipx|pip|uv) .*hrx-loom.*$", code, re.M)
+        if not (fetch and serve and install):
+            return None
+        return {"blocks": parts, "install": install.group(), "fetch": fetch.group(), "serve": serve.group()}
+
+    if not details:
+        value = entry(text)
+        return {default_gpu: value} if default_gpu and value else {}
+    # Retain shared notes and request fences in their original order around each GPU.
     out = {}
-    for summary, body in re.findall(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", readme or "", re.S):
-        gpu = next((g for pat, g in QUICKSTART_GPU if pat in summary), None)
-        fetch = re.search(r"^loom-fetch (.*)$", body, re.M)
-        serve = re.search(r"^loom-serve (.*)$", body, re.M)
-        if not (gpu and fetch and serve):
-            continue
-        src = fetch.group(1).split()[0]
-        preset = re.search(r"--preset[= ](\S+)", fetch.group(1))
-        if src.startswith("huggingface:"):   # SDK 0.2: huggingface:OWNER/REPO[:PRESET]
-            preset = src.split(":", 2)[2] if src.count(":") > 1 else None
-        else:
-            preset = preset.group(1) if preset else None
-        args = [a for a in shlex.split(serve.group(1)) if not a.startswith(("--model=", "--device="))]
-        out[gpu] = {"preset": preset, "serve_args": args}
+    for detail in details:
+        gpu = next((g for pat, g in QUICKSTART_GPU if pat in detail.group(1)), None)
+        body = text
+        for other in reversed(details):
+            body = body[:other.start()] + (other.group(2) if other is detail else "") + body[other.end():]
+        value = entry(body)
+        if gpu and value:
+            out[gpu] = value
     return out
 
 
@@ -334,8 +360,8 @@ def summarize(card, model, lock, revision, license, readme=None):
             out["devices"][g] = {"state": None, "remeasure": remeasure_summary(d), "memory_bytes": d.get("memory_bytes"),
                                  "context_tokens": d.get("served_context") or out["serve"]["context_tokens"],
                                  "performance": perf, "gates": gates}
-        if readme is not None:
-            out["quickstart"] = quickstart(readme)
+    if readme is not None:
+        out["quickstart"] = quickstart(readme, gpu)
     return out
 
 

@@ -446,29 +446,29 @@ const LOOM = (() => {
     };
   }
 
-  // The commands for a model on a GPU, as its card prints them (SDK 0.2): the preset and loom-serve flags come from the
-  // card's own Quick start block (summary.quickstart); a summary without one gets the GPU's preset and the memory budget.
-  const SDK = '0.2.0';
-  const outName = m => m.name;
-  function fetchCmd(m, gpu = GPU) {
-    const q = (m.quickstart || {})[gpu.id], p = q ? q.preset : preset(m, gpu);
-    return `loom-fetch huggingface:${m.repo}${p ? `:${p}` : ''} --materialize=copy --output=${outName(m)}`;
+  // Only complete source-card blocks can supply commands; old summaries fail visibly.
+  function sourceQuickstart(m, gpu = GPU) {
+    const q = (m.quickstart || {})[gpu.id];
+    return q && Array.isArray(q.blocks) && q.install && q.fetch && q.serve ? q : null;
   }
-  function serveCmd(m, gpu = GPU) {
-    const q = (m.quickstart || {})[gpu.id], mem = (views(m)[gpu.id] || {}).memory_bytes || m.serve.memory_bytes;
-    const args = q ? q.serve_args : [mem ? `--memory_bytes=${mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem}` : '--memory_bytes=<bytes>'];
-    return ['loom-serve', `--model=${outName(m)}`, "'--device=amdgpu://?completion_spin_ns=4294967295'", ...args.map(a => /[^\w=.:\/-]/.test(a) ? `'${a}'` : a)].join(' ');
+  function missingQuickstart(m) {
+    return `Quick start unavailable for this GPU. See the source card: https://huggingface.co/${m.repo}/blob/${m.revision || 'main'}/README.md#quick-start`;
   }
+  const fetchCmd = (m, gpu = GPU) => sourceQuickstart(m, gpu)?.fetch || missingQuickstart(m);
+  const serveCmd = (m, gpu = GPU) => sourceQuickstart(m, gpu)?.serve || missingQuickstart(m);
+  const installCmd = (m, gpu = GPU) => sourceQuickstart(m, gpu)?.install || missingQuickstart(m);
   function quickstart(m, gpu = GPU) {
-    return [
-      `pipx install "hrx-loom[hf]==${SDK}"`,
-      fetchCmd(m, gpu),
-      serveCmd(m, gpu),
-      '',
-      '# OpenAI-compatible, on :8080',
-      `curl -s localhost:8080${m.service.endpoint} -H 'content-type: application/json' \\`,
-      `  -d '{"messages":[{"role":"user","content":"hello"}]}'`,
-    ].join('\n');
+    const q = sourceQuickstart(m, gpu);
+    return q ? q.blocks.map(b => b.text).join('\n\n') : missingQuickstart(m);
+  }
+  function quickstartHtml(m, gpu = GPU) {
+    const q = sourceQuickstart(m, gpu);
+    const source = `https://huggingface.co/${m.repo}/blob/${m.revision || 'main'}/README.md#quick-start`;
+    return (q ? q.blocks.map(b => b.kind === 'code'
+      ? `<div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code>${esc(b.text)}</code></pre></div>`
+      : `<p class="fine" style="white-space:pre-wrap">${esc(b.text)}</p>`).join('')
+      : '<p>Quick start unavailable for this GPU.</p>')
+      + `<p class="fine"><a class="u" href="${esc(source)}" target="_blank" rel="noopener">Source card quick start ↗</a></p>`;
   }
 
   // The GPU toggle: one link per GPU (a link, so it can be opened in a new tab or shared). `compact` is the nav's.
@@ -571,6 +571,6 @@ const LOOM = (() => {
     get GPU() { return GPU; }, GPUS, gpuOf, gpuLink, link, views, preset, gpuToggle, setGpu, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
-    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, fetchCmd, serveCmd, SDK, copyButtons, reveal,
+    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, quickstartHtml, fetchCmd, serveCmd, installCmd, copyButtons, reveal,
   };
 })();

@@ -93,3 +93,52 @@ test('URL carries baseline, org, GPU and model hash; Back restores the selection
   assert.equal(location.searchParams.has('baseline'), false);
   assert.equal(context.LOOM_LINK('https://huggingface.co/loom-fun'), 'https://huggingface.co/loom-fun');
 });
+
+test('quickstart renders source blocks verbatim, escapes text, and never guesses commands', () => {
+  const { loom } = site();
+  const m = { repo: 'org/card', revision: 'pinned', quickstart: { 'strix-halo': {
+    install: 'pipx install "hrx-loom[hf]==99.4"', fetch: 'loom-fetch exact --output=/future',
+    serve: "loom-serve --model=/future/model.json '--device=future' --new_flag=ok",
+    blocks: [{kind:'code',text:'pipx install "hrx-loom[hf]==99.4"\nloom-fetch exact --output=/future\nloom-serve --new_flag=ok'},
+      {kind:'text',text:'Stock host: systemd-run <unsafe> & --new_flag=ok'},
+      {kind:'code',text:'curl -d \'{"model":"exact","reasoning_effort":"none"}\''}]
+  } } };
+  const gpu = {id:'strix-halo'};
+  assert.equal(loom.fetchCmd(m,gpu), m.quickstart['strix-halo'].fetch);
+  assert.equal(loom.serveCmd(m,gpu), m.quickstart['strix-halo'].serve);
+  assert.equal(loom.installCmd(m,gpu), m.quickstart['strix-halo'].install);
+  const html = loom.quickstartHtml(m,gpu);
+  assert.ok(html.includes('systemd-run &lt;unsafe&gt; &amp; --new_flag=ok'));
+  assert.ok(html.includes('reasoning_effort'));
+  assert.ok(html.includes('/blob/pinned/README.md#quick-start'));
+  assert.ok(!html.includes('<unsafe>'));
+  for (const value of [{}, { 'strix-halo': {preset:'chat',serve_args:[]} }]) {
+    const missing = {...m,quickstart:value};
+    assert.ok(loom.quickstartHtml(missing,gpu).includes('unavailable'));
+    assert.ok(!loom.quickstart(missing,gpu).includes('loom-serve'));
+  }
+  assert.ok(loom.quickstart(m,{id:'another-gpu'}).includes('unavailable'));
+});
+
+test('card SDK, output path, flags and request mutations reach rendered site without frontend edits', () => {
+  const { spawnSync } = require('node:child_process');
+  const script = `import sys,types,json,pathlib
+stub=types.ModuleType('huggingface_hub');stub.HfApi=stub.hf_hub_download=None;sys.modules['huggingface_hub']=stub
+import summarize_info as S
+text=pathlib.Path('tests/quickstart_cards/unsloth-Qwen3-0.6B.md').read_text()
+text=text.replace('0.2.0','99.4.1').replace('--output=Qwen3-0.6B','--output=/future/path').replace('--model=Qwen3-0.6B','--model=/future/path').replace('--pool_backing=fixed','--new_flag=next')
+text+='\\n'+'\x60\x60\x60bash\\ncurl --data '+json.dumps({'model':'exact-selector','reasoning_effort':'none'})+'\\n\x60\x60\x60\\n'
+print(json.dumps(S.quickstart(text)))`;
+  const result = spawnSync('python3',['-c',script],{cwd:root,encoding:'utf8'});
+  assert.equal(result.status,0,result.stderr);
+  const { loom } = site();
+  const m={repo:'test/card',quickstart:JSON.parse(result.stdout)};
+  for (const id of Object.keys(m.quickstart)) {
+    const html=loom.quickstartHtml(m,{id});
+    assert.ok(html.includes('99.4.1'));
+    assert.ok(html.includes('--output=/future/path'));
+    assert.ok(html.includes('--model=/future/path'));
+    assert.ok(html.includes('exact-selector'));
+    if (id !== 'gfx1201-16gb') assert.ok(html.includes('--new_flag=next'));
+  }
+});
