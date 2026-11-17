@@ -3,7 +3,7 @@
   "checkpoint": "gemma-3-1b-it-Q4_K_M",
   "name": "gemma-3-1b-it",
   "repo": "loom-fun-staging/ggml-org-gemma-3-1b-it-loom",
-  "revision": "09cec1cf267b24e9d833ff5770ee46b827b1ff24",
+  "revision": "740d950b5102e2682e5bdda6d1a745bb0ffaa531",
   "status": null,
   "license": "gemma",
   "service": {
@@ -115,19 +115,19 @@
       "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43993322138",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993322138/job/133739189863"
+        "run": "44088689861",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909384"
       },
       "metrics": {
         "decode": {
-          "loom": 195.7,
+          "loom": 194.5,
           "llamacpp": 168.3,
           "speedup": 1.16
         },
         "decode_2k": {
-          "loom": 189.5,
+          "loom": 189.0,
           "llamacpp": 163.7,
-          "speedup": 1.16
+          "speedup": 1.15
         },
         "decode_32k": {
           "loom": null,
@@ -135,22 +135,22 @@
           "speedup": null
         },
         "prefill_1k": {
-          "loom": 10576.5,
+          "loom": 10677.3,
           "llamacpp": 7862.6,
-          "speedup": 1.35
+          "speedup": 1.36
         },
         "prefill_2k": {
-          "loom": 11652.0,
+          "loom": 11739.8,
           "llamacpp": 8211.8,
-          "speedup": 1.42
+          "speedup": 1.43
         },
         "prefill_8k": {
-          "loom": 11715.2,
+          "loom": 11932.0,
           "llamacpp": 8974.7,
-          "speedup": 1.31
+          "speedup": 1.33
         },
         "prefill_16k": {
-          "loom": 10993.4,
+          "loom": 11008.0,
           "llamacpp": 8213.0,
           "speedup": 1.34
         },
@@ -160,9 +160,9 @@
           "speedup": null
         },
         "streams4": {
-          "loom": 717.6,
+          "loom": 672.5,
           "llamacpp": 446.8,
-          "speedup": 1.61
+          "speedup": 1.51
         }
       }
     }

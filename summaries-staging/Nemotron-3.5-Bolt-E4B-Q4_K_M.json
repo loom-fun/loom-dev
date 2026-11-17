@@ -3,7 +3,7 @@
   "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
   "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
   "repo": "loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-  "revision": "d9cf539c92654dcae66f979e6f83f1d227c7ce53",
+  "revision": "0c4bbc6f47e8e3985cae6a4e50aefc2376216e03",
   "status": null,
   "license": null,
   "service": {
@@ -118,52 +118,52 @@
       "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43993322138",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993322138/job/133739189824"
+        "run": "44088689861",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909463"
       },
       "metrics": {
         "decode": {
-          "loom": 96.7,
+          "loom": 96.0,
           "llamacpp": 54.9,
-          "speedup": 1.76
+          "speedup": 1.75
         },
         "decode_2k": {
-          "loom": 80.8,
+          "loom": 81.0,
           "llamacpp": 51.5,
           "speedup": 1.57
         },
         "decode_32k": {
-          "loom": 61.2,
+          "loom": 63.4,
           "llamacpp": 41.8,
-          "speedup": 1.46
-        },
-        "prefill_1k": {
-          "loom": 2338.3,
-          "llamacpp": 1672.1,
-          "speedup": 1.4
-        },
-        "prefill_2k": {
-          "loom": 2559.3,
-          "llamacpp": 1711.0,
-          "speedup": 1.5
-        },
-        "prefill_8k": {
-          "loom": 2465.5,
-          "llamacpp": 1641.6,
-          "speedup": 1.5
-        },
-        "prefill_16k": {
-          "loom": 2256.7,
-          "llamacpp": 1480.9,
           "speedup": 1.52
         },
-        "prefill_32k": {
-          "loom": 1903.7,
-          "llamacpp": 1218.7,
+        "prefill_1k": {
+          "loom": 2461.1,
+          "llamacpp": 1672.1,
+          "speedup": 1.47
+        },
+        "prefill_2k": {
+          "loom": 2663.5,
+          "llamacpp": 1711.0,
           "speedup": 1.56
         },
+        "prefill_8k": {
+          "loom": 2629.7,
+          "llamacpp": 1641.6,
+          "speedup": 1.6
+        },
+        "prefill_16k": {
+          "loom": 2363.5,
+          "llamacpp": 1480.9,
+          "speedup": 1.6
+        },
+        "prefill_32k": {
+          "loom": 2004.6,
+          "llamacpp": 1218.7,
+          "speedup": 1.64
+        },
         "streams4": {
-          "loom": 215.9,
+          "loom": 216.9,
           "llamacpp": 163.9,
           "speedup": 1.32
         }

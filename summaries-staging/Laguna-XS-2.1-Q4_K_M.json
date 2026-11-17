@@ -3,7 +3,7 @@
   "checkpoint": "Laguna-XS-2.1-Q4_K_M",
   "name": "Laguna-XS-2.1",
   "repo": "loom-fun-staging/ggml-org-Laguna-XS-2.1-loom",
-  "revision": "9625443658fb099568e42aa7b175d13bcf52d298",
+  "revision": "8d138244b1f8b16a2462bcc21acc3c076b2b6d62",
   "status": null,
   "license": null,
   "service": {
@@ -115,17 +115,17 @@
       "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "43993313315",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993313315/job/133739167117"
+        "run": "44088677167",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088677167/job/134057871341"
       },
       "metrics": {
         "decode": {
-          "loom": 43.2,
+          "loom": 42.6,
           "llamacpp": null,
           "speedup": null
         },
         "decode_2k": {
-          "loom": 32.8,
+          "loom": 33.0,
           "llamacpp": null,
           "speedup": null
         },
@@ -135,34 +135,34 @@
           "speedup": null
         },
         "prefill_1k": {
-          "loom": 1917.6,
+          "loom": 1966.4,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_2k": {
-          "loom": 2084.3,
+          "loom": 2113.6,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_8k": {
-          "loom": 2040.5,
+          "loom": 2190.3,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_16k": {
-          "loom": 1713.5,
+          "loom": 1780.8,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_32k": {
-          "loom": 1419.6,
+          "loom": 1474.8,
           "llamacpp": null,
           "speedup": null
         },
         "streams4": {
-          "loom": 170.2,
+          "loom": 171.5,
           "llamacpp": 148.4,
-          "speedup": 1.15
+          "speedup": 1.16
         }
       }
     }
