@@ -2,7 +2,7 @@
 
 The site reads the models from that one generated file, so no number on a page is typed by hand. Each source org's
 Hugging Face avatar URL is looked up here too, so pages never call the Hub API. "gpus" lists the GPUs that at least
-one model has results for, in gpus.json order (names and preset suffixes from gpus.json; a GPU missing there is
+one model has results for (its own, or a shared section's), in gpus.json order (names and preset suffixes from gpus.json; a GPU missing there is
 listed under its id), with how many models each has: the site's GPU toggle offers exactly these.
 
     python docs/build_data.py [--summaries summaries] [--out docs/assets/loom-data.js]
@@ -48,7 +48,11 @@ def gpu_ids(s):
     """The GPUs a summary has results for: its primary GPU (Strix Halo for a loom-card/2 summary) and every other
     GPU under "devices" with performance."""
     ids = [s.get("primary_device") or "strix-halo"]
-    return ids + [g for g, d in (s.get("devices") or {}).items() if d.get("performance")]
+    devs = s.get("devices") or {}
+    has = set(ids) | {g for g, d in devs.items() if d.get("performance")}
+    # a GPU that shares another's performance section (none today; the 16 GB class has its own) has that GPU's results
+    shared = [g for g, d in devs.items() if g not in has and d.get("fits") and d.get("shares_section_with") in has]
+    return ids + [g for g, d in devs.items() if d.get("performance")] + shared
 
 
 def gpus(models, registry_path):

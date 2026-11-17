@@ -62,7 +62,7 @@ code, pre, .mono { font-family: var(--mono); }
 .wordmark img { width: 18px; height: 18px; }
 .wordmark span { color: var(--faint); margin: 0 1px; }
 .nav-links { display: flex; gap: 4px; flex: 1; }
-.nav-links a, .nav-ext a { color: var(--dim); padding: 4px 8px; transition: color .12s; }
+.nav-links a, .nav-ext a { color: var(--dim); padding: 4px 8px; white-space: nowrap; transition: color .12s; }
 .nav-links a:hover, .nav-ext a:hover, .nav-links a.active { color: var(--hi); }
 .nav-links a.active::before { content: '▸ '; color: var(--hi); }
 .nav-ext { display: flex; gap: 4px; align-items: center; }
@@ -84,7 +84,7 @@ code, pre, .mono { font-family: var(--mono); }
 .gpu-tg a.on small { color: #555; }
 .gpu-tg a.on::before { content: '▸'; margin-right: -2px; }
 .gpu-tg.compact { border-color: var(--line-2); }
-.gpu-tg.compact a { padding: 3px 10px; font-size: 11.5px; }
+.gpu-tg.compact a { padding: 3px 8px; font-size: 11.5px; }
 .gpu-tg.compact a + a { border-left-color: var(--line-2); }
 .gpu-fold { border-bottom: 1px solid var(--line); background: var(--panel); }
 .gpu-fold-in { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; min-height: 64px; padding-top: 12px; padding-bottom: 12px; }
@@ -593,6 +593,12 @@ body.open { overflow: hidden; }
   .views { margin-left: 0; }
   .gpu-fold-r { margin-left: 0; width: 100%; }
   .gpu-tg.compact a { padding: 3px 7px; font-size: 11px; }
+  /* four GPUs do not fit one row: the fold's toggle is a 2x2 grid, the nav's scrolls sideways */
+  .gpu-tg:not(.compact) { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+  .gpu-tg:not(.compact) a:nth-child(odd) { border-left: 0; }
+  .gpu-tg:not(.compact) a:nth-child(n+3) { border-top: 1px solid var(--line-3); }
+  .nav-gpu { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  .gpu-tg.compact { flex: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -601,3 +607,5 @@ body.open { overflow: hidden; }
 @media (max-width: 420px) {
   .nav.gpu-docked .wordmark { font-size: 0; gap: 0; }   /* logo only while the GPU toggle is docked */
 }
+/* four GPUs in the nav: below 1180px the external links make room (they are in the footer too) */
+@media (max-width: 1180px) and (min-width: 721px) { .nav-ext { display: none; } }
