@@ -18,7 +18,7 @@
     date: m => Date.parse(m.bench.date) || 0,
   };
 
-  const lede = () => { const s = LOOM.stats(); el('headLede').textContent = `50+ ports from ${s.orgs} source orgs, ${s.runs} measurements on ${LOOM.GPU.short}, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against llama.cpp ROCm on the same GGUF, its serving configuration, weights, gates and provenance.`; };
+  const lede = () => { const s = LOOM.stats(); el('headLede').textContent = `50+ ports from ${s.orgs} source orgs, ${s.runs} measurements on ${LOOM.GPU.short}, ${s.gatesPass}/${s.gatesApplicable} gates passing. Open a model for every workload against ${LOOM.baselineName} on the same GGUF, its serving configuration, weights, gates and provenance.`; };
   lede();
 
   const open = m => { location.hash = encodeURIComponent(m.id); };
@@ -63,17 +63,17 @@
 
   // --- drawer ---
   function bars(m) {
-    const head = '<div class="mrow mhead"><span>workload</span><span><i class="sw loom"></i>loom <i class="sw ref"></i>llama.cpp</span><span>tok/s</span><span>Δ tok/s</span><span>ratio</span></div>';
+    const head = `<div class="mrow mhead"><span>workload</span><span><i class="sw loom"></i>loom <i class="sw ref"></i>${esc(LOOM.baselineName)}</span><span>tok/s</span><span>Δ tok/s</span><span>ratio</span></div>`;
     return head + METRICS.map(x => {
       const p = m.pair(x.key);
       const detail = x.detail.replace(' document', '').replace(' context', ' ctx').replace('short prompt', 'short').replace('aggregate decode', 'agg');
-      if (!p) return `<div class="mrow na"><span class="ml">${x.label} <small>${detail}</small></span><span class="faint">${(m.performance.not_applicable || []).includes(x.key) ? 'not applicable' : 'not measured'}</span><span></span><span></span><span class="mr">—</span></div>`;
+      if (!p) return `<div class="mrow na"><span class="ml">${x.label} <small>${detail}</small></span><span class="faint">${(m.performance.not_applicable || []).includes(x.key) ? 'not applicable' : 'no paired measurement'}</span><span></span><span></span><span class="mr">—</span></div>`;
       const max = Math.max(p.loom, p.llamacpp), d = p.loom - p.llamacpp;
       return `
         <div class="mrow">
           <span class="ml">${x.label} <small>${detail}</small></span>
           <span class="mt"><i class="loom" style="width:${(p.loom / max * 100).toFixed(1)}%"></i><i class="ref" style="width:${(p.llamacpp / max * 100).toFixed(1)}%"></i></span>
-          <span class="mv">${num(p.loom)}<small>${num(p.llamacpp)}</small></span>
+          <span class="mv">${num(p.loom)}<small>${num(p.llamacpp)}</small><small>${p.backend === 'vulkan' ? 'Vulkan' : 'ROCm'}</small></span>
           <span class="md ${d < 0 ? 'lo' : ''}">${d >= 0 ? '+' : '−'}${num(Math.abs(d))}</span>
           <span class="mr ${p.speedup < 1 ? 'lo' : ''}">${times(p.speedup)}</span>
         </div>`;
@@ -130,8 +130,8 @@
 
   function drawer(m) {
     const p = m.performance, src = m.bench.source, w = m.weights, sv = m.serve;
-    const drafting = p.drafting.loom
-      ? `loom: ${esc(p.drafting.loom)} · llama.cpp: ${esc(p.drafting.llamacpp)}`
+    const drafting = LOOM.BASELINE === 'best' ? 'Reference backend varies by workload; see backend settings below.' : p.drafting.loom
+      ? `loom: ${esc(p.drafting.loom)} · llama.cpp: ${esc(LOOM.BASELINE === 'vulkan' ? (p.baselines && p.baselines.vulkan && p.baselines.vulkan.args || 'not recorded') : p.drafting.llamacpp)}`
       : 'off on both engines';
     const LABEL = { pass: 'pass', fail: 'fail', unknown: '----', 'n/a': 'n/a' };
     const weight = (k, x) => x ? [
@@ -165,8 +165,11 @@
       <div class="chart-box" id="drPrefill"></div>
       <h3>decode · tok/s by context length</h3>
       <div class="chart-box" id="drDecode"></div>
-      <div class="tbl-legend"><span><i class="sw loom"></i>loom <i class="sw ref"></i>llama.cpp rocm ${esc(p.llamacpp_build || '')}</span></div>
+      <div class="tbl-legend"><span><i class="sw loom"></i>loom <i class="sw ref"></i>${esc(LOOM.baselineName)}</span></div>
 
+      ${LOOM.BASELINE === 'best' ? `<p class="fine">ROCm: ${esc(p.llamacpp_build || 'build not recorded')} · ${esc(p.drafting.llamacpp || 'drafting off')}.</p>` : ''}
+      <p class="fine">Comparison: <b>${esc(LOOM.baselineName)}</b>. Each workload below identifies its selected backend. ${LOOM.BASELINE === 'best' ? 'The reference may use a different backend for each workload.' : ''}</p>
+      ${LOOM.BASELINE !== 'rocm' && p.baselines && p.baselines.vulkan ? `<p class="fine">Vulkan: ${esc(p.baselines.vulkan.version || '')} · measured ${esc(p.baselines.vulkan.date || 'unknown')}${p.baselines.vulkan.source && p.baselines.vulkan.source.url ? ` · <a class="u" href="${esc(p.baselines.vulkan.source.url)}" target="_blank" rel="noopener">benchmark source ↗</a>` : ''}. ${esc((p.baselines.vulkan.differs || []).join(' '))}</p>` : ''}
       <h3>every workload</h3>
       <div class="mbars">${bars(m)}</div>
 
@@ -189,7 +192,7 @@
         ])}</div>
         <div><h3>provenance</h3>${kvList([
           ['measured', esc(m.bench.date)],
-          ['reference', `llama.cpp rocm ${esc(p.llamacpp_build || '—')}`],
+          ['reference', `${esc(LOOM.baselineName)}${LOOM.BASELINE === 'rocm' ? ' ' + esc(p.llamacpp_build || '') : ''}`],
           ['drafting', drafting],
           ['source', src ? (src.url ? `<a class="u" href="${esc(src.url)}" target="_blank" rel="noopener">${src.kind === 'factory' ? 'factory run' : esc(src.kind)} ${esc(src.run || '')} ↗</a>` : `${esc(src.kind)} run`) : '—'],
           ['package', `<a class="u" href="${hf(m.repo)}" target="_blank" rel="noopener">${esc(m.repo)}</a>`],
@@ -289,5 +292,6 @@
 
   render();
   route();
+  document.addEventListener('loom:baseline', () => { lede(); render(); route(); });
   document.addEventListener('loom:gpu', () => { lede(); render(); route(); });   // a GPU switch, in place
 })();

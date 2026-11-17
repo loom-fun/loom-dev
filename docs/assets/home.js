@@ -74,6 +74,7 @@
   }
   paint(true);
   document.addEventListener('loom:gpu', () => paint(false));
+  document.addEventListener('loom:baseline', () => paint(false));
 
   LOOM.copyButtons();
 })();

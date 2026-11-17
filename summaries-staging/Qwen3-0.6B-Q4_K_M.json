@@ -48,6 +48,49 @@
     "tool_calling": "yes"
   },
   "performance": {
+    "baselines": {
+      "vulkan": {
+        "args": "1-stream rows: -ngl 99 -cram 0 -c 36864 -np 1; 4 streams: -ngl 99 -cram 0 -c 147456 -np 4",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-13",
+        "source": {
+          "kind": "devlab",
+          "run": "43392598780",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/43392598780/job/131775918531"
+        },
+        "metrics": {
+          "decode": {
+            "llamacpp": 313.2
+          },
+          "decode_2k": {
+            "llamacpp": 229.1
+          },
+          "decode_32k": {
+            "llamacpp": 47.2
+          },
+          "prefill_16k": {
+            "llamacpp": 2855.5
+          },
+          "prefill_1k": {
+            "llamacpp": 10027.6
+          },
+          "prefill_2k": {
+            "llamacpp": 9227.8
+          },
+          "prefill_32k": {
+            "llamacpp": 1625.5
+          },
+          "prefill_8k": {
+            "llamacpp": 4885.3
+          },
+          "streams4": {
+            "llamacpp": 838.1
+          }
+        }
+      }
+    },
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
@@ -196,6 +239,49 @@
       "memory_bytes": null,
       "context_tokens": 40960,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-16",
+            "source": {
+              "kind": "devlab",
+              "run": "43968017501",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43968017501/job/133652568192"
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 486.1
+              },
+              "decode_2k": {
+                "llamacpp": 404.9
+              },
+              "decode_32k": {
+                "llamacpp": 124.1
+              },
+              "prefill_16k": {
+                "llamacpp": 11331.1
+              },
+              "prefill_1k": {
+                "llamacpp": 21083.8
+              },
+              "prefill_2k": {
+                "llamacpp": 22440.8
+              },
+              "prefill_32k": {
+                "llamacpp": 6878.4
+              },
+              "prefill_8k": {
+                "llamacpp": 16629.8
+              },
+              "streams4": {
+                "llamacpp": 985.5
+              }
+            }
+          }
+        },
         "date": null,
         "llamacpp_build": "b1375",
         "drafting": {

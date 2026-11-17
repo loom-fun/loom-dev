@@ -55,6 +55,52 @@
     "tool_calling": "yes"
   },
   "performance": {
+    "baselines": {
+      "vulkan": {
+        "args": "1-stream rows: -ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model hf:ggml-org/Qwen3.6-35B-A3B-GGUF/dflash-Qwen3.6-35B-A3B-Q8_0.gguf --spec-draft-n-max 7 -ngld 99 -c 36864 -np 1; 4 streams: -ngl 99 -cram 0 -c 147456 -np 4",
+        "differs": [
+          "llama.cpp loads ggml-org/Qwen3.6-35B-A3B-GGUF dflash-Q8_0 (a conversion of the same z-lab/Qwen3.6-35B-A3B-DFlash drafter): the card's magnitudedev conversion fails to load in llama.cpp b1374/b12211"
+        ],
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-13",
+        "source": {
+          "kind": "devlab",
+          "run": "43400168275",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/43400168275/job/131800803291"
+        },
+        "metrics": {
+          "decode": {
+            "llamacpp": 50.7
+          },
+          "decode_2k": {
+            "llamacpp": 46.8
+          },
+          "decode_32k": {
+            "llamacpp": 36.0
+          },
+          "prefill_16k": {
+            "llamacpp": 979.6
+          },
+          "prefill_1k": {
+            "llamacpp": 930.6
+          },
+          "prefill_2k": {
+            "llamacpp": 1032.8
+          },
+          "prefill_32k": {
+            "llamacpp": 843.4
+          },
+          "prefill_8k": {
+            "llamacpp": 1061.7
+          },
+          "streams4": {
+            "llamacpp": 124.6
+          }
+        }
+      }
+    },
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
@@ -201,6 +247,49 @@
       "memory_bytes": 34000000000,
       "context_tokens": 84992,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model hf:ggml-org/Qwen3.6-35B-A3B-GGUF/dflash-Qwen3.6-35B-A3B-Q8_0.gguf --spec-draft-n-max 7 -ngld 99 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-15",
+            "source": {
+              "kind": "devlab",
+              "run": "43677221656",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43677221656/job/132699930380"
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 123.1
+              },
+              "decode_2k": {
+                "llamacpp": 105.4
+              },
+              "decode_32k": {
+                "llamacpp": 92.9
+              },
+              "prefill_16k": {
+                "llamacpp": 2702.5
+              },
+              "prefill_1k": {
+                "llamacpp": 2605.2
+              },
+              "prefill_2k": {
+                "llamacpp": 2798.6
+              },
+              "prefill_32k": {
+                "llamacpp": 2452.1
+              },
+              "prefill_8k": {
+                "llamacpp": 2873.2
+              },
+              "streams4": {
+                "llamacpp": 293.7
+              }
+            }
+          }
+        },
         "date": null,
         "llamacpp_build": "b1375",
         "drafting": {

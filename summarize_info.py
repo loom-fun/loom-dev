@@ -263,6 +263,17 @@ def remeasure_summary(dev):
             "previous": remeasure_summary({"remeasure": rm["previous"]}) if rm.get("previous") else None}
 
 
+def extra_baselines(card):
+    """Keep backend-only measurements and their evidence; never substitute missing cells."""
+    out = {}
+    for name, entry in (card["performance"].get("baselines") or {}).items():
+        session, baseline = entry["session"], entry["baseline"]
+        out[name] = {**baseline, "date": session.get("date"),
+                     "source": evidence(card["sources"].get(session.get("source"))),
+                     "metrics": {k: {"llamacpp": m.get("baseline")} for k, m in session["metrics"].items()}}
+    return out
+
+
 def device_results(card, kind, feats, sd, logits=None):
     """The performance and gates of one GPU's view of the card (the keys "performance" and "gates" of a summary)."""
     perf, sessions = card["performance"], card["performance"]["sessions"]
@@ -279,6 +290,7 @@ def device_results(card, kind, feats, sd, logits=None):
     counts = {s: sum(1 for v in gates.values() if v == s) for s in ("pass", "fail", "unknown", "n/a")}
     build = re.search(r"\bb(1[0-9]{3,})\b", perf["baseline"]["version"] or "")
     return {
+        **({"baselines": extra_baselines(card)} if perf.get("baselines") else {}),
         "date": date,
         "llamacpp_build": f"b{build.group(1)}" if build else None,
         "drafting": {"loom": f"{METHOD.get(sd['method'], sd['method'])}, depth {sd['depth']}" if drafts(feats)

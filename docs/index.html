@@ -11,10 +11,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=26">
-  <script src="assets/data-source.js?v=11"></script>
-  <script src="assets/loom-lib.js?v=18"></script>
-  <script src="assets/charts.js?v=16"></script>
+  <link rel="stylesheet" href="assets/styles.css?v=1201">
+  <script src="assets/data-source.js?v=1201"></script>
+  <script src="assets/loom-lib.js?v=1201"></script>
+  <script src="assets/charts.js?v=1201"></script>
   <script src="assets/navbar.js?v=16"></script>
   <script src="assets/footer.js?v=9"></script>
 </head>
@@ -75,9 +75,12 @@
     <!-- the fold: which GPU the results below and the commands above are for (docks into the nav when scrolled past) -->
     <div class="gpu-fold" data-gpu-toggle>
       <div class="wrap gpu-fold-in">
-        <span class="gpu-fold-l">results and commands for</span>
+        <div class="settings-row">
+          <span class="gpu-fold-l">results and commands for</span>
         <span data-gpu-slot></span>
         <span class="gpu-fold-r" id="gpuFoldR"></span>
+        </div>
+        <div data-baseline-slot></div>
       </div>
     </div>
 
@@ -88,7 +91,7 @@
             <div class="sec-idx"><b>01</b> / try one</div>
           <div>
             <h2>Models you can fetch and serve today.</h2>
-            <p>Every model here is a model package on Hugging Face, tuned and tested on <span data-gpu="short">Strix Halo</span>. Pick one, open it for its <code>loom-fetch</code> and <code>loom-serve</code> commands, and you're serving it in minutes. They're ranked by speedup over llama.cpp ROCm on the same weights, as a geometric mean across decode, prefill and 4-stream workloads.</p>
+            <p>Every model here is a model package on Hugging Face, tuned and tested on <span data-gpu="short">Strix Halo</span>. Pick one, open it for its <code>loom-fetch</code> and <code>loom-serve</code> commands, and you're serving it in minutes. They're ranked by speedup over <span data-baseline-name>llama.cpp ROCm</span> on the same weights, as a geometric mean across decode, prefill and 4-stream workloads.</p>
           </div>
         </div>
         <div class="podium" id="podium"></div>
@@ -189,6 +192,6 @@
   </main>
 
   <div class="footer-placeholder"></div>
-  <script src="assets/home.js?v=17"></script>
+  <script src="assets/home.js?v=1201"></script>
 </body>
 </html>

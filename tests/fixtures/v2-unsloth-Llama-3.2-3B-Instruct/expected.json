@@ -36,6 +36,49 @@
  "license": "lic",
  "name": "Llama-3.2-3B-Instruct",
  "performance": {
+  "baselines": {
+   "vulkan": {
+    "args": "1-stream rows: -ngl 99 -cram 0 -c 36864 -np 1; 4 streams: -ngl 99 -cram 0 -c 147456 -np 4",
+    "date": "2026-11-13",
+    "metrics": {
+     "decode": {
+      "llamacpp": 90.1
+     },
+     "decode_2k": {
+      "llamacpp": 79.3
+     },
+     "decode_32k": {
+      "llamacpp": 35.2
+     },
+     "prefill_16k": {
+      "llamacpp": 1323.5
+     },
+     "prefill_1k": {
+      "llamacpp": 2226.4
+     },
+     "prefill_2k": {
+      "llamacpp": 2158.0
+     },
+     "prefill_32k": {
+      "llamacpp": 920.2
+     },
+     "prefill_8k": {
+      "llamacpp": 1706.5
+     },
+     "streams4": {
+      "llamacpp": 274.1
+     }
+    },
+    "name": "llama.cpp",
+    "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+    "source": {
+     "kind": "devlab",
+     "run": "43392598780",
+     "url": "https://github.com/loom-fun/loom-skills/actions/runs/43392598780/job/131775918588"
+    },
+    "version": "llamacpp-vulkan/b12211"
+   }
+  },
   "date": null,
   "devlab": {
    "date": "2026-11-13",
@@ -161,10 +204,10 @@
   "context_tokens": 131072,
   "device": "amdgpu",
   "max_tokens": 4096,
+  "memory_bytes": 29000000000,
   "presets": [
    "chat"
   ],
-  "memory_bytes": 29000000000,
   "rows": 4
  },
  "service": {

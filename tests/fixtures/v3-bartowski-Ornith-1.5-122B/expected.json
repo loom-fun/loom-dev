@@ -168,6 +168,49 @@
           "speedup": 1.14
         }
       }
+    },
+    "baselines": {
+      "vulkan": {
+        "args": "1-stream rows: -ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model hf:kaivoss/Ornith-1.5-122B-DFlash2-GGUF/Ornith-1.5-122B-DFlash2-Q4_K_M.gguf --spec-draft-n-max 15 -ngld 99 -c 36864 -np 1; 4 streams: -ngl 99 -cram 0 -c 147456 -np 4",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-13",
+        "source": {
+          "kind": "devlab",
+          "run": "43392400146",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/43392400146/job/131775276661"
+        },
+        "metrics": {
+          "decode": {
+            "llamacpp": 6.0
+          },
+          "decode_2k": {
+            "llamacpp": 5.8
+          },
+          "decode_32k": {
+            "llamacpp": 5.8
+          },
+          "prefill_16k": {
+            "llamacpp": 309.1
+          },
+          "prefill_1k": {
+            "llamacpp": 289.8
+          },
+          "prefill_2k": {
+            "llamacpp": 315.3
+          },
+          "prefill_32k": {
+            "llamacpp": 278.9
+          },
+          "prefill_8k": {
+            "llamacpp": 329.0
+          },
+          "streams4": {
+            "llamacpp": 45.6
+          }
+        }
+      }
     }
   },
   "gates": {

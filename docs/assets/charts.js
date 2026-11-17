@@ -158,7 +158,7 @@ const CHARTS = (() => {
     const find = id => models.find(m => m.id === id);
     const describe = (m, k) => {
       const p = k ? m.pair(k) : null;
-      const what = p ? `${METRIC[k].label} ${METRIC[k].detail}: <b>${num(p.loom)}</b> vs ${num(p.llamacpp)} tok/s · <b>${times(p.speedup)}</b>`
+      const what = p ? `${METRIC[k].label} ${METRIC[k].detail}: <b>${num(p.loom)}</b> vs ${num(p.llamacpp)} tok/s (${p.backend === 'vulkan' ? 'Vulkan' : 'ROCm'}) · <b>${times(p.speedup)}</b>`
         : `overall <b>${times(m.score)}</b> · ${m.wins}/${m.measured.length} workloads faster`;
       return `<span class="ro-n">#${LOOM.rk(m)} ${esc(m.name)}</span> <span class="faint">${esc(m.quant)} · ${gb(m.sizeBytes)}</span> <span class="ro-sep">│</span> ${what}`;
     };
