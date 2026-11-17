@@ -3,7 +3,7 @@
   "checkpoint": "Flint-Q4_K_M",
   "name": "Flint",
   "repo": "loom-fun-staging/ggml-org-Flint-loom",
-  "revision": "38f9bee87e555c686f48df25f0ac712a276778bf",
+  "revision": "286b5d8d37ce8cc158c829664884ea6779007b99",
   "status": null,
   "license": null,
   "service": {

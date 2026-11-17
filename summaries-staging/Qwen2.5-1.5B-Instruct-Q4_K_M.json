@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-1.5B-Instruct-Q4_K_M",
   "name": "Qwen2.5-1.5B-Instruct",
   "repo": "loom-fun-staging/bartowski-Qwen2.5-1.5B-Instruct-loom",
-  "revision": "c8c3c36b4e20dfff9a1fcda684cc740314511849",
+  "revision": "05776dc3e435c4ae4bc37d81f51e01f0b66cfb73",
   "status": null,
   "license": null,
   "service": {
@@ -30,7 +30,8 @@
     "max_tokens": 4096,
     "presets": [
       "chat",
-      "chat-r9700"
+      "chat-r9700",
+      "chat-16gb"
     ]
   },
   "features": {

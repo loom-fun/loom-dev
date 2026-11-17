@@ -3,7 +3,7 @@
   "checkpoint": "Llama-3.2-3B-Instruct-Q4_K_M",
   "name": "Llama-3.2-3B-Instruct",
   "repo": "loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom",
-  "revision": "f08cfc9138a3d3729ff28c35387c338477d73ef0",
+  "revision": "b450710e428058c564d4209702d25a2d303a2420",
   "status": null,
   "license": null,
   "service": {
@@ -29,7 +29,8 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat"
+      "chat",
+      "chat-16gb"
     ]
   },
   "features": {

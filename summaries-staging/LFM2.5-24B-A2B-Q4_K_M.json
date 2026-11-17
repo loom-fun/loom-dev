@@ -3,7 +3,7 @@
   "checkpoint": "LFM2.5-24B-A2B-Q4_K_M",
   "name": "LFM2.5-24B-A2B",
   "repo": "loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom",
-  "revision": "a98e361f2aaacbab6f9ad6ed70aefb7e352c750a",
+  "revision": "4e5407a6b125bb3a242974560b93b51b660395cf",
   "status": null,
   "license": null,
   "service": {
@@ -29,7 +29,8 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat"
+      "chat",
+      "chat-16gb"
     ]
   },
   "features": {

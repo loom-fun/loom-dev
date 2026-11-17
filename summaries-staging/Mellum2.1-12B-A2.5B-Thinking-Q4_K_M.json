@@ -3,7 +3,7 @@
   "checkpoint": "Mellum2.1-12B-A2.5B-Thinking-Q4_K_M",
   "name": "Mellum2.1-12B-A2.5B-Thinking",
   "repo": "loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom",
-  "revision": "1758083d5c66d8435047c36cc1fc4057c8a51954",
+  "revision": "50697c49d29e40db3badf54dd7e435ad2bd1dc02",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -29,7 +29,8 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat"
+      "chat",
+      "chat-16gb"
     ]
   },
   "features": {

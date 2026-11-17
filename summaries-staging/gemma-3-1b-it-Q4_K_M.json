@@ -3,7 +3,7 @@
   "checkpoint": "gemma-3-1b-it-Q4_K_M",
   "name": "gemma-3-1b-it",
   "repo": "loom-fun-staging/ggml-org-gemma-3-1b-it-loom",
-  "revision": "740d950b5102e2682e5bdda6d1a745bb0ffaa531",
+  "revision": "70586930973d0c6c1758a2ca3594b76333099e4c",
   "status": null,
   "license": "gemma",
   "service": {
@@ -30,7 +30,8 @@
     "max_tokens": 4096,
     "presets": [
       "chat",
-      "chat-r9700"
+      "chat-r9700",
+      "chat-16gb"
     ]
   },
   "features": {

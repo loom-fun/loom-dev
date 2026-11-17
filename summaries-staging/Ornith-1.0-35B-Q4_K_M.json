@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.0-35B-Q4_K_M",
   "name": "Ornith-1.0-35B",
   "repo": "loom-fun-staging/lmstudio-community-Ornith-1.0-35B-loom",
-  "revision": "a5b178c7d834c5d93a5cd12da7f7a151d2a2b372",
+  "revision": "e1e1387600596b4e2aaa271e518e07c363a1295e",
   "status": null,
   "license": null,
   "service": {

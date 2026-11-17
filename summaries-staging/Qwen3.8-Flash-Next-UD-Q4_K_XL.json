@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
   "name": "Qwen3.8-Flash-Next",
   "repo": "loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom",
-  "revision": "908dde8c5e22cc460e335d8efd4c4611735b0908",
+  "revision": "1056bc4423fea25af9f448f440e3c88a4408cd7d",
   "status": null,
   "license": null,
   "service": {

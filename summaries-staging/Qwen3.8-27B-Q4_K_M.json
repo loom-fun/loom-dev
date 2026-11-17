@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-27B-Q4_K_M",
   "name": "Qwen3.8-27B",
   "repo": "loom-fun-staging/bartowski-Qwen3.8-27B-loom",
-  "revision": "954aaf1afdfcebaa29fa087d53fe1f6ed8a47f94",
+  "revision": "c0eb8c9ed6baaa67fa39be2ecc719a30f9dbdf0f",
   "status": null,
   "license": "apache-2.0",
   "service": {

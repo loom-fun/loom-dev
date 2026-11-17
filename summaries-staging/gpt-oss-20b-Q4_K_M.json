@@ -3,7 +3,7 @@
   "checkpoint": "gpt-oss-20b-Q4_K_M",
   "name": "gpt-oss-20b",
   "repo": "loom-fun-staging/unsloth-gpt-oss-20b-loom",
-  "revision": "1ebbc475563df65cf00f32ae3d83f63459191966",
+  "revision": "2fccb40cbff2fa780f5c2a6f99a0d25853675943",
   "status": null,
   "license": "apache-2.0",
   "service": {

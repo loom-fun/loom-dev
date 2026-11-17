@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-4B-Q4_K_M",
   "name": "Qwen3.5-4B",
   "repo": "loom-fun-staging/unsloth-Qwen3.5-4B-loom",
-  "revision": "4ef1c664262d809520e0fe85edcde1219efb954b",
+  "revision": "3617d7bec5e1c62c6a4d087a7209a3a1ef569b7c",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -37,7 +37,9 @@
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
-      "chat"
+      "chat",
+      "chat-gfx1150",
+      "chat-16gb"
     ]
   },
   "features": {

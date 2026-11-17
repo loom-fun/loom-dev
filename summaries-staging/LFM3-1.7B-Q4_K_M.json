@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-1.7B-Q4_K_M",
   "name": "LFM3-1.7B",
   "repo": "loom-fun-staging/bartowski-LFM3-1.7B-loom",
-  "revision": "0d71e742f4c0f437d002ac7797ff8b71bd6b682a",
+  "revision": "0385e981b0b46bd080f4fa262a1bfeb906f71c2c",
   "status": null,
   "license": null,
   "service": {
@@ -30,7 +30,8 @@
     "max_tokens": 4096,
     "presets": [
       "chat",
-      "chat-r9700"
+      "chat-r9700",
+      "chat-16gb"
     ]
   },
   "features": {
