@@ -6,10 +6,14 @@ const LOOM = (() => {
   const DATA = window.LOOM_DATA || { models: [] };
   const GPUS = DATA.gpus && DATA.gpus.length ? DATA.gpus
     : [{ id: 'strix-halo', name: 'AMD Ryzen AI Max+ 395 (Strix Halo)', short: 'Strix Halo', spec: 'gfx1151, 128 GB unified memory', preset_suffix: '' }];
-  let GPU = GPUS.find(g => g.id === window.LOOM_GPU_ASKED) || GPUS[0];
+  const GPU_ALIASES = { 'radeon-rx9070xt': 'gfx1201-16gb' };   // retired ids old links may carry
+  const asked = GPU_ALIASES[window.LOOM_GPU_ASKED] || window.LOOM_GPU_ASKED;
+  let GPU = GPUS.find(g => g.id === asked) || GPUS[0];
   const gpuOf = id => GPUS.find(g => g.id === id) || { id, name: id, short: id, preset_suffix: null };
   const setParam = () => { if (window.LOOM_PARAMS) window.LOOM_PARAMS.gpu = GPU === GPUS[0] ? null : GPU.id; };
   setParam();
+  // an aliased ?gpu= is rewritten to the final id in place
+  if (window.LOOM_GPU_ASKED && asked !== window.LOOM_GPU_ASKED && GPU.id === asked) history.replaceState(null, '', location.href.replace(/([?&]gpu=)[^&#]*/, '$1' + asked));
   const link = (href, set) => window.LOOM_LINK ? window.LOOM_LINK(href, set) : href;
   const gpuLink = (g, href = location.href) => link(href, { gpu: g.id === GPUS[0].id ? null : g.id });
 
@@ -23,7 +27,7 @@ const LOOM = (() => {
   }
   // The summary as seen on `gpu`, or null when the card has no results there. A GPU without its own memory budget
   // or context runs the primary GPU's (the card records them only where they differ).
-  // A GPU that shares another's performance section (RX 9070 XT: the R9700's, the same programs on the same silicon) shows
+  // A GPU that shares another's performance section (none today) shows
   // that GPU's table, marked `sharedWith`; it has its own preset, memory budget and context.
   function onGpu(s, gpu) {
     const all = views(s), d = all[gpu.id];

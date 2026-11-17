@@ -50,7 +50,7 @@ def gpu_ids(s):
     ids = [s.get("primary_device") or "strix-halo"]
     devs = s.get("devices") or {}
     has = set(ids) | {g for g, d in devs.items() if d.get("performance")}
-    # a GPU that shares another's performance section (RX 9070 XT: the R9700's) has that GPU's results
+    # a GPU that shares another's performance section (none today; the 16 GB class has its own) has that GPU's results
     shared = [g for g, d in devs.items() if g not in has and d.get("fits") and d.get("shares_section_with") in has]
     return ids + [g for g, d in devs.items() if d.get("performance")] + shared
 

@@ -33,9 +33,9 @@ SCHEMA = "loom-summary/1"
 CARD_SCHEMAS = ("loom-card/2", "loom-card/3")
 LEGACY_SCHEMAS = ("loom-card/2",)   # one GPU: Strix Halo, gates/performance/roofline at the top level
 DEFAULT_GPU = "strix-halo"
-GPUS = ("strix-halo", "radeon-r9700", "radeon-rx9070xt", "gfx1150")   # display order (loom-skills card_lib.GPU_ORDER); ids are card_lib.GPUS keys
+GPUS = ("strix-halo", "radeon-r9700", "gfx1201-16gb", "gfx1150")   # display order (loom-skills card_lib.GPU_ORDER); ids are card_lib.GPUS keys
 # How a card's Quick start block names its GPU (the <summary> line); the first pattern that matches wins.
-QUICKSTART_GPU = (("gfx1151", "strix-halo"), ("R9700", "radeon-r9700"), ("9070 XT", "radeon-rx9070xt"), ("gfx1150", "gfx1150"))
+QUICKSTART_GPU = (("gfx1151", "strix-halo"), ("R9700", "radeon-r9700"), ("gfx1201, 16 GB", "gfx1201-16gb"), ("9070 XT", "gfx1201-16gb"), ("gfx1150", "gfx1150"))
 RETIRED_GATES = ("needle", "needle_full", "gufo")   # tolerated in old cards, dropped on read (card_lib.RETIRED_GATES)
 METRICS = ["decode", "decode_2k", "decode_32k", "prefill_1k", "prefill_2k", "prefill_8k", "prefill_16k",
            "prefill_32k", "streams4", "spec_acceptance"]
@@ -310,7 +310,7 @@ def summarize(card, model, lock, revision, license, readme=None):
                 out["devices"][g] = {"state": d.get("state") or "not_measured", "required_bytes": d.get("required_bytes")}
                 if d.get("state") != "unsupported" and ("serve_args" in d or "shares_section_with" in d):
                     # the package serves here (a fleet/devices entry) with no table of its own: a GPU that shares another's
-                    # section (RX 9070 XT: the R9700's) or one whose performance is not measured yet
+                    # section (none today; the 16 GB class has its own) or one whose performance is not measured yet
                     out["devices"][g].update({"fits": True, "shares_section_with": d.get("shares_section_with"),
                                               "memory_bytes": d.get("memory_bytes"),
                                               "context_tokens": d.get("served_context") or out["serve"]["context_tokens"]})
