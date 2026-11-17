@@ -583,7 +583,8 @@
               "speedup": 1.55
             }
           }
-        }
+        },
+        "programs_sha256": "92086cab767b8aed8b414b36d9ebb13085136d899f4b2c03038aed14a70a9a3a"
       },
       "gates": {
         "summary": {

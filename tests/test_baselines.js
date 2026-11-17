@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
-function site(query = '', dataFile = 'loom-data.js') {
+function site(query = '', dataFile = 'loom-data.js', modelOverride = null) {
   const events = {}, listeners = {};
   const location = new URL('http://localhost:8199/models.html' + query);
   const document = {
@@ -20,8 +20,10 @@ function site(query = '', dataFile = 'loom-data.js') {
     CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options?.detail; } },
   });
   context.window = context;
-  for (const file of ['data-source.js', dataFile, 'loom-lib.js'])
+  for (const file of ['data-source.js', dataFile, 'loom-lib.js']) {
     vm.runInContext(fs.readFileSync(path.join(root, 'docs/assets', file), 'utf8'), context);
+    if (file === dataFile && modelOverride) context.LOOM_DATA.models = modelOverride;
+  }
   const loom = vm.runInContext('LOOM', context);
   return { loom, context, location, events, listeners };
 }
@@ -151,6 +153,18 @@ test('named-machine and historical program evidence are explicit and separate fr
   assert.ok(!html.includes('80 tok/s</b>'));
 });
 
+test('promoted Qwen 0.5B stale-only Strix history cannot receive a current rank', () => {
+  const { loom } = site();
+  const m=loom.models.find(x=>x.repo==='loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom');
+  assert.ok(m);
+  assert.equal(m.performance.programs_sha256,'eef3a94365f3453915495c6369e1c9c851c547b018805823d2643c35b4c98724');
+  assert.equal(m.performance.metrics.decode.loom,null);
+  assert.ok(m.performance.historical_programs.length>0);
+  assert.equal(m.comparisonAvailable,false);
+  assert.equal(m.score,null);
+  assert.equal(loom.rk(m),'—');
+});
+
 test('quickstart source links use independent README pins while frozen summary revision remains intact', () => {
   const { loom } = site();
   const q = { install:'pipx install hrx-loom', fetch:'loom-fetch source', serve:'loom-serve source',
@@ -185,8 +199,8 @@ print(json.dumps(S.quickstart(text)))`;
 });
 
 
-test('staging source snapshots render new flag notes and request fences with their README provenance', () => {
-  const { loom } = site('?org=loom-fun-staging', 'loom-data-staging.js');
+test('production source snapshots render card notes and request fences with their README provenance', () => {
+  const { loom } = site();
   let checked = 0;
   for (const m of loom.all) {
     for (const [id,q] of Object.entries(m.quickstart || {})) {
@@ -208,7 +222,8 @@ test('staging source snapshots render new flag notes and request fences with the
 
 
 test('vLLM sources stay distinct and are excluded from every llama comparison choice', () => {
-  const { loom } = site('?gpu=radeon-r9700&org=loom-fun-staging','loom-data-staging.js');
+  const pinned = JSON.parse(fs.readFileSync(path.join(__dirname,'reference_cards/mxfp4-summary.json'),'utf8'));
+  const { loom } = site('?gpu=radeon-r9700','loom-data.js',[pinned]);
   loom.setGpu('radeon-r9700');
   for (const mode of ['rocm','vulkan','best']) {
     loom.setBaseline(mode);
@@ -246,7 +261,13 @@ test('vLLM sources stay distinct and are excluded from every llama comparison ch
 });
 
 test('legacy safetensors with unrecorded reference engine never invent llama or baseline provenance', () => {
-  const { loom } = site('?gpu=radeon-r9700');loom.setGpu('radeon-r9700');
+  const pinned = JSON.parse(fs.readFileSync(path.join(__dirname,'reference_cards/mxfp4-summary.json'),'utf8'));
+  delete pinned.performance.baseline;
+  for (const metrics of [pinned.performance.metrics,pinned.performance.devlab.metrics]) {
+    for (const row of Object.values(metrics || {})) { delete row.baseline; delete row.baseline_from; }
+  }
+  pinned.performance.devlab.source = undefined;
+  const { loom } = site('?gpu=radeon-r9700','loom-data.js',[pinned]);loom.setGpu('radeon-r9700');
   for (const mode of ['rocm','vulkan','best']) {
     loom.setBaseline(mode);
     const m=loom.models.find(m => m.weights.checkpoint.file.endsWith('.safetensors'));
@@ -263,7 +284,8 @@ test('legacy safetensors with unrecorded reference engine never invent llama or 
 });
 
 test('actual model drawer takes the compact provenance and quickstart path for excluded references', () => {
-  const { loom,context } = site('?gpu=radeon-r9700&org=loom-fun-staging','loom-data-staging.js');
+  const pinned = JSON.parse(fs.readFileSync(path.join(__dirname,'reference_cards/mxfp4-summary.json'),'utf8'));
+  const { loom,context } = site('?gpu=radeon-r9700','loom-data.js',[pinned]);
   loom.setGpu('radeon-r9700');
   const source=fs.readFileSync(path.join(root,'docs/assets/explore.js'),'utf8');
   const drawer=source.slice(source.indexOf('  function drawer(m) {'),source.indexOf('\n  let current = null;'));

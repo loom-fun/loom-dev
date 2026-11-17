@@ -454,8 +454,7 @@ def device_results(card, kind, feats, sd, logits=None):
         "not_applicable": [k for k in METRICS if not metric_applies(k, kind, feats, sessions)],
         "devlab": {"date": dl_date, "source": dl_src, "metrics": dl_metrics},
     }
-    program_hashes = {s.get("programs_sha256") for s in sessions if s.get("programs_sha256")}
-    if current_programs and (historical or machine_sources or len(program_hashes) > 1):
+    if current_programs:
         out["programs_sha256"] = current_programs
     if not current_programs:
         out["program_identity"] = "unknown"

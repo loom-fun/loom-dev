@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-12b-it-Q4_K_M",
   "name": "gemma-4-12B-it",
   "repo": "loom-fun/unsloth-gemma-4-12B-it-loom",
-  "revision": "5a92943f954f25af0fcd2a9d4091f022fba82984",
+  "revision": "b7eb590c60e0e782e302edccec7106975803dbb7",
   "status": null,
   "license": null,
   "service": {
@@ -209,7 +209,8 @@
           "speedup": 1.34
         }
       }
-    }
+    },
+    "programs_sha256": "255ae60d5295bf39bfc2ba0ba8b60bca18e803a27d432a3f7f5f28ca951683cf"
   },
   "gates": {
     "summary": {
@@ -398,7 +399,8 @@
               "speedup": 1.55
             }
           }
-        }
+        },
+        "programs_sha256": "255ae60d5295bf39bfc2ba0ba8b60bca18e803a27d432a3f7f5f28ca951683cf"
       },
       "gates": {
         "summary": {
@@ -433,27 +435,88 @@
   },
   "quickstart": {
     "strix-halo": {
-      "preset": "chat",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request (optional thinking is turned off):"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-12B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it",
+      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "b7eb590c60e0e782e302edccec7106975803dbb7"
     },
     "radeon-r9700": {
-      "preset": "chat-r9700",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 51,200 tokens per request (its native context is 262,144).\n\nIn another terminal, send a request (optional thinking is turned off):"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-12B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it",
+      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "b7eb590c60e0e782e302edccec7106975803dbb7"
     },
     "gfx1201-16gb": {
-      "preset": "chat-16gb",
-      "serve_args": [
-        "--memory_bytes=15000000000",
-        "--state_slab_bytes=4mib",
-        "--weight_slab_bytes=64mib",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 12,288 tokens per request (its native context is 262,144).\n\nIn another terminal, send a request (optional thinking is turned off):"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-12B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it",
+      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
+      "source_revision": "b7eb590c60e0e782e302edccec7106975803dbb7"
     }
   }
 }
