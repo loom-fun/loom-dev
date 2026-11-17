@@ -44,6 +44,29 @@ class Summaries(unittest.TestCase):
                 card, model, lock, expected = load(name)
                 self.assertEqual(S.summarize(card, model, lock, "rev", "lic"), expected)
 
+    def test_vulkan_measurements_and_evidence_survive_for_each_gpu(self):
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        out = S.summarize(card, model, lock, "rev", "lic")
+        for gpu in ("strix-halo", "radeon-r9700"):
+            raw = card["devices"][gpu]["performance"]["baselines"]["vulkan"]
+            perf = out["performance"] if gpu == out["primary_device"] else out["devices"][gpu]["performance"]
+            actual = perf["baselines"]["vulkan"]
+            self.assertEqual(actual["metrics"]["decode"]["llamacpp"], raw["session"]["metrics"]["decode"]["baseline"])
+            self.assertEqual(actual["date"], raw["session"]["date"])
+            self.assertEqual(actual["source"], S.evidence(card["sources"][raw["session"]["source"]]))
+            for key in ("version", "args", "differs"):
+                self.assertEqual(actual.get(key), raw["baseline"].get(key))
+
+    def test_absent_vulkan_and_null_cells_are_not_replaced_with_rocm(self):
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        perf = card["devices"]["strix-halo"]["performance"]
+        perf["baselines"]["vulkan"]["session"]["metrics"]["decode"]["baseline"] = None
+        out = S.summarize(card, model, lock, "rev", "lic")
+        self.assertIsNone(out["performance"]["baselines"]["vulkan"]["metrics"]["decode"]["llamacpp"])
+        del perf["baselines"]
+        out = S.summarize(card, model, lock, "rev", "lic")
+        self.assertNotIn("baselines", out["performance"])
+
     def test_retired_gates_gone(self):
         for name in NAMES:
             card, model, lock, _ = load(name)

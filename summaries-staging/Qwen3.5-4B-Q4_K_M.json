@@ -56,6 +56,52 @@
     "tool_calling": "yes"
   },
   "performance": {
+    "baselines": {
+      "vulkan": {
+        "args": "1-stream rows: -ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model hf:AtomicChat/Qwen3.5-4B-DFlash-GGUF/Qwen3.5-4B-DFlash.Q8_0.gguf --spec-draft-n-max 7 -ngld 99 -c 36864 -np 1; 4 streams: -ngl 99 -cram 0 -c 147456 -np 4",
+        "differs": [
+          "llama.cpp loads AtomicChat/Qwen3.5-4B-DFlash-GGUF (a conversion of the same z-lab/Qwen3.5-4B-DFlash drafter): the card's magnitudedev conversion fails to load in llama.cpp b1374/b12211"
+        ],
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-13",
+        "source": {
+          "kind": "devlab",
+          "run": "43400168275",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/43400168275/job/131800803214"
+        },
+        "metrics": {
+          "decode": {
+            "llamacpp": 49.9
+          },
+          "decode_2k": {
+            "llamacpp": 48.4
+          },
+          "decode_32k": {
+            "llamacpp": 31.9
+          },
+          "prefill_16k": {
+            "llamacpp": 1356.8
+          },
+          "prefill_1k": {
+            "llamacpp": 1361.5
+          },
+          "prefill_2k": {
+            "llamacpp": 1436.9
+          },
+          "prefill_32k": {
+            "llamacpp": 1152.6
+          },
+          "prefill_8k": {
+            "llamacpp": 1453.6
+          },
+          "streams4": {
+            "llamacpp": 160.5
+          }
+        }
+      }
+    },
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
@@ -203,6 +249,49 @@
       "memory_bytes": null,
       "context_tokens": 262144,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model hf:AtomicChat/Qwen3.5-4B-DFlash-GGUF/Qwen3.5-4B-DFlash.Q8_0.gguf --spec-draft-n-max 7 -ngld 99 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-14",
+            "source": {
+              "kind": "devlab",
+              "run": "43633451014",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43633451014/job/132565026297"
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 123.4
+              },
+              "decode_2k": {
+                "llamacpp": 120.9
+              },
+              "decode_32k": {
+                "llamacpp": 91.4
+              },
+              "prefill_16k": {
+                "llamacpp": 4378.2
+              },
+              "prefill_1k": {
+                "llamacpp": 4154.3
+              },
+              "prefill_2k": {
+                "llamacpp": 4541.5
+              },
+              "prefill_32k": {
+                "llamacpp": 3855.0
+              },
+              "prefill_8k": {
+                "llamacpp": 4650.6
+              },
+              "streams4": {
+                "llamacpp": 390.9
+              }
+            }
+          }
+        },
         "date": null,
         "llamacpp_build": "b1375",
         "drafting": {
@@ -491,6 +580,49 @@
       "memory_bytes": 14000000000,
       "context_tokens": 63488,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model hf:AtomicChat/Qwen3.5-4B-DFlash-GGUF/Qwen3.5-4B-DFlash.Q8_0.gguf --spec-draft-n-max 7 -ngld 99 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-16",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 21.1
+              },
+              "decode_2k": {
+                "llamacpp": 21.2
+              },
+              "decode_32k": {
+                "llamacpp": 14.5
+              },
+              "prefill_16k": {
+                "llamacpp": 583.4
+              },
+              "prefill_1k": {
+                "llamacpp": 608.0
+              },
+              "prefill_2k": {
+                "llamacpp": 640.5
+              },
+              "prefill_32k": {
+                "llamacpp": 495.1
+              },
+              "prefill_8k": {
+                "llamacpp": 631.5
+              },
+              "streams4": {
+                "llamacpp": 69.4
+              }
+            }
+          }
+        },
         "date": "2026-11-16",
         "llamacpp_build": "b1374",
         "drafting": {

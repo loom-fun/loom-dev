@@ -36,6 +36,49 @@
  "license": "lic",
  "name": "gemma-4-12B-it",
  "performance": {
+  "baselines": {
+   "vulkan": {
+    "args": "1-stream rows: -ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model card:parameter/gemma4-12B-it-DFlash-Q4_K_M.gguf --spec-draft-n-max 16 -ngld 99 -c 36864 -np 1; 4 streams: -ngl 99 -cram 0 -c 147456 -np 4",
+    "date": "2026-11-13",
+    "metrics": {
+     "decode": {
+      "llamacpp": 16.0
+     },
+     "decode_2k": {
+      "llamacpp": 14.5
+     },
+     "decode_32k": {
+      "llamacpp": 13.5
+     },
+     "prefill_16k": {
+      "llamacpp": 531.1
+     },
+     "prefill_1k": {
+      "llamacpp": 536.5
+     },
+     "prefill_2k": {
+      "llamacpp": 570.2
+     },
+     "prefill_32k": {
+      "llamacpp": 450.6
+     },
+     "prefill_8k": {
+      "llamacpp": 574.3
+     },
+     "streams4": {
+      "llamacpp": 80.4
+     }
+    },
+    "name": "llama.cpp",
+    "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+    "source": {
+     "kind": "devlab",
+     "run": "43376548212",
+     "url": "https://github.com/loom-fun/loom-skills/actions/runs/43376548212/job/131724300399"
+    },
+    "version": "llamacpp-vulkan/b12211"
+   }
+  },
   "date": null,
   "devlab": {
    "date": "2026-11-13",
@@ -159,10 +202,10 @@
   "context_tokens": 160768,
   "device": "amdgpu",
   "max_tokens": 4096,
+  "memory_bytes": 81000000000,
   "presets": [
    "chat"
   ],
-  "memory_bytes": 81000000000,
   "rows": 4
  },
  "service": {

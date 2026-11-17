@@ -51,6 +51,25 @@
     "tool_calling": "yes"
   },
   "performance": {
+    "baselines": {
+      "vulkan": {
+        "args": "1-stream rows: -ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model hf:dev7a/Laguna-XS-2.1-DFlash-GGUF/Laguna-XS-2.1-DFlash-Q8_0.gguf --spec-draft-n-max 15 -ngld 99 -c 36864 -np 1; 4 streams: -ngl 99 -cram 0 -c 147456 -np 4",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": null,
+        "source": {
+          "kind": "devlab",
+          "run": "43390795404",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/43390795404/job/131769975620"
+        },
+        "metrics": {
+          "streams4": {
+            "llamacpp": 151.6
+          }
+        }
+      }
+    },
     "date": null,
     "llamacpp_build": "b1374",
     "drafting": {
@@ -197,6 +216,25 @@
       "memory_bytes": 34000000000,
       "context_tokens": 24576,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model hf:dev7a/Laguna-XS-2.1-DFlash-GGUF/Laguna-XS-2.1-DFlash-Q8_0.gguf --spec-draft-n-max 15 -ngld 99 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": null,
+            "source": {
+              "kind": "devlab",
+              "run": "43633426669",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43633426669/job/132564945470"
+            },
+            "metrics": {
+              "streams4": {
+                "llamacpp": 318.6
+              }
+            }
+          }
+        },
         "date": null,
         "llamacpp_build": "b1375",
         "drafting": {

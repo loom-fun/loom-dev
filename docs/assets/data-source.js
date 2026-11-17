@@ -1,6 +1,7 @@
 // Site-wide URL parameters, kept on every link between the site's own pages so a link can be shared as is:
 //   ?org=<org>   whose models to show: loom-fun (default), or loom-fun-staging to preview cards before promotion.
 //   ?gpu=<id>    which GPU's results and instructions to show (ids from gpus.json; default: its first GPU).
+//   ?baseline=<backend>  llama.cpp reference: rocm (default), vulkan, or best (per-workload maximum).
 // A parameter at its default is left out of URLs. Must load before any script that reads window.LOOM_DATA: it writes
 // the data <script> in place, so the order of the page's scripts is kept. LOOM (loom-lib.js) resolves the GPU.
 (function () {
@@ -14,7 +15,7 @@
   document.write(`<script src="${SOURCES[org]}${v ? `?v=${v}` : ''}"><\/script>`);
 
   // The parameters a link to one of the site's pages carries. LOOM sets `gpu` to the resolved GPU (null at the default).
-  const PARAMS = window.LOOM_PARAMS = { org: org === DEFAULT_ORG ? null : org, gpu: null };
+  const PARAMS = window.LOOM_PARAMS = { org: org === DEFAULT_ORG ? null : org, gpu: null, baseline: null };
   // `href` with the site parameters (overrides in `set`; null drops one). Returns other links unchanged.
   window.LOOM_LINK = (href, set = {}) => {
     let u;

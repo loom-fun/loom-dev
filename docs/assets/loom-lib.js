@@ -1,6 +1,11 @@
 // Shared data helpers, renderers and SVG charts. Models come from loom-data.js (generated from summaries/).
 
 const LOOM = (() => {
+  const BASELINES = { rocm: 'llama.cpp ROCm', vulkan: 'llama.cpp Vulkan', best: 'llama.cpp best of both' };
+  const resolveBaseline = value => Object.hasOwn(BASELINES, value) ? value : 'rocm';
+  let BASELINE = resolveBaseline(new URLSearchParams(location.search).get('baseline'));
+  const baselineParam = () => { if (window.LOOM_PARAMS) window.LOOM_PARAMS.baseline = BASELINE === 'rocm' ? null : BASELINE; };
+  baselineParam();
   // --- GPU: the site shows one GPU's results and instructions at a time (?gpu=, see data-source.js) ---
   // LOOM_DATA.gpus lists the GPUs with results (build_data.py, from gpus.json); the first is the default.
   const DATA = window.LOOM_DATA || { models: [] };
@@ -106,11 +111,48 @@ const LOOM = (() => {
   };
 
   // Local sessions win; models whose cards only carry DevLab timings fall back to those.
-  function bench(perf) {
+  function rocmBench(perf) {
     const timed = ms => Object.entries(ms || {}).some(([k, v]) => k !== 'spec_acceptance' && v && v.speedup != null);
     const dl = perf.devlab;
     if (timed(perf.metrics) || !dl || !timed(dl.metrics)) return { date: perf.date, source: perf.source, metrics: perf.metrics };
     return { date: dl.date, source: dl.source, metrics: { ...perf.metrics, ...dl.metrics } };
+  }
+
+  // The Loom numerator stays fixed. Best chooses the maximum throughput independently per workload.
+  function bench(perf) {
+    const b = rocmBench(perf), vulkan = perf.baselines && perf.baselines.vulkan;
+    const metrics = Object.fromEntries(Object.entries(b.metrics || {}).map(([key, m]) => {
+      const r = m.llamacpp > 0 ? m.llamacpp : null;
+      const v0 = vulkan && vulkan.metrics[key] && vulkan.metrics[key].llamacpp;
+      const v = v0 > 0 ? v0 : null;
+      const backend = BASELINE === 'best' ? (v != null && (r == null || v > r) ? 'vulkan' : 'rocm') : BASELINE;
+      const value = backend === 'vulkan' ? v : r;
+      return [key, { ...m, llamacpp: value, backend, baselineSource: backend === 'vulkan' ? vulkan && vulkan.source : b.source,
+        baselineDate: backend === 'vulkan' ? vulkan && vulkan.date : b.date,
+        speedup: m.loom > 0 && value > 0 ? m.loom / value : null }];
+    }));
+    return { ...b, metrics };
+  }
+
+  function baselineToggle() {
+    return `<div class="settings-row baseline-control"><span class="gpu-fold-l">llama.cpp comparison</span><nav class="gpu-tg" aria-label="llama.cpp comparison">${Object.keys(BASELINES).map(key =>
+      `<a data-keep-href data-baseline="${key}" href="${esc(link(location.href, { baseline: key === 'rocm' ? null : key }))}" class="${key === BASELINE ? 'on' : ''}"${key === BASELINE ? ' aria-current="true"' : ''}>${key === 'best' ? 'Best of both' : key === 'rocm' ? 'ROCm' : 'Vulkan'}</a>`).join('')}</nav></div>`;
+  }
+  function paintBaseline() {
+    document.querySelectorAll('[data-baseline-slot]').forEach(e => { e.innerHTML = baselineToggle(); });
+    document.querySelectorAll('[data-baseline-name]').forEach(e => { e.textContent = BASELINES[BASELINE]; });
+  }
+
+  function setBaseline(value, { push = true } = {}) {
+    const next = resolveBaseline(value);
+    if (next === BASELINE) return;
+    BASELINE = next;
+    baselineParam();
+    compute();
+    if (push) history.pushState(null, '', link(location.href));
+    paintBaseline();
+    if (window.LOOM_CARRY_ALL) window.LOOM_CARRY_ALL();
+    document.dispatchEvent(new CustomEvent('loom:baseline'));
   }
 
   function enrich(s) {
@@ -249,7 +291,7 @@ const LOOM = (() => {
       if (cur.length) segs.push(cur);
       return segs.map(s => `<polyline points="${s.join(' ')}" class="${cls}"/>`).join('');
     };
-    const dots = (k, cls) => pts.map((p, i) => p ? `<rect x="${(X(i) - 2.5).toFixed(1)}" y="${(Y(p[k]) - 2.5).toFixed(1)}" width="5" height="5" class="${cls}"><title>${xs[i].label} ${xs[i].detail} · ${k === 'loom' ? 'loom' : 'llama.cpp'} ${num(p[k])} tok/s</title></rect>` : '').join('');
+    const dots = (k, cls) => pts.map((p, i) => p ? `<rect x="${(X(i) - 2.5).toFixed(1)}" y="${(Y(p[k]) - 2.5).toFixed(1)}" width="5" height="5" class="${cls}"><title>${xs[i].label} ${xs[i].detail} · ${k === 'loom' ? 'loom' : 'llama.cpp ' + (p.backend === 'vulkan' ? 'Vulkan' : 'ROCm')} ${num(p[k])} tok/s</title></rect>` : '').join('');
     let grid = '';
     if (axes) {
       const step = niceStep(hi / 4);
@@ -456,6 +498,7 @@ const LOOM = (() => {
     compute();
     if (push) history.pushState(null, '', gpuLink(g));
     paintGpu();
+    paintBaseline();
     if (window.LOOM_CARRY_ALL) window.LOOM_CARRY_ALL();
     document.dispatchEvent(new CustomEvent('loom:gpu', { detail: g }));
   }
@@ -463,13 +506,22 @@ const LOOM = (() => {
   function mountGpu() {
     document.querySelectorAll('[data-gpu-toggle]').forEach(e => { e.hidden = GPUS.length < 2; });
     paintGpu();
+    paintBaseline();
     document.addEventListener('click', e => {
+      const baseline = e.target.closest && e.target.closest('a[data-baseline]');
+      if (baseline && e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+        e.preventDefault(); setBaseline(baseline.dataset.baseline); return;
+      }
       const a = e.target.closest && e.target.closest('a[data-gpu-id]');
       if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;   // new tab etc.: the plain link
       e.preventDefault();
       setGpu(a.dataset.gpuId);
     });
-    addEventListener('popstate', () => setGpu(new URLSearchParams(location.search).get('gpu'), { push: false }));
+    addEventListener('popstate', () => {
+      const q = new URLSearchParams(location.search);
+      setGpu(q.get('gpu'), { push: false });
+      setBaseline(q.get('baseline'), { push: false });
+    });
   }
 
   // The Clipboard API exists only on https and localhost; anywhere else (a preview over plain http) copy through a
@@ -515,6 +567,7 @@ const LOOM = (() => {
   document.addEventListener('DOMContentLoaded', () => mountGpu());   // before navbar.js docks the toggle
 
   return {
+    get BASELINE() { return BASELINE; }, get baselineName() { return BASELINES[BASELINE]; }, BASELINES, setBaseline, baselineToggle,
     get GPU() { return GPU; }, GPUS, gpuOf, gpuLink, link, views, preset, gpuToggle, setGpu, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
