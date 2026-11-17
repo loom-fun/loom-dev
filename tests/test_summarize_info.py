@@ -241,5 +241,39 @@ class QuickstartSource(unittest.TestCase):
         self.assertEqual(new['revision'], 'frozen-measurement-commit')
 
 
+class NonLlamaReference(unittest.TestCase):
+    """Public staging info.json at 01bbfe132163df667ebeb6f614dda0e28336e086."""
+    def performance(self, same_session=False):
+        from pathlib import Path
+        card = json.loads(Path(HERE, 'reference_cards/mxfp4-info.json').read_text(encoding='utf-8'))
+        if same_session:
+            del card['devices']['radeon-r9700']['performance']['sessions'][0]['metrics']['decode']['baseline_from']
+        view = S.gpu_view(S.normalize(card), 'radeon-r9700')
+        return S.device_results(view, 'chat', card['card']['features'], S.value(card['card']['features'], 'speculative_decoding'))[0]
+
+    def test_real_vllm_source_is_separate_from_new_loom_measurement(self):
+        perf = self.performance()
+        self.assertEqual(perf['baseline']['name'], 'vLLM')
+        self.assertEqual(perf['baseline']['version'], 'vllm/0.18.0')
+        row = perf['devlab']['metrics']['decode']
+        self.assertEqual(row['baseline'], 10.9)
+        self.assertEqual(row['baseline_from']['source']['run'], '43920731237')
+        self.assertEqual(row['baseline_from']['date'], '2026-11-16')
+        self.assertEqual(perf['devlab']['source']['run'], '44162729495')
+        self.assertIsNone(row['llamacpp'])
+        self.assertIsNone(row['speedup'])
+        for key in ['decode_32k', 'prefill_8k', 'prefill_16k', 'prefill_32k']:
+            row = perf['devlab']['metrics'][key]
+            self.assertIsNone(row['baseline'])
+            self.assertIsNone(row['llamacpp'])
+            self.assertNotIn('baseline_from', row)
+            self.assertGreater(row['loom'], 0)
+
+    def test_same_session_reference_keeps_actual_session_source(self):
+        row = self.performance(same_session=True)['devlab']['metrics']['decode']
+        self.assertEqual(row['baseline_from']['source']['run'], '44162729495')
+        self.assertEqual(row['baseline_from']['date'], '2026-11-17')
+
+
 if __name__ == "__main__":
     unittest.main()

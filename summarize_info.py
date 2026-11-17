@@ -276,6 +276,16 @@ def measured(card, kind, feats, keys, devlab=False):
         loom, base = m.get("loom"), m.get("baseline")
         metrics[k] = {"loom": loom, "llamacpp": base,
                       "speedup": round(loom / base, 2) if loom is not None and base else None}
+        baseline_name = (card["performance"].get("baseline") or {}).get("name")
+        if baseline_name and baseline_name != "llama.cpp":
+            metrics[k].update({"llamacpp": None, "speedup": None, "baseline": base})
+            if base is not None:
+                i = shown[k][1]
+                session = sessions[i]
+                origin = m.get("baseline_from") or {"date": session["date"], "source": session["source"]}
+                metrics[k]["baseline_from"] = {"date": origin.get("date"),
+                                               "source": evidence(card["sources"].get(origin.get("source")))}
+
     return (primary["date"] if primary else None,
             evidence(card["sources"][primary["source"]]) if primary else None, metrics)
 
@@ -337,6 +347,7 @@ def device_results(card, kind, feats, sd, logits=None):
     build = re.search(r"\bb(1[0-9]{3,})\b", perf["baseline"]["version"] or "")
     return {
         **({"baselines": extra_baselines(card)} if perf.get("baselines") else {}),
+        **({"baseline": dict(perf["baseline"])} if perf["baseline"].get("name") not in (None, "llama.cpp") else {}),
         "date": date,
         "llamacpp_build": f"b{build.group(1)}" if build else None,
         "drafting": {"loom": f"{METHOD.get(sd['method'], sd['method'])}, depth {sd['depth']}" if drafts(feats)

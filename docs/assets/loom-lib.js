@@ -119,7 +119,20 @@ const LOOM = (() => {
   }
 
   // The Loom numerator stays fixed. Best chooses the maximum throughput independently per workload.
-  function bench(perf) {
+  function llamaComparable(m, perf = m.performance) {
+    const engine = perf.baseline && perf.baseline.name;
+    if (engine) return engine === 'llama.cpp';
+    // Old safetensors snapshots did not record their reference engine. Never infer llama.cpp.
+    return !/\.safetensors$/i.test(m.weights?.checkpoint?.file || '');
+  }
+  function bench(perf, comparable = true) {
+    if (!comparable || (perf.baseline?.name && perf.baseline.name !== 'llama.cpp')) {
+      const timed = ms => Object.entries(ms || {}).some(([k,m]) => k !== 'spec_acceptance' && m?.loom > 0);
+      const source = timed(perf.metrics) || !perf.devlab ? perf : perf.devlab;
+      return { date: source.date, source: source.source,
+        metrics: Object.fromEntries(Object.entries(source.metrics || {}).map(([k,m]) =>
+          [k,{...m,llamacpp:null,speedup:null,backend:null,baselineSource:null,baselineDate:null}])) };
+    }
     const b = rocmBench(perf), vulkan = perf.baselines && perf.baselines.vulkan;
     const metrics = Object.fromEntries(Object.entries(b.metrics || {}).map(([key, m]) => {
       const r = m.llamacpp > 0 ? m.llamacpp : null;
@@ -156,7 +169,8 @@ const LOOM = (() => {
   }
 
   function enrich(s) {
-    const b = bench(s.performance), metrics = b.metrics;
+    const comparisonAvailable = llamaComparable(s);
+    const b = bench(s.performance, comparisonAvailable), metrics = b.metrics;
     const pair = k => metrics[k] && metrics[k].speedup != null ? { ...METRIC[k], ...metrics[k] } : null;
     const measured = METRICS.map(m => pair(m.key)).filter(Boolean);
     const byGroup = g => geomean(measured.filter(m => m.group === g).map(m => m.speedup));
@@ -171,6 +185,7 @@ const LOOM = (() => {
       baseRepo: s.weights.checkpoint.repo,
       org: s.weights.checkpoint.repo.split('/')[0],
       bench: b,
+      comparisonAvailable,
       measured,
       pair,
       score: geomean(measured.map(m => m.speedup)),
@@ -217,7 +232,7 @@ const LOOM = (() => {
   const ctx = t => t == null ? '—' : t >= 1024 ? `${Math.round(t / 1024)}k` : `${t}`;
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const hf = repo => `https://huggingface.co/${repo}`;
-  const rk = m => String(m.rank).padStart(2, '0');
+  const rk = m => m.comparisonAvailable === false ? '—' : String(m.rank).padStart(2, '0');
   const href = m => link(`models.html#${encodeURIComponent(m.id)}`);
   const AVATARS = DATA.avatars || {};
   const avatar = (m, cls = '') => AVATARS[m.org]
@@ -277,6 +292,7 @@ const LOOM = (() => {
 
   // Two-engine curve across a metric group (absolute tok/s), for cards and the drawer.
   function curve(m, group, { w = 260, h = 70, axes = false } = {}) {
+    if (m.comparisonAvailable === false) return '<div class="curve-na">Reference comparison omitted</div>';
     const xs = group === 'prefill' ? PREFILL : DECODE;
     const pts = xs.map(x => m.pair(x.key));
     const vals = pts.filter(Boolean).flatMap(p => [p.loom, p.llamacpp]);
@@ -308,6 +324,11 @@ const LOOM = (() => {
 
   // --- collection card ---
   function card(m) {
+    if (m.comparisonAvailable === false) return `<a class="mcard" href="${href(m)}" data-id="${esc(m.id)}">
+      <div class="mc-name">${avatar(m)}<span>${esc(m.name)}</span></div><div class="mc-sub">${sub(m)}</div>
+      <p class="fine">${esc(m.performance.baseline?.name ? m.performance.baseline.name + ' reference' : 'Reference engine not recorded')}; omitted from llama.cpp comparisons.</p>
+      <p class="fine">Open for measurement provenance, source card and quickstart.</p>
+      <div class="mc-marks"><span class="flags">${flags(m)}</span><span class="strip">${gateStrip(m)}</span></div></a>`;
     const d = m.pair('decode'), pf = m.pair('prefill_2k');
     return `
       <a class="mcard" href="${href(m)}" data-id="${esc(m.id)}">
@@ -471,6 +492,22 @@ const LOOM = (() => {
       + `<p class="fine"><a class="u" href="${esc(source)}" target="_blank" rel="noopener">Source card quick start ↗</a></p>`;
   }
 
+  function referencePanel(m) {
+    const p = m.performance, baseline = p.baseline;
+    const label = baseline ? [baseline.name,baseline.version].filter(Boolean).join(' · ') : 'Reference engine not recorded in this frozen snapshot';
+    const source = s => s ? (s.url ? `<a class="u" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.kind)} ${esc(s.run || '')} ↗</a>` : esc(s.kind || 'source')) : 'not recorded';
+    const refs = new Map();
+    for (const metrics of [p.metrics,p.devlab?.metrics]) for (const row of Object.values(metrics || {})) {
+      if (row.baseline != null && row.baseline_from) refs.set(JSON.stringify(row.baseline_from),row.baseline_from);
+    }
+    const card = `https://huggingface.co/${m.repo}/blob/${m.revision}/README.md`;
+    return `<p>${esc(label)}. Omitted from llama.cpp comparisons; its reference ratios are excluded from charts and aggregate ratios.</p>
+      <p class="fine">Loom measurement: ${source(m.bench.source)} · ${esc(m.bench.date || '')}.</p>
+      <p class="fine">Reference measurement: ${refs.size ? [...refs.values()].map(r => `${source(r.source)} · ${esc(r.date || '')}`).join('; ') : 'source not recorded in this snapshot'}.</p>
+      ${(baseline?.differs || []).map(note => `<p class="fine">${esc(note)}</p>`).join('')}
+      <p><a class="u" href="${esc(card)}" target="_blank" rel="noopener">Pinned source card and full measurements ↗</a></p>`;
+  }
+
   // The GPU toggle: one link per GPU (a link, so it can be opened in a new tab or shared). `compact` is the nav's.
   function gpuToggle({ compact = false } = {}) {
     return `<nav class="gpu-tg${compact ? ' compact' : ''}" aria-label="GPU">${GPUS.map(g => {
@@ -571,6 +608,6 @@ const LOOM = (() => {
     get GPU() { return GPU; }, GPUS, gpuOf, gpuLink, link, views, preset, gpuToggle, setGpu, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
-    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, quickstartHtml, fetchCmd, serveCmd, installCmd, copyButtons, reveal,
+    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, quickstartHtml, referencePanel, llamaComparable, fetchCmd, serveCmd, installCmd, copyButtons, reveal,
   };
 })();

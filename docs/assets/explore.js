@@ -129,6 +129,12 @@
   }
 
   function drawer(m) {
+    if (m.comparisonAvailable === false) {
+      el('drPath').textContent = `models / ${m.id}`;
+      el('dr').innerHTML = `<h2 class="dr-title">${esc(m.name)}</h2>${LOOM.referencePanel(m)}<h3>run it</h3>${quickstartHtml(m)}`;
+      LOOM.copyButtons(el('dr'));
+      return;
+    }
     const p = m.performance, src = m.bench.source, w = m.weights, sv = m.serve;
     const drafting = LOOM.BASELINE === 'best' ? 'Reference backend varies by workload; see backend settings below.' : p.drafting.loom
       ? `loom: ${esc(p.drafting.loom)} · llama.cpp: ${esc(LOOM.BASELINE === 'vulkan' ? (p.baselines && p.baselines.vulkan && p.baselines.vulkan.args || 'not recorded') : p.drafting.llamacpp)}`

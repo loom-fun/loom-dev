@@ -11,3 +11,5 @@ There is no SDK, output path, request body, flag, preset or memory-budget fallba
 Run `python3 -m unittest discover -s tests` and `node --test tests/test_baselines.js`.
 
 A README-only refresh can update instructions while keeping measured model data frozen. `refresh_quickstart(summary, readme, source_revision)` changes only `quickstart`; each GPU block carries its own `source_revision`, and its source link uses that README pin. The summary's top-level `revision` continues to identify its unchanged model and measurement inputs. A normal whole-summary refresh pins both sources to the same commit. Existing blocks without a separate README pin use the summary revision.
+
+Explicit non-llama reference engines retain their baseline descriptor and per-row original measurement evidence. Their raw `baseline` values remain available, while llama-specific `llamacpp` and `speedup` fields are null. These cards are excluded from llama.cpp ratios/charts and show separate Loom/reference provenance with a pinned card link. Legacy safetensors snapshots without engine metadata are also excluded, with unknown-engine wording rather than a guessed reference.

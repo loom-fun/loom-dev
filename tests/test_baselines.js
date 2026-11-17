@@ -174,3 +174,81 @@ test('staging source snapshots render new flag notes and request fences with the
   }
   assert.ok(checked > 0);
 });
+
+
+test('vLLM sources stay distinct and are excluded from every llama comparison choice', () => {
+  const { loom } = site('?gpu=radeon-r9700&org=loom-fun-staging','loom-data-staging.js');
+  loom.setGpu('radeon-r9700');
+  for (const mode of ['rocm','vulkan','best']) {
+    loom.setBaseline(mode);
+    const m=loom.models.find(m => m.weights.checkpoint.file.endsWith('.safetensors'));
+    assert.ok(m);
+    assert.equal(m.comparisonAvailable,false);
+    assert.equal(m.score,null);
+    assert.equal(m.measured.length,0);
+    assert.equal(m.pair('decode'),null);
+    assert.equal(m.bench.metrics.decode.loom,77.5);
+    assert.equal(m.bench.metrics.decode.llamacpp,null);
+    assert.equal(m.bench.metrics.decode.baselineSource,null);
+    assert.equal(m.performance.devlab.metrics.decode.baseline,10.9);
+    assert.equal(m.performance.devlab.metrics.decode.baseline_from.source.run,'43920731237');
+    assert.equal(m.bench.source.run,'44162729495');
+    for (const key of ['decode_32k','prefill_8k','prefill_16k','prefill_32k']) {
+      assert.equal(m.bench.metrics[key].baseline,null);
+      assert.equal(m.bench.metrics[key].speedup,null);
+    }
+    const panel=loom.referencePanel(m);
+    assert.ok(panel.includes('vLLM · vllm/0.18.0'));
+    assert.match(panel,/Loom measurement:.*44162729495/);
+    assert.match(panel,/Reference measurement:.*43920731237/);
+    assert.ok(panel.includes('/blob/01bbfe132163df667ebeb6f614dda0e28336e086/README.md'));
+    assert.ok(!panel.includes('llama.cpp ROCm'));
+    assert.ok(!loom.card(m).includes('10.9'));
+    assert.ok(!loom.card(m).includes('mc-rank'));
+    assert.equal(loom.rk(m),'—');
+    assert.ok(!loom.curve(m,'decode').includes('polyline'));
+    assert.notEqual(loom.stats().best?.m.id,m.id);
+    assert.ok(loom.quickstartHtml(m).includes('hrx-loom[hf]==0.2.0'));
+    const synthetic={...m.performance,baselines:{vulkan:{metrics:{decode:{llamacpp:9999}}}}};
+    assert.equal(loom.bench(synthetic).metrics.decode.speedup,null);
+  }
+});
+
+test('legacy safetensors with unrecorded reference engine never invent llama or baseline provenance', () => {
+  const { loom } = site('?gpu=radeon-r9700');loom.setGpu('radeon-r9700');
+  for (const mode of ['rocm','vulkan','best']) {
+    loom.setBaseline(mode);
+    const m=loom.models.find(m => m.weights.checkpoint.file.endsWith('.safetensors'));
+    assert.equal(m.comparisonAvailable,false);
+    assert.equal(m.score,null);
+    assert.equal(m.measured.length,0);
+    assert.equal(m.pair('decode'),null);
+    const panel=loom.referencePanel(m);
+    assert.ok(panel.includes('Reference engine not recorded in this frozen snapshot'));
+    assert.ok(panel.includes('Reference measurement: source not recorded'));
+    assert.ok(!panel.includes('vLLM'));
+    assert.ok(!panel.includes('llama.cpp ROCm'));
+  }
+});
+
+test('actual model drawer takes the compact provenance and quickstart path for excluded references', () => {
+  const { loom,context } = site('?gpu=radeon-r9700&org=loom-fun-staging','loom-data-staging.js');
+  loom.setGpu('radeon-r9700');
+  const source=fs.readFileSync(path.join(root,'docs/assets/explore.js'),'utf8');
+  const drawer=source.slice(source.indexOf('  function drawer(m) {'),source.indexOf('\n  let current = null;'));
+  const render=vm.runInContext(`(function(LOOM,el,esc,quickstartHtml,m){${drawer};drawer(m);})`,context);
+  for (const mode of ['rocm','vulkan','best']) {
+    loom.setBaseline(mode);
+    const m=loom.models.find(m => m.weights.checkpoint.file.endsWith('.safetensors'));
+    const nodes={dr:{innerHTML:'',querySelectorAll:()=>[]},drPath:{textContent:''}};
+    render(loom,id=>{assert.ok(nodes[id],`unexpected generic comparison element ${id}`);return nodes[id]},loom.esc,loom.quickstartHtml,m);
+    const html=nodes.dr.innerHTML;
+    assert.ok(html.includes('vLLM · vllm/0.18.0'));
+    assert.match(html,/Loom measurement:.*44162729495/);
+    assert.match(html,/Reference measurement:.*43920731237/);
+    assert.ok(html.includes('curl http://127.0.0.1:8080/v1/chat/completions'));
+    assert.ok(html.includes('Pinned source card and full measurements'));
+    assert.ok(!html.includes('llama.cpp ROCm'));
+    assert.ok(!html.includes('drDecode'));
+  }
+});
