@@ -3,7 +3,7 @@
   "checkpoint": "LFM2.5-24B-A2B-Q4_K_M",
   "name": "LFM2.5-24B-A2B",
   "repo": "loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom",
-  "revision": "471051c1ed617a459b377ac581633c672e743dc0",
+  "revision": "a98e361f2aaacbab6f9ad6ed70aefb7e352c750a",
   "status": null,
   "license": null,
   "service": {

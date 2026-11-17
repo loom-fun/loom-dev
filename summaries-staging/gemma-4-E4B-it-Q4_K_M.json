@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-E4B-it-Q4_K_M",
   "name": "gemma-4-E4B-it",
   "repo": "loom-fun-staging/unsloth-gemma-4-E4B-it-loom",
-  "revision": "ca3005b829f0269d2c04d412afff3fbdcbe022bd",
+  "revision": "8384a7c175310681d24abc0ade442b990e15b132",
   "status": null,
   "license": "apache-2.0",
   "service": {
