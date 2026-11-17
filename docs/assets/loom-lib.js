@@ -169,7 +169,7 @@ const LOOM = (() => {
   }
 
   function enrich(s) {
-    const comparisonAvailable = llamaComparable(s);
+    const comparisonAvailable = llamaComparable(s) && s.performance.program_identity !== 'unknown';
     const b = bench(s.performance, comparisonAvailable), metrics = b.metrics;
     const pair = k => metrics[k] && metrics[k].speedup != null ? { ...METRIC[k], ...metrics[k] } : null;
     const measured = METRICS.map(m => pair(m.key)).filter(Boolean);
@@ -540,7 +540,8 @@ const LOOM = (() => {
       }).join('')}
       <p><a class="u" href="https://huggingface.co/${esc(m.repo)}/blob/${esc(m.revision || 'main')}/README.md" target="_blank" rel="noopener">Pinned card with full historical measurements ↗</a></p>` : '';
     const current = p.programs_sha256 ? `<p class="fine">Current program SHA-256: <code>${esc(p.programs_sha256)}</code></p>` : '';
-    return machine || historical || current ? `<section class="measurement-provenance">${machine}${current}${historical}</section>` : '';
+    const unknown = p.program_identity === 'unknown' ? '<p class="fine">Current package program files were unavailable at the pinned revision. Measurements are retained as historical because current program identity is unknown.</p>' : '';
+    return machine || historical || current || unknown ? `<section class="measurement-provenance">${machine}${current}${unknown}${historical}</section>` : '';
   }
 
   // The GPU toggle: one link per GPU (a link, so it can be opened in a new tab or shared). `compact` is the nav's.
