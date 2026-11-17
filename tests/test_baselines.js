@@ -314,6 +314,22 @@ test('legacy safetensors with unrecorded reference engine never invent llama or 
   }
 });
 
+test('historical-only known llama cards use their recorded build without inventing current comparisons', () => {
+  const pinned = JSON.parse(fs.readFileSync(path.join(root,'summaries/Qwen2.5-0.5B-Instruct-Q4_K_M.json'),'utf8'));
+  assert.equal(pinned.performance.baseline, undefined);
+  assert.equal(pinned.performance.llamacpp_build, 'b1374');
+  const { loom } = site('', 'loom-data.js', [pinned]);
+  const m = loom.models.find(model => model.repo === pinned.repo);
+  assert.ok(m);
+  assert.equal(m.comparisonAvailable, false);
+  assert.ok(loom.card(m).includes('llama.cpp · b1374'));
+  const panel = loom.referencePanel(m);
+  assert.ok(panel.includes('llama.cpp · b1374'));
+  assert.ok(panel.includes('Current comparison unavailable; historical rows are shown separately'));
+  assert.ok(!panel.includes('Reference engine not recorded'));
+  assert.ok(!panel.includes('vLLM'));
+});
+
 test('actual model drawer takes the compact provenance and quickstart path for excluded references', () => {
   const pinned = JSON.parse(fs.readFileSync(path.join(__dirname,'reference_cards/mxfp4-summary.json'),'utf8'));
   const { loom,context } = site('?gpu=radeon-r9700','loom-data.js',[pinned]);

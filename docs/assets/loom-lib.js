@@ -324,10 +324,17 @@ const LOOM = (() => {
   }
 
   // --- collection card ---
+  function referenceLabel(performance, unknownLabel) {
+    const baseline = performance.baseline;
+    if (baseline) return [baseline.name, baseline.version].filter(Boolean).join(' · ');
+    return performance.llamacpp_build ? `llama.cpp · ${performance.llamacpp_build}` : unknownLabel;
+  }
+
   function card(m) {
     if (m.comparisonAvailable === false) return `<a class="mcard" href="${href(m)}" data-id="${esc(m.id)}">
       <div class="mc-name">${avatar(m)}<span>${esc(m.name)}</span></div><div class="mc-sub">${sub(m)}</div>
-      <p class="fine">${esc(m.performance.baseline?.name || 'Reference engine not recorded')}; omitted from llama.cpp comparisons.</p>
+      <p class="fine">${esc(referenceLabel(m.performance, 'Reference engine not recorded'))}.</p>
+      <p class="fine">Current comparison unavailable; historical measurements are retained separately.</p>
       <p class="fine">Open for measurement provenance, historical rows and source quick start.</p>
       <div class="mc-marks"><span class="flags">${flags(m)}</span><span class="strip">${gateStrip(m)}</span></div></a>`;
     const d = m.pair('decode'), pf = m.pair('prefill_2k');
@@ -495,14 +502,14 @@ const LOOM = (() => {
 
   function referencePanel(m) {
     const p = m.performance, baseline = p.baseline;
-    const label = baseline ? [baseline.name, baseline.version].filter(Boolean).join(' · ') : 'Reference engine not recorded in this frozen snapshot';
+    const label = referenceLabel(p, 'Reference engine not recorded in this frozen snapshot');
     const source = s => s ? (s.url ? `<a class="u" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.kind)} ${esc(s.run || '')} ↗</a>` : esc(s.kind || 'source')) : 'not recorded';
     const refs = new Map();
     for (const metrics of [p.metrics, p.devlab?.metrics]) for (const row of Object.values(metrics || {})) {
       if (row.baseline != null && row.baseline_from) refs.set(JSON.stringify(row.baseline_from), row.baseline_from);
     }
     const card = `https://huggingface.co/${m.repo}/blob/${m.revision}/README.md`;
-    return `<p>${esc(label)}. Omitted from llama.cpp comparisons; its reference ratios are excluded from charts and aggregate ratios.</p>
+    return `<p>${esc(label)}. Current comparison unavailable; historical rows are shown separately and excluded from current ratios.</p>
       <p class="fine">Loom measurement: ${source(m.bench.source)} · ${esc(m.bench.date || '')}.</p>
       <p class="fine">Reference measurement: ${refs.size ? [...refs.values()].map(r => `${source(r.source)} · ${esc(r.date || '')}`).join('; ') : 'source not recorded in this snapshot'}.</p>
       ${(baseline?.differs || []).map(note => `<p class="fine">${esc(note)}</p>`).join('')}
