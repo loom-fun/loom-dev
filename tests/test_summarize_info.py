@@ -176,8 +176,6 @@ class Summaries(unittest.TestCase):
         self.assertEqual(S.CARD_SCHEMAS, ("loom-card/2", "loom-card/3"))
 
 
-if __name__ == "__main__":
-    unittest.main()
 
 class QuickstartSource(unittest.TestCase):
     def test_published_layouts_and_mutations(self):
@@ -225,3 +223,7 @@ class QuickstartSource(unittest.TestCase):
         q = S.quickstart(text, 'strix-halo')['strix-halo']
         self.assertIn('\n  --materialize=copy', q['fetch'])
         self.assertIn('\n  --pool_backing=fixed', q['serve'])
+
+
+if __name__ == "__main__":
+    unittest.main()
