@@ -3,7 +3,7 @@
   "checkpoint": "Mellum2.1-12B-A2.5B-Thinking-Q4_K_M",
   "name": "Mellum2.1-12B-A2.5B-Thinking",
   "repo": "loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom",
-  "revision": "d92542505ba2e89b420867f9d754a26c2df329f6",
+  "revision": "bcd34b5f2a7c391661ad3eec4ffa145acbc326e6",
   "status": null,
   "license": "apache-2.0",
   "service": {

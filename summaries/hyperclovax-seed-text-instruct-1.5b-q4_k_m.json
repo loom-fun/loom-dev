@@ -3,7 +3,7 @@
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
   "repo": "loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "59d42c7916ed6d34efcfe6239bdf43c78f798767",
+  "revision": "f0eb33cfe7ac3d9935f0473018ba391d72cad1ad",
   "status": null,
   "license": null,
   "service": {
@@ -423,12 +423,193 @@
       }
     },
     "gfx1201-16gb": {
-      "state": "not_measured",
-      "required_bytes": null,
-      "fits": true,
-      "shares_section_with": null,
+      "state": null,
+      "remeasure": null,
       "memory_bytes": 15000000000,
-      "context_tokens": 131072
+      "context_tokens": 131072,
+      "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 348.9
+              },
+              "decode_2k": {
+                "llamacpp": 310.9
+              },
+              "decode_32k": {
+                "llamacpp": 126.3
+              },
+              "prefill_16k": {
+                "llamacpp": 10664.0
+              },
+              "prefill_1k": {
+                "llamacpp": 15814.2
+              },
+              "prefill_2k": {
+                "llamacpp": 16327.4
+              },
+              "prefill_32k": {
+                "llamacpp": 7345.4
+              },
+              "prefill_8k": {
+                "llamacpp": 13470.1
+              },
+              "streams4": {
+                "llamacpp": 1078.6
+              }
+            }
+          }
+        },
+        "date": "2026-11-17",
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": null,
+          "llamacpp": null
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null
+        },
+        "metrics": {
+          "decode": {
+            "loom": 360.2,
+            "llamacpp": 281.2,
+            "speedup": 1.28
+          },
+          "decode_2k": {
+            "loom": 290.1,
+            "llamacpp": 250.7,
+            "speedup": 1.16
+          },
+          "decode_32k": {
+            "loom": null,
+            "llamacpp": 113.9,
+            "speedup": null
+          },
+          "prefill_1k": {
+            "loom": 21022.0,
+            "llamacpp": 17275.1,
+            "speedup": 1.22
+          },
+          "prefill_2k": {
+            "loom": 23651.2,
+            "llamacpp": 17327.3,
+            "speedup": 1.36
+          },
+          "prefill_8k": {
+            "loom": 19654.4,
+            "llamacpp": 14667.7,
+            "speedup": 1.34
+          },
+          "prefill_16k": {
+            "loom": 15865.7,
+            "llamacpp": 11158.7,
+            "speedup": 1.42
+          },
+          "prefill_32k": {
+            "loom": 11191.0,
+            "llamacpp": 7781.2,
+            "speedup": 1.44
+          },
+          "streams4": {
+            "loom": 1327.9,
+            "llamacpp": 752.6,
+            "speedup": 1.76
+          },
+          "spec_acceptance": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [
+          "spec_acceptance"
+        ],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 4,
+          "fail": 0,
+          "unknown": 2,
+          "n/a": 5
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "n/a",
+          "consistency": "pass",
+          "spec": "n/a",
+          "agent": "n/a",
+          "agent_think_off": "n/a",
+          "sampling": "pass",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
     }
   },
   "quickstart": {

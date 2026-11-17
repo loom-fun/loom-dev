@@ -3,7 +3,7 @@
   "checkpoint": "Spark-X2.5-4B-Q4_K_M",
   "name": "Spark-X2.5-4B",
   "repo": "loom-fun-staging/XHToken-Spark-X2.5-4B-loom",
-  "revision": "f0374440eb3d8512e755855da98634d7621a7691",
+  "revision": "e4559ccb82e0241d9021f783c248c9ae3dd34f32",
   "status": null,
   "license": "apache-2.0",
   "service": {
