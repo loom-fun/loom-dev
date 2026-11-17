@@ -120,6 +120,37 @@ test('quickstart renders source blocks verbatim, escapes text, and never guesses
   assert.ok(loom.quickstart(m,{id:'another-gpu'}).includes('unavailable'));
 });
 
+test('named-machine and historical program evidence are explicit and separate from current comparisons', () => {
+  const { loom } = site();
+  const m = loom.models[0];
+  const current = 'b'.repeat(64), old = 'a'.repeat(64);
+  m.repo = 'loom-fun/example-loom'; m.revision = 'pinned-card-revision';
+  m.performance.baseline = { name: 'llama.cpp' };
+  m.performance.programs_sha256 = current;
+  m.performance.metrics = { decode: { loom: 110, llamacpp: 100, speedup: 1.1 } };
+  m.performance.named_machine_sources = [{ date: '2026-11-17', programs_sha256: current,
+    source: { kind: 'machine', device: { cpu: 'AMD Ryzen 7 9800X3D', gpu: 'AMD Radeon RX 9070 XT', os: 'Ubuntu 26.04' },
+      hrx_loom: { hrx_loom: '0.2.0', hrx_system_sha: 'abc123' } } }];
+  m.performance.historical_programs = [{ date: '2026-11-15', programs_sha256: old,
+    source: { kind: 'devlab', run: '44000000000', url: 'https://example.test/run' },
+    metrics: { decode: { loom: 80, baseline: 100 }, prefill_2k: { loom: 800, baseline: 1000 } } }];
+  const currentDecode = loom.bench(m.performance).metrics.decode;
+  assert.equal(currentDecode.loom, 110);
+  assert.equal(currentDecode.speedup, 1.1);
+  const html = loom.measurementProvenance(m);
+  assert.ok(html.includes('Named-machine measurement'));
+  assert.ok(html.includes('AMD Ryzen 7 9800X3D · AMD Radeon RX 9070 XT · Ubuntu 26.04'));
+  assert.ok(html.includes('hrx-loom 0.2.0 · hrx-system abc123'));
+  assert.ok(html.includes(current));
+  assert.ok(html.includes('historical program measurements'));
+  assert.ok(html.includes(old));
+  assert.ok(html.includes('80.0 tok/s'));
+  assert.ok(html.includes('100 tok/s'));
+  assert.ok(html.includes('excluded from current scores, ranks, and llama.cpp comparisons'));
+  assert.ok(html.includes('/blob/pinned-card-revision/README.md'));
+  assert.ok(!html.includes('80 tok/s</b>'));
+});
+
 test('quickstart source links use independent README pins while frozen summary revision remains intact', () => {
   const { loom } = site();
   const q = { install:'pipx install hrx-loom', fetch:'loom-fetch source', serve:'loom-serve source',

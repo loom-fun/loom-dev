@@ -168,6 +168,77 @@ class Summaries(unittest.TestCase):
         self.assertEqual(rm["improved"], ["decode"])
         self.assertEqual(rm["previous"]["result"], "identical")
 
+    def test_non_equivalent_program_rows_are_historical_and_named_machine_provenance_is_exact(self):
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        card = copy.deepcopy(card)
+        dev = card["devices"]["strix-halo"]
+        dev.pop("remeasure", None)
+        perf = dev["performance"]
+        old = copy.deepcopy(perf["sessions"][-1])
+        old_hash, current_hash = "a" * 64, "b" * 64
+        old.update(programs_sha256=old_hash, date="2026-11-15")
+        old["metrics"] = {
+            "decode": {"loom": 80.0, "baseline": 100.0},
+            "prefill_2k": {"loom": 800.0, "baseline": 1000.0},
+        }
+        current = copy.deepcopy(old)
+        current.update(programs_sha256=current_hash, date="2026-11-17", source="named-machine")
+        current["metrics"] = {"decode": {"loom": 110.0, "baseline": 100.0}}
+        unverified = copy.deepcopy(old)
+        unverified.pop("programs_sha256")
+        unverified["date"] = "2026-11-14"
+        perf["sessions"] = [old, unverified, current]
+        card["sources"]["named-machine"] = {
+            "kind": "machine", "run": None, "url": None,
+            "device": {"cpu": "AMD Ryzen 7 9800X3D", "gpu": "AMD Radeon RX 9070 XT", "os": "Ubuntu 26.04"},
+            "hrx_loom": {"hrx_loom": "0.2.0", "hrx_system_sha": "abc123"},
+        }
+
+        out = S.summarize(card, model, lock, "current-card-rev", "lic")
+        current_perf = out["performance"]
+        self.assertEqual(current_perf["programs_sha256"], current_hash)
+        self.assertEqual(current_perf["metrics"]["decode"]["loom"], 110.0)
+        self.assertIsNone(current_perf["metrics"]["prefill_2k"]["loom"])
+        self.assertEqual(current_perf["historical_programs"][0], {
+            "date": "2026-11-15", "source": S.evidence(card["sources"][old["source"]]),
+            "programs_sha256": old_hash,
+            "program_identity": "recorded",
+            "metrics": {"decode": {"loom": 80.0, "baseline": 100.0},
+                        "prefill_2k": {"loom": 800.0, "baseline": 1000.0}},
+        })
+        self.assertIsNone(current_perf["historical_programs"][1]["programs_sha256"])
+        self.assertEqual(current_perf["historical_programs"][1]["program_identity"], "not_recorded")
+        machine = current_perf["named_machine_sources"][0]
+        self.assertEqual(machine["programs_sha256"], current_hash)
+        self.assertEqual(machine["source"]["device"]["gpu"], "AMD Radeon RX 9070 XT")
+        self.assertEqual(machine["source"]["hrx_loom"]["hrx_system_sha"], "abc123")
+
+    def test_identical_remeasure_bridge_can_carry_old_program_metrics(self):
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        card = copy.deepcopy(card)
+        dev = card["devices"]["strix-halo"]
+        perf = dev["performance"]
+        old = copy.deepcopy(perf["sessions"][-1])
+        old_hash, current_hash = "a" * 64, "b" * 64
+        old.update(programs_sha256=old_hash, source="machine",
+                   metrics={"prefill_2k": {"loom": 800.0, "baseline": 1000.0}})
+        current = copy.deepcopy(old)
+        current.update(programs_sha256=current_hash, metrics={"decode": {"loom": 110.0, "baseline": 100.0}})
+        perf["sessions"] = [old, current]
+        card["sources"]["machine"] = {"kind": "machine", "run": None, "url": None}
+        dev["remeasure"] = {"date": "2026-11-17", "result": "identical", "band": 0,
+                            "programs_sha256": current_hash, "compared_programs": old_hash,
+                            "proof": {"summary": "full default-path equivalence"}, "source": old["source"]}
+        out = S.summarize(card, model, lock, "rev", "lic")["performance"]
+        self.assertEqual(out["programs_sha256"], current_hash)
+        self.assertEqual(out["metrics"]["prefill_2k"]["loom"], 800.0)
+        self.assertNotIn("historical_programs", out)
+
+        dev["remeasure"].pop("proof")
+        unproven = S.summarize(card, model, lock, "rev", "lic")["performance"]
+        self.assertIsNone(unproven["metrics"]["prefill_2k"]["loom"])
+        self.assertEqual(unproven["historical_programs"][0]["programs_sha256"], old_hash)
+
     def test_v2_has_no_remeasure_key(self):
         for name in (n for n in NAMES if n.startswith("v2-")):
             self.assertNotIn("remeasure", S.summarize(*load(name)[:3], "rev", "lic"))

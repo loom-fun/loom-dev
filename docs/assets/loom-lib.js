@@ -508,6 +508,41 @@ const LOOM = (() => {
       <p><a class="u" href="${esc(card)}" target="_blank" rel="noopener">Pinned source card and full measurements ↗</a></p>`;
   }
 
+  // Historical runs remain inspectable, but must never flow into the current score or comparison table.
+  function measurementProvenance(m) {
+    const p = m.performance || {}, entries = p.named_machine_sources || [];
+    const sources = entries.length ? entries : p.source?.kind === 'machine'
+      ? [{ date: p.date, programs_sha256: p.programs_sha256, source: p.source }] : [];
+    const machine = sources.map(x => {
+      const s = x.source || {}, d = s.device || {}, sdk = s.hrx_loom || {};
+      const host = [d.cpu, d.gpu, d.os].filter(Boolean).map(esc).join(' · ');
+      const runtime = [sdk.hrx_loom && `hrx-loom ${sdk.hrx_loom}`,
+        sdk.hrx_system_sha && `hrx-system ${sdk.hrx_system_sha}`].filter(Boolean).map(esc).join(' · ');
+      return `<p class="fine"><b>Named-machine measurement</b>${host ? ` · ${host}` : ''}${x.date ? ` · ${esc(x.date)}` : ''}${runtime ? ` · ${runtime}` : ''}${x.programs_sha256 ? `<br>programs SHA-256: <code>${esc(x.programs_sha256)}</code>` : ''}</p>`;
+    }).join('');
+    const history = p.historical_programs || [];
+    const historical = history.length ? `<h3>historical program measurements</h3>
+      <p class="fine">These rows are kept for reference and are excluded from current scores, ranks, and llama.cpp comparisons because current-program equivalence was not established.</p>
+      ${history.map(h => {
+        const source = h.source || {}, metrics = Object.entries(h.metrics || {}).map(([key, row]) => {
+          const label = METRIC[key] ? `${METRIC[key].label} · ${METRIC[key].detail}` : key;
+          const value = n => key === 'spec_acceptance' ? `${(n * 100).toFixed(1)}%` : `${num(n)} tok/s`;
+          const loom = row.loom == null ? '—' : value(row.loom);
+          const baseline = row.baseline == null ? '—' : value(row.baseline);
+          return `<tr><td>${esc(label)}</td><td>${loom}</td><td>${baseline}</td></tr>`;
+        }).join('');
+        const src = source.url ? `<a class="u" href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.kind || 'source')} ${esc(source.run || '')} ↗</a>` : esc(source.kind || 'source not recorded');
+        const identity = h.programs_sha256 ? `programs ${esc(h.programs_sha256)}` : 'program hash not recorded';
+        return `<details class="historical-run"><summary>${esc(h.date || 'date not recorded')} · ${esc(source.kind || 'source not recorded')} · ${identity}</summary>
+          <p class="fine">Measurement source: ${src}</p>
+          ${h.program_identity === 'not_recorded' ? '<p class="fine">The program hash was not recorded, so equivalence to the current program cannot be checked.</p>' : ''}
+          <div class="table-wrap"><table><thead><tr><th>workload</th><th>Loom</th><th>recorded baseline</th></tr></thead><tbody>${metrics}</tbody></table></div></details>`;
+      }).join('')}
+      <p><a class="u" href="https://huggingface.co/${esc(m.repo)}/blob/${esc(m.revision || 'main')}/README.md" target="_blank" rel="noopener">Pinned card with full historical measurements ↗</a></p>` : '';
+    const current = p.programs_sha256 ? `<p class="fine">Current program SHA-256: <code>${esc(p.programs_sha256)}</code></p>` : '';
+    return machine || historical || current ? `<section class="measurement-provenance">${machine}${current}${historical}</section>` : '';
+  }
+
   // The GPU toggle: one link per GPU (a link, so it can be opened in a new tab or shared). `compact` is the nav's.
   function gpuToggle({ compact = false } = {}) {
     return `<nav class="gpu-tg${compact ? ' compact' : ''}" aria-label="GPU">${GPUS.map(g => {
@@ -608,6 +643,6 @@ const LOOM = (() => {
     get GPU() { return GPU; }, GPUS, gpuOf, gpuLink, link, views, preset, gpuToggle, setGpu, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
-    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, quickstartHtml, referencePanel, llamaComparable, fetchCmd, serveCmd, installCmd, copyButtons, reveal,
+    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, quickstartHtml, referencePanel, measurementProvenance, llamaComparable, fetchCmd, serveCmd, installCmd, copyButtons, reveal,
   };
 })();

@@ -90,7 +90,7 @@ def gpu_view(info, gpu):
     d = info["devices"].get(gpu) or {}
     out = {k: v for k, v in info.items() if k != "devices"}
     out["gates"] = d.get("gates") or {}
-    for k in ("performance", "roofline", "state", "required_bytes", "memory_bytes", "served_context"):
+    for k in ("performance", "roofline", "state", "required_bytes", "memory_bytes", "served_context", "remeasure"):
         if d.get(k) is not None:
             out[k] = d[k]
     return out
@@ -205,7 +205,17 @@ def source(s, full=False):
 
 
 def evidence(e):
-    return None if e is None else {"kind": e["kind"], "run": e["run"], "url": e["url"]}
+    if e is None:
+        return None
+    out = {"kind": e["kind"], "run": e["run"], "url": e["url"]}
+    # A named-machine measurement needs its exact host and SDK provenance. A GPU family
+    # label alone can otherwise make it look like a DevLab run on a different machine.
+    if e.get("kind") == "machine":
+        if e.get("device") is not None:
+            out["device"] = dict(e["device"])
+        if e.get("hrx_loom") is not None:
+            out["hrx_loom"] = dict(e["hrx_loom"])
+    return out
 
 
 def value(feats, key):
@@ -247,12 +257,37 @@ def metric_applies(key, kind, feats, sessions):
     return key not in refused - measured
 
 
-def headline(card, devlab=False):
+def accepted_programs(card):
+    """Current package hash plus hashes covered by an explicit identical-program bridge.
+
+    When the card has no hash metadata, return None and preserve legacy behavior. With
+    hashes present, the newest package/measurement hash is current; only an identical
+    remeasure may carry metrics forward from an older hash.
+    """
+    perf = card["performance"]
+    remeasure = card.get("remeasure") or {}
+    current = remeasure.get("programs_sha256")
+    if not current:
+        current = next((s.get("programs_sha256") for s in reversed(perf.get("sessions", []))
+                        if s.get("programs_sha256")), None)
+    if not current:
+        return None, None
+    accepted = {current}
+    if (remeasure.get("result") == "identical" and remeasure.get("proof")
+            and remeasure.get("programs_sha256") == current and remeasure.get("compared_programs")):
+        accepted.update(x for x in remeasure.get("carried_programs", []) if x)
+        accepted.add(remeasure["compared_programs"])
+    return current, accepted
+
+
+def headline(card, devlab=False, allowed_programs=None):
     """{metric: (entry, session index)}: per metric the last local session that measured it, the README's headline
     value (spec_acceptance from any session), or with devlab=True the last DevLab session, the README's DevLab
     columns (timed metrics only)."""
     out = {}
     for i, s in enumerate(card["performance"]["sessions"]):
+        if allowed_programs is not None and s.get("programs_sha256") not in allowed_programs:
+            continue
         dl = card["sources"][s["source"]]["kind"] == "devlab"
         for k, m in s["metrics"].items():
             if (dl and k in TIMED) if devlab else (not dl or k not in TIMED):
@@ -260,11 +295,12 @@ def headline(card, devlab=False):
     return out
 
 
-def measured(card, kind, feats, keys, devlab=False):
+def measured(card, kind, feats, keys, devlab=False, allowed_programs=None):
     """(date, source, metrics) of the headline (or DevLab) values: every metric in `keys`, null when not measured.
     The date and source are those of the session that gave the most timed values."""
     sessions = card["performance"]["sessions"]
-    shown = {k: v for k, v in headline(card, devlab).items() if metric_applies(k, kind, feats, sessions)}
+    shown = {k: v for k, v in headline(card, devlab, allowed_programs).items()
+             if metric_applies(k, kind, feats, sessions)}
     counts = {}
     for k, (_, i) in shown.items():
         if k in TIMED:
@@ -288,6 +324,52 @@ def measured(card, kind, feats, keys, devlab=False):
 
     return (primary["date"] if primary else None,
             evidence(card["sources"][primary["source"]]) if primary else None, metrics)
+
+
+def historical_program_sessions(card, accepted, kind, feats):
+    """Raw measurements from non-current program hashes, kept out of all current metrics."""
+    if accepted is None:
+        return []
+    sessions = card["performance"].get("sessions", [])
+    out = []
+    for session in sessions:
+        program_hash = session.get("programs_sha256")
+        if program_hash in accepted:
+            continue
+        rows = {}
+        for key, metric in session.get("metrics", {}).items():
+            if not metric_applies(key, kind, feats, sessions):
+                continue
+            row = {name: metric.get(name) for name in ("loom", "baseline", "spec_acceptance")
+                   if metric.get(name) is not None}
+            if row:
+                rows[key] = row
+        if rows:
+            out.append({"date": session.get("date"), "source": evidence(card["sources"].get(session.get("source"))),
+                        "programs_sha256": program_hash,
+                        "program_identity": "recorded" if program_hash else "not_recorded",
+                        "metrics": rows})
+    return out
+
+
+def named_machine_sources(card, current_programs):
+    """Named-machine sources for the exact current program hash, never another build's rows."""
+    if not current_programs:
+        return []
+    out, seen = [], set()
+    for session in card["performance"].get("sessions", []):
+        if session.get("programs_sha256") != current_programs:
+            continue
+        src = card["sources"].get(session.get("source"))
+        if not src or src.get("kind") != "machine":
+            continue
+        key = (session.get("date"), session.get("source"))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"date": session.get("date"), "programs_sha256": current_programs,
+                    "source": evidence(src)})
+    return out
 
 
 def llamacpp_drafting(args):
@@ -333,8 +415,12 @@ def extra_baselines(card):
 def device_results(card, kind, feats, sd, logits=None):
     """The performance and gates of one GPU's view of the card (the keys "performance" and "gates" of a summary)."""
     perf, sessions = card["performance"], card["performance"]["sessions"]
-    date, src, metrics = measured(card, kind, feats, METRICS)
-    dl_date, dl_src, dl_metrics = measured(card, kind, feats, [k for k in METRICS if k in TIMED], devlab=True)
+    current_programs, accepted = accepted_programs(card)
+    date, src, metrics = measured(card, kind, feats, METRICS, allowed_programs=accepted)
+    dl_date, dl_src, dl_metrics = measured(card, kind, feats, [k for k in METRICS if k in TIMED],
+                                           devlab=True, allowed_programs=accepted)
+    historical = historical_program_sessions(card, accepted, kind, feats)
+    machine_sources = named_machine_sources(card, current_programs)
     gates, known = {}, GATES + ([LOGITS_GATE] if logits is not None else [])
     for g in known + sorted(set(card["gates"]) - set(known)):
         if g in card["gates"]:
@@ -345,7 +431,7 @@ def device_results(card, kind, feats, sd, logits=None):
             gates[g] = "unknown" if gate_applies(g, kind, feats) else "n/a"
     counts = {s: sum(1 for v in gates.values() if v == s) for s in ("pass", "fail", "unknown", "n/a")}
     build = re.search(r"\bb(1[0-9]{3,})\b", perf["baseline"]["version"] or "")
-    return {
+    out = {
         **({"baselines": extra_baselines(card)} if perf.get("baselines") else {}),
         **({"baseline": dict(perf["baseline"])} if perf["baseline"].get("name") not in (None, "llama.cpp") else {}),
         "date": date,
@@ -357,7 +443,15 @@ def device_results(card, kind, feats, sd, logits=None):
         "metrics": metrics,
         "not_applicable": [k for k in METRICS if not metric_applies(k, kind, feats, sessions)],
         "devlab": {"date": dl_date, "source": dl_src, "metrics": dl_metrics},
-    }, {"summary": counts, "status": gates}
+    }
+    program_hashes = {s.get("programs_sha256") for s in sessions if s.get("programs_sha256")}
+    if current_programs and (historical or machine_sources or len(program_hashes) > 1):
+        out["programs_sha256"] = current_programs
+    if machine_sources:
+        out["named_machine_sources"] = machine_sources
+    if historical:
+        out["historical_programs"] = historical
+    return out, {"summary": counts, "status": gates}
 
 
 def summarize(card, model, lock, revision, license, readme=None):

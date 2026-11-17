@@ -131,7 +131,7 @@
   function drawer(m) {
     if (m.comparisonAvailable === false) {
       el('drPath').textContent = `models / ${m.id}`;
-      el('dr').innerHTML = `<h2 class="dr-title">${esc(m.name)}</h2>${LOOM.referencePanel(m)}<h3>run it</h3>${quickstartHtml(m)}`;
+      el('dr').innerHTML = `<h2 class="dr-title">${esc(m.name)}</h2>${LOOM.referencePanel(m)}${LOOM.measurementProvenance(m)}<h3>run it</h3>${quickstartHtml(m)}`;
       LOOM.copyButtons(el('dr'));
       return;
     }
@@ -202,6 +202,7 @@
         ])}</div>
       </div>
 
+      ${LOOM.measurementProvenance(m)}
       ${remeasureNote(m.remeasure)}
       ${otherGpus(m)}
 
