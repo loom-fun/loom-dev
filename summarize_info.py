@@ -96,7 +96,7 @@ def gpu_view(info, gpu):
     return out
 
 
-def quickstart(readme, default_gpu=None):
+def quickstart(readme, default_gpu=None, source_revision=None):
     """Preserve source commands and notes, scoped to the card's Quick start section.
 
     Details identify GPUs explicitly. A plain fenced layout belongs only to the
@@ -138,7 +138,8 @@ def quickstart(readme, default_gpu=None):
         install = command(r"^(?:pipx|pip|uv) .*hrx-loom.*$")
         if not (fetch and serve and install):
             return None
-        return {"blocks": parts, "install": install, "fetch": fetch, "serve": serve}
+        return {"blocks": parts, "install": install, "fetch": fetch, "serve": serve,
+                **({"source_revision": source_revision} if source_revision else {})}
 
     if not details:
         value = entry(text)
@@ -154,6 +155,15 @@ def quickstart(readme, default_gpu=None):
         if gpu and value:
             out[gpu] = value
     return out
+
+
+def refresh_quickstart(summary, readme, source_revision):
+    """Refresh README instructions without relabeling frozen model/measurement data.
+
+    The summary revision still identifies its info/model inputs; each quickstart
+    records the exact README revision it came from independently.
+    """
+    return {**summary, "quickstart": quickstart(readme, summary.get("primary_device", DEFAULT_GPU), source_revision)}
 
 
 def package_sources(model, lock):
@@ -371,7 +381,7 @@ def summarize(card, model, lock, revision, license, readme=None):
                                  "context_tokens": d.get("served_context") or out["serve"]["context_tokens"],
                                  "performance": perf, "gates": gates}
     if readme is not None:
-        out["quickstart"] = quickstart(readme, gpu)
+        out["quickstart"] = quickstart(readme, gpu, revision)
     return out
 
 

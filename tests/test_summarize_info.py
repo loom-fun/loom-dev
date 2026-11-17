@@ -122,6 +122,7 @@ class Summaries(unittest.TestCase):
         self.assertIn(":chat-16gb", out["quickstart"]["gfx1201-16gb"]["fetch"])
         self.assertIn("--state_slab_bytes=4mib", out["quickstart"]["gfx1201-16gb"]["serve"])
         self.assertTrue(out["quickstart"]["gfx1150"]["blocks"])
+        self.assertEqual(out["quickstart"]["gfx1150"]["source_revision"], "rev")
         self.assertTrue(out["devices"]["gfx1150"]["fits"])
         self.assertNotIn("quickstart", S.summarize(card, model, lock, "rev", "lic"))
 
@@ -181,7 +182,7 @@ class QuickstartSource(unittest.TestCase):
     def test_published_layouts_and_mutations(self):
         from pathlib import Path
         for path in Path(HERE, 'quickstart_cards').glob('*.md'):
-            text = path.read_text()
+            text = path.read_text(encoding='utf-8')
             gpu = 'radeon-r9700' if 'MXFP4' in path.name else 'strix-halo'
             out = S.quickstart(text, gpu)
             self.assertIn(gpu, out, path.name)
@@ -204,7 +205,7 @@ class QuickstartSource(unittest.TestCase):
 
     def test_shared_request_notes_and_section_boundary(self):
         from pathlib import Path
-        text = Path(HERE, 'quickstart_cards/unsloth-Qwen3-0.6B.md').read_text()
+        text = Path(HERE, 'quickstart_cards/unsloth-Qwen3-0.6B.md').read_text(encoding='utf-8')
         request = '''curl localhost:8080/v1/chat/completions \\
   -d '{"model":"exact","chat_template_kwargs":{"enable_thinking":false}}' '''
         text += '\n```bash\n' + request + '\n```\n\nExplain `--future_flag`.\n## Benchmarks\nDO NOT SHOW\n'
@@ -217,12 +218,27 @@ class QuickstartSource(unittest.TestCase):
 
     def test_multiline_commands_stay_complete(self):
         from pathlib import Path
-        text = Path(HERE, 'quickstart_cards/bartowski-Ornith-1.5-122B.md').read_text()
+        text = Path(HERE, 'quickstart_cards/bartowski-Ornith-1.5-122B.md').read_text(encoding='utf-8')
         text = text.replace(' --materialize=copy', ' '+chr(92)+'\n  --materialize=copy')
         text = text.replace(' --pool_backing=fixed', ' '+chr(92)+'\n  --pool_backing=fixed')
         q = S.quickstart(text, 'strix-halo')['strix-halo']
         self.assertIn('\n  --materialize=copy', q['fetch'])
         self.assertIn('\n  --pool_backing=fixed', q['serve'])
+
+    def test_readme_refresh_keeps_frozen_summary_data_and_separate_provenance(self):
+        from pathlib import Path
+        source = Path(HERE, 'quickstart_cards/unsloth-Qwen3-0.6B.md').read_text(encoding='utf-8')
+        old = {"repo": "org/card", "revision": "frozen-measurement-commit", "primary_device": "strix-halo",
+               "performance": {"metrics": {"decode": {"loom": 123, "llamacpp": 120}}},
+               "devices": {"radeon-r9700": {"state": "not_measured"}}, "quickstart": {"old": {}}}
+        before = copy.deepcopy(old)
+        new = S.refresh_quickstart(old, source, "readme-only-commit")
+        self.assertEqual(old, before)
+        self.assertEqual({k:v for k,v in new.items() if k != "quickstart"},
+                         {k:v for k,v in old.items() if k != "quickstart"})
+        for q in new['quickstart'].values():
+            self.assertEqual(q['source_revision'], 'readme-only-commit')
+        self.assertEqual(new['revision'], 'frozen-measurement-commit')
 
 
 if __name__ == "__main__":

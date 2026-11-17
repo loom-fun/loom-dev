@@ -463,7 +463,7 @@ const LOOM = (() => {
   }
   function quickstartHtml(m, gpu = GPU) {
     const q = sourceQuickstart(m, gpu);
-    const source = `https://huggingface.co/${m.repo}/blob/${m.revision || 'main'}/README.md#quick-start`;
+    const source = `https://huggingface.co/${m.repo}/blob/${q?.source_revision || m.revision || 'main'}/README.md#quick-start`;
     return (q ? q.blocks.map(b => b.kind === 'code'
       ? `<div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code>${esc(b.text)}</code></pre></div>`
       : `<p class="fine" style="white-space:pre-wrap">${esc(b.text)}</p>`).join('')

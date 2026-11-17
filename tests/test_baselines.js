@@ -120,6 +120,16 @@ test('quickstart renders source blocks verbatim, escapes text, and never guesses
   assert.ok(loom.quickstart(m,{id:'another-gpu'}).includes('unavailable'));
 });
 
+test('quickstart source links use independent README pins while frozen summary revision remains intact', () => {
+  const { loom } = site();
+  const q = { install:'pipx install hrx-loom', fetch:'loom-fetch source', serve:'loom-serve source',
+    source_revision:'readme-only-commit', blocks:[{kind:'text',text:'new source notes'}] };
+  const m = {repo:'org/card',revision:'frozen-measurement-commit',quickstart:{'strix-halo':q}};
+  const before=JSON.stringify(m);
+  assert.ok(loom.quickstartHtml(m,{id:'strix-halo'}).includes('/blob/readme-only-commit/README.md'));
+  assert.equal(JSON.stringify(m),before);
+});
+
 test('card SDK, output path, flags and request mutations reach rendered site without frontend edits', () => {
   const { spawnSync } = require('node:child_process');
   const script = `import sys,types,json,pathlib
@@ -141,4 +151,26 @@ print(json.dumps(S.quickstart(text)))`;
     assert.ok(html.includes('exact-selector'));
     if (id !== 'gfx1201-16gb') assert.ok(html.includes('--new_flag=next'));
   }
+});
+
+
+test('staging source snapshots render new flag notes and request fences with their README provenance', () => {
+  const { loom } = site('?org=loom-fun-staging', 'loom-data-staging.js');
+  let checked = 0;
+  for (const m of loom.all) {
+    for (const [id,q] of Object.entries(m.quickstart || {})) {
+      if (!q.blocks?.some(b => b.text.includes('performance measurements use this setting'))) continue;
+      assert.match(q.source_revision, /^[0-9a-f]{40}$/);
+      const html = loom.quickstartHtml(m,{id});
+      assert.ok(html.includes('copies of the fetched package files'));
+      assert.ok(html.includes(`/blob/${q.source_revision}/README.md#quick-start`));
+      if (m.service.kind === 'chat') {
+        const request = q.blocks.find(b => b.kind === 'code' && b.text.startsWith('curl '));
+        assert.ok(request);
+        assert.ok(html.includes(loom.esc(request.text)));
+      }
+      checked++;
+    }
+  }
+  assert.ok(checked > 0);
 });
