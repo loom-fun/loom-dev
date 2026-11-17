@@ -3,7 +3,7 @@
   "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
   "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
   "repo": "loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-  "revision": "b6c3819f331f56b4fdbbd70db05239f82bef2791",
+  "revision": "5170a86eecf5047d194eb3e5e00c4fdbce3cc3d5",
   "status": null,
   "license": null,
   "service": {
@@ -426,71 +426,216 @@
       }
     },
     "gfx1201-16gb": {
-      "state": "not_measured",
-      "required_bytes": null,
-      "fits": true,
-      "shares_section_with": null,
+      "state": null,
+      "remeasure": null,
       "memory_bytes": 15000000000,
-      "context_tokens": 35840
+      "context_tokens": 35840,
+      "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model card:parameter/Nemotron-3.5-Bolt-E4B-DFlash-BF16.gguf --spec-draft-n-max 7 -ngld 99 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 144.1
+              },
+              "decode_2k": {
+                "llamacpp": 128.0
+              },
+              "decode_32k": {
+                "llamacpp": 112.8
+              },
+              "prefill_16k": {
+                "llamacpp": 5069.8
+              },
+              "prefill_1k": {
+                "llamacpp": 4421.7
+              },
+              "prefill_2k": {
+                "llamacpp": 5128.5
+              },
+              "prefill_32k": {
+                "llamacpp": 4423.5
+              },
+              "prefill_8k": {
+                "llamacpp": 5375.8
+              },
+              "streams4": {
+                "llamacpp": 374.9
+              }
+            }
+          }
+        },
+        "date": "2026-11-17",
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": "DFlash, depth 3",
+          "llamacpp": "draft-dflash, n-max 7"
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null
+        },
+        "metrics": {
+          "decode": {
+            "loom": 226.9,
+            "llamacpp": 101.1,
+            "speedup": 2.24
+          },
+          "decode_2k": {
+            "loom": 194.1,
+            "llamacpp": 97.4,
+            "speedup": 1.99
+          },
+          "decode_32k": {
+            "loom": 153.9,
+            "llamacpp": 80.8,
+            "speedup": 1.9
+          },
+          "prefill_1k": {
+            "loom": 7463.8,
+            "llamacpp": 4875.8,
+            "speedup": 1.53
+          },
+          "prefill_2k": {
+            "loom": 8598.6,
+            "llamacpp": 5161.8,
+            "speedup": 1.67
+          },
+          "prefill_8k": {
+            "loom": 8444.9,
+            "llamacpp": 4891.5,
+            "speedup": 1.73
+          },
+          "prefill_16k": {
+            "loom": 7938.0,
+            "llamacpp": 4210.2,
+            "speedup": 1.89
+          },
+          "prefill_32k": {
+            "loom": 5946.4,
+            "llamacpp": 3260.9,
+            "speedup": 1.82
+          },
+          "streams4": {
+            "loom": 506.1,
+            "llamacpp": 310.6,
+            "speedup": 1.63
+          },
+          "spec_acceptance": {
+            "loom": 0.63,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 6,
+          "fail": 2,
+          "unknown": 2,
+          "n/a": 1
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "pass",
+          "consistency": "pass",
+          "spec": "pass",
+          "agent": "fail",
+          "agent_think_off": "fail",
+          "sampling": "pass",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
     }
   },
   "quickstart": {
     "strix-halo": {
-      "blocks": [
-        {
-          "kind": "text",
-          "text": "Open your GPU and copy its commands."
-        },
-        {
-          "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-        },
-        {
-          "kind": "text",
-          "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-        }
-      ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b",
-      "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
     },
     "radeon-r9700": {
-      "blocks": [
-        {
-          "kind": "text",
-          "text": "Open your GPU and copy its commands."
-        },
-        {
-          "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-        },
-        {
-          "kind": "text",
-          "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-        }
-      ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b",
-      "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
     },
     "gfx1201-16gb": {
-      "blocks": [
-        {
-          "kind": "text",
-          "text": "Open your GPU and copy its commands."
-        },
-        {
-          "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-        },
-        {
-          "kind": "text",
-          "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 35,840 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-        }
-      ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --materialize=copy --output=nemotron-3.5-bolt-e4b",
-      "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+      "preset": "chat-16gb",
+      "serve_args": [
+        "--memory_bytes=15000000000",
+        "--state_slab_bytes=4mib",
+        "--weight_slab_bytes=64mib",
+        "--parameter_mode=preload"
+      ]
     }
   }
 }

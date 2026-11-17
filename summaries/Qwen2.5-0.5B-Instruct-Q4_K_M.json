@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-0.5B-Instruct-Q4_K_M",
   "name": "Qwen2.5-0.5B-Instruct",
   "repo": "loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom",
-  "revision": "600fbd00715908db7869e73a1b2636f9ff06c783",
+  "revision": "9b7478779a02950d789913f33152d250aff497a0",
   "status": null,
   "license": null,
   "service": {
@@ -423,71 +423,175 @@
       }
     },
     "gfx1201-16gb": {
-      "state": "not_measured",
-      "required_bytes": null,
-      "fits": true,
-      "shares_section_with": null,
+      "state": null,
+      "remeasure": null,
       "memory_bytes": 15000000000,
-      "context_tokens": 32768
+      "context_tokens": 32768,
+      "performance": {
+        "date": "2026-11-17",
+        "llamacpp_build": "b1375",
+        "drafting": {
+          "loom": null,
+          "llamacpp": null
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null
+        },
+        "metrics": {
+          "decode": {
+            "loom": 680.8,
+            "llamacpp": 362.9,
+            "speedup": 1.88
+          },
+          "decode_2k": {
+            "loom": 521.1,
+            "llamacpp": 345.5,
+            "speedup": 1.51
+          },
+          "decode_32k": {
+            "loom": 292.4,
+            "llamacpp": 246.3,
+            "speedup": 1.19
+          },
+          "prefill_1k": {
+            "loom": 45680.8,
+            "llamacpp": 32382.6,
+            "speedup": 1.41
+          },
+          "prefill_2k": {
+            "loom": 52514.4,
+            "llamacpp": 33641.1,
+            "speedup": 1.56
+          },
+          "prefill_8k": {
+            "loom": 47193.1,
+            "llamacpp": 30088.3,
+            "speedup": 1.57
+          },
+          "prefill_16k": {
+            "loom": 36665.1,
+            "llamacpp": 24261.2,
+            "speedup": 1.51
+          },
+          "prefill_32k": {
+            "loom": 26200.2,
+            "llamacpp": 16893.7,
+            "speedup": 1.55
+          },
+          "streams4": {
+            "loom": 2244.2,
+            "llamacpp": 1059.5,
+            "speedup": 2.12
+          },
+          "spec_acceptance": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [
+          "spec_acceptance"
+        ],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        }
+      },
+      "gates": {
+        "summary": {
+          "pass": 0,
+          "fail": 0,
+          "unknown": 7,
+          "n/a": 4
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "unknown",
+          "compare": "unknown",
+          "vision": "n/a",
+          "consistency": "unknown",
+          "spec": "n/a",
+          "agent": "unknown",
+          "agent_think_off": "n/a",
+          "sampling": "unknown",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
     }
   },
   "quickstart": {
     "strix-halo": {
-      "blocks": [
-        {
-          "kind": "text",
-          "text": "Open your GPU and copy its commands."
-        },
-        {
-          "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-0.5B-Instruct\nloom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-        },
-        {
-          "kind": "text",
-          "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-        }
-      ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-0.5B-Instruct",
-      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+      "preset": "chat",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
     },
     "radeon-r9700": {
-      "blocks": [
-        {
-          "kind": "text",
-          "text": "Open your GPU and copy its commands."
-        },
-        {
-          "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-0.5B-Instruct\nloom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-        },
-        {
-          "kind": "text",
-          "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-        }
-      ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-0.5B-Instruct",
-      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+      "preset": "chat-r9700",
+      "serve_args": [
+        "--pool_backing=fixed",
+        "--parameter_mode=preload"
+      ]
     },
     "gfx1201-16gb": {
-      "blocks": [
-        {
-          "kind": "text",
-          "text": "Open your GPU and copy its commands."
-        },
-        {
-          "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-0.5B-Instruct\nloom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-        },
-        {
-          "kind": "text",
-          "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-        }
-      ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-0.5B-Instruct",
-      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+      "preset": "chat-16gb",
+      "serve_args": [
+        "--memory_bytes=15000000000",
+        "--state_slab_bytes=4mib",
+        "--weight_slab_bytes=64mib",
+        "--parameter_mode=preload"
+      ]
     }
   }
 }

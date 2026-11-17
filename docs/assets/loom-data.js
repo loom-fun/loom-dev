@@ -31,11 +31,11 @@ window.LOOM_DATA = {
   },
   {
    "id": "gfx1201-16gb",
-   "name": "Radeon gfx1201, 16 GB (RX 9070 XT, RX 9070)",
-   "short": "gfx1201 16 GB",
+   "name": "Radeon 9070XT",
+   "short": "Radeon 9070XT",
    "spec": "gfx1201, 16 GB",
    "preset_suffix": "-16gb",
-   "models": 5
+   "models": 22
   },
   {
    "id": "gfx1150",
@@ -473,42 +473,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Flint-loom:chat --materialize=copy --output=flint\nloom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Flint-loom:chat --materialize=copy --output=flint",
-     "serve": "loom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Flint-loom:chat-r9700 --materialize=copy --output=flint\nloom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 36,864 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Flint-loom:chat-r9700 --materialize=copy --output=flint",
-     "serve": "loom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -517,7 +493,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-3-1b-it-Q4_K_M",
    "name": "gemma-3-1b-it",
    "repo": "loom-fun/ggml-org-gemma-3-1b-it-loom",
-   "revision": "09dec8a4c67c1aedb830cdf9ce52d2891ba3bdc8",
+   "revision": "ad38bf0fcf1be1ee5082584b6f42247b15a4d697",
    "status": null,
    "license": "gemma",
    "service": {
@@ -929,71 +905,214 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 32768
+     "context_tokens": 32768,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 331.0
+         },
+         "decode_2k": {
+          "llamacpp": 320.9
+         },
+         "prefill_16k": {
+          "llamacpp": 23836.7
+         },
+         "prefill_1k": {
+          "llamacpp": 16306.5
+         },
+         "prefill_2k": {
+          "llamacpp": 19615.6
+         },
+         "prefill_8k": {
+          "llamacpp": 24284.5
+         },
+         "streams4": {
+          "llamacpp": 886.7
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 399.0,
+        "llamacpp": 211.0,
+        "speedup": 1.89
+       },
+       "decode_2k": {
+        "loom": 377.4,
+        "llamacpp": 205.1,
+        "speedup": 1.84
+       },
+       "decode_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "prefill_1k": {
+        "loom": 28949.5,
+        "llamacpp": 14760.8,
+        "speedup": 1.96
+       },
+       "prefill_2k": {
+        "loom": 32152.6,
+        "llamacpp": 17825.1,
+        "speedup": 1.8
+       },
+       "prefill_8k": {
+        "loom": 32363.0,
+        "llamacpp": 21571.0,
+        "speedup": 1.5
+       },
+       "prefill_16k": {
+        "loom": 31826.6,
+        "llamacpp": 21205.6,
+        "speedup": 1.5
+       },
+       "prefill_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "streams4": {
+        "loom": 1397.3,
+        "llamacpp": 749.0,
+        "speedup": 1.87
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "decode_32k",
+       "prefill_32k",
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 4,
+       "fail": 0,
+       "unknown": 2,
+       "n/a": 5
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "n/a",
+       "consistency": "pass",
+       "spec": "n/a",
+       "agent": "n/a",
+       "agent_think_off": "n/a",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat --materialize=copy --output=gemma-3-1b-it\nloom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat --materialize=copy --output=gemma-3-1b-it",
-     "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat-r9700 --materialize=copy --output=gemma-3-1b-it\nloom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat-r9700 --materialize=copy --output=gemma-3-1b-it",
-     "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat-16gb --materialize=copy --output=gemma-3-1b-it\nloom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat-16gb --materialize=copy --output=gemma-3-1b-it",
-     "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -1432,61 +1551,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it",
-     "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 51,200 tokens per request (its native context is 262,144).\n\n\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it",
-     "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 12,288 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it",
-     "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -1916,42 +2001,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it\nloom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it",
-     "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it\nloom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 26,624 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it",
-     "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -2381,42 +2442,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-loom:chat --materialize=copy --output=gemma-4-31B-it\nloom-serve --model=gemma-4-31B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-loom:chat --materialize=copy --output=gemma-4-31B-it",
-     "serve": "loom-serve --model=gemma-4-31B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-31B-it\nloom-serve --model=gemma-4-31B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 8,192 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-31B-it",
-     "serve": "loom-serve --model=gemma-4-31B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -2859,61 +2896,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-E2B-it-loom:chat --materialize=copy --output=gemma-4-E2B-it\nloom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E2B-it-loom:chat --materialize=copy --output=gemma-4-E2B-it",
-     "serve": "loom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-E2B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-E2B-it\nloom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E2B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-E2B-it",
-     "serve": "loom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-E2B-it-loom:chat-16gb --materialize=copy --output=gemma-4-E2B-it\nloom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E2B-it-loom:chat-16gb --materialize=copy --output=gemma-4-E2B-it",
-     "serve": "loom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -2922,7 +2925,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-E4B-it-Q4_K_M",
    "name": "gemma-4-E4B-it",
    "repo": "loom-fun/unsloth-gemma-4-E4B-it-loom",
-   "revision": "1d1f17f3438cdc9c3d0fc83255c9c8f9a68d38f7",
+   "revision": "f6c721b7ac7fb8ac8366bb1b72a9717f4e4909f6",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -3491,61 +3494,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat --materialize=copy --output=gemma-4-E4B-it\nloom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat --materialize=copy --output=gemma-4-E4B-it",
-     "serve": "loom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat --materialize=copy --output=gemma-4-E4B-it\nloom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat --materialize=copy --output=gemma-4-E4B-it",
-     "serve": "loom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat-16gb --materialize=copy --output=gemma-4-E4B-it\nloom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 73,728 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat-16gb --materialize=copy --output=gemma-4-E4B-it",
-     "serve": "loom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -3554,7 +3523,7 @@ window.LOOM_DATA = {
    "checkpoint": "gpt-oss-20b-Q4_K_M",
    "name": "gpt-oss-20b",
    "repo": "loom-fun/unsloth-gpt-oss-20b-loom",
-   "revision": "c3f57f7026b37e4ab18b801e21242a6f4e9d6ebe",
+   "revision": "6ffbfbe2bcb227692d6e52978d23ff4df5051836",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -4121,61 +4090,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat --materialize=copy --output=gpt-oss-20b\nloom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat --materialize=copy --output=gpt-oss-20b",
-     "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat --materialize=copy --output=gpt-oss-20b\nloom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat --materialize=copy --output=gpt-oss-20b",
-     "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat-16gb --materialize=copy --output=gpt-oss-20b\nloom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 38,912 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat-16gb --materialize=copy --output=gpt-oss-20b",
-     "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -4184,7 +4119,7 @@ window.LOOM_DATA = {
    "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
    "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
    "repo": "loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-   "revision": "59d42c7916ed6d34efcfe6239bdf43c78f798767",
+   "revision": "f0eb33cfe7ac3d9935f0473018ba391d72cad1ad",
    "status": null,
    "license": null,
    "service": {
@@ -4604,71 +4539,218 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 131072
+     "context_tokens": 131072,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 348.9
+         },
+         "decode_2k": {
+          "llamacpp": 310.9
+         },
+         "decode_32k": {
+          "llamacpp": 126.3
+         },
+         "prefill_16k": {
+          "llamacpp": 10664.0
+         },
+         "prefill_1k": {
+          "llamacpp": 15814.2
+         },
+         "prefill_2k": {
+          "llamacpp": 16327.4
+         },
+         "prefill_32k": {
+          "llamacpp": 7345.4
+         },
+         "prefill_8k": {
+          "llamacpp": 13470.1
+         },
+         "streams4": {
+          "llamacpp": 1078.6
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 360.2,
+        "llamacpp": 281.2,
+        "speedup": 1.28
+       },
+       "decode_2k": {
+        "loom": 290.1,
+        "llamacpp": 250.7,
+        "speedup": 1.16
+       },
+       "decode_32k": {
+        "loom": null,
+        "llamacpp": 113.9,
+        "speedup": null
+       },
+       "prefill_1k": {
+        "loom": 21022.0,
+        "llamacpp": 17275.1,
+        "speedup": 1.22
+       },
+       "prefill_2k": {
+        "loom": 23651.2,
+        "llamacpp": 17327.3,
+        "speedup": 1.36
+       },
+       "prefill_8k": {
+        "loom": 19654.4,
+        "llamacpp": 14667.7,
+        "speedup": 1.34
+       },
+       "prefill_16k": {
+        "loom": 15865.7,
+        "llamacpp": 11158.7,
+        "speedup": 1.42
+       },
+       "prefill_32k": {
+        "loom": 11191.0,
+        "llamacpp": 7781.2,
+        "speedup": 1.44
+       },
+       "streams4": {
+        "loom": 1327.9,
+        "llamacpp": 752.6,
+        "speedup": 1.76
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 4,
+       "fail": 0,
+       "unknown": 2,
+       "n/a": 5
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "n/a",
+       "consistency": "pass",
+       "spec": "n/a",
+       "agent": "n/a",
+       "agent_think_off": "n/a",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
-     "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
-     "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
-     "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -5050,42 +5132,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Laguna-XS-2.1-loom:chat --materialize=copy --output=card3\nloom-serve --model=card3 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Laguna-XS-2.1-loom:chat --materialize=copy --output=card3",
-     "serve": "loom-serve --model=card3 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Laguna-XS-2.1-loom:chat-r9700 --materialize=copy --output=card3\nloom-serve --model=card3 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 24,576 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Laguna-XS-2.1-loom:chat-r9700 --materialize=copy --output=card3",
-     "serve": "loom-serve --model=card3 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -5523,61 +5581,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B\nloom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B",
-     "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B\nloom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B",
-     "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat-16gb --materialize=copy --output=LFM2.5-24B-A2B\nloom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 3,072 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat-16gb --materialize=copy --output=LFM2.5-24B-A2B",
-     "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -5586,7 +5610,7 @@ window.LOOM_DATA = {
    "checkpoint": "LFM3-1.7B-Q4_K_M",
    "name": "LFM3-1.7B",
    "repo": "loom-fun/bartowski-LFM3-1.7B-loom",
-   "revision": "d4170a40471fe759901cc832ed470238f2b71252",
+   "revision": "0adbdd11e3a30600cda4d8bf2ba40abf4bf27ebd",
    "status": null,
    "license": null,
    "service": {
@@ -6006,71 +6030,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 262144
+     "context_tokens": 262144,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 382.3,
+        "llamacpp": 233.5,
+        "speedup": 1.64
+       },
+       "decode_2k": {
+        "loom": 362.1,
+        "llamacpp": 229.7,
+        "speedup": 1.58
+       },
+       "decode_32k": {
+        "loom": 285.5,
+        "llamacpp": 195.8,
+        "speedup": 1.46
+       },
+       "prefill_1k": {
+        "loom": 23818.3,
+        "llamacpp": 14005.9,
+        "speedup": 1.7
+       },
+       "prefill_2k": {
+        "loom": 25540.3,
+        "llamacpp": 15893.1,
+        "speedup": 1.61
+       },
+       "prefill_8k": {
+        "loom": 25643.9,
+        "llamacpp": 16596.2,
+        "speedup": 1.55
+       },
+       "prefill_16k": {
+        "loom": 23779.2,
+        "llamacpp": 15511.2,
+        "speedup": 1.53
+       },
+       "prefill_32k": {
+        "loom": 20450.0,
+        "llamacpp": 13454.5,
+        "speedup": 1.52
+       },
+       "streams4": {
+        "loom": 1390.7,
+        "llamacpp": 578.4,
+        "speedup": 2.4
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 8,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat --materialize=copy --output=LFM3-1.7B\nloom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat --materialize=copy --output=LFM3-1.7B",
-     "serve": "loom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat-r9700 --materialize=copy --output=LFM3-1.7B\nloom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat-r9700 --materialize=copy --output=LFM3-1.7B",
-     "serve": "loom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat-16gb --materialize=copy --output=LFM3-1.7B\nloom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat-16gb --materialize=copy --output=LFM3-1.7B",
-     "serve": "loom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -6079,7 +6207,7 @@ window.LOOM_DATA = {
    "checkpoint": "LFM3-Omni-2B-Q4_K_M",
    "name": "LFM3-Omni-2B",
    "repo": "loom-fun/ggml-org-LFM3-Omni-2B-loom",
-   "revision": "f8e5f08de810c1cbb63fcac0b42bc5f8fdd8a2cc",
+   "revision": "9df2feb1d3fdabcf6d9396dde72fc518555e4fb2",
    "status": null,
    "license": null,
    "service": {
@@ -6499,71 +6627,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 128000
+     "context_tokens": 128000,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 383.4,
+        "llamacpp": 249.5,
+        "speedup": 1.54
+       },
+       "decode_2k": {
+        "loom": 362.6,
+        "llamacpp": 244.7,
+        "speedup": 1.48
+       },
+       "decode_32k": {
+        "loom": 283.2,
+        "llamacpp": 206.8,
+        "speedup": 1.37
+       },
+       "prefill_1k": {
+        "loom": 24138.8,
+        "llamacpp": 13846.0,
+        "speedup": 1.74
+       },
+       "prefill_2k": {
+        "loom": 26056.4,
+        "llamacpp": 15788.8,
+        "speedup": 1.65
+       },
+       "prefill_8k": {
+        "loom": 25723.2,
+        "llamacpp": 16532.1,
+        "speedup": 1.56
+       },
+       "prefill_16k": {
+        "loom": 23735.4,
+        "llamacpp": 15483.4,
+        "speedup": 1.53
+       },
+       "prefill_32k": {
+        "loom": 20471.4,
+        "llamacpp": 13461.5,
+        "speedup": 1.52
+       },
+       "streams4": {
+        "loom": 1386.6,
+        "llamacpp": 684.0,
+        "speedup": 2.03
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 8,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat --materialize=copy --output=LFM3-Omni-2B\nloom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat --materialize=copy --output=LFM3-Omni-2B",
-     "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat-r9700 --materialize=copy --output=LFM3-Omni-2B\nloom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat-r9700 --materialize=copy --output=LFM3-Omni-2B",
-     "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat-16gb --materialize=copy --output=LFM3-Omni-2B\nloom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat-16gb --materialize=copy --output=LFM3-Omni-2B",
-     "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -7001,61 +7233,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct",
-     "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct",
-     "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat-16gb --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 104,448 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat-16gb --materialize=copy --output=Llama-3.2-3B-Instruct",
-     "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -7064,7 +7262,7 @@ window.LOOM_DATA = {
    "checkpoint": "Mellum2.1-12B-A2.5B-Thinking-Q4_K_M",
    "name": "Mellum2.1-12B-A2.5B-Thinking",
    "repo": "loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom",
-   "revision": "4cac5b5daac274a274fbac46e70566dde9e6f452",
+   "revision": "067fefc6524fa7377f56d511079049f1c1e53b7b",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -7483,71 +7681,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 43008
+     "context_tokens": 43008,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 227.5,
+        "llamacpp": 116.8,
+        "speedup": 1.95
+       },
+       "decode_2k": {
+        "loom": 206.3,
+        "llamacpp": 113.0,
+        "speedup": 1.83
+       },
+       "decode_32k": {
+        "loom": 160.1,
+        "llamacpp": 102.3,
+        "speedup": 1.57
+       },
+       "prefill_1k": {
+        "loom": 11210.3,
+        "llamacpp": 6047.3,
+        "speedup": 1.85
+       },
+       "prefill_2k": {
+        "loom": 11914.8,
+        "llamacpp": 6343.2,
+        "speedup": 1.88
+       },
+       "prefill_8k": {
+        "loom": 11695.2,
+        "llamacpp": 6660.6,
+        "speedup": 1.76
+       },
+       "prefill_16k": {
+        "loom": 10838.9,
+        "llamacpp": 6261.5,
+        "speedup": 1.73
+       },
+       "prefill_32k": {
+        "loom": 8208.0,
+        "llamacpp": 5505.3,
+        "speedup": 1.49
+       },
+       "streams4": {
+        "loom": 539.0,
+        "llamacpp": 329.5,
+        "speedup": 1.64
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 8,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking",
-     "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking",
-     "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat-16gb --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 43,008 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat-16gb --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking",
-     "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -7977,42 +8279,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat --materialize=copy --output=MiniCPM-V-4.7-35B-A3B\nloom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat --materialize=copy --output=MiniCPM-V-4.7-35B-A3B",
-     "serve": "loom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat-r9700 --materialize=copy --output=MiniCPM-V-4.7-35B-A3B\nloom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat-r9700 --materialize=copy --output=MiniCPM-V-4.7-35B-A3B",
-     "serve": "loom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -8214,23 +8492,7 @@ window.LOOM_DATA = {
      "required_bytes": null
     }
    },
-   "quickstart": {
-    "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.1.0\"\nloom-fetch https://huggingface.co/loom-fun/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom/resolve/main/model.json --preset=chat-r9700 --materialize=copy --output=qwen3.8-27b-mxfp4\nloom-serve --model=qwen3.8-27b-mxfp4/model.json '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
-      },
-      {
-       "kind": "text",
-       "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests.\n\nOn the AMD Radeon AI PRO R9700, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 110,592 tokens per request there (its native context is 262,144); the package files are the same on every GPU.\n\nOn the AMD Radeon AI PRO R9700, the Quick start fetches the `chat-r9700` preset of `model.json`: the default preset with `context_capacity` 110,592, `pool_capacity` 110,592 for its 32 GB. The programs, weights and tokenizer are the same.\n\nAMD Ryzen AI Max+ 395 \"Strix Halo\" (gfx1151): not a target of this package, not measured: the fast path is FP8 WMMA (gfx12); gfx11 (Strix Halo) has none, and the GGUF Q4_K_M card serves it. Owner decision 2026-11-15: MXFP4 safetensors cards have no Strix rows."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.1.0\"",
-     "fetch": "loom-fetch https://huggingface.co/loom-fun/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom/resolve/main/model.json --preset=chat-r9700 --materialize=copy --output=qwen3.8-27b-mxfp4",
-     "serve": "loom-serve --model=qwen3.8-27b-mxfp4/model.json '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
-    }
-   }
+   "quickstart": {}
   },
   {
    "schema": "loom-summary/1",
@@ -8662,42 +8924,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Muse-Glimmer-30B-loom:chat --materialize=copy --output=final\nloom-serve --model=final '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Muse-Glimmer-30B-loom:chat --materialize=copy --output=final",
-     "serve": "loom-serve --model=final '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Muse-Glimmer-30B-loom:chat-r9700 --materialize=copy --output=final\nloom-serve --model=final '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 32,768 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Muse-Glimmer-30B-loom:chat-r9700 --materialize=copy --output=final",
-     "serve": "loom-serve --model=final '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -9124,42 +9362,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Nanbeige4.3-33B-loom:chat --materialize=copy --output=Nanbeige4.3-33B\nloom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Nanbeige4.3-33B-loom:chat --materialize=copy --output=Nanbeige4.3-33B",
-     "serve": "loom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Nanbeige4.3-33B-loom:chat-r9700 --materialize=copy --output=Nanbeige4.3-33B\nloom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 37,888 tokens per request (its native context is 524,288).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Nanbeige4.3-33B-loom:chat-r9700 --materialize=copy --output=Nanbeige4.3-33B",
-     "serve": "loom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -9168,7 +9382,7 @@ window.LOOM_DATA = {
    "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
    "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
    "repo": "loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-   "revision": "b6c3819f331f56b4fdbbd70db05239f82bef2791",
+   "revision": "5170a86eecf5047d194eb3e5e00c4fdbce3cc3d5",
    "status": null,
    "license": null,
    "service": {
@@ -9591,71 +9805,216 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 35840
+     "context_tokens": 35840,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model card:parameter/Nemotron-3.5-Bolt-E4B-DFlash-BF16.gguf --spec-draft-n-max 7 -ngld 99 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 144.1
+         },
+         "decode_2k": {
+          "llamacpp": 128.0
+         },
+         "decode_32k": {
+          "llamacpp": 112.8
+         },
+         "prefill_16k": {
+          "llamacpp": 5069.8
+         },
+         "prefill_1k": {
+          "llamacpp": 4421.7
+         },
+         "prefill_2k": {
+          "llamacpp": 5128.5
+         },
+         "prefill_32k": {
+          "llamacpp": 4423.5
+         },
+         "prefill_8k": {
+          "llamacpp": 5375.8
+         },
+         "streams4": {
+          "llamacpp": 374.9
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": "DFlash, depth 3",
+       "llamacpp": "draft-dflash, n-max 7"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 226.9,
+        "llamacpp": 101.1,
+        "speedup": 2.24
+       },
+       "decode_2k": {
+        "loom": 194.1,
+        "llamacpp": 97.4,
+        "speedup": 1.99
+       },
+       "decode_32k": {
+        "loom": 153.9,
+        "llamacpp": 80.8,
+        "speedup": 1.9
+       },
+       "prefill_1k": {
+        "loom": 7463.8,
+        "llamacpp": 4875.8,
+        "speedup": 1.53
+       },
+       "prefill_2k": {
+        "loom": 8598.6,
+        "llamacpp": 5161.8,
+        "speedup": 1.67
+       },
+       "prefill_8k": {
+        "loom": 8444.9,
+        "llamacpp": 4891.5,
+        "speedup": 1.73
+       },
+       "prefill_16k": {
+        "loom": 7938.0,
+        "llamacpp": 4210.2,
+        "speedup": 1.89
+       },
+       "prefill_32k": {
+        "loom": 5946.4,
+        "llamacpp": 3260.9,
+        "speedup": 1.82
+       },
+       "streams4": {
+        "loom": 506.1,
+        "llamacpp": 310.6,
+        "speedup": 1.63
+       },
+       "spec_acceptance": {
+        "loom": 0.63,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 6,
+       "fail": 2,
+       "unknown": 2,
+       "n/a": 1
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "pass",
+       "consistency": "pass",
+       "spec": "pass",
+       "agent": "fail",
+       "agent_think_off": "fail",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b",
-     "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b",
-     "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 35,840 tokens per request (its native context is 131,072).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --materialize=copy --output=nemotron-3.5-bolt-e4b",
-     "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -10089,42 +10448,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/lmstudio-community-Ornith-1.0-35B-loom:chat --materialize=copy --output=Ornith-1.0-35B\nloom-serve --model=Ornith-1.0-35B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/lmstudio-community-Ornith-1.0-35B-loom:chat --materialize=copy --output=Ornith-1.0-35B",
-     "serve": "loom-serve --model=Ornith-1.0-35B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/lmstudio-community-Ornith-1.0-35B-loom:chat-r9700 --materialize=copy --output=Ornith-1.0-35B\nloom-serve --model=Ornith-1.0-35B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/lmstudio-community-Ornith-1.0-35B-loom:chat-r9700 --materialize=copy --output=Ornith-1.0-35B",
-     "serve": "loom-serve --model=Ornith-1.0-35B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -10566,61 +10901,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat --materialize=copy --output=Ornith-1.0-9B\nloom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat --materialize=copy --output=Ornith-1.0-9B",
-     "serve": "loom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat --materialize=copy --output=Ornith-1.0-9B\nloom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat --materialize=copy --output=Ornith-1.0-9B",
-     "serve": "loom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat-16gb --materialize=copy --output=Ornith-1.0-9B\nloom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 224,256 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat-16gb --materialize=copy --output=Ornith-1.0-9B",
-     "serve": "loom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -10868,23 +11169,7 @@ window.LOOM_DATA = {
      "required_bytes": 82400000000
     }
    },
-   "quickstart": {
-    "strix-halo": {
-     "blocks": [
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-122B-loom:chat --materialize=copy --output=Ornith-1.5-122B\nloom-serve --model=Ornith-1.5-122B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
-      },
-      {
-       "kind": "text",
-       "text": "On a stock host (8 MiB memlock) start loom-serve as `systemd-run --user --pty --same-dir -p SystemCallFilter=~io_uring_setup -p SystemCallErrorNumber=ENOSYS loom-serve ...` (no root; IREE falls back to its POSIX proactor), or raise `ulimit -l`.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests.\n\nAMD Radeon AI PRO R9700 (gfx1201, 32 GB): this package does not fit its 32 GB (it needs about 82 GB)."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-122B-loom:chat --materialize=copy --output=Ornith-1.5-122B",
-     "serve": "loom-serve --model=Ornith-1.5-122B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
-    }
-   }
+   "quickstart": {}
   },
   {
    "schema": "loom-summary/1",
@@ -11316,42 +11601,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-35B-A3B-loom:chat --materialize=copy --output=Ornith-1.5-35B-A3B\nloom-serve --model=Ornith-1.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-35B-A3B-loom:chat --materialize=copy --output=Ornith-1.5-35B-A3B",
-     "serve": "loom-serve --model=Ornith-1.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-35B-A3B-loom:chat-r9700 --materialize=copy --output=Ornith-1.5-35B-A3B\nloom-serve --model=Ornith-1.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 55,296 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-35B-A3B-loom:chat-r9700 --materialize=copy --output=Ornith-1.5-35B-A3B",
-     "serve": "loom-serve --model=Ornith-1.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -11360,7 +11621,7 @@ window.LOOM_DATA = {
    "checkpoint": "Ornith-1.5-9B-Q4_K_M",
    "name": "Ornith-1.5-9B",
    "repo": "loom-fun/bartowski-Ornith-1.5-9B-loom",
-   "revision": "13b05bfc0a916a21a8a8f288f9eb2f702052307b",
+   "revision": "a8213b6d8a5f75503009924b2fe6186733a19c19",
    "status": null,
    "license": "mit",
    "service": {
@@ -11783,71 +12044,173 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 93184
+     "context_tokens": 93184,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": "DFlash, depth 3",
+       "llamacpp": "draft-dflash, n-max 8"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 155.7,
+        "llamacpp": 89.2,
+        "speedup": 1.75
+       },
+       "decode_2k": {
+        "loom": 132.3,
+        "llamacpp": 85.8,
+        "speedup": 1.54
+       },
+       "decode_32k": {
+        "loom": 106.1,
+        "llamacpp": 73.4,
+        "speedup": 1.45
+       },
+       "prefill_1k": {
+        "loom": 5179.9,
+        "llamacpp": 3249.6,
+        "speedup": 1.59
+       },
+       "prefill_2k": {
+        "loom": 5484.4,
+        "llamacpp": 3405.7,
+        "speedup": 1.61
+       },
+       "prefill_8k": {
+        "loom": 5632.8,
+        "llamacpp": 3511.1,
+        "speedup": 1.6
+       },
+       "prefill_16k": {
+        "loom": 5399.8,
+        "llamacpp": 3389.0,
+        "speedup": 1.59
+       },
+       "prefill_32k": {
+        "loom": 4890.8,
+        "llamacpp": 3142.6,
+        "speedup": 1.56
+       },
+       "streams4": {
+        "loom": 346.8,
+        "llamacpp": 235.7,
+        "speedup": 1.47
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 10,
+       "n/a": 1
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "unknown",
+       "consistency": "unknown",
+       "spec": "unknown",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat --materialize=copy --output=Ornith-1.5-9B\nloom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat --materialize=copy --output=Ornith-1.5-9B",
-     "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat --materialize=copy --output=Ornith-1.5-9B\nloom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat --materialize=copy --output=Ornith-1.5-9B",
-     "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat-16gb --materialize=copy --output=Ornith-1.5-9B\nloom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 93,184 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat-16gb --materialize=copy --output=Ornith-1.5-9B",
-     "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -11856,7 +12219,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-0.5B-Instruct-Q4_K_M",
    "name": "Qwen2.5-0.5B-Instruct",
    "repo": "loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom",
-   "revision": "600fbd00715908db7869e73a1b2636f9ff06c783",
+   "revision": "9b7478779a02950d789913f33152d250aff497a0",
    "status": null,
    "license": null,
    "service": {
@@ -12276,71 +12639,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 32768
+     "context_tokens": 32768,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 680.8,
+        "llamacpp": 362.9,
+        "speedup": 1.88
+       },
+       "decode_2k": {
+        "loom": 521.1,
+        "llamacpp": 345.5,
+        "speedup": 1.51
+       },
+       "decode_32k": {
+        "loom": 292.4,
+        "llamacpp": 246.3,
+        "speedup": 1.19
+       },
+       "prefill_1k": {
+        "loom": 45680.8,
+        "llamacpp": 32382.6,
+        "speedup": 1.41
+       },
+       "prefill_2k": {
+        "loom": 52514.4,
+        "llamacpp": 33641.1,
+        "speedup": 1.56
+       },
+       "prefill_8k": {
+        "loom": 47193.1,
+        "llamacpp": 30088.3,
+        "speedup": 1.57
+       },
+       "prefill_16k": {
+        "loom": 36665.1,
+        "llamacpp": 24261.2,
+        "speedup": 1.51
+       },
+       "prefill_32k": {
+        "loom": 26200.2,
+        "llamacpp": 16893.7,
+        "speedup": 1.55
+       },
+       "streams4": {
+        "loom": 2244.2,
+        "llamacpp": 1059.5,
+        "speedup": 2.12
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 7,
+       "n/a": 4
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "n/a",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-0.5B-Instruct\nloom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-0.5B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-0.5B-Instruct\nloom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-0.5B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-0.5B-Instruct\nloom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-0.5B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -12349,7 +12816,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-1.5B-Instruct-Q4_K_M",
    "name": "Qwen2.5-1.5B-Instruct",
    "repo": "loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom",
-   "revision": "39233dce3b9d2cb5c7e79c7e2acf9de812efbb63",
+   "revision": "dd0b48244db04de48f50d74bbfd6fc2d7aa5ca0f",
    "status": null,
    "license": null,
    "service": {
@@ -12769,71 +13236,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 32768
+     "context_tokens": 32768,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 365.6,
+        "llamacpp": 210.5,
+        "speedup": 1.74
+       },
+       "decode_2k": {
+        "loom": 304.2,
+        "llamacpp": 202.8,
+        "speedup": 1.5
+       },
+       "decode_32k": {
+        "loom": 146.5,
+        "llamacpp": 154.4,
+        "speedup": 0.95
+       },
+       "prefill_1k": {
+        "loom": 23285.4,
+        "llamacpp": 14097.7,
+        "speedup": 1.65
+       },
+       "prefill_2k": {
+        "loom": 24813.0,
+        "llamacpp": 14691.6,
+        "speedup": 1.69
+       },
+       "prefill_8k": {
+        "loom": 22557.0,
+        "llamacpp": 13670.9,
+        "speedup": 1.65
+       },
+       "prefill_16k": {
+        "loom": 18423.3,
+        "llamacpp": 11732.6,
+        "speedup": 1.57
+       },
+       "prefill_32k": {
+        "loom": 12398.5,
+        "llamacpp": 8613.3,
+        "speedup": 1.44
+       },
+       "streams4": {
+        "loom": 1266.7,
+        "llamacpp": 724.7,
+        "speedup": 1.75
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 7,
+       "n/a": 4
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "n/a",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-1.5B-Instruct\nloom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-1.5B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-1.5B-Instruct\nloom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-1.5B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-1.5B-Instruct\nloom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-1.5B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -13260,42 +13831,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-32B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-32B-Instruct\nloom-serve --model=Qwen2.5-32B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-32B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-32B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-32B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-32B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-32B-Instruct\nloom-serve --model=Qwen2.5-32B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 24,576 tokens per request (its native context is 32,768).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-32B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-32B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-32B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -13304,7 +13851,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-7B-Instruct-Q4_K_M",
    "name": "Qwen2.5-7B-Instruct",
    "repo": "loom-fun/bartowski-Qwen2.5-7B-Instruct-loom",
-   "revision": "a4fc608708eeb2de058f0e6b4cab816851ea691e",
+   "revision": "c235016dd1fd3ee9f3cb29d61199b3dd93d294fe",
    "status": null,
    "license": null,
    "service": {
@@ -13723,71 +14270,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 32768
+     "context_tokens": 32768,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 117.1,
+        "llamacpp": 109.4,
+        "speedup": 1.07
+       },
+       "decode_2k": {
+        "loom": 107.7,
+        "llamacpp": 105.2,
+        "speedup": 1.02
+       },
+       "decode_32k": {
+        "loom": 69.2,
+        "llamacpp": 70.9,
+        "speedup": 0.98
+       },
+       "prefill_1k": {
+        "loom": 6105.7,
+        "llamacpp": 4351.5,
+        "speedup": 1.4
+       },
+       "prefill_2k": {
+        "loom": 6462.0,
+        "llamacpp": 4370.6,
+        "speedup": 1.48
+       },
+       "prefill_8k": {
+        "loom": 6031.8,
+        "llamacpp": 3893.4,
+        "speedup": 1.55
+       },
+       "prefill_16k": {
+        "loom": 5321.3,
+        "llamacpp": 3331.6,
+        "speedup": 1.6
+       },
+       "prefill_32k": {
+        "loom": 3826.8,
+        "llamacpp": 2621.6,
+        "speedup": 1.46
+       },
+       "streams4": {
+        "loom": 429.2,
+        "llamacpp": 302.0,
+        "speedup": 1.42
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 7,
+       "n/a": 4
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "n/a",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-7B-Instruct\nloom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-7B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-7B-Instruct\nloom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-7B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen2.5-7B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-7B-Instruct\nloom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-7B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-7B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -13796,7 +14447,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-VL-7B-Instruct-Q4_K_M",
    "name": "Qwen2.5-VL-7B-Instruct",
    "repo": "loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom",
-   "revision": "b0bc406780f6d7c1485c2aa7e5cacd5673574576",
+   "revision": "112fd1a0cb52d306ca2eaa8c3cdf043fb109bfd1",
    "status": null,
    "license": null,
    "service": {
@@ -14219,71 +14870,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 128000
+     "context_tokens": 128000,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 117.3,
+        "llamacpp": 108.8,
+        "speedup": 1.08
+       },
+       "decode_2k": {
+        "loom": 108.0,
+        "llamacpp": 104.5,
+        "speedup": 1.03
+       },
+       "decode_32k": {
+        "loom": 68.7,
+        "llamacpp": 70.5,
+        "speedup": 0.97
+       },
+       "prefill_1k": {
+        "loom": 6041.5,
+        "llamacpp": 4345.2,
+        "speedup": 1.39
+       },
+       "prefill_2k": {
+        "loom": 6421.5,
+        "llamacpp": 4342.9,
+        "speedup": 1.48
+       },
+       "prefill_8k": {
+        "loom": 5928.9,
+        "llamacpp": 3901.0,
+        "speedup": 1.52
+       },
+       "prefill_16k": {
+        "loom": 5298.5,
+        "llamacpp": 3343.6,
+        "speedup": 1.58
+       },
+       "prefill_32k": {
+        "loom": 3797.5,
+        "llamacpp": 2624.6,
+        "speedup": 1.45
+       },
+       "streams4": {
+        "loom": 430.9,
+        "llamacpp": 299.6,
+        "speedup": 1.44
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 7,
+       "n/a": 4
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "unknown",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "n/a",
+       "agent_think_off": "n/a",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-VL-7B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-VL-7B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-VL-7B-Instruct",
-     "serve": "loom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -14292,7 +15047,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-0.6B-Q4_K_M",
    "name": "Qwen3-0.6B",
    "repo": "loom-fun/unsloth-Qwen3-0.6B-loom",
-   "revision": "2a68a0bbc14a278e809706bcbc95afc42de16c16",
+   "revision": "e87b5c9dbbb8b8493bdea1781798ffc640060743",
    "status": null,
    "license": null,
    "service": {
@@ -14712,71 +15467,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 40960
+     "context_tokens": 40960,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 500.9,
+        "llamacpp": 314.9,
+        "speedup": 1.59
+       },
+       "decode_2k": {
+        "loom": 360.5,
+        "llamacpp": 273.7,
+        "speedup": 1.32
+       },
+       "decode_32k": {
+        "loom": 119.1,
+        "llamacpp": 107.3,
+        "speedup": 1.11
+       },
+       "prefill_1k": {
+        "loom": 37584.6,
+        "llamacpp": 26047.3,
+        "speedup": 1.44
+       },
+       "prefill_2k": {
+        "loom": 41642.4,
+        "llamacpp": 26964.8,
+        "speedup": 1.54
+       },
+       "prefill_8k": {
+        "loom": 29071.6,
+        "llamacpp": 20286.2,
+        "speedup": 1.43
+       },
+       "prefill_16k": {
+        "loom": 20173.3,
+        "llamacpp": 13444.5,
+        "speedup": 1.5
+       },
+       "prefill_32k": {
+        "loom": 11734.0,
+        "llamacpp": 8248.5,
+        "speedup": 1.42
+       },
+       "streams4": {
+        "loom": 1709.7,
+        "llamacpp": 910.7,
+        "speedup": 1.88
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 8,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-0.6B-loom:chat --materialize=copy --output=Qwen3-0.6B\nloom-serve --model=Qwen3-0.6B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-0.6B-loom:chat --materialize=copy --output=Qwen3-0.6B",
-     "serve": "loom-serve --model=Qwen3-0.6B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-0.6B-loom:chat-r9700 --materialize=copy --output=Qwen3-0.6B\nloom-serve --model=Qwen3-0.6B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-0.6B-loom:chat-r9700 --materialize=copy --output=Qwen3-0.6B",
-     "serve": "loom-serve --model=Qwen3-0.6B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-0.6B-loom:chat-16gb --materialize=copy --output=Qwen3-0.6B\nloom-serve --model=Qwen3-0.6B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-0.6B-loom:chat-16gb --materialize=copy --output=Qwen3-0.6B",
-     "serve": "loom-serve --model=Qwen3-0.6B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -14785,7 +15644,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-1.7B-Q4_K_M",
    "name": "Qwen3-1.7B",
    "repo": "loom-fun/ggml-org-Qwen3-1.7B-loom",
-   "revision": "d0d0bb4fd83d1f58aa2340b77c234956790c97e3",
+   "revision": "ec36f0ca0e22978685786bb9fac35e59b5e7e801",
    "status": null,
    "license": null,
    "service": {
@@ -15205,71 +16064,218 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 40960
+     "context_tokens": 40960,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 306.4
+         },
+         "decode_2k": {
+          "llamacpp": 271.9
+         },
+         "decode_32k": {
+          "llamacpp": 108.2
+         },
+         "prefill_16k": {
+          "llamacpp": 9546.0
+         },
+         "prefill_1k": {
+          "llamacpp": 13903.2
+         },
+         "prefill_2k": {
+          "llamacpp": 14481.5
+         },
+         "prefill_32k": {
+          "llamacpp": 6467.6
+         },
+         "prefill_8k": {
+          "llamacpp": 12195.3
+         },
+         "streams4": {
+          "llamacpp": 768.1
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 314.7,
+        "llamacpp": 248.8,
+        "speedup": 1.26
+       },
+       "decode_2k": {
+        "loom": 248.7,
+        "llamacpp": 220.7,
+        "speedup": 1.13
+       },
+       "decode_32k": {
+        "loom": 103.9,
+        "llamacpp": 98.3,
+        "speedup": 1.06
+       },
+       "prefill_1k": {
+        "loom": 20645.4,
+        "llamacpp": 14908.9,
+        "speedup": 1.38
+       },
+       "prefill_2k": {
+        "loom": 22045.2,
+        "llamacpp": 15288.7,
+        "speedup": 1.44
+       },
+       "prefill_8k": {
+        "loom": 18253.7,
+        "llamacpp": 13069.9,
+        "speedup": 1.4
+       },
+       "prefill_16k": {
+        "loom": 14237.2,
+        "llamacpp": 9878.8,
+        "speedup": 1.44
+       },
+       "prefill_32k": {
+        "loom": 8694.1,
+        "llamacpp": 6759.8,
+        "speedup": 1.29
+       },
+       "streams4": {
+        "loom": 1130.2,
+        "llamacpp": 645.2,
+        "speedup": 1.75
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 8,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-1.7B-loom:chat --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-1.7B-loom:chat --materialize=copy --output=Qwen3-1.7B",
-     "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-1.7B-loom:chat-r9700 --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-1.7B-loom:chat-r9700 --materialize=copy --output=Qwen3-1.7B",
-     "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-1.7B-loom:chat-16gb --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-1.7B-loom:chat-16gb --materialize=copy --output=Qwen3-1.7B",
-     "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -15278,7 +16284,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-14B-Q4_K_M",
    "name": "Qwen3-14B",
    "repo": "loom-fun/ggml-org-Qwen3-14B-loom",
-   "revision": "d873577ab6ae5b7f7c2ef2cdeb09a4e74ffe0d21",
+   "revision": "42b4ad1fe86793a4b9599d4b1ed06e16e8ef6087",
    "status": null,
    "license": null,
    "service": {
@@ -15697,71 +16703,215 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 27648
+     "context_tokens": 27648,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 63.6
+         },
+         "decode_2k": {
+          "llamacpp": 61.2
+         },
+         "decode_32k": {
+          "llamacpp": 41.0
+         },
+         "prefill_16k": {
+          "llamacpp": 1679.1
+         },
+         "prefill_1k": {
+          "llamacpp": 2072.1
+         },
+         "prefill_2k": {
+          "llamacpp": 2120.3
+         },
+         "prefill_32k": {
+          "llamacpp": 1319.4
+         },
+         "prefill_8k": {
+          "llamacpp": 1922.6
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 65.6,
+        "llamacpp": 58.0,
+        "speedup": 1.13
+       },
+       "decode_2k": {
+        "loom": 60.5,
+        "llamacpp": 55.3,
+        "speedup": 1.09
+       },
+       "decode_32k": {
+        "loom": null,
+        "llamacpp": 36.0,
+        "speedup": null
+       },
+       "prefill_1k": {
+        "loom": 3143.4,
+        "llamacpp": 2291.7,
+        "speedup": 1.37
+       },
+       "prefill_2k": {
+        "loom": 3351.9,
+        "llamacpp": 2289.9,
+        "speedup": 1.46
+       },
+       "prefill_8k": {
+        "loom": 3094.2,
+        "llamacpp": 1956.0,
+        "speedup": 1.58
+       },
+       "prefill_16k": {
+        "loom": 2656.7,
+        "llamacpp": 1614.5,
+        "speedup": 1.65
+       },
+       "prefill_32k": {
+        "loom": null,
+        "llamacpp": 1177.4,
+        "speedup": null
+       },
+       "streams4": {
+        "loom": 245.7,
+        "llamacpp": 167.8,
+        "speedup": 1.46
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 6,
+       "fail": 0,
+       "unknown": 2,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "n/a",
+       "consistency": "pass",
+       "spec": "n/a",
+       "agent": "pass",
+       "agent_think_off": "pass",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat --materialize=copy --output=Qwen3-14B\nloom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat --materialize=copy --output=Qwen3-14B",
-     "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat --materialize=copy --output=Qwen3-14B\nloom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat --materialize=copy --output=Qwen3-14B",
-     "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat-16gb --materialize=copy --output=Qwen3-14B\nloom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 27,648 tokens per request (its native context is 40,960).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat-16gb --materialize=copy --output=Qwen3-14B",
-     "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -16191,42 +17341,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom:chat --materialize=copy --output=Qwen3-30B-A3B-Instruct-2507\nloom-serve --model=Qwen3-30B-A3B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom:chat --materialize=copy --output=Qwen3-30B-A3B-Instruct-2507",
-     "serve": "loom-serve --model=Qwen3-30B-A3B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom:chat-r9700 --materialize=copy --output=Qwen3-30B-A3B-Instruct-2507\nloom-serve --model=Qwen3-30B-A3B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 99,328 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom:chat-r9700 --materialize=copy --output=Qwen3-30B-A3B-Instruct-2507",
-     "serve": "loom-serve --model=Qwen3-30B-A3B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -16665,61 +17791,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom:chat --materialize=copy --output=Qwen3-4B-Instruct-2507\nloom-serve --model=Qwen3-4B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom:chat --materialize=copy --output=Qwen3-4B-Instruct-2507",
-     "serve": "loom-serve --model=Qwen3-4B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom:chat-r9700 --materialize=copy --output=Qwen3-4B-Instruct-2507\nloom-serve --model=Qwen3-4B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 196,608 tokens per request (its native context is 262,144).\n\n\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom:chat-r9700 --materialize=copy --output=Qwen3-4B-Instruct-2507",
-     "serve": "loom-serve --model=Qwen3-4B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom:chat-16gb --materialize=copy --output=Qwen3-4B-Instruct-2507\nloom-serve --model=Qwen3-4B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 76,800 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom:chat-16gb --materialize=copy --output=Qwen3-4B-Instruct-2507",
-     "serve": "loom-serve --model=Qwen3-4B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -16728,7 +17820,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-4B-Q4_K_M",
    "name": "Qwen3-4B",
    "repo": "loom-fun/ggml-org-Qwen3-4B-loom",
-   "revision": "4c4c295f26ad07fb5a5ebdccb2987687af5b65fc",
+   "revision": "525654fda5947114a4ab840852a117c4ed56d575",
    "status": null,
    "license": null,
    "service": {
@@ -17147,71 +18239,216 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 40960
+     "context_tokens": 40960,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model card:parameter/Qwen3-4B-DFlash.Q8_0.gguf --spec-draft-n-max 15 -ngld 99 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 119.4
+         },
+         "decode_2k": {
+          "llamacpp": 121.4
+         },
+         "decode_32k": {
+          "llamacpp": 62.9
+         },
+         "prefill_16k": {
+          "llamacpp": 3888.0
+         },
+         "prefill_1k": {
+          "llamacpp": 5898.1
+         },
+         "prefill_2k": {
+          "llamacpp": 6049.8
+         },
+         "prefill_32k": {
+          "llamacpp": 2669.7
+         },
+         "prefill_8k": {
+          "llamacpp": 4990.8
+         },
+         "streams4": {
+          "llamacpp": 408.2
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": "DFlash, depth 3",
+       "llamacpp": "draft-dflash, n-max 15"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 233.5,
+        "llamacpp": 128.1,
+        "speedup": 1.82
+       },
+       "decode_2k": {
+        "loom": 175.7,
+        "llamacpp": 129.0,
+        "speedup": 1.36
+       },
+       "decode_32k": {
+        "loom": 71.3,
+        "llamacpp": 73.3,
+        "speedup": 0.97
+       },
+       "prefill_1k": {
+        "loom": 8342.3,
+        "llamacpp": 6481.3,
+        "speedup": 1.29
+       },
+       "prefill_2k": {
+        "loom": 8838.5,
+        "llamacpp": 6483.9,
+        "speedup": 1.36
+       },
+       "prefill_8k": {
+        "loom": 7698.4,
+        "llamacpp": 5252.8,
+        "speedup": 1.47
+       },
+       "prefill_16k": {
+        "loom": 5908.4,
+        "llamacpp": 4034.7,
+        "speedup": 1.46
+       },
+       "prefill_32k": {
+        "loom": 3410.2,
+        "llamacpp": 2814.3,
+        "speedup": 1.21
+       },
+       "streams4": {
+        "loom": 616.8,
+        "llamacpp": 392.0,
+        "speedup": 1.57
+       },
+       "spec_acceptance": {
+        "loom": 0.34,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 7,
+       "fail": 0,
+       "unknown": 2,
+       "n/a": 2
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "n/a",
+       "consistency": "pass",
+       "spec": "pass",
+       "agent": "pass",
+       "agent_think_off": "pass",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat --materialize=copy --output=Qwen3-4B\nloom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat --materialize=copy --output=Qwen3-4B",
-     "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat --materialize=copy --output=Qwen3-4B\nloom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat --materialize=copy --output=Qwen3-4B",
-     "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat-16gb --materialize=copy --output=Qwen3-4B\nloom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat-16gb --materialize=copy --output=Qwen3-4B",
-     "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -17220,7 +18457,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-8B-Q4_K_M",
    "name": "Qwen3-8B",
    "repo": "loom-fun/unsloth-Qwen3-8B-loom",
-   "revision": "46f7df90d6573ad9ed53fc0b2986410eff140b4e",
+   "revision": "e9e15d9915692ad98d6ed3deb3c1fbf23282b8b4",
    "status": null,
    "license": null,
    "service": {
@@ -17785,61 +19022,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-8B-loom:chat --materialize=copy --output=Qwen3-8B\nloom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-8B-loom:chat --materialize=copy --output=Qwen3-8B",
-     "serve": "loom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-8B-loom:chat --materialize=copy --output=Qwen3-8B\nloom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-8B-loom:chat --materialize=copy --output=Qwen3-8B",
-     "serve": "loom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-8B-loom:chat-16gb --materialize=copy --output=Qwen3-8B\nloom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 36,864 tokens per request (its native context is 40,960).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-8B-loom:chat-16gb --materialize=copy --output=Qwen3-8B",
-     "serve": "loom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -18269,42 +19472,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct\nloom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct",
-     "serve": "loom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct\nloom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 94,208 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct",
-     "serve": "loom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -18313,7 +19492,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3-VL-4B-Instruct-Q4_K_M",
    "name": "Qwen3-VL-4B-Instruct",
    "repo": "loom-fun/unsloth-Qwen3-VL-4B-Instruct-loom",
-   "revision": "603226936dd30e51bac2a61cc2bfa874e15df0b3",
+   "revision": "4948550b0f8e6ed6272097abee652b0d9968f0e6",
    "status": null,
    "license": null,
    "service": {
@@ -18885,61 +20064,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-4B-Instruct-loom:chat --materialize=copy --output=Qwen3-VL-4B-Instruct\nloom-serve --model=Qwen3-VL-4B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-4B-Instruct-loom:chat --materialize=copy --output=Qwen3-VL-4B-Instruct",
-     "serve": "loom-serve --model=Qwen3-VL-4B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-4B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-VL-4B-Instruct\nloom-serve --model=Qwen3-VL-4B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 187,392 tokens per request (its native context is 262,144).\n\n\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-4B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-VL-4B-Instruct",
-     "serve": "loom-serve --model=Qwen3-VL-4B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-4B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen3-VL-4B-Instruct\nloom-serve --model=Qwen3-VL-4B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 76,800 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-4B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen3-VL-4B-Instruct",
-     "serve": "loom-serve --model=Qwen3-VL-4B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -19382,61 +20527,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat --materialize=copy --output=Qwen3-VL-8B-Instruct\nloom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat --materialize=copy --output=Qwen3-VL-8B-Instruct",
-     "serve": "loom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-VL-8B-Instruct\nloom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 165,888 tokens per request (its native context is 262,144).\n\n\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-VL-8B-Instruct",
-     "serve": "loom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen3-VL-8B-Instruct\nloom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 59,392 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen3-VL-8B-Instruct",
-     "serve": "loom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -19878,61 +20989,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-0.8B-loom:chat --materialize=copy --output=Qwen3.5-0.8B\nloom-serve --model=Qwen3.5-0.8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-0.8B-loom:chat --materialize=copy --output=Qwen3.5-0.8B",
-     "serve": "loom-serve --model=Qwen3.5-0.8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-0.8B-loom:chat --materialize=copy --output=Qwen3.5-0.8B\nloom-serve --model=Qwen3.5-0.8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-0.8B-loom:chat --materialize=copy --output=Qwen3.5-0.8B",
-     "serve": "loom-serve --model=Qwen3.5-0.8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-0.8B-loom:chat-16gb --materialize=copy --output=Qwen3.5-0.8B\nloom-serve --model=Qwen3.5-0.8B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-0.8B-loom:chat-16gb --materialize=copy --output=Qwen3.5-0.8B",
-     "serve": "loom-serve --model=Qwen3.5-0.8B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -20374,61 +21451,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat --materialize=copy --output=Qwen3.5-2B\nloom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat --materialize=copy --output=Qwen3.5-2B",
-     "serve": "loom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat --materialize=copy --output=Qwen3.5-2B\nloom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat --materialize=copy --output=Qwen3.5-2B",
-     "serve": "loom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat-16gb --materialize=copy --output=Qwen3.5-2B\nloom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat-16gb --materialize=copy --output=Qwen3.5-2B",
-     "serve": "loom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -20862,42 +21905,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-35B-A3B-loom:chat --materialize=copy --output=Qwen3.5-35B-A3B\nloom-serve --model=Qwen3.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-35B-A3B-loom:chat --materialize=copy --output=Qwen3.5-35B-A3B",
-     "serve": "loom-serve --model=Qwen3.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-35B-A3B-loom:chat-r9700 --materialize=copy --output=Qwen3.5-35B-A3B\nloom-serve --model=Qwen3.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 56,320 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-35B-A3B-loom:chat-r9700 --materialize=copy --output=Qwen3.5-35B-A3B",
-     "serve": "loom-serve --model=Qwen3.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -20906,7 +21925,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-4B-Q4_K_M",
    "name": "Qwen3.5-4B",
    "repo": "loom-fun/unsloth-Qwen3.5-4B-loom",
-   "revision": "6db4412e49d16ed70f8580008c2f77e05a538ed2",
+   "revision": "92ce91e9e81cbab450589c46923a0d2da8abb4fe",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -21667,80 +22686,34 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-4B-loom:chat --materialize=copy --output=Qwen3.5-4B\nloom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-4B-loom:chat --materialize=copy --output=Qwen3.5-4B",
-     "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-4B-loom:chat --materialize=copy --output=Qwen3.5-4B\nloom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-4B-loom:chat --materialize=copy --output=Qwen3.5-4B",
-     "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-4B-loom:chat-16gb --materialize=copy --output=Qwen3.5-4B\nloom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 151,552 tokens per request (its native context is 262,144).\n\n\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-4B-loom:chat-16gb --materialize=copy --output=Qwen3.5-4B",
-     "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1150": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-4B-loom:chat-gfx1150 --materialize=copy --output=Qwen3.5-4B\nloom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=14000000000 --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=14000000000` bounds the memory pool: this package serves up to 63,488 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-4B-loom:chat-gfx1150 --materialize=copy --output=Qwen3.5-4B",
-     "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=14000000000 --parameter_mode=preload"
+     "preset": "chat-gfx1150",
+     "serve_args": [
+      "--memory_bytes=14000000000",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -22183,61 +23156,27 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-9B-loom:chat --materialize=copy --output=Qwen3.5-9B\nloom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-9B-loom:chat --materialize=copy --output=Qwen3.5-9B",
-     "serve": "loom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-9B-loom:chat --materialize=copy --output=Qwen3.5-9B\nloom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-9B-loom:chat --materialize=copy --output=Qwen3.5-9B",
-     "serve": "loom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-9B-loom:chat-16gb --materialize=copy --output=Qwen3.5-9B\nloom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 87,040 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-9B-loom:chat-16gb --materialize=copy --output=Qwen3.5-9B",
-     "serve": "loom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -22671,42 +23610,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-27B-loom:chat --materialize=copy --output=Qwen3.6-27B\nloom-serve --model=Qwen3.6-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-27B-loom:chat --materialize=copy --output=Qwen3.6-27B",
-     "serve": "loom-serve --model=Qwen3.6-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-27B-loom:chat-r9700 --materialize=copy --output=Qwen3.6-27B\nloom-serve --model=Qwen3.6-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 69,632 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-27B-loom:chat-r9700 --materialize=copy --output=Qwen3.6-27B",
-     "serve": "loom-serve --model=Qwen3.6-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -23143,42 +24058,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-35B-A3B-loom:chat --materialize=copy --output=Qwen3.6-35B-A3B\nloom-serve --model=Qwen3.6-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-35B-A3B-loom:chat --materialize=copy --output=Qwen3.6-35B-A3B",
-     "serve": "loom-serve --model=Qwen3.6-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-35B-A3B-loom:chat-r9700 --materialize=copy --output=Qwen3.6-35B-A3B\nloom-serve --model=Qwen3.6-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 84,992 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-35B-A3B-loom:chat-r9700 --materialize=copy --output=Qwen3.6-35B-A3B",
-     "serve": "loom-serve --model=Qwen3.6-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -23608,42 +24499,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen3.8-27B-loom:chat --materialize=copy --output=qwen3.8-27b\nloom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen3.8-27B-loom:chat --materialize=copy --output=qwen3.8-27b",
-     "serve": "loom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Qwen3.8-27B-loom:chat-r9700 --materialize=copy --output=qwen3.8-27b\nloom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 120,832 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen3.8-27B-loom:chat-r9700 --materialize=copy --output=qwen3.8-27b",
-     "serve": "loom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -23891,23 +24758,7 @@ window.LOOM_DATA = {
      "required_bytes": 118400000000
     }
    },
-   "quickstart": {
-    "strix-halo": {
-     "blocks": [
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --materialize=copy --output=Qwen3.8-Flash-Next-loom\nloom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
-      },
-      {
-       "kind": "text",
-       "text": "On a stock host (8 MiB memlock) start loom-serve as `systemd-run --user --pty --same-dir -p SystemCallFilter=~io_uring_setup -p SystemCallErrorNumber=ENOSYS loom-serve ...` (no root; IREE falls back to its POSIX proactor), or raise `ulimit -l`.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests.\n\nAMD Radeon AI PRO R9700 (gfx1201, 32 GB): this package does not fit its 32 GB (it needs about 118 GB)."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --materialize=copy --output=Qwen3.8-Flash-Next-loom",
-     "serve": "loom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
-    }
-   }
+   "quickstart": {}
   },
   {
    "schema": "loom-summary/1",
@@ -24335,42 +25186,18 @@ window.LOOM_DATA = {
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/InternScience-Sage-A1.5-loom:chat --materialize=copy --output=Sage-A1.5\nloom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/InternScience-Sage-A1.5-loom:chat --materialize=copy --output=Sage-A1.5",
-     "serve": "loom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/InternScience-Sage-A1.5-loom:chat-r9700 --materialize=copy --output=Sage-A1.5\nloom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 138,240 tokens per request (its native context is 262,144).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/InternScience-Sage-A1.5-loom:chat-r9700 --materialize=copy --output=Sage-A1.5",
-     "serve": "loom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -24379,7 +25206,7 @@ window.LOOM_DATA = {
    "checkpoint": "Spark-X2.5-4B-Q4_K_M",
    "name": "Spark-X2.5-4B",
    "repo": "loom-fun/XHToken-Spark-X2.5-4B-loom",
-   "revision": "14e97408914c22b94d85d0baabc6349d7d5bfdb1",
+   "revision": "0d489d9957e7764257394393e73426af7e859b5f",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -24799,71 +25626,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 75776
+     "context_tokens": 75776,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 164.5,
+        "llamacpp": 130.4,
+        "speedup": 1.26
+       },
+       "decode_2k": {
+        "loom": 153.0,
+        "llamacpp": 125.3,
+        "speedup": 1.22
+       },
+       "decode_32k": {
+        "loom": 115.9,
+        "llamacpp": 100.2,
+        "speedup": 1.16
+       },
+       "prefill_1k": {
+        "loom": 8779.5,
+        "llamacpp": 5006.6,
+        "speedup": 1.75
+       },
+       "prefill_2k": {
+        "loom": 9051.8,
+        "llamacpp": 5654.8,
+        "speedup": 1.6
+       },
+       "prefill_8k": {
+        "loom": 8891.3,
+        "llamacpp": 5890.8,
+        "speedup": 1.51
+       },
+       "prefill_16k": {
+        "loom": 7663.1,
+        "llamacpp": 5486.8,
+        "speedup": 1.4
+       },
+       "prefill_32k": {
+        "loom": 6482.8,
+        "llamacpp": 4762.4,
+        "speedup": 1.36
+       },
+       "streams4": {
+        "loom": 577.1,
+        "llamacpp": 306.5,
+        "speedup": 1.88
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 8,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/XHToken-Spark-X2.5-4B-loom:chat --materialize=copy --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/XHToken-Spark-X2.5-4B-loom:chat --materialize=copy --output=Spark-X2.5-4B",
-     "serve": "loom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/XHToken-Spark-X2.5-4B-loom:chat-r9700 --materialize=copy --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 195,584 tokens per request (its native context is 1,048,576).\n\n\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/XHToken-Spark-X2.5-4B-loom:chat-r9700 --materialize=copy --output=Spark-X2.5-4B",
-     "serve": "loom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/XHToken-Spark-X2.5-4B-loom:chat-16gb --materialize=copy --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 75,776 tokens per request (its native context is 1,048,576).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/XHToken-Spark-X2.5-4B-loom:chat-16gb --materialize=copy --output=Spark-X2.5-4B",
-     "serve": "loom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   },
@@ -24872,7 +25803,7 @@ window.LOOM_DATA = {
    "checkpoint": "Spark-X2.6-4B-Q4_K_M",
    "name": "Spark-X2.6-4B",
    "repo": "loom-fun/bartowski-Spark-X2.6-4B-loom",
-   "revision": "aca113a175fb2fdb15cfea839a3960e173c37590",
+   "revision": "d956ea0b19d86531cc7e0748914c346136082ac7",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -25292,71 +26223,175 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 75776
+     "context_tokens": 75776,
+     "performance": {
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null
+      },
+      "metrics": {
+       "decode": {
+        "loom": 159.6,
+        "llamacpp": 131.6,
+        "speedup": 1.21
+       },
+       "decode_2k": {
+        "loom": 148.7,
+        "llamacpp": 125.3,
+        "speedup": 1.19
+       },
+       "decode_32k": {
+        "loom": 113.8,
+        "llamacpp": 100.2,
+        "speedup": 1.14
+       },
+       "prefill_1k": {
+        "loom": 8607.0,
+        "llamacpp": 5122.3,
+        "speedup": 1.68
+       },
+       "prefill_2k": {
+        "loom": 8841.7,
+        "llamacpp": 5724.5,
+        "speedup": 1.54
+       },
+       "prefill_8k": {
+        "loom": 8775.0,
+        "llamacpp": 5974.8,
+        "speedup": 1.47
+       },
+       "prefill_16k": {
+        "loom": 7883.6,
+        "llamacpp": 5555.8,
+        "speedup": 1.42
+       },
+       "prefill_32k": {
+        "loom": 6564.2,
+        "llamacpp": 4812.8,
+        "speedup": 1.36
+       },
+       "streams4": {
+        "loom": 558.5,
+        "llamacpp": 299.1,
+        "speedup": 1.87
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      }
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 8,
+       "n/a": 3
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
     "strix-halo": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat --materialize=copy --output=Spark-X2.6-4B\nloom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat --materialize=copy --output=Spark-X2.6-4B",
-     "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "radeon-r9700": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat-r9700 --materialize=copy --output=Spark-X2.6-4B\nloom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 194,560 tokens per request (its native context is 1,048,576).\n\n\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat-r9700 --materialize=copy --output=Spark-X2.6-4B",
-     "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+     "preset": "chat-r9700",
+     "serve_args": [
+      "--pool_backing=fixed",
+      "--parameter_mode=preload"
+     ]
     },
     "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat-16gb --materialize=copy --output=Spark-X2.6-4B\nloom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "On this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 75,776 tokens per request (its native context is 1,048,576).\n\n\n\n`--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nThe server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat-16gb --materialize=copy --output=Spark-X2.6-4B",
-     "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+     "preset": "chat-16gb",
+     "serve_args": [
+      "--memory_bytes=15000000000",
+      "--state_slab_bytes=4mib",
+      "--weight_slab_bytes=64mib",
+      "--parameter_mode=preload"
+     ]
     }
    }
   }
