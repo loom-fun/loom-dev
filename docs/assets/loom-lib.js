@@ -23,10 +23,15 @@ const LOOM = (() => {
   }
   // The summary as seen on `gpu`, or null when the card has no results there. A GPU without its own memory budget
   // or context runs the primary GPU's (the card records them only where they differ).
+  // A GPU that shares another's performance section (RX 9070 XT: the R9700's, the same programs on the same silicon) shows
+  // that GPU's table, marked `sharedWith`; it has its own preset, memory budget and context.
   function onGpu(s, gpu) {
     const all = views(s), d = all[gpu.id];
-    if (!d || !d.performance) return null;
-    return { ...s, gpuViews: all, performance: d.performance, gates: d.gates, remeasure: d.remeasure || null,
+    if (!d) return null;
+    const src = d.performance ? d : d.fits && d.shares_section_with ? all[d.shares_section_with] : null;
+    if (!src || !src.performance) return null;
+    return { ...s, gpuViews: all, performance: src.performance, gates: src.gates, remeasure: src.remeasure || null,
+      sharedWith: d.performance ? null : d.shares_section_with,
       serve: { ...s.serve, memory_bytes: d.memory_bytes || s.serve.memory_bytes, context_tokens: d.context_tokens || s.serve.context_tokens } };
   }
   // The --preset a model is fetched with on `gpu`: model.json's first preset plus the GPU's suffix when the package
@@ -395,15 +400,24 @@ const LOOM = (() => {
     };
   }
 
-  function quickstart(m) {
-    const out = m.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-');
-    const mem = m.serve.memory_bytes;
-    const memArg = !mem ? '<bytes>' : mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem;
-    const p = preset(m);
+  // The commands for a model on a GPU, as its card prints them (SDK 0.2): the preset and loom-serve flags come from the
+  // card's own Quick start block (summary.quickstart); a summary without one gets the GPU's preset and the memory budget.
+  const SDK = '0.2.0';
+  const outName = m => m.name;
+  function fetchCmd(m, gpu = GPU) {
+    const q = (m.quickstart || {})[gpu.id], p = q ? q.preset : preset(m, gpu);
+    return `loom-fetch huggingface:${m.repo}${p ? `:${p}` : ''} --materialize=copy --output=${outName(m)}`;
+  }
+  function serveCmd(m, gpu = GPU) {
+    const q = (m.quickstart || {})[gpu.id], mem = (views(m)[gpu.id] || {}).memory_bytes || m.serve.memory_bytes;
+    const args = q ? q.serve_args : [mem ? `--memory_bytes=${mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem}` : '--memory_bytes=<bytes>'];
+    return ['loom-serve', `--model=${outName(m)}`, "'--device=amdgpu://?completion_spin_ns=4294967295'", ...args.map(a => /[^\w=.:\/-]/.test(a) ? `'${a}'` : a)].join(' ');
+  }
+  function quickstart(m, gpu = GPU) {
     return [
-      'pipx install "hrx-loom[hf]==0.1.0"',
-      `loom-fetch https://huggingface.co/${m.repo}/resolve/main/model.json --output=${out}${p ? ` --preset ${p}` : ''}`,
-      `loom-serve --model=${out}/model.json --device=${m.serve.device || 'amdgpu'} --memory_bytes=${memArg}`,
+      `pipx install "hrx-loom[hf]==${SDK}"`,
+      fetchCmd(m, gpu),
+      serveCmd(m, gpu),
       '',
       '# OpenAI-compatible, on :8080',
       `curl -s localhost:8080${m.service.endpoint} -H 'content-type: application/json' \\`,
@@ -500,6 +514,6 @@ const LOOM = (() => {
     get GPU() { return GPU; }, GPUS, gpuOf, gpuLink, link, views, preset, gpuToggle, setGpu, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
-    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, copyButtons, reveal,
+    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, fetchCmd, serveCmd, SDK, copyButtons, reveal,
   };
 })();

@@ -77,6 +77,29 @@ class Summaries(unittest.TestCase):
         alone = S.summarize(S.gpu_view(S.normalize(card), "strix-halo") | {"schema": "loom-card/2"}, model, lock, "rev", "lic")
         self.assertEqual(out["performance"], alone["performance"])
 
+    def test_quickstart_and_shared_devices(self):
+        # SDK 0.2 card with the RX 9070 XT (shares the R9700's section, no table of its own) and Strix Point
+        card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
+        card = copy.deepcopy(card)
+        card["devices"]["radeon-rx9070xt"] = {"state": "not_measured", "memory_bytes": 15000000000, "served_context": 18432,
+                                              "shares_section_with": "radeon-r9700",
+                                              "serve_args": ["--memory_bytes=15000000000", "--state_slab_bytes=4mib"]}
+        card["devices"]["gfx1150"] = {"state": "not_measured", "serve_args": [], "served_context": 16384}
+        readme = ("<details>\n<summary>AMD Radeon RX 9070 XT (gfx1201, 16 GB)</summary>\n\n```bash\n"
+                  "loom-fetch huggingface:loom-fun/x-loom:chat-9070xt --materialize=copy --output=X\n"
+                  "loom-serve --model=X '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib\n"
+                  "```\n</details>\n<details>\n<summary>AMD Radeon 890M (gfx1150)</summary>\n```bash\n"
+                  "loom-fetch huggingface:loom-fun/x-loom --materialize=copy --output=X\n"
+                  "loom-serve --model=X '--device=amdgpu://?completion_spin_ns=4294967295'\n```\n</details>")
+        out = S.summarize(card, model, lock, "rev", "lic", readme)
+        x = out["devices"]["radeon-rx9070xt"]
+        self.assertEqual((x["fits"], x["shares_section_with"], x["context_tokens"]), (True, "radeon-r9700", 18432))
+        self.assertEqual(out["quickstart"]["radeon-rx9070xt"],
+                         {"preset": "chat-9070xt", "serve_args": ["--memory_bytes=15000000000", "--state_slab_bytes=4mib"]})
+        self.assertEqual(out["quickstart"]["gfx1150"], {"preset": None, "serve_args": []})
+        self.assertTrue(out["devices"]["gfx1150"]["fits"])
+        self.assertNotIn("quickstart", S.summarize(card, model, lock, "rev", "lic"))
+
     def test_gufo_gate_is_dropped(self):
         card, model, lock, _ = load("v3-unsloth-Qwen3-8B")
         card = copy.deepcopy(card)

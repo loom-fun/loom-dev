@@ -98,6 +98,11 @@
     if (!devs.length) return '';
     const rows = devs.map(([g, d]) => {
       const gpu = LOOM.gpuOf(g), name = esc(gpu.short);
+      const go0 = `<a class="u" data-keep-href data-gpu-id="${esc(g)}" href="${esc(LOOM.gpuLink(gpu, `models.html#${encodeURIComponent(m.id)}`))}">show →</a>`;
+      if (!d.performance && d.fits) {   // serves here with no table of its own: it shares another GPU's, or is not measured yet
+        const from = d.shares_section_with && LOOM.gpuOf(d.shares_section_with).short;
+        return [name, `${from ? `same programs as the ${esc(from)}, its numbers apply` : 'serves here, performance not measured yet'} · ${go0}`];
+      }
       if (!d.performance) return [name, `<span class="faint">${esc((d.state || 'not measured').replace(/_/g, ' '))}</span>`];
       const mm = LOOM.bench(d.performance).metrics, t = k => (mm[k] || {}).loom, sp = k => (mm[k] || {}).speedup;
       const cell = (label, k) => t(k) != null ? `${label} ${num(t(k))} tok/s${sp(k) != null ? ` (${times(sp(k))})` : ''}` : null;
@@ -105,7 +110,7 @@
       const go = `<a class="u" data-keep-href data-gpu-id="${esc(g)}" href="${esc(LOOM.gpuLink(gpu, `models.html#${encodeURIComponent(m.id)}`))}">show →</a>`;
       return [name, [d.remeasure ? '<span title="re-measured or carried over from an earlier build">↻</span>' : null, cell('decode', 'decode'), cell('prefill 2k', 'prefill_2k'), cell('4 streams', 'streams4'), `gates ${gs.pass}/${gs.pass + gs.fail + gs.unknown}`, go].filter(Boolean).join(' · ')];
     });
-    return `<h3>other GPUs</h3><p class="fine">The numbers above are from ${esc(LOOM.GPU.name)}.</p>${kvList(rows)}`;
+    return `<h3>other GPUs</h3><p class="fine">${m.sharedWith ? `The numbers above were measured on the ${esc(LOOM.gpuOf(m.sharedWith).name)}: the ${esc(LOOM.GPU.short)} serves the same programs with its own preset and memory budget.` : `The numbers above are from ${esc(LOOM.GPU.name)}.`}</p>${kvList(rows)}`;
   }
 
   // A link to a model that has no results on the selected GPU: say so, and link to the GPUs that have them.
@@ -113,10 +118,13 @@
     const s0 = LOOM.all.find(x => x.checkpoint === id);
     if (!s0) return false;
     const on = Object.entries(LOOM.views(s0)).filter(([, d]) => d.performance).map(([g]) => LOOM.gpuOf(g));
+    const here = LOOM.views(s0)[LOOM.GPU.id];
+    const serves = here && here.fits;   // a fleet-data fit with nothing measured here yet: still give its commands
     el('drPath').textContent = `models / ${id}`;
     el('dr').innerHTML = `
       <h2 class="dr-title" style="margin-top:10px">${esc(s0.name)}</h2>
-      <p>No results on ${esc(LOOM.GPU.name)} yet.${on.length ? ` Measured on ${on.map(g => `<a class="u" data-keep-href data-gpu-id="${esc(g.id)}" href="${esc(LOOM.gpuLink(g, `models.html#${encodeURIComponent(id)}`))}">${esc(g.short)}</a>`).join(', ')}.` : ''}</p>`;
+      <p>${serves ? `Serves on ${esc(LOOM.GPU.name)}; performance is not measured there yet.` : `No results on ${esc(LOOM.GPU.name)} yet.`}${on.length ? ` Measured on ${on.map(g => `<a class="u" data-keep-href data-gpu-id="${esc(g.id)}" href="${esc(LOOM.gpuLink(g, `models.html#${encodeURIComponent(id)}`))}">${esc(g.short)}</a>`).join(', ')}.` : ''}</p>${serves ? `<div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code>${esc(quickstart(s0))}</code></pre></div>` : ''}`;
+    LOOM.copyButtons(el('dr'));
     return true;
   }
 

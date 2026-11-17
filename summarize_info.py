@@ -24,6 +24,7 @@ import glob
 import json
 import os
 import re
+import shlex
 import sys
 
 from huggingface_hub import HfApi, hf_hub_download
@@ -32,7 +33,9 @@ SCHEMA = "loom-summary/1"
 CARD_SCHEMAS = ("loom-card/2", "loom-card/3")
 LEGACY_SCHEMAS = ("loom-card/2",)   # one GPU: Strix Halo, gates/performance/roofline at the top level
 DEFAULT_GPU = "strix-halo"
-GPUS = ("strix-halo", "radeon-r9700")   # display order; must match loom-skills card_lib.GPUS
+GPUS = ("strix-halo", "radeon-r9700", "radeon-rx9070xt", "gfx1150")   # display order (loom-skills card_lib.GPU_ORDER); ids are card_lib.GPUS keys
+# How a card's Quick start block names its GPU (the <summary> line); the first pattern that matches wins.
+QUICKSTART_GPU = (("gfx1151", "strix-halo"), ("R9700", "radeon-r9700"), ("9070 XT", "radeon-rx9070xt"), ("gfx1150", "gfx1150"))
 RETIRED_GATES = ("needle", "needle_full", "gufo")   # tolerated in old cards, dropped on read (card_lib.RETIRED_GATES)
 METRICS = ["decode", "decode_2k", "decode_32k", "prefill_1k", "prefill_2k", "prefill_8k", "prefill_16k",
            "prefill_32k", "streams4", "spec_acceptance"]
@@ -91,6 +94,29 @@ def gpu_view(info, gpu):
     for k in ("performance", "roofline", "state", "required_bytes", "memory_bytes", "served_context"):
         if d.get(k) is not None:
             out[k] = d[k]
+    return out
+
+
+def quickstart(readme):
+    """{gpu: {"preset": name or None, "serve_args": [...]}} from the card README's per-GPU Quick start blocks (<details>): the
+    preset its loom-fetch names and the loom-serve flags beyond --model and --device. The card is the one place that knows
+    them (GPU flags, --parameter_mode=preload, package flags), so the site shows exactly what the card prints. {} for a card
+    with no such blocks (a card before the per-GPU Quick start)."""
+    out = {}
+    for summary, body in re.findall(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", readme or "", re.S):
+        gpu = next((g for pat, g in QUICKSTART_GPU if pat in summary), None)
+        fetch = re.search(r"^loom-fetch (.*)$", body, re.M)
+        serve = re.search(r"^loom-serve (.*)$", body, re.M)
+        if not (gpu and fetch and serve):
+            continue
+        src = fetch.group(1).split()[0]
+        preset = re.search(r"--preset[= ](\S+)", fetch.group(1))
+        if src.startswith("huggingface:"):   # SDK 0.2: huggingface:OWNER/REPO[:PRESET]
+            preset = src.split(":", 2)[2] if src.count(":") > 1 else None
+        else:
+            preset = preset.group(1) if preset else None
+        args = [a for a in shlex.split(serve.group(1)) if not a.startswith(("--model=", "--device="))]
+        out[gpu] = {"preset": preset, "serve_args": args}
     return out
 
 
@@ -265,7 +291,7 @@ def device_results(card, kind, feats, sd, logits=None):
     }, {"summary": counts, "status": gates}
 
 
-def summarize(card, model, lock, revision, license):
+def summarize(card, model, lock, revision, license, readme=None):
     """The summary of a card: loom-card/2, or loom-card/3 (the primary GPU's results at the top level, the other
     GPUs under "devices")."""
     card = normalize(card)
@@ -282,6 +308,12 @@ def summarize(card, model, lock, revision, license):
             d = card["devices"][g]
             if not has_results(d):
                 out["devices"][g] = {"state": d.get("state") or "not_measured", "required_bytes": d.get("required_bytes")}
+                if d.get("state") != "unsupported" and ("serve_args" in d or "shares_section_with" in d):
+                    # the package serves here (a fleet/devices entry) with no table of its own: a GPU that shares another's
+                    # section (RX 9070 XT: the R9700's) or one whose performance is not measured yet
+                    out["devices"][g].update({"fits": True, "shares_section_with": d.get("shares_section_with"),
+                                              "memory_bytes": d.get("memory_bytes"),
+                                              "context_tokens": d.get("served_context") or out["serve"]["context_tokens"]})
                 continue
             view = gpu_view(card, g)
             kind = "decision" if out["service"]["kind"] == "decision" else "chat"
@@ -290,6 +322,8 @@ def summarize(card, model, lock, revision, license):
             out["devices"][g] = {"state": None, "remeasure": remeasure_summary(d), "memory_bytes": d.get("memory_bytes"),
                                  "context_tokens": d.get("served_context") or out["serve"]["context_tokens"],
                                  "performance": perf, "gates": gates}
+        if readme is not None:
+            out["quickstart"] = quickstart(readme)
     return out
 
 
@@ -348,8 +382,12 @@ def load(api, repo_id):
     if card.get("schema") not in CARD_SCHEMAS:
         return info, None, f"info.json schema is {card.get('schema')!r}, expected one of {CARD_SCHEMAS}"
     license = (info.card_data or {}).get("license") if info.card_data else None
+    readme = None
+    if "README.md" in names:
+        with open(hf_hub_download(repo_id, "README.md", revision=info.sha), encoding="utf-8") as f:
+            readme = f.read()
     try:
-        return info, summarize(card, get("model.json"), get("model.json.lock"), info.sha, license), None
+        return info, summarize(card, get("model.json"), get("model.json.lock"), info.sha, license, readme), None
     except (KeyError, TypeError, ValueError) as e:
         return info, None, f"{type(e).__name__}: {e}"
 
