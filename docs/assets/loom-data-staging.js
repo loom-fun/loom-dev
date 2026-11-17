@@ -4401,7 +4401,7 @@ window.LOOM_DATA = {
    "checkpoint": "Laguna-XS-2.1-Q4_K_M",
    "name": "Laguna-XS-2.1",
    "repo": "loom-fun-staging/ggml-org-Laguna-XS-2.1-loom",
-   "revision": "392e1682c689cfe1b48e43acc59139cabd97b281",
+   "revision": "ae43d29e974cc4611fdbdfe0a943442d9b5274e2",
    "status": null,
    "license": null,
    "service": {
