@@ -3464,7 +3464,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-31B-it-qat-UD-Q4_K_XL",
    "name": "gemma-4-31B-it-qat",
    "repo": "loom-fun/unsloth-gemma-4-31B-it-qat-loom",
-   "revision": "b37a6a72843a1e57e528c0e99cc15e282926ab0c",
+   "revision": "320701ea8ce656f87c612910a08beb192807da96",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -3485,8 +3485,8 @@ window.LOOM_DATA = {
    },
    "serve": {
     "device": "amdgpu",
-    "memory_bytes": 110000000000,
-    "context_tokens": 65536,
+    "memory_bytes": 34000000000,
+    "context_tokens": 10240,
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
@@ -3499,11 +3499,11 @@ window.LOOM_DATA = {
     "audio": "unknown",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "no",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
-    "speculative_decoding": "n/a",
+    "speculative_decoding": "no",
     "thinking": "yes",
     "tool_calling": "yes"
    },
@@ -3716,7 +3716,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-31B-it-qat-q4_0-unquantized",
      "serve": "loom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "b37a6a72843a1e57e528c0e99cc15e282926ab0c"
+     "source_revision": "320701ea8ce656f87c612910a08beb192807da96"
     }
    },
    "shared_request": {
@@ -3732,10 +3732,10 @@ window.LOOM_DATA = {
      },
      {
       "kind": "text",
-      "text": "On the AMD Radeon AI PRO R9700, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 10,240 tokens per request there (its native context is 262,144); the package files are the same on every GPU.\n\nOn the AMD Radeon AI PRO R9700, the Quick start fetches the `chat-r9700` preset of `model.json`: the default preset with `context_capacity` 10,240 for its 32 GB. The programs, weights and tokenizer are the same.\n\nAMD Ryzen AI Max+ 395 \"Strix Halo\" (gfx1151): not a target of this package, not measured: Not included in this qualified R9700-only release because final Strix Halo qualification evidence is incomplete."
+      "text": "On the AMD Radeon AI PRO R9700, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 10,240 tokens per request there (its native context is 262,144); the package files are the same on every GPU.\n\nOn the AMD Radeon AI PRO R9700, the Quick start fetches the `chat-r9700` preset of `model.json`: the default preset with `context_capacity` 10,240 for its 32 GB. The programs, weights and tokenizer are the same.\n\nAMD Ryzen AI Max+ 395 \"Strix Halo\" (gfx1151): not a target of this package, not measured: Not included in this qualified R9700-only release: the final Strix Halo qualification run exceeded the 150-minute budget and its final artifact was not retained after cancellation, so final repeated correctness and sampled baseline results could not be verified."
      }
     ],
-    "source_revision": "b37a6a72843a1e57e528c0e99cc15e282926ab0c"
+    "source_revision": "320701ea8ce656f87c612910a08beb192807da96"
    }
   },
   {
