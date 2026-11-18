@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-2B-Q4_K_M",
   "name": "Qwen3.5-2B",
   "repo": "loom-fun/unsloth-Qwen3.5-2B-loom",
-  "revision": "0ca9ef99394611562141ce1f5398b385eab633ae",
+  "revision": "b0efb7f5b7d1a4a3f645a4a53fb6230fd5619f66",
   "status": null,
   "license": null,
   "service": {
@@ -658,6 +658,246 @@
           "logits": "unknown"
         }
       }
+    },
+    "gfx1150": {
+      "state": null,
+      "remeasure": null,
+      "memory_bytes": 14000000000,
+      "context_tokens": 262144,
+      "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-18",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen AI 9 HX 375 w/ Radeon 890M (HP OmniBook Ultra 14, 32 GB LPDDR5X-7500; local machine hp-omni-1, not a DevLab runner)",
+                "gpu": "AMD Radeon 890M Graphics (gfx1150)",
+                "os": "Ubuntu 26.04, Linux 7.0.0-43-generic"
+              },
+              "hrx_loom": {
+                "artifact_id": null,
+                "branch": "v0.2.0",
+                "hrx_loom": "0.2.0",
+                "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+                "source": "pypi",
+                "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 55.5
+              },
+              "decode_2k": {
+                "llamacpp": 54.8
+              },
+              "decode_32k": {
+                "llamacpp": 43.6
+              },
+              "prefill_16k": {
+                "llamacpp": 1548.9
+              },
+              "prefill_1k": {
+                "llamacpp": 1658.8
+              },
+              "prefill_2k": {
+                "llamacpp": 1702.7
+              },
+              "prefill_32k": {
+                "llamacpp": 1319.7
+              },
+              "prefill_8k": {
+                "llamacpp": 1687.5
+              },
+              "streams4": {
+                "llamacpp": 152.2
+              }
+            }
+          }
+        },
+        "date": "2026-11-18",
+        "llamacpp_build": "b1374",
+        "drafting": {
+          "loom": null,
+          "llamacpp": null
+        },
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null,
+          "device": {
+            "cpu": "AMD Ryzen AI 9 HX 375 w/ Radeon 890M (HP OmniBook Ultra 14, 32 GB LPDDR5X-7500; local machine hp-omni-1, not a DevLab runner)",
+            "gpu": "AMD Radeon 890M Graphics (gfx1150)",
+            "os": "Ubuntu 26.04, Linux 7.0.0-43-generic"
+          },
+          "hrx_loom": {
+            "artifact_id": null,
+            "branch": "v0.2.0",
+            "hrx_loom": "0.2.0",
+            "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+            "source": "pypi",
+            "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+          }
+        },
+        "metrics": {
+          "decode": {
+            "loom": 63.3,
+            "llamacpp": 52.1,
+            "speedup": 1.21
+          },
+          "decode_2k": {
+            "loom": 61.9,
+            "llamacpp": 51.5,
+            "speedup": 1.2
+          },
+          "decode_32k": {
+            "loom": 48.6,
+            "llamacpp": 42.5,
+            "speedup": 1.14
+          },
+          "prefill_1k": {
+            "loom": 2813.4,
+            "llamacpp": 1728.0,
+            "speedup": 1.63
+          },
+          "prefill_2k": {
+            "loom": 3056.9,
+            "llamacpp": 1759.7,
+            "speedup": 1.74
+          },
+          "prefill_8k": {
+            "loom": 2895.8,
+            "llamacpp": 1613.9,
+            "speedup": 1.79
+          },
+          "prefill_16k": {
+            "loom": 2827.8,
+            "llamacpp": 1388.1,
+            "speedup": 2.04
+          },
+          "prefill_32k": {
+            "loom": 2406.0,
+            "llamacpp": 1042.0,
+            "speedup": 2.31
+          },
+          "streams4": {
+            "loom": 224.6,
+            "llamacpp": 148.0,
+            "speedup": 1.52
+          },
+          "spec_acceptance": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [
+          "spec_acceptance"
+        ],
+        "devlab": {
+          "date": null,
+          "source": null,
+          "metrics": {
+            "decode": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "decode_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_1k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_2k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_8k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_16k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "prefill_32k": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            },
+            "streams4": {
+              "loom": null,
+              "llamacpp": null,
+              "speedup": null
+            }
+          }
+        },
+        "programs_sha256": "afadca60b64c38add90ca325a86a289770f71191ad3faa5c3411c3755d4d8c60",
+        "named_machine_sources": [
+          {
+            "date": "2026-11-18",
+            "programs_sha256": "afadca60b64c38add90ca325a86a289770f71191ad3faa5c3411c3755d4d8c60",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen AI 9 HX 375 w/ Radeon 890M (HP OmniBook Ultra 14, 32 GB LPDDR5X-7500; local machine hp-omni-1, not a DevLab runner)",
+                "gpu": "AMD Radeon 890M Graphics (gfx1150)",
+                "os": "Ubuntu 26.04, Linux 7.0.0-43-generic"
+              },
+              "hrx_loom": {
+                "artifact_id": null,
+                "branch": "v0.2.0",
+                "hrx_loom": "0.2.0",
+                "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+                "source": "pypi",
+                "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+              }
+            }
+          }
+        ]
+      },
+      "gates": {
+        "summary": {
+          "pass": 7,
+          "fail": 0,
+          "unknown": 2,
+          "n/a": 2
+        },
+        "status": {
+          "kernel_tests": "unknown",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "pass",
+          "consistency": "pass",
+          "spec": "n/a",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
     }
   },
   "quickstart": {
@@ -679,7 +919,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat --materialize=copy --output=Qwen3.5-2B",
       "serve": "loom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "0ca9ef99394611562141ce1f5398b385eab633ae"
+      "source_revision": "b0efb7f5b7d1a4a3f645a4a53fb6230fd5619f66"
     },
     "radeon-r9700": {
       "blocks": [
@@ -699,7 +939,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat --materialize=copy --output=Qwen3.5-2B",
       "serve": "loom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "0ca9ef99394611562141ce1f5398b385eab633ae"
+      "source_revision": "b0efb7f5b7d1a4a3f645a4a53fb6230fd5619f66"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -719,7 +959,27 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat-16gb --materialize=copy --output=Qwen3.5-2B",
       "serve": "loom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "0ca9ef99394611562141ce1f5398b385eab633ae"
+      "source_revision": "b0efb7f5b7d1a4a3f645a4a53fb6230fd5619f66"
+    },
+    "gfx1150": {
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat --materialize=copy --output=Qwen3.5-2B\nloom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=14000000000 --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-2B-loom:chat --materialize=copy --output=Qwen3.5-2B",
+      "serve": "loom-serve --model=Qwen3.5-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=14000000000 --parameter_mode=preload",
+      "source_revision": "b0efb7f5b7d1a4a3f645a4a53fb6230fd5619f66"
     }
   },
   "shared_request": {
@@ -734,6 +994,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-2B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "0ca9ef99394611562141ce1f5398b385eab633ae"
+    "source_revision": "b0efb7f5b7d1a4a3f645a4a53fb6230fd5619f66"
   }
 }
