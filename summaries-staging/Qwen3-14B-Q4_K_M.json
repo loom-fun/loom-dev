@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-14B-Q4_K_M",
   "name": "Qwen3-14B",
   "repo": "loom-fun-staging/ggml-org-Qwen3-14B-loom",
-  "revision": "c37701b0eb2d020bfa6a920e470adfe8a9faba60",
+  "revision": "8c6fc3a0b3bd12adc6021f3539ce5d409466e629",
   "status": null,
   "license": null,
   "service": {
@@ -457,19 +457,22 @@
                 "llamacpp": 41.0
               },
               "prefill_16k": {
-                "llamacpp": 1679.1
+                "llamacpp": 1680.0
               },
               "prefill_1k": {
-                "llamacpp": 2072.1
+                "llamacpp": 2074.2
               },
               "prefill_2k": {
-                "llamacpp": 2120.3
+                "llamacpp": 2120.4
               },
               "prefill_32k": {
-                "llamacpp": 1319.4
+                "llamacpp": 1320.0
               },
               "prefill_8k": {
-                "llamacpp": 1922.6
+                "llamacpp": 1923.8
+              },
+              "streams4": {
+                "llamacpp": 178.6
               }
             }
           }
@@ -500,14 +503,14 @@
         },
         "metrics": {
           "decode": {
-            "loom": 65.6,
-            "llamacpp": 58.0,
-            "speedup": 1.13
+            "loom": 65.8,
+            "llamacpp": 57.9,
+            "speedup": 1.14
           },
           "decode_2k": {
-            "loom": 60.5,
+            "loom": 60.7,
             "llamacpp": 55.3,
-            "speedup": 1.09
+            "speedup": 1.1
           },
           "decode_32k": {
             "loom": null,
@@ -515,33 +518,33 @@
             "speedup": null
           },
           "prefill_1k": {
-            "loom": 3143.4,
-            "llamacpp": 2291.7,
-            "speedup": 1.37
+            "loom": 3123.8,
+            "llamacpp": 2289.8,
+            "speedup": 1.36
           },
           "prefill_2k": {
-            "loom": 3351.9,
-            "llamacpp": 2289.9,
+            "loom": 3341.2,
+            "llamacpp": 2289.3,
             "speedup": 1.46
           },
           "prefill_8k": {
-            "loom": 3094.2,
-            "llamacpp": 1956.0,
+            "loom": 3092.7,
+            "llamacpp": 1956.7,
             "speedup": 1.58
           },
           "prefill_16k": {
-            "loom": 2656.7,
-            "llamacpp": 1614.5,
-            "speedup": 1.65
+            "loom": 2607.8,
+            "llamacpp": 1615.0,
+            "speedup": 1.61
           },
           "prefill_32k": {
             "loom": null,
-            "llamacpp": 1177.4,
+            "llamacpp": 1177.7,
             "speedup": null
           },
           "streams4": {
-            "loom": 245.7,
-            "llamacpp": 167.8,
+            "loom": 246.2,
+            "llamacpp": 168.3,
             "speedup": 1.46
           },
           "spec_acceptance": {
@@ -632,13 +635,13 @@
       },
       "gates": {
         "summary": {
-          "pass": 6,
+          "pass": 7,
           "fail": 0,
-          "unknown": 2,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
-          "kernel_tests": "unknown",
+          "kernel_tests": "pass",
           "golden": "pass",
           "compare": "pass",
           "vision": "n/a",
@@ -680,7 +683,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-14B-loom:chat --materialize=copy --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "c37701b0eb2d020bfa6a920e470adfe8a9faba60"
+      "source_revision": "8c6fc3a0b3bd12adc6021f3539ce5d409466e629"
     },
     "radeon-r9700": {
       "blocks": [
@@ -708,7 +711,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-14B-loom:chat --materialize=copy --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "c37701b0eb2d020bfa6a920e470adfe8a9faba60"
+      "source_revision": "8c6fc3a0b3bd12adc6021f3539ce5d409466e629"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -736,7 +739,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-14B-loom:chat-16gb --materialize=copy --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "c37701b0eb2d020bfa6a920e470adfe8a9faba60"
+      "source_revision": "8c6fc3a0b3bd12adc6021f3539ce5d409466e629"
     }
   }
 }
