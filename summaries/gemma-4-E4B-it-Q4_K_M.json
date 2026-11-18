@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-E4B-it-Q4_K_M",
   "name": "gemma-4-E4B-it",
   "repo": "loom-fun/unsloth-gemma-4-E4B-it-loom",
-  "revision": "e8c55b4df8b0389ba508d424ed4beba0002f428e",
+  "revision": "6028328084978491f0cd9b2c5822a512adf24c7d",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -433,7 +433,55 @@
       "memory_bytes": 15000000000,
       "context_tokens": 73728,
       "performance": {
-        "date": "2026-11-16",
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 --spec-type draft-mtp --spec-draft-model card:parameter/gemma-4-E4B-it-assistant.Q8_0.gguf -ngld 99 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-18",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 175.1
+              },
+              "decode_2k": {
+                "llamacpp": 189.4
+              },
+              "decode_32k": {
+                "llamacpp": 134.2
+              },
+              "prefill_16k": {
+                "llamacpp": 8732.6
+              },
+              "prefill_1k": {
+                "llamacpp": 7211.4
+              },
+              "prefill_2k": {
+                "llamacpp": 8580.5
+              },
+              "prefill_32k": {
+                "llamacpp": 7621.9
+              },
+              "prefill_8k": {
+                "llamacpp": 9190.1
+              },
+              "streams4": {
+                "llamacpp": 403.5
+              }
+            }
+          }
+        },
+        "date": "2026-11-18",
         "llamacpp_build": "b1375",
         "drafting": {
           "loom": "assistant drafter, depth 3",
@@ -460,47 +508,47 @@
         "metrics": {
           "decode": {
             "loom": 195.0,
-            "llamacpp": 119.1,
+            "llamacpp": 119.0,
             "speedup": 1.64
           },
           "decode_2k": {
-            "loom": 200.9,
-            "llamacpp": 123.9,
-            "speedup": 1.62
+            "loom": 208.5,
+            "llamacpp": 125.2,
+            "speedup": 1.67
           },
           "decode_32k": {
-            "loom": 141.6,
-            "llamacpp": 98.4,
-            "speedup": 1.44
+            "loom": 140.4,
+            "llamacpp": 99.1,
+            "speedup": 1.42
           },
           "prefill_1k": {
-            "loom": 7717.3,
-            "llamacpp": 7120.4,
+            "loom": 7648.7,
+            "llamacpp": 7059.8,
             "speedup": 1.08
           },
           "prefill_2k": {
-            "loom": 8750.7,
-            "llamacpp": 7961.3,
+            "loom": 8763.7,
+            "llamacpp": 7942.8,
             "speedup": 1.1
           },
           "prefill_8k": {
-            "loom": 8658.1,
-            "llamacpp": 8073.0,
+            "loom": 8636.6,
+            "llamacpp": 8034.6,
             "speedup": 1.07
           },
           "prefill_16k": {
-            "loom": 8041.1,
-            "llamacpp": 7007.5,
-            "speedup": 1.15
+            "loom": 8128.8,
+            "llamacpp": 7001.9,
+            "speedup": 1.16
           },
           "prefill_32k": {
-            "loom": 6550.0,
-            "llamacpp": 5492.6,
-            "speedup": 1.19
+            "loom": 6922.6,
+            "llamacpp": 5509.6,
+            "speedup": 1.26
           },
           "streams4": {
-            "loom": 507.1,
-            "llamacpp": 306.8,
+            "loom": 507.7,
+            "llamacpp": 308.0,
             "speedup": 1.65
           },
           "spec_acceptance": {
@@ -564,7 +612,7 @@
         "programs_sha256": "b3056f70d482a668b6db4b205067838985d2a130934cf2c266fcb7efcc397109",
         "named_machine_sources": [
           {
-            "date": "2026-11-16",
+            "date": "2026-11-18",
             "programs_sha256": "b3056f70d482a668b6db4b205067838985d2a130934cf2c266fcb7efcc397109",
             "source": {
               "kind": "machine",
@@ -629,7 +677,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat --materialize=copy --output=gemma-4-E4B-it",
       "serve": "loom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "e8c55b4df8b0389ba508d424ed4beba0002f428e"
+      "source_revision": "6028328084978491f0cd9b2c5822a512adf24c7d"
     },
     "radeon-r9700": {
       "blocks": [
@@ -649,7 +697,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat --materialize=copy --output=gemma-4-E4B-it",
       "serve": "loom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "e8c55b4df8b0389ba508d424ed4beba0002f428e"
+      "source_revision": "6028328084978491f0cd9b2c5822a512adf24c7d"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -669,7 +717,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-E4B-it-loom:chat-16gb --materialize=copy --output=gemma-4-E4B-it",
       "serve": "loom-serve --model=gemma-4-E4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "e8c55b4df8b0389ba508d424ed4beba0002f428e"
+      "source_revision": "6028328084978491f0cd9b2c5822a512adf24c7d"
     }
   },
   "shared_request": {
@@ -684,6 +732,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-E4B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "e8c55b4df8b0389ba508d424ed4beba0002f428e"
+    "source_revision": "6028328084978491f0cd9b2c5822a512adf24c7d"
   }
 }
