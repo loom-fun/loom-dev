@@ -212,7 +212,7 @@ test('card SDK, output path, flags and request mutations reach rendered site wit
 stub=types.ModuleType('huggingface_hub');stub.HfApi=stub.hf_hub_download=None;sys.modules['huggingface_hub']=stub
 import summarize_info as S
 text=pathlib.Path('tests/quickstart_cards/shared-request.md').read_text()
-text=text.replace('0.2.0','99.4.1').replace('--output=Qwen3-0.6B','--output=/future/path').replace('--model=Qwen3-0.6B','--model=/future/path').replace('--pool_backing=fixed','--new_flag=next')
+text=text.replace('0.2.0','99.4.1').replace('--output=Example','--output=/future/output').replace('--model=Example/model.json','--model=/future/model.json').replace('--pool_backing=fixed','--new_flag=next')
 print(json.dumps({'quickstart':S.quickstart(text),'shared_request':S.shared_request(text)}))`;
   const result = spawnSync('python3',['-c',script],{cwd:root,encoding:'utf8'});
   assert.equal(result.status,0,result.stderr);
@@ -222,6 +222,8 @@ print(json.dumps({'quickstart':S.quickstart(text),'shared_request':S.shared_requ
     const html=loom.quickstartHtml(m,{id});
     assert.ok(html.includes('99.4.1'));
     assert.ok(html.includes('--new_flag=next'));
+    assert.ok(html.includes('--output=/future/output'));
+    assert.ok(html.includes('--model=/future/model.json'));
     assert.ok(html.includes(`loom-fetch huggingface:loom-fun/example-loom${id==='radeon-r9700'?':chat-r9700':':chat'}`));
     assert.ok(html.includes('exact-selector'));
     assert.ok(html.includes('<h4>Send a request</h4>'));
