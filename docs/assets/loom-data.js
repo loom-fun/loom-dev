@@ -7124,7 +7124,7 @@ window.LOOM_DATA = {
    "checkpoint": "LFM2.5-24B-A2B-Q4_K_M",
    "name": "LFM2.5-24B-A2B",
    "repo": "loom-fun/ggml-org-LFM2.5-24B-A2B-loom",
-   "revision": "23aa7bdf0830f2068656447ee9deecafd1b4c040",
+   "revision": "6cae80527d2c4a93b99659d3fbddf066f6a201e1",
    "status": null,
    "license": null,
    "service": {
@@ -7543,14 +7543,6 @@ window.LOOM_DATA = {
        "logits": "unknown"
       }
      }
-    },
-    "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
-     "memory_bytes": 15000000000,
-     "context_tokens": 3072
     }
    },
    "quickstart": {
@@ -7572,7 +7564,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B",
      "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "23aa7bdf0830f2068656447ee9deecafd1b4c040"
+     "source_revision": "6cae80527d2c4a93b99659d3fbddf066f6a201e1"
     },
     "radeon-r9700": {
      "blocks": [
@@ -7592,27 +7584,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat --materialize=copy --output=LFM2.5-24B-A2B",
      "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "23aa7bdf0830f2068656447ee9deecafd1b4c040"
-    },
-    "gfx1201-16gb": {
-     "blocks": [
-      {
-       "kind": "text",
-       "text": "Open your GPU and copy its commands."
-      },
-      {
-       "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat-16gb --materialize=copy --output=LFM2.5-24B-A2B\nloom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
-      },
-      {
-       "kind": "text",
-       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 3,072 tokens per request (its native context is 131,072)."
-      }
-     ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM2.5-24B-A2B-loom:chat-16gb --materialize=copy --output=LFM2.5-24B-A2B",
-     "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "23aa7bdf0830f2068656447ee9deecafd1b4c040"
+     "source_revision": "6cae80527d2c4a93b99659d3fbddf066f6a201e1"
     }
    },
    "shared_request": {
@@ -7627,7 +7599,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"LiquidAI/LFM2.5-24B-A2B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
      }
     ],
-    "source_revision": "23aa7bdf0830f2068656447ee9deecafd1b4c040"
+    "source_revision": "6cae80527d2c4a93b99659d3fbddf066f6a201e1"
    }
   },
   {
