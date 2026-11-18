@@ -3,7 +3,7 @@
   "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
   "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
   "repo": "loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-  "revision": "e9da75fb18097dbc1f2482ba484e5b9f089ab671",
+  "revision": "6c9fc09e7b2c8d57be8d6db74d19e987145cd572",
   "status": null,
   "license": null,
   "service": {
@@ -582,90 +582,107 @@
             },
             "metrics": {
               "decode": {
-                "llamacpp": 144.1
+                "llamacpp": 144.5
               },
               "decode_2k": {
-                "llamacpp": 128.0
+                "llamacpp": 129.0
               },
               "decode_32k": {
                 "llamacpp": 112.8
               },
               "prefill_16k": {
-                "llamacpp": 5069.8
+                "llamacpp": 5097.1
               },
               "prefill_1k": {
-                "llamacpp": 4421.7
+                "llamacpp": 4493.1
               },
               "prefill_2k": {
-                "llamacpp": 5128.5
+                "llamacpp": 5171.3
               },
               "prefill_32k": {
-                "llamacpp": 4423.5
+                "llamacpp": 4436.1
               },
               "prefill_8k": {
-                "llamacpp": 5375.8
+                "llamacpp": 5418.9
               },
               "streams4": {
-                "llamacpp": 374.9
+                "llamacpp": 376.3
               }
             }
           }
         },
-        "date": null,
+        "date": "2026-11-17",
         "llamacpp_build": "b1375",
         "drafting": {
           "loom": "DFlash, depth 3",
           "llamacpp": "draft-dflash, n-max 7"
         },
-        "source": null,
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null,
+          "device": {
+            "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+            "gpu": "AMD Radeon RX 9070 XT",
+            "os": "Ubuntu 26.04"
+          },
+          "hrx_loom": {
+            "artifact_id": null,
+            "branch": "v0.2.0",
+            "hrx_loom": "0.2.0",
+            "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+            "source": "pypi",
+            "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+          }
+        },
         "metrics": {
           "decode": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 227.0,
+            "llamacpp": 101.6,
+            "speedup": 2.23
           },
           "decode_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 188.6,
+            "llamacpp": 90.9,
+            "speedup": 2.07
           },
           "decode_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 155.1,
+            "llamacpp": 79.4,
+            "speedup": 1.95
           },
           "prefill_1k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 7833.9,
+            "llamacpp": 4880.6,
+            "speedup": 1.61
           },
           "prefill_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 9113.1,
+            "llamacpp": 5167.4,
+            "speedup": 1.76
           },
           "prefill_8k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 9170.7,
+            "llamacpp": 4891.2,
+            "speedup": 1.87
           },
           "prefill_16k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 8642.3,
+            "llamacpp": 4209.4,
+            "speedup": 2.05
           },
           "prefill_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 6449.5,
+            "llamacpp": 3251.6,
+            "speedup": 1.98
           },
           "streams4": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 508.6,
+            "llamacpp": 310.1,
+            "speedup": 1.64
           },
           "spec_acceptance": {
-            "loom": null,
+            "loom": 0.63,
             "llamacpp": null,
             "speedup": null
           }
@@ -723,9 +740,10 @@
           }
         },
         "programs_sha256": "c0f2ffffb75fbe4fb88300109f23df40b85f248261d999139dd28792cbdbe95c",
-        "historical_programs": [
+        "named_machine_sources": [
           {
             "date": "2026-11-17",
+            "programs_sha256": "c0f2ffffb75fbe4fb88300109f23df40b85f248261d999139dd28792cbdbe95c",
             "source": {
               "kind": "machine",
               "run": null,
@@ -742,74 +760,6 @@
                 "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
                 "source": "pypi",
                 "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
-              }
-            },
-            "programs_sha256": "0589ed23f19e15e67a53fbf869ba5c21ba49b4e50f4b4dec87ec2630f9dc3fca",
-            "program_identity": "recorded",
-            "metrics": {
-              "decode": {
-                "loom": 226.9,
-                "baseline": 101.1
-              },
-              "decode_2k": {
-                "loom": 194.1,
-                "baseline": 97.4
-              },
-              "decode_32k": {
-                "loom": 153.9,
-                "baseline": 80.8
-              },
-              "prefill_16k": {
-                "loom": 7938.0,
-                "baseline": 4210.2
-              },
-              "prefill_1k": {
-                "loom": 7463.8,
-                "baseline": 4875.8
-              },
-              "prefill_2k": {
-                "loom": 8598.6,
-                "baseline": 5161.8
-              },
-              "prefill_32k": {
-                "loom": 5946.4,
-                "baseline": 3260.9
-              },
-              "prefill_8k": {
-                "loom": 8444.9,
-                "baseline": 4891.5
-              },
-              "streams4": {
-                "loom": 506.1,
-                "baseline": 310.6
-              }
-            }
-          },
-          {
-            "date": "2026-11-17",
-            "source": {
-              "kind": "machine",
-              "run": null,
-              "url": null,
-              "device": {
-                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
-                "gpu": "AMD Radeon RX 9070 XT",
-                "os": "Ubuntu 26.04"
-              },
-              "hrx_loom": {
-                "artifact_id": null,
-                "branch": "v0.2.0",
-                "hrx_loom": "0.2.0",
-                "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
-                "source": "pypi",
-                "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
-              }
-            },
-            "programs_sha256": "0589ed23f19e15e67a53fbf869ba5c21ba49b4e50f4b4dec87ec2630f9dc3fca",
-            "program_identity": "recorded",
-            "metrics": {
-              "spec_acceptance": {
-                "loom": 0.63
               }
             }
           }
@@ -817,21 +767,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 0,
-          "fail": 0,
-          "unknown": 10,
+          "pass": 6,
+          "fail": 2,
+          "unknown": 2,
           "n/a": 1
         },
         "status": {
           "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
-          "vision": "unknown",
-          "consistency": "unknown",
-          "spec": "unknown",
-          "agent": "unknown",
-          "agent_think_off": "unknown",
-          "sampling": "unknown",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "pass",
+          "consistency": "pass",
+          "spec": "pass",
+          "agent": "fail",
+          "agent_think_off": "fail",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -857,7 +807,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "e9da75fb18097dbc1f2482ba484e5b9f089ab671"
+      "source_revision": "6c9fc09e7b2c8d57be8d6db74d19e987145cd572"
     },
     "radeon-r9700": {
       "blocks": [
@@ -877,7 +827,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "e9da75fb18097dbc1f2482ba484e5b9f089ab671"
+      "source_revision": "6c9fc09e7b2c8d57be8d6db74d19e987145cd572"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -897,7 +847,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --materialize=copy --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "e9da75fb18097dbc1f2482ba484e5b9f089ab671"
+      "source_revision": "6c9fc09e7b2c8d57be8d6db74d19e987145cd572"
     }
   },
   "shared_request": {
@@ -912,6 +862,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"nemotron-3.5-bolt-e4b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "e9da75fb18097dbc1f2482ba484e5b9f089ab671"
+    "source_revision": "6c9fc09e7b2c8d57be8d6db74d19e987145cd572"
   }
 }
