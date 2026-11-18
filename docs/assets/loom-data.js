@@ -2475,7 +2475,7 @@ window.LOOM_DATA = {
    "schema": "loom-summary/1",
    "checkpoint": "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL",
    "name": "gemma-4-26B-A4B-it-qat",
-   "repo": "loom-fun/unsloth-gemma-4-26B-A4B-it-qat-loom",
+   "repo": "loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom",
    "revision": "ed23a7de30b5d3323787342814b34e09dd6f2d37",
    "status": null,
    "license": "apache-2.0",
@@ -2688,13 +2688,13 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 14,
+     "pass": 13,
      "fail": 0,
-     "unknown": 1,
+     "unknown": 2,
      "n/a": 3
     },
     "status": {
-     "kernel_tests": "pass",
+     "kernel_tests": "unknown",
      "golden": "pass",
      "compare": "pass",
      "vision": "n/a",
@@ -2891,13 +2891,13 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 14,
+       "pass": 13,
        "fail": 0,
-       "unknown": 1,
+       "unknown": 2,
        "n/a": 3
       },
       "status": {
-       "kernel_tests": "pass",
+       "kernel_tests": "unknown",
        "golden": "pass",
        "compare": "pass",
        "vision": "n/a",
@@ -2928,7 +2928,7 @@ window.LOOM_DATA = {
       },
       {
        "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
       },
       {
        "kind": "text",
@@ -2936,7 +2936,7 @@ window.LOOM_DATA = {
       }
      ],
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
+     "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
      "serve": "loom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
      "source_revision": "ed23a7de30b5d3323787342814b34e09dd6f2d37"
     },
@@ -2948,7 +2948,7 @@ window.LOOM_DATA = {
       },
       {
        "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
       },
       {
        "kind": "text",
@@ -2956,7 +2956,7 @@ window.LOOM_DATA = {
       }
      ],
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
+     "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
      "serve": "loom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
      "source_revision": "ed23a7de30b5d3323787342814b34e09dd6f2d37"
     }

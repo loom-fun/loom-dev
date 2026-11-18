@@ -301,6 +301,16 @@ def accepted_programs(card):
     return current, accepted
 
 
+def fresh_gate_status(card, gate):
+    """A hashed gate only describes the current package when its program identity is accepted."""
+    status = gate["status"]
+    evidence_hash = gate.get("programs_sha256")
+    current, accepted = accepted_programs(card)
+    if evidence_hash and current and evidence_hash not in accepted:
+        return "unknown"
+    return status
+
+
 def headline(card, devlab=False, allowed_programs=None):
     """{metric: (entry, session index)}: per metric the last local session that measured it, the README's headline
     value (spec_acceptance from any session), or with devlab=True the last DevLab session, the README's DevLab
@@ -457,7 +467,7 @@ def device_results(card, kind, feats, sd, logits=None):
     gates, known = {}, GATES + ([LOGITS_GATE] if logits is not None else [])
     for g in known + sorted(set(card["gates"]) - set(known)):
         if g in card["gates"]:
-            gates[g] = card["gates"][g]["status"]
+            gates[g] = fresh_gate_status(card, card["gates"][g])
         elif g == LOGITS_GATE:
             gates[g] = "unknown" if logits else "n/a"
         elif g in GATES:
