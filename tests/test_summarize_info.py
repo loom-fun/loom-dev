@@ -317,14 +317,25 @@ class QuickstartSource(unittest.TestCase):
 
     def test_shared_request_notes_and_section_boundary(self):
         from pathlib import Path
-        text = Path(HERE, 'quickstart_cards/unsloth-Qwen3-0.6B.md').read_text(encoding='utf-8')
-        request = '''curl localhost:8080/v1/chat/completions \\
-  -d '{"model":"exact","chat_template_kwargs":{"enable_thinking":false}}' '''
-        text += '\n```bash\n' + request + '\n```\n\nExplain `--future_flag`.\n## Benchmarks\nDO NOT SHOW\n'
-        for q in S.quickstart(text).values():
-            self.assertIn(request, [b['text'] for b in q['blocks'] if b['kind'] == 'code'])
-            self.assertIn('Explain `--future_flag`.', str(q['blocks']))
-            self.assertNotIn('DO NOT SHOW', str(q['blocks']))
+        text = Path(HERE, 'quickstart_cards/shared-request.md').read_text(encoding='utf-8')
+        out = S.quickstart(text, source_revision='source-rev')
+        self.assertEqual(set(out), {'strix-halo', 'radeon-r9700'})
+        for q in out.values():
+            codes = [b['text'] for b in q['blocks'] if b['kind'] == 'code']
+            self.assertFalse(any(code.startswith('curl ') for code in codes))
+            self.assertIn('loom-fetch ', '\n'.join(codes))
+            self.assertIn('loom-serve ', '\n'.join(codes))
+        request = S.shared_request(text, 'source-rev')
+        self.assertEqual(request['heading'], 'Send a request')
+        self.assertEqual(request['source_revision'], 'source-rev')
+        codes = [b['text'] for b in request['blocks'] if b['kind'] == 'code']
+        self.assertEqual(len(codes), 1)
+        self.assertIn('curl http://127.0.0.1:8080/v1/chat/completions', codes[0])
+        self.assertIn('exact-selector', codes[0])
+        self.assertIn('optional thinking is turned off', str(request['blocks']))
+        self.assertNotIn('DO NOT SHOW', str(request['blocks']))
+        inside = text.replace('## Send a request', '<details>\n## Send a request').replace('## Benchmarks', '</details>\n## Benchmarks')
+        self.assertIsNone(S.shared_request(inside))
         self.assertEqual(S.quickstart('## Quick start\n```bash\nloom-fetch x\n```', 'strix-halo'), {})
         self.assertEqual(S.quickstart(text.replace('## Quick start', '## Other')), {})
 
@@ -339,17 +350,18 @@ class QuickstartSource(unittest.TestCase):
 
     def test_readme_refresh_keeps_frozen_summary_data_and_separate_provenance(self):
         from pathlib import Path
-        source = Path(HERE, 'quickstart_cards/unsloth-Qwen3-0.6B.md').read_text(encoding='utf-8')
+        source = Path(HERE, 'quickstart_cards/shared-request.md').read_text(encoding='utf-8')
         old = {"repo": "org/card", "revision": "frozen-measurement-commit", "primary_device": "strix-halo",
                "performance": {"metrics": {"decode": {"loom": 123, "llamacpp": 120}}},
                "devices": {"radeon-r9700": {"state": "not_measured"}}, "quickstart": {"old": {}}}
         before = copy.deepcopy(old)
         new = S.refresh_quickstart(old, source, "readme-only-commit")
         self.assertEqual(old, before)
-        self.assertEqual({k:v for k,v in new.items() if k != "quickstart"},
+        self.assertEqual({k:v for k,v in new.items() if k not in ("quickstart", "shared_request")},
                          {k:v for k,v in old.items() if k != "quickstart"})
         for q in new['quickstart'].values():
             self.assertEqual(q['source_revision'], 'readme-only-commit')
+        self.assertEqual(new['shared_request']['source_revision'], 'readme-only-commit')
         self.assertEqual(new['revision'], 'frozen-measurement-commit')
 
 

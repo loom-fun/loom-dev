@@ -480,6 +480,15 @@ const LOOM = (() => {
     const q = (m.quickstart || {})[gpu.id];
     return q && Array.isArray(q.blocks) && q.install && q.fetch && q.serve ? q : null;
   }
+  function quickstartBlocks(m, q) {
+    if (!q) return null;
+    const blocks = [...q.blocks];
+    const request = m.shared_request;
+    if (request && typeof request.heading === 'string' && Array.isArray(request.blocks)) {
+      blocks.push({kind:'heading', text:request.heading}, ...request.blocks);
+    }
+    return blocks;
+  }
   function missingQuickstart(m) {
     return `Quick start unavailable for this GPU. See the source card: https://huggingface.co/${m.repo}/blob/${m.revision || 'main'}/README.md#quick-start`;
   }
@@ -488,12 +497,14 @@ const LOOM = (() => {
   const installCmd = (m, gpu = GPU) => sourceQuickstart(m, gpu)?.install || missingQuickstart(m);
   function quickstart(m, gpu = GPU) {
     const q = sourceQuickstart(m, gpu);
-    return q ? q.blocks.map(b => b.text).join('\n\n') : missingQuickstart(m);
+    return q ? quickstartBlocks(m, q).map(b => b.kind === 'heading' ? `## ${b.text}` : b.text).join('\n\n') : missingQuickstart(m);
   }
   function quickstartHtml(m, gpu = GPU) {
     const q = sourceQuickstart(m, gpu);
     const source = `https://huggingface.co/${m.repo}/blob/${q?.source_revision || m.revision || 'main'}/README.md#quick-start`;
-    return (q ? q.blocks.map(b => b.kind === 'code'
+    return (q ? quickstartBlocks(m, q).map(b => b.kind === 'heading'
+      ? `<h4>${esc(b.text)}</h4>`
+      : b.kind === 'code'
       ? `<div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code>${esc(b.text)}</code></pre></div>`
       : `<p class="fine" style="white-space:pre-wrap">${esc(b.text)}</p>`).join('')
       : '<p>Quick start unavailable for this GPU.</p>')
