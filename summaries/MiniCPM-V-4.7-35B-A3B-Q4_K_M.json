@@ -3,7 +3,7 @@
   "checkpoint": "MiniCPM-V-4.7-35B-A3B-Q4_K_M",
   "name": "MiniCPM-V-4.7-35B-A3B",
   "repo": "loom-fun/bartowski-MiniCPM-V-4.7-35B-A3B-loom",
-  "revision": "63e9af63161a503cc293992fecee991f49d663d0",
+  "revision": "41c5c455a461e4b99a287ef871fe922c1a7b5a63",
   "status": null,
   "license": null,
   "service": {
@@ -211,9 +211,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 8,
+      "pass": 7,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 3
     },
     "status": {
@@ -227,7 +227,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -403,9 +403,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 8,
+          "pass": 7,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     }

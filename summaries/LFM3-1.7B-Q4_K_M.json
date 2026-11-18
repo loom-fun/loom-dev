@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-1.7B-Q4_K_M",
   "name": "LFM3-1.7B",
   "repo": "loom-fun/bartowski-LFM3-1.7B-loom",
-  "revision": "4f4f6400e673934dc7538f18c1ce6645263029ab",
+  "revision": "e9c0e858b3cdde54140847dc3f9a661391712c6e",
   "status": null,
   "license": null,
   "service": {
@@ -212,9 +212,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 8,
+      "pass": 7,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 3
     },
     "status": {
@@ -228,7 +228,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -404,9 +404,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 8,
+          "pass": 7,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
@@ -420,7 +420,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.6-27B-Q4_K_M",
   "name": "Qwen3.6-27B",
   "repo": "loom-fun/ggml-org-Qwen3.6-27B-loom",
-  "revision": "f3e7a6c92366f80f36f37f523387a15dd1341979",
+  "revision": "ed1761953b1161181e73646a711300b032716e34",
   "status": null,
   "license": null,
   "service": {
@@ -217,9 +217,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 10,
+      "pass": 9,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 1
     },
     "status": {
@@ -233,7 +233,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -407,9 +407,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 10,
+          "pass": 9,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -423,7 +423,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     }

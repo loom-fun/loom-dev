@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.0-9B-Q4_K_M",
   "name": "Ornith-1.0-9B",
   "repo": "loom-fun/unsloth-Ornith-1.0-9B-loom",
-  "revision": "51b7e11d7a79f06d3528f09bae2719c999bb555d",
+  "revision": "e9bd326ec7308f5f71fb1038d6ad404072c98b80",
   "status": null,
   "license": null,
   "service": {
@@ -215,9 +215,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 9,
+      "pass": 8,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
@@ -231,7 +231,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -407,9 +407,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 9,
+          "pass": 8,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 2
         },
         "status": {
@@ -423,7 +423,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

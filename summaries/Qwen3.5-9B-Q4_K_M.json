@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-9B-Q4_K_M",
   "name": "Qwen3.5-9B",
   "repo": "loom-fun/unsloth-Qwen3.5-9B-loom",
-  "revision": "0ed99ed84ec07759ee1700869d3f81b5a77807d3",
+  "revision": "9ee701c1bd7055548eff75bb2ee51cd34bbe6830",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -217,9 +217,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 11,
+      "pass": 9,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 2,
       "n/a": 1
     },
     "status": {
@@ -233,8 +233,8 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass",
-      "over_capacity": "pass"
+      "logits": "unknown",
+      "over_capacity": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -408,9 +408,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 10,
+          "pass": 9,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -424,7 +424,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

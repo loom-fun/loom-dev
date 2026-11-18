@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-27B-Q4_K_M",
   "name": "Qwen3.8-27B",
   "repo": "loom-fun/bartowski-Qwen3.8-27B-loom",
-  "revision": "f7a8d1e6eaf5c5830ce6b724b3e4e3bc4c9e4028",
+  "revision": "205b78b2302685a861eda9579fcdb895491e08d9",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -213,9 +213,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 10,
+      "pass": 9,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 1
     },
     "status": {
@@ -229,7 +229,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -403,9 +403,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 10,
+          "pass": 9,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     }

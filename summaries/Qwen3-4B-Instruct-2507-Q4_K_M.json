@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-4B-Instruct-2507-Q4_K_M",
   "name": "Qwen3-4B-Instruct-2507",
   "repo": "loom-fun/unsloth-Qwen3-4B-Instruct-2507-loom",
-  "revision": "5cd95a887391f1bdd9259e47c6145e9362964083",
+  "revision": "700f5b98156cacd6537c8332c1371fa5b7d53689",
   "status": null,
   "license": null,
   "service": {
@@ -212,9 +212,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 7,
+      "pass": 6,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 4
     },
     "status": {
@@ -228,7 +228,7 @@
       "agent_think_off": "n/a",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -404,9 +404,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 7,
+          "pass": 6,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 4
         },
         "status": {
@@ -420,7 +420,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

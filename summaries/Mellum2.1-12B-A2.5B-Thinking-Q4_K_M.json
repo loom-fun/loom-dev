@@ -3,7 +3,7 @@
   "checkpoint": "Mellum2.1-12B-A2.5B-Thinking-Q4_K_M",
   "name": "Mellum2.1-12B-A2.5B-Thinking",
   "repo": "loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom",
-  "revision": "7a1dae928aba3bd2e830a1acc48bc56373001c99",
+  "revision": "17c7484fe83d2fc48690963b7a443b021df796ba",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -211,9 +211,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 8,
+      "pass": 7,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 3
     },
     "status": {
@@ -227,7 +227,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -403,9 +403,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 8,
+          "pass": 7,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

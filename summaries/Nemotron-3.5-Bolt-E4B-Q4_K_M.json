@@ -3,7 +3,7 @@
   "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
   "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
   "repo": "loom-fun/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-  "revision": "7650ddff60ee4b1ad9fc864c6fd1ccc06f077370",
+  "revision": "e9da75fb18097dbc1f2482ba484e5b9f089ab671",
   "status": null,
   "license": null,
   "service": {
@@ -283,8 +283,8 @@
   "gates": {
     "summary": {
       "pass": 9,
-      "fail": 1,
-      "unknown": 0,
+      "fail": 0,
+      "unknown": 1,
       "n/a": 1
     },
     "status": {
@@ -298,7 +298,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "fail"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -538,8 +538,8 @@
       "gates": {
         "summary": {
           "pass": 9,
-          "fail": 1,
-          "unknown": 0,
+          "fail": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -553,7 +553,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "fail"
+          "logits": "unknown"
         }
       }
     },
@@ -817,21 +817,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 6,
-          "fail": 2,
-          "unknown": 2,
+          "pass": 0,
+          "fail": 0,
+          "unknown": 10,
           "n/a": 1
         },
         "status": {
           "kernel_tests": "unknown",
-          "golden": "pass",
-          "compare": "pass",
-          "vision": "pass",
-          "consistency": "pass",
-          "spec": "pass",
-          "agent": "fail",
-          "agent_think_off": "fail",
-          "sampling": "pass",
+          "golden": "unknown",
+          "compare": "unknown",
+          "vision": "unknown",
+          "consistency": "unknown",
+          "spec": "unknown",
+          "agent": "unknown",
+          "agent_think_off": "unknown",
+          "sampling": "unknown",
           "decision": "n/a",
           "logits": "unknown"
         }

@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-7B-Instruct-Q4_K_M",
   "name": "Qwen2.5-7B-Instruct",
   "repo": "loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom",
-  "revision": "2a811c402d61c27555f3ee9840d107ec99677e3b",
+  "revision": "d5083e4d42f1945509d5f68620b4a68af0f49a6a",
   "status": null,
   "license": null,
   "service": {
@@ -211,9 +211,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 7,
+      "pass": 6,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 4
     },
     "status": {
@@ -227,7 +227,7 @@
       "agent_think_off": "n/a",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -403,9 +403,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 7,
+          "pass": 6,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 4
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },
@@ -429,6 +429,54 @@
       "memory_bytes": 15000000000,
       "context_tokens": 32768,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 117.5
+              },
+              "decode_2k": {
+                "llamacpp": 114.1
+              },
+              "decode_32k": {
+                "llamacpp": 85.9
+              },
+              "prefill_16k": {
+                "llamacpp": 3114.8
+              },
+              "prefill_1k": {
+                "llamacpp": 3789.5
+              },
+              "prefill_2k": {
+                "llamacpp": 3868.3
+              },
+              "prefill_32k": {
+                "llamacpp": 2504.9
+              },
+              "prefill_8k": {
+                "llamacpp": 3543.5
+              },
+              "streams4": {
+                "llamacpp": 379.1
+              }
+            }
+          }
+        },
         "date": "2026-11-17",
         "llamacpp_build": "b1375",
         "drafting": {
@@ -455,49 +503,49 @@
         },
         "metrics": {
           "decode": {
-            "loom": 117.1,
-            "llamacpp": 109.4,
-            "speedup": 1.07
+            "loom": 117.7,
+            "llamacpp": 109.2,
+            "speedup": 1.08
           },
           "decode_2k": {
-            "loom": 107.7,
-            "llamacpp": 105.2,
-            "speedup": 1.02
+            "loom": 107.8,
+            "llamacpp": 105.1,
+            "speedup": 1.03
           },
           "decode_32k": {
-            "loom": 69.2,
-            "llamacpp": 70.9,
+            "loom": 69.3,
+            "llamacpp": 70.8,
             "speedup": 0.98
           },
           "prefill_1k": {
-            "loom": 6105.7,
-            "llamacpp": 4351.5,
-            "speedup": 1.4
+            "loom": 6025.6,
+            "llamacpp": 4346.5,
+            "speedup": 1.39
           },
           "prefill_2k": {
-            "loom": 6462.0,
-            "llamacpp": 4370.6,
-            "speedup": 1.48
+            "loom": 6388.3,
+            "llamacpp": 4363.8,
+            "speedup": 1.46
           },
           "prefill_8k": {
-            "loom": 6031.8,
-            "llamacpp": 3893.4,
-            "speedup": 1.55
+            "loom": 5986.7,
+            "llamacpp": 3898.2,
+            "speedup": 1.54
           },
           "prefill_16k": {
-            "loom": 5321.3,
-            "llamacpp": 3331.6,
-            "speedup": 1.6
+            "loom": 5294.5,
+            "llamacpp": 3331.9,
+            "speedup": 1.59
           },
           "prefill_32k": {
-            "loom": 3826.8,
-            "llamacpp": 2621.6,
+            "loom": 3816.5,
+            "llamacpp": 2620.7,
             "speedup": 1.46
           },
           "streams4": {
-            "loom": 429.2,
-            "llamacpp": 302.0,
-            "speedup": 1.42
+            "loom": 429.8,
+            "llamacpp": 301.1,
+            "speedup": 1.43
           },
           "spec_acceptance": {
             "loom": null,
@@ -587,21 +635,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 6,
           "fail": 0,
-          "unknown": 7,
+          "unknown": 1,
           "n/a": 4
         },
         "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
           "vision": "n/a",
-          "consistency": "unknown",
+          "consistency": "pass",
           "spec": "n/a",
-          "agent": "unknown",
+          "agent": "pass",
           "agent_think_off": "n/a",
-          "sampling": "unknown",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -635,7 +683,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-7B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "2a811c402d61c27555f3ee9840d107ec99677e3b"
+      "source_revision": "d5083e4d42f1945509d5f68620b4a68af0f49a6a"
     },
     "radeon-r9700": {
       "blocks": [
@@ -663,7 +711,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-7B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "2a811c402d61c27555f3ee9840d107ec99677e3b"
+      "source_revision": "d5083e4d42f1945509d5f68620b4a68af0f49a6a"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -691,7 +739,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-7B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "2a811c402d61c27555f3ee9840d107ec99677e3b"
+      "source_revision": "d5083e4d42f1945509d5f68620b4a68af0f49a6a"
     }
   }
 }

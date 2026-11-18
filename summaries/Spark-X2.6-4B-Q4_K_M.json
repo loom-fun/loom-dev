@@ -3,7 +3,7 @@
   "checkpoint": "Spark-X2.6-4B-Q4_K_M",
   "name": "Spark-X2.6-4B",
   "repo": "loom-fun/bartowski-Spark-X2.6-4B-loom",
-  "revision": "1ad12fa86ed67f4619d86cd800225d16e19b9740",
+  "revision": "1bf994d58b88dd5de036257bfc5512484b12be8c",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -212,9 +212,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 8,
+      "pass": 7,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 3
     },
     "status": {
@@ -228,7 +228,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -404,9 +404,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 8,
+          "pass": 7,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
@@ -420,7 +420,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },
@@ -430,6 +430,54 @@
       "memory_bytes": 15000000000,
       "context_tokens": 75776,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 141.8
+              },
+              "decode_2k": {
+                "llamacpp": 136.6
+              },
+              "decode_32k": {
+                "llamacpp": 107.0
+              },
+              "prefill_16k": {
+                "llamacpp": 5416.2
+              },
+              "prefill_1k": {
+                "llamacpp": 4782.4
+              },
+              "prefill_2k": {
+                "llamacpp": 5429.5
+              },
+              "prefill_32k": {
+                "llamacpp": 4619.9
+              },
+              "prefill_8k": {
+                "llamacpp": 5826.5
+              },
+              "streams4": {
+                "llamacpp": 247.5
+              }
+            }
+          }
+        },
         "date": "2026-11-17",
         "llamacpp_build": "b1375",
         "drafting": {
@@ -456,49 +504,49 @@
         },
         "metrics": {
           "decode": {
-            "loom": 159.6,
-            "llamacpp": 131.6,
+            "loom": 159.7,
+            "llamacpp": 131.5,
             "speedup": 1.21
           },
           "decode_2k": {
-            "loom": 148.7,
-            "llamacpp": 125.3,
+            "loom": 149.1,
+            "llamacpp": 125.2,
             "speedup": 1.19
           },
           "decode_32k": {
-            "loom": 113.8,
+            "loom": 114.0,
             "llamacpp": 100.2,
             "speedup": 1.14
           },
           "prefill_1k": {
-            "loom": 8607.0,
-            "llamacpp": 5122.3,
-            "speedup": 1.68
+            "loom": 8557.3,
+            "llamacpp": 5133.4,
+            "speedup": 1.67
           },
           "prefill_2k": {
-            "loom": 8841.7,
-            "llamacpp": 5724.5,
+            "loom": 8843.2,
+            "llamacpp": 5725.9,
             "speedup": 1.54
           },
           "prefill_8k": {
-            "loom": 8775.0,
-            "llamacpp": 5974.8,
+            "loom": 8760.0,
+            "llamacpp": 5966.5,
             "speedup": 1.47
           },
           "prefill_16k": {
-            "loom": 7883.6,
-            "llamacpp": 5555.8,
-            "speedup": 1.42
+            "loom": 7798.2,
+            "llamacpp": 5551.2,
+            "speedup": 1.4
           },
           "prefill_32k": {
-            "loom": 6564.2,
-            "llamacpp": 4812.8,
+            "loom": 6528.8,
+            "llamacpp": 4812.9,
             "speedup": 1.36
           },
           "streams4": {
-            "loom": 558.5,
-            "llamacpp": 299.1,
-            "speedup": 1.87
+            "loom": 558.1,
+            "llamacpp": 304.8,
+            "speedup": 1.83
           },
           "spec_acceptance": {
             "loom": null,
@@ -588,21 +636,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 7,
           "fail": 0,
-          "unknown": 8,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
           "vision": "n/a",
-          "consistency": "unknown",
+          "consistency": "pass",
           "spec": "n/a",
-          "agent": "unknown",
-          "agent_think_off": "unknown",
-          "sampling": "unknown",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -628,7 +676,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat --materialize=copy --output=Spark-X2.6-4B",
       "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "f42b2b7c2309bb171272dcd8030111d1123468cb"
+      "source_revision": "1bf994d58b88dd5de036257bfc5512484b12be8c"
     },
     "radeon-r9700": {
       "blocks": [
@@ -648,7 +696,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat-r9700 --materialize=copy --output=Spark-X2.6-4B",
       "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "f42b2b7c2309bb171272dcd8030111d1123468cb"
+      "source_revision": "1bf994d58b88dd5de036257bfc5512484b12be8c"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -668,7 +716,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Spark-X2.6-4B-loom:chat-16gb --materialize=copy --output=Spark-X2.6-4B",
       "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "f42b2b7c2309bb171272dcd8030111d1123468cb"
+      "source_revision": "1bf994d58b88dd5de036257bfc5512484b12be8c"
     }
   },
   "shared_request": {
@@ -683,6 +731,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"XHToken/Spark-X2.6-4B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "f42b2b7c2309bb171272dcd8030111d1123468cb"
+    "source_revision": "1bf994d58b88dd5de036257bfc5512484b12be8c"
   }
 }

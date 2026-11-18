@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-35B-A3B-Q4_K_M",
   "name": "Ornith-1.5-35B-A3B",
   "repo": "loom-fun/bartowski-Ornith-1.5-35B-A3B-loom",
-  "revision": "60bf567ac49b125724c1b29b67d02e307b3d0033",
+  "revision": "da56e81c48f19e290ecb18a96759032f531d1145",
   "status": null,
   "license": null,
   "service": {
@@ -217,9 +217,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 10,
+      "pass": 9,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 1
     },
     "status": {
@@ -233,7 +233,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -407,9 +407,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 10,
+          "pass": 9,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -423,7 +423,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     }

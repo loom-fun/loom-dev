@@ -3,7 +3,7 @@
   "checkpoint": "Sage-A1.5-Q4_K_M",
   "name": "Sage-A1.5-Q4_K_M",
   "repo": "loom-fun/InternScience-Sage-A1.5-loom",
-  "revision": "dccc600facfe2ff8c1f7c3f06d5eaf6f9afd7184",
+  "revision": "b3a37069f59bb8c5b52a5c58c132445500cee25c",
   "status": null,
   "license": null,
   "service": {
@@ -213,9 +213,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 10,
+      "pass": 9,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 1
     },
     "status": {
@@ -229,7 +229,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -403,9 +403,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 10,
+          "pass": 9,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     }

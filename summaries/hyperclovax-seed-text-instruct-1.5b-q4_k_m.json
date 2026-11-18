@@ -3,7 +3,7 @@
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
   "repo": "loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "aa9cea3f03e3fc32d57b8b836dfaca6c8ddadd21",
+  "revision": "531a830e56dde66f5d5d972a2502632fe9692f0d",
   "status": null,
   "license": null,
   "service": {
@@ -212,9 +212,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 6,
+      "pass": 5,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 5
     },
     "status": {
@@ -228,7 +228,7 @@
       "agent_think_off": "n/a",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -404,9 +404,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 6,
+          "pass": 5,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 5
         },
         "status": {
@@ -420,7 +420,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-VL-8B-Instruct-Q4_K_M",
   "name": "Qwen3-VL-8B-Instruct",
   "repo": "loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom",
-  "revision": "d076f9bd9da0555e1debba2a09e31a67e16da1b5",
+  "revision": "195e7b3240376131bb016bb0502ca2aa278fff19",
   "status": null,
   "license": null,
   "service": {
@@ -216,9 +216,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 8,
+      "pass": 7,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 3
     },
     "status": {
@@ -232,7 +232,7 @@
       "agent_think_off": "n/a",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -408,9 +408,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 8,
+          "pass": 7,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
@@ -424,7 +424,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

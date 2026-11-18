@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M",
   "name": "Qwen3-Coder-30B-A3B-Instruct",
   "repo": "loom-fun/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom",
-  "revision": "81ac16e40a766a5bc87f66ac9036bc445c136de8",
+  "revision": "dfed0fd47f7a67d2ea93fac0a3cca0fdc6f55ba7",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -213,9 +213,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 8,
+      "pass": 7,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 3
     },
     "status": {
@@ -229,7 +229,7 @@
       "agent_think_off": "n/a",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -404,8 +404,8 @@
       "gates": {
         "summary": {
           "pass": 7,
-          "fail": 1,
-          "unknown": 0,
+          "fail": 0,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "fail"
+          "logits": "unknown"
         }
       }
     }

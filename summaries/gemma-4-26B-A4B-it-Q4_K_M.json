@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-26B-A4B-it-Q4_K_M",
   "name": "gemma-4-26B-A4B-it",
   "repo": "loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom",
-  "revision": "2fc82d3825954861446b4f813e7039c90a485208",
+  "revision": "cd988bb14db02ac5576e94d7e750dba32ba254cc",
   "status": null,
   "license": null,
   "service": {
@@ -214,8 +214,8 @@
   "gates": {
     "summary": {
       "pass": 8,
-      "fail": 1,
-      "unknown": 0,
+      "fail": 0,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
@@ -229,7 +229,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "fail"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -404,8 +404,8 @@
       "gates": {
         "summary": {
           "pass": 8,
-          "fail": 1,
-          "unknown": 0,
+          "fail": 0,
+          "unknown": 1,
           "n/a": 2
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "fail"
+          "logits": "unknown"
         }
       }
     }

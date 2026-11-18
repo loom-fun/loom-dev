@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-31B-it-Q4_K_M",
   "name": "gemma-4-31B-it",
   "repo": "loom-fun/unsloth-gemma-4-31B-it-loom",
-  "revision": "448cd39f64972b7bca08754677d466105fa7f865",
+  "revision": "40fec7de8608760d3748f6dcffe17cda16ea7f0b",
   "status": null,
   "license": null,
   "service": {
@@ -214,8 +214,8 @@
   "gates": {
     "summary": {
       "pass": 8,
-      "fail": 1,
-      "unknown": 0,
+      "fail": 0,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
@@ -229,7 +229,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "fail"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -404,8 +404,8 @@
       "gates": {
         "summary": {
           "pass": 8,
-          "fail": 1,
-          "unknown": 0,
+          "fail": 0,
+          "unknown": 1,
           "n/a": 2
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "fail"
+          "logits": "unknown"
         }
       }
     }

@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
   "name": "Qwen3.8-Flash-Next",
   "repo": "loom-fun/unsloth-Qwen3.8-Flash-Next-loom",
-  "revision": "31348b658bbfb1c7cfe2ba970301110af5ac4799",
+  "revision": "cdeaef5f9d2ec3fa5e48eb3f5520106f6e096110",
   "status": null,
   "license": null,
   "service": {
@@ -216,13 +216,13 @@
   },
   "gates": {
     "summary": {
-      "pass": 9,
+      "pass": 8,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
-      "kernel_tests": "pass",
+      "kernel_tests": "unknown",
       "golden": "pass",
       "compare": "pass",
       "vision": "pass",

@@ -3,7 +3,7 @@
   "checkpoint": "Laguna-XS-2.1-Q4_K_M",
   "name": "Laguna-XS-2.1",
   "repo": "loom-fun/ggml-org-Laguna-XS-2.1-loom",
-  "revision": "d5584990f47981cd3d5bb6d41c35799de7be455b",
+  "revision": "b6d8ef82432cce3ba88af64f242b2fe8d843fa2c",
   "status": null,
   "license": null,
   "service": {
@@ -189,9 +189,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 9,
+      "pass": 8,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
@@ -205,7 +205,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -355,9 +355,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 9,
+          "pass": 8,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 2
         },
         "status": {
@@ -371,7 +371,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     }

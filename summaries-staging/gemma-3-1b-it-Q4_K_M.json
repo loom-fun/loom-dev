@@ -208,9 +208,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 6,
+      "pass": 5,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 5
     },
     "status": {
@@ -224,7 +224,7 @@
       "agent_think_off": "n/a",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -396,9 +396,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 6,
+          "pass": 5,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 5
         },
         "status": {
@@ -412,7 +412,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

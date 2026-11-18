@@ -221,9 +221,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 11,
+      "pass": 9,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 2,
       "n/a": 1
     },
     "status": {
@@ -237,8 +237,8 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass",
-      "over_capacity": "pass"
+      "logits": "unknown",
+      "over_capacity": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -412,9 +412,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 10,
+          "pass": 9,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -428,7 +428,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },
@@ -869,21 +869,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 8,
+          "pass": 0,
           "fail": 0,
-          "unknown": 2,
+          "unknown": 10,
           "n/a": 1
         },
         "status": {
           "kernel_tests": "unknown",
-          "golden": "pass",
-          "compare": "pass",
-          "vision": "pass",
-          "consistency": "pass",
-          "spec": "pass",
-          "agent": "pass",
-          "agent_think_off": "pass",
-          "sampling": "pass",
+          "golden": "unknown",
+          "compare": "unknown",
+          "vision": "unknown",
+          "consistency": "unknown",
+          "spec": "unknown",
+          "agent": "unknown",
+          "agent_think_off": "unknown",
+          "sampling": "unknown",
           "decision": "n/a",
           "logits": "unknown"
         }

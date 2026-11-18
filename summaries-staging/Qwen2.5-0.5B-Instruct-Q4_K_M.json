@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-0.5B-Instruct-Q4_K_M",
   "name": "Qwen2.5-0.5B-Instruct",
   "repo": "loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom",
-  "revision": "ee37d39392da415525063cf5e4d42ee88eb13151",
+  "revision": "1efb86c12bc050498201eeed3e710f2fc88c2c28",
   "status": null,
   "license": null,
   "service": {
@@ -258,23 +258,23 @@
   },
   "gates": {
     "summary": {
-      "pass": 7,
+      "pass": 0,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 7,
       "n/a": 4
     },
     "status": {
-      "kernel_tests": "pass",
-      "golden": "pass",
-      "compare": "pass",
+      "kernel_tests": "unknown",
+      "golden": "unknown",
+      "compare": "unknown",
       "vision": "n/a",
-      "consistency": "pass",
+      "consistency": "unknown",
       "spec": "n/a",
-      "agent": "pass",
+      "agent": "unknown",
       "agent_think_off": "n/a",
-      "sampling": "pass",
+      "sampling": "unknown",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -500,9 +500,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 7,
+          "pass": 6,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 4
         },
         "status": {
@@ -516,7 +516,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },
@@ -526,58 +526,123 @@
       "memory_bytes": 15000000000,
       "context_tokens": 32768,
       "performance": {
-        "date": null,
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 541.3
+              },
+              "decode_2k": {
+                "llamacpp": 503.0
+              },
+              "decode_32k": {
+                "llamacpp": 354.8
+              },
+              "prefill_16k": {
+                "llamacpp": 21282.9
+              },
+              "prefill_1k": {
+                "llamacpp": 28644.7
+              },
+              "prefill_2k": {
+                "llamacpp": 31471.6
+              },
+              "prefill_32k": {
+                "llamacpp": 14247.5
+              },
+              "prefill_8k": {
+                "llamacpp": 27658.2
+              },
+              "streams4": {
+                "llamacpp": 1335.5
+              }
+            }
+          }
+        },
+        "date": "2026-11-17",
         "llamacpp_build": "b1375",
         "drafting": {
           "loom": null,
           "llamacpp": null
         },
-        "source": null,
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null,
+          "device": {
+            "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+            "gpu": "AMD Radeon RX 9070 XT",
+            "os": "Ubuntu 26.04"
+          },
+          "hrx_loom": {
+            "artifact_id": null,
+            "branch": "v0.2.0",
+            "hrx_loom": "0.2.0",
+            "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+            "source": "pypi",
+            "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+          }
+        },
         "metrics": {
           "decode": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 685.5,
+            "llamacpp": 362.5,
+            "speedup": 1.89
           },
           "decode_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 528.5,
+            "llamacpp": 345.3,
+            "speedup": 1.53
           },
           "decode_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 297.4,
+            "llamacpp": 246.8,
+            "speedup": 1.21
           },
           "prefill_1k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 45560.3,
+            "llamacpp": 31498.6,
+            "speedup": 1.45
           },
           "prefill_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 51831.9,
+            "llamacpp": 33579.9,
+            "speedup": 1.54
           },
           "prefill_8k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 45171.9,
+            "llamacpp": 29520.7,
+            "speedup": 1.53
           },
           "prefill_16k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 36036.6,
+            "llamacpp": 24185.7,
+            "speedup": 1.49
           },
           "prefill_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 26050.5,
+            "llamacpp": 16687.8,
+            "speedup": 1.56
           },
           "streams4": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 2286.2,
+            "llamacpp": 1058.6,
+            "speedup": 2.16
           },
           "spec_acceptance": {
             "loom": null,
@@ -640,9 +705,10 @@
           }
         },
         "programs_sha256": "eef3a94365f3453915495c6369e1c9c851c547b018805823d2643c35b4c98724",
-        "historical_programs": [
+        "named_machine_sources": [
           {
             "date": "2026-11-17",
+            "programs_sha256": "eef3a94365f3453915495c6369e1c9c851c547b018805823d2643c35b4c98724",
             "source": {
               "kind": "machine",
               "run": null,
@@ -660,67 +726,27 @@
                 "source": "pypi",
                 "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
               }
-            },
-            "programs_sha256": "1d1eaec79f8efcee186c6f653a77881f9b0b17ec9508857d4499b82bcaee59c5",
-            "program_identity": "recorded",
-            "metrics": {
-              "decode": {
-                "loom": 680.8,
-                "baseline": 362.9
-              },
-              "decode_2k": {
-                "loom": 521.1,
-                "baseline": 345.5
-              },
-              "decode_32k": {
-                "loom": 292.4,
-                "baseline": 246.3
-              },
-              "prefill_16k": {
-                "loom": 36665.1,
-                "baseline": 24261.2
-              },
-              "prefill_1k": {
-                "loom": 45680.8,
-                "baseline": 32382.6
-              },
-              "prefill_2k": {
-                "loom": 52514.4,
-                "baseline": 33641.1
-              },
-              "prefill_32k": {
-                "loom": 26200.2,
-                "baseline": 16893.7
-              },
-              "prefill_8k": {
-                "loom": 47193.1,
-                "baseline": 30088.3
-              },
-              "streams4": {
-                "loom": 2244.2,
-                "baseline": 1059.5
-              }
             }
           }
         ]
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 6,
           "fail": 0,
-          "unknown": 7,
+          "unknown": 1,
           "n/a": 4
         },
         "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
           "vision": "n/a",
-          "consistency": "unknown",
+          "consistency": "pass",
           "spec": "n/a",
-          "agent": "unknown",
+          "agent": "pass",
           "agent_think_off": "n/a",
-          "sampling": "unknown",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -754,7 +780,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-0.5B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "ee37d39392da415525063cf5e4d42ee88eb13151"
+      "source_revision": "1efb86c12bc050498201eeed3e710f2fc88c2c28"
     },
     "radeon-r9700": {
       "blocks": [
@@ -782,7 +808,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-0.5B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "ee37d39392da415525063cf5e4d42ee88eb13151"
+      "source_revision": "1efb86c12bc050498201eeed3e710f2fc88c2c28"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -810,7 +836,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-0.5B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "ee37d39392da415525063cf5e4d42ee88eb13151"
+      "source_revision": "1efb86c12bc050498201eeed3e710f2fc88c2c28"
     }
   }
 }

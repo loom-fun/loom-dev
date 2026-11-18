@@ -3,7 +3,7 @@
   "checkpoint": "LFM2.5-24B-A2B-Q4_K_M",
   "name": "LFM2.5-24B-A2B",
   "repo": "loom-fun/ggml-org-LFM2.5-24B-A2B-loom",
-  "revision": "0218e9b12e2002b559ea1bb449f9bc6817d3149a",
+  "revision": "23aa7bdf0830f2068656447ee9deecafd1b4c040",
   "status": null,
   "license": null,
   "service": {
@@ -212,8 +212,8 @@
   "gates": {
     "summary": {
       "pass": 6,
-      "fail": 1,
-      "unknown": 0,
+      "fail": 0,
+      "unknown": 1,
       "n/a": 4
     },
     "status": {
@@ -227,7 +227,7 @@
       "agent_think_off": "n/a",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "fail"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -403,9 +403,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 7,
+          "pass": 6,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 4
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

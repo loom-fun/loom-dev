@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-E4B-it-Q4_K_M",
   "name": "gemma-4-E4B-it",
   "repo": "loom-fun/unsloth-gemma-4-E4B-it-loom",
-  "revision": "0abc56366fac54486ff5c4afa636e51473def75b",
+  "revision": "e8c55b4df8b0389ba508d424ed4beba0002f428e",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -218,8 +218,8 @@
   "gates": {
     "summary": {
       "pass": 9,
-      "fail": 1,
-      "unknown": 0,
+      "fail": 0,
+      "unknown": 1,
       "n/a": 1
     },
     "status": {
@@ -233,7 +233,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "fail"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -408,8 +408,8 @@
       "gates": {
         "summary": {
           "pass": 9,
-          "fail": 1,
-          "unknown": 0,
+          "fail": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -423,7 +423,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "fail"
+          "logits": "unknown"
         }
       }
     },

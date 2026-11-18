@@ -216,13 +216,13 @@
   },
   "gates": {
     "summary": {
-      "pass": 9,
+      "pass": 8,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
-      "kernel_tests": "pass",
+      "kernel_tests": "unknown",
       "golden": "pass",
       "compare": "pass",
       "vision": "pass",

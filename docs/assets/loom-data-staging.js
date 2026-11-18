@@ -262,9 +262,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -278,7 +278,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -452,9 +452,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -468,7 +468,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -742,9 +742,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 6,
+     "pass": 5,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 5
     },
     "status": {
@@ -758,7 +758,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -930,9 +930,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 6,
+       "pass": 5,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 5
       },
       "status": {
@@ -946,7 +946,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -1483,8 +1483,8 @@ window.LOOM_DATA = {
    "gates": {
     "summary": {
      "pass": 8,
-     "fail": 1,
-     "unknown": 0,
+     "fail": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -1498,7 +1498,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "fail"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -1673,8 +1673,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 8,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -1688,7 +1688,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     },
@@ -2226,8 +2226,8 @@ window.LOOM_DATA = {
    "gates": {
     "summary": {
      "pass": 8,
-     "fail": 1,
-     "unknown": 0,
+     "fail": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -2241,7 +2241,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "fail"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -2416,8 +2416,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 8,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -2431,7 +2431,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     }
@@ -2711,8 +2711,8 @@ window.LOOM_DATA = {
    "gates": {
     "summary": {
      "pass": 8,
-     "fail": 1,
-     "unknown": 0,
+     "fail": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -2726,7 +2726,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "fail"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -2901,8 +2901,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 8,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -2916,7 +2916,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     }
@@ -3201,8 +3201,8 @@ window.LOOM_DATA = {
    "gates": {
     "summary": {
      "pass": 9,
-     "fail": 1,
-     "unknown": 0,
+     "fail": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -3216,7 +3216,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "fail"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -3391,8 +3391,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 9,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -3406,7 +3406,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     },
@@ -3948,8 +3948,8 @@ window.LOOM_DATA = {
    "gates": {
     "summary": {
      "pass": 9,
-     "fail": 1,
-     "unknown": 0,
+     "fail": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -3963,7 +3963,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "fail"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -4138,8 +4138,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 9,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -4153,7 +4153,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     },
@@ -4640,9 +4640,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 6,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -4656,7 +4656,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -4833,8 +4833,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 6,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -4848,7 +4848,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     },
@@ -5338,9 +5338,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 6,
+     "pass": 5,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 5
     },
     "status": {
@@ -5354,7 +5354,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -5530,9 +5530,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 6,
+       "pass": 5,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 5
       },
       "status": {
@@ -5546,7 +5546,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -6061,9 +6061,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -6077,7 +6077,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -6227,9 +6227,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 9,
+       "pass": 8,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -6243,7 +6243,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -6521,8 +6521,8 @@ window.LOOM_DATA = {
    "gates": {
     "summary": {
      "pass": 6,
-     "fail": 1,
-     "unknown": 0,
+     "fail": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -6536,7 +6536,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "fail"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -6712,9 +6712,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -6728,7 +6728,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -7042,9 +7042,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -7058,7 +7058,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -7234,9 +7234,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -7250,7 +7250,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -7579,7 +7579,7 @@ window.LOOM_DATA = {
    "checkpoint": "LFM3-Omni-2B-Q4_K_M",
    "name": "LFM3-Omni-2B",
    "repo": "loom-fun-staging/ggml-org-LFM3-Omni-2B-loom",
-   "revision": "b7f0b6a3b60f383cff45e3943171f5e221a279c4",
+   "revision": "af51e65950d06d13edcc32db8241b9e33ab53239",
    "status": null,
    "license": null,
    "service": {
@@ -7788,9 +7788,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -7804,7 +7804,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -7980,9 +7980,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -7996,7 +7996,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -8006,6 +8006,54 @@ window.LOOM_DATA = {
      "memory_bytes": 15000000000,
      "context_tokens": 128000,
      "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         }
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 305.8
+         },
+         "decode_2k": {
+          "llamacpp": 299.7
+         },
+         "decode_32k": {
+          "llamacpp": 247.7
+         },
+         "prefill_16k": {
+          "llamacpp": 14321.4
+         },
+         "prefill_1k": {
+          "llamacpp": 12518.5
+         },
+         "prefill_2k": {
+          "llamacpp": 14073.1
+         },
+         "prefill_32k": {
+          "llamacpp": 12380.2
+         },
+         "prefill_8k": {
+          "llamacpp": 15180.4
+         },
+         "streams4": {
+          "llamacpp": 989.4
+         }
+        }
+       }
+      },
       "date": "2026-11-17",
       "llamacpp_build": "b1375",
       "drafting": {
@@ -8032,49 +8080,49 @@ window.LOOM_DATA = {
       },
       "metrics": {
        "decode": {
-        "loom": 383.4,
-        "llamacpp": 249.5,
-        "speedup": 1.54
+        "loom": 383.6,
+        "llamacpp": 250.8,
+        "speedup": 1.53
        },
        "decode_2k": {
-        "loom": 362.6,
-        "llamacpp": 244.7,
-        "speedup": 1.48
+        "loom": 362.8,
+        "llamacpp": 246.4,
+        "speedup": 1.47
        },
        "decode_32k": {
-        "loom": 283.2,
-        "llamacpp": 206.8,
+        "loom": 284.5,
+        "llamacpp": 207.7,
         "speedup": 1.37
        },
        "prefill_1k": {
-        "loom": 24138.8,
-        "llamacpp": 13846.0,
-        "speedup": 1.74
+        "loom": 23810.7,
+        "llamacpp": 13876.5,
+        "speedup": 1.72
        },
        "prefill_2k": {
-        "loom": 26056.4,
-        "llamacpp": 15788.8,
+        "loom": 25984.3,
+        "llamacpp": 15757.9,
         "speedup": 1.65
        },
        "prefill_8k": {
-        "loom": 25723.2,
-        "llamacpp": 16532.1,
-        "speedup": 1.56
+        "loom": 25864.0,
+        "llamacpp": 16491.8,
+        "speedup": 1.57
        },
        "prefill_16k": {
-        "loom": 23735.4,
-        "llamacpp": 15483.4,
+        "loom": 23656.3,
+        "llamacpp": 15435.5,
         "speedup": 1.53
        },
        "prefill_32k": {
-        "loom": 20471.4,
-        "llamacpp": 13461.5,
-        "speedup": 1.52
+        "loom": 20754.9,
+        "llamacpp": 13403.5,
+        "speedup": 1.55
        },
        "streams4": {
-        "loom": 1386.6,
-        "llamacpp": 684.0,
-        "speedup": 2.03
+        "loom": 1401.0,
+        "llamacpp": 687.5,
+        "speedup": 2.04
        },
        "spec_acceptance": {
         "loom": null,
@@ -8164,21 +8212,21 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 0,
+       "pass": 6,
        "fail": 0,
-       "unknown": 8,
+       "unknown": 2,
        "n/a": 3
       },
       "status": {
        "kernel_tests": "unknown",
-       "golden": "unknown",
-       "compare": "unknown",
+       "golden": "pass",
+       "compare": "pass",
        "vision": "n/a",
-       "consistency": "unknown",
+       "consistency": "pass",
        "spec": "n/a",
-       "agent": "unknown",
-       "agent_think_off": "unknown",
-       "sampling": "unknown",
+       "agent": "pass",
+       "agent_think_off": "pass",
+       "sampling": "pass",
        "decision": "n/a",
        "logits": "unknown"
       }
@@ -8212,7 +8260,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat --materialize=copy --output=LFM3-Omni-2B",
      "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "b7f0b6a3b60f383cff45e3943171f5e221a279c4"
+     "source_revision": "af51e65950d06d13edcc32db8241b9e33ab53239"
     },
     "radeon-r9700": {
      "blocks": [
@@ -8240,7 +8288,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat-r9700 --materialize=copy --output=LFM3-Omni-2B",
      "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "b7f0b6a3b60f383cff45e3943171f5e221a279c4"
+     "source_revision": "af51e65950d06d13edcc32db8241b9e33ab53239"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -8268,7 +8316,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat-16gb --materialize=copy --output=LFM3-Omni-2B",
      "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "b7f0b6a3b60f383cff45e3943171f5e221a279c4"
+     "source_revision": "af51e65950d06d13edcc32db8241b9e33ab53239"
     }
    }
   },
@@ -8485,9 +8533,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 6,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -8501,7 +8549,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -8677,9 +8725,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -8693,7 +8741,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -9230,9 +9278,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -9246,7 +9294,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -9422,9 +9470,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -9438,7 +9486,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -9975,9 +10023,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -9991,7 +10039,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -10167,9 +10215,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -10183,7 +10231,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -10957,9 +11005,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -10973,7 +11021,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -11147,9 +11195,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 9,
+       "pass": 8,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -11163,7 +11211,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -11440,9 +11488,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -11456,7 +11504,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -11629,9 +11677,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -11645,7 +11693,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -11994,8 +12042,8 @@ window.LOOM_DATA = {
    "gates": {
     "summary": {
      "pass": 9,
-     "fail": 1,
-     "unknown": 0,
+     "fail": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -12009,7 +12057,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "fail"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -12249,8 +12297,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 9,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -12264,7 +12312,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     },
@@ -12528,21 +12576,21 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 6,
-       "fail": 2,
-       "unknown": 2,
+       "pass": 0,
+       "fail": 0,
+       "unknown": 10,
        "n/a": 1
       },
       "status": {
        "kernel_tests": "unknown",
-       "golden": "pass",
-       "compare": "pass",
-       "vision": "pass",
-       "consistency": "pass",
-       "spec": "pass",
-       "agent": "fail",
-       "agent_think_off": "fail",
-       "sampling": "pass",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "unknown",
+       "consistency": "unknown",
+       "spec": "unknown",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
        "decision": "n/a",
        "logits": "unknown"
       }
@@ -12853,9 +12901,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -12869,7 +12917,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -13045,9 +13093,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 9,
+       "pass": 8,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -13061,7 +13109,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -13342,9 +13390,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -13358,7 +13406,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -13534,9 +13582,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 9,
+       "pass": 8,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -13550,7 +13598,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -14093,8 +14141,8 @@ window.LOOM_DATA = {
    "gates": {
     "summary": {
      "pass": 8,
-     "fail": 2,
-     "unknown": 0,
+     "fail": 1,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -14108,7 +14156,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "fail"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -14365,9 +14413,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 10,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -14381,7 +14429,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -14555,9 +14603,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -14571,7 +14619,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -14854,9 +14902,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 10,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -14870,7 +14918,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -15044,9 +15092,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -15060,7 +15108,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -15387,7 +15435,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-0.5B-Instruct-Q4_K_M",
    "name": "Qwen2.5-0.5B-Instruct",
    "repo": "loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom",
-   "revision": "ee37d39392da415525063cf5e4d42ee88eb13151",
+   "revision": "1efb86c12bc050498201eeed3e710f2fc88c2c28",
    "status": null,
    "license": null,
    "service": {
@@ -15642,23 +15690,23 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 0,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 7,
      "n/a": 4
     },
     "status": {
-     "kernel_tests": "pass",
-     "golden": "pass",
-     "compare": "pass",
+     "kernel_tests": "unknown",
+     "golden": "unknown",
+     "compare": "unknown",
      "vision": "n/a",
-     "consistency": "pass",
+     "consistency": "unknown",
      "spec": "n/a",
-     "agent": "pass",
+     "agent": "unknown",
      "agent_think_off": "n/a",
-     "sampling": "pass",
+     "sampling": "unknown",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -15884,9 +15932,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -15900,7 +15948,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -15910,58 +15958,123 @@ window.LOOM_DATA = {
      "memory_bytes": 15000000000,
      "context_tokens": 32768,
      "performance": {
-      "date": null,
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         }
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 541.3
+         },
+         "decode_2k": {
+          "llamacpp": 503.0
+         },
+         "decode_32k": {
+          "llamacpp": 354.8
+         },
+         "prefill_16k": {
+          "llamacpp": 21282.9
+         },
+         "prefill_1k": {
+          "llamacpp": 28644.7
+         },
+         "prefill_2k": {
+          "llamacpp": 31471.6
+         },
+         "prefill_32k": {
+          "llamacpp": 14247.5
+         },
+         "prefill_8k": {
+          "llamacpp": 27658.2
+         },
+         "streams4": {
+          "llamacpp": 1335.5
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
       "llamacpp_build": "b1375",
       "drafting": {
        "loom": null,
        "llamacpp": null
       },
-      "source": null,
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null,
+       "device": {
+        "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+        "gpu": "AMD Radeon RX 9070 XT",
+        "os": "Ubuntu 26.04"
+       },
+       "hrx_loom": {
+        "artifact_id": null,
+        "branch": "v0.2.0",
+        "hrx_loom": "0.2.0",
+        "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+        "source": "pypi",
+        "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+       }
+      },
       "metrics": {
        "decode": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 685.5,
+        "llamacpp": 362.5,
+        "speedup": 1.89
        },
        "decode_2k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 528.5,
+        "llamacpp": 345.3,
+        "speedup": 1.53
        },
        "decode_32k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 297.4,
+        "llamacpp": 246.8,
+        "speedup": 1.21
        },
        "prefill_1k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 45560.3,
+        "llamacpp": 31498.6,
+        "speedup": 1.45
        },
        "prefill_2k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 51831.9,
+        "llamacpp": 33579.9,
+        "speedup": 1.54
        },
        "prefill_8k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 45171.9,
+        "llamacpp": 29520.7,
+        "speedup": 1.53
        },
        "prefill_16k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 36036.6,
+        "llamacpp": 24185.7,
+        "speedup": 1.49
        },
        "prefill_32k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 26050.5,
+        "llamacpp": 16687.8,
+        "speedup": 1.56
        },
        "streams4": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 2286.2,
+        "llamacpp": 1058.6,
+        "speedup": 2.16
        },
        "spec_acceptance": {
         "loom": null,
@@ -16024,9 +16137,10 @@ window.LOOM_DATA = {
        }
       },
       "programs_sha256": "eef3a94365f3453915495c6369e1c9c851c547b018805823d2643c35b4c98724",
-      "historical_programs": [
+      "named_machine_sources": [
        {
         "date": "2026-11-17",
+        "programs_sha256": "eef3a94365f3453915495c6369e1c9c851c547b018805823d2643c35b4c98724",
         "source": {
          "kind": "machine",
          "run": null,
@@ -16044,67 +16158,27 @@ window.LOOM_DATA = {
           "source": "pypi",
           "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
          }
-        },
-        "programs_sha256": "1d1eaec79f8efcee186c6f653a77881f9b0b17ec9508857d4499b82bcaee59c5",
-        "program_identity": "recorded",
-        "metrics": {
-         "decode": {
-          "loom": 680.8,
-          "baseline": 362.9
-         },
-         "decode_2k": {
-          "loom": 521.1,
-          "baseline": 345.5
-         },
-         "decode_32k": {
-          "loom": 292.4,
-          "baseline": 246.3
-         },
-         "prefill_16k": {
-          "loom": 36665.1,
-          "baseline": 24261.2
-         },
-         "prefill_1k": {
-          "loom": 45680.8,
-          "baseline": 32382.6
-         },
-         "prefill_2k": {
-          "loom": 52514.4,
-          "baseline": 33641.1
-         },
-         "prefill_32k": {
-          "loom": 26200.2,
-          "baseline": 16893.7
-         },
-         "prefill_8k": {
-          "loom": 47193.1,
-          "baseline": 30088.3
-         },
-         "streams4": {
-          "loom": 2244.2,
-          "baseline": 1059.5
-         }
         }
        }
       ]
      },
      "gates": {
       "summary": {
-       "pass": 0,
+       "pass": 6,
        "fail": 0,
-       "unknown": 7,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
-       "kernel_tests": "unknown",
-       "golden": "unknown",
-       "compare": "unknown",
+       "kernel_tests": "pass",
+       "golden": "pass",
+       "compare": "pass",
        "vision": "n/a",
-       "consistency": "unknown",
+       "consistency": "pass",
        "spec": "n/a",
-       "agent": "unknown",
+       "agent": "pass",
        "agent_think_off": "n/a",
-       "sampling": "unknown",
+       "sampling": "pass",
        "decision": "n/a",
        "logits": "unknown"
       }
@@ -16138,7 +16212,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-0.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "ee37d39392da415525063cf5e4d42ee88eb13151"
+     "source_revision": "1efb86c12bc050498201eeed3e710f2fc88c2c28"
     },
     "radeon-r9700": {
      "blocks": [
@@ -16166,7 +16240,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-0.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "ee37d39392da415525063cf5e4d42ee88eb13151"
+     "source_revision": "1efb86c12bc050498201eeed3e710f2fc88c2c28"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -16194,7 +16268,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-0.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "ee37d39392da415525063cf5e4d42ee88eb13151"
+     "source_revision": "1efb86c12bc050498201eeed3e710f2fc88c2c28"
     }
    }
   },
@@ -16203,7 +16277,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-1.5B-Instruct-Q4_K_M",
    "name": "Qwen2.5-1.5B-Instruct",
    "repo": "loom-fun-staging/bartowski-Qwen2.5-1.5B-Instruct-loom",
-   "revision": "ff6de035c1f3f26b552d41c06698213d3a349b8e",
+   "revision": "62fc1637a7e3c096d0672e1ec1acd9e8639b1844",
    "status": null,
    "license": null,
    "service": {
@@ -16412,9 +16486,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 6,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -16428,7 +16502,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -16604,9 +16678,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -16620,7 +16694,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -16630,6 +16704,54 @@ window.LOOM_DATA = {
      "memory_bytes": 15000000000,
      "context_tokens": 32768,
      "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         }
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 346.2
+         },
+         "decode_2k": {
+          "llamacpp": 324.0
+         },
+         "decode_32k": {
+          "llamacpp": 212.7
+         },
+         "prefill_16k": {
+          "llamacpp": 9744.9
+         },
+         "prefill_1k": {
+          "llamacpp": 12772.2
+         },
+         "prefill_2k": {
+          "llamacpp": 13539.0
+         },
+         "prefill_32k": {
+          "llamacpp": 6931.3
+         },
+         "prefill_8k": {
+          "llamacpp": 12147.6
+         },
+         "streams4": {
+          "llamacpp": 938.0
+         }
+        }
+       }
+      },
       "date": "2026-11-17",
       "llamacpp_build": "b1375",
       "drafting": {
@@ -16656,49 +16778,49 @@ window.LOOM_DATA = {
       },
       "metrics": {
        "decode": {
-        "loom": 365.6,
-        "llamacpp": 210.5,
-        "speedup": 1.74
+        "loom": 364.3,
+        "llamacpp": 210.8,
+        "speedup": 1.73
        },
        "decode_2k": {
-        "loom": 304.2,
+        "loom": 305.5,
         "llamacpp": 202.8,
-        "speedup": 1.5
+        "speedup": 1.51
        },
        "decode_32k": {
-        "loom": 146.5,
-        "llamacpp": 154.4,
+        "loom": 146.2,
+        "llamacpp": 154.2,
         "speedup": 0.95
        },
        "prefill_1k": {
-        "loom": 23285.4,
-        "llamacpp": 14097.7,
-        "speedup": 1.65
+        "loom": 22602.5,
+        "llamacpp": 14083.7,
+        "speedup": 1.6
        },
        "prefill_2k": {
-        "loom": 24813.0,
-        "llamacpp": 14691.6,
-        "speedup": 1.69
+        "loom": 24626.2,
+        "llamacpp": 14692.5,
+        "speedup": 1.68
        },
        "prefill_8k": {
-        "loom": 22557.0,
-        "llamacpp": 13670.9,
-        "speedup": 1.65
+        "loom": 22193.2,
+        "llamacpp": 13642.1,
+        "speedup": 1.63
        },
        "prefill_16k": {
-        "loom": 18423.3,
-        "llamacpp": 11732.6,
-        "speedup": 1.57
+        "loom": 17995.8,
+        "llamacpp": 11700.0,
+        "speedup": 1.54
        },
        "prefill_32k": {
-        "loom": 12398.5,
-        "llamacpp": 8613.3,
-        "speedup": 1.44
+        "loom": 12305.5,
+        "llamacpp": 8617.1,
+        "speedup": 1.43
        },
        "streams4": {
-        "loom": 1266.7,
-        "llamacpp": 724.7,
-        "speedup": 1.75
+        "loom": 1271.8,
+        "llamacpp": 723.3,
+        "speedup": 1.76
        },
        "spec_acceptance": {
         "loom": null,
@@ -16788,21 +16910,21 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 0,
+       "pass": 6,
        "fail": 0,
-       "unknown": 7,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
-       "kernel_tests": "unknown",
-       "golden": "unknown",
-       "compare": "unknown",
+       "kernel_tests": "pass",
+       "golden": "pass",
+       "compare": "pass",
        "vision": "n/a",
-       "consistency": "unknown",
+       "consistency": "pass",
        "spec": "n/a",
-       "agent": "unknown",
+       "agent": "pass",
        "agent_think_off": "n/a",
-       "sampling": "unknown",
+       "sampling": "pass",
        "decision": "n/a",
        "logits": "unknown"
       }
@@ -16836,7 +16958,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-1.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-1.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "ff6de035c1f3f26b552d41c06698213d3a349b8e"
+     "source_revision": "62fc1637a7e3c096d0672e1ec1acd9e8639b1844"
     },
     "radeon-r9700": {
      "blocks": [
@@ -16864,7 +16986,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-1.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-1.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "ff6de035c1f3f26b552d41c06698213d3a349b8e"
+     "source_revision": "62fc1637a7e3c096d0672e1ec1acd9e8639b1844"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -16892,7 +17014,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-1.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-1.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "ff6de035c1f3f26b552d41c06698213d3a349b8e"
+     "source_revision": "62fc1637a7e3c096d0672e1ec1acd9e8639b1844"
     }
    }
   },
@@ -17109,9 +17231,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 6,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -17125,7 +17247,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -17298,9 +17420,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -17314,7 +17436,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -17383,7 +17505,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-7B-Instruct-Q4_K_M",
    "name": "Qwen2.5-7B-Instruct",
    "repo": "loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom",
-   "revision": "2a811c402d61c27555f3ee9840d107ec99677e3b",
+   "revision": "d5083e4d42f1945509d5f68620b4a68af0f49a6a",
    "status": null,
    "license": null,
    "service": {
@@ -17591,9 +17713,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 6,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -17607,7 +17729,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -17783,9 +17905,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -17799,7 +17921,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -17809,6 +17931,54 @@ window.LOOM_DATA = {
      "memory_bytes": 15000000000,
      "context_tokens": 32768,
      "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         }
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 117.5
+         },
+         "decode_2k": {
+          "llamacpp": 114.1
+         },
+         "decode_32k": {
+          "llamacpp": 85.9
+         },
+         "prefill_16k": {
+          "llamacpp": 3114.8
+         },
+         "prefill_1k": {
+          "llamacpp": 3789.5
+         },
+         "prefill_2k": {
+          "llamacpp": 3868.3
+         },
+         "prefill_32k": {
+          "llamacpp": 2504.9
+         },
+         "prefill_8k": {
+          "llamacpp": 3543.5
+         },
+         "streams4": {
+          "llamacpp": 379.1
+         }
+        }
+       }
+      },
       "date": "2026-11-17",
       "llamacpp_build": "b1375",
       "drafting": {
@@ -17835,49 +18005,49 @@ window.LOOM_DATA = {
       },
       "metrics": {
        "decode": {
-        "loom": 117.1,
-        "llamacpp": 109.4,
-        "speedup": 1.07
+        "loom": 117.7,
+        "llamacpp": 109.2,
+        "speedup": 1.08
        },
        "decode_2k": {
-        "loom": 107.7,
-        "llamacpp": 105.2,
-        "speedup": 1.02
+        "loom": 107.8,
+        "llamacpp": 105.1,
+        "speedup": 1.03
        },
        "decode_32k": {
-        "loom": 69.2,
-        "llamacpp": 70.9,
+        "loom": 69.3,
+        "llamacpp": 70.8,
         "speedup": 0.98
        },
        "prefill_1k": {
-        "loom": 6105.7,
-        "llamacpp": 4351.5,
-        "speedup": 1.4
+        "loom": 6025.6,
+        "llamacpp": 4346.5,
+        "speedup": 1.39
        },
        "prefill_2k": {
-        "loom": 6462.0,
-        "llamacpp": 4370.6,
-        "speedup": 1.48
+        "loom": 6388.3,
+        "llamacpp": 4363.8,
+        "speedup": 1.46
        },
        "prefill_8k": {
-        "loom": 6031.8,
-        "llamacpp": 3893.4,
-        "speedup": 1.55
+        "loom": 5986.7,
+        "llamacpp": 3898.2,
+        "speedup": 1.54
        },
        "prefill_16k": {
-        "loom": 5321.3,
-        "llamacpp": 3331.6,
-        "speedup": 1.6
+        "loom": 5294.5,
+        "llamacpp": 3331.9,
+        "speedup": 1.59
        },
        "prefill_32k": {
-        "loom": 3826.8,
-        "llamacpp": 2621.6,
+        "loom": 3816.5,
+        "llamacpp": 2620.7,
         "speedup": 1.46
        },
        "streams4": {
-        "loom": 429.2,
-        "llamacpp": 302.0,
-        "speedup": 1.42
+        "loom": 429.8,
+        "llamacpp": 301.1,
+        "speedup": 1.43
        },
        "spec_acceptance": {
         "loom": null,
@@ -17967,21 +18137,21 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 0,
+       "pass": 6,
        "fail": 0,
-       "unknown": 7,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
-       "kernel_tests": "unknown",
-       "golden": "unknown",
-       "compare": "unknown",
+       "kernel_tests": "pass",
+       "golden": "pass",
+       "compare": "pass",
        "vision": "n/a",
-       "consistency": "unknown",
+       "consistency": "pass",
        "spec": "n/a",
-       "agent": "unknown",
+       "agent": "pass",
        "agent_think_off": "n/a",
-       "sampling": "unknown",
+       "sampling": "pass",
        "decision": "n/a",
        "logits": "unknown"
       }
@@ -18015,7 +18185,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-7B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "2a811c402d61c27555f3ee9840d107ec99677e3b"
+     "source_revision": "d5083e4d42f1945509d5f68620b4a68af0f49a6a"
     },
     "radeon-r9700": {
      "blocks": [
@@ -18043,7 +18213,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-7B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "2a811c402d61c27555f3ee9840d107ec99677e3b"
+     "source_revision": "d5083e4d42f1945509d5f68620b4a68af0f49a6a"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -18071,7 +18241,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-7B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-7B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "2a811c402d61c27555f3ee9840d107ec99677e3b"
+     "source_revision": "d5083e4d42f1945509d5f68620b4a68af0f49a6a"
     }
    }
   },
@@ -18292,9 +18462,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 6,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -18308,7 +18478,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -18484,9 +18654,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -18500,7 +18670,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -18990,9 +19160,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -19006,7 +19176,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -19182,9 +19352,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -19198,7 +19368,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -19688,9 +19858,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -19704,7 +19874,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -19881,8 +20051,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 7,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -19896,7 +20066,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     },
@@ -20433,9 +20603,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -20449,7 +20619,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -20625,9 +20795,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -20641,7 +20811,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -21175,9 +21345,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 6,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -21191,7 +21361,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -21367,9 +21537,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -21383,7 +21553,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -21661,9 +21831,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 6,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 4
     },
     "status": {
@@ -21677,7 +21847,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -21853,9 +22023,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 7,
+       "pass": 6,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 4
       },
       "status": {
@@ -21869,7 +22039,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -22408,9 +22578,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -22424,7 +22594,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -22598,9 +22768,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 9,
+       "pass": 8,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -22614,7 +22784,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -23151,9 +23321,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -23167,7 +23337,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -23341,9 +23511,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 9,
+       "pass": 8,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -23357,7 +23527,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -23846,9 +24016,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -23862,7 +24032,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -24037,8 +24207,8 @@ window.LOOM_DATA = {
      "gates": {
       "summary": {
        "pass": 7,
-       "fail": 1,
-       "unknown": 0,
+       "fail": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -24052,7 +24222,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "fail"
+       "logits": "unknown"
       }
      }
     }
@@ -24334,9 +24504,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -24350,7 +24520,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -24526,9 +24696,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -24542,7 +24712,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -25036,9 +25206,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -25052,7 +25222,7 @@ window.LOOM_DATA = {
      "agent_think_off": "n/a",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -25228,9 +25398,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -25244,7 +25414,7 @@ window.LOOM_DATA = {
        "agent_think_off": "n/a",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -25785,9 +25955,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -25801,7 +25971,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -25977,9 +26147,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 9,
+       "pass": 8,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -25993,7 +26163,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -26534,9 +26704,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
@@ -26550,7 +26720,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -26726,9 +26896,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 9,
+       "pass": 8,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 2
       },
       "status": {
@@ -26742,7 +26912,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -27285,9 +27455,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 10,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -27301,7 +27471,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -27475,9 +27645,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -27491,7 +27661,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -27778,9 +27948,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 11,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 2,
      "n/a": 1
     },
     "status": {
@@ -27794,8 +27964,8 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass",
-     "over_capacity": "pass"
+     "logits": "unknown",
+     "over_capacity": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -27969,9 +28139,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -27985,7 +28155,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -28426,21 +28596,21 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 0,
        "fail": 0,
-       "unknown": 2,
+       "unknown": 10,
        "n/a": 1
       },
       "status": {
        "kernel_tests": "unknown",
-       "golden": "pass",
-       "compare": "pass",
-       "vision": "pass",
-       "consistency": "pass",
-       "spec": "pass",
-       "agent": "pass",
-       "agent_think_off": "pass",
-       "sampling": "pass",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "unknown",
+       "consistency": "unknown",
+       "spec": "unknown",
+       "agent": "unknown",
+       "agent_think_off": "unknown",
+       "sampling": "unknown",
        "decision": "n/a",
        "logits": "unknown"
       }
@@ -28781,9 +28951,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 11,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 2,
      "n/a": 1
     },
     "status": {
@@ -28797,8 +28967,8 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass",
-     "over_capacity": "pass"
+     "logits": "unknown",
+     "over_capacity": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -28972,9 +29142,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -28988,7 +29158,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -29307,9 +29477,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 10,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -29323,7 +29493,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -29497,9 +29667,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -29513,7 +29683,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -29799,9 +29969,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 10,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -29815,7 +29985,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -29989,9 +30159,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -30005,7 +30175,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -30284,9 +30454,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 10,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -30300,7 +30470,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -30474,9 +30644,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -30490,7 +30660,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -30772,13 +30942,13 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 9,
+     "pass": 8,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
-     "kernel_tests": "pass",
+     "kernel_tests": "unknown",
      "golden": "pass",
      "compare": "pass",
      "vision": "pass",
@@ -31041,9 +31211,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 10,
+     "pass": 9,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 1
     },
     "status": {
@@ -31057,7 +31227,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -31231,9 +31401,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 10,
+       "pass": 9,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 1
       },
       "status": {
@@ -31247,7 +31417,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     }
@@ -31525,9 +31695,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -31541,7 +31711,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -31717,9 +31887,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -31733,7 +31903,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -32062,7 +32232,7 @@ window.LOOM_DATA = {
    "checkpoint": "Spark-X2.6-4B-Q4_K_M",
    "name": "Spark-X2.6-4B",
    "repo": "loom-fun-staging/bartowski-Spark-X2.6-4B-loom",
-   "revision": "afcea36b949e03fd503656a9de464ff81db20e2e",
+   "revision": "f75584c683aec23cb2a95add05f98c4d4c5ed6a3",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -32271,9 +32441,9 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 8,
+     "pass": 7,
      "fail": 0,
-     "unknown": 0,
+     "unknown": 1,
      "n/a": 3
     },
     "status": {
@@ -32287,7 +32457,7 @@ window.LOOM_DATA = {
      "agent_think_off": "pass",
      "sampling": "pass",
      "decision": "n/a",
-     "logits": "pass"
+     "logits": "unknown"
     }
    },
    "primary_device": "strix-halo",
@@ -32463,9 +32633,9 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 8,
+       "pass": 7,
        "fail": 0,
-       "unknown": 0,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
@@ -32479,7 +32649,7 @@ window.LOOM_DATA = {
        "agent_think_off": "pass",
        "sampling": "pass",
        "decision": "n/a",
-       "logits": "pass"
+       "logits": "unknown"
       }
      }
     },
@@ -32489,6 +32659,54 @@ window.LOOM_DATA = {
      "memory_bytes": 15000000000,
      "context_tokens": 75776,
      "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         }
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 141.8
+         },
+         "decode_2k": {
+          "llamacpp": 136.6
+         },
+         "decode_32k": {
+          "llamacpp": 107.0
+         },
+         "prefill_16k": {
+          "llamacpp": 5416.2
+         },
+         "prefill_1k": {
+          "llamacpp": 4782.4
+         },
+         "prefill_2k": {
+          "llamacpp": 5429.5
+         },
+         "prefill_32k": {
+          "llamacpp": 4619.9
+         },
+         "prefill_8k": {
+          "llamacpp": 5826.5
+         },
+         "streams4": {
+          "llamacpp": 247.5
+         }
+        }
+       }
+      },
       "date": "2026-11-17",
       "llamacpp_build": "b1375",
       "drafting": {
@@ -32515,49 +32733,49 @@ window.LOOM_DATA = {
       },
       "metrics": {
        "decode": {
-        "loom": 159.6,
-        "llamacpp": 131.6,
+        "loom": 159.7,
+        "llamacpp": 131.5,
         "speedup": 1.21
        },
        "decode_2k": {
-        "loom": 148.7,
-        "llamacpp": 125.3,
+        "loom": 149.1,
+        "llamacpp": 125.2,
         "speedup": 1.19
        },
        "decode_32k": {
-        "loom": 113.8,
+        "loom": 114.0,
         "llamacpp": 100.2,
         "speedup": 1.14
        },
        "prefill_1k": {
-        "loom": 8607.0,
-        "llamacpp": 5122.3,
-        "speedup": 1.68
+        "loom": 8557.3,
+        "llamacpp": 5133.4,
+        "speedup": 1.67
        },
        "prefill_2k": {
-        "loom": 8841.7,
-        "llamacpp": 5724.5,
+        "loom": 8843.2,
+        "llamacpp": 5725.9,
         "speedup": 1.54
        },
        "prefill_8k": {
-        "loom": 8775.0,
-        "llamacpp": 5974.8,
+        "loom": 8760.0,
+        "llamacpp": 5966.5,
         "speedup": 1.47
        },
        "prefill_16k": {
-        "loom": 7883.6,
-        "llamacpp": 5555.8,
-        "speedup": 1.42
+        "loom": 7798.2,
+        "llamacpp": 5551.2,
+        "speedup": 1.4
        },
        "prefill_32k": {
-        "loom": 6564.2,
-        "llamacpp": 4812.8,
+        "loom": 6528.8,
+        "llamacpp": 4812.9,
         "speedup": 1.36
        },
        "streams4": {
-        "loom": 558.5,
-        "llamacpp": 299.1,
-        "speedup": 1.87
+        "loom": 558.1,
+        "llamacpp": 304.8,
+        "speedup": 1.83
        },
        "spec_acceptance": {
         "loom": null,
@@ -32647,21 +32865,21 @@ window.LOOM_DATA = {
      },
      "gates": {
       "summary": {
-       "pass": 0,
+       "pass": 7,
        "fail": 0,
-       "unknown": 8,
+       "unknown": 1,
        "n/a": 3
       },
       "status": {
-       "kernel_tests": "unknown",
-       "golden": "unknown",
-       "compare": "unknown",
+       "kernel_tests": "pass",
+       "golden": "pass",
+       "compare": "pass",
        "vision": "n/a",
-       "consistency": "unknown",
+       "consistency": "pass",
        "spec": "n/a",
-       "agent": "unknown",
-       "agent_think_off": "unknown",
-       "sampling": "unknown",
+       "agent": "pass",
+       "agent_think_off": "pass",
+       "sampling": "pass",
        "decision": "n/a",
        "logits": "unknown"
       }
@@ -32695,7 +32913,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Spark-X2.6-4B-loom:chat --materialize=copy --output=Spark-X2.6-4B",
      "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "afcea36b949e03fd503656a9de464ff81db20e2e"
+     "source_revision": "f75584c683aec23cb2a95add05f98c4d4c5ed6a3"
     },
     "radeon-r9700": {
      "blocks": [
@@ -32723,7 +32941,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Spark-X2.6-4B-loom:chat-r9700 --materialize=copy --output=Spark-X2.6-4B",
      "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "afcea36b949e03fd503656a9de464ff81db20e2e"
+     "source_revision": "f75584c683aec23cb2a95add05f98c4d4c5ed6a3"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -32751,7 +32969,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Spark-X2.6-4B-loom:chat-16gb --materialize=copy --output=Spark-X2.6-4B",
      "serve": "loom-serve --model=Spark-X2.6-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "afcea36b949e03fd503656a9de464ff81db20e2e"
+     "source_revision": "f75584c683aec23cb2a95add05f98c4d4c5ed6a3"
     }
    }
   }

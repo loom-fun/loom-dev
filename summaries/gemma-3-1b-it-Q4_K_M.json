@@ -3,7 +3,7 @@
   "checkpoint": "gemma-3-1b-it-Q4_K_M",
   "name": "gemma-3-1b-it",
   "repo": "loom-fun/ggml-org-gemma-3-1b-it-loom",
-  "revision": "6ba649bca29b33c8884b02919c5dba950c832a9b",
+  "revision": "99da2100b4aef88600a1136668e726849af08c97",
   "status": null,
   "license": "gemma",
   "service": {
@@ -208,9 +208,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 6,
+      "pass": 5,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 1,
       "n/a": 5
     },
     "status": {
@@ -224,7 +224,7 @@
       "agent_think_off": "n/a",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -396,9 +396,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 6,
+          "pass": 5,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 5
         },
         "status": {
@@ -412,7 +412,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },

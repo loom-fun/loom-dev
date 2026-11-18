@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-122B-Q4_K_M",
   "name": "Ornith-1.5-122B",
   "repo": "loom-fun/bartowski-Ornith-1.5-122B-loom",
-  "revision": "09fdeba39ee652183977af9a43893d48793ada96",
+  "revision": "a12fb1a4c6462e8a0c3d812bd21d7a3451c3dcdc",
   "status": null,
   "license": null,
   "service": {
@@ -217,8 +217,8 @@
   "gates": {
     "summary": {
       "pass": 8,
-      "fail": 2,
-      "unknown": 0,
+      "fail": 1,
+      "unknown": 1,
       "n/a": 1
     },
     "status": {
@@ -232,7 +232,7 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "fail"
+      "logits": "unknown"
     }
   },
   "primary_device": "strix-halo",

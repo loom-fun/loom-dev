@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-4B-Q4_K_M",
   "name": "Qwen3.5-4B",
   "repo": "loom-fun/unsloth-Qwen3.5-4B-loom",
-  "revision": "cdc95c490952ffb9ce4b4c84f93df2fd792648ee",
+  "revision": "8083b224bf613c59583d1f6197c6304eaf94c40b",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -221,9 +221,9 @@
   },
   "gates": {
     "summary": {
-      "pass": 11,
+      "pass": 9,
       "fail": 0,
-      "unknown": 0,
+      "unknown": 2,
       "n/a": 1
     },
     "status": {
@@ -237,8 +237,8 @@
       "agent_think_off": "pass",
       "sampling": "pass",
       "decision": "n/a",
-      "logits": "pass",
-      "over_capacity": "pass"
+      "logits": "unknown",
+      "over_capacity": "unknown"
     }
   },
   "primary_device": "strix-halo",
@@ -412,9 +412,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 10,
+          "pass": 9,
           "fail": 0,
-          "unknown": 0,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
@@ -428,7 +428,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "pass"
+          "logits": "unknown"
         }
       }
     },
@@ -869,21 +869,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 8,
+          "pass": 0,
           "fail": 0,
-          "unknown": 2,
+          "unknown": 10,
           "n/a": 1
         },
         "status": {
           "kernel_tests": "unknown",
-          "golden": "pass",
-          "compare": "pass",
-          "vision": "pass",
-          "consistency": "pass",
-          "spec": "pass",
-          "agent": "pass",
-          "agent_think_off": "pass",
-          "sampling": "pass",
+          "golden": "unknown",
+          "compare": "unknown",
+          "vision": "unknown",
+          "consistency": "unknown",
+          "spec": "unknown",
+          "agent": "unknown",
+          "agent_think_off": "unknown",
+          "sampling": "unknown",
           "decision": "n/a",
           "logits": "unknown"
         }
