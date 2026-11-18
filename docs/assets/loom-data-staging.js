@@ -35,7 +35,7 @@ window.LOOM_DATA = {
    "short": "Radeon 9070XT",
    "spec": "gfx1201, 16 GB",
    "preset_suffix": "-16gb",
-   "models": 28
+   "models": 30
   },
   {
    "id": "gfx1150",
@@ -1271,7 +1271,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-12b-it-Q4_K_M",
    "name": "gemma-4-12B-it",
    "repo": "loom-fun-staging/unsloth-gemma-4-12B-it-loom",
-   "revision": "b4e5996d81543b10b6b7a517895acf700f7dd89d",
+   "revision": "7b6cc1f7753df9addef853e62d32e88510a42975",
    "status": null,
    "license": null,
    "service": {
@@ -1693,12 +1693,234 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 12288
+     "context_tokens": 12288,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model card:parameter/gemma4-12B-it-DFlash-Q4_K_M.gguf --spec-draft-n-max 16 -ngld 99 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         }
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 51.0
+         },
+         "decode_2k": {
+          "llamacpp": 50.2
+         },
+         "decode_32k": {
+          "llamacpp": 47.7
+         },
+         "prefill_16k": {
+          "llamacpp": 2041.2
+         },
+         "prefill_1k": {
+          "llamacpp": 1690.0
+         },
+         "prefill_2k": {
+          "llamacpp": 1928.8
+         },
+         "prefill_32k": {
+          "llamacpp": 1817.6
+         },
+         "prefill_8k": {
+          "llamacpp": 2133.5
+         },
+         "streams4": {
+          "llamacpp": 201.0
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": "DFlash, depth 3",
+       "llamacpp": "draft-dflash, n-max 16"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null,
+       "device": {
+        "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+        "gpu": "AMD Radeon RX 9070 XT",
+        "os": "Ubuntu 26.04"
+       },
+       "hrx_loom": {
+        "artifact_id": null,
+        "branch": "v0.2.0",
+        "hrx_loom": "0.2.0",
+        "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+        "source": "pypi",
+        "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+       }
+      },
+      "metrics": {
+       "decode": {
+        "loom": 129.3,
+        "llamacpp": 65.7,
+        "speedup": 1.97
+       },
+       "decode_2k": {
+        "loom": 100.0,
+        "llamacpp": 57.3,
+        "speedup": 1.75
+       },
+       "decode_32k": {
+        "loom": null,
+        "llamacpp": 47.5,
+        "speedup": null
+       },
+       "prefill_1k": {
+        "loom": 3168.1,
+        "llamacpp": 1898.9,
+        "speedup": 1.67
+       },
+       "prefill_2k": {
+        "loom": 3435.8,
+        "llamacpp": 2042.7,
+        "speedup": 1.68
+       },
+       "prefill_8k": {
+        "loom": 3213.5,
+        "llamacpp": 2066.6,
+        "speedup": 1.55
+       },
+       "prefill_16k": {
+        "loom": null,
+        "llamacpp": 1804.8,
+        "speedup": null
+       },
+       "prefill_32k": {
+        "loom": null,
+        "llamacpp": 1416.1,
+        "speedup": null
+       },
+       "streams4": {
+        "loom": 262.5,
+        "llamacpp": 168.9,
+        "speedup": 1.55
+       },
+       "spec_acceptance": {
+        "loom": 0.43,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      },
+      "programs_sha256": "255ae60d5295bf39bfc2ba0ba8b60bca18e803a27d432a3f7f5f28ca951683cf",
+      "named_machine_sources": [
+       {
+        "date": "2026-11-17",
+        "programs_sha256": "255ae60d5295bf39bfc2ba0ba8b60bca18e803a27d432a3f7f5f28ca951683cf",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         },
+         "hrx_loom": {
+          "artifact_id": null,
+          "branch": "v0.2.0",
+          "hrx_loom": "0.2.0",
+          "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+          "source": "pypi",
+          "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+         }
+        }
+       }
+      ]
+     },
+     "gates": {
+      "summary": {
+       "pass": 5,
+       "fail": 2,
+       "unknown": 2,
+       "n/a": 2
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "n/a",
+       "consistency": "pass",
+       "spec": "pass",
+       "agent": "fail",
+       "agent_think_off": "fail",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
@@ -1728,7 +1950,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it",
      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "b4e5996d81543b10b6b7a517895acf700f7dd89d"
+     "source_revision": "7b6cc1f7753df9addef853e62d32e88510a42975"
     },
     "radeon-r9700": {
      "blocks": [
@@ -1756,7 +1978,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it",
      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "b4e5996d81543b10b6b7a517895acf700f7dd89d"
+     "source_revision": "7b6cc1f7753df9addef853e62d32e88510a42975"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -1784,7 +2006,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it",
      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "b4e5996d81543b10b6b7a517895acf700f7dd89d"
+     "source_revision": "7b6cc1f7753df9addef853e62d32e88510a42975"
     }
    }
   },
@@ -2763,7 +2985,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-E2B-it-Q4_K_M",
    "name": "gemma-4-E2B-it",
    "repo": "loom-fun-staging/unsloth-gemma-4-E2B-it-loom",
-   "revision": "134cbc131fc58b2140530ac1654a542033e22988",
+   "revision": "a33db2a31c898f1100ebcdbc9595480ce8a2d1fa",
    "status": null,
    "license": null,
    "service": {
@@ -3189,12 +3411,234 @@ window.LOOM_DATA = {
      }
     },
     "gfx1201-16gb": {
-     "state": "not_measured",
-     "required_bytes": null,
-     "fits": true,
-     "shares_section_with": null,
+     "state": null,
+     "remeasure": null,
      "memory_bytes": 15000000000,
-     "context_tokens": 131072
+     "context_tokens": 131072,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 --spec-type draft-mtp --spec-draft-model card:parameter/gemma-4-E2B-it-assistant.Q8_0.gguf -ngld 99 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-17",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         }
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 235.5
+         },
+         "decode_2k": {
+          "llamacpp": 275.5
+         },
+         "decode_32k": {
+          "llamacpp": 192.3
+         },
+         "prefill_16k": {
+          "llamacpp": 20897.7
+         },
+         "prefill_1k": {
+          "llamacpp": 17037.3
+         },
+         "prefill_2k": {
+          "llamacpp": 20405.4
+         },
+         "prefill_32k": {
+          "llamacpp": 16632.9
+         },
+         "prefill_8k": {
+          "llamacpp": 23194.0
+         },
+         "streams4": {
+          "llamacpp": 620.6
+         }
+        }
+       }
+      },
+      "date": "2026-11-17",
+      "llamacpp_build": "b1375",
+      "drafting": {
+       "loom": "assistant drafter, depth 2",
+       "llamacpp": "draft-mtp"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null,
+       "device": {
+        "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+        "gpu": "AMD Radeon RX 9070 XT",
+        "os": "Ubuntu 26.04"
+       },
+       "hrx_loom": {
+        "artifact_id": null,
+        "branch": "v0.2.0",
+        "hrx_loom": "0.2.0",
+        "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+        "source": "pypi",
+        "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+       }
+      },
+      "metrics": {
+       "decode": {
+        "loom": 275.3,
+        "llamacpp": 140.3,
+        "speedup": 1.96
+       },
+       "decode_2k": {
+        "loom": 280.4,
+        "llamacpp": 149.8,
+        "speedup": 1.87
+       },
+       "decode_32k": {
+        "loom": 202.5,
+        "llamacpp": 123.1,
+        "speedup": 1.65
+       },
+       "prefill_1k": {
+        "loom": 16820.1,
+        "llamacpp": 16467.3,
+        "speedup": 1.02
+       },
+       "prefill_2k": {
+        "loom": 19062.2,
+        "llamacpp": 18608.3,
+        "speedup": 1.02
+       },
+       "prefill_8k": {
+        "loom": 18508.1,
+        "llamacpp": 17465.1,
+        "speedup": 1.06
+       },
+       "prefill_16k": {
+        "loom": 17113.9,
+        "llamacpp": 13948.5,
+        "speedup": 1.23
+       },
+       "prefill_32k": {
+        "loom": 14284.5,
+        "llamacpp": 9786.4,
+        "speedup": 1.46
+       },
+       "streams4": {
+        "loom": 827.5,
+        "llamacpp": 413.5,
+        "speedup": 2.0
+       },
+       "spec_acceptance": {
+        "loom": 0.58,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      },
+      "programs_sha256": "7c0ddff2d52bd4e635aec743bd1cbadb5fd16acae7526331141a4795f7d7b4f4",
+      "named_machine_sources": [
+       {
+        "date": "2026-11-17",
+        "programs_sha256": "7c0ddff2d52bd4e635aec743bd1cbadb5fd16acae7526331141a4795f7d7b4f4",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+          "gpu": "AMD Radeon RX 9070 XT",
+          "os": "Ubuntu 26.04"
+         },
+         "hrx_loom": {
+          "artifact_id": null,
+          "branch": "v0.2.0",
+          "hrx_loom": "0.2.0",
+          "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+          "source": "pypi",
+          "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+         }
+        }
+       }
+      ]
+     },
+     "gates": {
+      "summary": {
+       "pass": 6,
+       "fail": 2,
+       "unknown": 2,
+       "n/a": 1
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "pass",
+       "consistency": "pass",
+       "spec": "pass",
+       "agent": "fail",
+       "agent_think_off": "fail",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
@@ -3224,7 +3668,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-E2B-it-loom:chat --materialize=copy --output=gemma-4-E2B-it",
      "serve": "loom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "134cbc131fc58b2140530ac1654a542033e22988"
+     "source_revision": "a33db2a31c898f1100ebcdbc9595480ce8a2d1fa"
     },
     "radeon-r9700": {
      "blocks": [
@@ -3252,7 +3696,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-E2B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-E2B-it",
      "serve": "loom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "134cbc131fc58b2140530ac1654a542033e22988"
+     "source_revision": "a33db2a31c898f1100ebcdbc9595480ce8a2d1fa"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -3280,7 +3724,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-E2B-it-loom:chat-16gb --materialize=copy --output=gemma-4-E2B-it",
      "serve": "loom-serve --model=gemma-4-E2B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "134cbc131fc58b2140530ac1654a542033e22988"
+     "source_revision": "a33db2a31c898f1100ebcdbc9595480ce8a2d1fa"
     }
    }
   },
