@@ -21,10 +21,10 @@ reported and left as it is: its summary, if it has one, is kept as it was.
 """
 import argparse
 import glob
+import hashlib
 import json
 import os
 import re
-import shlex
 import sys
 
 from huggingface_hub import HfApi, hf_hub_download
@@ -86,38 +86,86 @@ def primary_gpu(info):
     return next((g for g in GPUS if has_results(devs.get(g))), None)
 
 
-def gpu_view(info, gpu):
+def gpu_view(info, gpu, package_programs_sha256=None):
     """A loom-card/2-shaped view of one GPU (card_lib.gpu_view): its gates and performance at the top level."""
     d = info["devices"].get(gpu) or {}
     out = {k: v for k, v in info.items() if k != "devices"}
     out["gates"] = d.get("gates") or {}
-    for k in ("performance", "roofline", "state", "required_bytes", "memory_bytes", "served_context"):
+    out["package_programs_sha256"] = package_programs_sha256
+    for k in ("performance", "roofline", "state", "required_bytes", "memory_bytes", "served_context", "remeasure"):
         if d.get(k) is not None:
             out[k] = d[k]
     return out
 
 
-def quickstart(readme):
-    """{gpu: {"preset": name or None, "serve_args": [...]}} from the card README's per-GPU Quick start blocks (<details>): the
-    preset its loom-fetch names and the loom-serve flags beyond --model and --device. The card is the one place that knows
-    them (GPU flags, --parameter_mode=preload, package flags), so the site shows exactly what the card prints. {} for a card
-    with no such blocks (a card before the per-GPU Quick start)."""
+def quickstart(readme, default_gpu=None, source_revision=None):
+    """Preserve source commands and notes, scoped to the card's Quick start section.
+
+    Details identify GPUs explicitly. A plain fenced layout belongs only to the
+    card's primary measured GPU; it must never become a fallback for other GPUs.
+    Text remains Markdown text, never trusted HTML in the browser.
+    """
+    section = re.search(r"^## Quick start[^\n]*\n(.*?)(?=^## |\Z)", readme or "", re.M | re.S)
+    if not section:
+        return {}
+    text = section.group(1)
+    details = list(re.finditer(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", text, re.S))
+
+    def blocks(body):
+        out, end = [], 0
+        for match in re.finditer(r"^```([^\n]*)\n(.*?)^```[ \t]*$", body, re.M | re.S):
+            if body[end:match.start()].strip():
+                out.append({"kind": "text", "text": body[end:match.start()].strip()})
+            out.append({"kind": "code", "text": match.group(2).rstrip("\n")})
+            end = match.end()
+        if body[end:].strip():
+            out.append({"kind": "text", "text": body[end:].strip()})
+        return out
+
+    def entry(body):
+        parts = blocks(body)
+        code = "\n".join(b["text"] for b in parts if b["kind"] == "code")
+        def command(pattern):
+            match = re.search(pattern, code, re.M)
+            if not match:
+                return None
+            end = match.end()
+            while code[match.start():end].rstrip().endswith("\\") and end < len(code):
+                next_end = code.find("\n", end + 1)
+                end = len(code) if next_end == -1 else next_end
+            return code[match.start():end]
+
+        fetch = command(r"^loom-fetch .+$")
+        serve = command(r"^loom-serve .+$")
+        install = command(r"^(?:pipx|pip|uv) .*hrx-loom.*$")
+        if not (fetch and serve and install):
+            return None
+        return {"blocks": parts, "install": install, "fetch": fetch, "serve": serve,
+                **({"source_revision": source_revision} if source_revision else {})}
+
+    if not details:
+        value = entry(text)
+        return {default_gpu: value} if default_gpu and value else {}
+    # Retain shared notes and request fences in their original order around each GPU.
     out = {}
-    for summary, body in re.findall(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", readme or "", re.S):
-        gpu = next((g for pat, g in QUICKSTART_GPU if pat in summary), None)
-        fetch = re.search(r"^loom-fetch (.*)$", body, re.M)
-        serve = re.search(r"^loom-serve (.*)$", body, re.M)
-        if not (gpu and fetch and serve):
-            continue
-        src = fetch.group(1).split()[0]
-        preset = re.search(r"--preset[= ](\S+)", fetch.group(1))
-        if src.startswith("huggingface:"):   # SDK 0.2: huggingface:OWNER/REPO[:PRESET]
-            preset = src.split(":", 2)[2] if src.count(":") > 1 else None
-        else:
-            preset = preset.group(1) if preset else None
-        args = [a for a in shlex.split(serve.group(1)) if not a.startswith(("--model=", "--device="))]
-        out[gpu] = {"preset": preset, "serve_args": args}
+    for detail in details:
+        gpu = next((g for pat, g in QUICKSTART_GPU if pat in detail.group(1)), None)
+        body = text
+        for other in reversed(details):
+            body = body[:other.start()] + (other.group(2) if other is detail else "") + body[other.end():]
+        value = entry(body)
+        if gpu and value:
+            out[gpu] = value
     return out
+
+
+def refresh_quickstart(summary, readme, source_revision):
+    """Refresh README instructions without relabeling frozen model/measurement data.
+
+    The summary revision still identifies its info/model inputs; each quickstart
+    records the exact README revision it came from independently.
+    """
+    return {**summary, "quickstart": quickstart(readme, summary.get("primary_device", DEFAULT_GPU), source_revision)}
 
 
 def package_sources(model, lock):
@@ -159,7 +207,17 @@ def source(s, full=False):
 
 
 def evidence(e):
-    return None if e is None else {"kind": e["kind"], "run": e["run"], "url": e["url"]}
+    if e is None:
+        return None
+    out = {"kind": e["kind"], "run": e["run"], "url": e["url"]}
+    # A named-machine measurement needs its exact host and SDK provenance. A GPU family
+    # label alone can otherwise make it look like a DevLab run on a different machine.
+    if e.get("kind") == "machine":
+        if e.get("device") is not None:
+            out["device"] = dict(e["device"])
+        if e.get("hrx_loom") is not None:
+            out["hrx_loom"] = dict(e["hrx_loom"])
+    return out
 
 
 def value(feats, key):
@@ -201,12 +259,33 @@ def metric_applies(key, kind, feats, sessions):
     return key not in refused - measured
 
 
-def headline(card, devlab=False):
+def accepted_programs(card):
+    """Current package hash plus hashes covered by an explicit identical-program bridge.
+
+    Current identity comes only from the pinned package files. Measurement metadata
+    can bridge old rows only when it names that exact identity and carries proof.
+    """
+    perf = card["performance"]
+    remeasure = card.get("remeasure") or {}
+    current = card.get("package_programs_sha256")
+    if not current:
+        return None, set()
+    accepted = {current}
+    if (remeasure.get("result") == "identical" and remeasure.get("proof")
+            and remeasure.get("programs_sha256") == current and remeasure.get("compared_programs")):
+        accepted.update(x for x in remeasure.get("carried_programs", []) if x)
+        accepted.add(remeasure["compared_programs"])
+    return current, accepted
+
+
+def headline(card, devlab=False, allowed_programs=None):
     """{metric: (entry, session index)}: per metric the last local session that measured it, the README's headline
     value (spec_acceptance from any session), or with devlab=True the last DevLab session, the README's DevLab
     columns (timed metrics only)."""
     out = {}
     for i, s in enumerate(card["performance"]["sessions"]):
+        if allowed_programs is not None and s.get("programs_sha256") not in allowed_programs:
+            continue
         dl = card["sources"][s["source"]]["kind"] == "devlab"
         for k, m in s["metrics"].items():
             if (dl and k in TIMED) if devlab else (not dl or k not in TIMED):
@@ -214,11 +293,12 @@ def headline(card, devlab=False):
     return out
 
 
-def measured(card, kind, feats, keys, devlab=False):
+def measured(card, kind, feats, keys, devlab=False, allowed_programs=None):
     """(date, source, metrics) of the headline (or DevLab) values: every metric in `keys`, null when not measured.
     The date and source are those of the session that gave the most timed values."""
     sessions = card["performance"]["sessions"]
-    shown = {k: v for k, v in headline(card, devlab).items() if metric_applies(k, kind, feats, sessions)}
+    shown = {k: v for k, v in headline(card, devlab, allowed_programs).items()
+             if metric_applies(k, kind, feats, sessions)}
     counts = {}
     for k, (_, i) in shown.items():
         if k in TIMED:
@@ -230,8 +310,62 @@ def measured(card, kind, feats, keys, devlab=False):
         loom, base = m.get("loom"), m.get("baseline")
         metrics[k] = {"loom": loom, "llamacpp": base,
                       "speedup": round(loom / base, 2) if loom is not None and base else None}
+        baseline_name = (card["performance"].get("baseline") or {}).get("name")
+        if baseline_name and baseline_name != "llama.cpp":
+            metrics[k].update({"llamacpp": None, "speedup": None, "baseline": base})
+            if base is not None:
+                i = shown[k][1]
+                session = sessions[i]
+                origin = m.get("baseline_from") or {"date": session["date"], "source": session["source"]}
+                metrics[k]["baseline_from"] = {"date": origin.get("date"),
+                                               "source": evidence(card["sources"].get(origin.get("source")))}
+
     return (primary["date"] if primary else None,
             evidence(card["sources"][primary["source"]]) if primary else None, metrics)
+
+
+def historical_program_sessions(card, accepted, kind, feats):
+    """Raw measurements from non-current program hashes, kept out of all current metrics."""
+    sessions = card["performance"].get("sessions", [])
+    out = []
+    for session in sessions:
+        program_hash = session.get("programs_sha256")
+        if program_hash in accepted:
+            continue
+        rows = {}
+        for key, metric in session.get("metrics", {}).items():
+            if not metric_applies(key, kind, feats, sessions):
+                continue
+            row = {name: metric.get(name) for name in ("loom", "baseline", "spec_acceptance")
+                   if metric.get(name) is not None}
+            if row:
+                rows[key] = row
+        if rows:
+            out.append({"date": session.get("date"), "source": evidence(card["sources"].get(session.get("source"))),
+                        "programs_sha256": program_hash,
+                        "program_identity": "recorded" if program_hash else "not_recorded",
+                        "metrics": rows})
+    return out
+
+
+def named_machine_sources(card, current_programs):
+    """Named-machine sources for the exact current program hash, never another build's rows."""
+    if not current_programs:
+        return []
+    out, seen = [], set()
+    for session in card["performance"].get("sessions", []):
+        if session.get("programs_sha256") != current_programs:
+            continue
+        src = card["sources"].get(session.get("source"))
+        if not src or src.get("kind") != "machine":
+            continue
+        key = (session.get("date"), session.get("source"))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"date": session.get("date"), "programs_sha256": current_programs,
+                    "source": evidence(src)})
+    return out
 
 
 def llamacpp_drafting(args):
@@ -247,6 +381,20 @@ def declares_logits(model):
     if isinstance(model, dict):
         return "llm.logits" in model or any(declares_logits(v) for v in model.values())
     return isinstance(model, list) and any(declares_logits(v) for v in model)
+
+
+def programs_sha256(program_files):
+    """Official card_lib.programs_sha256 algorithm over {relative path: bytes}."""
+    names = sorted(n for n in program_files if n.endswith(".loom"))
+    if not names:
+        return None
+    h = hashlib.sha256()
+    for name in names:
+        data = program_files[name]
+        if data.startswith(b"// Generated by"):
+            data = data.split(b"\n", 1)[1] if b"\n" in data else b""
+        h.update(name.encode() + b"\0" + hashlib.sha256(data).digest())
+    return h.hexdigest()
 
 
 def remeasure_summary(dev):
@@ -277,8 +425,12 @@ def extra_baselines(card):
 def device_results(card, kind, feats, sd, logits=None):
     """The performance and gates of one GPU's view of the card (the keys "performance" and "gates" of a summary)."""
     perf, sessions = card["performance"], card["performance"]["sessions"]
-    date, src, metrics = measured(card, kind, feats, METRICS)
-    dl_date, dl_src, dl_metrics = measured(card, kind, feats, [k for k in METRICS if k in TIMED], devlab=True)
+    current_programs, accepted = accepted_programs(card)
+    date, src, metrics = measured(card, kind, feats, METRICS, allowed_programs=accepted)
+    dl_date, dl_src, dl_metrics = measured(card, kind, feats, [k for k in METRICS if k in TIMED],
+                                           devlab=True, allowed_programs=accepted)
+    historical = historical_program_sessions(card, accepted, kind, feats)
+    machine_sources = named_machine_sources(card, current_programs)
     gates, known = {}, GATES + ([LOGITS_GATE] if logits is not None else [])
     for g in known + sorted(set(card["gates"]) - set(known)):
         if g in card["gates"]:
@@ -289,8 +441,9 @@ def device_results(card, kind, feats, sd, logits=None):
             gates[g] = "unknown" if gate_applies(g, kind, feats) else "n/a"
     counts = {s: sum(1 for v in gates.values() if v == s) for s in ("pass", "fail", "unknown", "n/a")}
     build = re.search(r"\bb(1[0-9]{3,})\b", perf["baseline"]["version"] or "")
-    return {
+    out = {
         **({"baselines": extra_baselines(card)} if perf.get("baselines") else {}),
+        **({"baseline": dict(perf["baseline"])} if perf["baseline"].get("name") not in (None, "llama.cpp") else {}),
         "date": date,
         "llamacpp_build": f"b{build.group(1)}" if build else None,
         "drafting": {"loom": f"{METHOD.get(sd['method'], sd['method'])}, depth {sd['depth']}" if drafts(feats)
@@ -300,10 +453,19 @@ def device_results(card, kind, feats, sd, logits=None):
         "metrics": metrics,
         "not_applicable": [k for k in METRICS if not metric_applies(k, kind, feats, sessions)],
         "devlab": {"date": dl_date, "source": dl_src, "metrics": dl_metrics},
-    }, {"summary": counts, "status": gates}
+    }
+    if current_programs:
+        out["programs_sha256"] = current_programs
+    if not current_programs:
+        out["program_identity"] = "unknown"
+    if machine_sources:
+        out["named_machine_sources"] = machine_sources
+    if historical:
+        out["historical_programs"] = historical
+    return out, {"summary": counts, "status": gates}
 
 
-def summarize(card, model, lock, revision, license, readme=None):
+def summarize(card, model, lock, revision, license, readme=None, package_programs_sha256=None):
     """The summary of a card: loom-card/2, or loom-card/3 (the primary GPU's results at the top level, the other
     GPUs under "devices")."""
     card = normalize(card)
@@ -311,7 +473,8 @@ def summarize(card, model, lock, revision, license, readme=None):
     if gpu is None:
         raise ValueError("card has no GPU with performance results")
     legacy = card.get("schema") in LEGACY_SCHEMAS
-    out = summarize_gpu(gpu_view(card, gpu), model, lock, revision, license, logits=None if legacy else declares_logits(model))
+    card["package_programs_sha256"] = package_programs_sha256
+    out = summarize_gpu(gpu_view(card, gpu, package_programs_sha256), model, lock, revision, license, logits=None if legacy else declares_logits(model))
     if not legacy:
         out["primary_device"] = gpu
         out["remeasure"] = remeasure_summary(card["devices"][gpu])
@@ -327,15 +490,15 @@ def summarize(card, model, lock, revision, license, readme=None):
                                               "memory_bytes": d.get("memory_bytes"),
                                               "context_tokens": d.get("served_context") or out["serve"]["context_tokens"]})
                 continue
-            view = gpu_view(card, g)
+            view = gpu_view(card, g, package_programs_sha256)
             kind = "decision" if out["service"]["kind"] == "decision" else "chat"
             feats = card["card"]["features"]
             perf, gates = device_results(view, kind, feats, value(feats, "speculative_decoding"), declares_logits(model))
             out["devices"][g] = {"state": None, "remeasure": remeasure_summary(d), "memory_bytes": d.get("memory_bytes"),
                                  "context_tokens": d.get("served_context") or out["serve"]["context_tokens"],
                                  "performance": perf, "gates": gates}
-        if readme is not None:
-            out["quickstart"] = quickstart(readme)
+    if readme is not None:
+        out["quickstart"] = quickstart(readme, gpu, revision)
     return out
 
 
@@ -398,8 +561,15 @@ def load(api, repo_id):
     if "README.md" in names:
         with open(hf_hub_download(repo_id, "README.md", revision=info.sha), encoding="utf-8") as f:
             readme = f.read()
+    program_files = {}
+    for name in names:
+        if name.startswith("program/") and name.endswith(".loom"):
+            with open(hf_hub_download(repo_id, name, revision=info.sha), "rb") as f:
+                program_files[name[len("program/"):]] = f.read()
+    package_programs_sha256 = programs_sha256(program_files)
     try:
-        return info, summarize(card, get("model.json"), get("model.json.lock"), info.sha, license, readme), None
+        return info, summarize(card, get("model.json"), get("model.json.lock"), info.sha, license, readme,
+                              package_programs_sha256), None
     except (KeyError, TypeError, ValueError) as e:
         return info, None, f"{type(e).__name__}: {e}"
 

@@ -118,8 +118,21 @@ const LOOM = (() => {
     return { date: dl.date, source: dl.source, metrics: { ...perf.metrics, ...dl.metrics } };
   }
 
+  function llamaComparable(m, perf = m.performance) {
+    const engine = perf.baseline && perf.baseline.name;
+    if (engine) return engine === 'llama.cpp';
+    return !/\.safetensors$/i.test(m.weights?.checkpoint?.file || '');
+  }
+
   // The Loom numerator stays fixed. Best chooses the maximum throughput independently per workload.
-  function bench(perf) {
+  function bench(perf, comparable = true) {
+    if (!comparable || (perf.baseline?.name && perf.baseline.name !== 'llama.cpp')) {
+      const timed = ms => Object.entries(ms || {}).some(([k, m]) => k !== 'spec_acceptance' && m?.loom > 0);
+      const source = timed(perf.metrics) || !perf.devlab ? perf : perf.devlab;
+      return { date: source.date, source: source.source,
+        metrics: Object.fromEntries(Object.entries(source.metrics || {}).map(([k, m]) =>
+          [k, { ...m, llamacpp: null, speedup: null, backend: null, baselineSource: null, baselineDate: null }])) };
+    }
     const b = rocmBench(perf), vulkan = perf.baselines && perf.baselines.vulkan;
     const metrics = Object.fromEntries(Object.entries(b.metrics || {}).map(([key, m]) => {
       const r = m.llamacpp > 0 ? m.llamacpp : null;
@@ -156,7 +169,10 @@ const LOOM = (() => {
   }
 
   function enrich(s) {
-    const b = bench(s.performance), metrics = b.metrics;
+    const eligible = llamaComparable(s) && s.performance.program_identity !== 'unknown';
+    const b = bench(s.performance, eligible), metrics = b.metrics;
+    const comparisonAvailable = eligible && Object.values(metrics).some(m => m.loom > 0
+      && m.llamacpp > 0 && Number.isFinite(m.speedup) && m.speedup > 0);
     const pair = k => metrics[k] && metrics[k].speedup != null ? { ...METRIC[k], ...metrics[k] } : null;
     const measured = METRICS.map(m => pair(m.key)).filter(Boolean);
     const byGroup = g => geomean(measured.filter(m => m.group === g).map(m => m.speedup));
@@ -171,9 +187,10 @@ const LOOM = (() => {
       baseRepo: s.weights.checkpoint.repo,
       org: s.weights.checkpoint.repo.split('/')[0],
       bench: b,
+      comparisonAvailable,
       measured,
       pair,
-      score: geomean(measured.map(m => m.speedup)),
+      score: comparisonAvailable ? geomean(measured.map(m => m.speedup)) : null,
       decodeScore: byGroup('decode'),
       prefillScore: byGroup('prefill'),
       streamsScore: byGroup('streams'),
@@ -217,7 +234,7 @@ const LOOM = (() => {
   const ctx = t => t == null ? '—' : t >= 1024 ? `${Math.round(t / 1024)}k` : `${t}`;
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const hf = repo => `https://huggingface.co/${repo}`;
-  const rk = m => String(m.rank).padStart(2, '0');
+  const rk = m => m.comparisonAvailable === false ? '—' : String(m.rank).padStart(2, '0');
   const href = m => link(`models.html#${encodeURIComponent(m.id)}`);
   const AVATARS = DATA.avatars || {};
   const avatar = (m, cls = '') => AVATARS[m.org]
@@ -307,7 +324,19 @@ const LOOM = (() => {
   }
 
   // --- collection card ---
+  function referenceLabel(performance, unknownLabel) {
+    const baseline = performance.baseline;
+    if (baseline) return [baseline.name, baseline.version].filter(Boolean).join(' · ');
+    return performance.llamacpp_build ? `llama.cpp · ${performance.llamacpp_build}` : unknownLabel;
+  }
+
   function card(m) {
+    if (m.comparisonAvailable === false) return `<a class="mcard" href="${href(m)}" data-id="${esc(m.id)}">
+      <div class="mc-name">${avatar(m)}<span>${esc(m.name)}</span></div><div class="mc-sub">${sub(m)}</div>
+      <p class="fine">${esc(referenceLabel(m.performance, 'Reference engine not recorded'))}.</p>
+      <p class="fine">Current comparison unavailable; historical measurements are retained separately.</p>
+      <p class="fine">Open for measurement provenance, historical rows and source quick start.</p>
+      <div class="mc-marks"><span class="flags">${flags(m)}</span><span class="strip">${gateStrip(m)}</span></div></a>`;
     const d = m.pair('decode'), pf = m.pair('prefill_2k');
     return `
       <a class="mcard" href="${href(m)}" data-id="${esc(m.id)}">
@@ -446,29 +475,77 @@ const LOOM = (() => {
     };
   }
 
-  // The commands for a model on a GPU, as its card prints them (SDK 0.2): the preset and loom-serve flags come from the
-  // card's own Quick start block (summary.quickstart); a summary without one gets the GPU's preset and the memory budget.
-  const SDK = '0.2.0';
-  const outName = m => m.name;
-  function fetchCmd(m, gpu = GPU) {
-    const q = (m.quickstart || {})[gpu.id], p = q ? q.preset : preset(m, gpu);
-    return `loom-fetch huggingface:${m.repo}${p ? `:${p}` : ''} --materialize=copy --output=${outName(m)}`;
+  // Only complete source-card blocks can supply commands; missing source remains visibly unavailable.
+  function sourceQuickstart(m, gpu = GPU) {
+    const q = (m.quickstart || {})[gpu.id];
+    return q && Array.isArray(q.blocks) && q.install && q.fetch && q.serve ? q : null;
   }
-  function serveCmd(m, gpu = GPU) {
-    const q = (m.quickstart || {})[gpu.id], mem = (views(m)[gpu.id] || {}).memory_bytes || m.serve.memory_bytes;
-    const args = q ? q.serve_args : [mem ? `--memory_bytes=${mem % 1e9 === 0 ? `${mem / 1e9}gb` : mem}` : '--memory_bytes=<bytes>'];
-    return ['loom-serve', `--model=${outName(m)}`, "'--device=amdgpu://?completion_spin_ns=4294967295'", ...args.map(a => /[^\w=.:\/-]/.test(a) ? `'${a}'` : a)].join(' ');
+  function missingQuickstart(m) {
+    return `Quick start unavailable for this GPU. See the source card: https://huggingface.co/${m.repo}/blob/${m.revision || 'main'}/README.md#quick-start`;
   }
+  const fetchCmd = (m, gpu = GPU) => sourceQuickstart(m, gpu)?.fetch || missingQuickstart(m);
+  const serveCmd = (m, gpu = GPU) => sourceQuickstart(m, gpu)?.serve || missingQuickstart(m);
+  const installCmd = (m, gpu = GPU) => sourceQuickstart(m, gpu)?.install || missingQuickstart(m);
   function quickstart(m, gpu = GPU) {
-    return [
-      `pipx install "hrx-loom[hf]==${SDK}"`,
-      fetchCmd(m, gpu),
-      serveCmd(m, gpu),
-      '',
-      '# OpenAI-compatible, on :8080',
-      `curl -s localhost:8080${m.service.endpoint} -H 'content-type: application/json' \\`,
-      `  -d '{"messages":[{"role":"user","content":"hello"}]}'`,
-    ].join('\n');
+    const q = sourceQuickstart(m, gpu);
+    return q ? q.blocks.map(b => b.text).join('\n\n') : missingQuickstart(m);
+  }
+  function quickstartHtml(m, gpu = GPU) {
+    const q = sourceQuickstart(m, gpu);
+    const source = `https://huggingface.co/${m.repo}/blob/${q?.source_revision || m.revision || 'main'}/README.md#quick-start`;
+    return (q ? q.blocks.map(b => b.kind === 'code'
+      ? `<div class="code"><div class="code-head"><span>shell</span><button class="copy" data-copy>copy</button></div><pre><code>${esc(b.text)}</code></pre></div>`
+      : `<p class="fine" style="white-space:pre-wrap">${esc(b.text)}</p>`).join('')
+      : '<p>Quick start unavailable for this GPU.</p>')
+      + `<p class="fine"><a class="u" href="${esc(source)}" target="_blank" rel="noopener">Source card quick start ↗</a></p>`;
+  }
+
+  function referencePanel(m) {
+    const p = m.performance, baseline = p.baseline;
+    const label = referenceLabel(p, 'Reference engine not recorded in this frozen snapshot');
+    const source = s => s ? (s.url ? `<a class="u" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.kind)} ${esc(s.run || '')} ↗</a>` : esc(s.kind || 'source')) : 'not recorded';
+    const refs = new Map();
+    for (const metrics of [p.metrics, p.devlab?.metrics]) for (const row of Object.values(metrics || {})) {
+      if (row.baseline != null && row.baseline_from) refs.set(JSON.stringify(row.baseline_from), row.baseline_from);
+    }
+    const card = `https://huggingface.co/${m.repo}/blob/${m.revision}/README.md`;
+    return `<p>${esc(label)}. Current comparison unavailable; historical rows are shown separately and excluded from current ratios.</p>
+      <p class="fine">Loom measurement: ${source(m.bench.source)} · ${esc(m.bench.date || '')}.</p>
+      <p class="fine">Reference measurement: ${refs.size ? [...refs.values()].map(r => `${source(r.source)} · ${esc(r.date || '')}`).join('; ') : 'source not recorded in this snapshot'}.</p>
+      ${(baseline?.differs || []).map(note => `<p class="fine">${esc(note)}</p>`).join('')}
+      <p><a class="u" href="${esc(card)}" target="_blank" rel="noopener">Pinned source card and full measurements ↗</a></p>`;
+  }
+
+  function measurementProvenance(m) {
+    const p = m.performance || {}, entries = p.named_machine_sources || [];
+    const sources = entries.length ? entries : p.source?.kind === 'machine'
+      ? [{ date: p.date, programs_sha256: p.programs_sha256, source: p.source }] : [];
+    const machine = sources.map(x => {
+      const s = x.source || {}, d = s.device || {}, sdk = s.hrx_loom || {};
+      const host = [d.cpu, d.gpu, d.os].filter(Boolean).map(esc).join(' · ');
+      const runtime = [sdk.hrx_loom && `hrx-loom ${sdk.hrx_loom}`, sdk.hrx_system_sha && `hrx-system ${sdk.hrx_system_sha}`].filter(Boolean).map(esc).join(' · ');
+      return `<p class="fine"><b>Named-machine measurement</b>${host ? ` · ${host}` : ''}${x.date ? ` · ${esc(x.date)}` : ''}${runtime ? ` · ${runtime}` : ''}${x.programs_sha256 ? `<br>programs SHA-256: <code>${esc(x.programs_sha256)}</code>` : ''}</p>`;
+    }).join('');
+    const history = p.historical_programs || [];
+    const historical = history.length ? `<h3>historical program measurements</h3>
+      <p class="fine">These rows are retained for reference and excluded from current scores, ranks, and llama.cpp comparisons because current-program equivalence was not established.</p>
+      ${history.map(h => {
+        const source = h.source || {};
+        const rows = Object.entries(h.metrics || {}).map(([key, row]) => {
+          const label = METRIC[key] ? `${METRIC[key].label} · ${METRIC[key].detail}` : key;
+          const value = n => key === 'spec_acceptance' ? `${(n * 100).toFixed(1)}%` : `${num(n)} tok/s`;
+          return `<tr><td>${esc(label)}</td><td>${row.loom == null ? '—' : value(row.loom)}</td><td>${row.baseline == null ? '—' : value(row.baseline)}</td></tr>`;
+        }).join('');
+        const src = source.url ? `<a class="u" href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.kind || 'source')} ${esc(source.run || '')} ↗</a>` : esc(source.kind || 'source not recorded');
+        const identity = h.programs_sha256 ? `programs ${esc(h.programs_sha256)}` : 'program hash not recorded';
+        return `<details class="historical-run"><summary>${esc(h.date || 'date not recorded')} · ${esc(source.kind || 'source not recorded')} · ${identity}</summary>
+          <p class="fine">Measurement source: ${src}</p>${h.program_identity === 'not_recorded' ? '<p class="fine">The program hash was not recorded, so equivalence to the current program cannot be checked.</p>' : ''}
+          <div class="table-wrap"><table><thead><tr><th>workload</th><th>Loom</th><th>recorded baseline</th></tr></thead><tbody>${rows}</tbody></table></div></details>`;
+      }).join('')}
+      <p><a class="u" href="https://huggingface.co/${esc(m.repo)}/blob/${esc(m.revision || 'main')}/README.md" target="_blank" rel="noopener">Pinned card with full historical measurements ↗</a></p>` : '';
+    const current = p.programs_sha256 ? `<p class="fine">Current program SHA-256: <code>${esc(p.programs_sha256)}</code></p>` : '';
+    const unknown = p.program_identity === 'unknown' ? '<p class="fine">Current package program files were unavailable at the pinned revision. Measurements remain historical because current program identity is unknown.</p>' : '';
+    return machine || historical || current || unknown ? `<section class="measurement-provenance">${machine}${current}${unknown}${historical}</section>` : '';
   }
 
   // The GPU toggle: one link per GPU (a link, so it can be opened in a new tab or shared). `compact` is the nav's.
@@ -571,6 +648,7 @@ const LOOM = (() => {
     get GPU() { return GPU; }, GPUS, gpuOf, gpuLink, link, views, preset, gpuToggle, setGpu, all: DATA.models,
     METRICS, METRIC, DECODE, PREFILL, FEATURES, FLAGS, GATES, models, stats, median, geomean, bench,
     pct, times, num, gb, ctx, esc, hf, rk, href, niceStep, avatar,
-    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, fetchCmd, serveCmd, SDK, copyButtons, reveal,
+    ratioBar, gateStrip, flags, sub, hot, profile, curve, fit, card, mountTable, quickstart, quickstartHtml,
+    fetchCmd, serveCmd, installCmd, sourceQuickstart, referencePanel, measurementProvenance, copyButtons, reveal,
   };
 })();

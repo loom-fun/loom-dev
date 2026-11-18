@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
-function site(query = '', dataFile = 'loom-data.js') {
+function site(query = '', dataFile = 'loom-data.js', modelOverride = null) {
   const events = {}, listeners = {};
   const location = new URL('http://localhost:8199/models.html' + query);
   const document = {
@@ -20,8 +20,10 @@ function site(query = '', dataFile = 'loom-data.js') {
     CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options?.detail; } },
   });
   context.window = context;
-  for (const file of ['data-source.js', dataFile, 'loom-lib.js'])
+  for (const file of ['data-source.js', dataFile, 'loom-lib.js']) {
     vm.runInContext(fs.readFileSync(path.join(root, 'docs/assets', file), 'utf8'), context);
+    if (file === dataFile && modelOverride) context.LOOM_DATA.models = modelOverride;
+  }
   const loom = vm.runInContext('LOOM', context);
   return { loom, context, location, events, listeners };
 }
@@ -47,6 +49,37 @@ test('max selects each workload independently, handles missing cells, and holds 
   loom.setBaseline('vulkan');
   assert.equal(loom.bench(perf).metrics.decode_2k.speedup, null);
   assert.equal(JSON.stringify(perf), original);
+});
+
+test('Vulkan-only current measurements rank with best and Vulkan, but not ROCm', () => {
+  const initial = site();
+  const source = initial.loom.all.find(x => x.repo === 'loom-fun/unsloth-Qwen3-8B-loom');
+  assert.ok(source);
+  const summary = JSON.parse(JSON.stringify(source));
+  summary.performance.metrics = { decode: { loom: 120, llamacpp: null, speedup: null } };
+  delete summary.performance.devlab;
+  summary.performance.baselines = { vulkan: { date: '2026-11-17', source: { kind: 'devlab', run: 'vulkan-only' },
+    metrics: { decode: { llamacpp: 100 } } } };
+  const { loom } = site('?baseline=vulkan', 'loom-data.js', [summary]);
+  let m = loom.models.find(x => x.repo === summary.repo);
+  assert.ok(m);
+  assert.equal(m.comparisonAvailable, true);
+  assert.equal(m.score, 1.2);
+  assert.equal(m.pair('decode').backend, 'vulkan');
+  assert.equal(loom.rk(m), '01');
+
+  loom.setBaseline('best');
+  m = loom.models.find(x => x.repo === summary.repo);
+  assert.equal(m.comparisonAvailable, true);
+  assert.equal(m.pair('decode').speedup, 1.2);
+  assert.equal(loom.rk(m), '01');
+
+  loom.setBaseline('rocm');
+  m = loom.models.find(x => x.repo === summary.repo);
+  assert.equal(m.comparisonAvailable, false);
+  assert.equal(m.score, null);
+  assert.equal(m.pair('decode'), null);
+  assert.equal(loom.rk(m), '—');
 });
 
 test('real published and staging models recompute for every GPU and backend without mutating source data', () => {
@@ -92,4 +125,230 @@ test('URL carries baseline, org, GPU and model hash; Back restores the selection
   loom.setBaseline('unknown'); assert.equal(loom.BASELINE, 'rocm');
   assert.equal(location.searchParams.has('baseline'), false);
   assert.equal(context.LOOM_LINK('https://huggingface.co/loom-fun'), 'https://huggingface.co/loom-fun');
+});
+
+test('quickstart renders source blocks verbatim, escapes text, and never guesses commands', () => {
+  const { loom } = site();
+  const m = { repo: 'org/card', revision: 'pinned', quickstart: { 'strix-halo': {
+    install: 'pipx install "hrx-loom[hf]==99.4"', fetch: 'loom-fetch exact --output=/future',
+    serve: "loom-serve --model=/future/model.json '--device=future' --new_flag=ok",
+    blocks: [{kind:'code',text:'pipx install "hrx-loom[hf]==99.4"\nloom-fetch exact --output=/future\nloom-serve --new_flag=ok'},
+      {kind:'text',text:'Stock host: systemd-run <unsafe> & --new_flag=ok'},
+      {kind:'code',text:'curl -d \'{"model":"exact","reasoning_effort":"none"}\''}]
+  } } };
+  const gpu = {id:'strix-halo'};
+  assert.equal(loom.fetchCmd(m,gpu), m.quickstart['strix-halo'].fetch);
+  assert.equal(loom.serveCmd(m,gpu), m.quickstart['strix-halo'].serve);
+  assert.equal(loom.installCmd(m,gpu), m.quickstart['strix-halo'].install);
+  const html = loom.quickstartHtml(m,gpu);
+  assert.ok(html.includes('systemd-run &lt;unsafe&gt; &amp; --new_flag=ok'));
+  assert.ok(html.includes('reasoning_effort'));
+  assert.ok(html.includes('/blob/pinned/README.md#quick-start'));
+  assert.ok(!html.includes('<unsafe>'));
+  for (const value of [{}, { 'strix-halo': {preset:'chat',serve_args:[]} }]) {
+    const missing = {...m,quickstart:value};
+    assert.ok(loom.quickstartHtml(missing,gpu).includes('unavailable'));
+    assert.ok(!loom.quickstart(missing,gpu).includes('loom-serve'));
+  }
+  assert.ok(loom.quickstart(m,{id:'another-gpu'}).includes('unavailable'));
+});
+
+test('named-machine and historical program evidence are explicit and separate from current comparisons', () => {
+  const { loom } = site();
+  const m = loom.models[0];
+  const current = 'b'.repeat(64), old = 'a'.repeat(64);
+  m.repo = 'loom-fun/example-loom'; m.revision = 'pinned-card-revision';
+  m.performance.baseline = { name: 'llama.cpp' };
+  m.performance.programs_sha256 = current;
+  m.performance.metrics = { decode: { loom: 110, llamacpp: 100, speedup: 1.1 } };
+  m.performance.named_machine_sources = [{ date: '2026-11-17', programs_sha256: current,
+    source: { kind: 'machine', device: { cpu: 'AMD Ryzen 7 9800X3D', gpu: 'AMD Radeon RX 9070 XT', os: 'Ubuntu 26.04' },
+      hrx_loom: { hrx_loom: '0.2.0', hrx_system_sha: 'abc123' } } }];
+  m.performance.historical_programs = [{ date: '2026-11-15', programs_sha256: old,
+    source: { kind: 'devlab', run: '44000000000', url: 'https://example.test/run' },
+    metrics: { decode: { loom: 80, baseline: 100 }, prefill_2k: { loom: 800, baseline: 1000 } } }];
+  const currentDecode = loom.bench(m.performance).metrics.decode;
+  assert.equal(currentDecode.loom, 110);
+  assert.equal(currentDecode.speedup, 1.1);
+  const html = loom.measurementProvenance(m);
+  assert.ok(html.includes('Named-machine measurement'));
+  assert.ok(html.includes('AMD Ryzen 7 9800X3D · AMD Radeon RX 9070 XT · Ubuntu 26.04'));
+  assert.ok(html.includes('hrx-loom 0.2.0 · hrx-system abc123'));
+  assert.ok(html.includes(current));
+  assert.ok(html.includes('historical program measurements'));
+  assert.ok(html.includes(old));
+  assert.ok(html.includes('80.0 tok/s'));
+  assert.ok(html.includes('100 tok/s'));
+  assert.ok(html.includes('excluded from current scores, ranks, and llama.cpp comparisons'));
+  assert.ok(html.includes('/blob/pinned-card-revision/README.md'));
+  assert.ok(!html.includes('80 tok/s</b>'));
+});
+
+test('promoted Qwen 0.5B stale-only Strix history cannot receive a current rank', () => {
+  const { loom } = site();
+  const m=loom.models.find(x=>x.repo==='loom-fun/bartowski-Qwen2.5-0.5B-Instruct-loom');
+  assert.ok(m);
+  assert.equal(m.performance.programs_sha256,'eef3a94365f3453915495c6369e1c9c851c547b018805823d2643c35b4c98724');
+  assert.equal(m.performance.metrics.decode.loom,null);
+  assert.ok(m.performance.historical_programs.length>0);
+  assert.equal(m.comparisonAvailable,false);
+  assert.equal(m.score,null);
+  assert.equal(loom.rk(m),'—');
+});
+
+test('quickstart source links use independent README pins while frozen summary revision remains intact', () => {
+  const { loom } = site();
+  const q = { install:'pipx install hrx-loom', fetch:'loom-fetch source', serve:'loom-serve source',
+    source_revision:'readme-only-commit', blocks:[{kind:'text',text:'new source notes'}] };
+  const m = {repo:'org/card',revision:'frozen-measurement-commit',quickstart:{'strix-halo':q}};
+  const before=JSON.stringify(m);
+  assert.ok(loom.quickstartHtml(m,{id:'strix-halo'}).includes('/blob/readme-only-commit/README.md'));
+  assert.equal(JSON.stringify(m),before);
+});
+
+test('card SDK, output path, flags and request mutations reach rendered site without frontend edits', () => {
+  const { spawnSync } = require('node:child_process');
+  const script = `import sys,types,json,pathlib
+stub=types.ModuleType('huggingface_hub');stub.HfApi=stub.hf_hub_download=None;sys.modules['huggingface_hub']=stub
+import summarize_info as S
+text=pathlib.Path('tests/quickstart_cards/unsloth-Qwen3-0.6B.md').read_text()
+text=text.replace('0.2.0','99.4.1').replace('--output=Qwen3-0.6B','--output=/future/path').replace('--model=Qwen3-0.6B','--model=/future/path').replace('--pool_backing=fixed','--new_flag=next')
+text+='\\n'+'\x60\x60\x60bash\\ncurl --data '+json.dumps({'model':'exact-selector','reasoning_effort':'none'})+'\\n\x60\x60\x60\\n'
+print(json.dumps(S.quickstart(text)))`;
+  const result = spawnSync('python3',['-c',script],{cwd:root,encoding:'utf8'});
+  assert.equal(result.status,0,result.stderr);
+  const { loom } = site();
+  const m={repo:'test/card',quickstart:JSON.parse(result.stdout)};
+  for (const id of Object.keys(m.quickstart)) {
+    const html=loom.quickstartHtml(m,{id});
+    assert.ok(html.includes('99.4.1'));
+    assert.ok(html.includes('--output=/future/path'));
+    assert.ok(html.includes('--model=/future/path'));
+    assert.ok(html.includes('exact-selector'));
+    if (id !== 'gfx1201-16gb') assert.ok(html.includes('--new_flag=next'));
+  }
+});
+
+
+test('production source snapshots render card notes and request fences with their README provenance', () => {
+  const { loom } = site();
+  let checked = 0;
+  for (const m of loom.all) {
+    for (const [id,q] of Object.entries(m.quickstart || {})) {
+      if (!q.blocks?.some(b => b.text.includes('performance measurements use this setting'))) continue;
+      assert.match(q.source_revision, /^[0-9a-f]{40}$/);
+      const html = loom.quickstartHtml(m,{id});
+      assert.ok(html.includes('copies of the fetched package files'));
+      assert.ok(html.includes(`/blob/${q.source_revision}/README.md#quick-start`));
+      if (m.service.kind === 'chat') {
+        const request = q.blocks.find(b => b.kind === 'code' && b.text.startsWith('curl '));
+        assert.ok(request);
+        assert.ok(html.includes(loom.esc(request.text)));
+      }
+      checked++;
+    }
+  }
+  assert.ok(checked > 0);
+});
+
+
+test('vLLM sources stay distinct and are excluded from every llama comparison choice', () => {
+  const pinned = JSON.parse(fs.readFileSync(path.join(__dirname,'reference_cards/mxfp4-summary.json'),'utf8'));
+  const { loom } = site('?gpu=radeon-r9700','loom-data.js',[pinned]);
+  loom.setGpu('radeon-r9700');
+  for (const mode of ['rocm','vulkan','best']) {
+    loom.setBaseline(mode);
+    const m=loom.models.find(m => m.weights.checkpoint.file.endsWith('.safetensors'));
+    assert.ok(m);
+    assert.equal(m.comparisonAvailable,false);
+    assert.equal(m.score,null);
+    assert.equal(m.measured.length,0);
+    assert.equal(m.pair('decode'),null);
+    assert.equal(m.bench.metrics.decode.loom,77.5);
+    assert.equal(m.bench.metrics.decode.llamacpp,null);
+    assert.equal(m.bench.metrics.decode.baselineSource,null);
+    assert.equal(m.performance.devlab.metrics.decode.baseline,10.9);
+    assert.equal(m.performance.devlab.metrics.decode.baseline_from.source.run,'43920731237');
+    assert.equal(m.bench.source.run,'44162729495');
+    for (const key of ['decode_32k','prefill_8k','prefill_16k','prefill_32k']) {
+      assert.equal(m.bench.metrics[key].baseline,null);
+      assert.equal(m.bench.metrics[key].speedup,null);
+    }
+    const panel=loom.referencePanel(m);
+    assert.ok(panel.includes('vLLM · vllm/0.18.0'));
+    assert.match(panel,/Loom measurement:.*44162729495/);
+    assert.match(panel,/Reference measurement:.*43920731237/);
+    assert.ok(panel.includes('/blob/01bbfe132163df667ebeb6f614dda0e28336e086/README.md'));
+    assert.ok(!panel.includes('llama.cpp ROCm'));
+    assert.ok(!loom.card(m).includes('10.9'));
+    assert.ok(!loom.card(m).includes('mc-rank'));
+    assert.equal(loom.rk(m),'—');
+    assert.ok(!loom.curve(m,'decode').includes('polyline'));
+    assert.notEqual(loom.stats().best?.m.id,m.id);
+    assert.ok(loom.quickstartHtml(m).includes('hrx-loom[hf]==0.2.0'));
+    const synthetic={...m.performance,baselines:{vulkan:{metrics:{decode:{llamacpp:9999}}}}};
+    assert.equal(loom.bench(synthetic).metrics.decode.speedup,null);
+  }
+});
+
+test('legacy safetensors with unrecorded reference engine never invent llama or baseline provenance', () => {
+  const pinned = JSON.parse(fs.readFileSync(path.join(__dirname,'reference_cards/mxfp4-summary.json'),'utf8'));
+  delete pinned.performance.baseline;
+  for (const metrics of [pinned.performance.metrics,pinned.performance.devlab.metrics]) {
+    for (const row of Object.values(metrics || {})) { delete row.baseline; delete row.baseline_from; }
+  }
+  pinned.performance.devlab.source = undefined;
+  const { loom } = site('?gpu=radeon-r9700','loom-data.js',[pinned]);loom.setGpu('radeon-r9700');
+  for (const mode of ['rocm','vulkan','best']) {
+    loom.setBaseline(mode);
+    const m=loom.models.find(m => m.weights.checkpoint.file.endsWith('.safetensors'));
+    assert.equal(m.comparisonAvailable,false);
+    assert.equal(m.score,null);
+    assert.equal(m.measured.length,0);
+    assert.equal(m.pair('decode'),null);
+    const panel=loom.referencePanel(m);
+    assert.ok(panel.includes('Reference engine not recorded in this frozen snapshot'));
+    assert.ok(panel.includes('Reference measurement: source not recorded'));
+    assert.ok(!panel.includes('vLLM'));
+    assert.ok(!panel.includes('llama.cpp ROCm'));
+  }
+});
+
+test('historical-only known llama cards use their recorded build without inventing current comparisons', () => {
+  const pinned = JSON.parse(fs.readFileSync(path.join(root,'summaries/Qwen2.5-0.5B-Instruct-Q4_K_M.json'),'utf8'));
+  assert.equal(pinned.performance.baseline, undefined);
+  assert.equal(pinned.performance.llamacpp_build, 'b1374');
+  const { loom } = site('', 'loom-data.js', [pinned]);
+  const m = loom.models.find(model => model.repo === pinned.repo);
+  assert.ok(m);
+  assert.equal(m.comparisonAvailable, false);
+  assert.ok(loom.card(m).includes('llama.cpp · b1374'));
+  const panel = loom.referencePanel(m);
+  assert.ok(panel.includes('llama.cpp · b1374'));
+  assert.ok(panel.includes('Current comparison unavailable; historical rows are shown separately'));
+  assert.ok(!panel.includes('Reference engine not recorded'));
+  assert.ok(!panel.includes('vLLM'));
+});
+
+test('actual model drawer takes the compact provenance and quickstart path for excluded references', () => {
+  const pinned = JSON.parse(fs.readFileSync(path.join(__dirname,'reference_cards/mxfp4-summary.json'),'utf8'));
+  const { loom,context } = site('?gpu=radeon-r9700','loom-data.js',[pinned]);
+  loom.setGpu('radeon-r9700');
+  const source=fs.readFileSync(path.join(root,'docs/assets/explore.js'),'utf8');
+  const drawer=source.slice(source.indexOf('  function drawer(m) {'),source.indexOf('\n  let current = null;'));
+  const render=vm.runInContext(`(function(LOOM,el,esc,quickstartHtml,m){${drawer};drawer(m);})`,context);
+  for (const mode of ['rocm','vulkan','best']) {
+    loom.setBaseline(mode);
+    const m=loom.models.find(m => m.weights.checkpoint.file.endsWith('.safetensors'));
+    const nodes={dr:{innerHTML:'',querySelectorAll:()=>[]},drPath:{textContent:''}};
+    render(loom,id=>{assert.ok(nodes[id],`unexpected generic comparison element ${id}`);return nodes[id]},loom.esc,loom.quickstartHtml,m);
+    const html=nodes.dr.innerHTML;
+    assert.ok(html.includes('vLLM · vllm/0.18.0'));
+    assert.match(html,/Loom measurement:.*44162729495/);
+    assert.match(html,/Reference measurement:.*43920731237/);
+    assert.ok(html.includes('curl http://127.0.0.1:8080/v1/chat/completions'));
+    assert.ok(html.includes('Pinned source card and full measurements'));
+    assert.ok(!html.includes('llama.cpp ROCm'));
+    assert.ok(!html.includes('drDecode'));
+  }
 });
