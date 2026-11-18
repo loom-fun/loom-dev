@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-1.7B-Q4_K_M",
   "name": "LFM3-1.7B",
   "repo": "loom-fun/bartowski-LFM3-1.7B-loom",
-  "revision": "544514339c00c9ce9c49e9ced8a9eb7c19b5194f",
+  "revision": "4f4f6400e673934dc7538f18c1ce6645263029ab",
   "status": null,
   "license": null,
   "service": {
@@ -430,6 +430,54 @@
       "memory_bytes": 15000000000,
       "context_tokens": 262144,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 279.2
+              },
+              "decode_2k": {
+                "llamacpp": 277.6
+              },
+              "decode_32k": {
+                "llamacpp": 232.0
+              },
+              "prefill_16k": {
+                "llamacpp": 14063.7
+              },
+              "prefill_1k": {
+                "llamacpp": 12353.6
+              },
+              "prefill_2k": {
+                "llamacpp": 13885.2
+              },
+              "prefill_32k": {
+                "llamacpp": 12230.8
+              },
+              "prefill_8k": {
+                "llamacpp": 14880.1
+              },
+              "streams4": {
+                "llamacpp": 541.3
+              }
+            }
+          }
+        },
         "date": "2026-11-17",
         "llamacpp_build": "b1375",
         "drafting": {
@@ -456,49 +504,49 @@
         },
         "metrics": {
           "decode": {
-            "loom": 382.3,
-            "llamacpp": 233.5,
-            "speedup": 1.64
+            "loom": 380.1,
+            "llamacpp": 233.6,
+            "speedup": 1.63
           },
           "decode_2k": {
-            "loom": 362.1,
-            "llamacpp": 229.7,
-            "speedup": 1.58
+            "loom": 359.6,
+            "llamacpp": 230.6,
+            "speedup": 1.56
           },
           "decode_32k": {
-            "loom": 285.5,
-            "llamacpp": 195.8,
+            "loom": 286.9,
+            "llamacpp": 195.9,
             "speedup": 1.46
           },
           "prefill_1k": {
-            "loom": 23818.3,
-            "llamacpp": 14005.9,
-            "speedup": 1.7
+            "loom": 23384.2,
+            "llamacpp": 13938.4,
+            "speedup": 1.68
           },
           "prefill_2k": {
-            "loom": 25540.3,
-            "llamacpp": 15893.1,
-            "speedup": 1.61
+            "loom": 25286.8,
+            "llamacpp": 15813.8,
+            "speedup": 1.6
           },
           "prefill_8k": {
-            "loom": 25643.9,
-            "llamacpp": 16596.2,
-            "speedup": 1.55
-          },
-          "prefill_16k": {
-            "loom": 23779.2,
-            "llamacpp": 15511.2,
+            "loom": 25323.2,
+            "llamacpp": 16537.7,
             "speedup": 1.53
           },
+          "prefill_16k": {
+            "loom": 23263.8,
+            "llamacpp": 15494.8,
+            "speedup": 1.5
+          },
           "prefill_32k": {
-            "loom": 20450.0,
-            "llamacpp": 13454.5,
+            "loom": 20431.3,
+            "llamacpp": 13439.5,
             "speedup": 1.52
           },
           "streams4": {
-            "loom": 1390.7,
-            "llamacpp": 578.4,
-            "speedup": 2.4
+            "loom": 1378.7,
+            "llamacpp": 572.7,
+            "speedup": 2.41
           },
           "spec_acceptance": {
             "loom": null,
@@ -588,21 +636,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 6,
           "fail": 0,
-          "unknown": 8,
+          "unknown": 2,
           "n/a": 3
         },
         "status": {
           "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
+          "golden": "pass",
+          "compare": "pass",
           "vision": "n/a",
-          "consistency": "unknown",
+          "consistency": "pass",
           "spec": "n/a",
-          "agent": "unknown",
-          "agent_think_off": "unknown",
-          "sampling": "unknown",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -636,7 +684,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat --materialize=copy --output=LFM3-1.7B",
       "serve": "loom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "544514339c00c9ce9c49e9ced8a9eb7c19b5194f"
+      "source_revision": "4f4f6400e673934dc7538f18c1ce6645263029ab"
     },
     "radeon-r9700": {
       "blocks": [
@@ -664,7 +712,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat-r9700 --materialize=copy --output=LFM3-1.7B",
       "serve": "loom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "544514339c00c9ce9c49e9ced8a9eb7c19b5194f"
+      "source_revision": "4f4f6400e673934dc7538f18c1ce6645263029ab"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -692,7 +740,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-LFM3-1.7B-loom:chat-16gb --materialize=copy --output=LFM3-1.7B",
       "serve": "loom-serve --model=LFM3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "544514339c00c9ce9c49e9ced8a9eb7c19b5194f"
+      "source_revision": "4f4f6400e673934dc7538f18c1ce6645263029ab"
     }
   }
 }
