@@ -3,7 +3,7 @@
   "checkpoint": "Spark-X2.5-4B-Q4_K_M",
   "name": "Spark-X2.5-4B",
   "repo": "loom-fun/XHToken-Spark-X2.5-4B-loom",
-  "revision": "34c30f4f433cc17d7bef6bf30dd5c85dba56fe1b",
+  "revision": "5a6f5545563bbe715c49beb8c56bc7d6a8909009",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -430,6 +430,54 @@
       "memory_bytes": 15000000000,
       "context_tokens": 75776,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 140.5
+              },
+              "decode_2k": {
+                "llamacpp": 136.2
+              },
+              "decode_32k": {
+                "llamacpp": 106.7
+              },
+              "prefill_16k": {
+                "llamacpp": 5381.2
+              },
+              "prefill_1k": {
+                "llamacpp": 4724.4
+              },
+              "prefill_2k": {
+                "llamacpp": 5391.6
+              },
+              "prefill_32k": {
+                "llamacpp": 4591.3
+              },
+              "prefill_8k": {
+                "llamacpp": 5777.8
+              },
+              "streams4": {
+                "llamacpp": 253.5
+              }
+            }
+          }
+        },
         "date": "2026-11-17",
         "llamacpp_build": "b1375",
         "drafting": {
@@ -456,49 +504,49 @@
         },
         "metrics": {
           "decode": {
-            "loom": 164.5,
+            "loom": 164.3,
             "llamacpp": 130.4,
             "speedup": 1.26
           },
           "decode_2k": {
-            "loom": 153.0,
-            "llamacpp": 125.3,
+            "loom": 153.1,
+            "llamacpp": 125.4,
             "speedup": 1.22
           },
           "decode_32k": {
-            "loom": 115.9,
+            "loom": 115.2,
             "llamacpp": 100.2,
-            "speedup": 1.16
+            "speedup": 1.15
           },
           "prefill_1k": {
-            "loom": 8779.5,
-            "llamacpp": 5006.6,
-            "speedup": 1.75
+            "loom": 8678.5,
+            "llamacpp": 5019.6,
+            "speedup": 1.73
           },
           "prefill_2k": {
-            "loom": 9051.8,
-            "llamacpp": 5654.8,
-            "speedup": 1.6
+            "loom": 8919.4,
+            "llamacpp": 5657.7,
+            "speedup": 1.58
           },
           "prefill_8k": {
-            "loom": 8891.3,
-            "llamacpp": 5890.8,
-            "speedup": 1.51
+            "loom": 8829.0,
+            "llamacpp": 5882.7,
+            "speedup": 1.5
           },
           "prefill_16k": {
-            "loom": 7663.1,
-            "llamacpp": 5486.8,
-            "speedup": 1.4
+            "loom": 7892.8,
+            "llamacpp": 5485.8,
+            "speedup": 1.44
           },
           "prefill_32k": {
-            "loom": 6482.8,
-            "llamacpp": 4762.4,
-            "speedup": 1.36
+            "loom": 6578.5,
+            "llamacpp": 4758.9,
+            "speedup": 1.38
           },
           "streams4": {
-            "loom": 577.1,
-            "llamacpp": 306.5,
-            "speedup": 1.88
+            "loom": 569.4,
+            "llamacpp": 310.5,
+            "speedup": 1.83
           },
           "spec_acceptance": {
             "loom": null,
@@ -588,21 +636,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 7,
           "fail": 0,
-          "unknown": 8,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
           "vision": "n/a",
-          "consistency": "unknown",
+          "consistency": "pass",
           "spec": "n/a",
-          "agent": "unknown",
-          "agent_think_off": "unknown",
-          "sampling": "unknown",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }

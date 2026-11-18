@@ -3,7 +3,7 @@
   "checkpoint": "Mellum2.1-12B-A2.5B-Thinking-Q4_K_M",
   "name": "Mellum2.1-12B-A2.5B-Thinking",
   "repo": "loom-fun/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom",
-  "revision": "bded57a0715e80b042dc272c49266d0bc2322e53",
+  "revision": "7a1dae928aba3bd2e830a1acc48bc56373001c99",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -429,6 +429,54 @@
       "memory_bytes": 15000000000,
       "context_tokens": 43008,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 149.6
+              },
+              "decode_2k": {
+                "llamacpp": 145.2
+              },
+              "decode_32k": {
+                "llamacpp": 127.3
+              },
+              "prefill_16k": {
+                "llamacpp": 5369.9
+              },
+              "prefill_1k": {
+                "llamacpp": 5024.9
+              },
+              "prefill_2k": {
+                "llamacpp": 5389.1
+              },
+              "prefill_32k": {
+                "llamacpp": 4758.1
+              },
+              "prefill_8k": {
+                "llamacpp": 5626.4
+              },
+              "streams4": {
+                "llamacpp": 376.4
+              }
+            }
+          }
+        },
         "date": "2026-11-17",
         "llamacpp_build": "b1375",
         "drafting": {
@@ -455,49 +503,49 @@
         },
         "metrics": {
           "decode": {
-            "loom": 227.5,
+            "loom": 229.3,
             "llamacpp": 116.8,
-            "speedup": 1.95
+            "speedup": 1.96
           },
           "decode_2k": {
-            "loom": 206.3,
-            "llamacpp": 113.0,
-            "speedup": 1.83
+            "loom": 208.2,
+            "llamacpp": 114.1,
+            "speedup": 1.82
           },
           "decode_32k": {
-            "loom": 160.1,
-            "llamacpp": 102.3,
-            "speedup": 1.57
+            "loom": 158.9,
+            "llamacpp": 102.1,
+            "speedup": 1.56
           },
           "prefill_1k": {
-            "loom": 11210.3,
-            "llamacpp": 6047.3,
-            "speedup": 1.85
+            "loom": 11107.6,
+            "llamacpp": 6024.2,
+            "speedup": 1.84
           },
           "prefill_2k": {
-            "loom": 11914.8,
-            "llamacpp": 6343.2,
-            "speedup": 1.88
+            "loom": 11816.8,
+            "llamacpp": 6326.3,
+            "speedup": 1.87
           },
           "prefill_8k": {
-            "loom": 11695.2,
-            "llamacpp": 6660.6,
-            "speedup": 1.76
+            "loom": 11600.1,
+            "llamacpp": 6626.0,
+            "speedup": 1.75
           },
           "prefill_16k": {
-            "loom": 10838.9,
-            "llamacpp": 6261.5,
-            "speedup": 1.73
+            "loom": 9063.5,
+            "llamacpp": 6266.7,
+            "speedup": 1.45
           },
           "prefill_32k": {
-            "loom": 8208.0,
-            "llamacpp": 5505.3,
-            "speedup": 1.49
+            "loom": 7661.9,
+            "llamacpp": 5509.4,
+            "speedup": 1.39
           },
           "streams4": {
-            "loom": 539.0,
-            "llamacpp": 329.5,
-            "speedup": 1.64
+            "loom": 549.9,
+            "llamacpp": 330.9,
+            "speedup": 1.66
           },
           "spec_acceptance": {
             "loom": null,
@@ -587,21 +635,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 7,
           "fail": 0,
-          "unknown": 8,
+          "unknown": 1,
           "n/a": 3
         },
         "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
           "vision": "n/a",
-          "consistency": "unknown",
+          "consistency": "pass",
           "spec": "n/a",
-          "agent": "unknown",
-          "agent_think_off": "unknown",
-          "sampling": "unknown",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }

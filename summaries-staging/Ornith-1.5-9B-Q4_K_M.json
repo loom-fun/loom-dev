@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-9B-Q4_K_M",
   "name": "Ornith-1.5-9B",
   "repo": "loom-fun-staging/bartowski-Ornith-1.5-9B-loom",
-  "revision": "68c0c9a64b97244b92f0923c1486200f8e5f7de4",
+  "revision": "29a649d2b21b76d73c87b9d29b37ea3761a18dd0",
   "status": null,
   "license": "mit",
   "service": {
@@ -433,6 +433,54 @@
       "memory_bytes": 15000000000,
       "context_tokens": 93184,
       "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model card:parameter/Ornith-1.5-9B-DFlash-Q4_K_M.gguf --spec-draft-n-max 8 -ngld 99 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-17",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 67.1
+              },
+              "decode_2k": {
+                "llamacpp": 68.6
+              },
+              "decode_32k": {
+                "llamacpp": 55.0
+              },
+              "prefill_16k": {
+                "llamacpp": 3326.2
+              },
+              "prefill_1k": {
+                "llamacpp": 3023.6
+              },
+              "prefill_2k": {
+                "llamacpp": 3235.6
+              },
+              "prefill_32k": {
+                "llamacpp": 3064.0
+              },
+              "prefill_8k": {
+                "llamacpp": 3429.7
+              },
+              "streams4": {
+                "llamacpp": 273.2
+              }
+            }
+          }
+        },
         "date": "2026-11-17",
         "llamacpp_build": "b1375",
         "drafting": {
@@ -459,52 +507,52 @@
         },
         "metrics": {
           "decode": {
-            "loom": 155.7,
+            "loom": 155.4,
             "llamacpp": 89.2,
-            "speedup": 1.75
+            "speedup": 1.74
           },
           "decode_2k": {
-            "loom": 132.3,
-            "llamacpp": 85.8,
-            "speedup": 1.54
+            "loom": 129.7,
+            "llamacpp": 96.7,
+            "speedup": 1.34
           },
           "decode_32k": {
-            "loom": 106.1,
-            "llamacpp": 73.4,
-            "speedup": 1.45
+            "loom": 98.5,
+            "llamacpp": 65.4,
+            "speedup": 1.51
           },
           "prefill_1k": {
-            "loom": 5179.9,
-            "llamacpp": 3249.6,
-            "speedup": 1.59
+            "loom": 5123.3,
+            "llamacpp": 3241.0,
+            "speedup": 1.58
           },
           "prefill_2k": {
-            "loom": 5484.4,
-            "llamacpp": 3405.7,
+            "loom": 5428.6,
+            "llamacpp": 3379.9,
             "speedup": 1.61
           },
           "prefill_8k": {
-            "loom": 5632.8,
-            "llamacpp": 3511.1,
-            "speedup": 1.6
-          },
-          "prefill_16k": {
-            "loom": 5399.8,
-            "llamacpp": 3389.0,
+            "loom": 5578.8,
+            "llamacpp": 3501.7,
             "speedup": 1.59
           },
+          "prefill_16k": {
+            "loom": 5343.0,
+            "llamacpp": 3382.7,
+            "speedup": 1.58
+          },
           "prefill_32k": {
-            "loom": 4890.8,
-            "llamacpp": 3142.6,
-            "speedup": 1.56
+            "loom": 4846.9,
+            "llamacpp": 3141.2,
+            "speedup": 1.54
           },
           "streams4": {
-            "loom": 346.8,
-            "llamacpp": 235.7,
+            "loom": 345.8,
+            "llamacpp": 234.9,
             "speedup": 1.47
           },
           "spec_acceptance": {
-            "loom": null,
+            "loom": 0.71,
             "llamacpp": null,
             "speedup": null
           }
@@ -589,21 +637,21 @@
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 9,
           "fail": 0,
-          "unknown": 10,
+          "unknown": 1,
           "n/a": 1
         },
         "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
-          "vision": "unknown",
-          "consistency": "unknown",
-          "spec": "unknown",
-          "agent": "unknown",
-          "agent_think_off": "unknown",
-          "sampling": "unknown",
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "pass",
+          "consistency": "pass",
+          "spec": "pass",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -637,7 +685,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Ornith-1.5-9B-loom:chat --materialize=copy --output=Ornith-1.5-9B",
       "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "68c0c9a64b97244b92f0923c1486200f8e5f7de4"
+      "source_revision": "29a649d2b21b76d73c87b9d29b37ea3761a18dd0"
     },
     "radeon-r9700": {
       "blocks": [
@@ -665,7 +713,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Ornith-1.5-9B-loom:chat --materialize=copy --output=Ornith-1.5-9B",
       "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "68c0c9a64b97244b92f0923c1486200f8e5f7de4"
+      "source_revision": "29a649d2b21b76d73c87b9d29b37ea3761a18dd0"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -693,7 +741,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Ornith-1.5-9B-loom:chat-16gb --materialize=copy --output=Ornith-1.5-9B",
       "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "68c0c9a64b97244b92f0923c1486200f8e5f7de4"
+      "source_revision": "29a649d2b21b76d73c87b9d29b37ea3761a18dd0"
     }
   }
 }
