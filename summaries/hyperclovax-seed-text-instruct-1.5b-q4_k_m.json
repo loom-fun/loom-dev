@@ -3,7 +3,7 @@
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
   "repo": "loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "531a830e56dde66f5d5d972a2502632fe9692f0d",
+  "revision": "c8af165d9fda14fec2139493a13d7ef6060572b0",
   "status": null,
   "license": null,
   "service": {
@@ -436,7 +436,7 @@
             "name": "llama.cpp",
             "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
             "version": "llamacpp-vulkan/b12211",
-            "date": "2026-11-17",
+            "date": "2026-11-18",
             "source": {
               "kind": "machine",
               "run": null,
@@ -449,36 +449,36 @@
             },
             "metrics": {
               "decode": {
-                "llamacpp": 348.9
+                "llamacpp": 353.0
               },
               "decode_2k": {
-                "llamacpp": 310.9
+                "llamacpp": 313.8
               },
               "decode_32k": {
-                "llamacpp": 126.3
+                "llamacpp": 126.5
               },
               "prefill_16k": {
-                "llamacpp": 10664.0
+                "llamacpp": 10676.0
               },
               "prefill_1k": {
-                "llamacpp": 15814.2
+                "llamacpp": 15445.9
               },
               "prefill_2k": {
-                "llamacpp": 16327.4
+                "llamacpp": 16055.1
               },
               "prefill_32k": {
-                "llamacpp": 7345.4
+                "llamacpp": 7353.7
               },
               "prefill_8k": {
-                "llamacpp": 13470.1
+                "llamacpp": 13480.5
               },
               "streams4": {
-                "llamacpp": 1078.6
+                "llamacpp": 1078.5
               }
             }
           }
         },
-        "date": "2026-11-17",
+        "date": "2026-11-18",
         "llamacpp_build": "b1375",
         "drafting": {
           "loom": null,
@@ -504,49 +504,49 @@
         },
         "metrics": {
           "decode": {
-            "loom": 360.2,
-            "llamacpp": 281.2,
+            "loom": 363.1,
+            "llamacpp": 283.2,
             "speedup": 1.28
           },
           "decode_2k": {
-            "loom": 290.1,
-            "llamacpp": 250.7,
+            "loom": 293.7,
+            "llamacpp": 253.2,
             "speedup": 1.16
           },
           "decode_32k": {
-            "loom": null,
-            "llamacpp": 113.9,
-            "speedup": null
+            "loom": 119.2,
+            "llamacpp": 114.3,
+            "speedup": 1.04
           },
           "prefill_1k": {
-            "loom": 21022.0,
-            "llamacpp": 17275.1,
-            "speedup": 1.22
+            "loom": 21581.6,
+            "llamacpp": 17152.9,
+            "speedup": 1.26
           },
           "prefill_2k": {
-            "loom": 23651.2,
-            "llamacpp": 17327.3,
+            "loom": 23634.1,
+            "llamacpp": 17365.2,
             "speedup": 1.36
           },
           "prefill_8k": {
-            "loom": 19654.4,
-            "llamacpp": 14667.7,
+            "loom": 19798.2,
+            "llamacpp": 14778.8,
             "speedup": 1.34
           },
           "prefill_16k": {
-            "loom": 15865.7,
-            "llamacpp": 11158.7,
-            "speedup": 1.42
+            "loom": 14442.7,
+            "llamacpp": 11219.2,
+            "speedup": 1.29
           },
           "prefill_32k": {
-            "loom": 11191.0,
-            "llamacpp": 7781.2,
-            "speedup": 1.44
+            "loom": 11522.8,
+            "llamacpp": 7814.4,
+            "speedup": 1.47
           },
           "streams4": {
-            "loom": 1327.9,
-            "llamacpp": 752.6,
-            "speedup": 1.76
+            "loom": 1333.5,
+            "llamacpp": 748.4,
+            "speedup": 1.78
           },
           "spec_acceptance": {
             "loom": null,
@@ -611,7 +611,7 @@
         "programs_sha256": "e4184377323e3d9bbe2bf58d66abdb805b36beb6bba7fba222ed9675d415f874",
         "named_machine_sources": [
           {
-            "date": "2026-11-17",
+            "date": "2026-11-18",
             "programs_sha256": "e4184377323e3d9bbe2bf58d66abdb805b36beb6bba7fba222ed9675d415f874",
             "source": {
               "kind": "machine",
@@ -636,13 +636,13 @@
       },
       "gates": {
         "summary": {
-          "pass": 4,
+          "pass": 5,
           "fail": 0,
-          "unknown": 2,
+          "unknown": 1,
           "n/a": 5
         },
         "status": {
-          "kernel_tests": "unknown",
+          "kernel_tests": "pass",
           "golden": "pass",
           "compare": "pass",
           "vision": "n/a",
@@ -676,7 +676,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "531a830e56dde66f5d5d972a2502632fe9692f0d"
+      "source_revision": "c8af165d9fda14fec2139493a13d7ef6060572b0"
     },
     "radeon-r9700": {
       "blocks": [
@@ -696,7 +696,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "531a830e56dde66f5d5d972a2502632fe9692f0d"
+      "source_revision": "c8af165d9fda14fec2139493a13d7ef6060572b0"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -716,7 +716,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "531a830e56dde66f5d5d972a2502632fe9692f0d"
+      "source_revision": "c8af165d9fda14fec2139493a13d7ef6060572b0"
     }
   },
   "shared_request": {
@@ -731,6 +731,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "531a830e56dde66f5d5d972a2502632fe9692f0d"
+    "source_revision": "c8af165d9fda14fec2139493a13d7ef6060572b0"
   }
 }

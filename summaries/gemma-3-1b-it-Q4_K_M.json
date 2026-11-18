@@ -3,7 +3,7 @@
   "checkpoint": "gemma-3-1b-it-Q4_K_M",
   "name": "gemma-3-1b-it",
   "repo": "loom-fun/ggml-org-gemma-3-1b-it-loom",
-  "revision": "99da2100b4aef88600a1136668e726849af08c97",
+  "revision": "c04d2bded542fdf656c1d23e32521e0d96f7e512",
   "status": null,
   "license": "gemma",
   "service": {
@@ -441,25 +441,25 @@
             },
             "metrics": {
               "decode": {
-                "llamacpp": 331.0
+                "llamacpp": 332.4
               },
               "decode_2k": {
-                "llamacpp": 320.9
+                "llamacpp": 324.7
               },
               "prefill_16k": {
-                "llamacpp": 23836.7
+                "llamacpp": 23818.1
               },
               "prefill_1k": {
-                "llamacpp": 16306.5
+                "llamacpp": 17026.4
               },
               "prefill_2k": {
-                "llamacpp": 19615.6
+                "llamacpp": 19652.7
               },
               "prefill_8k": {
-                "llamacpp": 24284.5
+                "llamacpp": 24287.1
               },
               "streams4": {
-                "llamacpp": 886.7
+                "llamacpp": 855.0
               }
             }
           }
@@ -490,14 +490,14 @@
         },
         "metrics": {
           "decode": {
-            "loom": 399.0,
-            "llamacpp": 211.0,
-            "speedup": 1.89
+            "loom": 402.0,
+            "llamacpp": 211.3,
+            "speedup": 1.9
           },
           "decode_2k": {
-            "loom": 377.4,
-            "llamacpp": 205.1,
-            "speedup": 1.84
+            "loom": 380.5,
+            "llamacpp": 205.6,
+            "speedup": 1.85
           },
           "decode_32k": {
             "loom": null,
@@ -505,24 +505,24 @@
             "speedup": null
           },
           "prefill_1k": {
-            "loom": 28949.5,
-            "llamacpp": 14760.8,
-            "speedup": 1.96
+            "loom": 28731.9,
+            "llamacpp": 15166.0,
+            "speedup": 1.89
           },
           "prefill_2k": {
-            "loom": 32152.6,
-            "llamacpp": 17825.1,
-            "speedup": 1.8
+            "loom": 32115.7,
+            "llamacpp": 18136.9,
+            "speedup": 1.77
           },
           "prefill_8k": {
-            "loom": 32363.0,
-            "llamacpp": 21571.0,
-            "speedup": 1.5
+            "loom": 32156.7,
+            "llamacpp": 21316.8,
+            "speedup": 1.51
           },
           "prefill_16k": {
-            "loom": 31826.6,
-            "llamacpp": 21205.6,
-            "speedup": 1.5
+            "loom": 31421.5,
+            "llamacpp": 21213.5,
+            "speedup": 1.48
           },
           "prefill_32k": {
             "loom": null,
@@ -530,9 +530,9 @@
             "speedup": null
           },
           "streams4": {
-            "loom": 1397.3,
-            "llamacpp": 749.0,
-            "speedup": 1.87
+            "loom": 1435.1,
+            "llamacpp": 764.0,
+            "speedup": 1.88
           },
           "spec_acceptance": {
             "loom": null,
@@ -624,13 +624,13 @@
       },
       "gates": {
         "summary": {
-          "pass": 4,
+          "pass": 5,
           "fail": 0,
-          "unknown": 2,
+          "unknown": 1,
           "n/a": 5
         },
         "status": {
-          "kernel_tests": "unknown",
+          "kernel_tests": "pass",
           "golden": "pass",
           "compare": "pass",
           "vision": "n/a",
@@ -664,7 +664,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat --materialize=copy --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "99da2100b4aef88600a1136668e726849af08c97"
+      "source_revision": "c04d2bded542fdf656c1d23e32521e0d96f7e512"
     },
     "radeon-r9700": {
       "blocks": [
@@ -684,7 +684,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat-r9700 --materialize=copy --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "99da2100b4aef88600a1136668e726849af08c97"
+      "source_revision": "c04d2bded542fdf656c1d23e32521e0d96f7e512"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -704,7 +704,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-gemma-3-1b-it-loom:chat-16gb --materialize=copy --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "99da2100b4aef88600a1136668e726849af08c97"
+      "source_revision": "c04d2bded542fdf656c1d23e32521e0d96f7e512"
     }
   },
   "shared_request": {
@@ -719,6 +719,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-3-1b-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "99da2100b4aef88600a1136668e726849af08c97"
+    "source_revision": "c04d2bded542fdf656c1d23e32521e0d96f7e512"
   }
 }
