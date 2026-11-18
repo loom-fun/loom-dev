@@ -207,7 +207,8 @@
           "speedup": 1.38
         }
       }
-    }
+    },
+    "programs_sha256": "c73056e50241496f4be781731da4b7d2d795789edf0696a9418d3d6d8781b0df"
   },
   "gates": {
     "summary": {
@@ -398,7 +399,8 @@
               "speedup": 1.84
             }
           }
-        }
+        },
+        "programs_sha256": "c73056e50241496f4be781731da4b7d2d795789edf0696a9418d3d6d8781b0df"
       },
       "gates": {
         "summary": {
@@ -438,7 +440,12 @@
             "source": {
               "kind": "machine",
               "run": null,
-              "url": null
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
             },
             "metrics": {
               "decode": {
@@ -480,7 +487,20 @@
         "source": {
           "kind": "machine",
           "run": null,
-          "url": null
+          "url": null,
+          "device": {
+            "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+            "gpu": "AMD Radeon RX 9070 XT",
+            "os": "Ubuntu 26.04"
+          },
+          "hrx_loom": {
+            "artifact_id": null,
+            "branch": "v0.2.0",
+            "hrx_loom": "0.2.0",
+            "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+            "source": "pypi",
+            "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+          }
         },
         "metrics": {
           "decode": {
@@ -587,7 +607,32 @@
               "speedup": null
             }
           }
-        }
+        },
+        "programs_sha256": "c73056e50241496f4be781731da4b7d2d795789edf0696a9418d3d6d8781b0df",
+        "named_machine_sources": [
+          {
+            "date": "2026-11-17",
+            "programs_sha256": "c73056e50241496f4be781731da4b7d2d795789edf0696a9418d3d6d8781b0df",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              },
+              "hrx_loom": {
+                "artifact_id": null,
+                "branch": "v0.2.0",
+                "hrx_loom": "0.2.0",
+                "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+                "source": "pypi",
+                "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+              }
+            }
+          }
+        ]
       },
       "gates": {
         "summary": {
@@ -614,27 +659,88 @@
   },
   "quickstart": {
     "strix-halo": {
-      "preset": "chat",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request (optional thinking is turned off):"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-1.7B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat --materialize=copy --output=Qwen3-1.7B",
+      "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "ba2e617ba62acea90b55932d74713b4e75b39b1e"
     },
     "radeon-r9700": {
-      "preset": "chat-r9700",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-r9700 --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request (optional thinking is turned off):"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-1.7B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-r9700 --materialize=copy --output=Qwen3-1.7B",
+      "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "ba2e617ba62acea90b55932d74713b4e75b39b1e"
     },
     "gfx1201-16gb": {
-      "preset": "chat-16gb",
-      "serve_args": [
-        "--memory_bytes=15000000000",
-        "--state_slab_bytes=4mib",
-        "--weight_slab_bytes=64mib",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-16gb --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request (optional thinking is turned off):"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-1.7B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-16gb --materialize=copy --output=Qwen3-1.7B",
+      "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
+      "source_revision": "ba2e617ba62acea90b55932d74713b4e75b39b1e"
     }
   }
 }

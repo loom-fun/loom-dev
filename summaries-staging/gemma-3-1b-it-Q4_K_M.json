@@ -203,7 +203,8 @@
           "speedup": 1.51
         }
       }
-    }
+    },
+    "programs_sha256": "fbf5b682b82d831ec2ef1faa12c6e2fecf13793731625d5b563e776673c92c2b"
   },
   "gates": {
     "summary": {
@@ -390,7 +391,8 @@
               "speedup": 1.9
             }
           }
-        }
+        },
+        "programs_sha256": "fbf5b682b82d831ec2ef1faa12c6e2fecf13793731625d5b563e776673c92c2b"
       },
       "gates": {
         "summary": {
@@ -430,7 +432,12 @@
             "source": {
               "kind": "machine",
               "run": null,
-              "url": null
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              }
             },
             "metrics": {
               "decode": {
@@ -466,7 +473,20 @@
         "source": {
           "kind": "machine",
           "run": null,
-          "url": null
+          "url": null,
+          "device": {
+            "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+            "gpu": "AMD Radeon RX 9070 XT",
+            "os": "Ubuntu 26.04"
+          },
+          "hrx_loom": {
+            "artifact_id": null,
+            "branch": "v0.2.0",
+            "hrx_loom": "0.2.0",
+            "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+            "source": "pypi",
+            "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+          }
         },
         "metrics": {
           "decode": {
@@ -575,7 +595,32 @@
               "speedup": null
             }
           }
-        }
+        },
+        "programs_sha256": "fbf5b682b82d831ec2ef1faa12c6e2fecf13793731625d5b563e776673c92c2b",
+        "named_machine_sources": [
+          {
+            "date": "2026-11-17",
+            "programs_sha256": "fbf5b682b82d831ec2ef1faa12c6e2fecf13793731625d5b563e776673c92c2b",
+            "source": {
+              "kind": "machine",
+              "run": null,
+              "url": null,
+              "device": {
+                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+                "gpu": "AMD Radeon RX 9070 XT",
+                "os": "Ubuntu 26.04"
+              },
+              "hrx_loom": {
+                "artifact_id": null,
+                "branch": "v0.2.0",
+                "hrx_loom": "0.2.0",
+                "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+                "source": "pypi",
+                "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+              }
+            }
+          }
+        ]
       },
       "gates": {
         "summary": {
@@ -602,27 +647,88 @@
   },
   "quickstart": {
     "strix-halo": {
-      "preset": "chat",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat --materialize=copy --output=gemma-3-1b-it\nloom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request:"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-3-1b-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat --materialize=copy --output=gemma-3-1b-it",
+      "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "dbddc6be4dfc131ffdfcb3a2d6b7b4772e1cb794"
     },
     "radeon-r9700": {
-      "preset": "chat-r9700",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat-r9700 --materialize=copy --output=gemma-3-1b-it\nloom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request:"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-3-1b-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat-r9700 --materialize=copy --output=gemma-3-1b-it",
+      "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "dbddc6be4dfc131ffdfcb3a2d6b7b4772e1cb794"
     },
     "gfx1201-16gb": {
-      "preset": "chat-16gb",
-      "serve_args": [
-        "--memory_bytes=15000000000",
-        "--state_slab_bytes=4mib",
-        "--weight_slab_bytes=64mib",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat-16gb --materialize=copy --output=gemma-3-1b-it\nloom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request:"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-3-1b-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat-16gb --materialize=copy --output=gemma-3-1b-it",
+      "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
+      "source_revision": "dbddc6be4dfc131ffdfcb3a2d6b7b4772e1cb794"
     }
   }
 }

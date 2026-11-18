@@ -206,7 +206,8 @@
           "speedup": 1.25
         }
       }
-    }
+    },
+    "programs_sha256": "4adb454b0308a4a71d16a749be862d1c8863490cf198cfe5374799040f87adf1"
   },
   "gates": {
     "summary": {
@@ -394,7 +395,8 @@
               "speedup": 1.4
             }
           }
-        }
+        },
+        "programs_sha256": "4adb454b0308a4a71d16a749be862d1c8863490cf198cfe5374799040f87adf1"
       },
       "gates": {
         "summary": {
@@ -421,18 +423,60 @@
   },
   "quickstart": {
     "strix-halo": {
-      "preset": "chat",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Nanbeige4.3-33B-loom:chat --materialize=copy --output=Nanbeige4.3-33B\nloom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request (optional thinking is turned off):"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Nanbeige/Nanbeige4.3-33B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Nanbeige4.3-33B-loom:chat --materialize=copy --output=Nanbeige4.3-33B",
+      "serve": "loom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "2212931e359ef6ecc93d3b43c7a96c30cf26f349"
     },
     "radeon-r9700": {
-      "preset": "chat-r9700",
-      "serve_args": [
-        "--pool_backing=fixed",
-        "--parameter_mode=preload"
-      ]
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Nanbeige4.3-33B-loom:chat-r9700 --materialize=copy --output=Nanbeige4.3-33B\nloom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 37,888 tokens per request (its native context is 524,288).\n\nIn another terminal, send a request (optional thinking is turned off):"
+        },
+        {
+          "kind": "code",
+          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Nanbeige/Nanbeige4.3-33B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+        },
+        {
+          "kind": "text",
+          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Nanbeige4.3-33B-loom:chat-r9700 --materialize=copy --output=Nanbeige4.3-33B",
+      "serve": "loom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "2212931e359ef6ecc93d3b43c7a96c30cf26f349"
     }
   }
 }
