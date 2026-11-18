@@ -211,21 +211,25 @@ test('card SDK, output path, flags and request mutations reach rendered site wit
   const script = `import sys,types,json,pathlib
 stub=types.ModuleType('huggingface_hub');stub.HfApi=stub.hf_hub_download=None;sys.modules['huggingface_hub']=stub
 import summarize_info as S
-text=pathlib.Path('tests/quickstart_cards/unsloth-Qwen3-0.6B.md').read_text()
-text=text.replace('0.2.0','99.4.1').replace('--output=Qwen3-0.6B','--output=/future/path').replace('--model=Qwen3-0.6B','--model=/future/path').replace('--pool_backing=fixed','--new_flag=next')
-text+='\\n'+'\x60\x60\x60bash\\ncurl --data '+json.dumps({'model':'exact-selector','reasoning_effort':'none'})+'\\n\x60\x60\x60\\n'
-print(json.dumps(S.quickstart(text)))`;
+text=pathlib.Path('tests/quickstart_cards/shared-request.md').read_text()
+text=text.replace('0.2.0','99.4.1').replace('--output=Example','--output=/future/output').replace('--model=Example/model.json','--model=/future/model.json').replace('--pool_backing=fixed','--new_flag=next')
+print(json.dumps({'quickstart':S.quickstart(text),'shared_request':S.shared_request(text)}))`;
   const result = spawnSync('python3',['-c',script],{cwd:root,encoding:'utf8'});
   assert.equal(result.status,0,result.stderr);
   const { loom } = site();
-  const m={repo:'test/card',quickstart:JSON.parse(result.stdout)};
+  const m={repo:'test/card',...JSON.parse(result.stdout)};
   for (const id of Object.keys(m.quickstart)) {
     const html=loom.quickstartHtml(m,{id});
     assert.ok(html.includes('99.4.1'));
-    assert.ok(html.includes('--output=/future/path'));
-    assert.ok(html.includes('--model=/future/path'));
+    assert.ok(html.includes('--new_flag=next'));
+    assert.ok(html.includes('--output=/future/output'));
+    assert.ok(html.includes('--model=/future/model.json'));
+    assert.ok(html.includes(`loom-fetch huggingface:loom-fun/example-loom${id==='radeon-r9700'?':chat-r9700':':chat'}`));
     assert.ok(html.includes('exact-selector'));
-    if (id !== 'gfx1201-16gb') assert.ok(html.includes('--new_flag=next'));
+    assert.ok(html.includes('<h4>Send a request</h4>'));
+    assert.equal(html.split('curl http://127.0.0.1:8080/v1/chat/completions').length-1,1);
+    const plain=loom.quickstart(m,{id});
+    assert.equal(plain.split('curl http://127.0.0.1:8080/v1/chat/completions').length-1,1);
   }
 });
 
@@ -241,9 +245,11 @@ test('production source snapshots render card notes and request fences with thei
       assert.ok(html.includes('copies of the fetched package files'));
       assert.ok(html.includes(`/blob/${q.source_revision}/README.md#quick-start`));
       if (m.service.kind === 'chat') {
-        const request = q.blocks.find(b => b.kind === 'code' && b.text.startsWith('curl '));
+        const blocks = m.shared_request?.blocks || q.blocks;
+        const request = blocks.find(b => b.kind === 'code' && b.text.startsWith('curl '));
         assert.ok(request);
         assert.ok(html.includes(loom.esc(request.text)));
+        assert.equal(html.split('curl http://127.0.0.1:8080/v1/chat/completions').length-1,1);
       }
       checked++;
     }

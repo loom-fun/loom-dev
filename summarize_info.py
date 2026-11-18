@@ -98,12 +98,40 @@ def gpu_view(info, gpu, package_programs_sha256=None):
     return out
 
 
+def markdown_blocks(body):
+    out, end = [], 0
+    for match in re.finditer(r"^```([^\n]*)\n(.*?)^```[ \t]*$", body, re.M | re.S):
+        if body[end:match.start()].strip():
+            out.append({"kind": "text", "text": body[end:match.start()].strip()})
+        out.append({"kind": "code", "text": match.group(2).rstrip("\n")})
+        end = match.end()
+    if body[end:].strip():
+        out.append({"kind": "text", "text": body[end:].strip()})
+    return out
+
+
+def shared_request(readme, source_revision=None):
+    """Extract the shared request only when the card authors a visible section outside GPU details."""
+    match = re.search(r"^## (Send a request[^\n]*)\n(.*?)(?=^## |\Z)", readme or "", re.M | re.S)
+    if not match:
+        return None
+    before = (readme or "")[:match.start()]
+    if before.count("<details>") != before.count("</details>"):
+        return None
+    blocks = markdown_blocks(match.group(2))
+    if not blocks:
+        return None
+    return {"heading": match.group(1).strip(), "blocks": blocks,
+            **({"source_revision": source_revision} if source_revision else {})}
+
+
 def quickstart(readme, default_gpu=None, source_revision=None):
     """Preserve source commands and notes, scoped to the card's Quick start section.
 
     Details identify GPUs explicitly. A plain fenced layout belongs only to the
     card's primary measured GPU; it must never become a fallback for other GPUs.
-    Text remains Markdown text, never trusted HTML in the browser.
+    The separate Send a request section is parsed by shared_request(). Text
+    remains Markdown text, never trusted HTML in the browser.
     """
     section = re.search(r"^## Quick start[^\n]*\n(.*?)(?=^## |\Z)", readme or "", re.M | re.S)
     if not section:
@@ -111,19 +139,8 @@ def quickstart(readme, default_gpu=None, source_revision=None):
     text = section.group(1)
     details = list(re.finditer(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", text, re.S))
 
-    def blocks(body):
-        out, end = [], 0
-        for match in re.finditer(r"^```([^\n]*)\n(.*?)^```[ \t]*$", body, re.M | re.S):
-            if body[end:match.start()].strip():
-                out.append({"kind": "text", "text": body[end:match.start()].strip()})
-            out.append({"kind": "code", "text": match.group(2).rstrip("\n")})
-            end = match.end()
-        if body[end:].strip():
-            out.append({"kind": "text", "text": body[end:].strip()})
-        return out
-
     def entry(body):
-        parts = blocks(body)
+        parts = markdown_blocks(body)
         code = "\n".join(b["text"] for b in parts if b["kind"] == "code")
         def command(pattern):
             match = re.search(pattern, code, re.M)
@@ -165,7 +182,13 @@ def refresh_quickstart(summary, readme, source_revision):
     The summary revision still identifies its info/model inputs; each quickstart
     records the exact README revision it came from independently.
     """
-    return {**summary, "quickstart": quickstart(readme, summary.get("primary_device", DEFAULT_GPU), source_revision)}
+    out = {**summary, "quickstart": quickstart(readme, summary.get("primary_device", DEFAULT_GPU), source_revision)}
+    request = shared_request(readme, source_revision)
+    if request:
+        out["shared_request"] = request
+    else:
+        out.pop("shared_request", None)
+    return out
 
 
 def package_sources(model, lock):
@@ -276,6 +299,16 @@ def accepted_programs(card):
         accepted.update(x for x in remeasure.get("carried_programs", []) if x)
         accepted.add(remeasure["compared_programs"])
     return current, accepted
+
+
+def fresh_gate_status(card, gate):
+    """A hashed gate only describes the current package when its program identity is accepted."""
+    status = gate["status"]
+    evidence_hash = gate.get("programs_sha256")
+    current, accepted = accepted_programs(card)
+    if evidence_hash and current and evidence_hash not in accepted:
+        return "unknown"
+    return status
 
 
 def headline(card, devlab=False, allowed_programs=None):
@@ -434,7 +467,7 @@ def device_results(card, kind, feats, sd, logits=None):
     gates, known = {}, GATES + ([LOGITS_GATE] if logits is not None else [])
     for g in known + sorted(set(card["gates"]) - set(known)):
         if g in card["gates"]:
-            gates[g] = card["gates"][g]["status"]
+            gates[g] = fresh_gate_status(card, card["gates"][g])
         elif g == LOGITS_GATE:
             gates[g] = "unknown" if logits else "n/a"
         elif g in GATES:
@@ -499,6 +532,9 @@ def summarize(card, model, lock, revision, license, readme=None, package_program
                                  "performance": perf, "gates": gates}
     if readme is not None:
         out["quickstart"] = quickstart(readme, gpu, revision)
+        request = shared_request(readme, revision)
+        if request:
+            out["shared_request"] = request
     return out
 
 
