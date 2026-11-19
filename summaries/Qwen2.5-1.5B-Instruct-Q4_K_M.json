@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-1.5B-Instruct-Q4_K_M",
   "name": "Qwen2.5-1.5B-Instruct",
   "repo": "loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom",
-  "revision": "6a89733f7cf52f8b741f8730264ac4aa82d23c76",
+  "revision": "0fdebe45ff54bd65da213cbb5de9defbb8476497",
   "status": null,
   "license": null,
   "service": {
@@ -676,7 +676,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-1.5B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "6a89733f7cf52f8b741f8730264ac4aa82d23c76"
+      "source_revision": "0fdebe45ff54bd65da213cbb5de9defbb8476497"
     },
     "radeon-r9700": {
       "blocks": [
@@ -696,7 +696,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-1.5B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "6a89733f7cf52f8b741f8730264ac4aa82d23c76"
+      "source_revision": "0fdebe45ff54bd65da213cbb5de9defbb8476497"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -716,7 +716,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Qwen2.5-1.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-1.5B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-1.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "6a89733f7cf52f8b741f8730264ac4aa82d23c76"
+      "source_revision": "0fdebe45ff54bd65da213cbb5de9defbb8476497"
     }
   },
   "shared_request": {
@@ -731,6 +731,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "6a89733f7cf52f8b741f8730264ac4aa82d23c76"
+    "source_revision": "0fdebe45ff54bd65da213cbb5de9defbb8476497"
   }
 }

@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-12b-it-Q4_K_M",
   "name": "gemma-4-12B-it",
   "repo": "loom-fun/unsloth-gemma-4-12B-it-loom",
-  "revision": "2ffe6bf02c56df7114ab1c95495575d45c34227d",
+  "revision": "40ffce78cd1ba589adc14865dab31a5dbbea11ec",
   "status": null,
   "license": null,
   "service": {
@@ -674,7 +674,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "2ffe6bf02c56df7114ab1c95495575d45c34227d"
+      "source_revision": "40ffce78cd1ba589adc14865dab31a5dbbea11ec"
     },
     "radeon-r9700": {
       "blocks": [
@@ -694,7 +694,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "2ffe6bf02c56df7114ab1c95495575d45c34227d"
+      "source_revision": "40ffce78cd1ba589adc14865dab31a5dbbea11ec"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -714,7 +714,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "2ffe6bf02c56df7114ab1c95495575d45c34227d"
+      "source_revision": "40ffce78cd1ba589adc14865dab31a5dbbea11ec"
     }
   },
   "shared_request": {
@@ -729,6 +729,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-12B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "2ffe6bf02c56df7114ab1c95495575d45c34227d"
+    "source_revision": "40ffce78cd1ba589adc14865dab31a5dbbea11ec"
   }
 }

@@ -3,7 +3,7 @@
   "checkpoint": "gpt-oss-20b-Q4_K_M",
   "name": "gpt-oss-20b",
   "repo": "loom-fun/unsloth-gpt-oss-20b-loom",
-  "revision": "21e06ec362a1028b90d3bac9b48529d1824490e1",
+  "revision": "2e02da6038dfced617e53473cbc41a449b4eb095",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -675,7 +675,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat --materialize=copy --output=gpt-oss-20b",
       "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "21e06ec362a1028b90d3bac9b48529d1824490e1"
+      "source_revision": "2e02da6038dfced617e53473cbc41a449b4eb095"
     },
     "radeon-r9700": {
       "blocks": [
@@ -695,7 +695,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat --materialize=copy --output=gpt-oss-20b",
       "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "21e06ec362a1028b90d3bac9b48529d1824490e1"
+      "source_revision": "2e02da6038dfced617e53473cbc41a449b4eb095"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -715,7 +715,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gpt-oss-20b-loom:chat-16gb --materialize=copy --output=gpt-oss-20b",
       "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "21e06ec362a1028b90d3bac9b48529d1824490e1"
+      "source_revision": "2e02da6038dfced617e53473cbc41a449b4eb095"
     }
   },
   "shared_request": {
@@ -730,6 +730,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"openai/gpt-oss-20b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"low\"}'"
       }
     ],
-    "source_revision": "21e06ec362a1028b90d3bac9b48529d1824490e1"
+    "source_revision": "2e02da6038dfced617e53473cbc41a449b4eb095"
   }
 }

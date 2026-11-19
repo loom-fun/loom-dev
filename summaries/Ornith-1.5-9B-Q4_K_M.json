@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-9B-Q4_K_M",
   "name": "Ornith-1.5-9B",
   "repo": "loom-fun/bartowski-Ornith-1.5-9B-loom",
-  "revision": "5cb9f79de182377a5bf1c7650071cdbc875833d2",
+  "revision": "fd3c6efebabc4ea9502c296326402a079bb84827",
   "status": null,
   "license": "mit",
   "service": {
@@ -677,7 +677,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat --materialize=copy --output=Ornith-1.5-9B",
       "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "5cb9f79de182377a5bf1c7650071cdbc875833d2"
+      "source_revision": "fd3c6efebabc4ea9502c296326402a079bb84827"
     },
     "radeon-r9700": {
       "blocks": [
@@ -697,7 +697,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat --materialize=copy --output=Ornith-1.5-9B",
       "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "5cb9f79de182377a5bf1c7650071cdbc875833d2"
+      "source_revision": "fd3c6efebabc4ea9502c296326402a079bb84827"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -717,7 +717,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-9B-loom:chat-16gb --materialize=copy --output=Ornith-1.5-9B",
       "serve": "loom-serve --model=Ornith-1.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "5cb9f79de182377a5bf1c7650071cdbc875833d2"
+      "source_revision": "fd3c6efebabc4ea9502c296326402a079bb84827"
     }
   },
   "shared_request": {
@@ -732,6 +732,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"ornith-ai/Ornith-1.5-9B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "5cb9f79de182377a5bf1c7650071cdbc875833d2"
+    "source_revision": "fd3c6efebabc4ea9502c296326402a079bb84827"
   }
 }

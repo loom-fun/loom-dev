@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-26B-A4B-it-Q4_K_M",
   "name": "gemma-4-26B-A4B-it",
   "repo": "loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom",
-  "revision": "cd988bb14db02ac5576e94d7e750dba32ba254cc",
+  "revision": "b67c6091609c87faa9be2d2564ca931d5c1c50e2",
   "status": null,
   "license": null,
   "service": {
@@ -443,7 +443,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it",
       "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "cd988bb14db02ac5576e94d7e750dba32ba254cc"
+      "source_revision": "b67c6091609c87faa9be2d2564ca931d5c1c50e2"
     },
     "radeon-r9700": {
       "blocks": [
@@ -463,7 +463,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it",
       "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "cd988bb14db02ac5576e94d7e750dba32ba254cc"
+      "source_revision": "b67c6091609c87faa9be2d2564ca931d5c1c50e2"
     }
   },
   "shared_request": {
@@ -478,6 +478,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-26B-A4B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "cd988bb14db02ac5576e94d7e750dba32ba254cc"
+    "source_revision": "b67c6091609c87faa9be2d2564ca931d5c1c50e2"
   }
 }

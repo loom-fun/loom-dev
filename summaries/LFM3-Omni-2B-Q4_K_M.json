@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-Omni-2B-Q4_K_M",
   "name": "LFM3-Omni-2B",
   "repo": "loom-fun/ggml-org-LFM3-Omni-2B-loom",
-  "revision": "dd92c3f6b33d53621b22a49d48b5f772f66636ab",
+  "revision": "d41a33e4335d1e20e2311170e70521b933e78a5e",
   "status": null,
   "license": null,
   "service": {
@@ -676,7 +676,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat --materialize=copy --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "dd92c3f6b33d53621b22a49d48b5f772f66636ab"
+      "source_revision": "d41a33e4335d1e20e2311170e70521b933e78a5e"
     },
     "radeon-r9700": {
       "blocks": [
@@ -696,7 +696,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat-r9700 --materialize=copy --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "dd92c3f6b33d53621b22a49d48b5f772f66636ab"
+      "source_revision": "d41a33e4335d1e20e2311170e70521b933e78a5e"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -716,7 +716,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-LFM3-Omni-2B-loom:chat-16gb --materialize=copy --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "dd92c3f6b33d53621b22a49d48b5f772f66636ab"
+      "source_revision": "d41a33e4335d1e20e2311170e70521b933e78a5e"
     }
   },
   "shared_request": {
@@ -731,6 +731,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"LiquidAI/LFM3-Omni-2B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "dd92c3f6b33d53621b22a49d48b5f772f66636ab"
+    "source_revision": "d41a33e4335d1e20e2311170e70521b933e78a5e"
   }
 }

@@ -3,7 +3,7 @@
   "checkpoint": "Laguna-XS-2.1-Q4_K_M",
   "name": "Laguna-XS-2.1",
   "repo": "loom-fun/ggml-org-Laguna-XS-2.1-loom",
-  "revision": "b6d8ef82432cce3ba88af64f242b2fe8d843fa2c",
+  "revision": "d06f16a282fe16413dcf97237738cc31450edecb",
   "status": null,
   "license": null,
   "service": {
@@ -395,7 +395,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Laguna-XS-2.1-loom:chat --materialize=copy --output=Laguna-XS-2.1",
       "serve": "loom-serve --model=Laguna-XS-2.1 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "b6d8ef82432cce3ba88af64f242b2fe8d843fa2c"
+      "source_revision": "d06f16a282fe16413dcf97237738cc31450edecb"
     },
     "radeon-r9700": {
       "blocks": [
@@ -415,7 +415,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Laguna-XS-2.1-loom:chat-r9700 --materialize=copy --output=Laguna-XS-2.1",
       "serve": "loom-serve --model=Laguna-XS-2.1 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "b6d8ef82432cce3ba88af64f242b2fe8d843fa2c"
+      "source_revision": "d06f16a282fe16413dcf97237738cc31450edecb"
     }
   },
   "shared_request": {
@@ -430,6 +430,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"poolside/Laguna-XS-2.1\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "b6d8ef82432cce3ba88af64f242b2fe8d843fa2c"
+    "source_revision": "d06f16a282fe16413dcf97237738cc31450edecb"
   }
 }

@@ -3,7 +3,7 @@
   "checkpoint": "model.safetensors",
   "name": "Qwen3.8-27B-Quark-AWQ-MXFP4",
   "repo": "loom-fun/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom",
-  "revision": "f524681f84f9e2a320f06eeb4eaec1bdec7dcc46",
+  "revision": "892845a54a1314bffe302a123b1098dd9acbaf50",
   "status": null,
   "license": null,
   "service": {
@@ -477,7 +477,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom:chat-r9700 --materialize=copy --output=qwen3.8-27b-mxfp4",
       "serve": "loom-serve --model=qwen3.8-27b-mxfp4 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "f524681f84f9e2a320f06eeb4eaec1bdec7dcc46"
+      "source_revision": "892845a54a1314bffe302a123b1098dd9acbaf50"
     }
   },
   "shared_request": {
@@ -492,6 +492,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"qwen3.8-27b-mxfp4\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "f524681f84f9e2a320f06eeb4eaec1bdec7dcc46"
+    "source_revision": "892845a54a1314bffe302a123b1098dd9acbaf50"
   }
 }

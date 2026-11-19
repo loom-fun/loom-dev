@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-14B-Q4_K_M",
   "name": "Qwen3-14B",
   "repo": "loom-fun/ggml-org-Qwen3-14B-loom",
-  "revision": "e46f2e20a9678910dec4b84c6055e249a9a93cb9",
+  "revision": "95c8e8f68c64615cd82e485c8ba9815ccaef92e6",
   "status": null,
   "license": null,
   "service": {
@@ -675,7 +675,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat --materialize=copy --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "e46f2e20a9678910dec4b84c6055e249a9a93cb9"
+      "source_revision": "95c8e8f68c64615cd82e485c8ba9815ccaef92e6"
     },
     "radeon-r9700": {
       "blocks": [
@@ -695,7 +695,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat --materialize=copy --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "e46f2e20a9678910dec4b84c6055e249a9a93cb9"
+      "source_revision": "95c8e8f68c64615cd82e485c8ba9815ccaef92e6"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -715,7 +715,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-14B-loom:chat-16gb --materialize=copy --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "e46f2e20a9678910dec4b84c6055e249a9a93cb9"
+      "source_revision": "95c8e8f68c64615cd82e485c8ba9815ccaef92e6"
     }
   },
   "shared_request": {
@@ -730,6 +730,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-14B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "e46f2e20a9678910dec4b84c6055e249a9a93cb9"
+    "source_revision": "95c8e8f68c64615cd82e485c8ba9815ccaef92e6"
   }
 }
