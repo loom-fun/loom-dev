@@ -43,7 +43,7 @@ window.LOOM_DATA = {
    "short": "Strix Point",
    "spec": "gfx1150, Radeon 890M, shared memory",
    "preset_suffix": "-gfx1150",
-   "models": 1
+   "models": 2
   }
  ],
  "models": [
@@ -28920,7 +28920,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-4B-Q4_K_M",
    "name": "Qwen3.5-4B",
    "repo": "loom-fun-staging/unsloth-Qwen3.5-4B-loom",
-   "revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302",
+   "revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -28962,7 +28962,7 @@ window.LOOM_DATA = {
    },
    "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -29875,7 +29875,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-4B-loom:chat --materialize=copy --output=Qwen3.5-4B",
      "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+     "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
     },
     "radeon-r9700": {
      "blocks": [
@@ -29895,7 +29895,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-4B-loom:chat --materialize=copy --output=Qwen3.5-4B",
      "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+     "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -29915,7 +29915,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-4B-loom:chat-16gb --materialize=copy --output=Qwen3.5-4B",
      "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+     "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
     },
     "gfx1150": {
      "blocks": [
@@ -29935,7 +29935,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-4B-loom:chat-gfx1150 --materialize=copy --output=Qwen3.5-4B",
      "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=14000000000 --parameter_mode=preload",
-     "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+     "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
     }
    },
    "shared_request": {
@@ -29950,7 +29950,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-4B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+    "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
    }
   },
   {
@@ -29958,7 +29958,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-9B-Q4_K_M",
    "name": "Qwen3.5-9B",
    "repo": "loom-fun-staging/unsloth-Qwen3.5-9B-loom",
-   "revision": "db99d97daa66eac2c25f34fe67e33a4f74d557bb",
+   "revision": "4fca05bffdd86f32b086bdc8d3ab90506222a97e",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -29993,7 +29993,9 @@ window.LOOM_DATA = {
     "max_tokens": 4096,
     "presets": [
      "chat",
-     "chat-16gb"
+     "chat-16gb",
+     "chat-gfx1150",
+     "chat-gfx1152"
     ]
    },
    "features": {
@@ -30612,6 +30614,244 @@ window.LOOM_DATA = {
        "logits": "unknown"
       }
      }
+    },
+    "gfx1150": {
+     "state": null,
+     "remeasure": null,
+     "memory_bytes": 14000000000,
+     "context_tokens": 40960,
+     "performance": {
+      "baselines": {
+       "vulkan": {
+        "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model card:parameter/Qwen3.5-9B-DFlash.Q8_0.gguf --spec-draft-n-max 7 -ngld 99 -c 36864 -np 1",
+        "name": "llama.cpp",
+        "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+        "version": "llamacpp-vulkan/b12211",
+        "date": "2026-11-18",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen AI 9 HX 375 w/ Radeon 890M (HP OmniBook Ultra 14, 32 GB LPDDR5X-7500; local machine hp-omni-1, not a DevLab runner)",
+          "gpu": "AMD Radeon 890M Graphics (gfx1150)",
+          "os": "Ubuntu 26.04, Linux 7.0.0-43-generic"
+         },
+         "hrx_loom": {
+          "artifact_id": null,
+          "branch": "v0.2.0",
+          "hrx_loom": "0.2.0",
+          "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+          "source": "pypi",
+          "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+         }
+        },
+        "metrics": {
+         "decode": {
+          "llamacpp": 17.6
+         },
+         "decode_2k": {
+          "llamacpp": 16.3
+         },
+         "decode_32k": {
+          "llamacpp": 11.6
+         },
+         "prefill_16k": {
+          "llamacpp": 377.9
+         },
+         "prefill_1k": {
+          "llamacpp": 395.6
+         },
+         "prefill_2k": {
+          "llamacpp": 399.9
+         },
+         "prefill_32k": {
+          "llamacpp": 339.1
+         },
+         "prefill_8k": {
+          "llamacpp": 397.9
+         },
+         "streams4": {
+          "llamacpp": 49.7
+         }
+        }
+       }
+      },
+      "date": "2026-11-18",
+      "llamacpp_build": "b1374",
+      "drafting": {
+       "loom": "DFlash, depth 3",
+       "llamacpp": "draft-dflash, n-max 7"
+      },
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null,
+       "device": {
+        "cpu": "AMD Ryzen AI 9 HX 375 w/ Radeon 890M (HP OmniBook Ultra 14, 32 GB LPDDR5X-7500; local machine hp-omni-1, not a DevLab runner)",
+        "gpu": "AMD Radeon 890M Graphics (gfx1150)",
+        "os": "Ubuntu 26.04, Linux 7.0.0-43-generic"
+       },
+       "hrx_loom": {
+        "artifact_id": null,
+        "branch": "v0.2.0",
+        "hrx_loom": "0.2.0",
+        "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+        "source": "pypi",
+        "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+       }
+      },
+      "metrics": {
+       "decode": {
+        "loom": 26.1,
+        "llamacpp": 16.4,
+        "speedup": 1.59
+       },
+       "decode_2k": {
+        "loom": 23.4,
+        "llamacpp": 16.4,
+        "speedup": 1.43
+       },
+       "decode_32k": {
+        "loom": 19.0,
+        "llamacpp": 13.5,
+        "speedup": 1.41
+       },
+       "prefill_1k": {
+        "loom": 687.6,
+        "llamacpp": 450.8,
+        "speedup": 1.53
+       },
+       "prefill_2k": {
+        "loom": 698.9,
+        "llamacpp": 448.8,
+        "speedup": 1.56
+       },
+       "prefill_8k": {
+        "loom": 720.2,
+        "llamacpp": 425.0,
+        "speedup": 1.69
+       },
+       "prefill_16k": {
+        "loom": 681.5,
+        "llamacpp": 377.4,
+        "speedup": 1.81
+       },
+       "prefill_32k": {
+        "loom": 613.4,
+        "llamacpp": 300.5,
+        "speedup": 2.04
+       },
+       "streams4": {
+        "loom": 61.1,
+        "llamacpp": 48.2,
+        "speedup": 1.27
+       },
+       "spec_acceptance": {
+        "loom": 0.72,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      },
+      "programs_sha256": "4af7b6503c9a3219279ef9997dab7fe22287f491ad5ef89ae374741b5352d4d2",
+      "named_machine_sources": [
+       {
+        "date": "2026-11-18",
+        "programs_sha256": "4af7b6503c9a3219279ef9997dab7fe22287f491ad5ef89ae374741b5352d4d2",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD Ryzen AI 9 HX 375 w/ Radeon 890M (HP OmniBook Ultra 14, 32 GB LPDDR5X-7500; local machine hp-omni-1, not a DevLab runner)",
+          "gpu": "AMD Radeon 890M Graphics (gfx1150)",
+          "os": "Ubuntu 26.04, Linux 7.0.0-43-generic"
+         },
+         "hrx_loom": {
+          "artifact_id": null,
+          "branch": "v0.2.0",
+          "hrx_loom": "0.2.0",
+          "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+          "source": "pypi",
+          "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+         }
+        }
+       }
+      ]
+     },
+     "gates": {
+      "summary": {
+       "pass": 8,
+       "fail": 0,
+       "unknown": 2,
+       "n/a": 1
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "pass",
+       "compare": "pass",
+       "vision": "pass",
+       "consistency": "pass",
+       "spec": "pass",
+       "agent": "pass",
+       "agent_think_off": "pass",
+       "sampling": "pass",
+       "decision": "n/a",
+       "logits": "unknown"
+      }
+     }
     }
    },
    "quickstart": {
@@ -30627,21 +30867,13 @@ window.LOOM_DATA = {
       },
       {
        "kind": "text",
-       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request (optional thinking is turned off):"
-      },
-      {
-       "kind": "code",
-       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-9B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
-      },
-      {
-       "kind": "text",
-       "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
       }
      ],
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-9B-loom:chat --materialize=copy --output=Qwen3.5-9B",
      "serve": "loom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "db99d97daa66eac2c25f34fe67e33a4f74d557bb"
+     "source_revision": "4fca05bffdd86f32b086bdc8d3ab90506222a97e"
     },
     "radeon-r9700": {
      "blocks": [
@@ -30655,21 +30887,13 @@ window.LOOM_DATA = {
       },
       {
        "kind": "text",
-       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request (optional thinking is turned off):"
-      },
-      {
-       "kind": "code",
-       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-9B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
-      },
-      {
-       "kind": "text",
-       "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
       }
      ],
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-9B-loom:chat --materialize=copy --output=Qwen3.5-9B",
      "serve": "loom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "db99d97daa66eac2c25f34fe67e33a4f74d557bb"
+     "source_revision": "4fca05bffdd86f32b086bdc8d3ab90506222a97e"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -30683,22 +30907,48 @@ window.LOOM_DATA = {
       },
       {
        "kind": "text",
-       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 87,040 tokens per request (its native context is 262,144).\n\nIn another terminal, send a request (optional thinking is turned off):"
-      },
-      {
-       "kind": "code",
-       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-9B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
-      },
-      {
-       "kind": "text",
-       "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 87,040 tokens per request (its native context is 262,144)."
       }
      ],
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-9B-loom:chat-16gb --materialize=copy --output=Qwen3.5-9B",
      "serve": "loom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-     "source_revision": "db99d97daa66eac2c25f34fe67e33a4f74d557bb"
+     "source_revision": "4fca05bffdd86f32b086bdc8d3ab90506222a97e"
+    },
+    "gfx1150": {
+     "blocks": [
+      {
+       "kind": "text",
+       "text": "Open your GPU and copy its commands."
+      },
+      {
+       "kind": "code",
+       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-9B-loom:chat-gfx1150 --materialize=copy --output=Qwen3.5-9B\nloom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=14000000000 --parameter_mode=preload"
+      },
+      {
+       "kind": "text",
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, `--memory_bytes=14000000000` bounds the memory pool: this package serves up to 40,960 tokens per request (its native context is 262,144)."
+      }
+     ],
+     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+     "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-9B-loom:chat-gfx1150 --materialize=copy --output=Qwen3.5-9B",
+     "serve": "loom-serve --model=Qwen3.5-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=14000000000 --parameter_mode=preload",
+     "source_revision": "4fca05bffdd86f32b086bdc8d3ab90506222a97e"
     }
+   },
+   "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+     {
+      "kind": "text",
+      "text": "In another terminal (optional thinking is turned off):"
+     },
+     {
+      "kind": "code",
+      "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-9B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+     }
+    ],
+    "source_revision": "4fca05bffdd86f32b086bdc8d3ab90506222a97e"
    }
   },
   {

@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-4B-Q4_K_M",
   "name": "Qwen3.5-4B",
   "repo": "loom-fun-staging/unsloth-Qwen3.5-4B-loom",
-  "revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302",
+  "revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -45,7 +45,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -958,7 +958,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-4B-loom:chat --materialize=copy --output=Qwen3.5-4B",
       "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+      "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
     },
     "radeon-r9700": {
       "blocks": [
@@ -978,7 +978,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-4B-loom:chat --materialize=copy --output=Qwen3.5-4B",
       "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+      "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -998,7 +998,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-4B-loom:chat-16gb --materialize=copy --output=Qwen3.5-4B",
       "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+      "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
     },
     "gfx1150": {
       "blocks": [
@@ -1018,7 +1018,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.5-4B-loom:chat-gfx1150 --materialize=copy --output=Qwen3.5-4B",
       "serve": "loom-serve --model=Qwen3.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=14000000000 --parameter_mode=preload",
-      "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+      "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
     }
   },
   "shared_request": {
@@ -1033,6 +1033,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-4B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "c8d111ebd08c2e79d8669eb5ef2d5cf5c4aa7302"
+    "source_revision": "e01073fa1f73ead9bfe15ece45020f0340a7c848"
   }
 }
