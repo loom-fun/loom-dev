@@ -19,7 +19,7 @@ window.LOOM_DATA = {
    "short": "Strix Halo",
    "spec": "gfx1151, 128 GB unified memory",
    "preset_suffix": "",
-   "models": 54
+   "models": 55
   },
   {
    "id": "radeon-r9700",
@@ -6883,6 +6883,253 @@ window.LOOM_DATA = {
      }
     ],
     "source_revision": "0c8e8831544e6625431a8177873fa531e75d0cc0"
+   }
+  },
+  {
+   "schema": "loom-summary/1",
+   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL",
+   "name": "Inkling-2-Mini",
+   "repo": "loom-fun/unsloth-Inkling-2-Mini-loom",
+   "revision": "277f099b5003b725e099d48caa1a2c0db1f9b650",
+   "status": null,
+   "license": "apache-2.0",
+   "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+   },
+   "weights": {
+    "checkpoint": {
+     "repo": "unsloth/Inkling-2-Mini-GGUF",
+     "file": "Inkling-2-Mini-UD-Q4_K_XL.gguf",
+     "quant": "UD-Q4_K_XL",
+     "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+     "sha256": "e62d463c135ffe283df8d94b279a96ca145ac128b52ce854478613045bf4de15",
+     "size": 17629759456
+    },
+    "drafter": {
+     "repo": "unsloth/Inkling-2-Mini-GGUF",
+     "file": "dspark-Inkling-2-Mini-Q8_0.gguf",
+     "quant": "Q8_0"
+    },
+    "projector": null
+   },
+   "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 64000000000,
+    "context_tokens": 1048576,
+    "rows": 4,
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
+   },
+   "features": {
+    "api": "yes",
+    "audio": "n/a",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "no",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "yes",
+    "sampling": "yes",
+    "speculative_decoding": "yes",
+    "thinking": "yes",
+    "tool_calling": "yes"
+   },
+   "performance": {
+    "date": "2026-11-21",
+    "llamacpp_build": "b1383",
+    "drafting": {
+     "loom": "DFlash, depth 1",
+     "llamacpp": null
+    },
+    "source": {
+     "kind": "machine",
+     "run": null,
+     "url": null,
+     "device": {
+      "cpu": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
+      "gpu": "AMD Radeon 8060S Graphics",
+      "os": "Ubuntu 24.04"
+     }
+    },
+    "metrics": {
+     "decode": {
+      "loom": 42.7,
+      "llamacpp": 13.6,
+      "speedup": 3.14
+     },
+     "decode_2k": {
+      "loom": 39.6,
+      "llamacpp": 12.6,
+      "speedup": 3.14
+     },
+     "decode_32k": {
+      "loom": 29.6,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_1k": {
+      "loom": 1179.4,
+      "llamacpp": 156.6,
+      "speedup": 7.53
+     },
+     "prefill_2k": {
+      "loom": 1214.3,
+      "llamacpp": 144.6,
+      "speedup": 8.4
+     },
+     "prefill_8k": {
+      "loom": 1281.6,
+      "llamacpp": 136.2,
+      "speedup": 9.41
+     },
+     "prefill_16k": {
+      "loom": 1226.3,
+      "llamacpp": 111.9,
+      "speedup": 10.96
+     },
+     "prefill_32k": {
+      "loom": 1102.3,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "streams4": {
+      "loom": 84.6,
+      "llamacpp": 38.0,
+      "speedup": 2.23
+     },
+     "spec_acceptance": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     }
+    },
+    "not_applicable": [],
+    "devlab": {
+     "date": null,
+     "source": null,
+     "metrics": {
+      "decode": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "decode_2k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "decode_32k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_1k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_2k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_8k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_16k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_32k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "streams4": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      }
+     }
+    },
+    "programs_sha256": "dd38151f368b0563adbf6ad3f36accdd0171559d4ea71a53e659757bc27f0b94",
+    "named_machine_sources": [
+     {
+      "date": "2026-11-21",
+      "programs_sha256": "dd38151f368b0563adbf6ad3f36accdd0171559d4ea71a53e659757bc27f0b94",
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null,
+       "device": {
+        "cpu": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
+        "gpu": "AMD Radeon 8060S Graphics",
+        "os": "Ubuntu 24.04"
+       }
+      }
+     }
+    ]
+   },
+   "gates": {
+    "summary": {
+     "pass": 7,
+     "fail": 0,
+     "unknown": 2,
+     "n/a": 2
+    },
+    "status": {
+     "kernel_tests": "unknown",
+     "golden": "pass",
+     "compare": "pass",
+     "vision": "n/a",
+     "consistency": "pass",
+     "spec": "pass",
+     "agent": "pass",
+     "agent_think_off": "pass",
+     "sampling": "pass",
+     "decision": "n/a",
+     "logits": "unknown"
+    }
+   },
+   "primary_device": "strix-halo",
+   "remeasure": null,
+   "devices": {},
+   "quickstart": {
+    "strix-halo": {
+     "blocks": [
+      {
+       "kind": "code",
+       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=Inkling-2-Mini\nloom-serve --model=Inkling-2-Mini '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+      },
+      {
+       "kind": "text",
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
+      }
+     ],
+     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=Inkling-2-Mini",
+     "serve": "loom-serve --model=Inkling-2-Mini '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+     "source_revision": "277f099b5003b725e099d48caa1a2c0db1f9b650"
+    }
+   },
+   "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+     {
+      "kind": "text",
+      "text": "In another terminal (optional thinking is turned off):"
+     },
+     {
+      "kind": "code",
+      "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+     }
+    ],
+    "source_revision": "277f099b5003b725e099d48caa1a2c0db1f9b650"
    }
   },
   {
