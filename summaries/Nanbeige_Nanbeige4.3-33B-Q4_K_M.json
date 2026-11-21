@@ -3,9 +3,9 @@
   "checkpoint": "Nanbeige_Nanbeige4.3-33B-Q4_K_M",
   "name": "Nanbeige_Nanbeige4.3-33B",
   "repo": "loom-fun/bartowski-Nanbeige4.3-33B-loom",
-  "revision": "dc73a35c90d8f9d7fdd45133b3d2b816a847c7c1",
+  "revision": "bfe6f26ea510f721ba5751dc5115e8fca18ef66b",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -440,7 +440,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Nanbeige4.3-33B-loom:chat --materialize=copy --output=Nanbeige4.3-33B",
       "serve": "loom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "dc73a35c90d8f9d7fdd45133b3d2b816a847c7c1"
+      "source_revision": "bfe6f26ea510f721ba5751dc5115e8fca18ef66b"
     },
     "radeon-r9700": {
       "blocks": [
@@ -460,7 +460,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Nanbeige4.3-33B-loom:chat-r9700 --materialize=copy --output=Nanbeige4.3-33B",
       "serve": "loom-serve --model=Nanbeige4.3-33B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "dc73a35c90d8f9d7fdd45133b3d2b816a847c7c1"
+      "source_revision": "bfe6f26ea510f721ba5751dc5115e8fca18ef66b"
     }
   },
   "shared_request": {
@@ -475,6 +475,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Nanbeige/Nanbeige4.3-33B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "dc73a35c90d8f9d7fdd45133b3d2b816a847c7c1"
+    "source_revision": "bfe6f26ea510f721ba5751dc5115e8fca18ef66b"
   }
 }

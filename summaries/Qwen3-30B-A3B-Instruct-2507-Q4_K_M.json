@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-30B-A3B-Instruct-2507-Q4_K_M",
   "name": "Qwen3-30B-A3B-Instruct-2507",
   "repo": "loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom",
-  "revision": "8f8a9fe349a03578c636b5f278e085dc22933662",
+  "revision": "c6598438289b2cbb1543e73e90b749136c888797",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -443,7 +443,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom:chat --materialize=copy --output=Qwen3-30B-A3B-Instruct-2507",
       "serve": "loom-serve --model=Qwen3-30B-A3B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "8f8a9fe349a03578c636b5f278e085dc22933662"
+      "source_revision": "c6598438289b2cbb1543e73e90b749136c888797"
     },
     "radeon-r9700": {
       "blocks": [
@@ -463,7 +463,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-30B-A3B-Instruct-2507-loom:chat-r9700 --materialize=copy --output=Qwen3-30B-A3B-Instruct-2507",
       "serve": "loom-serve --model=Qwen3-30B-A3B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "8f8a9fe349a03578c636b5f278e085dc22933662"
+      "source_revision": "c6598438289b2cbb1543e73e90b749136c888797"
     }
   },
   "shared_request": {
@@ -478,6 +478,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-30B-A3B-Instruct-2507\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "8f8a9fe349a03578c636b5f278e085dc22933662"
+    "source_revision": "c6598438289b2cbb1543e73e90b749136c888797"
   }
 }

@@ -3,9 +3,9 @@
   "checkpoint": "Llama-3.2-3B-Instruct-Q4_K_M",
   "name": "Llama-3.2-3B-Instruct",
   "repo": "loom-fun/unsloth-Llama-3.2-3B-Instruct-loom",
-  "revision": "af043fe7ed4e7875a367aea67538a734b01bf1a6",
+  "revision": "c6defa4cd5a8764b2cd8d4c14cb81ca0f118a76c",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -675,7 +675,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct",
       "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "af043fe7ed4e7875a367aea67538a734b01bf1a6"
+      "source_revision": "c6defa4cd5a8764b2cd8d4c14cb81ca0f118a76c"
     },
     "radeon-r9700": {
       "blocks": [
@@ -695,7 +695,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct",
       "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "af043fe7ed4e7875a367aea67538a734b01bf1a6"
+      "source_revision": "c6defa4cd5a8764b2cd8d4c14cb81ca0f118a76c"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -715,7 +715,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Llama-3.2-3B-Instruct-loom:chat-16gb --materialize=copy --output=Llama-3.2-3B-Instruct",
       "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "af043fe7ed4e7875a367aea67538a734b01bf1a6"
+      "source_revision": "c6defa4cd5a8764b2cd8d4c14cb81ca0f118a76c"
     }
   },
   "shared_request": {
@@ -730,6 +730,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"meta-llama/Llama-3.2-3B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "af043fe7ed4e7875a367aea67538a734b01bf1a6"
+    "source_revision": "c6defa4cd5a8764b2cd8d4c14cb81ca0f118a76c"
   }
 }

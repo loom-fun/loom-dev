@@ -3,9 +3,9 @@
   "checkpoint": "Ornith-1.5-122B-Q4_K_M",
   "name": "Ornith-1.5-122B",
   "repo": "loom-fun/bartowski-Ornith-1.5-122B-loom",
-  "revision": "a2c1182df62c0de48a28697fdd17bf529d3b3a3e",
+  "revision": "549484e582abe6c5014b27d76a82fc5f63c7c45f",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -258,7 +258,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/bartowski-Ornith-1.5-122B-loom:chat --materialize=copy --output=Ornith-1.5-122B",
       "serve": "loom-serve --model=Ornith-1.5-122B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "a2c1182df62c0de48a28697fdd17bf529d3b3a3e"
+      "source_revision": "549484e582abe6c5014b27d76a82fc5f63c7c45f"
     }
   },
   "shared_request": {
@@ -273,6 +273,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"ornith-ai/Ornith-1.5-122B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "a2c1182df62c0de48a28697fdd17bf529d3b3a3e"
+    "source_revision": "549484e582abe6c5014b27d76a82fc5f63c7c45f"
   }
 }

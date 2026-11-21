@@ -3,9 +3,9 @@
   "checkpoint": "Qwen3-VL-8B-Instruct-Q4_K_M",
   "name": "Qwen3-VL-8B-Instruct",
   "repo": "loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom",
-  "revision": "5410216fae3240b041a4a7927a1913020b60cfa1",
+  "revision": "4c126a53d2beabbcd03700071be10ac811b6778a",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -680,7 +680,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat --materialize=copy --output=Qwen3-VL-8B-Instruct",
       "serve": "loom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "5410216fae3240b041a4a7927a1913020b60cfa1"
+      "source_revision": "4c126a53d2beabbcd03700071be10ac811b6778a"
     },
     "radeon-r9700": {
       "blocks": [
@@ -700,7 +700,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-VL-8B-Instruct",
       "serve": "loom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "5410216fae3240b041a4a7927a1913020b60cfa1"
+      "source_revision": "4c126a53d2beabbcd03700071be10ac811b6778a"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -720,7 +720,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3-VL-8B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen3-VL-8B-Instruct",
       "serve": "loom-serve --model=Qwen3-VL-8B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "5410216fae3240b041a4a7927a1913020b60cfa1"
+      "source_revision": "4c126a53d2beabbcd03700071be10ac811b6778a"
     }
   },
   "shared_request": {
@@ -735,6 +735,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-VL-8B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "5410216fae3240b041a4a7927a1913020b60cfa1"
+    "source_revision": "4c126a53d2beabbcd03700071be10ac811b6778a"
   }
 }

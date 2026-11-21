@@ -3,9 +3,9 @@
   "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
   "name": "Qwen3.8-Flash-Next",
   "repo": "loom-fun/unsloth-Qwen3.8-Flash-Next-loom",
-  "revision": "47e5e8e425141e9bfdcec35e635962fc8b9840f3",
+  "revision": "d847c21bc93c0c6bc45752a9edaf91d80ac74490",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -258,7 +258,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --materialize=copy --output=Qwen3.8-Flash-Next-loom",
       "serve": "loom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "47e5e8e425141e9bfdcec35e635962fc8b9840f3"
+      "source_revision": "d847c21bc93c0c6bc45752a9edaf91d80ac74490"
     }
   },
   "shared_request": {
@@ -273,6 +273,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"unsloth-Qwen3.8-Flash-Next-loom\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "47e5e8e425141e9bfdcec35e635962fc8b9840f3"
+    "source_revision": "d847c21bc93c0c6bc45752a9edaf91d80ac74490"
   }
 }

@@ -3,9 +3,9 @@
   "checkpoint": "Ornith-1.0-9B-Q4_K_M",
   "name": "Ornith-1.0-9B",
   "repo": "loom-fun/unsloth-Ornith-1.0-9B-loom",
-  "revision": "fbaa27cd89d85bc1c7e757ff337d838ad5cef5f5",
+  "revision": "dff6b66ed20512c86ec2f847bfe78fc6b5589149",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -679,7 +679,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat --materialize=copy --output=Ornith-1.0-9B",
       "serve": "loom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "fbaa27cd89d85bc1c7e757ff337d838ad5cef5f5"
+      "source_revision": "dff6b66ed20512c86ec2f847bfe78fc6b5589149"
     },
     "radeon-r9700": {
       "blocks": [
@@ -699,7 +699,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat --materialize=copy --output=Ornith-1.0-9B",
       "serve": "loom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "fbaa27cd89d85bc1c7e757ff337d838ad5cef5f5"
+      "source_revision": "dff6b66ed20512c86ec2f847bfe78fc6b5589149"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -719,7 +719,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Ornith-1.0-9B-loom:chat-16gb --materialize=copy --output=Ornith-1.0-9B",
       "serve": "loom-serve --model=Ornith-1.0-9B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "fbaa27cd89d85bc1c7e757ff337d838ad5cef5f5"
+      "source_revision": "dff6b66ed20512c86ec2f847bfe78fc6b5589149"
     }
   },
   "shared_request": {
@@ -734,6 +734,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"deepreinforce-ai/Ornith-1.0-9B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "fbaa27cd89d85bc1c7e757ff337d838ad5cef5f5"
+    "source_revision": "dff6b66ed20512c86ec2f847bfe78fc6b5589149"
   }
 }

@@ -3,9 +3,9 @@
   "checkpoint": "Qwen3.6-35B-A3B-Q4_K_M",
   "name": "Qwen3.6-35B-A3B",
   "repo": "loom-fun/ggml-org-Qwen3.6-35B-A3B-loom",
-  "revision": "4f0f46e7db8e0043b820008e40573c8b15f3c766",
+  "revision": "9a06cc9ba5ca93e2de3a5fa40b2ad4e415d191fe",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -450,7 +450,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-35B-A3B-loom:chat --materialize=copy --output=Qwen3.6-35B-A3B",
       "serve": "loom-serve --model=Qwen3.6-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "4f0f46e7db8e0043b820008e40573c8b15f3c766"
+      "source_revision": "9a06cc9ba5ca93e2de3a5fa40b2ad4e415d191fe"
     },
     "radeon-r9700": {
       "blocks": [
@@ -470,7 +470,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3.6-35B-A3B-loom:chat-r9700 --materialize=copy --output=Qwen3.6-35B-A3B",
       "serve": "loom-serve --model=Qwen3.6-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "4f0f46e7db8e0043b820008e40573c8b15f3c766"
+      "source_revision": "9a06cc9ba5ca93e2de3a5fa40b2ad4e415d191fe"
     }
   },
   "shared_request": {
@@ -485,6 +485,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.6-35B-A3B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "4f0f46e7db8e0043b820008e40573c8b15f3c766"
+    "source_revision": "9a06cc9ba5ca93e2de3a5fa40b2ad4e415d191fe"
   }
 }

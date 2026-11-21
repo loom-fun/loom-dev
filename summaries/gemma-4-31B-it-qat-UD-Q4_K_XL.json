@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-31B-it-qat-UD-Q4_K_XL",
   "name": "gemma-4-31B-it-qat",
   "repo": "loom-fun/unsloth-gemma-4-31B-it-qat-loom",
-  "revision": "01fc20946266b4c21f62c5bab1dc863c83be950a",
+  "revision": "0826c6e9d4cc3971f94f2730a07f6b33ad9982e2",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -448,7 +448,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-qat-loom:chat --materialize=copy --output=gemma-4-31B-it-qat-q4_0-unquantized",
       "serve": "loom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "01fc20946266b4c21f62c5bab1dc863c83be950a"
+      "source_revision": "0826c6e9d4cc3971f94f2730a07f6b33ad9982e2"
     },
     "radeon-r9700": {
       "blocks": [
@@ -468,7 +468,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-31B-it-qat-q4_0-unquantized",
       "serve": "loom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "01fc20946266b4c21f62c5bab1dc863c83be950a"
+      "source_revision": "0826c6e9d4cc3971f94f2730a07f6b33ad9982e2"
     }
   },
   "shared_request": {
@@ -483,6 +483,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-31B-it-qat-q4_0-unquantized\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "01fc20946266b4c21f62c5bab1dc863c83be950a"
+    "source_revision": "0826c6e9d4cc3971f94f2730a07f6b33ad9982e2"
   }
 }

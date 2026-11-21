@@ -3,9 +3,9 @@
   "checkpoint": "Qwen3-4B-Q4_K_M",
   "name": "Qwen3-4B",
   "repo": "loom-fun/ggml-org-Qwen3-4B-loom",
-  "revision": "fb9c024d7e8cec383ccd07d16a2e3d33689c4826",
+  "revision": "b0944ed9f7f284e15f31aa4a9d14473c193707a8",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -673,7 +673,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat --materialize=copy --output=Qwen3-4B",
       "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "fb9c024d7e8cec383ccd07d16a2e3d33689c4826"
+      "source_revision": "b0944ed9f7f284e15f31aa4a9d14473c193707a8"
     },
     "radeon-r9700": {
       "blocks": [
@@ -693,7 +693,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat --materialize=copy --output=Qwen3-4B",
       "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "fb9c024d7e8cec383ccd07d16a2e3d33689c4826"
+      "source_revision": "b0944ed9f7f284e15f31aa4a9d14473c193707a8"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -713,7 +713,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/ggml-org-Qwen3-4B-loom:chat-16gb --materialize=copy --output=Qwen3-4B",
       "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "fb9c024d7e8cec383ccd07d16a2e3d33689c4826"
+      "source_revision": "b0944ed9f7f284e15f31aa4a9d14473c193707a8"
     }
   },
   "shared_request": {
@@ -728,6 +728,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-4B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "fb9c024d7e8cec383ccd07d16a2e3d33689c4826"
+    "source_revision": "b0944ed9f7f284e15f31aa4a9d14473c193707a8"
   }
 }
