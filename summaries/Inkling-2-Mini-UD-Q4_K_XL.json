@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL",
   "name": "Inkling-2-Mini",
   "repo": "loom-fun/unsloth-Inkling-2-Mini-loom",
-  "revision": "277f099b5003b725e099d48caa1a2c0db1f9b650",
+  "revision": "b5e33e11ecc753e2df9b066cad2397bc39abe16b",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -28,8 +28,8 @@
   },
   "serve": {
     "device": "amdgpu",
-    "memory_bytes": 64000000000,
-    "context_tokens": 1048576,
+    "memory_bytes": 33000000000,
+    "context_tokens": 262144,
     "rows": 4,
     "max_tokens": 4096,
     "presets": [
@@ -68,48 +68,48 @@
     },
     "metrics": {
       "decode": {
-        "loom": 42.7,
-        "llamacpp": 13.6,
-        "speedup": 3.14
+        "loom": 45.4,
+        "llamacpp": 15.3,
+        "speedup": 2.97
       },
       "decode_2k": {
-        "loom": 39.6,
-        "llamacpp": 12.6,
-        "speedup": 3.14
+        "loom": 43.5,
+        "llamacpp": 14.4,
+        "speedup": 3.02
       },
       "decode_32k": {
-        "loom": 29.6,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 31.6,
+        "llamacpp": 10.8,
+        "speedup": 2.93
       },
       "prefill_1k": {
-        "loom": 1179.4,
-        "llamacpp": 156.6,
-        "speedup": 7.53
+        "loom": 1488.6,
+        "llamacpp": 288.9,
+        "speedup": 5.15
       },
       "prefill_2k": {
-        "loom": 1214.3,
-        "llamacpp": 144.6,
-        "speedup": 8.4
+        "loom": 1699.0,
+        "llamacpp": 273.1,
+        "speedup": 6.22
       },
       "prefill_8k": {
-        "loom": 1281.6,
-        "llamacpp": 136.2,
-        "speedup": 9.41
+        "loom": 1735.0,
+        "llamacpp": 241.3,
+        "speedup": 7.19
       },
       "prefill_16k": {
-        "loom": 1226.3,
-        "llamacpp": 111.9,
-        "speedup": 10.96
+        "loom": 1641.5,
+        "llamacpp": 206.1,
+        "speedup": 7.96
       },
       "prefill_32k": {
-        "loom": 1102.3,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 1264.7,
+        "llamacpp": 159.7,
+        "speedup": 7.92
       },
       "streams4": {
-        "loom": 84.6,
-        "llamacpp": 38.0,
+        "loom": 88.7,
+        "llamacpp": 39.7,
         "speedup": 2.23
       },
       "spec_acceptance": {
@@ -170,11 +170,11 @@
         }
       }
     },
-    "programs_sha256": "dd38151f368b0563adbf6ad3f36accdd0171559d4ea71a53e659757bc27f0b94",
+    "programs_sha256": "1170a90da0bc7dbcbf7188466f74a88b8699d9069214f9aa8e05cf941e3e1c8b",
     "named_machine_sources": [
       {
         "date": "2026-11-21",
-        "programs_sha256": "dd38151f368b0563adbf6ad3f36accdd0171559d4ea71a53e659757bc27f0b94",
+        "programs_sha256": "1170a90da0bc7dbcbf7188466f74a88b8699d9069214f9aa8e05cf941e3e1c8b",
         "source": {
           "kind": "machine",
           "run": null,
@@ -227,7 +227,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=Inkling-2-Mini",
       "serve": "loom-serve --model=Inkling-2-Mini '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "277f099b5003b725e099d48caa1a2c0db1f9b650"
+      "source_revision": "b5e33e11ecc753e2df9b066cad2397bc39abe16b"
     }
   },
   "shared_request": {
@@ -242,6 +242,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "277f099b5003b725e099d48caa1a2c0db1f9b650"
+    "source_revision": "b5e33e11ecc753e2df9b066cad2397bc39abe16b"
   }
 }
