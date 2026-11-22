@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL",
   "name": "Inkling-2-Mini",
   "repo": "loom-fun/unsloth-Inkling-2-Mini-loom",
-  "revision": "b5e33e11ecc753e2df9b066cad2397bc39abe16b",
+  "revision": "a78779814f545e254cffa9b346e85f236d54ea7c",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -50,67 +50,58 @@
     "tool_calling": "yes"
   },
   "performance": {
-    "date": "2026-11-21",
+    "date": null,
     "llamacpp_build": "b1383",
     "drafting": {
       "loom": "DFlash, depth 1",
       "llamacpp": null
     },
-    "source": {
-      "kind": "machine",
-      "run": null,
-      "url": null,
-      "device": {
-        "cpu": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
-        "gpu": "AMD Radeon 8060S Graphics",
-        "os": "Ubuntu 24.04"
-      }
-    },
+    "source": null,
     "metrics": {
       "decode": {
-        "loom": 45.4,
-        "llamacpp": 15.3,
-        "speedup": 2.97
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "decode_2k": {
-        "loom": 43.5,
-        "llamacpp": 14.4,
-        "speedup": 3.02
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "decode_32k": {
-        "loom": 31.6,
-        "llamacpp": 10.8,
-        "speedup": 2.93
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "prefill_1k": {
-        "loom": 1488.6,
-        "llamacpp": 288.9,
-        "speedup": 5.15
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "prefill_2k": {
-        "loom": 1699.0,
-        "llamacpp": 273.1,
-        "speedup": 6.22
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "prefill_8k": {
-        "loom": 1735.0,
-        "llamacpp": 241.3,
-        "speedup": 7.19
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "prefill_16k": {
-        "loom": 1641.5,
-        "llamacpp": 206.1,
-        "speedup": 7.96
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "prefill_32k": {
-        "loom": 1264.7,
-        "llamacpp": 159.7,
-        "speedup": 7.92
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "streams4": {
-        "loom": 88.7,
-        "llamacpp": 39.7,
-        "speedup": 2.23
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
       },
       "spec_acceptance": {
         "loom": null,
@@ -120,61 +111,64 @@
     },
     "not_applicable": [],
     "devlab": {
-      "date": null,
-      "source": null,
+      "date": "2026-11-21",
+      "source": {
+        "kind": "devlab",
+        "run": null,
+        "url": null
+      },
       "metrics": {
         "decode": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 46.4,
+          "llamacpp": 15.3,
+          "speedup": 3.03
         },
         "decode_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 44.7,
+          "llamacpp": 14.4,
+          "speedup": 3.1
         },
         "decode_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 32.9,
+          "llamacpp": 10.8,
+          "speedup": 3.05
         },
         "prefill_1k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 1448.2,
+          "llamacpp": 288.9,
+          "speedup": 5.01
         },
         "prefill_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 1648.8,
+          "llamacpp": 273.1,
+          "speedup": 6.04
         },
         "prefill_8k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 1687.6,
+          "llamacpp": 241.3,
+          "speedup": 6.99
         },
         "prefill_16k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 1607.8,
+          "llamacpp": 206.1,
+          "speedup": 7.8
         },
         "prefill_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 1243.5,
+          "llamacpp": 159.7,
+          "speedup": 7.79
         },
         "streams4": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 98.8,
+          "llamacpp": 39.7,
+          "speedup": 2.49
         }
       }
     },
-    "programs_sha256": "1170a90da0bc7dbcbf7188466f74a88b8699d9069214f9aa8e05cf941e3e1c8b",
-    "named_machine_sources": [
+    "programs_sha256": "251afe746679d8d46b97eb077afef2083f679f84d428a92d6ce838c071c1d136",
+    "historical_programs": [
       {
         "date": "2026-11-21",
-        "programs_sha256": "1170a90da0bc7dbcbf7188466f74a88b8699d9069214f9aa8e05cf941e3e1c8b",
         "source": {
           "kind": "machine",
           "run": null,
@@ -183,6 +177,46 @@
             "cpu": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
             "gpu": "AMD Radeon 8060S Graphics",
             "os": "Ubuntu 24.04"
+          }
+        },
+        "programs_sha256": "1170a90da0bc7dbcbf7188466f74a88b8699d9069214f9aa8e05cf941e3e1c8b",
+        "program_identity": "recorded",
+        "metrics": {
+          "decode": {
+            "loom": 45.4,
+            "baseline": 15.3
+          },
+          "decode_2k": {
+            "loom": 43.5,
+            "baseline": 14.4
+          },
+          "decode_32k": {
+            "loom": 31.6,
+            "baseline": 10.8
+          },
+          "prefill_16k": {
+            "loom": 1641.5,
+            "baseline": 206.1
+          },
+          "prefill_1k": {
+            "loom": 1488.6,
+            "baseline": 288.9
+          },
+          "prefill_2k": {
+            "loom": 1699.0,
+            "baseline": 273.1
+          },
+          "prefill_32k": {
+            "loom": 1264.7,
+            "baseline": 159.7
+          },
+          "prefill_8k": {
+            "loom": 1735.0,
+            "baseline": 241.3
+          },
+          "streams4": {
+            "loom": 88.7,
+            "baseline": 39.7
           }
         }
       }
@@ -217,7 +251,7 @@
       "blocks": [
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=Inkling-2-Mini\nloom-serve --model=Inkling-2-Mini '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=/home/sawsriva/Projects/loom/work/inkling2/pub/info.json\nloom-serve --model=/home/sawsriva/Projects/loom/work/inkling2/pub/info.json '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
         },
         {
           "kind": "text",
@@ -225,9 +259,9 @@
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=Inkling-2-Mini",
-      "serve": "loom-serve --model=Inkling-2-Mini '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "b5e33e11ecc753e2df9b066cad2397bc39abe16b"
+      "fetch": "loom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=/home/sawsriva/Projects/loom/work/inkling2/pub/info.json",
+      "serve": "loom-serve --model=/home/sawsriva/Projects/loom/work/inkling2/pub/info.json '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "a78779814f545e254cffa9b346e85f236d54ea7c"
     }
   },
   "shared_request": {
@@ -242,6 +276,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "b5e33e11ecc753e2df9b066cad2397bc39abe16b"
+    "source_revision": "a78779814f545e254cffa9b346e85f236d54ea7c"
   }
 }
