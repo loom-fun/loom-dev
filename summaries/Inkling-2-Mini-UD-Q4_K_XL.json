@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL",
   "name": "Inkling-2-Mini",
   "repo": "loom-fun/unsloth-Inkling-2-Mini-loom",
-  "revision": "fa6645a0fecf5da5cc7a926461e917b1db364642",
+  "revision": "a8354e77a701cd71f749e0a41ce0c41e33799156",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -401,7 +401,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=/home/sawsriva/Projects/loom/work/inkling2/pub/info.json",
       "serve": "loom-serve --model=/home/sawsriva/Projects/loom/work/inkling2/pub/info.json '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "fa6645a0fecf5da5cc7a926461e917b1db364642"
+      "source_revision": "a8354e77a701cd71f749e0a41ce0c41e33799156"
     }
   },
   "shared_request": {
@@ -416,6 +416,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "fa6645a0fecf5da5cc7a926461e917b1db364642"
+    "source_revision": "a8354e77a701cd71f749e0a41ce0c41e33799156"
   }
 }
