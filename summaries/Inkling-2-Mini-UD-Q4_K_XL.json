@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL",
   "name": "Inkling-2-Mini",
   "repo": "loom-fun/unsloth-Inkling-2-Mini-loom",
-  "revision": "4cf6c1cc4695fff2f765caf3b4ed0f4b093a72ea",
+  "revision": "fa6645a0fecf5da5cc7a926461e917b1db364642",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -53,7 +53,7 @@
     "date": null,
     "llamacpp_build": "b1383",
     "drafting": {
-      "loom": "DFlash, depth 1",
+      "loom": "DFlash, depth 3",
       "llamacpp": null
     },
     "source": null,
@@ -111,7 +111,7 @@
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-21",
+      "date": "2026-11-22",
       "source": {
         "kind": "devlab",
         "run": null,
@@ -119,44 +119,44 @@
       },
       "metrics": {
         "decode": {
-          "loom": 46.5,
+          "loom": 46.0,
           "llamacpp": 15.3,
-          "speedup": 3.04
+          "speedup": 3.01
         },
         "decode_2k": {
-          "loom": 44.4,
+          "loom": 43.1,
           "llamacpp": 14.4,
-          "speedup": 3.08
+          "speedup": 2.99
         },
         "decode_32k": {
-          "loom": 37.7,
+          "loom": 14.8,
           "llamacpp": 10.8,
-          "speedup": 3.49
+          "speedup": 1.37
         },
         "prefill_1k": {
-          "loom": 1420.4,
+          "loom": 1456.3,
           "llamacpp": 288.9,
-          "speedup": 4.92
+          "speedup": 5.04
         },
         "prefill_2k": {
-          "loom": 1666.8,
+          "loom": 1639.3,
           "llamacpp": 273.1,
-          "speedup": 6.1
+          "speedup": 6.0
         },
         "prefill_8k": {
-          "loom": 1713.0,
+          "loom": 1580.3,
           "llamacpp": 241.3,
-          "speedup": 7.1
+          "speedup": 6.55
         },
         "prefill_16k": {
-          "loom": 1692.8,
+          "loom": 1529.2,
           "llamacpp": 206.1,
-          "speedup": 8.21
+          "speedup": 7.42
         },
         "prefill_32k": {
-          "loom": 1604.6,
+          "loom": 1252.9,
           "llamacpp": 159.7,
-          "speedup": 10.05
+          "speedup": 7.85
         },
         "streams4": {
           "loom": 89.8,
@@ -165,7 +165,7 @@
         }
       }
     },
-    "programs_sha256": "8cb36d5ba16ce31a158c0d7fb84f33760f0d746e806369668b8b0290439598ff",
+    "programs_sha256": "91e3bbda29f45cde8e3a6caec38364de9a34262be172d48b0184f87aac1c07dd",
     "historical_programs": [
       {
         "date": "2026-11-21",
@@ -311,6 +311,54 @@
             "baseline": 39.7
           }
         }
+      },
+      {
+        "date": "2026-11-21",
+        "source": {
+          "kind": "devlab",
+          "run": null,
+          "url": null
+        },
+        "programs_sha256": "8cb36d5ba16ce31a158c0d7fb84f33760f0d746e806369668b8b0290439598ff",
+        "program_identity": "recorded",
+        "metrics": {
+          "decode": {
+            "loom": 46.5,
+            "baseline": 15.3
+          },
+          "decode_2k": {
+            "loom": 44.4,
+            "baseline": 14.4
+          },
+          "decode_32k": {
+            "loom": 37.7,
+            "baseline": 10.8
+          },
+          "prefill_16k": {
+            "loom": 1692.8,
+            "baseline": 206.1
+          },
+          "prefill_1k": {
+            "loom": 1420.4,
+            "baseline": 288.9
+          },
+          "prefill_2k": {
+            "loom": 1666.8,
+            "baseline": 273.1
+          },
+          "prefill_32k": {
+            "loom": 1604.6,
+            "baseline": 159.7
+          },
+          "prefill_8k": {
+            "loom": 1713.0,
+            "baseline": 241.3
+          },
+          "streams4": {
+            "loom": 89.8,
+            "baseline": 39.7
+          }
+        }
       }
     ]
   },
@@ -353,7 +401,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=/home/sawsriva/Projects/loom/work/inkling2/pub/info.json",
       "serve": "loom-serve --model=/home/sawsriva/Projects/loom/work/inkling2/pub/info.json '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "4cf6c1cc4695fff2f765caf3b4ed0f4b093a72ea"
+      "source_revision": "fa6645a0fecf5da5cc7a926461e917b1db364642"
     }
   },
   "shared_request": {
@@ -368,6 +416,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "4cf6c1cc4695fff2f765caf3b4ed0f4b093a72ea"
+    "source_revision": "fa6645a0fecf5da5cc7a926461e917b1db364642"
   }
 }
