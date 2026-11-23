@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
   "name": "Inkling-2-Mini",
   "repo": "loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700",
-  "revision": "6001a514524982aae5731e0e75d933f5ea1b5824",
+  "revision": "072bdc02bfba879ea099b877c3acf29b044aad8f",
   "status": "paused",
   "license": "mit",
   "service": {
@@ -37,13 +37,13 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "no",
     "max_output_tokens": "yes",
     "reasoning_effort": "yes",
-    "sampling": "no",
+    "sampling": "yes",
     "speculative_decoding": "n/a",
     "thinking": "yes",
     "tool_calling": "yes"
@@ -216,7 +216,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700",
       "serve": "loom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6001a514524982aae5731e0e75d933f5ea1b5824"
+      "source_revision": "072bdc02bfba879ea099b877c3acf29b044aad8f"
     },
     "radeon-r9700": {
       "blocks": [
@@ -236,7 +236,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat-r9700 --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700",
       "serve": "loom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6001a514524982aae5731e0e75d933f5ea1b5824"
+      "source_revision": "072bdc02bfba879ea099b877c3acf29b044aad8f"
     }
   },
   "shared_request": {
@@ -251,6 +251,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"thinkingmachines/Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"none\"}'"
       }
     ],
-    "source_revision": "6001a514524982aae5731e0e75d933f5ea1b5824"
+    "source_revision": "072bdc02bfba879ea099b877c3acf29b044aad8f"
   }
 }

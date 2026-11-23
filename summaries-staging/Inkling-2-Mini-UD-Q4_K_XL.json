@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL",
   "name": "Inkling-2-Mini",
   "repo": "loom-fun-staging/unsloth-Inkling-2-Mini-loom",
-  "revision": "23c8991d34f1ed5a6c1e6dc331a86da5be07fb52",
+  "revision": "44d754c12601125e34b9d32685c5c01c0bf198cf",
   "status": "paused",
   "license": "apache-2.0",
   "service": {
@@ -38,10 +38,10 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "no",
     "max_output_tokens": "yes",
     "reasoning_effort": "yes",
     "sampling": "no",
@@ -114,52 +114,52 @@
       "date": "2026-11-23",
       "source": {
         "kind": "devlab",
-        "run": "45262210646",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45262210646/job/137999664456"
+        "run": "45267522252",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45267522252/job/138018261220"
       },
       "metrics": {
         "decode": {
-          "loom": 55.3,
+          "loom": 55.0,
           "llamacpp": null,
           "speedup": null
         },
         "decode_2k": {
-          "loom": 57.0,
+          "loom": 51.8,
           "llamacpp": null,
           "speedup": null
         },
         "decode_32k": {
-          "loom": 45.2,
+          "loom": 45.0,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_1k": {
-          "loom": 1828.2,
+          "loom": 1820.3,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_2k": {
-          "loom": 2046.5,
+          "loom": 2047.1,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_8k": {
-          "loom": 2134.6,
+          "loom": 2132.7,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_16k": {
-          "loom": 2092.0,
+          "loom": 2093.2,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_32k": {
-          "loom": 1961.2,
+          "loom": 1963.7,
           "llamacpp": null,
           "speedup": null
         },
         "streams4": {
-          "loom": 105.8,
+          "loom": 106.0,
           "llamacpp": null,
           "speedup": null
         }
@@ -176,8 +176,8 @@
     },
     "status": {
       "kernel_tests": "unknown",
-      "golden": "fail",
-      "compare": "pass",
+      "golden": "pass",
+      "compare": "fail",
       "vision": "n/a",
       "consistency": "fail",
       "spec": "fail",
@@ -206,7 +206,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=./unsloth-Inkling-2-Mini-loom",
       "serve": "loom-serve --model=./unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "23c8991d34f1ed5a6c1e6dc331a86da5be07fb52"
+      "source_revision": "44d754c12601125e34b9d32685c5c01c0bf198cf"
     }
   },
   "shared_request": {
@@ -221,6 +221,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "23c8991d34f1ed5a6c1e6dc331a86da5be07fb52"
+    "source_revision": "44d754c12601125e34b9d32685c5c01c0bf198cf"
   }
 }
