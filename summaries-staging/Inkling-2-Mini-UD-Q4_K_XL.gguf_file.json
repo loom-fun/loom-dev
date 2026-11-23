@@ -1,0 +1,256 @@
+{
+  "schema": "loom-summary/1",
+  "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
+  "name": "Inkling-2-Mini",
+  "repo": "loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700",
+  "revision": "6001a514524982aae5731e0e75d933f5ea1b5824",
+  "status": "paused",
+  "license": "mit",
+  "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+  },
+  "weights": {
+    "checkpoint": {
+      "repo": "unsloth/Inkling-2-Mini-GGUF",
+      "file": "Mainline_Support/Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
+      "quant": "UD-Q4_K_XL",
+      "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+      "sha256": "e64276656f072e9b2197a61723667cbdb71da66a716ffd966e572c21088f3cd3",
+      "size": 17629760736
+    },
+    "drafter": null,
+    "projector": null
+  },
+  "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 24925405184,
+    "context_tokens": 131072,
+    "rows": 4,
+    "max_tokens": 4096,
+    "presets": [
+      "chat",
+      "chat-r9700",
+      "chat-q8",
+      "chat-q8-r9700"
+    ]
+  },
+  "features": {
+    "api": "yes",
+    "audio": "unknown",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "unknown",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "yes",
+    "sampling": "no",
+    "speculative_decoding": "n/a",
+    "thinking": "yes",
+    "tool_calling": "yes"
+  },
+  "performance": {
+    "date": null,
+    "llamacpp_build": null,
+    "drafting": {
+      "loom": null,
+      "llamacpp": null
+    },
+    "source": null,
+    "metrics": {
+      "decode": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "decode_2k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "decode_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_1k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_2k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_8k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_16k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "prefill_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "streams4": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      },
+      "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+      }
+    },
+    "not_applicable": [
+      "spec_acceptance"
+    ],
+    "devlab": {
+      "date": "2026-11-23",
+      "source": {
+        "kind": "devlab",
+        "run": "45269814243",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45269814243/job/138026308365"
+      },
+      "metrics": {
+        "decode": {
+          "loom": 98.5,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_2k": {
+          "loom": 90.6,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "decode_32k": {
+          "loom": 76.9,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_1k": {
+          "loom": 2677.0,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_2k": {
+          "loom": 3148.8,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_8k": {
+          "loom": 3253.0,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_16k": {
+          "loom": 2952.2,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "prefill_32k": {
+          "loom": 2340.8,
+          "llamacpp": null,
+          "speedup": null
+        },
+        "streams4": {
+          "loom": 229.3,
+          "llamacpp": null,
+          "speedup": null
+        }
+      }
+    },
+    "programs_sha256": "9296f3bbd0a0730aef9fd82c58b009973316b0f8d7f4b03b18b2b0ff0cce4abb"
+  },
+  "gates": {
+    "summary": {
+      "pass": 3,
+      "fail": 2,
+      "unknown": 1,
+      "n/a": 5
+    },
+    "status": {
+      "kernel_tests": "unknown",
+      "golden": "pass",
+      "compare": "fail",
+      "vision": "n/a",
+      "consistency": "pass",
+      "spec": "n/a",
+      "agent": "fail",
+      "agent_think_off": "n/a",
+      "sampling": "pass",
+      "decision": "n/a",
+      "logits": "n/a"
+    }
+  },
+  "primary_device": "radeon-r9700",
+  "remeasure": null,
+  "devices": {
+    "strix-halo": {
+      "state": "not_measured",
+      "required_bytes": null
+    }
+  },
+  "quickstart": {
+    "strix-halo": {
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700\nloom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700",
+      "serve": "loom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "6001a514524982aae5731e0e75d933f5ea1b5824"
+    },
+    "radeon-r9700": {
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat-r9700 --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700\nloom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+        },
+        {
+          "kind": "text",
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat-r9700 --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700",
+      "serve": "loom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "6001a514524982aae5731e0e75d933f5ea1b5824"
+    }
+  },
+  "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+      {
+        "kind": "text",
+        "text": "In another terminal (`reasoning_effort` is set to `none`):"
+      },
+      {
+        "kind": "code",
+        "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"thinkingmachines/Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"none\"}'"
+      }
+    ],
+    "source_revision": "6001a514524982aae5731e0e75d933f5ea1b5824"
+  }
+}

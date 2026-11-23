@@ -3,9 +3,9 @@
   "checkpoint": "Sage-A1.5-Q4_K_M",
   "name": "Sage-A1.5-Q4_K_M",
   "repo": "loom-fun-staging/InternScience-Sage-A1.5-loom",
-  "revision": "6e90460599a6e7e6f64af901e33cb64b0fe30b29",
+  "revision": "a55a2f5f0525dd8e96de52358cee6f8843c855af",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -39,7 +39,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "n/a",
+    "audio": "unknown",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -148,68 +148,68 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.46,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-17",
+      "date": "2026-11-23",
       "source": {
         "kind": "devlab",
-        "run": "44088653570",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088653570/job/134057765597"
+        "run": "45267567358",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45267567358/job/138018430073"
       },
       "metrics": {
         "decode": {
-          "loom": 87.9,
+          "loom": 87.8,
           "llamacpp": 71.2,
           "speedup": 1.23
         },
         "decode_2k": {
-          "loom": 79.7,
+          "loom": 76.1,
           "llamacpp": 69.5,
-          "speedup": 1.15
+          "speedup": 1.09
         },
         "decode_32k": {
-          "loom": 70.3,
+          "loom": 70.0,
           "llamacpp": 76.3,
           "speedup": 0.92
         },
         "prefill_1k": {
-          "loom": 2209.4,
+          "loom": 2210.2,
           "llamacpp": 1200.6,
           "speedup": 1.84
         },
         "prefill_2k": {
-          "loom": 2472.6,
+          "loom": 2497.1,
           "llamacpp": 1284.3,
-          "speedup": 1.93
+          "speedup": 1.94
         },
         "prefill_8k": {
-          "loom": 2680.9,
+          "loom": 2680.1,
           "llamacpp": 1291.5,
           "speedup": 2.08
         },
         "prefill_16k": {
-          "loom": 2423.4,
+          "loom": 2431.7,
           "llamacpp": 1175.5,
-          "speedup": 2.06
+          "speedup": 2.07
         },
         "prefill_32k": {
-          "loom": 2102.6,
+          "loom": 2104.5,
           "llamacpp": 993.6,
           "speedup": 2.12
         },
         "streams4": {
-          "loom": 172.2,
+          "loom": 171.6,
           "llamacpp": 140.4,
-          "speedup": 1.23
+          "speedup": 1.22
         }
       }
     },
-    "programs_sha256": "b84b9c64d8af6d0c8889cb4e85a93b3e9f3ee0db2618d251063552175b0c019a"
+    "programs_sha256": "4f7f770ad1a22134fb7ab76e2629d61d59848d494fbbbfecaf3dd487d4569b5d"
   },
   "gates": {
     "summary": {
@@ -338,68 +338,68 @@
             "speedup": null
           },
           "spec_acceptance": {
-            "loom": 0.46,
+            "loom": null,
             "llamacpp": null,
             "speedup": null
           }
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-17",
+          "date": "2026-11-23",
           "source": {
             "kind": "devlab",
-            "run": "43993211976",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993211976/job/133738799933"
+            "run": "45269041521",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45269041521/job/138023609998"
           },
           "metrics": {
             "decode": {
-              "loom": 189.8,
+              "loom": 189.4,
               "llamacpp": 122.6,
-              "speedup": 1.55
+              "speedup": 1.54
             },
             "decode_2k": {
-              "loom": 170.4,
+              "loom": 172.1,
               "llamacpp": 121.3,
-              "speedup": 1.4
+              "speedup": 1.42
             },
             "decode_32k": {
-              "loom": 167.1,
+              "loom": 166.4,
               "llamacpp": 143.8,
               "speedup": 1.16
             },
             "prefill_1k": {
-              "loom": 6392.0,
+              "loom": 6351.1,
               "llamacpp": 3152.8,
-              "speedup": 2.03
+              "speedup": 2.01
             },
             "prefill_2k": {
-              "loom": 6664.8,
+              "loom": 6641.4,
               "llamacpp": 3569.0,
-              "speedup": 1.87
+              "speedup": 1.86
             },
             "prefill_8k": {
-              "loom": 7282.2,
+              "loom": 7264.6,
               "llamacpp": 3763.7,
               "speedup": 1.93
             },
             "prefill_16k": {
-              "loom": 6648.5,
+              "loom": 6636.5,
               "llamacpp": 3520.6,
               "speedup": 1.89
             },
             "prefill_32k": {
-              "loom": 5780.7,
+              "loom": 5786.5,
               "llamacpp": 3131.4,
               "speedup": 1.85
             },
             "streams4": {
-              "loom": 386.0,
+              "loom": 389.8,
               "llamacpp": 275.8,
-              "speedup": 1.4
+              "speedup": 1.41
             }
           }
         },
-        "programs_sha256": "b84b9c64d8af6d0c8889cb4e85a93b3e9f3ee0db2618d251063552175b0c019a"
+        "programs_sha256": "4f7f770ad1a22134fb7ab76e2629d61d59848d494fbbbfecaf3dd487d4569b5d"
       },
       "gates": {
         "summary": {
@@ -433,25 +433,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/InternScience-Sage-A1.5-loom:chat --materialize=copy --output=Sage-A1.5\nloom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/InternScience-Sage-A1.5-loom:chat --materialize=copy --output=Sage-A1.5\nloom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request (optional thinking is turned off):"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"InternScience/Sage-A1.5\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/InternScience-Sage-A1.5-loom:chat --materialize=copy --output=Sage-A1.5",
-      "serve": "loom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "6e90460599a6e7e6f64af901e33cb64b0fe30b29"
+      "serve": "loom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "a55a2f5f0525dd8e96de52358cee6f8843c855af"
     },
     "radeon-r9700": {
       "blocks": [
@@ -461,25 +453,31 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/InternScience-Sage-A1.5-loom:chat-r9700 --materialize=copy --output=Sage-A1.5\nloom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/InternScience-Sage-A1.5-loom:chat-r9700 --materialize=copy --output=Sage-A1.5\nloom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 138,240 tokens per request (its native context is 262,144).\n\nIn another terminal, send a request (optional thinking is turned off):"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"InternScience/Sage-A1.5\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 138,240 tokens per request (its native context is 262,144)."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/InternScience-Sage-A1.5-loom:chat-r9700 --materialize=copy --output=Sage-A1.5",
-      "serve": "loom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "6e90460599a6e7e6f64af901e33cb64b0fe30b29"
+      "serve": "loom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "a55a2f5f0525dd8e96de52358cee6f8843c855af"
     }
+  },
+  "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+      {
+        "kind": "text",
+        "text": "In another terminal (optional thinking is turned off):"
+      },
+      {
+        "kind": "code",
+        "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"InternScience/Sage-A1.5\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+      }
+    ],
+    "source_revision": "a55a2f5f0525dd8e96de52358cee6f8843c855af"
   }
 }
