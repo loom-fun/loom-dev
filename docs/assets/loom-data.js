@@ -6,6 +6,7 @@ window.LOOM_DATA = {
   "bartowski": "https://cdn-avatars.huggingface.co/v1/production/uploads/6435718aaaef013d1aec3b8b/XKf-8MA47tjVAM6SCX0MP.jpeg",
   "ggml-org": "https://cdn-avatars.huggingface.co/v1/production/uploads/63148d3b996c52bf0142cdbe/HXyNkyB0_nHI5WDNdiKHZ.png",
   "InternScience": "https://cdn-avatars.huggingface.co/v1/production/uploads/65f2a4198404ac0e4c0f175f/XIPU4aCPBogXSrj6NrfLk.png",
+  "jdopensource": "https://cdn-avatars.huggingface.co/v1/production/uploads/68c0e2ab44ea28a974e3074b/g-4gTubd16qUtwmGZ0n4h.png",
   "lmstudio-community": "https://cdn-avatars.huggingface.co/v1/production/uploads/64445e5f1bc692d87b27e183/Quwh3tlKXa1y7aduVfxZi.png",
   "nvidia": "https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png",
   "rippertnt": "https://huggingface.co/avatars/5ae2752145714e78a5dd15f0060f1800.svg",
@@ -19,7 +20,7 @@ window.LOOM_DATA = {
    "short": "Strix Halo",
    "spec": "gfx1151, 128 GB unified memory",
    "preset_suffix": "",
-   "models": 56
+   "models": 57
   },
   {
    "id": "radeon-r9700",
@@ -8035,6 +8036,230 @@ window.LOOM_DATA = {
      }
     ],
     "source_revision": "4e018e88a3aa9826286c71dfe2f6c905a491659b"
+   }
+  },
+  {
+   "schema": "loom-summary/1",
+   "checkpoint": "JoyAI-LLM-Flash-IQ4_XS",
+   "name": "JoyAI-LLM-Flash",
+   "repo": "loom-fun/jdopensource-JoyAI-LLM-Flash-loom",
+   "revision": "58159cc30c1b9a18fb883f75188b35d03bfea4ed",
+   "status": null,
+   "license": "mit",
+   "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+   },
+   "weights": {
+    "checkpoint": {
+     "repo": "jdopensource/JoyAI-LLM-Flash-GGUF",
+     "file": "JoyAI-LLM-Flash-IQ4_XS.gguf",
+     "quant": "IQ4_XS",
+     "revision": "f995fe33074210c0ce6707ac087bdb5fa77c60e7",
+     "sha256": "834446567247a98786e1687864a090ff387c52a3187183ec1bab0b41e8436a49",
+     "size": 26411919200
+    },
+    "drafter": null,
+    "projector": null
+   },
+   "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 47000000000,
+    "context_tokens": 131072,
+    "rows": 4,
+    "max_tokens": 4096,
+    "presets": [
+     "chat"
+    ]
+   },
+   "features": {
+    "api": "yes",
+    "audio": "n/a",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "n/a",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "n/a",
+    "sampling": "yes",
+    "speculative_decoding": "n/a",
+    "thinking": "n/a",
+    "tool_calling": "yes"
+   },
+   "performance": {
+    "date": null,
+    "llamacpp_build": "b1386",
+    "drafting": {
+     "loom": null,
+     "llamacpp": "ngram-mod"
+    },
+    "source": null,
+    "metrics": {
+     "decode": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "decode_2k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "decode_32k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_1k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_2k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_8k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_16k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_32k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "streams4": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "spec_acceptance": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     }
+    },
+    "not_applicable": [
+     "spec_acceptance"
+    ],
+    "devlab": {
+     "date": "2026-11-23",
+     "source": {
+      "kind": "devlab",
+      "run": "45251125481",
+      "url": "https://github.com/loom-fun/loom-skills/actions/runs/45251125481"
+     },
+     "metrics": {
+      "decode": {
+       "loom": 75.3,
+       "llamacpp": 69.8,
+       "speedup": 1.08
+      },
+      "decode_2k": {
+       "loom": 59.2,
+       "llamacpp": 47.9,
+       "speedup": 1.24
+      },
+      "decode_32k": {
+       "loom": 19.5,
+       "llamacpp": 32.0,
+       "speedup": 0.61
+      },
+      "prefill_1k": {
+       "loom": 1256.6,
+       "llamacpp": 441.0,
+       "speedup": 2.85
+      },
+      "prefill_2k": {
+       "loom": 1208.3,
+       "llamacpp": 306.4,
+       "speedup": 3.94
+      },
+      "prefill_8k": {
+       "loom": 786.2,
+       "llamacpp": 231.5,
+       "speedup": 3.4
+      },
+      "prefill_16k": {
+       "loom": 489.2,
+       "llamacpp": 131.5,
+       "speedup": 3.72
+      },
+      "prefill_32k": {
+       "loom": 262.2,
+       "llamacpp": 82.7,
+       "speedup": 3.17
+      },
+      "streams4": {
+       "loom": 148.9,
+       "llamacpp": 160.8,
+       "speedup": 0.93
+      }
+     }
+    },
+    "programs_sha256": "708f049b6caa3e73bc4d72e94a50b78353aa810c5c43d16e1eb424e18952246f"
+   },
+   "gates": {
+    "summary": {
+     "pass": 6,
+     "fail": 0,
+     "unknown": 1,
+     "n/a": 4
+    },
+    "status": {
+     "kernel_tests": "pass",
+     "golden": "pass",
+     "compare": "pass",
+     "vision": "n/a",
+     "consistency": "pass",
+     "spec": "n/a",
+     "agent": "pass",
+     "agent_think_off": "n/a",
+     "sampling": "pass",
+     "decision": "n/a",
+     "logits": "unknown"
+    }
+   },
+   "primary_device": "strix-halo",
+   "remeasure": null,
+   "devices": {},
+   "quickstart": {
+    "strix-halo": {
+     "blocks": [
+      {
+       "kind": "code",
+       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/jdopensource-JoyAI-LLM-Flash-loom:chat --materialize=copy --output=JoyAI-LLM-Flash-loom\nloom-serve --model=JoyAI-LLM-Flash-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+      },
+      {
+       "kind": "text",
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
+      }
+     ],
+     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+     "fetch": "loom-fetch huggingface:loom-fun/jdopensource-JoyAI-LLM-Flash-loom:chat --materialize=copy --output=JoyAI-LLM-Flash-loom",
+     "serve": "loom-serve --model=JoyAI-LLM-Flash-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+     "source_revision": "58159cc30c1b9a18fb883f75188b35d03bfea4ed"
+    }
+   },
+   "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+     {
+      "kind": "text",
+      "text": "In another terminal:"
+     },
+     {
+      "kind": "code",
+      "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"jdopensource/JoyAI-LLM-Flash\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
+     }
+    ],
+    "source_revision": "58159cc30c1b9a18fb883f75188b35d03bfea4ed"
    }
   },
   {
