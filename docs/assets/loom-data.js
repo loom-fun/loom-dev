@@ -19,7 +19,7 @@ window.LOOM_DATA = {
    "short": "Strix Halo",
    "spec": "gfx1151, 128 GB unified memory",
    "preset_suffix": "",
-   "models": 55
+   "models": 56
   },
   {
    "id": "radeon-r9700",
@@ -27,7 +27,7 @@ window.LOOM_DATA = {
    "short": "Radeon R9700",
    "spec": "gfx1201, 32 GB",
    "preset_suffix": "-r9700",
-   "models": 53
+   "models": 54
   },
   {
    "id": "gfx1201-16gb",
@@ -6883,6 +6883,501 @@ window.LOOM_DATA = {
      }
     ],
     "source_revision": "0c8e8831544e6625431a8177873fa531e75d0cc0"
+   }
+  },
+  {
+   "schema": "loom-summary/1",
+   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
+   "name": "Inkling-2-Mini",
+   "repo": "local/unsloth-Inkling-2-Mini-loom",
+   "revision": "6213fd3ce3a15ea2bab98d4adf09ec783c5ad5dc",
+   "status": null,
+   "license": "mit",
+   "service": {
+    "kind": "chat",
+    "endpoint": "/v1/chat/completions"
+   },
+   "weights": {
+    "checkpoint": {
+     "repo": "unsloth/Inkling-2-Mini-GGUF",
+     "file": "Mainline_Support/Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
+     "quant": "UD-Q4_K_XL",
+     "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
+     "sha256": "e64276656f072e9b2197a61723667cbdb71da66a716ffd966e572c21088f3cd3",
+     "size": 17629760736
+    },
+    "drafter": null,
+    "projector": null
+   },
+   "serve": {
+    "device": "amdgpu",
+    "memory_bytes": 24925405184,
+    "context_tokens": 131072,
+    "rows": 4,
+    "max_tokens": 4096,
+    "presets": [
+     "chat",
+     "chat-r9700",
+     "chat-q8",
+     "chat-q8-r9700"
+    ]
+   },
+   "features": {
+    "api": "yes",
+    "audio": "n/a",
+    "concurrency": "yes",
+    "context": "yes",
+    "image_input": "no",
+    "max_output_tokens": "yes",
+    "reasoning_effort": "yes",
+    "sampling": "no",
+    "speculative_decoding": "n/a",
+    "thinking": "yes",
+    "tool_calling": "yes"
+   },
+   "performance": {
+    "date": null,
+    "llamacpp_build": null,
+    "drafting": {
+     "loom": null,
+     "llamacpp": null
+    },
+    "source": null,
+    "metrics": {
+     "decode": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "decode_2k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "decode_32k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_1k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_2k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_8k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_16k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "prefill_32k": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "streams4": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     },
+     "spec_acceptance": {
+      "loom": null,
+      "llamacpp": null,
+      "speedup": null
+     }
+    },
+    "not_applicable": [
+     "spec_acceptance"
+    ],
+    "devlab": {
+     "date": null,
+     "source": null,
+     "metrics": {
+      "decode": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "decode_2k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "decode_32k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_1k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_2k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_8k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_16k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "prefill_32k": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      },
+      "streams4": {
+       "loom": null,
+       "llamacpp": null,
+       "speedup": null
+      }
+     }
+    },
+    "programs_sha256": "9296f3bbd0a0730aef9fd82c58b009973316b0f8d7f4b03b18b2b0ff0cce4abb",
+    "historical_programs": [
+     {
+      "date": "2026-11-22",
+      "source": {
+       "kind": "machine",
+       "run": null,
+       "url": null,
+       "device": {
+        "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+        "gpu": "AMD Radeon 8060S Graphics + AMD Radeon AI PRO R9700",
+        "os": "Ubuntu 24.04"
+       },
+       "hrx_loom": {
+        "artifact_id": null,
+        "branch": null,
+        "hrx_loom": "0.3.0",
+        "hrx_system_sha": null,
+        "source": "pypi",
+        "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
+       }
+      },
+      "programs_sha256": "912bc5e135ade06ca8afeac48422fa75079fe62bb1cd530c612b165c1bc773de",
+      "program_identity": "recorded",
+      "metrics": {
+       "decode": {
+        "loom": 42.8,
+        "baseline": 14.9
+       },
+       "decode_2k": {
+        "baseline": 11.3
+       },
+       "decode_32k": {
+        "loom": 32.4
+       },
+       "prefill_16k": {
+        "baseline": 44.6
+       },
+       "prefill_1k": {
+        "baseline": 57.6
+       },
+       "prefill_2k": {
+        "baseline": 53.6
+       },
+       "prefill_8k": {
+        "baseline": 48.7
+       },
+       "streams4": {
+        "loom": 88.1
+       }
+      }
+     }
+    ]
+   },
+   "gates": {
+    "summary": {
+     "pass": 0,
+     "fail": 0,
+     "unknown": 6,
+     "n/a": 5
+    },
+    "status": {
+     "kernel_tests": "unknown",
+     "golden": "unknown",
+     "compare": "unknown",
+     "vision": "n/a",
+     "consistency": "unknown",
+     "spec": "n/a",
+     "agent": "unknown",
+     "agent_think_off": "n/a",
+     "sampling": "unknown",
+     "decision": "n/a",
+     "logits": "n/a"
+    }
+   },
+   "primary_device": "strix-halo",
+   "remeasure": null,
+   "devices": {
+    "radeon-r9700": {
+     "state": null,
+     "remeasure": null,
+     "memory_bytes": null,
+     "context_tokens": 131072,
+     "performance": {
+      "date": null,
+      "llamacpp_build": null,
+      "drafting": {
+       "loom": null,
+       "llamacpp": null
+      },
+      "source": null,
+      "metrics": {
+       "decode": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "decode_2k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "decode_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "prefill_1k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "prefill_2k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "prefill_8k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "prefill_16k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "prefill_32k": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "streams4": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       },
+       "spec_acceptance": {
+        "loom": null,
+        "llamacpp": null,
+        "speedup": null
+       }
+      },
+      "not_applicable": [
+       "spec_acceptance"
+      ],
+      "devlab": {
+       "date": null,
+       "source": null,
+       "metrics": {
+        "decode": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "decode_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_1k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_2k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_8k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_16k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "prefill_32k": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        },
+        "streams4": {
+         "loom": null,
+         "llamacpp": null,
+         "speedup": null
+        }
+       }
+      },
+      "programs_sha256": "9296f3bbd0a0730aef9fd82c58b009973316b0f8d7f4b03b18b2b0ff0cce4abb",
+      "historical_programs": [
+       {
+        "date": "2026-11-22",
+        "source": {
+         "kind": "machine",
+         "run": null,
+         "url": null,
+         "device": {
+          "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+          "gpu": "AMD Radeon 8060S Graphics + AMD Radeon AI PRO R9700",
+          "os": "Ubuntu 24.04"
+         },
+         "hrx_loom": {
+          "artifact_id": null,
+          "branch": null,
+          "hrx_loom": "0.3.0",
+          "hrx_system_sha": null,
+          "source": "pypi",
+          "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
+         }
+        },
+        "programs_sha256": "912bc5e135ade06ca8afeac48422fa75079fe62bb1cd530c612b165c1bc773de",
+        "program_identity": "recorded",
+        "metrics": {
+         "decode": {
+          "loom": 94.9,
+          "baseline": 14.9
+         },
+         "decode_2k": {
+          "baseline": 11.3
+         },
+         "decode_32k": {
+          "loom": 75.4
+         },
+         "prefill_16k": {
+          "baseline": 44.6
+         },
+         "prefill_1k": {
+          "baseline": 57.6
+         },
+         "prefill_2k": {
+          "baseline": 53.6
+         },
+         "prefill_8k": {
+          "baseline": 48.7
+         },
+         "streams4": {
+          "loom": 213.2
+         }
+        }
+       }
+      ]
+     },
+     "gates": {
+      "summary": {
+       "pass": 0,
+       "fail": 0,
+       "unknown": 6,
+       "n/a": 5
+      },
+      "status": {
+       "kernel_tests": "unknown",
+       "golden": "unknown",
+       "compare": "unknown",
+       "vision": "n/a",
+       "consistency": "unknown",
+       "spec": "n/a",
+       "agent": "unknown",
+       "agent_think_off": "n/a",
+       "sampling": "unknown",
+       "decision": "n/a",
+       "logits": "n/a"
+      }
+     }
+    }
+   },
+   "quickstart": {
+    "strix-halo": {
+     "blocks": [
+      {
+       "kind": "text",
+       "text": "Open your GPU and copy its commands."
+      },
+      {
+       "kind": "code",
+       "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=unsloth-Inkling-2-Mini-loom\nloom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+      },
+      {
+       "kind": "text",
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn a stock host (8 MiB memlock) start loom-serve as `systemd-run --user --pty --same-dir -p SystemCallFilter=~io_uring_setup -p SystemCallErrorNumber=ENOSYS loom-serve ...` (no root; IREE falls back to its POSIX proactor), or raise `ulimit -l`."
+      }
+     ],
+     "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+     "fetch": "loom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=unsloth-Inkling-2-Mini-loom",
+     "serve": "loom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+     "source_revision": "6213fd3ce3a15ea2bab98d4adf09ec783c5ad5dc"
+    },
+    "radeon-r9700": {
+     "blocks": [
+      {
+       "kind": "text",
+       "text": "Open your GPU and copy its commands."
+      },
+      {
+       "kind": "code",
+       "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat-r9700 --materialize=copy --output=unsloth-Inkling-2-Mini-loom\nloom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+      },
+      {
+       "kind": "text",
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
+      }
+     ],
+     "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+     "fetch": "loom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat-r9700 --materialize=copy --output=unsloth-Inkling-2-Mini-loom",
+     "serve": "loom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+     "source_revision": "6213fd3ce3a15ea2bab98d4adf09ec783c5ad5dc"
+    }
+   },
+   "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+     {
+      "kind": "text",
+      "text": "In another terminal (`reasoning_effort` is set to `none`):"
+     },
+     {
+      "kind": "code",
+      "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"thinkingmachines/Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"none\"}'"
+     }
+    ],
+    "source_revision": "6213fd3ce3a15ea2bab98d4adf09ec783c5ad5dc"
    }
   },
   {
