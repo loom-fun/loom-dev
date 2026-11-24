@@ -3,9 +3,9 @@
   "checkpoint": "Llama-3.2-3B-Instruct-Q4_K_M",
   "name": "Llama-3.2-3B-Instruct",
   "repo": "loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom",
-  "revision": "3913d86fa2f893ef838d58b3208273fe7cea98ac",
+  "revision": "9094f01f44a454273b13519c3d54348d04fa5ccb",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -35,10 +35,10 @@
   },
   "features": {
     "api": "yes",
-    "audio": "n/a",
+    "audio": "unknown",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "n/a",
+    "image_input": "unknown",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -153,79 +153,125 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-17",
-      "source": {
-        "kind": "devlab",
-        "run": "44088702163",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088702163/job/134057955394"
-      },
+      "date": null,
+      "source": null,
       "metrics": {
         "decode": {
-          "loom": 97.1,
-          "llamacpp": 90.2,
-          "speedup": 1.08
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "decode_2k": {
-          "loom": 84.6,
-          "llamacpp": 71.6,
-          "speedup": 1.18
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "decode_32k": {
-          "loom": 37.1,
-          "llamacpp": 16.5,
-          "speedup": 2.25
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_1k": {
-          "loom": 3884.3,
-          "llamacpp": 2625.7,
-          "speedup": 1.48
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_2k": {
-          "loom": 3881.0,
-          "llamacpp": 2579.9,
-          "speedup": 1.5
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_8k": {
-          "loom": 3396.6,
-          "llamacpp": 2085.7,
-          "speedup": 1.63
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_16k": {
-          "loom": 2394.0,
-          "llamacpp": 1594.1,
-          "speedup": 1.5
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_32k": {
-          "loom": 1810.4,
-          "llamacpp": 1074.6,
-          "speedup": 1.68
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "streams4": {
-          "loom": 353.9,
-          "llamacpp": 254.6,
-          "speedup": 1.39
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         }
       }
     },
-    "programs_sha256": "3585b4ecca62d501794cd356fb330001090b0656c45b1cfb831435738ef95ef9"
+    "programs_sha256": "e94034db9e29591fc92a4520b6c38ca13fdc6e4bcdf1c663872d3590329d198d",
+    "historical_programs": [
+      {
+        "date": "2026-11-17",
+        "source": {
+          "kind": "devlab",
+          "run": "44088702163",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088702163/job/134057955394"
+        },
+        "programs_sha256": "3585b4ecca62d501794cd356fb330001090b0656c45b1cfb831435738ef95ef9",
+        "program_identity": "recorded",
+        "metrics": {
+          "decode": {
+            "loom": 97.1,
+            "baseline": 90.2
+          },
+          "decode_2k": {
+            "loom": 84.6,
+            "baseline": 71.6
+          },
+          "decode_32k": {
+            "loom": 37.1,
+            "baseline": 16.5
+          },
+          "prefill_16k": {
+            "loom": 2394.0,
+            "baseline": 1594.1
+          },
+          "prefill_1k": {
+            "loom": 3884.3,
+            "baseline": 2625.7
+          },
+          "prefill_2k": {
+            "loom": 3881.0,
+            "baseline": 2579.9
+          },
+          "prefill_32k": {
+            "loom": 1810.4,
+            "baseline": 1074.6
+          },
+          "prefill_8k": {
+            "loom": 3396.6,
+            "baseline": 2085.7
+          },
+          "streams4": {
+            "loom": 353.9,
+            "baseline": 254.6
+          }
+        }
+      }
+    ]
   },
   "gates": {
     "summary": {
-      "pass": 6,
+      "pass": 0,
       "fail": 0,
-      "unknown": 1,
+      "unknown": 7,
       "n/a": 4
     },
     "status": {
-      "kernel_tests": "pass",
-      "golden": "pass",
-      "compare": "pass",
+      "kernel_tests": "unknown",
+      "golden": "unknown",
+      "compare": "unknown",
       "vision": "n/a",
-      "consistency": "pass",
+      "consistency": "unknown",
       "spec": "n/a",
-      "agent": "pass",
+      "agent": "unknown",
       "agent_think_off": "n/a",
-      "sampling": "pass",
+      "sampling": "unknown",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -345,61 +391,61 @@
           "spec_acceptance"
         ],
         "devlab": {
-          "date": "2026-11-17",
+          "date": "2026-11-23",
           "source": {
             "kind": "devlab",
-            "run": "43993251192",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993251192/job/133738939498"
+            "run": "45275710722",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45275710722/job/138046833843"
           },
           "metrics": {
             "decode": {
-              "loom": 229.5,
+              "loom": 228.8,
               "llamacpp": 183.9,
-              "speedup": 1.25
+              "speedup": 1.24
             },
             "decode_2k": {
-              "loom": 194.2,
+              "loom": 193.7,
               "llamacpp": 172.1,
               "speedup": 1.13
             },
             "decode_32k": {
-              "loom": 92.7,
+              "loom": 91.7,
               "llamacpp": 86.7,
-              "speedup": 1.07
+              "speedup": 1.06
             },
             "prefill_1k": {
-              "loom": 12075.5,
+              "loom": 12532.1,
               "llamacpp": 9319.8,
-              "speedup": 1.3
+              "speedup": 1.34
             },
             "prefill_2k": {
-              "loom": 13216.9,
+              "loom": 13034.7,
               "llamacpp": 9264.4,
-              "speedup": 1.43
+              "speedup": 1.41
             },
             "prefill_8k": {
-              "loom": 11307.8,
+              "loom": 11157.0,
               "llamacpp": 7446.6,
-              "speedup": 1.52
+              "speedup": 1.5
             },
             "prefill_16k": {
-              "loom": 8910.2,
+              "loom": 8803.0,
               "llamacpp": 5738.8,
-              "speedup": 1.55
+              "speedup": 1.53
             },
             "prefill_32k": {
-              "loom": 5922.4,
+              "loom": 5869.2,
               "llamacpp": 3908.4,
-              "speedup": 1.52
+              "speedup": 1.5
             },
             "streams4": {
-              "loom": 836.2,
+              "loom": 821.4,
               "llamacpp": 510.6,
-              "speedup": 1.64
+              "speedup": 1.61
             }
           }
         },
-        "programs_sha256": "3585b4ecca62d501794cd356fb330001090b0656c45b1cfb831435738ef95ef9"
+        "programs_sha256": "e94034db9e29591fc92a4520b6c38ca13fdc6e4bcdf1c663872d3590329d198d"
       },
       "gates": {
         "summary": {
@@ -477,75 +523,58 @@
             }
           }
         },
-        "date": "2026-11-17",
+        "date": null,
         "llamacpp_build": "b1375",
         "drafting": {
           "loom": null,
           "llamacpp": null
         },
-        "source": {
-          "kind": "machine",
-          "run": null,
-          "url": null,
-          "device": {
-            "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
-            "gpu": "AMD Radeon RX 9070 XT",
-            "os": "Ubuntu 26.04"
-          },
-          "hrx_loom": {
-            "artifact_id": null,
-            "branch": "v0.2.0",
-            "hrx_loom": "0.2.0",
-            "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
-            "source": "pypi",
-            "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
-          }
-        },
+        "source": null,
         "metrics": {
           "decode": {
-            "loom": 229.7,
-            "llamacpp": 184.4,
-            "speedup": 1.25
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "decode_2k": {
-            "loom": 191.9,
-            "llamacpp": 171.3,
-            "speedup": 1.12
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "decode_32k": {
-            "loom": 93.1,
-            "llamacpp": 88.0,
-            "speedup": 1.06
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "prefill_1k": {
-            "loom": 11254.2,
-            "llamacpp": 9219.3,
-            "speedup": 1.22
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "prefill_2k": {
-            "loom": 12490.7,
-            "llamacpp": 9223.7,
-            "speedup": 1.35
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "prefill_8k": {
-            "loom": 10793.2,
-            "llamacpp": 7349.3,
-            "speedup": 1.47
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "prefill_16k": {
-            "loom": 8651.6,
-            "llamacpp": 5564.3,
-            "speedup": 1.55
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "prefill_32k": {
-            "loom": 5481.4,
-            "llamacpp": 3834.4,
-            "speedup": 1.43
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "streams4": {
-            "loom": 829.3,
-            "llamacpp": 510.2,
-            "speedup": 1.63
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
           },
           "spec_acceptance": {
             "loom": null,
@@ -607,11 +636,10 @@
             }
           }
         },
-        "programs_sha256": "3585b4ecca62d501794cd356fb330001090b0656c45b1cfb831435738ef95ef9",
-        "named_machine_sources": [
+        "programs_sha256": "e94034db9e29591fc92a4520b6c38ca13fdc6e4bcdf1c663872d3590329d198d",
+        "historical_programs": [
           {
             "date": "2026-11-17",
-            "programs_sha256": "3585b4ecca62d501794cd356fb330001090b0656c45b1cfb831435738ef95ef9",
             "source": {
               "kind": "machine",
               "run": null,
@@ -629,27 +657,67 @@
                 "source": "pypi",
                 "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
               }
+            },
+            "programs_sha256": "3585b4ecca62d501794cd356fb330001090b0656c45b1cfb831435738ef95ef9",
+            "program_identity": "recorded",
+            "metrics": {
+              "decode": {
+                "loom": 229.7,
+                "baseline": 184.4
+              },
+              "decode_2k": {
+                "loom": 191.9,
+                "baseline": 171.3
+              },
+              "decode_32k": {
+                "loom": 93.1,
+                "baseline": 88.0
+              },
+              "prefill_16k": {
+                "loom": 8651.6,
+                "baseline": 5564.3
+              },
+              "prefill_1k": {
+                "loom": 11254.2,
+                "baseline": 9219.3
+              },
+              "prefill_2k": {
+                "loom": 12490.7,
+                "baseline": 9223.7
+              },
+              "prefill_32k": {
+                "loom": 5481.4,
+                "baseline": 3834.4
+              },
+              "prefill_8k": {
+                "loom": 10793.2,
+                "baseline": 7349.3
+              },
+              "streams4": {
+                "loom": 829.3,
+                "baseline": 510.2
+              }
             }
           }
         ]
       },
       "gates": {
         "summary": {
-          "pass": 5,
+          "pass": 0,
           "fail": 0,
-          "unknown": 2,
+          "unknown": 7,
           "n/a": 4
         },
         "status": {
           "kernel_tests": "unknown",
-          "golden": "pass",
-          "compare": "pass",
+          "golden": "unknown",
+          "compare": "unknown",
           "vision": "n/a",
-          "consistency": "pass",
+          "consistency": "unknown",
           "spec": "n/a",
-          "agent": "pass",
+          "agent": "unknown",
           "agent_think_off": "n/a",
-          "sampling": "pass",
+          "sampling": "unknown",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -665,25 +733,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request:"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"meta-llama/Llama-3.2-3B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct",
-      "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "3913d86fa2f893ef838d58b3208273fe7cea98ac"
+      "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "9094f01f44a454273b13519c3d54348d04fa5ccb"
     },
     "radeon-r9700": {
       "blocks": [
@@ -693,25 +753,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request:"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"meta-llama/Llama-3.2-3B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat --materialize=copy --output=Llama-3.2-3B-Instruct",
-      "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "3913d86fa2f893ef838d58b3208273fe7cea98ac"
+      "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "9094f01f44a454273b13519c3d54348d04fa5ccb"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -721,25 +773,31 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat-16gb --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat-16gb --materialize=copy --output=Llama-3.2-3B-Instruct\nloom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 104,448 tokens per request (its native context is 131,072).\n\nIn another terminal, send a request:"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"meta-llama/Llama-3.2-3B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 104,448 tokens per request (its native context is 131,072)."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Llama-3.2-3B-Instruct-loom:chat-16gb --materialize=copy --output=Llama-3.2-3B-Instruct",
-      "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
-      "source_revision": "3913d86fa2f893ef838d58b3208273fe7cea98ac"
+      "serve": "loom-serve --model=Llama-3.2-3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
+      "source_revision": "9094f01f44a454273b13519c3d54348d04fa5ccb"
     }
+  },
+  "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+      {
+        "kind": "text",
+        "text": "In another terminal:"
+      },
+      {
+        "kind": "code",
+        "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"meta-llama/Llama-3.2-3B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
+      }
+    ],
+    "source_revision": "9094f01f44a454273b13519c3d54348d04fa5ccb"
   }
 }

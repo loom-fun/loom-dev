@@ -3,9 +3,9 @@
   "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
   "name": "Qwen3.8-Flash-Next",
   "repo": "loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom",
-  "revision": "77a25ce49e869b41dd7054678a6860b55583824f",
+  "revision": "473e5815cedcf3117fcac905c27ed3434f9fe836",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -42,7 +42,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "n/a",
+    "audio": "unknown",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -158,61 +158,61 @@
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-17",
+      "date": "2026-11-23",
       "source": {
         "kind": "devlab",
-        "run": "44088715568",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088715568/job/134058002069"
+        "run": "45265610548",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45265610548/job/138011586078"
       },
       "metrics": {
         "decode": {
-          "loom": 21.0,
+          "loom": 43.5,
           "llamacpp": 34.4,
-          "speedup": 0.61
+          "speedup": 1.26
         },
         "decode_2k": {
-          "loom": 34.8,
+          "loom": 37.0,
           "llamacpp": 30.8,
-          "speedup": 1.13
+          "speedup": 1.2
         },
         "decode_32k": {
-          "loom": 31.7,
+          "loom": 37.0,
           "llamacpp": 24.2,
-          "speedup": 1.31
+          "speedup": 1.53
         },
         "prefill_1k": {
-          "loom": 1179.1,
+          "loom": 1249.7,
           "llamacpp": 417.9,
-          "speedup": 2.82
+          "speedup": 2.99
         },
         "prefill_2k": {
-          "loom": 1316.4,
+          "loom": 1384.1,
           "llamacpp": 442.3,
-          "speedup": 2.98
+          "speedup": 3.13
         },
         "prefill_8k": {
-          "loom": 617.5,
+          "loom": 1501.5,
           "llamacpp": 451.8,
-          "speedup": 1.37
+          "speedup": 3.32
         },
         "prefill_16k": {
-          "loom": 935.1,
+          "loom": 1458.7,
           "llamacpp": 425.5,
-          "speedup": 2.2
+          "speedup": 3.43
         },
         "prefill_32k": {
-          "loom": 1218.3,
+          "loom": 1441.4,
           "llamacpp": 378.7,
-          "speedup": 3.22
+          "speedup": 3.81
         },
         "streams4": {
-          "loom": 66.6,
+          "loom": 67.2,
           "llamacpp": 57.2,
-          "speedup": 1.16
+          "speedup": 1.17
         }
       }
     },
-    "programs_sha256": "ae75cfd5e65d886ad793b14c8c6f47d436f8667b622b434581b08e2154705f56"
+    "programs_sha256": "c0cf0958949af15430bb8791eb167e8108a5a374f3f5aa3828eb55f0d88ac920"
   },
   "gates": {
     "summary": {
@@ -248,25 +248,35 @@
       "blocks": [
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --materialize=copy --output=Qwen3.8-Flash-Next-loom\nloom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --materialize=copy --output=Qwen3.8-Flash-Next-loom\nloom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --workers=8"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn a stock host (8 MiB memlock) start loom-serve as `systemd-run --user --pty --same-dir -p SystemCallFilter=~io_uring_setup -p SystemCallErrorNumber=ENOSYS loom-serve ...` (no root; IREE falls back to its POSIX proactor), or raise `ulimit -l`.\n\nIn another terminal, send a request (optional thinking is turned off):"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"unsloth-Qwen3.8-Flash-Next-loom\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests.\n\nAMD Radeon AI PRO R9700 (gfx1201, 32 GB): this package does not fit its 32 GB (it needs about 118 GB)."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --materialize=copy --output=Qwen3.8-Flash-Next-loom",
-      "serve": "loom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "77a25ce49e869b41dd7054678a6860b55583824f"
+      "serve": "loom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --workers=8",
+      "source_revision": "473e5815cedcf3117fcac905c27ed3434f9fe836"
     }
+  },
+  "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+      {
+        "kind": "text",
+        "text": "In another terminal (optional thinking is turned off):"
+      },
+      {
+        "kind": "code",
+        "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"unsloth-Qwen3.8-Flash-Next-loom\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+      },
+      {
+        "kind": "text",
+        "text": "AMD Radeon AI PRO R9700 (gfx1201, 32 GB): this package does not fit its 32 GB (it needs about 118 GB)."
+      }
+    ],
+    "source_revision": "473e5815cedcf3117fcac905c27ed3434f9fe836"
   }
 }

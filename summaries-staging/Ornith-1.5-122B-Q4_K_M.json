@@ -3,9 +3,9 @@
   "checkpoint": "Ornith-1.5-122B-Q4_K_M",
   "name": "Ornith-1.5-122B",
   "repo": "loom-fun-staging/bartowski-Ornith-1.5-122B-loom",
-  "revision": "a1c5c16cff1da20ff50525e362a13d800a478d9b",
+  "revision": "5ee9e518d27a5a8b18ff3bc8436fdce996590faf",
   "status": null,
-  "license": null,
+  "license": "mit",
   "service": {
     "kind": "chat",
     "endpoint": "/v1/chat/completions"
@@ -42,7 +42,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "n/a",
+    "audio": "unknown",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -151,18 +151,18 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.76,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-17",
+      "date": "2026-11-23",
       "source": {
         "kind": "devlab",
-        "run": "44088653570",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088653570/job/134057765599"
+        "run": "45278043938",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45278043938/job/138054853191"
       },
       "metrics": {
         "decode": {
@@ -176,53 +176,53 @@
           "speedup": 2.52
         },
         "decode_32k": {
-          "loom": 19.5,
+          "loom": 19.9,
           "llamacpp": 9.3,
-          "speedup": 2.1
+          "speedup": 2.14
         },
         "prefill_1k": {
-          "loom": 777.8,
+          "loom": 789.2,
           "llamacpp": 398.5,
-          "speedup": 1.95
+          "speedup": 1.98
         },
         "prefill_2k": {
-          "loom": 890.0,
+          "loom": 901.5,
           "llamacpp": 420.0,
-          "speedup": 2.12
+          "speedup": 2.15
         },
         "prefill_8k": {
-          "loom": 932.9,
+          "loom": 975.8,
           "llamacpp": 426.3,
-          "speedup": 2.19
+          "speedup": 2.29
         },
         "prefill_16k": {
-          "loom": 851.5,
+          "loom": 890.9,
           "llamacpp": 400.4,
-          "speedup": 2.13
+          "speedup": 2.23
         },
         "prefill_32k": {
-          "loom": 756.4,
+          "loom": 788.5,
           "llamacpp": 355.9,
-          "speedup": 2.13
+          "speedup": 2.22
         },
         "streams4": {
-          "loom": 53.8,
+          "loom": 54.7,
           "llamacpp": 47.9,
-          "speedup": 1.12
+          "speedup": 1.14
         }
       }
     },
-    "programs_sha256": "35c52a2e72e9d46a9d3bb71ef8615b71111acf009677789d7c8177113ce1edd9"
+    "programs_sha256": "a8da3018af8e8c67168b4028fe399750692672ad6bb07352260251358ee33f3f"
   },
   "gates": {
     "summary": {
-      "pass": 8,
-      "fail": 1,
+      "pass": 9,
+      "fail": 0,
       "unknown": 1,
       "n/a": 1
     },
     "status": {
-      "kernel_tests": "fail",
+      "kernel_tests": "pass",
       "golden": "pass",
       "compare": "pass",
       "vision": "pass",
@@ -248,25 +248,35 @@
       "blocks": [
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Ornith-1.5-122B-loom:chat --materialize=copy --output=Ornith-1.5-122B\nloom-serve --model=Ornith-1.5-122B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Ornith-1.5-122B-loom:chat --materialize=copy --output=Ornith-1.5-122B\nloom-serve --model=Ornith-1.5-122B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn a stock host (8 MiB memlock) start loom-serve as `systemd-run --user --pty --same-dir -p SystemCallFilter=~io_uring_setup -p SystemCallErrorNumber=ENOSYS loom-serve ...` (no root; IREE falls back to its POSIX proactor), or raise `ulimit -l`.\n\nIn another terminal, send a request (optional thinking is turned off):"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"ornith-ai/Ornith-1.5-122B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests.\n\nAMD Radeon AI PRO R9700 (gfx1201, 32 GB): this package does not fit its 32 GB (it needs about 82 GB)."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Ornith-1.5-122B-loom:chat --materialize=copy --output=Ornith-1.5-122B",
       "serve": "loom-serve --model=Ornith-1.5-122B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "a1c5c16cff1da20ff50525e362a13d800a478d9b"
+      "source_revision": "5ee9e518d27a5a8b18ff3bc8436fdce996590faf"
     }
+  },
+  "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+      {
+        "kind": "text",
+        "text": "In another terminal (optional thinking is turned off):"
+      },
+      {
+        "kind": "code",
+        "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"ornith-ai/Ornith-1.5-122B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
+      },
+      {
+        "kind": "text",
+        "text": "AMD Radeon AI PRO R9700 (gfx1201, 32 GB): this package does not fit its 32 GB (it needs about 82 GB)."
+      }
+    ],
+    "source_revision": "5ee9e518d27a5a8b18ff3bc8436fdce996590faf"
   }
 }
