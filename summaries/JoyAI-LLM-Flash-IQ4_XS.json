@@ -3,7 +3,7 @@
   "checkpoint": "JoyAI-LLM-Flash-IQ4_XS",
   "name": "JoyAI-LLM-Flash",
   "repo": "loom-fun/jdopensource-JoyAI-LLM-Flash-loom",
-  "revision": "58159cc30c1b9a18fb883f75188b35d03bfea4ed",
+  "revision": "beb54184df00bbf05a999ca6663ea605c27b8bb0",
   "status": null,
   "license": "mit",
   "service": {
@@ -50,7 +50,7 @@
     "llamacpp_build": "b1386",
     "drafting": {
       "loom": null,
-      "llamacpp": "ngram-mod"
+      "llamacpp": null
     },
     "source": null,
     "metrics": {
@@ -109,61 +109,61 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-23",
+      "date": "2026-11-24",
       "source": {
         "kind": "devlab",
-        "run": "45251125481",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45251125481"
+        "run": "45312040472",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45312040472"
       },
       "metrics": {
         "decode": {
-          "loom": 75.3,
-          "llamacpp": 69.8,
-          "speedup": 1.08
+          "loom": 89.4,
+          "llamacpp": 73.1,
+          "speedup": 1.22
         },
         "decode_2k": {
-          "loom": 59.2,
-          "llamacpp": 47.9,
-          "speedup": 1.24
+          "loom": 80.9,
+          "llamacpp": 66.8,
+          "speedup": 1.21
         },
         "decode_32k": {
-          "loom": 19.5,
-          "llamacpp": 32.0,
-          "speedup": 0.61
+          "loom": 50.9,
+          "llamacpp": 35.4,
+          "speedup": 1.44
         },
         "prefill_1k": {
-          "loom": 1256.6,
-          "llamacpp": 441.0,
-          "speedup": 2.85
+          "loom": 1610.3,
+          "llamacpp": 845.0,
+          "speedup": 1.91
         },
         "prefill_2k": {
-          "loom": 1208.3,
-          "llamacpp": 306.4,
-          "speedup": 3.94
+          "loom": 1785.9,
+          "llamacpp": 759.3,
+          "speedup": 2.35
         },
         "prefill_8k": {
-          "loom": 786.2,
-          "llamacpp": 231.5,
-          "speedup": 3.4
+          "loom": 1780.0,
+          "llamacpp": 436.3,
+          "speedup": 4.08
         },
         "prefill_16k": {
-          "loom": 489.2,
-          "llamacpp": 131.5,
-          "speedup": 3.72
+          "loom": 1382.7,
+          "llamacpp": 267.9,
+          "speedup": 5.16
         },
         "prefill_32k": {
-          "loom": 262.2,
-          "llamacpp": 82.7,
-          "speedup": 3.17
+          "loom": 1004.8,
+          "llamacpp": 149.6,
+          "speedup": 6.72
         },
         "streams4": {
-          "loom": 148.9,
-          "llamacpp": 160.8,
-          "speedup": 0.93
+          "loom": 147.9,
+          "llamacpp": 138.4,
+          "speedup": 1.07
         }
       }
     },
-    "programs_sha256": "708f049b6caa3e73bc4d72e94a50b78353aa810c5c43d16e1eb424e18952246f"
+    "programs_sha256": "339e955978cecba82e7b31a459b4535c88b52ec7726ce1cff860b74d3bdc4a44"
   },
   "gates": {
     "summary": {
@@ -204,7 +204,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/jdopensource-JoyAI-LLM-Flash-loom:chat --materialize=copy --output=JoyAI-LLM-Flash-loom",
       "serve": "loom-serve --model=JoyAI-LLM-Flash-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "58159cc30c1b9a18fb883f75188b35d03bfea4ed"
+      "source_revision": "beb54184df00bbf05a999ca6663ea605c27b8bb0"
     }
   },
   "shared_request": {
@@ -219,6 +219,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"jdopensource/JoyAI-LLM-Flash\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "58159cc30c1b9a18fb883f75188b35d03bfea4ed"
+    "source_revision": "beb54184df00bbf05a999ca6663ea605c27b8bb0"
   }
 }
