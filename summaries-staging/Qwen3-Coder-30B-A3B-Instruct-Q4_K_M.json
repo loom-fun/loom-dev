@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-Coder-30B-A3B-Instruct-Q4_K_M",
   "name": "Qwen3-Coder-30B-A3B-Instruct",
   "repo": "loom-fun-staging/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom",
-  "revision": "aa4dae9bdc1636f397c546fe9917bcd9150fe360",
+  "revision": "bcbd57a85f11b17007bf049e38b432a16a4bf908",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -39,10 +39,10 @@
   },
   "features": {
     "api": "yes",
-    "audio": "n/a",
+    "audio": "unknown",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "n/a",
+    "image_input": "unknown",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -148,86 +148,147 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": 0.58,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-17",
-      "source": {
-        "kind": "devlab",
-        "run": "44088689861",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909660"
-      },
+      "date": null,
+      "source": null,
       "metrics": {
         "decode": {
-          "loom": 68.0,
-          "llamacpp": 28.9,
-          "speedup": 2.35
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "decode_2k": {
-          "loom": 60.4,
-          "llamacpp": 33.5,
-          "speedup": 1.8
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "decode_32k": {
-          "loom": 34.5,
-          "llamacpp": 18.9,
-          "speedup": 1.83
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_1k": {
-          "loom": 2275.2,
-          "llamacpp": 1498.6,
-          "speedup": 1.52
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_2k": {
-          "loom": 2323.2,
-          "llamacpp": 1517.0,
-          "speedup": 1.53
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_8k": {
-          "loom": 2046.2,
-          "llamacpp": 1256.0,
-          "speedup": 1.63
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_16k": {
-          "loom": 1525.5,
-          "llamacpp": 963.3,
-          "speedup": 1.58
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_32k": {
-          "loom": 961.3,
-          "llamacpp": 648.4,
-          "speedup": 1.48
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "streams4": {
-          "loom": 187.9,
-          "llamacpp": 131.7,
-          "speedup": 1.43
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         }
       }
     },
-    "programs_sha256": "6800f442df0dde69131323f30b67202a3b950b095a55c4fba452016e272d63f6"
+    "programs_sha256": "733149d6ae49a2f14692b36373e186c796c15b4de02576f055042b2d930a0566",
+    "historical_programs": [
+      {
+        "date": "2026-11-17",
+        "source": {
+          "kind": "devlab",
+          "run": "44088689861",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909660"
+        },
+        "programs_sha256": "6800f442df0dde69131323f30b67202a3b950b095a55c4fba452016e272d63f6",
+        "program_identity": "recorded",
+        "metrics": {
+          "decode": {
+            "loom": 68.0,
+            "baseline": 28.9
+          },
+          "decode_2k": {
+            "loom": 60.4,
+            "baseline": 33.5
+          },
+          "decode_32k": {
+            "loom": 34.5,
+            "baseline": 18.9
+          },
+          "prefill_16k": {
+            "loom": 1525.5,
+            "baseline": 963.3
+          },
+          "prefill_1k": {
+            "loom": 2275.2,
+            "baseline": 1498.6
+          },
+          "prefill_2k": {
+            "loom": 2323.2,
+            "baseline": 1517.0
+          },
+          "prefill_32k": {
+            "loom": 961.3,
+            "baseline": 648.4
+          },
+          "prefill_8k": {
+            "loom": 2046.2,
+            "baseline": 1256.0
+          },
+          "streams4": {
+            "loom": 187.9,
+            "baseline": 131.7
+          }
+        }
+      },
+      {
+        "date": "2026-11-17",
+        "source": {
+          "kind": "devlab",
+          "run": "44088689861",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909660"
+        },
+        "programs_sha256": "6800f442df0dde69131323f30b67202a3b950b095a55c4fba452016e272d63f6",
+        "program_identity": "recorded",
+        "metrics": {
+          "spec_acceptance": {
+            "loom": 0.58
+          }
+        }
+      }
+    ]
   },
   "gates": {
     "summary": {
-      "pass": 7,
+      "pass": 0,
       "fail": 0,
-      "unknown": 1,
+      "unknown": 8,
       "n/a": 3
     },
     "status": {
-      "kernel_tests": "pass",
-      "golden": "pass",
-      "compare": "pass",
+      "kernel_tests": "unknown",
+      "golden": "unknown",
+      "compare": "unknown",
       "vision": "n/a",
-      "consistency": "pass",
-      "spec": "pass",
-      "agent": "pass",
+      "consistency": "unknown",
+      "spec": "unknown",
+      "agent": "unknown",
       "agent_think_off": "n/a",
-      "sampling": "pass",
+      "sampling": "unknown",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -338,68 +399,68 @@
             "speedup": null
           },
           "spec_acceptance": {
-            "loom": 0.56,
+            "loom": null,
             "llamacpp": null,
             "speedup": null
           }
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-17",
+          "date": "2026-11-24",
           "source": {
             "kind": "devlab",
-            "run": "43993245028",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993245028/job/133738926272"
+            "run": "45275710722",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45275710722/job/138046837164"
           },
           "metrics": {
             "decode": {
-              "loom": 158.3,
+              "loom": 158.4,
               "llamacpp": 54.8,
               "speedup": 2.89
             },
             "decode_2k": {
-              "loom": 134.2,
+              "loom": 134.1,
               "llamacpp": 64.1,
               "speedup": 2.09
             },
             "decode_32k": {
-              "loom": 67.0,
+              "loom": 67.6,
               "llamacpp": 42.7,
-              "speedup": 1.57
+              "speedup": 1.58
             },
             "prefill_1k": {
-              "loom": 7072.0,
+              "loom": 6771.1,
               "llamacpp": 4423.0,
-              "speedup": 1.6
-            },
-            "prefill_2k": {
-              "loom": 6900.7,
-              "llamacpp": 4506.0,
               "speedup": 1.53
             },
-            "prefill_8k": {
-              "loom": 6335.6,
-              "llamacpp": 3819.8,
-              "speedup": 1.66
+            "prefill_2k": {
+              "loom": 6756.4,
+              "llamacpp": 4506.0,
+              "speedup": 1.5
             },
-            "prefill_16k": {
-              "loom": 4899.0,
-              "llamacpp": 3005.8,
+            "prefill_8k": {
+              "loom": 6218.1,
+              "llamacpp": 3819.8,
               "speedup": 1.63
             },
+            "prefill_16k": {
+              "loom": 4832.5,
+              "llamacpp": 3005.8,
+              "speedup": 1.61
+            },
             "prefill_32k": {
-              "loom": 3107.3,
+              "loom": 3079.9,
               "llamacpp": 2106.8,
-              "speedup": 1.47
+              "speedup": 1.46
             },
             "streams4": {
-              "loom": 464.5,
+              "loom": 462.1,
               "llamacpp": 277.6,
-              "speedup": 1.67
+              "speedup": 1.66
             }
           }
         },
-        "programs_sha256": "6800f442df0dde69131323f30b67202a3b950b095a55c4fba452016e272d63f6"
+        "programs_sha256": "733149d6ae49a2f14692b36373e186c796c15b4de02576f055042b2d930a0566"
       },
       "gates": {
         "summary": {
@@ -433,25 +494,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct\nloom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct\nloom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nIn another terminal, send a request:"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-Coder-30B-A3B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct",
-      "serve": "loom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "aa4dae9bdc1636f397c546fe9917bcd9150fe360"
+      "serve": "loom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "bcbd57a85f11b17007bf049e38b432a16a4bf908"
     },
     "radeon-r9700": {
       "blocks": [
@@ -461,25 +514,31 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct\nloom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct\nloom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 94,208 tokens per request (its native context is 262,144).\n\nIn another terminal, send a request:"
-        },
-        {
-          "kind": "code",
-          "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-Coder-30B-A3B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
-        },
-        {
-          "kind": "text",
-          "text": "The server listens on `127.0.0.1:8080` and answers OpenAI-style `/v1/chat/completions` requests."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 94,208 tokens per request (its native context is 262,144)."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-Coder-30B-A3B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen3-Coder-30B-A3B-Instruct",
-      "serve": "loom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "aa4dae9bdc1636f397c546fe9917bcd9150fe360"
+      "serve": "loom-serve --model=Qwen3-Coder-30B-A3B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "bcbd57a85f11b17007bf049e38b432a16a4bf908"
     }
+  },
+  "shared_request": {
+    "heading": "Send a request",
+    "blocks": [
+      {
+        "kind": "text",
+        "text": "In another terminal:"
+      },
+      {
+        "kind": "code",
+        "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-Coder-30B-A3B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
+      }
+    ],
+    "source_revision": "bcbd57a85f11b17007bf049e38b432a16a4bf908"
   }
 }
