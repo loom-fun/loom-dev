@@ -3,7 +3,7 @@
   "checkpoint": "Mellum2.1-12B-A2.5B-Thinking-Q4_K_M",
   "name": "Mellum2.1-12B-A2.5B-Thinking",
   "repo": "loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom",
-  "revision": "d14e638abcc202d3188d8baf4a89bfaaab6520f2",
+  "revision": "4a6190b1224e2c552be03fb4323e8f287654529c",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -733,17 +733,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --output=Mellum2.1-12B-A2.5B-Thinking",
       "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "d14e638abcc202d3188d8baf4a89bfaaab6520f2"
+      "source_revision": "4a6190b1224e2c552be03fb4323e8f287654529c"
     },
     "radeon-r9700": {
       "blocks": [
@@ -753,17 +753,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --output=Mellum2.1-12B-A2.5B-Thinking",
       "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "d14e638abcc202d3188d8baf4a89bfaaab6520f2"
+      "source_revision": "4a6190b1224e2c552be03fb4323e8f287654529c"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -773,17 +773,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat-16gb --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat-16gb --output=Mellum2.1-12B-A2.5B-Thinking\nloom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 43,008 tokens per request (its native context is 131,072)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 43,008 tokens per request (its native context is 131,072)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat-16gb --materialize=copy --output=Mellum2.1-12B-A2.5B-Thinking",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat-16gb --output=Mellum2.1-12B-A2.5B-Thinking",
       "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "d14e638abcc202d3188d8baf4a89bfaaab6520f2"
+      "source_revision": "4a6190b1224e2c552be03fb4323e8f287654529c"
     }
   },
   "shared_request": {
@@ -798,6 +798,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"JetBrains/Mellum2.1-12B-A2.5B-Thinking\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "d14e638abcc202d3188d8baf4a89bfaaab6520f2"
+    "source_revision": "4a6190b1224e2c552be03fb4323e8f287654529c"
   }
 }

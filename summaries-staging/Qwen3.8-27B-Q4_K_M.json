@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-27B-Q4_K_M",
   "name": "Qwen3.8-27B",
   "repo": "loom-fun-staging/bartowski-Qwen3.8-27B-loom",
-  "revision": "cb48dd1f30ebcb36cd6b8eaa7fbeddabff3602ef",
+  "revision": "5ed8a23288b4488ff1f9dc48ef6a0b6b4ad1c212",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -482,17 +482,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat --materialize=copy --output=qwen3.8-27b\nloom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat --output=qwen3.8-27b\nloom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat --materialize=copy --output=qwen3.8-27b",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat --output=qwen3.8-27b",
       "serve": "loom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "cb48dd1f30ebcb36cd6b8eaa7fbeddabff3602ef"
+      "source_revision": "5ed8a23288b4488ff1f9dc48ef6a0b6b4ad1c212"
     },
     "radeon-r9700": {
       "blocks": [
@@ -502,17 +502,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat-r9700 --materialize=copy --output=qwen3.8-27b\nloom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat-r9700 --output=qwen3.8-27b\nloom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 120,832 tokens per request (its native context is 262,144)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 120,832 tokens per request (its native context is 262,144)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat-r9700 --materialize=copy --output=qwen3.8-27b",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat-r9700 --output=qwen3.8-27b",
       "serve": "loom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "cb48dd1f30ebcb36cd6b8eaa7fbeddabff3602ef"
+      "source_revision": "5ed8a23288b4488ff1f9dc48ef6a0b6b4ad1c212"
     }
   },
   "shared_request": {
@@ -527,6 +527,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"qwen3.8-27b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "cb48dd1f30ebcb36cd6b8eaa7fbeddabff3602ef"
+    "source_revision": "5ed8a23288b4488ff1f9dc48ef6a0b6b4ad1c212"
   }
 }

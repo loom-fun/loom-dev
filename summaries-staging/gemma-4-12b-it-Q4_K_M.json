@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-12b-it-Q4_K_M",
   "name": "gemma-4-12B-it",
   "repo": "loom-fun-staging/unsloth-gemma-4-12B-it-loom",
-  "revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6",
+  "revision": "bc879b02f9112c1bbbb8dfdcd27ca1c39a2edfc9",
   "status": null,
   "license": "mit",
   "service": {
@@ -772,17 +772,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6"
+      "source_revision": "bc879b02f9112c1bbbb8dfdcd27ca1c39a2edfc9"
     },
     "radeon-r9700": {
       "blocks": [
@@ -792,17 +792,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-r9700 --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 51,200 tokens per request (its native context is 262,144)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 51,200 tokens per request (its native context is 262,144)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-r9700 --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6"
+      "source_revision": "bc879b02f9112c1bbbb8dfdcd27ca1c39a2edfc9"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -812,17 +812,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-16gb --output=gemma-4-12B-it\nloom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 12,288 tokens per request (its native context is 262,144)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 12,288 tokens per request (its native context is 262,144)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-16gb --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6"
+      "source_revision": "bc879b02f9112c1bbbb8dfdcd27ca1c39a2edfc9"
     }
   },
   "shared_request": {
@@ -837,6 +837,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-12B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6"
+    "source_revision": "bc879b02f9112c1bbbb8dfdcd27ca1c39a2edfc9"
   }
 }

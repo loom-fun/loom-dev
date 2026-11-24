@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
   "name": "Inkling-2-Mini",
   "repo": "loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700",
-  "revision": "072bdc02bfba879ea099b877c3acf29b044aad8f",
+  "revision": "90c125c8b0686030e33ee899c7a5098a83a25a46",
   "status": "paused",
   "license": "mit",
   "service": {
@@ -170,21 +170,21 @@
   },
   "gates": {
     "summary": {
-      "pass": 3,
-      "fail": 2,
+      "pass": 4,
+      "fail": 1,
       "unknown": 1,
       "n/a": 5
     },
     "status": {
       "kernel_tests": "unknown",
       "golden": "pass",
-      "compare": "fail",
+      "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
       "spec": "n/a",
-      "agent": "fail",
+      "agent": "pass",
       "agent_think_off": "n/a",
-      "sampling": "pass",
+      "sampling": "fail",
       "decision": "n/a",
       "logits": "n/a"
     }
@@ -206,17 +206,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700\nloom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat --output=./unsloth-Inkling-2-Mini-loom-r9700\nloom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat --output=./unsloth-Inkling-2-Mini-loom-r9700",
       "serve": "loom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "072bdc02bfba879ea099b877c3acf29b044aad8f"
+      "source_revision": "90c125c8b0686030e33ee899c7a5098a83a25a46"
     },
     "radeon-r9700": {
       "blocks": [
@@ -226,17 +226,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat-r9700 --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700\nloom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat-r9700 --output=./unsloth-Inkling-2-Mini-loom-r9700\nloom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat-r9700 --materialize=copy --output=./unsloth-Inkling-2-Mini-loom-r9700",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom-r9700:chat-r9700 --output=./unsloth-Inkling-2-Mini-loom-r9700",
       "serve": "loom-serve --model=./unsloth-Inkling-2-Mini-loom-r9700 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "072bdc02bfba879ea099b877c3acf29b044aad8f"
+      "source_revision": "90c125c8b0686030e33ee899c7a5098a83a25a46"
     }
   },
   "shared_request": {
@@ -249,8 +249,12 @@
       {
         "kind": "code",
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"thinkingmachines/Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"none\"}'"
+      },
+      {
+        "kind": "text",
+        "text": "On Radeon, both Inkling presets require `name`, `tool_call_id`, and `content` in each tool result message."
       }
     ],
-    "source_revision": "072bdc02bfba879ea099b877c3acf29b044aad8f"
+    "source_revision": "90c125c8b0686030e33ee899c7a5098a83a25a46"
   }
 }

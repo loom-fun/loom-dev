@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-Flash-Next-UD-Q4_K_XL",
   "name": "Qwen3.8-Flash-Next",
   "repo": "loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom",
-  "revision": "473e5815cedcf3117fcac905c27ed3434f9fe836",
+  "revision": "7d27c03e6450de529a4bf7d76118a8170b2ac1aa",
   "status": null,
   "license": "mit",
   "service": {
@@ -248,17 +248,17 @@
       "blocks": [
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --materialize=copy --output=Qwen3.8-Flash-Next-loom\nloom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --workers=8"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --output=Qwen3.8-Flash-Next-loom\nloom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --workers=8"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --materialize=copy --output=Qwen3.8-Flash-Next-loom",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-Flash-Next-loom:vision-mtp --output=Qwen3.8-Flash-Next-loom",
       "serve": "loom-serve --model=Qwen3.8-Flash-Next-loom '--device=amdgpu://?completion_spin_ns=4294967295' --workers=8",
-      "source_revision": "473e5815cedcf3117fcac905c27ed3434f9fe836"
+      "source_revision": "7d27c03e6450de529a4bf7d76118a8170b2ac1aa"
     }
   },
   "shared_request": {
@@ -277,6 +277,6 @@
         "text": "AMD Radeon AI PRO R9700 (gfx1201, 32 GB): this package does not fit its 32 GB (it needs about 118 GB)."
       }
     ],
-    "source_revision": "473e5815cedcf3117fcac905c27ed3434f9fe836"
+    "source_revision": "7d27c03e6450de529a4bf7d76118a8170b2ac1aa"
   }
 }

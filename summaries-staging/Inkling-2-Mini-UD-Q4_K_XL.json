@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL",
   "name": "Inkling-2-Mini",
   "repo": "loom-fun-staging/unsloth-Inkling-2-Mini-loom",
-  "revision": "44d754c12601125e34b9d32685c5c01c0bf198cf",
+  "revision": "bd021e649b158e608b389eca9bfed60a0ec2d225",
   "status": "paused",
   "license": "apache-2.0",
   "service": {
@@ -196,17 +196,17 @@
       "blocks": [
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=./unsloth-Inkling-2-Mini-loom\nloom-serve --model=./unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom:chat --output=./unsloth-Inkling-2-Mini-loom\nloom-serve --model=./unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=./unsloth-Inkling-2-Mini-loom",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Inkling-2-Mini-loom:chat --output=./unsloth-Inkling-2-Mini-loom",
       "serve": "loom-serve --model=./unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "44d754c12601125e34b9d32685c5c01c0bf198cf"
+      "source_revision": "bd021e649b158e608b389eca9bfed60a0ec2d225"
     }
   },
   "shared_request": {
@@ -221,6 +221,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "44d754c12601125e34b9d32685c5c01c0bf198cf"
+    "source_revision": "bd021e649b158e608b389eca9bfed60a0ec2d225"
   }
 }

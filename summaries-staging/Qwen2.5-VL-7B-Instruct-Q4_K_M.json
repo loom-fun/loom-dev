@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-VL-7B-Instruct-Q4_K_M",
   "name": "Qwen2.5-VL-7B-Instruct",
   "repo": "loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom",
-  "revision": "5adb07c8265671378e26beb752d90b218724488d",
+  "revision": "221100253cd14f15c18b1c0581337efe76cce9b5",
   "status": null,
   "license": "mit",
   "service": {
@@ -737,17 +737,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-VL-7B-Instruct",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --output=Qwen2.5-VL-7B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "5adb07c8265671378e26beb752d90b218724488d"
+      "source_revision": "221100253cd14f15c18b1c0581337efe76cce9b5"
     },
     "radeon-r9700": {
       "blocks": [
@@ -757,17 +757,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-VL-7B-Instruct",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat --output=Qwen2.5-VL-7B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "5adb07c8265671378e26beb752d90b218724488d"
+      "source_revision": "221100253cd14f15c18b1c0581337efe76cce9b5"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -777,17 +777,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat-16gb --output=Qwen2.5-VL-7B-Instruct\nloom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-VL-7B-Instruct",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen2.5-VL-7B-Instruct-loom:chat-16gb --output=Qwen2.5-VL-7B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-VL-7B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "5adb07c8265671378e26beb752d90b218724488d"
+      "source_revision": "221100253cd14f15c18b1c0581337efe76cce9b5"
     }
   },
   "shared_request": {
@@ -802,6 +802,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen2.5-VL-7B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "5adb07c8265671378e26beb752d90b218724488d"
+    "source_revision": "221100253cd14f15c18b1c0581337efe76cce9b5"
   }
 }

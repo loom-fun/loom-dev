@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL",
   "name": "gemma-4-26B-A4B-it-qat",
   "repo": "loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom",
-  "revision": "7e28fcd1f34dd66655f23b387ee77a258c5b5863",
+  "revision": "3432ee7f49f50560d0c89b4f1f4fc60322b0f242",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -508,17 +508,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 262,144 tokens per request (its native context is 262,144)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 262,144 tokens per request (its native context is 262,144)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
       "serve": "loom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "7e28fcd1f34dd66655f23b387ee77a258c5b5863"
+      "source_revision": "3432ee7f49f50560d0c89b4f1f4fc60322b0f242"
     },
     "radeon-r9700": {
       "blocks": [
@@ -528,17 +528,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 36,864 tokens per request (its native context is 262,144)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 36,864 tokens per request (its native context is 262,144)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
       "serve": "loom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "7e28fcd1f34dd66655f23b387ee77a258c5b5863"
+      "source_revision": "3432ee7f49f50560d0c89b4f1f4fc60322b0f242"
     }
   },
   "shared_request": {
@@ -553,6 +553,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-26B-A4B-it-qat-q4_0-unquantized\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "7e28fcd1f34dd66655f23b387ee77a258c5b5863"
+    "source_revision": "3432ee7f49f50560d0c89b4f1f4fc60322b0f242"
   }
 }

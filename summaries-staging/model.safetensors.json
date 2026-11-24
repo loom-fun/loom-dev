@@ -3,7 +3,7 @@
   "checkpoint": "model.safetensors",
   "name": "Qwen3.8-27B-Quark-AWQ-MXFP4",
   "repo": "loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom",
-  "revision": "5e76fa21ab283fd763a08af3a14233021645ad79",
+  "revision": "c1eaa0960244132a038235fece80087aac9284a0",
   "status": null,
   "license": "mit",
   "service": {
@@ -269,17 +269,17 @@
       "blocks": [
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom:chat-r9700 --materialize=copy --output=qwen3.8-27b-mxfp4\nloom-serve --model=qwen3.8-27b-mxfp4 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom:chat-r9700 --output=qwen3.8-27b-mxfp4\nloom-serve --model=qwen3.8-27b-mxfp4 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom:chat-r9700 --materialize=copy --output=qwen3.8-27b-mxfp4",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom:chat-r9700 --output=qwen3.8-27b-mxfp4",
       "serve": "loom-serve --model=qwen3.8-27b-mxfp4 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "5e76fa21ab283fd763a08af3a14233021645ad79"
+      "source_revision": "c1eaa0960244132a038235fece80087aac9284a0"
     }
   },
   "shared_request": {
@@ -298,6 +298,6 @@
         "text": "On the AMD Radeon AI PRO R9700, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 110,592 tokens per request there (its native context is 262,144); the package files are the same on every GPU.\n\nOn the AMD Radeon AI PRO R9700, the Quick start fetches the `chat-r9700` preset of `model.json`: the default preset with `context_capacity` 110,592 for its 32 GB. The programs, weights and tokenizer are the same.\n\nAMD Ryzen AI Max+ 395 \"Strix Halo\" (gfx1151): not a target of this package, not measured: the fast path is FP8 WMMA (gfx12); gfx11 (Strix Halo) has none, and the GGUF Q4_K_M card serves it. Owner decision 2026-11-15: MXFP4 safetensors cards have no Strix rows."
       }
     ],
-    "source_revision": "5e76fa21ab283fd763a08af3a14233021645ad79"
+    "source_revision": "c1eaa0960244132a038235fece80087aac9284a0"
   }
 }

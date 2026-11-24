@@ -3,7 +3,7 @@
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
   "repo": "loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "b81c05d4348b3fd1fc3a7f17c1ace06c9da84470",
+  "revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc",
   "status": null,
   "license": "mit",
   "service": {
@@ -734,17 +734,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "b81c05d4348b3fd1fc3a7f17c1ace06c9da84470"
+      "source_revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc"
     },
     "radeon-r9700": {
       "blocks": [
@@ -754,17 +754,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "b81c05d4348b3fd1fc3a7f17c1ace06c9da84470"
+      "source_revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -774,17 +774,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "b81c05d4348b3fd1fc3a7f17c1ace06c9da84470"
+      "source_revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc"
     }
   },
   "shared_request": {
@@ -799,6 +799,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "b81c05d4348b3fd1fc3a7f17c1ace06c9da84470"
+    "source_revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc"
   }
 }

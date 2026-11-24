@@ -3,7 +3,7 @@
   "checkpoint": "MiniCPM-V-4.7-35B-A3B-Q4_K_M",
   "name": "MiniCPM-V-4.7-35B-A3B",
   "repo": "loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom",
-  "revision": "31429b9b325da56bd828223cf74cd883fbea4390",
+  "revision": "4d3a1f90332543a396558e451ef9ce8fe3a4ac49",
   "status": null,
   "license": "mit",
   "service": {
@@ -479,17 +479,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat --materialize=copy --output=MiniCPM-V-4.7-35B-A3B\nloom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat --output=MiniCPM-V-4.7-35B-A3B\nloom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat --materialize=copy --output=MiniCPM-V-4.7-35B-A3B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat --output=MiniCPM-V-4.7-35B-A3B",
       "serve": "loom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "31429b9b325da56bd828223cf74cd883fbea4390"
+      "source_revision": "4d3a1f90332543a396558e451ef9ce8fe3a4ac49"
     },
     "radeon-r9700": {
       "blocks": [
@@ -499,17 +499,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat-r9700 --materialize=copy --output=MiniCPM-V-4.7-35B-A3B\nloom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat-r9700 --output=MiniCPM-V-4.7-35B-A3B\nloom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat-r9700 --materialize=copy --output=MiniCPM-V-4.7-35B-A3B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-MiniCPM-V-4.7-35B-A3B-loom:chat-r9700 --output=MiniCPM-V-4.7-35B-A3B",
       "serve": "loom-serve --model=MiniCPM-V-4.7-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "31429b9b325da56bd828223cf74cd883fbea4390"
+      "source_revision": "4d3a1f90332543a396558e451ef9ce8fe3a4ac49"
     }
   },
   "shared_request": {
@@ -524,6 +524,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"openbmb/MiniCPM-V-4.7-35B-A3B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "31429b9b325da56bd828223cf74cd883fbea4390"
+    "source_revision": "4d3a1f90332543a396558e451ef9ce8fe3a4ac49"
   }
 }

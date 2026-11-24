@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-1.7B-Q4_K_M",
   "name": "Qwen3-1.7B",
   "repo": "loom-fun-staging/ggml-org-Qwen3-1.7B-loom",
-  "revision": "80410051251711cf202407e474216aa9075ef846",
+  "revision": "7668e64c0992eddc485428f873f0430383b51944",
   "status": null,
   "license": "mit",
   "service": {
@@ -734,17 +734,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat --materialize=copy --output=Qwen3-1.7B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat --output=Qwen3-1.7B",
       "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "80410051251711cf202407e474216aa9075ef846"
+      "source_revision": "7668e64c0992eddc485428f873f0430383b51944"
     },
     "radeon-r9700": {
       "blocks": [
@@ -754,17 +754,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-r9700 --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-r9700 --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-r9700 --materialize=copy --output=Qwen3-1.7B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-r9700 --output=Qwen3-1.7B",
       "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "80410051251711cf202407e474216aa9075ef846"
+      "source_revision": "7668e64c0992eddc485428f873f0430383b51944"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -774,17 +774,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-16gb --materialize=copy --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-16gb --output=Qwen3-1.7B\nloom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-16gb --materialize=copy --output=Qwen3-1.7B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-1.7B-loom:chat-16gb --output=Qwen3-1.7B",
       "serve": "loom-serve --model=Qwen3-1.7B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "80410051251711cf202407e474216aa9075ef846"
+      "source_revision": "7668e64c0992eddc485428f873f0430383b51944"
     }
   },
   "shared_request": {
@@ -799,6 +799,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-1.7B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "80410051251711cf202407e474216aa9075ef846"
+    "source_revision": "7668e64c0992eddc485428f873f0430383b51944"
   }
 }

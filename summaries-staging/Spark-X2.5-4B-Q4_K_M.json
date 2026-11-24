@@ -3,7 +3,7 @@
   "checkpoint": "Spark-X2.5-4B-Q4_K_M",
   "name": "Spark-X2.5-4B",
   "repo": "loom-fun-staging/XHToken-Spark-X2.5-4B-loom",
-  "revision": "fd3ba8af60e1884c6dd4a9fa25250f2a677f1408",
+  "revision": "60236ca25f04a2357122f503d98896a03775a380",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -734,17 +734,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat --materialize=copy --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat --materialize=copy --output=Spark-X2.5-4B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat --output=Spark-X2.5-4B",
       "serve": "loom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "fd3ba8af60e1884c6dd4a9fa25250f2a677f1408"
+      "source_revision": "60236ca25f04a2357122f503d98896a03775a380"
     },
     "radeon-r9700": {
       "blocks": [
@@ -754,17 +754,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat-r9700 --materialize=copy --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat-r9700 --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 195,584 tokens per request (its native context is 1,048,576)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 195,584 tokens per request (its native context is 1,048,576)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat-r9700 --materialize=copy --output=Spark-X2.5-4B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat-r9700 --output=Spark-X2.5-4B",
       "serve": "loom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "fd3ba8af60e1884c6dd4a9fa25250f2a677f1408"
+      "source_revision": "60236ca25f04a2357122f503d98896a03775a380"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -774,17 +774,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat-16gb --materialize=copy --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat-16gb --output=Spark-X2.5-4B\nloom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 75,776 tokens per request (its native context is 1,048,576)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 75,776 tokens per request (its native context is 1,048,576)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat-16gb --materialize=copy --output=Spark-X2.5-4B",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/XHToken-Spark-X2.5-4B-loom:chat-16gb --output=Spark-X2.5-4B",
       "serve": "loom-serve --model=Spark-X2.5-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "fd3ba8af60e1884c6dd4a9fa25250f2a677f1408"
+      "source_revision": "60236ca25f04a2357122f503d98896a03775a380"
     }
   },
   "shared_request": {
@@ -799,6 +799,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"XHToken/Spark-X2.5-4B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "fd3ba8af60e1884c6dd4a9fa25250f2a677f1408"
+    "source_revision": "60236ca25f04a2357122f503d98896a03775a380"
   }
 }

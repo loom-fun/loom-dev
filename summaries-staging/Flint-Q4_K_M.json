@@ -3,7 +3,7 @@
   "checkpoint": "Flint-Q4_K_M",
   "name": "Flint",
   "repo": "loom-fun-staging/ggml-org-Flint-loom",
-  "revision": "d9f8f69c9923dd1e343f73a837a29311ed1738be",
+  "revision": "0e7a781a61a49e8af185e2a998b8ba65af13d01f",
   "status": null,
   "license": "mit",
   "service": {
@@ -433,17 +433,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Flint-loom:chat --materialize=copy --output=flint\nloom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Flint-loom:chat --output=flint\nloom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Flint-loom:chat --materialize=copy --output=flint",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Flint-loom:chat --output=flint",
       "serve": "loom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "d9f8f69c9923dd1e343f73a837a29311ed1738be"
+      "source_revision": "0e7a781a61a49e8af185e2a998b8ba65af13d01f"
     },
     "radeon-r9700": {
       "blocks": [
@@ -453,17 +453,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Flint-loom:chat-r9700 --materialize=copy --output=flint\nloom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/ggml-org-Flint-loom:chat-r9700 --output=flint\nloom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 36,864 tokens per request (its native context is 262,144)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 36,864 tokens per request (its native context is 262,144)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Flint-loom:chat-r9700 --materialize=copy --output=flint",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Flint-loom:chat-r9700 --output=flint",
       "serve": "loom-serve --model=flint '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "d9f8f69c9923dd1e343f73a837a29311ed1738be"
+      "source_revision": "0e7a781a61a49e8af185e2a998b8ba65af13d01f"
     }
   },
   "shared_request": {
@@ -478,6 +478,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"flint\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "d9f8f69c9923dd1e343f73a837a29311ed1738be"
+    "source_revision": "0e7a781a61a49e8af185e2a998b8ba65af13d01f"
   }
 }

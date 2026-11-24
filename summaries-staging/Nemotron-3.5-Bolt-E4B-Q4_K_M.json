@@ -3,7 +3,7 @@
   "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
   "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
   "repo": "loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-  "revision": "16768be46bbce2df1ebb754956e2681261e664f8",
+  "revision": "2b231876b23182f288ba6a4ca83fc4c25cf33072",
   "status": null,
   "license": "mit",
   "service": {
@@ -841,17 +841,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "16768be46bbce2df1ebb754956e2681261e664f8"
+      "source_revision": "2b231876b23182f288ba6a4ca83fc4c25cf33072"
     },
     "radeon-r9700": {
       "blocks": [
@@ -861,17 +861,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --materialize=copy --output=nemotron-3.5-bolt-e4b",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "16768be46bbce2df1ebb754956e2681261e664f8"
+      "source_revision": "2b231876b23182f288ba6a4ca83fc4c25cf33072"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -881,17 +881,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --materialize=copy --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --output=nemotron-3.5-bolt-e4b\nloom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 35,840 tokens per request (its native context is 131,072)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n\nOn this GPU, `--memory_bytes=15000000000` bounds the memory pool: this package serves up to 35,840 tokens per request (its native context is 131,072)."
         }
       ],
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --materialize=copy --output=nemotron-3.5-bolt-e4b",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "16768be46bbce2df1ebb754956e2681261e664f8"
+      "source_revision": "2b231876b23182f288ba6a4ca83fc4c25cf33072"
     }
   },
   "shared_request": {
@@ -906,6 +906,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"nemotron-3.5-bolt-e4b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "16768be46bbce2df1ebb754956e2681261e664f8"
+    "source_revision": "2b231876b23182f288ba6a4ca83fc4c25cf33072"
   }
 }
