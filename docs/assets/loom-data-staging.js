@@ -1312,7 +1312,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-12b-it-Q4_K_M",
    "name": "gemma-4-12B-it",
    "repo": "loom-fun-staging/unsloth-gemma-4-12B-it-loom",
-   "revision": "ed777626a281718ddf15f7a00d39e7edfd11f10d",
+   "revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6",
    "status": null,
    "license": "mit",
    "service": {
@@ -2091,7 +2091,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat --materialize=copy --output=gemma-4-12B-it",
      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "ed777626a281718ddf15f7a00d39e7edfd11f10d"
+     "source_revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6"
     },
     "radeon-r9700": {
      "blocks": [
@@ -2111,7 +2111,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-12B-it",
      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "ed777626a281718ddf15f7a00d39e7edfd11f10d"
+     "source_revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -2131,7 +2131,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-16gb --materialize=copy --output=gemma-4-12B-it",
      "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-     "source_revision": "ed777626a281718ddf15f7a00d39e7edfd11f10d"
+     "source_revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6"
     }
    },
    "shared_request": {
@@ -2146,7 +2146,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-12B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "ed777626a281718ddf15f7a00d39e7edfd11f10d"
+    "source_revision": "eac424bdd1101a795831e4d3f6f64dc9e9ea49c6"
    }
   },
   {
@@ -2154,7 +2154,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-26B-A4B-it-Q4_K_M",
    "name": "gemma-4-26B-A4B-it",
    "repo": "loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom",
-   "revision": "472b1e12158a19e661d04aecfd49733e67523b0a",
+   "revision": "304c2bef6ed1993a4de801904eec8832528c1dc2",
    "status": null,
    "license": "mit",
    "service": {
@@ -2655,7 +2655,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it",
      "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "472b1e12158a19e661d04aecfd49733e67523b0a"
+     "source_revision": "304c2bef6ed1993a4de801904eec8832528c1dc2"
     },
     "radeon-r9700": {
      "blocks": [
@@ -2675,7 +2675,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it",
      "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "472b1e12158a19e661d04aecfd49733e67523b0a"
+     "source_revision": "304c2bef6ed1993a4de801904eec8832528c1dc2"
     }
    },
    "shared_request": {
@@ -2690,7 +2690,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-26B-A4B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "472b1e12158a19e661d04aecfd49733e67523b0a"
+    "source_revision": "304c2bef6ed1993a4de801904eec8832528c1dc2"
    }
   },
   {
@@ -2698,7 +2698,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-26B-A4B-it-qat-UD-Q4_K_XL",
    "name": "gemma-4-26B-A4B-it-qat",
    "repo": "loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom",
-   "revision": "d5d52ef715578b48d4ae0fef1ffdfa2981a5dab0",
+   "revision": "7e28fcd1f34dd66655f23b387ee77a258c5b5863",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -3213,7 +3213,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
      "serve": "loom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "d5d52ef715578b48d4ae0fef1ffdfa2981a5dab0"
+     "source_revision": "7e28fcd1f34dd66655f23b387ee77a258c5b5863"
     },
     "radeon-r9700": {
      "blocks": [
@@ -3233,7 +3233,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-26B-A4B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it-qat-q4_0-unquantized",
      "serve": "loom-serve --model=gemma-4-26B-A4B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "d5d52ef715578b48d4ae0fef1ffdfa2981a5dab0"
+     "source_revision": "7e28fcd1f34dd66655f23b387ee77a258c5b5863"
     }
    },
    "shared_request": {
@@ -3248,7 +3248,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-26B-A4B-it-qat-q4_0-unquantized\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "d5d52ef715578b48d4ae0fef1ffdfa2981a5dab0"
+    "source_revision": "7e28fcd1f34dd66655f23b387ee77a258c5b5863"
    }
   },
   {
@@ -3256,7 +3256,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-31B-it-Q4_K_M",
    "name": "gemma-4-31B-it",
    "repo": "loom-fun-staging/unsloth-gemma-4-31B-it-loom",
-   "revision": "73ccee0ea75a59c4bf009433c1e59550ef586c69",
+   "revision": "d1012c2abe26c4f204585f500c1fa923bb6db067",
    "status": null,
    "license": "mit",
    "service": {
@@ -3757,7 +3757,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-31B-it-loom:chat --materialize=copy --output=gemma-4-31B-it",
      "serve": "loom-serve --model=gemma-4-31B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "73ccee0ea75a59c4bf009433c1e59550ef586c69"
+     "source_revision": "d1012c2abe26c4f204585f500c1fa923bb6db067"
     },
     "radeon-r9700": {
      "blocks": [
@@ -3777,7 +3777,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-31B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-31B-it",
      "serve": "loom-serve --model=gemma-4-31B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "73ccee0ea75a59c4bf009433c1e59550ef586c69"
+     "source_revision": "d1012c2abe26c4f204585f500c1fa923bb6db067"
     }
    },
    "shared_request": {
@@ -3792,7 +3792,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-31B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "73ccee0ea75a59c4bf009433c1e59550ef586c69"
+    "source_revision": "d1012c2abe26c4f204585f500c1fa923bb6db067"
    }
   },
   {
@@ -18208,7 +18208,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen2.5-0.5B-Instruct-Q4_K_M",
    "name": "Qwen2.5-0.5B-Instruct",
    "repo": "loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom",
-   "revision": "d3a7833246d634b777b340a4bff099923a75e4d4",
+   "revision": "ace0ba40598f49866455ed9d335cf59e5ae42813",
    "status": null,
    "license": "mit",
    "service": {
@@ -18927,7 +18927,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat --materialize=copy --output=Qwen2.5-0.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "d3a7833246d634b777b340a4bff099923a75e4d4"
+     "source_revision": "ace0ba40598f49866455ed9d335cf59e5ae42813"
     },
     "radeon-r9700": {
      "blocks": [
@@ -18947,7 +18947,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-r9700 --materialize=copy --output=Qwen2.5-0.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "d3a7833246d634b777b340a4bff099923a75e4d4"
+     "source_revision": "ace0ba40598f49866455ed9d335cf59e5ae42813"
     },
     "gfx1201-16gb": {
      "blocks": [
@@ -18967,7 +18967,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-0.5B-Instruct-loom:chat-16gb --materialize=copy --output=Qwen2.5-0.5B-Instruct",
      "serve": "loom-serve --model=Qwen2.5-0.5B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-     "source_revision": "d3a7833246d634b777b340a4bff099923a75e4d4"
+     "source_revision": "ace0ba40598f49866455ed9d335cf59e5ae42813"
     }
    },
    "shared_request": {
@@ -18982,7 +18982,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen2.5-0.5B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
      }
     ],
-    "source_revision": "d3a7833246d634b777b340a4bff099923a75e4d4"
+    "source_revision": "ace0ba40598f49866455ed9d335cf59e5ae42813"
    }
   },
   {
@@ -35171,7 +35171,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.8-27B-UD-Q4_K_XL",
    "name": "Qwen3.8-27B",
    "repo": "loom-fun-staging/unsloth-Qwen3.8-27B-UD-Q4_K_XL",
-   "revision": "d079370b47525e6ffab4f99e6160f9c16f597837",
+   "revision": "10a314e2f38a3551fa5b39e9b23b25b51c431850",
    "status": null,
    "license": "mit",
    "service": {
@@ -35661,7 +35661,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-27B-UD-Q4_K_XL:chat --materialize=copy --output=qwen3.8-27b-ud-q4_k_xl",
      "serve": "loom-serve --model=qwen3.8-27b-ud-q4_k_xl '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "d079370b47525e6ffab4f99e6160f9c16f597837"
+     "source_revision": "10a314e2f38a3551fa5b39e9b23b25b51c431850"
     },
     "radeon-r9700": {
      "blocks": [
@@ -35681,7 +35681,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3.8-27B-UD-Q4_K_XL:chat-r9700 --materialize=copy --output=qwen3.8-27b-ud-q4_k_xl",
      "serve": "loom-serve --model=qwen3.8-27b-ud-q4_k_xl '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "d079370b47525e6ffab4f99e6160f9c16f597837"
+     "source_revision": "10a314e2f38a3551fa5b39e9b23b25b51c431850"
     }
    },
    "shared_request": {
@@ -35696,7 +35696,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"qwen3.8-27b-ud-q4_k_xl\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "d079370b47525e6ffab4f99e6160f9c16f597837"
+    "source_revision": "10a314e2f38a3551fa5b39e9b23b25b51c431850"
    }
   },
   {
