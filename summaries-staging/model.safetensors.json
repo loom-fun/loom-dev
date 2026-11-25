@@ -3,7 +3,7 @@
   "checkpoint": "model.safetensors",
   "name": "Qwen3.8-27B-Quark-AWQ-MXFP4",
   "repo": "loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom",
-  "revision": "27804b8f0e129b25bed5b9f5c0bb605fb3bea31b",
+  "revision": "acec7b7d313cf7b9fd1d1303334defe7e38d5ed5",
   "status": null,
   "license": "mit",
   "service": {
@@ -39,7 +39,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -130,130 +130,128 @@
     },
     "not_applicable": [],
     "devlab": {
-      "date": null,
-      "source": null,
+      "date": "2026-11-25",
+      "source": {
+        "kind": "devlab",
+        "run": "45545264934",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45545264934/job/138973296061"
+      },
       "metrics": {
         "decode": {
-          "loom": null,
+          "loom": 75.8,
           "llamacpp": null,
           "speedup": null,
-          "baseline": null
+          "baseline": 10.9,
+          "baseline_from": {
+            "date": "2026-11-16",
+            "source": {
+              "kind": "devlab",
+              "run": "43920731237",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43920731237/job/133487104076"
+            }
+          }
         },
         "decode_2k": {
-          "loom": null,
+          "loom": 73.8,
           "llamacpp": null,
           "speedup": null,
-          "baseline": null
+          "baseline": 10.7,
+          "baseline_from": {
+            "date": "2026-11-16",
+            "source": {
+              "kind": "devlab",
+              "run": "43920731237",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43920731237/job/133487104076"
+            }
+          }
         },
         "decode_32k": {
-          "loom": null,
+          "loom": 62.8,
           "llamacpp": null,
           "speedup": null,
           "baseline": null
         },
         "prefill_1k": {
-          "loom": null,
+          "loom": 2523.3,
           "llamacpp": null,
           "speedup": null,
-          "baseline": null
+          "baseline": 1045.4,
+          "baseline_from": {
+            "date": "2026-11-16",
+            "source": {
+              "kind": "devlab",
+              "run": "43920731237",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43920731237/job/133487104076"
+            }
+          }
         },
         "prefill_2k": {
-          "loom": null,
+          "loom": 3201.7,
           "llamacpp": null,
           "speedup": null,
-          "baseline": null
+          "baseline": 1132.4,
+          "baseline_from": {
+            "date": "2026-11-16",
+            "source": {
+              "kind": "devlab",
+              "run": "43920731237",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43920731237/job/133487104076"
+            }
+          }
         },
         "prefill_8k": {
-          "loom": null,
+          "loom": 3372.0,
           "llamacpp": null,
           "speedup": null,
           "baseline": null
         },
         "prefill_16k": {
-          "loom": null,
+          "loom": 3200.3,
           "llamacpp": null,
           "speedup": null,
           "baseline": null
         },
         "prefill_32k": {
-          "loom": null,
+          "loom": 2908.6,
           "llamacpp": null,
           "speedup": null,
           "baseline": null
         },
         "streams4": {
-          "loom": null,
+          "loom": 132.7,
           "llamacpp": null,
           "speedup": null,
-          "baseline": null
-        }
-      }
-    },
-    "programs_sha256": "8f961d0d381267a15c36835ec352664ac52089b88f708af580f28c3138d9696e",
-    "historical_programs": [
-      {
-        "date": "2026-11-23",
-        "source": {
-          "kind": "devlab",
-          "run": "45267277683",
-          "url": "https://github.com/loom-fun/loom-skills/actions/runs/45267277683/job/138017414449"
-        },
-        "programs_sha256": "c9530f9f4cec5937eaf53022da6335d241be8bd539bf9dbc687d3a13a7235499",
-        "program_identity": "recorded",
-        "metrics": {
-          "decode": {
-            "loom": 75.9,
-            "baseline": 10.9
-          },
-          "decode_2k": {
-            "loom": 74.2,
-            "baseline": 10.7
-          },
-          "decode_32k": {
-            "loom": 59.6
-          },
-          "prefill_16k": {
-            "loom": 3147.3
-          },
-          "prefill_1k": {
-            "loom": 2469.7,
-            "baseline": 1045.4
-          },
-          "prefill_2k": {
-            "loom": 3136.1,
-            "baseline": 1132.4
-          },
-          "prefill_32k": {
-            "loom": 2855.4
-          },
-          "prefill_8k": {
-            "loom": 3312.2
-          },
-          "streams4": {
-            "loom": 131.8,
-            "baseline": 19.0
+          "baseline": 19.0,
+          "baseline_from": {
+            "date": "2026-11-16",
+            "source": {
+              "kind": "devlab",
+              "run": "43920731237",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43920731237/job/133487104076"
+            }
           }
         }
       }
-    ]
+    },
+    "programs_sha256": "c9530f9f4cec5937eaf53022da6335d241be8bd539bf9dbc687d3a13a7235499"
   },
   "gates": {
     "summary": {
-      "pass": 0,
+      "pass": 9,
       "fail": 0,
-      "unknown": 10,
+      "unknown": 1,
       "n/a": 1
     },
     "status": {
-      "kernel_tests": "unknown",
-      "golden": "unknown",
-      "compare": "unknown",
-      "vision": "unknown",
-      "consistency": "unknown",
-      "spec": "unknown",
-      "agent": "unknown",
-      "agent_think_off": "unknown",
-      "sampling": "unknown",
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "pass",
+      "consistency": "pass",
+      "spec": "pass",
+      "agent": "pass",
+      "agent_think_off": "pass",
+      "sampling": "pass",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -281,7 +279,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/amd-Qwen3.8-27B-Quark-AWQ-MXFP4-loom:chat-r9700 --output=qwen3.8-27b-mxfp4",
       "serve": "loom-serve --model=qwen3.8-27b-mxfp4 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "27804b8f0e129b25bed5b9f5c0bb605fb3bea31b"
+      "source_revision": "acec7b7d313cf7b9fd1d1303334defe7e38d5ed5"
     }
   },
   "shared_request": {
@@ -297,9 +295,9 @@
       },
       {
         "kind": "text",
-        "text": "On the AMD Radeon AI PRO R9700, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 110,592 tokens per request there (its native context is 262,144).\n\nOn the AMD Radeon AI PRO R9700, the Quick start fetches the `chat-r9700` preset of `model.json`: the Radeon preset with `context_capacity` 110,592 for its 32 GB. It selects the repaired image-prefill program set. The `chat` preset uses the original program set at 262,144 context. The presets share the same weights and tokenizer.\n\nAMD Ryzen AI Max+ 395 \"Strix Halo\" (gfx1151): not a target of this package, not measured: the fast path is FP8 WMMA (gfx12); gfx11 (Strix Halo) has none, and the GGUF Q4_K_M card serves it. Owner decision 2026-11-15: MXFP4 safetensors cards have no Strix rows."
+        "text": "On the AMD Radeon AI PRO R9700, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 110,592 tokens per request there (its native context is 262,144); the package files are the same on every GPU.\n\nOn the AMD Radeon AI PRO R9700, the Quick start fetches the `chat-r9700` preset of `model.json`: the default preset with `context_capacity` 110,592 for its 32 GB. The programs, weights and tokenizer are the same.\n\nAMD Ryzen AI Max+ 395 \"Strix Halo\" (gfx1151): not a target of this package, not measured: the fast path is FP8 WMMA (gfx12); gfx11 (Strix Halo) has none, and the GGUF Q4_K_M card serves it. Owner decision 2026-11-15: MXFP4 safetensors cards have no Strix rows."
       }
     ],
-    "source_revision": "27804b8f0e129b25bed5b9f5c0bb605fb3bea31b"
+    "source_revision": "acec7b7d313cf7b9fd1d1303334defe7e38d5ed5"
   }
 }

@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.8-27B-Q4_K_M",
   "name": "Qwen3.8-27B",
   "repo": "loom-fun-staging/bartowski-Qwen3.8-27B-loom",
-  "revision": "5ed8a23288b4488ff1f9dc48ef6a0b6b4ad1c212",
+  "revision": "dedcccaeab1a6c28e99555310d3bffc792df5f24",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -39,7 +39,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -394,22 +394,22 @@
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-24",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "45275710722",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45275710722/job/138046833634"
+            "run": "45549065785",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45549065785/job/138985640024"
           },
           "metrics": {
             "decode": {
-              "loom": 74.0,
+              "loom": 74.2,
               "llamacpp": 45.8,
               "speedup": 1.62
             },
             "decode_2k": {
-              "loom": 65.8,
+              "loom": 67.6,
               "llamacpp": 45.1,
-              "speedup": 1.46
+              "speedup": 1.5
             },
             "decode_32k": {
               "loom": 55.8,
@@ -417,34 +417,34 @@
               "speedup": 1.36
             },
             "prefill_1k": {
-              "loom": 1705.3,
+              "loom": 1708.5,
               "llamacpp": 1069.2,
-              "speedup": 1.59
+              "speedup": 1.6
             },
             "prefill_2k": {
-              "loom": 1771.0,
+              "loom": 1772.5,
               "llamacpp": 1129.5,
               "speedup": 1.57
             },
             "prefill_8k": {
-              "loom": 1834.3,
+              "loom": 1836.5,
               "llamacpp": 1165.5,
-              "speedup": 1.57
+              "speedup": 1.58
             },
             "prefill_16k": {
-              "loom": 1753.3,
+              "loom": 1756.6,
               "llamacpp": 1119.8,
               "speedup": 1.57
             },
             "prefill_32k": {
-              "loom": 1611.2,
+              "loom": 1614.4,
               "llamacpp": 1026.2,
               "speedup": 1.57
             },
             "streams4": {
-              "loom": 117.3,
+              "loom": 116.8,
               "llamacpp": 84.0,
-              "speedup": 1.4
+              "speedup": 1.39
             }
           }
         },
@@ -492,7 +492,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat --output=qwen3.8-27b",
       "serve": "loom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "5ed8a23288b4488ff1f9dc48ef6a0b6b4ad1c212"
+      "source_revision": "dedcccaeab1a6c28e99555310d3bffc792df5f24"
     },
     "radeon-r9700": {
       "blocks": [
@@ -512,7 +512,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen3.8-27B-loom:chat-r9700 --output=qwen3.8-27b",
       "serve": "loom-serve --model=qwen3.8-27b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "5ed8a23288b4488ff1f9dc48ef6a0b6b4ad1c212"
+      "source_revision": "dedcccaeab1a6c28e99555310d3bffc792df5f24"
     }
   },
   "shared_request": {
@@ -527,6 +527,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"qwen3.8-27b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "5ed8a23288b4488ff1f9dc48ef6a0b6b4ad1c212"
+    "source_revision": "dedcccaeab1a6c28e99555310d3bffc792df5f24"
   }
 }

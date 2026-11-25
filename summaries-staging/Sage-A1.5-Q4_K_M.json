@@ -3,7 +3,7 @@
   "checkpoint": "Sage-A1.5-Q4_K_M",
   "name": "Sage-A1.5-Q4_K_M",
   "repo": "loom-fun-staging/InternScience-Sage-A1.5-loom",
-  "revision": "6213ad10959e27205b69a1c37d7205eab22aacdb",
+  "revision": "230aa54e0a14fadcc50e551cec9324aefffa6068",
   "status": null,
   "license": "mit",
   "service": {
@@ -39,7 +39,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -148,68 +148,68 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.46,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-23",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "45267567358",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45267567358/job/138018430073"
+        "run": "44088653570",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088653570/job/134057765597"
       },
       "metrics": {
         "decode": {
-          "loom": 87.8,
+          "loom": 87.9,
           "llamacpp": 71.2,
           "speedup": 1.23
         },
         "decode_2k": {
-          "loom": 76.1,
+          "loom": 79.7,
           "llamacpp": 69.5,
-          "speedup": 1.09
+          "speedup": 1.15
         },
         "decode_32k": {
-          "loom": 70.0,
+          "loom": 70.3,
           "llamacpp": 76.3,
           "speedup": 0.92
         },
         "prefill_1k": {
-          "loom": 2210.2,
+          "loom": 2209.4,
           "llamacpp": 1200.6,
           "speedup": 1.84
         },
         "prefill_2k": {
-          "loom": 2497.1,
+          "loom": 2472.6,
           "llamacpp": 1284.3,
-          "speedup": 1.94
+          "speedup": 1.93
         },
         "prefill_8k": {
-          "loom": 2680.1,
+          "loom": 2680.9,
           "llamacpp": 1291.5,
           "speedup": 2.08
         },
         "prefill_16k": {
-          "loom": 2431.7,
+          "loom": 2423.4,
           "llamacpp": 1175.5,
-          "speedup": 2.07
+          "speedup": 2.06
         },
         "prefill_32k": {
-          "loom": 2104.5,
+          "loom": 2102.6,
           "llamacpp": 993.6,
           "speedup": 2.12
         },
         "streams4": {
-          "loom": 171.6,
+          "loom": 172.2,
           "llamacpp": 140.4,
-          "speedup": 1.22
+          "speedup": 1.23
         }
       }
     },
-    "programs_sha256": "4f7f770ad1a22134fb7ab76e2629d61d59848d494fbbbfecaf3dd487d4569b5d"
+    "programs_sha256": "b84b9c64d8af6d0c8889cb4e85a93b3e9f3ee0db2618d251063552175b0c019a"
   },
   "gates": {
     "summary": {
@@ -345,61 +345,61 @@
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-23",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "45269041521",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45269041521/job/138023609998"
+            "run": "45545264934",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45545264934/job/138973296044"
           },
           "metrics": {
             "decode": {
-              "loom": 189.4,
+              "loom": 188.4,
               "llamacpp": 122.6,
               "speedup": 1.54
             },
             "decode_2k": {
-              "loom": 172.1,
+              "loom": 173.1,
               "llamacpp": 121.3,
-              "speedup": 1.42
+              "speedup": 1.43
             },
             "decode_32k": {
-              "loom": 166.4,
+              "loom": 163.5,
               "llamacpp": 143.8,
-              "speedup": 1.16
+              "speedup": 1.14
             },
             "prefill_1k": {
-              "loom": 6351.1,
+              "loom": 6292.9,
               "llamacpp": 3152.8,
-              "speedup": 2.01
+              "speedup": 2.0
             },
             "prefill_2k": {
-              "loom": 6641.4,
+              "loom": 6562.3,
               "llamacpp": 3569.0,
-              "speedup": 1.86
+              "speedup": 1.84
             },
             "prefill_8k": {
-              "loom": 7264.6,
+              "loom": 7175.8,
               "llamacpp": 3763.7,
-              "speedup": 1.93
+              "speedup": 1.91
             },
             "prefill_16k": {
-              "loom": 6636.5,
+              "loom": 6548.0,
               "llamacpp": 3520.6,
-              "speedup": 1.89
+              "speedup": 1.86
             },
             "prefill_32k": {
-              "loom": 5786.5,
+              "loom": 5708.8,
               "llamacpp": 3131.4,
-              "speedup": 1.85
+              "speedup": 1.82
             },
             "streams4": {
-              "loom": 389.8,
+              "loom": 389.0,
               "llamacpp": 275.8,
               "speedup": 1.41
             }
           }
         },
-        "programs_sha256": "4f7f770ad1a22134fb7ab76e2629d61d59848d494fbbbfecaf3dd487d4569b5d"
+        "programs_sha256": "b84b9c64d8af6d0c8889cb4e85a93b3e9f3ee0db2618d251063552175b0c019a"
       },
       "gates": {
         "summary": {
@@ -443,7 +443,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/InternScience-Sage-A1.5-loom:chat --output=Sage-A1.5",
       "serve": "loom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6213ad10959e27205b69a1c37d7205eab22aacdb"
+      "source_revision": "230aa54e0a14fadcc50e551cec9324aefffa6068"
     },
     "radeon-r9700": {
       "blocks": [
@@ -463,7 +463,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/InternScience-Sage-A1.5-loom:chat-r9700 --output=Sage-A1.5",
       "serve": "loom-serve --model=Sage-A1.5 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6213ad10959e27205b69a1c37d7205eab22aacdb"
+      "source_revision": "230aa54e0a14fadcc50e551cec9324aefffa6068"
     }
   },
   "shared_request": {
@@ -478,6 +478,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"InternScience/Sage-A1.5\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "6213ad10959e27205b69a1c37d7205eab22aacdb"
+    "source_revision": "230aa54e0a14fadcc50e551cec9324aefffa6068"
   }
 }

@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.5-35B-A3B-Q4_K_M",
   "name": "Ornith-1.5-35B-A3B",
   "repo": "loom-fun-staging/bartowski-Ornith-1.5-35B-A3B-loom",
-  "revision": "70bf2b0f69d21fe154182abead3e1e3b989b2e31",
+  "revision": "eae3cd880c7b71b7ab176a75f5a829f1b65a95eb",
   "status": null,
   "license": "mit",
   "service": {
@@ -43,7 +43,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -152,68 +152,68 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.75,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-23",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "45267567358",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45267567358/job/138018429887"
+        "run": "44088653570",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088653570/job/134057765690"
       },
       "metrics": {
         "decode": {
-          "loom": 72.2,
+          "loom": 72.9,
           "llamacpp": 38.8,
-          "speedup": 1.86
+          "speedup": 1.88
         },
         "decode_2k": {
-          "loom": 61.5,
+          "loom": 63.4,
           "llamacpp": 38.5,
-          "speedup": 1.6
+          "speedup": 1.65
         },
         "decode_32k": {
-          "loom": 50.9,
+          "loom": 52.0,
           "llamacpp": 28.7,
-          "speedup": 1.77
+          "speedup": 1.81
         },
         "prefill_1k": {
-          "loom": 2144.4,
+          "loom": 2172.4,
           "llamacpp": 1149.3,
-          "speedup": 1.87
+          "speedup": 1.89
         },
         "prefill_2k": {
-          "loom": 2383.7,
+          "loom": 2402.0,
           "llamacpp": 1218.8,
-          "speedup": 1.96
+          "speedup": 1.97
         },
         "prefill_8k": {
-          "loom": 2644.0,
+          "loom": 2614.7,
           "llamacpp": 1231.3,
-          "speedup": 2.15
+          "speedup": 2.12
         },
         "prefill_16k": {
-          "loom": 2354.5,
+          "loom": 2370.2,
           "llamacpp": 1142.6,
-          "speedup": 2.06
+          "speedup": 2.07
         },
         "prefill_32k": {
-          "loom": 2050.3,
+          "loom": 2062.2,
           "llamacpp": 985.5,
-          "speedup": 2.08
+          "speedup": 2.09
         },
         "streams4": {
-          "loom": 167.3,
+          "loom": 164.1,
           "llamacpp": 135.0,
-          "speedup": 1.24
+          "speedup": 1.22
         }
       }
     },
-    "programs_sha256": "022f90d608ad7a3043c2c125b7bc3d6734d758eaa99d010479755283494c4a09"
+    "programs_sha256": "1d44a22e98efba9488b00953b8b2c8786a3e88ac0592b0f8d076879a7aeb3413"
   },
   "gates": {
     "summary": {
@@ -349,11 +349,11 @@
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-23",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "45269041521",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45269041521/job/138023610288"
+            "run": "45549065785",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45549065785/job/138985639964"
           },
           "metrics": {
             "decode": {
@@ -362,9 +362,9 @@
               "speedup": 1.87
             },
             "decode_2k": {
-              "loom": 129.1,
+              "loom": 131.8,
               "llamacpp": 79.8,
-              "speedup": 1.62
+              "speedup": 1.65
             },
             "decode_32k": {
               "loom": 114.2,
@@ -372,38 +372,38 @@
               "speedup": 1.7
             },
             "prefill_1k": {
-              "loom": 6262.1,
+              "loom": 6209.8,
               "llamacpp": 3117.3,
-              "speedup": 2.01
+              "speedup": 1.99
             },
             "prefill_2k": {
-              "loom": 6498.0,
+              "loom": 6441.9,
               "llamacpp": 3437.9,
-              "speedup": 1.89
+              "speedup": 1.87
             },
             "prefill_8k": {
-              "loom": 7190.2,
+              "loom": 7129.3,
               "llamacpp": 3668.9,
-              "speedup": 1.96
+              "speedup": 1.94
             },
             "prefill_16k": {
-              "loom": 6539.9,
+              "loom": 6499.4,
               "llamacpp": 3463.0,
-              "speedup": 1.89
+              "speedup": 1.88
             },
             "prefill_32k": {
-              "loom": 5699.9,
+              "loom": 5680.8,
               "llamacpp": 3135.7,
-              "speedup": 1.82
+              "speedup": 1.81
             },
             "streams4": {
-              "loom": 360.8,
+              "loom": 362.3,
               "llamacpp": 259.2,
-              "speedup": 1.39
+              "speedup": 1.4
             }
           }
         },
-        "programs_sha256": "022f90d608ad7a3043c2c125b7bc3d6734d758eaa99d010479755283494c4a09"
+        "programs_sha256": "1d44a22e98efba9488b00953b8b2c8786a3e88ac0592b0f8d076879a7aeb3413"
       },
       "gates": {
         "summary": {
@@ -447,7 +447,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Ornith-1.5-35B-A3B-loom:chat --output=Ornith-1.5-35B-A3B",
       "serve": "loom-serve --model=Ornith-1.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "70bf2b0f69d21fe154182abead3e1e3b989b2e31"
+      "source_revision": "eae3cd880c7b71b7ab176a75f5a829f1b65a95eb"
     },
     "radeon-r9700": {
       "blocks": [
@@ -467,7 +467,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Ornith-1.5-35B-A3B-loom:chat-r9700 --output=Ornith-1.5-35B-A3B",
       "serve": "loom-serve --model=Ornith-1.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "70bf2b0f69d21fe154182abead3e1e3b989b2e31"
+      "source_revision": "eae3cd880c7b71b7ab176a75f5a829f1b65a95eb"
     }
   },
   "shared_request": {
@@ -482,6 +482,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"ornith-ai/Ornith-1.5-35B-A3B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "70bf2b0f69d21fe154182abead3e1e3b989b2e31"
+    "source_revision": "eae3cd880c7b71b7ab176a75f5a829f1b65a95eb"
   }
 }
