@@ -3,7 +3,7 @@
   "checkpoint": "Muse-Glimmer-30B-Q4_K_M",
   "name": "Muse-Glimmer-30B",
   "repo": "loom-fun-staging/ggml-org-Muse-Glimmer-30B-loom",
-  "revision": "191429a1271948cf504de969371a21c5eb4cc65c",
+  "revision": "f0b6fa5a28fd4c7db7675ac5c04257ede3b8bcad",
   "status": null,
   "license": "mit",
   "service": {
@@ -43,7 +43,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -152,68 +152,68 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.82,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-23",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "45260618966",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45260618966/job/137994067906"
+        "run": "44088677167",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088677167/job/134057871515"
       },
       "metrics": {
         "decode": {
-          "loom": 28.1,
+          "loom": 28.2,
           "llamacpp": 21.0,
           "speedup": 1.34
         },
         "decode_2k": {
-          "loom": 24.2,
+          "loom": 24.3,
           "llamacpp": 19.4,
           "speedup": 1.25
         },
         "decode_32k": {
-          "loom": 23.8,
+          "loom": 25.5,
           "llamacpp": 21.0,
-          "speedup": 1.13
+          "speedup": 1.21
         },
         "prefill_1k": {
-          "loom": 496.0,
+          "loom": 487.9,
           "llamacpp": 361.0,
-          "speedup": 1.37
+          "speedup": 1.35
         },
         "prefill_2k": {
-          "loom": 525.7,
+          "loom": 515.9,
           "llamacpp": 369.7,
-          "speedup": 1.42
+          "speedup": 1.4
         },
         "prefill_8k": {
-          "loom": 524.6,
+          "loom": 514.7,
           "llamacpp": 379.2,
-          "speedup": 1.38
+          "speedup": 1.36
         },
         "prefill_16k": {
-          "loom": 519.7,
+          "loom": 509.3,
           "llamacpp": 373.8,
-          "speedup": 1.39
+          "speedup": 1.36
         },
         "prefill_32k": {
-          "loom": 496.5,
+          "loom": 486.4,
           "llamacpp": 357.9,
-          "speedup": 1.39
+          "speedup": 1.36
         },
         "streams4": {
-          "loom": 49.2,
+          "loom": 49.3,
           "llamacpp": 40.1,
           "speedup": 1.23
         }
       }
     },
-    "programs_sha256": "70dcf272cc5993467c79063ebeacb0238dd328d0f7d4a385e6711b65f2484331"
+    "programs_sha256": "d7b7d23eb071d9e867abe828fbf4c5291cecf698bb241d911387ab4f848f241a"
   },
   "gates": {
     "summary": {
@@ -349,17 +349,17 @@
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-23",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "45269041521",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45269041521/job/138023610117"
+            "run": "45583997740",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45583997740/job/139100916932"
           },
           "metrics": {
             "decode": {
-              "loom": 72.4,
+              "loom": 72.8,
               "llamacpp": 54.8,
-              "speedup": 1.32
+              "speedup": 1.33
             },
             "decode_2k": {
               "loom": 59.3,
@@ -367,43 +367,43 @@
               "speedup": 1.09
             },
             "decode_32k": {
-              "loom": 58.5,
+              "loom": 59.4,
               "llamacpp": 55.0,
-              "speedup": 1.06
+              "speedup": 1.08
             },
             "prefill_1k": {
-              "loom": 1633.5,
+              "loom": 1644.9,
               "llamacpp": 1265.8,
-              "speedup": 1.29
-            },
-            "prefill_2k": {
-              "loom": 1771.8,
-              "llamacpp": 1315.7,
-              "speedup": 1.35
-            },
-            "prefill_8k": {
-              "loom": 1759.5,
-              "llamacpp": 1369.7,
-              "speedup": 1.28
-            },
-            "prefill_16k": {
-              "loom": 1755.9,
-              "llamacpp": 1349.5,
               "speedup": 1.3
             },
+            "prefill_2k": {
+              "loom": 1791.8,
+              "llamacpp": 1315.7,
+              "speedup": 1.36
+            },
+            "prefill_8k": {
+              "loom": 1784.9,
+              "llamacpp": 1369.7,
+              "speedup": 1.3
+            },
+            "prefill_16k": {
+              "loom": 1781.9,
+              "llamacpp": 1349.5,
+              "speedup": 1.32
+            },
             "prefill_32k": {
-              "loom": 1684.3,
+              "loom": 1709.3,
               "llamacpp": 1287.4,
-              "speedup": 1.31
+              "speedup": 1.33
             },
             "streams4": {
-              "loom": 128.1,
+              "loom": 127.9,
               "llamacpp": 87.4,
-              "speedup": 1.47
+              "speedup": 1.46
             }
           }
         },
-        "programs_sha256": "70dcf272cc5993467c79063ebeacb0238dd328d0f7d4a385e6711b65f2484331"
+        "programs_sha256": "d7b7d23eb071d9e867abe828fbf4c5291cecf698bb241d911387ab4f848f241a"
       },
       "gates": {
         "summary": {
@@ -447,7 +447,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Muse-Glimmer-30B-loom:chat --output=final",
       "serve": "loom-serve --model=final '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "191429a1271948cf504de969371a21c5eb4cc65c"
+      "source_revision": "f0b6fa5a28fd4c7db7675ac5c04257ede3b8bcad"
     },
     "radeon-r9700": {
       "blocks": [
@@ -467,7 +467,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Muse-Glimmer-30B-loom:chat-r9700 --output=final",
       "serve": "loom-serve --model=final '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "191429a1271948cf504de969371a21c5eb4cc65c"
+      "source_revision": "f0b6fa5a28fd4c7db7675ac5c04257ede3b8bcad"
     }
   },
   "shared_request": {
@@ -482,6 +482,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"meta-models/Muse-Glimmer-30B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "191429a1271948cf504de969371a21c5eb4cc65c"
+    "source_revision": "f0b6fa5a28fd4c7db7675ac5c04257ede3b8bcad"
   }
 }

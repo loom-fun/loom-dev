@@ -3,7 +3,7 @@
   "checkpoint": "Laguna-XS-2.1-Q4_K_M",
   "name": "Laguna-XS-2.1",
   "repo": "loom-fun-staging/ggml-org-Laguna-XS-2.1-loom",
-  "revision": "ed27556712448e265a669900b6a59126a10c0614",
+  "revision": "c9eda158371897c81529b223a80eb785164ef98e",
   "status": null,
   "license": "mit",
   "service": {
@@ -39,10 +39,10 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "n/a",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -124,68 +124,68 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.09,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": "2026-11-23",
+      "date": "2026-11-17",
       "source": {
         "kind": "devlab",
-        "run": "45271278445",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45271278445/job/138031414985"
+        "run": "44088677167",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088677167/job/134057871341"
       },
       "metrics": {
         "decode": {
-          "loom": 42.5,
+          "loom": 42.6,
           "llamacpp": null,
           "speedup": null
         },
         "decode_2k": {
-          "loom": 33.1,
+          "loom": 33.0,
           "llamacpp": null,
           "speedup": null
         },
         "decode_32k": {
-          "loom": 16.4,
+          "loom": 15.7,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_1k": {
-          "loom": 1921.6,
+          "loom": 1966.4,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_2k": {
-          "loom": 2075.0,
+          "loom": 2113.6,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_8k": {
-          "loom": 2142.1,
+          "loom": 2190.3,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_16k": {
-          "loom": 1745.5,
+          "loom": 1780.8,
           "llamacpp": null,
           "speedup": null
         },
         "prefill_32k": {
-          "loom": 1454.2,
+          "loom": 1474.8,
           "llamacpp": null,
           "speedup": null
         },
         "streams4": {
-          "loom": 166.7,
+          "loom": 171.5,
           "llamacpp": 148.4,
-          "speedup": 1.12
+          "speedup": 1.16
         }
       }
     },
-    "programs_sha256": "848fa00b045f56fd3d67e4d704267b7851d03e63fb72676eaac51766236ea02e"
+    "programs_sha256": "3681776dd4e74b9c66eceefd60bff790d03aa1f0f4a08e0084cb1132a5356e85"
   },
   "gates": {
     "summary": {
@@ -297,16 +297,20 @@
         },
         "not_applicable": [],
         "devlab": {
-          "date": null,
-          "source": null,
+          "date": "2026-11-25",
+          "source": {
+            "kind": "devlab",
+            "run": "45583997740",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45583997740/job/139100916860"
+          },
           "metrics": {
             "decode": {
-              "loom": null,
+              "loom": 100.3,
               "llamacpp": null,
               "speedup": null
             },
             "decode_2k": {
-              "loom": null,
+              "loom": 69.7,
               "llamacpp": null,
               "speedup": null
             },
@@ -316,22 +320,22 @@
               "speedup": null
             },
             "prefill_1k": {
-              "loom": null,
+              "loom": 6094.5,
               "llamacpp": null,
               "speedup": null
             },
             "prefill_2k": {
-              "loom": null,
+              "loom": 6906.9,
               "llamacpp": null,
               "speedup": null
             },
             "prefill_8k": {
-              "loom": null,
+              "loom": 7621.4,
               "llamacpp": null,
               "speedup": null
             },
             "prefill_16k": {
-              "loom": null,
+              "loom": 6901.5,
               "llamacpp": null,
               "speedup": null
             },
@@ -341,82 +345,31 @@
               "speedup": null
             },
             "streams4": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
+              "loom": 396.1,
+              "llamacpp": 255.6,
+              "speedup": 1.55
             }
           }
         },
-        "programs_sha256": "848fa00b045f56fd3d67e4d704267b7851d03e63fb72676eaac51766236ea02e",
-        "historical_programs": [
-          {
-            "date": "2026-11-17",
-            "source": {
-              "kind": "devlab",
-              "run": "43993232852",
-              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993232852/job/133738871343"
-            },
-            "programs_sha256": "3681776dd4e74b9c66eceefd60bff790d03aa1f0f4a08e0084cb1132a5356e85",
-            "program_identity": "recorded",
-            "metrics": {
-              "decode": {
-                "loom": 101.0
-              },
-              "decode_2k": {
-                "loom": 70.2
-              },
-              "prefill_16k": {
-                "loom": 7021.2
-              },
-              "prefill_1k": {
-                "loom": 6296.1
-              },
-              "prefill_2k": {
-                "loom": 7113.1
-              },
-              "prefill_8k": {
-                "loom": 7771.2
-              },
-              "streams4": {
-                "loom": 394.9,
-                "baseline": 255.6
-              }
-            }
-          },
-          {
-            "date": "2026-11-17",
-            "source": {
-              "kind": "devlab",
-              "run": "43993232852",
-              "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993232852/job/133738871343"
-            },
-            "programs_sha256": "3681776dd4e74b9c66eceefd60bff790d03aa1f0f4a08e0084cb1132a5356e85",
-            "program_identity": "recorded",
-            "metrics": {
-              "spec_acceptance": {
-                "loom": 0.09
-              }
-            }
-          }
-        ]
+        "programs_sha256": "3681776dd4e74b9c66eceefd60bff790d03aa1f0f4a08e0084cb1132a5356e85"
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 8,
           "fail": 0,
-          "unknown": 9,
+          "unknown": 1,
           "n/a": 2
         },
         "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
           "vision": "n/a",
-          "consistency": "unknown",
-          "spec": "unknown",
-          "agent": "unknown",
-          "agent_think_off": "unknown",
-          "sampling": "unknown",
+          "consistency": "pass",
+          "spec": "pass",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -442,7 +395,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Laguna-XS-2.1-loom:chat --output=Laguna-XS-2.1",
       "serve": "loom-serve --model=Laguna-XS-2.1 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "ed27556712448e265a669900b6a59126a10c0614"
+      "source_revision": "c9eda158371897c81529b223a80eb785164ef98e"
     },
     "radeon-r9700": {
       "blocks": [
@@ -462,7 +415,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Laguna-XS-2.1-loom:chat-r9700 --output=Laguna-XS-2.1",
       "serve": "loom-serve --model=Laguna-XS-2.1 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "ed27556712448e265a669900b6a59126a10c0614"
+      "source_revision": "c9eda158371897c81529b223a80eb785164ef98e"
     }
   },
   "shared_request": {
@@ -477,6 +430,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"poolside/Laguna-XS-2.1\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "ed27556712448e265a669900b6a59126a10c0614"
+    "source_revision": "c9eda158371897c81529b223a80eb785164ef98e"
   }
 }
