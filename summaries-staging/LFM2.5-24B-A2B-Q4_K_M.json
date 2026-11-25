@@ -3,7 +3,7 @@
   "checkpoint": "LFM2.5-24B-A2B-Q4_K_M",
   "name": "LFM2.5-24B-A2B",
   "repo": "loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom",
-  "revision": "ba180e0cbb276a9588cd1ae33c4c05798c9ec3d7",
+  "revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb",
   "status": null,
   "license": "mit",
   "service": {
@@ -153,61 +153,61 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-17",
+      "date": "2026-11-25",
       "source": {
         "kind": "devlab",
-        "run": "44088677167",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088677167/job/134057871332"
+        "run": "45618568042",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45618568042/job/139220408644"
       },
       "metrics": {
         "decode": {
-          "loom": 107.1,
+          "loom": 107.4,
           "llamacpp": 99.2,
           "speedup": 1.08
         },
         "decode_2k": {
-          "loom": 102.6,
+          "loom": 102.1,
           "llamacpp": 96.9,
-          "speedup": 1.06
+          "speedup": 1.05
         },
         "decode_32k": {
-          "loom": 77.4,
+          "loom": 76.1,
           "llamacpp": 74.5,
-          "speedup": 1.04
+          "speedup": 1.02
         },
         "prefill_1k": {
-          "loom": 3196.1,
+          "loom": 2906.8,
           "llamacpp": 2150.9,
-          "speedup": 1.49
+          "speedup": 1.35
         },
         "prefill_2k": {
-          "loom": 3297.9,
+          "loom": 3207.5,
           "llamacpp": 2218.3,
-          "speedup": 1.49
+          "speedup": 1.45
         },
         "prefill_8k": {
-          "loom": 3396.8,
+          "loom": 3303.6,
           "llamacpp": 2278.6,
-          "speedup": 1.49
+          "speedup": 1.45
         },
         "prefill_16k": {
-          "loom": 3275.4,
+          "loom": 3184.8,
           "llamacpp": 2158.4,
-          "speedup": 1.52
+          "speedup": 1.48
         },
         "prefill_32k": {
-          "loom": 2918.1,
+          "loom": 2843.0,
           "llamacpp": 1911.2,
-          "speedup": 1.53
+          "speedup": 1.49
         },
         "streams4": {
-          "loom": 215.1,
+          "loom": 213.2,
           "llamacpp": 160.9,
-          "speedup": 1.34
+          "speedup": 1.33
         }
       }
     },
-    "programs_sha256": "7e5265a07fa116ef85caa4dee6165c88795072d8f717f91e83ea352bf187b789"
+    "programs_sha256": "13ef6aa6bd1fd6c6bd4b76c58df6eca86b5469a70437963267a00f3b74050c4a"
   },
   "gates": {
     "summary": {
@@ -353,53 +353,53 @@
           },
           "metrics": {
             "decode": {
-              "loom": 248.0,
+              "loom": 248.5,
               "llamacpp": 166.0,
-              "speedup": 1.49
+              "speedup": 1.5
             },
             "decode_2k": {
-              "loom": 234.0,
+              "loom": 235.5,
               "llamacpp": 164.9,
-              "speedup": 1.42
+              "speedup": 1.43
             },
             "decode_32k": {
-              "loom": 182.7,
+              "loom": 183.3,
               "llamacpp": 141.9,
               "speedup": 1.29
             },
             "prefill_1k": {
-              "loom": 9832.5,
+              "loom": 9833.9,
               "llamacpp": 5240.9,
               "speedup": 1.88
             },
             "prefill_2k": {
-              "loom": 11301.7,
+              "loom": 11326.7,
               "llamacpp": 5768.2,
               "speedup": 1.96
             },
             "prefill_8k": {
-              "loom": 11554.0,
+              "loom": 11555.8,
               "llamacpp": 6104.2,
               "speedup": 1.89
             },
             "prefill_16k": {
-              "loom": 11201.0,
+              "loom": 11200.4,
               "llamacpp": 5962.6,
               "speedup": 1.88
             },
             "prefill_32k": {
-              "loom": 10034.1,
+              "loom": 10033.4,
               "llamacpp": 5479.2,
               "speedup": 1.83
             },
             "streams4": {
-              "loom": 509.9,
+              "loom": 506.6,
               "llamacpp": 351.6,
-              "speedup": 1.45
+              "speedup": 1.44
             }
           }
         },
-        "programs_sha256": "7e5265a07fa116ef85caa4dee6165c88795072d8f717f91e83ea352bf187b789"
+        "programs_sha256": "13ef6aa6bd1fd6c6bd4b76c58df6eca86b5469a70437963267a00f3b74050c4a"
       },
       "gates": {
         "summary": {
@@ -451,7 +451,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom:chat --output=LFM2.5-24B-A2B",
       "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "ba180e0cbb276a9588cd1ae33c4c05798c9ec3d7"
+      "source_revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb"
     },
     "radeon-r9700": {
       "blocks": [
@@ -471,7 +471,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom:chat --output=LFM2.5-24B-A2B",
       "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "ba180e0cbb276a9588cd1ae33c4c05798c9ec3d7"
+      "source_revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -491,7 +491,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom:chat-16gb --output=LFM2.5-24B-A2B",
       "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "ba180e0cbb276a9588cd1ae33c4c05798c9ec3d7"
+      "source_revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb"
     }
   },
   "shared_request": {
@@ -506,6 +506,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"LiquidAI/LFM2.5-24B-A2B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "ba180e0cbb276a9588cd1ae33c4c05798c9ec3d7"
+    "source_revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb"
   }
 }
