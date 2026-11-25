@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-8B-Q4_K_M",
   "name": "Qwen3-8B",
   "repo": "loom-fun-staging/unsloth-Qwen3-8B-loom",
-  "revision": "6e6484b2424ffedf0ba35b34a46dae0ea74e69e6",
+  "revision": "18905584ca6d753bc98158741dcc49ed9c52df8f",
   "status": null,
   "license": "mit",
   "service": {
@@ -338,64 +338,64 @@
             "speedup": null
           },
           "spec_acceptance": {
-            "loom": 0.41,
+            "loom": null,
             "llamacpp": null,
             "speedup": null
           }
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-17",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "43993251192",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993251192/job/133738939704"
+            "run": "45603237455",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45603237455/job/139167425392"
           },
           "metrics": {
             "decode": {
-              "loom": 163.6,
+              "loom": 160.9,
               "llamacpp": 94.7,
-              "speedup": 1.73
+              "speedup": 1.7
             },
             "decode_2k": {
-              "loom": 130.9,
+              "loom": 137.1,
               "llamacpp": 91.3,
-              "speedup": 1.43
+              "speedup": 1.5
             },
             "decode_32k": {
-              "loom": 57.6,
+              "loom": 57.4,
               "llamacpp": 59.2,
               "speedup": 0.97
             },
             "prefill_1k": {
-              "loom": 5511.5,
+              "loom": 5330.9,
               "llamacpp": 4088.5,
-              "speedup": 1.35
+              "speedup": 1.3
             },
             "prefill_2k": {
-              "loom": 5871.5,
+              "loom": 5694.3,
               "llamacpp": 4108.8,
-              "speedup": 1.43
-            },
-            "prefill_8k": {
-              "loom": 5384.2,
-              "llamacpp": 3622.9,
-              "speedup": 1.49
-            },
-            "prefill_16k": {
-              "loom": 4575.8,
-              "llamacpp": 3037.8,
-              "speedup": 1.51
-            },
-            "prefill_32k": {
-              "loom": 3183.4,
-              "llamacpp": 2286.8,
               "speedup": 1.39
             },
+            "prefill_8k": {
+              "loom": 5246.8,
+              "llamacpp": 3622.9,
+              "speedup": 1.45
+            },
+            "prefill_16k": {
+              "loom": 4487.6,
+              "llamacpp": 3037.8,
+              "speedup": 1.48
+            },
+            "prefill_32k": {
+              "loom": 3103.2,
+              "llamacpp": 2286.8,
+              "speedup": 1.36
+            },
             "streams4": {
-              "loom": 410.6,
+              "loom": 402.9,
               "llamacpp": 261.2,
-              "speedup": 1.57
+              "speedup": 1.54
             }
           }
         },
@@ -625,7 +625,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3-8B-loom:chat --output=Qwen3-8B",
       "serve": "loom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6e6484b2424ffedf0ba35b34a46dae0ea74e69e6"
+      "source_revision": "18905584ca6d753bc98158741dcc49ed9c52df8f"
     },
     "radeon-r9700": {
       "blocks": [
@@ -645,7 +645,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3-8B-loom:chat --output=Qwen3-8B",
       "serve": "loom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6e6484b2424ffedf0ba35b34a46dae0ea74e69e6"
+      "source_revision": "18905584ca6d753bc98158741dcc49ed9c52df8f"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -665,7 +665,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3-8B-loom:chat-16gb --output=Qwen3-8B",
       "serve": "loom-serve --model=Qwen3-8B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "6e6484b2424ffedf0ba35b34a46dae0ea74e69e6"
+      "source_revision": "18905584ca6d753bc98158741dcc49ed9c52df8f"
     }
   },
   "shared_request": {
@@ -680,6 +680,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-8B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "6e6484b2424ffedf0ba35b34a46dae0ea74e69e6"
+    "source_revision": "18905584ca6d753bc98158741dcc49ed9c52df8f"
   }
 }
