@@ -3,7 +3,7 @@
   "checkpoint": "Nemotron-3.5-Bolt-E4B-Q4_K_M",
   "name": "NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
   "repo": "loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom",
-  "revision": "f709267a7186eed4d1a21172da31598704f3e83e",
+  "revision": "39de2759bf50668691e0c1697faef4266a7eac5b",
   "status": null,
   "license": "mit",
   "service": {
@@ -520,7 +520,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "f709267a7186eed4d1a21172da31598704f3e83e"
+      "source_revision": "39de2759bf50668691e0c1697faef4266a7eac5b"
     },
     "radeon-r9700": {
       "blocks": [
@@ -540,7 +540,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "f709267a7186eed4d1a21172da31598704f3e83e"
+      "source_revision": "39de2759bf50668691e0c1697faef4266a7eac5b"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -560,7 +560,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/nvidia-NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-loom:chat-16gb --output=nemotron-3.5-bolt-e4b",
       "serve": "loom-serve --model=nemotron-3.5-bolt-e4b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "f709267a7186eed4d1a21172da31598704f3e83e"
+      "source_revision": "39de2759bf50668691e0c1697faef4266a7eac5b"
     }
   },
   "shared_request": {
@@ -575,6 +575,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"nemotron-3.5-bolt-e4b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "f709267a7186eed4d1a21172da31598704f3e83e"
+    "source_revision": "39de2759bf50668691e0c1697faef4266a7eac5b"
   }
 }

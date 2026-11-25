@@ -3,7 +3,7 @@
   "checkpoint": "Mellum2.1-12B-A2.5B-Thinking-Q4_K_M",
   "name": "Mellum2.1-12B-A2.5B-Thinking",
   "repo": "loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom",
-  "revision": "b32b86b3195c2b522600f804f6c8c6ac67bd37f0",
+  "revision": "12090f42e07aa211ad7db2450c37a344675e2e7c",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -451,7 +451,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --output=Mellum2.1-12B-A2.5B-Thinking",
       "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "b32b86b3195c2b522600f804f6c8c6ac67bd37f0"
+      "source_revision": "12090f42e07aa211ad7db2450c37a344675e2e7c"
     },
     "radeon-r9700": {
       "blocks": [
@@ -471,7 +471,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat --output=Mellum2.1-12B-A2.5B-Thinking",
       "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "b32b86b3195c2b522600f804f6c8c6ac67bd37f0"
+      "source_revision": "12090f42e07aa211ad7db2450c37a344675e2e7c"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -491,7 +491,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Mellum2.1-12B-A2.5B-Thinking-loom:chat-16gb --output=Mellum2.1-12B-A2.5B-Thinking",
       "serve": "loom-serve --model=Mellum2.1-12B-A2.5B-Thinking '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "b32b86b3195c2b522600f804f6c8c6ac67bd37f0"
+      "source_revision": "12090f42e07aa211ad7db2450c37a344675e2e7c"
     }
   },
   "shared_request": {
@@ -506,6 +506,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"JetBrains/Mellum2.1-12B-A2.5B-Thinking\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "b32b86b3195c2b522600f804f6c8c6ac67bd37f0"
+    "source_revision": "12090f42e07aa211ad7db2450c37a344675e2e7c"
   }
 }

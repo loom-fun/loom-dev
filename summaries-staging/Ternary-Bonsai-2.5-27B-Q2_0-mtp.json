@@ -3,7 +3,7 @@
   "checkpoint": "Ternary-Bonsai-2.5-27B-Q2_0-mtp",
   "name": "Ternary-Bonsai-2.5-27B",
   "repo": "loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom",
-  "revision": "6454cf21e4960e10d456804743da818c4def0f7a",
+  "revision": "0449eb2de013e58e99044248b7e9096fd2bb5e17",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -438,7 +438,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom:chat --output=Ternary-Bonsai-2.5-27B",
       "serve": "loom-serve --model=Ternary-Bonsai-2.5-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6454cf21e4960e10d456804743da818c4def0f7a"
+      "source_revision": "0449eb2de013e58e99044248b7e9096fd2bb5e17"
     },
     "radeon-r9700": {
       "blocks": [
@@ -458,7 +458,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom:chat --output=Ternary-Bonsai-2.5-27B",
       "serve": "loom-serve --model=Ternary-Bonsai-2.5-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6454cf21e4960e10d456804743da818c4def0f7a"
+      "source_revision": "0449eb2de013e58e99044248b7e9096fd2bb5e17"
     }
   },
   "shared_request": {
@@ -473,6 +473,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"prism-ml/Ternary-Bonsai-2.5-27B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "6454cf21e4960e10d456804743da818c4def0f7a"
+    "source_revision": "0449eb2de013e58e99044248b7e9096fd2bb5e17"
   }
 }

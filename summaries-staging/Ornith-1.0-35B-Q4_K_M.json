@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.0-35B-Q4_K_M",
   "name": "Ornith-1.0-35B",
   "repo": "loom-fun-staging/lmstudio-community-Ornith-1.0-35B-loom",
-  "revision": "a2f3dc9da5c40f4a9d04098de5e86f6f1d933155",
+  "revision": "1bfc9dae726975797743ecd96e7d0d04d180737f",
   "status": null,
   "license": "mit",
   "service": {
@@ -447,7 +447,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/lmstudio-community-Ornith-1.0-35B-loom:chat --output=Ornith-1.0-35B",
       "serve": "loom-serve --model=Ornith-1.0-35B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "a2f3dc9da5c40f4a9d04098de5e86f6f1d933155"
+      "source_revision": "1bfc9dae726975797743ecd96e7d0d04d180737f"
     },
     "radeon-r9700": {
       "blocks": [
@@ -467,7 +467,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/lmstudio-community-Ornith-1.0-35B-loom:chat-r9700 --output=Ornith-1.0-35B",
       "serve": "loom-serve --model=Ornith-1.0-35B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "a2f3dc9da5c40f4a9d04098de5e86f6f1d933155"
+      "source_revision": "1bfc9dae726975797743ecd96e7d0d04d180737f"
     }
   },
   "shared_request": {
@@ -482,6 +482,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"ornith-ai/Ornith-1.0-35B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "a2f3dc9da5c40f4a9d04098de5e86f6f1d933155"
+    "source_revision": "1bfc9dae726975797743ecd96e7d0d04d180737f"
   }
 }

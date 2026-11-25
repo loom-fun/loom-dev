@@ -3,7 +3,7 @@
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
   "repo": "loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "8789c1701afee3d0af4a17de45b789eca75a723e",
+  "revision": "c2b21b1df65cd5fdc09f9c8dd36b641deabd6be8",
   "status": null,
   "license": "mit",
   "service": {
@@ -452,7 +452,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "8789c1701afee3d0af4a17de45b789eca75a723e"
+      "source_revision": "c2b21b1df65cd5fdc09f9c8dd36b641deabd6be8"
     },
     "radeon-r9700": {
       "blocks": [
@@ -472,7 +472,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "8789c1701afee3d0af4a17de45b789eca75a723e"
+      "source_revision": "c2b21b1df65cd5fdc09f9c8dd36b641deabd6be8"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -492,7 +492,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
       "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "8789c1701afee3d0af4a17de45b789eca75a723e"
+      "source_revision": "c2b21b1df65cd5fdc09f9c8dd36b641deabd6be8"
     }
   },
   "shared_request": {
@@ -507,6 +507,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "8789c1701afee3d0af4a17de45b789eca75a723e"
+    "source_revision": "c2b21b1df65cd5fdc09f9c8dd36b641deabd6be8"
   }
 }

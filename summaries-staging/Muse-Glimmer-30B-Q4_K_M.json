@@ -3,7 +3,7 @@
   "checkpoint": "Muse-Glimmer-30B-Q4_K_M",
   "name": "Muse-Glimmer-30B",
   "repo": "loom-fun-staging/ggml-org-Muse-Glimmer-30B-loom",
-  "revision": "f0b6fa5a28fd4c7db7675ac5c04257ede3b8bcad",
+  "revision": "5d463694ee5f2777beba9ebe40b804501d6088ed",
   "status": null,
   "license": "mit",
   "service": {
@@ -447,7 +447,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Muse-Glimmer-30B-loom:chat --output=final",
       "serve": "loom-serve --model=final '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "f0b6fa5a28fd4c7db7675ac5c04257ede3b8bcad"
+      "source_revision": "5d463694ee5f2777beba9ebe40b804501d6088ed"
     },
     "radeon-r9700": {
       "blocks": [
@@ -467,7 +467,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Muse-Glimmer-30B-loom:chat-r9700 --output=final",
       "serve": "loom-serve --model=final '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "f0b6fa5a28fd4c7db7675ac5c04257ede3b8bcad"
+      "source_revision": "5d463694ee5f2777beba9ebe40b804501d6088ed"
     }
   },
   "shared_request": {
@@ -482,6 +482,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"meta-models/Muse-Glimmer-30B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "f0b6fa5a28fd4c7db7675ac5c04257ede3b8bcad"
+    "source_revision": "5d463694ee5f2777beba9ebe40b804501d6088ed"
   }
 }

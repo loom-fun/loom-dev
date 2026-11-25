@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-14B-Q4_K_M",
   "name": "Qwen3-14B",
   "repo": "loom-fun-staging/ggml-org-Qwen3-14B-loom",
-  "revision": "bbbaa2e215958f81eeeb476d8994b49981b7ff68",
+  "revision": "18b2874e07dd1dd3e568c802ede0bf28db27bccd",
   "status": null,
   "license": "mit",
   "service": {
@@ -451,7 +451,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-14B-loom:chat --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "bbbaa2e215958f81eeeb476d8994b49981b7ff68"
+      "source_revision": "18b2874e07dd1dd3e568c802ede0bf28db27bccd"
     },
     "radeon-r9700": {
       "blocks": [
@@ -471,7 +471,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-14B-loom:chat --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "bbbaa2e215958f81eeeb476d8994b49981b7ff68"
+      "source_revision": "18b2874e07dd1dd3e568c802ede0bf28db27bccd"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -491,7 +491,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-14B-loom:chat-16gb --output=Qwen3-14B",
       "serve": "loom-serve --model=Qwen3-14B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "bbbaa2e215958f81eeeb476d8994b49981b7ff68"
+      "source_revision": "18b2874e07dd1dd3e568c802ede0bf28db27bccd"
     }
   },
   "shared_request": {
@@ -506,6 +506,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-14B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "bbbaa2e215958f81eeeb476d8994b49981b7ff68"
+    "source_revision": "18b2874e07dd1dd3e568c802ede0bf28db27bccd"
   }
 }

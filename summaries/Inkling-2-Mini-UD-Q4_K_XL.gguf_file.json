@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
   "name": "Inkling-2-Mini",
   "repo": "local/unsloth-Inkling-2-Mini-loom",
-  "revision": "6b5f09f197ee698ae68311eed528ba64f2d405c6",
+  "revision": "661b934ab4b065350837a91e47db2a2591d83e3b",
   "status": null,
   "license": "mit",
   "service": {
@@ -162,10 +162,10 @@
         }
       }
     },
-    "programs_sha256": "5c84da09169bc57526e4984b88d5281aeb30361471cf2c31f78d496abdfba0f5",
+    "programs_sha256": "9e49826ff686d4fe50d732fb6b8699db4a35bf109569b5110c7b682f85a5ea78",
     "historical_programs": [
       {
-        "date": "2026-11-24",
+        "date": "2026-11-25",
         "source": {
           "kind": "machine",
           "run": null,
@@ -184,11 +184,11 @@
             "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
           }
         },
-        "programs_sha256": "8e28c33dd2602ca4ee51c9c9f330ee7b962a6a45054392465865c9a8239bdc20",
+        "programs_sha256": "540ca170082badc9f8f257c47ed1bf71b8f19562948f9bb59355971d59bbf63e",
         "program_identity": "recorded",
         "metrics": {
           "decode": {
-            "loom": 44.8,
+            "loom": 45.0,
             "baseline": 14.9
           },
           "decode_2k": {
@@ -196,25 +196,25 @@
             "baseline": 11.3
           },
           "decode_32k": {
-            "loom": 35.3
+            "loom": 35.4
           },
           "prefill_16k": {
-            "loom": 1111.9,
+            "loom": 1259.0,
             "baseline": 44.6
           },
           "prefill_1k": {
-            "loom": 934.1,
+            "loom": 1117.6,
             "baseline": 57.6
           },
           "prefill_2k": {
-            "loom": 1094.5,
+            "loom": 1284.9,
             "baseline": 53.6
           },
           "prefill_32k": {
-            "loom": 996.6
+            "loom": 1110.2
           },
           "prefill_8k": {
-            "loom": 1156.5,
+            "loom": 1329.3,
             "baseline": 48.7
           },
           "streams4": {
@@ -367,10 +367,10 @@
             }
           }
         },
-        "programs_sha256": "5c84da09169bc57526e4984b88d5281aeb30361471cf2c31f78d496abdfba0f5",
+        "programs_sha256": "9e49826ff686d4fe50d732fb6b8699db4a35bf109569b5110c7b682f85a5ea78",
         "historical_programs": [
           {
-            "date": "2026-11-24",
+            "date": "2026-11-25",
             "source": {
               "kind": "machine",
               "run": null,
@@ -389,41 +389,41 @@
                 "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
               }
             },
-            "programs_sha256": "8e28c33dd2602ca4ee51c9c9f330ee7b962a6a45054392465865c9a8239bdc20",
+            "programs_sha256": "540ca170082badc9f8f257c47ed1bf71b8f19562948f9bb59355971d59bbf63e",
             "program_identity": "recorded",
             "metrics": {
               "decode": {
-                "loom": 105.8,
+                "loom": 106.4,
                 "baseline": 14.9
               },
               "decode_2k": {
-                "loom": 97.5,
+                "loom": 97.6,
                 "baseline": 11.3
               },
               "decode_32k": {
                 "loom": 83.1
               },
               "prefill_16k": {
-                "loom": 3311.9,
+                "loom": 3632.3,
                 "baseline": 44.6
               },
               "prefill_1k": {
-                "loom": 2699.1,
+                "loom": 3061.0,
                 "baseline": 57.6
               },
               "prefill_2k": {
-                "loom": 3209.6,
+                "loom": 3633.6,
                 "baseline": 53.6
               },
               "prefill_32k": {
-                "loom": 2949.4
+                "loom": 3205.0
               },
               "prefill_8k": {
-                "loom": 3440.5,
+                "loom": 3812.1,
                 "baseline": 48.7
               },
               "streams4": {
-                "loom": 231.9
+                "loom": 235.1
               }
             }
           }
@@ -471,7 +471,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=unsloth-Inkling-2-Mini-loom",
       "serve": "loom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6b5f09f197ee698ae68311eed528ba64f2d405c6"
+      "source_revision": "661b934ab4b065350837a91e47db2a2591d83e3b"
     },
     "radeon-r9700": {
       "blocks": [
@@ -491,7 +491,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat-r9700 --materialize=copy --output=unsloth-Inkling-2-Mini-loom",
       "serve": "loom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "6b5f09f197ee698ae68311eed528ba64f2d405c6"
+      "source_revision": "661b934ab4b065350837a91e47db2a2591d83e3b"
     }
   },
   "shared_request": {
@@ -506,6 +506,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"thinkingmachines/Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"none\"}'"
       }
     ],
-    "source_revision": "6b5f09f197ee698ae68311eed528ba64f2d405c6"
+    "source_revision": "661b934ab4b065350837a91e47db2a2591d83e3b"
   }
 }

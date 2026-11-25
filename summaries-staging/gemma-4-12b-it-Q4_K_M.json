@@ -3,7 +3,7 @@
   "checkpoint": "gemma-4-12b-it-Q4_K_M",
   "name": "gemma-4-12B-it",
   "repo": "loom-fun-staging/unsloth-gemma-4-12B-it-loom",
-  "revision": "ea9b4a478f27e8f876dbc2900fb73f14ebe7ff61",
+  "revision": "954633a699dce7a362d4f9f9537daffa443d400d",
   "status": null,
   "license": "mit",
   "service": {
@@ -452,7 +452,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "ea9b4a478f27e8f876dbc2900fb73f14ebe7ff61"
+      "source_revision": "954633a699dce7a362d4f9f9537daffa443d400d"
     },
     "radeon-r9700": {
       "blocks": [
@@ -472,7 +472,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-r9700 --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "ea9b4a478f27e8f876dbc2900fb73f14ebe7ff61"
+      "source_revision": "954633a699dce7a362d4f9f9537daffa443d400d"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -492,7 +492,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-12B-it-loom:chat-16gb --output=gemma-4-12B-it",
       "serve": "loom-serve --model=gemma-4-12B-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "ea9b4a478f27e8f876dbc2900fb73f14ebe7ff61"
+      "source_revision": "954633a699dce7a362d4f9f9537daffa443d400d"
     }
   },
   "shared_request": {
@@ -507,6 +507,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-12B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "ea9b4a478f27e8f876dbc2900fb73f14ebe7ff61"
+    "source_revision": "954633a699dce7a362d4f9f9537daffa443d400d"
   }
 }

@@ -3,7 +3,7 @@
   "checkpoint": "Qwen2.5-32B-Instruct-Q4_K_M",
   "name": "Qwen2.5-32B-Instruct",
   "repo": "loom-fun-staging/bartowski-Qwen2.5-32B-Instruct-loom",
-  "revision": "11d8c3a90039b834c49f32a71ab39fa262664c45",
+  "revision": "f654572fe17f1509cbde5c578f03d43c25633dcc",
   "status": null,
   "license": "mit",
   "service": {
@@ -440,7 +440,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-32B-Instruct-loom:chat --output=Qwen2.5-32B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-32B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "11d8c3a90039b834c49f32a71ab39fa262664c45"
+      "source_revision": "f654572fe17f1509cbde5c578f03d43c25633dcc"
     },
     "radeon-r9700": {
       "blocks": [
@@ -460,7 +460,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/bartowski-Qwen2.5-32B-Instruct-loom:chat-r9700 --output=Qwen2.5-32B-Instruct",
       "serve": "loom-serve --model=Qwen2.5-32B-Instruct '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "11d8c3a90039b834c49f32a71ab39fa262664c45"
+      "source_revision": "f654572fe17f1509cbde5c578f03d43c25633dcc"
     }
   },
   "shared_request": {
@@ -475,6 +475,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen2.5-32B-Instruct\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "11d8c3a90039b834c49f32a71ab39fa262664c45"
+    "source_revision": "f654572fe17f1509cbde5c578f03d43c25633dcc"
   }
 }

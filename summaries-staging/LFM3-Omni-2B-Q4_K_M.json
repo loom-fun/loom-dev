@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-Omni-2B-Q4_K_M",
   "name": "LFM3-Omni-2B",
   "repo": "loom-fun-staging/ggml-org-LFM3-Omni-2B-loom",
-  "revision": "39730994bd532cdb984e49f182f02ab29a9b4ec6",
+  "revision": "30441ce7cc0c9cdce11772d208270030cc280f40",
   "status": null,
   "license": "mit",
   "service": {
@@ -154,125 +154,79 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": null,
-      "source": null,
+      "date": "2026-11-25",
+      "source": {
+        "kind": "devlab",
+        "run": "45618568042",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45618568042/job/139220409123"
+      },
       "metrics": {
         "decode": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 168.6,
+          "llamacpp": 148.1,
+          "speedup": 1.14
         },
         "decode_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 159.8,
+          "llamacpp": 143.2,
+          "speedup": 1.12
         },
         "decode_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 126.1,
+          "llamacpp": 113.6,
+          "speedup": 1.11
         },
         "prefill_1k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 6940.4,
+          "llamacpp": 5223.7,
+          "speedup": 1.33
         },
         "prefill_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 6977.3,
+          "llamacpp": 5428.4,
+          "speedup": 1.29
         },
         "prefill_8k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 7171.1,
+          "llamacpp": 5565.7,
+          "speedup": 1.29
         },
         "prefill_16k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 6612.1,
+          "llamacpp": 5098.9,
+          "speedup": 1.3
         },
         "prefill_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 5680.9,
+          "llamacpp": 4329.9,
+          "speedup": 1.31
         },
         "streams4": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 599.0,
+          "llamacpp": 396.2,
+          "speedup": 1.51
         }
       }
     },
-    "programs_sha256": "20b13baecb279f1ea79b0cdcd264c1fca0bb6774a16b7a93e891b74b832c0c53",
-    "historical_programs": [
-      {
-        "date": "2026-11-25",
-        "source": {
-          "kind": "devlab",
-          "run": "45545290357",
-          "url": "https://github.com/loom-fun/loom-skills/actions/runs/45545290357/job/138973377190"
-        },
-        "programs_sha256": "90084133158f15188a680a1cf46c583a3893428458e5fdd43d74e3a894f77f35",
-        "program_identity": "recorded",
-        "metrics": {
-          "decode": {
-            "loom": 168.5,
-            "baseline": 148.1
-          },
-          "decode_2k": {
-            "loom": 160.8,
-            "baseline": 143.2
-          },
-          "decode_32k": {
-            "loom": 126.7,
-            "baseline": 113.6
-          },
-          "prefill_16k": {
-            "loom": 6607.6,
-            "baseline": 5098.9
-          },
-          "prefill_1k": {
-            "loom": 7410.4,
-            "baseline": 5223.7
-          },
-          "prefill_2k": {
-            "loom": 7010.1,
-            "baseline": 5428.4
-          },
-          "prefill_32k": {
-            "loom": 5685.9,
-            "baseline": 4329.9
-          },
-          "prefill_8k": {
-            "loom": 7279.6,
-            "baseline": 5565.7
-          },
-          "streams4": {
-            "loom": 571.3,
-            "baseline": 396.2
-          }
-        }
-      }
-    ]
+    "programs_sha256": "20b13baecb279f1ea79b0cdcd264c1fca0bb6774a16b7a93e891b74b832c0c53"
   },
   "gates": {
     "summary": {
-      "pass": 0,
+      "pass": 7,
       "fail": 0,
-      "unknown": 8,
+      "unknown": 1,
       "n/a": 3
     },
     "status": {
-      "kernel_tests": "unknown",
-      "golden": "unknown",
-      "compare": "unknown",
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
       "vision": "n/a",
-      "consistency": "unknown",
+      "consistency": "pass",
       "spec": "n/a",
-      "agent": "unknown",
-      "agent_think_off": "unknown",
-      "sampling": "unknown",
+      "agent": "pass",
+      "agent_think_off": "pass",
+      "sampling": "pass",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -450,9 +404,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 7,
+          "pass": 8,
           "fail": 0,
-          "unknown": 1,
+          "unknown": 0,
           "n/a": 3
         },
         "status": {
@@ -466,7 +420,7 @@
           "agent_think_off": "pass",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "unknown"
+          "logits": "pass"
         }
       }
     },
@@ -498,7 +452,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "39730994bd532cdb984e49f182f02ab29a9b4ec6"
+      "source_revision": "30441ce7cc0c9cdce11772d208270030cc280f40"
     },
     "radeon-r9700": {
       "blocks": [
@@ -518,7 +472,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat-r9700 --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "39730994bd532cdb984e49f182f02ab29a9b4ec6"
+      "source_revision": "30441ce7cc0c9cdce11772d208270030cc280f40"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -538,7 +492,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat-16gb --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "39730994bd532cdb984e49f182f02ab29a9b4ec6"
+      "source_revision": "30441ce7cc0c9cdce11772d208270030cc280f40"
     }
   },
   "shared_request": {
@@ -553,6 +507,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"LiquidAI/LFM3-Omni-2B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "39730994bd532cdb984e49f182f02ab29a9b4ec6"
+    "source_revision": "30441ce7cc0c9cdce11772d208270030cc280f40"
   }
 }

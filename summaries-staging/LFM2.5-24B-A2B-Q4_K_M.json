@@ -3,7 +3,7 @@
   "checkpoint": "LFM2.5-24B-A2B-Q4_K_M",
   "name": "LFM2.5-24B-A2B",
   "repo": "loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom",
-  "revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb",
+  "revision": "6c5ea8701e0f66ba84554c257e28f950dff37b3f",
   "status": null,
   "license": "mit",
   "service": {
@@ -403,9 +403,9 @@
       },
       "gates": {
         "summary": {
-          "pass": 6,
+          "pass": 7,
           "fail": 0,
-          "unknown": 1,
+          "unknown": 0,
           "n/a": 4
         },
         "status": {
@@ -419,7 +419,7 @@
           "agent_think_off": "n/a",
           "sampling": "pass",
           "decision": "n/a",
-          "logits": "unknown"
+          "logits": "pass"
         }
       }
     },
@@ -451,7 +451,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom:chat --output=LFM2.5-24B-A2B",
       "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb"
+      "source_revision": "6c5ea8701e0f66ba84554c257e28f950dff37b3f"
     },
     "radeon-r9700": {
       "blocks": [
@@ -471,7 +471,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom:chat --output=LFM2.5-24B-A2B",
       "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb"
+      "source_revision": "6c5ea8701e0f66ba84554c257e28f950dff37b3f"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -491,7 +491,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM2.5-24B-A2B-loom:chat-16gb --output=LFM2.5-24B-A2B",
       "serve": "loom-serve --model=LFM2.5-24B-A2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb"
+      "source_revision": "6c5ea8701e0f66ba84554c257e28f950dff37b3f"
     }
   },
   "shared_request": {
@@ -506,6 +506,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"LiquidAI/LFM2.5-24B-A2B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "eb732c82c55642a5ac443667bbae4b45fc2034cb"
+    "source_revision": "6c5ea8701e0f66ba84554c257e28f950dff37b3f"
   }
 }

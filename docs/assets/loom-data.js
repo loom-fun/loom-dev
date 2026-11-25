@@ -6891,7 +6891,7 @@ window.LOOM_DATA = {
    "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
    "name": "Inkling-2-Mini",
    "repo": "local/unsloth-Inkling-2-Mini-loom",
-   "revision": "6b5f09f197ee698ae68311eed528ba64f2d405c6",
+   "revision": "661b934ab4b065350837a91e47db2a2591d83e3b",
    "status": null,
    "license": "mit",
    "service": {
@@ -7050,10 +7050,10 @@ window.LOOM_DATA = {
       }
      }
     },
-    "programs_sha256": "5c84da09169bc57526e4984b88d5281aeb30361471cf2c31f78d496abdfba0f5",
+    "programs_sha256": "9e49826ff686d4fe50d732fb6b8699db4a35bf109569b5110c7b682f85a5ea78",
     "historical_programs": [
      {
-      "date": "2026-11-24",
+      "date": "2026-11-25",
       "source": {
        "kind": "machine",
        "run": null,
@@ -7072,11 +7072,11 @@ window.LOOM_DATA = {
         "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
        }
       },
-      "programs_sha256": "8e28c33dd2602ca4ee51c9c9f330ee7b962a6a45054392465865c9a8239bdc20",
+      "programs_sha256": "540ca170082badc9f8f257c47ed1bf71b8f19562948f9bb59355971d59bbf63e",
       "program_identity": "recorded",
       "metrics": {
        "decode": {
-        "loom": 44.8,
+        "loom": 45.0,
         "baseline": 14.9
        },
        "decode_2k": {
@@ -7084,25 +7084,25 @@ window.LOOM_DATA = {
         "baseline": 11.3
        },
        "decode_32k": {
-        "loom": 35.3
+        "loom": 35.4
        },
        "prefill_16k": {
-        "loom": 1111.9,
+        "loom": 1259.0,
         "baseline": 44.6
        },
        "prefill_1k": {
-        "loom": 934.1,
+        "loom": 1117.6,
         "baseline": 57.6
        },
        "prefill_2k": {
-        "loom": 1094.5,
+        "loom": 1284.9,
         "baseline": 53.6
        },
        "prefill_32k": {
-        "loom": 996.6
+        "loom": 1110.2
        },
        "prefill_8k": {
-        "loom": 1156.5,
+        "loom": 1329.3,
         "baseline": 48.7
        },
        "streams4": {
@@ -7255,10 +7255,10 @@ window.LOOM_DATA = {
         }
        }
       },
-      "programs_sha256": "5c84da09169bc57526e4984b88d5281aeb30361471cf2c31f78d496abdfba0f5",
+      "programs_sha256": "9e49826ff686d4fe50d732fb6b8699db4a35bf109569b5110c7b682f85a5ea78",
       "historical_programs": [
        {
-        "date": "2026-11-24",
+        "date": "2026-11-25",
         "source": {
          "kind": "machine",
          "run": null,
@@ -7277,41 +7277,41 @@ window.LOOM_DATA = {
           "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
          }
         },
-        "programs_sha256": "8e28c33dd2602ca4ee51c9c9f330ee7b962a6a45054392465865c9a8239bdc20",
+        "programs_sha256": "540ca170082badc9f8f257c47ed1bf71b8f19562948f9bb59355971d59bbf63e",
         "program_identity": "recorded",
         "metrics": {
          "decode": {
-          "loom": 105.8,
+          "loom": 106.4,
           "baseline": 14.9
          },
          "decode_2k": {
-          "loom": 97.5,
+          "loom": 97.6,
           "baseline": 11.3
          },
          "decode_32k": {
           "loom": 83.1
          },
          "prefill_16k": {
-          "loom": 3311.9,
+          "loom": 3632.3,
           "baseline": 44.6
          },
          "prefill_1k": {
-          "loom": 2699.1,
+          "loom": 3061.0,
           "baseline": 57.6
          },
          "prefill_2k": {
-          "loom": 3209.6,
+          "loom": 3633.6,
           "baseline": 53.6
          },
          "prefill_32k": {
-          "loom": 2949.4
+          "loom": 3205.0
          },
          "prefill_8k": {
-          "loom": 3440.5,
+          "loom": 3812.1,
           "baseline": 48.7
          },
          "streams4": {
-          "loom": 231.9
+          "loom": 235.1
          }
         }
        }
@@ -7359,7 +7359,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=unsloth-Inkling-2-Mini-loom",
      "serve": "loom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "6b5f09f197ee698ae68311eed528ba64f2d405c6"
+     "source_revision": "661b934ab4b065350837a91e47db2a2591d83e3b"
     },
     "radeon-r9700": {
      "blocks": [
@@ -7379,7 +7379,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat-r9700 --materialize=copy --output=unsloth-Inkling-2-Mini-loom",
      "serve": "loom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "6b5f09f197ee698ae68311eed528ba64f2d405c6"
+     "source_revision": "661b934ab4b065350837a91e47db2a2591d83e3b"
     }
    },
    "shared_request": {
@@ -7394,7 +7394,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"thinkingmachines/Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"none\"}'"
      }
     ],
-    "source_revision": "6b5f09f197ee698ae68311eed528ba64f2d405c6"
+    "source_revision": "661b934ab4b065350837a91e47db2a2591d83e3b"
    }
   },
   {
@@ -7402,7 +7402,7 @@ window.LOOM_DATA = {
    "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL",
    "name": "Inkling-2-Mini",
    "repo": "loom-fun/unsloth-Inkling-2-Mini-loom",
-   "revision": "4e018e88a3aa9826286c71dfe2f6c905a491659b",
+   "revision": "73b6d8257495f84d4e18482ac6005a882600f18c",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -7414,20 +7414,24 @@ window.LOOM_DATA = {
      "repo": "unsloth/Inkling-2-Mini-GGUF",
      "file": "Inkling-2-Mini-UD-Q4_K_XL.gguf",
      "quant": "UD-Q4_K_XL",
-     "revision": "ea0c79b2ecd73669e774c8519b79bfabfddbc027",
-     "sha256": "e62d463c135ffe283df8d94b279a96ca145ac128b52ce854478613045bf4de15",
-     "size": 17629759456
+     "revision": "8078d149286eec7193795413b9e0643da6d11fa1",
+     "sha256": "e64276656f072e9b2197a61723667cbdb71da66a716ffd966e572c21088f3cd3",
+     "size": 17629760736
     },
     "drafter": {
      "repo": "unsloth/Inkling-2-Mini-GGUF",
      "file": "dspark-Inkling-2-Mini-Q8_0.gguf",
      "quant": "Q8_0"
     },
-    "projector": null
+    "projector": {
+     "repo": "unsloth/Inkling-2-Mini-GGUF",
+     "file": "mmproj-F16.gguf",
+     "quant": "F16"
+    }
    },
    "serve": {
     "device": "amdgpu",
-    "memory_bytes": 33000000000,
+    "memory_bytes": 38000000000,
     "context_tokens": 262144,
     "rows": 4,
     "max_tokens": 4096,
@@ -7440,7 +7444,7 @@ window.LOOM_DATA = {
     "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "no",
+    "image_input": "yes",
     "max_output_tokens": "yes",
     "reasoning_effort": "yes",
     "sampling": "yes",
@@ -7449,61 +7453,81 @@ window.LOOM_DATA = {
     "tool_calling": "yes"
    },
    "performance": {
-    "date": null,
+    "date": "2026-11-25",
     "llamacpp_build": "b1383",
     "drafting": {
      "loom": "DFlash, depth 3",
      "llamacpp": null
     },
-    "source": null,
+    "source": {
+     "kind": "machine",
+     "run": "halo3-t68",
+     "url": null,
+     "device": {
+      "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+      "gpu": "AMD Radeon 8060S Graphics",
+      "os": "Ubuntu 24.04.4 LTS"
+     },
+     "hrx_loom": {
+      "hrx_loom": "0.2.0",
+      "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+      "source": "pypi",
+      "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+     }
+    },
     "metrics": {
      "decode": {
-      "loom": null,
-      "llamacpp": null,
-      "speedup": null
+      "loom": 54.2,
+      "llamacpp": 15.7,
+      "speedup": 3.45
      },
      "decode_2k": {
-      "loom": null,
-      "llamacpp": null,
-      "speedup": null
+      "loom": 52.8,
+      "llamacpp": 14.9,
+      "speedup": 3.54
      },
      "decode_32k": {
-      "loom": null,
-      "llamacpp": null,
-      "speedup": null
+      "loom": 43.1,
+      "llamacpp": 10.7,
+      "speedup": 4.03
      },
      "prefill_1k": {
-      "loom": null,
-      "llamacpp": null,
-      "speedup": null
+      "loom": 1992.1,
+      "llamacpp": 292.8,
+      "speedup": 6.8
      },
      "prefill_2k": {
-      "loom": null,
-      "llamacpp": null,
-      "speedup": null
+      "loom": 2200.3,
+      "llamacpp": 278.6,
+      "speedup": 7.9
      },
      "prefill_8k": {
-      "loom": null,
-      "llamacpp": null,
-      "speedup": null
+      "loom": 2363.7,
+      "llamacpp": 241.5,
+      "speedup": 9.79
      },
      "prefill_16k": {
-      "loom": null,
-      "llamacpp": null,
-      "speedup": null
+      "loom": 2297.5,
+      "llamacpp": 203.9,
+      "speedup": 11.27
      },
      "prefill_32k": {
-      "loom": null,
-      "llamacpp": null,
-      "speedup": null
+      "loom": 2174.1,
+      "llamacpp": 158.1,
+      "speedup": 13.75
      },
      "streams4": {
-      "loom": null,
+      "loom": 108.3,
+      "llamacpp": 39.4,
+      "speedup": 2.75
+     },
+     "spec_acceptance": {
+      "loom": 0.44,
       "llamacpp": null,
       "speedup": null
      },
-     "spec_acceptance": {
-      "loom": null,
+     "streams4_drafted": {
+      "loom": 108.4,
       "llamacpp": null,
       "speedup": null
      }
@@ -7560,438 +7584,25 @@ window.LOOM_DATA = {
       }
      }
     },
-    "programs_sha256": "fdb1aaa4771f05a9cc9315aa774bddf121123c8143d3b81762563e6fedc0f6aa",
-    "historical_programs": [
+    "programs_sha256": "96a4f1287bb93129e7939b5ac005c07f9b2e0c204dd646c8ca517392ede4bf53",
+    "named_machine_sources": [
      {
-      "date": "2026-11-21",
+      "date": "2026-11-25",
+      "programs_sha256": "96a4f1287bb93129e7939b5ac005c07f9b2e0c204dd646c8ca517392ede4bf53",
       "source": {
        "kind": "machine",
-       "run": null,
+       "run": "halo3-t68",
        "url": null,
        "device": {
-        "cpu": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
+        "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
         "gpu": "AMD Radeon 8060S Graphics",
-        "os": "Ubuntu 24.04"
-       }
-      },
-      "programs_sha256": "1170a90da0bc7dbcbf7188466f74a88b8699d9069214f9aa8e05cf941e3e1c8b",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 45.4,
-        "baseline": 15.3
-       },
-       "decode_2k": {
-        "loom": 43.5,
-        "baseline": 14.4
-       },
-       "decode_32k": {
-        "loom": 31.6,
-        "baseline": 10.8
-       },
-       "prefill_16k": {
-        "loom": 1641.5,
-        "baseline": 206.1
-       },
-       "prefill_1k": {
-        "loom": 1488.6,
-        "baseline": 288.9
-       },
-       "prefill_2k": {
-        "loom": 1699.0,
-        "baseline": 273.1
-       },
-       "prefill_32k": {
-        "loom": 1264.7,
-        "baseline": 159.7
-       },
-       "prefill_8k": {
-        "loom": 1735.0,
-        "baseline": 241.3
-       },
-       "streams4": {
-        "loom": 88.7,
-        "baseline": 39.7
-       }
-      }
-     },
-     {
-      "date": "2026-11-21",
-      "source": {
-       "kind": "devlab",
-       "run": null,
-       "url": null
-      },
-      "programs_sha256": "251afe746679d8d46b97eb077afef2083f679f84d428a92d6ce838c071c1d136",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 46.4,
-        "baseline": 15.3
-       },
-       "decode_2k": {
-        "loom": 44.7,
-        "baseline": 14.4
-       },
-       "decode_32k": {
-        "loom": 32.9,
-        "baseline": 10.8
-       },
-       "prefill_16k": {
-        "loom": 1607.8,
-        "baseline": 206.1
-       },
-       "prefill_1k": {
-        "loom": 1448.2,
-        "baseline": 288.9
-       },
-       "prefill_2k": {
-        "loom": 1648.8,
-        "baseline": 273.1
-       },
-       "prefill_32k": {
-        "loom": 1243.5,
-        "baseline": 159.7
-       },
-       "prefill_8k": {
-        "loom": 1687.6,
-        "baseline": 241.3
-       }
-      }
-     },
-     {
-      "date": "2026-11-21",
-      "source": {
-       "kind": "devlab",
-       "run": null,
-       "url": null
-      },
-      "programs_sha256": "251afe746679d8d46b97eb077afef2083f679f84d428a92d6ce838c071c1d136",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 46.4,
-        "baseline": 15.3
-       },
-       "decode_2k": {
-        "loom": 44.7,
-        "baseline": 14.4
-       },
-       "decode_32k": {
-        "loom": 32.9,
-        "baseline": 10.8
-       },
-       "prefill_16k": {
-        "loom": 1607.8,
-        "baseline": 206.1
-       },
-       "prefill_1k": {
-        "loom": 1448.2,
-        "baseline": 288.9
-       },
-       "prefill_2k": {
-        "loom": 1648.8,
-        "baseline": 273.1
-       },
-       "prefill_32k": {
-        "loom": 1243.5,
-        "baseline": 159.7
-       },
-       "prefill_8k": {
-        "loom": 1687.6,
-        "baseline": 241.3
-       },
-       "streams4": {
-        "loom": 98.8,
-        "baseline": 39.7
-       }
-      }
-     },
-     {
-      "date": "2026-11-21",
-      "source": {
-       "kind": "devlab",
-       "run": null,
-       "url": null
-      },
-      "programs_sha256": "8cb36d5ba16ce31a158c0d7fb84f33760f0d746e806369668b8b0290439598ff",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 46.5,
-        "baseline": 15.3
-       },
-       "decode_2k": {
-        "loom": 44.4,
-        "baseline": 14.4
-       },
-       "decode_32k": {
-        "loom": 37.7,
-        "baseline": 10.8
-       },
-       "prefill_16k": {
-        "loom": 1692.8,
-        "baseline": 206.1
-       },
-       "prefill_1k": {
-        "loom": 1420.4,
-        "baseline": 288.9
-       },
-       "prefill_2k": {
-        "loom": 1666.8,
-        "baseline": 273.1
-       },
-       "prefill_32k": {
-        "loom": 1604.6,
-        "baseline": 159.7
-       },
-       "prefill_8k": {
-        "loom": 1713.0,
-        "baseline": 241.3
-       },
-       "streams4": {
-        "loom": 89.8,
-        "baseline": 39.7
-       }
-      }
-     },
-     {
-      "date": "2026-11-22",
-      "source": {
-       "kind": "devlab",
-       "run": null,
-       "url": null
-      },
-      "programs_sha256": "91e3bbda29f45cde8e3a6caec38364de9a34262be172d48b0184f87aac1c07dd",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 46.0,
-        "baseline": 15.3
-       },
-       "decode_2k": {
-        "loom": 43.1,
-        "baseline": 14.4
-       },
-       "decode_32k": {
-        "loom": 14.8,
-        "baseline": 10.8
-       },
-       "prefill_16k": {
-        "loom": 1529.2,
-        "baseline": 206.1
-       },
-       "prefill_1k": {
-        "loom": 1456.3,
-        "baseline": 288.9
-       },
-       "prefill_2k": {
-        "loom": 1639.3,
-        "baseline": 273.1
-       },
-       "prefill_32k": {
-        "loom": 1252.9,
-        "baseline": 159.7
-       },
-       "prefill_8k": {
-        "loom": 1580.3,
-        "baseline": 241.3
-       },
-       "streams4": {
-        "loom": 89.8,
-        "baseline": 39.7
-       }
-      }
-     },
-     {
-      "date": "2026-11-22",
-      "source": {
-       "kind": "devlab",
-       "run": null,
-       "url": null
-      },
-      "programs_sha256": "91e3bbda29f45cde8e3a6caec38364de9a34262be172d48b0184f87aac1c07dd",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 46.0,
-        "baseline": 15.3
-       },
-       "decode_2k": {
-        "loom": 43.1,
-        "baseline": 14.4
-       },
-       "decode_32k": {
-        "loom": 14.8,
-        "baseline": 10.8
-       },
-       "prefill_16k": {
-        "loom": 1529.2,
-        "baseline": 206.1
-       },
-       "prefill_1k": {
-        "loom": 1456.3,
-        "baseline": 288.9
-       },
-       "prefill_2k": {
-        "loom": 1639.3,
-        "baseline": 273.1
-       },
-       "prefill_32k": {
-        "loom": 1252.9,
-        "baseline": 159.7
-       },
-       "prefill_8k": {
-        "loom": 1580.3,
-        "baseline": 241.3
-       },
-       "streams4": {
-        "loom": 89.8,
-        "baseline": 39.7
-       }
-      }
-     },
-     {
-      "date": "2026-11-22",
-      "source": {
-       "kind": "devlab",
-       "run": null,
-       "url": null
-      },
-      "programs_sha256": "219789284ccdcf69f1c4fbb4cb95b68840c49c9e9373ac2bab73a00dc2431a84",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 48.6,
-        "baseline": 15.3
-       },
-       "decode_2k": {
-        "loom": 47.0,
-        "baseline": 14.4
-       },
-       "decode_32k": {
-        "loom": 37.7,
-        "baseline": 10.8
-       },
-       "prefill_16k": {
-        "loom": 1826.9,
-        "baseline": 206.1
-       },
-       "prefill_1k": {
-        "loom": 1604.6,
-        "baseline": 288.9
-       },
-       "prefill_2k": {
-        "loom": 1790.1,
-        "baseline": 273.1
-       },
-       "prefill_32k": {
-        "loom": 1696.8,
-        "baseline": 159.7
-       },
-       "prefill_8k": {
-        "loom": 1870.8,
-        "baseline": 241.3
-       },
-       "streams4": {
-        "loom": 93.4,
-        "baseline": 39.7
-       }
-      }
-     },
-     {
-      "date": "2026-11-22",
-      "source": {
-       "kind": "devlab",
-       "run": null,
-       "url": null
-      },
-      "programs_sha256": "f3d1518c4cdb64e0c997b14f89c884878aad3e7d83a3f6c0fe01bdd4a3783041",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 48.5,
-        "baseline": 15.7
-       },
-       "decode_2k": {
-        "loom": 45.2,
-        "baseline": 14.9
-       },
-       "decode_32k": {
-        "loom": 39.1,
-        "baseline": 10.7
-       },
-       "prefill_16k": {
-        "loom": 1819.7,
-        "baseline": 203.9
-       },
-       "prefill_1k": {
-        "loom": 1589.4,
-        "baseline": 292.8
-       },
-       "prefill_2k": {
-        "loom": 1747.6,
-        "baseline": 278.6
-       },
-       "prefill_32k": {
-        "loom": 1689.6,
-        "baseline": 158.1
-       },
-       "prefill_8k": {
-        "loom": 1856.5,
-        "baseline": 241.5
-       },
-       "streams4": {
-        "loom": 95.8,
-        "baseline": 39.4
-       }
-      }
-     },
-     {
-      "date": "2026-11-22",
-      "source": {
-       "kind": "devlab",
-       "run": null,
-       "url": null
-      },
-      "programs_sha256": "f3d1518c4cdb64e0c997b14f89c884878aad3e7d83a3f6c0fe01bdd4a3783041",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 48.5,
-        "baseline": 15.7
-       },
-       "decode_2k": {
-        "loom": 45.2,
-        "baseline": 14.9
-       },
-       "decode_32k": {
-        "loom": 39.1,
-        "baseline": 10.7
-       },
-       "prefill_16k": {
-        "loom": 1819.7,
-        "baseline": 203.9
-       },
-       "prefill_1k": {
-        "loom": 1589.4,
-        "baseline": 292.8
-       },
-       "prefill_2k": {
-        "loom": 1747.6,
-        "baseline": 278.6
-       },
-       "prefill_32k": {
-        "loom": 1689.6,
-        "baseline": 158.1
-       },
-       "prefill_8k": {
-        "loom": 1856.5,
-        "baseline": 241.5
-       },
-       "streams4": {
-        "loom": 95.8,
-        "baseline": 39.4
+        "os": "Ubuntu 24.04.4 LTS"
+       },
+       "hrx_loom": {
+        "hrx_loom": "0.2.0",
+        "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+        "source": "pypi",
+        "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
        }
       }
      }
@@ -7999,16 +7610,16 @@ window.LOOM_DATA = {
    },
    "gates": {
     "summary": {
-     "pass": 7,
+     "pass": 8,
      "fail": 0,
      "unknown": 2,
-     "n/a": 2
+     "n/a": 1
     },
     "status": {
      "kernel_tests": "unknown",
      "golden": "pass",
      "compare": "pass",
-     "vision": "n/a",
+     "vision": "pass",
      "consistency": "pass",
      "spec": "pass",
      "agent": "pass",
@@ -8026,17 +7637,17 @@ window.LOOM_DATA = {
      "blocks": [
       {
        "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=./inkling-2-mini\nloom-serve --model=./inkling-2-mini/model.json '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=Inkling-2-Mini\nloom-serve --model=Inkling-2-Mini '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
       },
       {
        "kind": "text",
-       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` loads weights eagerly on startup rather than on the first request."
+       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
       }
      ],
      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=./inkling-2-mini",
-     "serve": "loom-serve --model=./inkling-2-mini/model.json '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "4e018e88a3aa9826286c71dfe2f6c905a491659b"
+     "fetch": "loom-fetch huggingface:loom-fun/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=Inkling-2-Mini",
+     "serve": "loom-serve --model=Inkling-2-Mini '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+     "source_revision": "73b6d8257495f84d4e18482ac6005a882600f18c"
     }
    },
    "shared_request": {
@@ -8044,14 +7655,14 @@ window.LOOM_DATA = {
     "blocks": [
      {
       "kind": "text",
-      "text": "In another terminal (uses the package default `temperature: 1.0, top_p: 1.0`; optional thinking is turned off):"
+      "text": "In another terminal (optional thinking is turned off):"
      },
      {
       "kind": "code",
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "4e018e88a3aa9826286c71dfe2f6c905a491659b"
+    "source_revision": "73b6d8257495f84d4e18482ac6005a882600f18c"
    }
   },
   {

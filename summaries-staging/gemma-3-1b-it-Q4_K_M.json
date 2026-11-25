@@ -3,7 +3,7 @@
   "checkpoint": "gemma-3-1b-it-Q4_K_M",
   "name": "gemma-3-1b-it",
   "repo": "loom-fun-staging/ggml-org-gemma-3-1b-it-loom",
-  "revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297",
+  "revision": "8e929218a58bcf1695bcd7947d447fba9b587a38",
   "status": null,
   "license": "gemma",
   "service": {
@@ -444,7 +444,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297"
+      "source_revision": "8e929218a58bcf1695bcd7947d447fba9b587a38"
     },
     "radeon-r9700": {
       "blocks": [
@@ -464,7 +464,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat-r9700 --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297"
+      "source_revision": "8e929218a58bcf1695bcd7947d447fba9b587a38"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -484,7 +484,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat-16gb --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297"
+      "source_revision": "8e929218a58bcf1695bcd7947d447fba9b587a38"
     }
   },
   "shared_request": {
@@ -499,6 +499,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-3-1b-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297"
+    "source_revision": "8e929218a58bcf1695bcd7947d447fba9b587a38"
   }
 }
