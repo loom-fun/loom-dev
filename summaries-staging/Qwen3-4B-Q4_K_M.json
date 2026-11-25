@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-4B-Q4_K_M",
   "name": "Qwen3-4B",
   "repo": "loom-fun-staging/ggml-org-Qwen3-4B-loom",
-  "revision": "435ca576c642d67d50a8f00962a2835f04bbd322",
+  "revision": "3325aa6ee235a99e1d6efa57ff3a2ad2da8a26fa",
   "status": null,
   "license": "mit",
   "service": {
@@ -39,10 +39,10 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "n/a",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -148,147 +148,86 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.35,
         "llamacpp": null,
         "speedup": null
       }
     },
     "not_applicable": [],
     "devlab": {
-      "date": null,
-      "source": null,
+      "date": "2026-11-17",
+      "source": {
+        "kind": "devlab",
+        "run": "44088677167",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088677167/job/134057871262"
+      },
       "metrics": {
         "decode": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 100.5,
+          "llamacpp": 74.1,
+          "speedup": 1.36
         },
         "decode_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 80.8,
+          "llamacpp": 69.2,
+          "speedup": 1.17
         },
         "decode_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 28.6,
+          "llamacpp": 35.3,
+          "speedup": 0.81
         },
         "prefill_1k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 2932.3,
+          "llamacpp": 2160.7,
+          "speedup": 1.36
         },
         "prefill_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 3009.9,
+          "llamacpp": 2143.2,
+          "speedup": 1.4
         },
         "prefill_8k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 2397.3,
+          "llamacpp": 1704.9,
+          "speedup": 1.41
         },
         "prefill_16k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 1796.1,
+          "llamacpp": 1296.9,
+          "speedup": 1.38
         },
         "prefill_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 1262.6,
+          "llamacpp": 868.0,
+          "speedup": 1.45
         },
         "streams4": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 262.4,
+          "llamacpp": 211.8,
+          "speedup": 1.24
         }
       }
     },
-    "programs_sha256": "c1fad9a17fb8cce0a0fbfd9812f32a3f0d8fab19cf823ccfd78a1a22bacd60bd",
-    "historical_programs": [
-      {
-        "date": "2026-11-17",
-        "source": {
-          "kind": "devlab",
-          "run": "44088677167",
-          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088677167/job/134057871262"
-        },
-        "programs_sha256": "ee488de19d5f101b76d916e37128add62b987202ae7371ae8d590a7e051df023",
-        "program_identity": "recorded",
-        "metrics": {
-          "decode": {
-            "loom": 100.5,
-            "baseline": 74.1
-          },
-          "decode_2k": {
-            "loom": 80.8,
-            "baseline": 69.2
-          },
-          "decode_32k": {
-            "loom": 28.6,
-            "baseline": 35.3
-          },
-          "prefill_16k": {
-            "loom": 1796.1,
-            "baseline": 1296.9
-          },
-          "prefill_1k": {
-            "loom": 2932.3,
-            "baseline": 2160.7
-          },
-          "prefill_2k": {
-            "loom": 3009.9,
-            "baseline": 2143.2
-          },
-          "prefill_32k": {
-            "loom": 1262.6,
-            "baseline": 868.0
-          },
-          "prefill_8k": {
-            "loom": 2397.3,
-            "baseline": 1704.9
-          },
-          "streams4": {
-            "loom": 262.4,
-            "baseline": 211.8
-          }
-        }
-      },
-      {
-        "date": "2026-11-17",
-        "source": {
-          "kind": "devlab",
-          "run": "44088677167",
-          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088677167/job/134057871262"
-        },
-        "programs_sha256": "ee488de19d5f101b76d916e37128add62b987202ae7371ae8d590a7e051df023",
-        "program_identity": "recorded",
-        "metrics": {
-          "spec_acceptance": {
-            "loom": 0.35
-          }
-        }
-      }
-    ]
+    "programs_sha256": "ee488de19d5f101b76d916e37128add62b987202ae7371ae8d590a7e051df023"
   },
   "gates": {
     "summary": {
-      "pass": 0,
+      "pass": 8,
       "fail": 0,
-      "unknown": 9,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
-      "kernel_tests": "unknown",
-      "golden": "unknown",
-      "compare": "unknown",
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
       "vision": "n/a",
-      "consistency": "unknown",
-      "spec": "unknown",
-      "agent": "unknown",
-      "agent_think_off": "unknown",
-      "sampling": "unknown",
+      "consistency": "pass",
+      "spec": "pass",
+      "agent": "pass",
+      "agent_think_off": "pass",
+      "sampling": "pass",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -406,61 +345,61 @@
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-23",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "45275710722",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45275710722/job/138046833771"
+            "run": "45583997740",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45583997740/job/139100916870"
           },
           "metrics": {
             "decode": {
-              "loom": 226.9,
+              "loom": 228.2,
               "llamacpp": 129.8,
-              "speedup": 1.75
+              "speedup": 1.76
             },
             "decode_2k": {
-              "loom": 169.1,
+              "loom": 170.2,
               "llamacpp": 125.7,
               "speedup": 1.35
             },
             "decode_32k": {
-              "loom": 70.6,
+              "loom": 71.1,
               "llamacpp": 73.9,
               "speedup": 0.96
             },
             "prefill_1k": {
-              "loom": 8567.5,
+              "loom": 8542.0,
               "llamacpp": 6366.5,
-              "speedup": 1.35
+              "speedup": 1.34
             },
             "prefill_2k": {
-              "loom": 9082.2,
+              "loom": 9055.0,
               "llamacpp": 6345.0,
               "speedup": 1.43
             },
             "prefill_8k": {
-              "loom": 7821.9,
+              "loom": 7834.9,
               "llamacpp": 5222.4,
               "speedup": 1.5
             },
             "prefill_16k": {
-              "loom": 6171.8,
+              "loom": 6189.0,
               "llamacpp": 4074.4,
-              "speedup": 1.51
+              "speedup": 1.52
             },
             "prefill_32k": {
-              "loom": 3853.7,
+              "loom": 3817.4,
               "llamacpp": 2826.5,
-              "speedup": 1.36
+              "speedup": 1.35
             },
             "streams4": {
-              "loom": 599.7,
+              "loom": 602.7,
               "llamacpp": 390.3,
               "speedup": 1.54
             }
           }
         },
-        "programs_sha256": "c1fad9a17fb8cce0a0fbfd9812f32a3f0d8fab19cf823ccfd78a1a22bacd60bd"
+        "programs_sha256": "ee488de19d5f101b76d916e37128add62b987202ae7371ae8d590a7e051df023"
       },
       "gates": {
         "summary": {
@@ -485,284 +424,12 @@
       }
     },
     "gfx1201-16gb": {
-      "state": null,
-      "remeasure": null,
+      "state": "not_measured",
+      "required_bytes": null,
+      "fits": true,
+      "shares_section_with": null,
       "memory_bytes": 15000000000,
-      "context_tokens": 40960,
-      "performance": {
-        "baselines": {
-          "vulkan": {
-            "args": "-ngl 99 -cram 0 --spec-type draft-dflash --spec-draft-model card:parameter/Qwen3-4B-DFlash.Q8_0.gguf --spec-draft-n-max 15 -ngld 99 -c 36864 -np 1",
-            "name": "llama.cpp",
-            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
-            "version": "llamacpp-vulkan/b12211",
-            "date": "2026-11-17",
-            "source": {
-              "kind": "machine",
-              "run": null,
-              "url": null,
-              "device": {
-                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
-                "gpu": "AMD Radeon RX 9070 XT",
-                "os": "Ubuntu 26.04"
-              }
-            },
-            "metrics": {
-              "decode": {
-                "llamacpp": 120.3
-              },
-              "decode_2k": {
-                "llamacpp": 110.5
-              },
-              "decode_32k": {
-                "llamacpp": 62.6
-              },
-              "prefill_16k": {
-                "llamacpp": 3893.1
-              },
-              "prefill_1k": {
-                "llamacpp": 5891.8
-              },
-              "prefill_2k": {
-                "llamacpp": 6047.2
-              },
-              "prefill_32k": {
-                "llamacpp": 2672.5
-              },
-              "prefill_8k": {
-                "llamacpp": 4993.4
-              },
-              "streams4": {
-                "llamacpp": 408.5
-              }
-            }
-          }
-        },
-        "date": null,
-        "llamacpp_build": "b1375",
-        "drafting": {
-          "loom": "DFlash, depth 3",
-          "llamacpp": "draft-dflash, n-max 15"
-        },
-        "source": null,
-        "metrics": {
-          "decode": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "decode_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "decode_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_1k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_8k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_16k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "streams4": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "spec_acceptance": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          }
-        },
-        "not_applicable": [],
-        "devlab": {
-          "date": null,
-          "source": null,
-          "metrics": {
-            "decode": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "decode_2k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "decode_32k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_1k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_2k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_8k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_16k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_32k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "streams4": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            }
-          }
-        },
-        "programs_sha256": "c1fad9a17fb8cce0a0fbfd9812f32a3f0d8fab19cf823ccfd78a1a22bacd60bd",
-        "historical_programs": [
-          {
-            "date": "2026-11-17",
-            "source": {
-              "kind": "machine",
-              "run": null,
-              "url": null,
-              "device": {
-                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
-                "gpu": "AMD Radeon RX 9070 XT",
-                "os": "Ubuntu 26.04"
-              },
-              "hrx_loom": {
-                "artifact_id": null,
-                "branch": "v0.2.0",
-                "hrx_loom": "0.2.0",
-                "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
-                "source": "pypi",
-                "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
-              }
-            },
-            "programs_sha256": "ee488de19d5f101b76d916e37128add62b987202ae7371ae8d590a7e051df023",
-            "program_identity": "recorded",
-            "metrics": {
-              "decode": {
-                "loom": 233.8,
-                "baseline": 128.2
-              },
-              "decode_2k": {
-                "loom": 171.4,
-                "baseline": 123.2
-              },
-              "decode_32k": {
-                "loom": 69.8,
-                "baseline": 74.2
-              },
-              "prefill_16k": {
-                "loom": 6036.5,
-                "baseline": 4032.8
-              },
-              "prefill_1k": {
-                "loom": 8367.1,
-                "baseline": 6489.4
-              },
-              "prefill_2k": {
-                "loom": 8852.0,
-                "baseline": 6497.1
-              },
-              "prefill_32k": {
-                "loom": 3424.2,
-                "baseline": 2806.6
-              },
-              "prefill_8k": {
-                "loom": 7459.4,
-                "baseline": 5242.6
-              },
-              "streams4": {
-                "loom": 624.0,
-                "baseline": 397.4
-              }
-            }
-          },
-          {
-            "date": "2026-11-17",
-            "source": {
-              "kind": "machine",
-              "run": null,
-              "url": null,
-              "device": {
-                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
-                "gpu": "AMD Radeon RX 9070 XT",
-                "os": "Ubuntu 26.04"
-              },
-              "hrx_loom": {
-                "artifact_id": null,
-                "branch": "v0.2.0",
-                "hrx_loom": "0.2.0",
-                "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
-                "source": "pypi",
-                "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
-              }
-            },
-            "programs_sha256": "ee488de19d5f101b76d916e37128add62b987202ae7371ae8d590a7e051df023",
-            "program_identity": "recorded",
-            "metrics": {
-              "spec_acceptance": {
-                "loom": 0.34
-              }
-            }
-          }
-        ]
-      },
-      "gates": {
-        "summary": {
-          "pass": 0,
-          "fail": 0,
-          "unknown": 9,
-          "n/a": 2
-        },
-        "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
-          "vision": "n/a",
-          "consistency": "unknown",
-          "spec": "unknown",
-          "agent": "unknown",
-          "agent_think_off": "unknown",
-          "sampling": "unknown",
-          "decision": "n/a",
-          "logits": "unknown"
-        }
-      }
+      "context_tokens": 40960
     }
   },
   "quickstart": {
@@ -784,7 +451,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-4B-loom:chat --output=Qwen3-4B",
       "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "435ca576c642d67d50a8f00962a2835f04bbd322"
+      "source_revision": "3325aa6ee235a99e1d6efa57ff3a2ad2da8a26fa"
     },
     "radeon-r9700": {
       "blocks": [
@@ -804,7 +471,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-4B-loom:chat --output=Qwen3-4B",
       "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "435ca576c642d67d50a8f00962a2835f04bbd322"
+      "source_revision": "3325aa6ee235a99e1d6efa57ff3a2ad2da8a26fa"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -824,7 +491,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-Qwen3-4B-loom:chat-16gb --output=Qwen3-4B",
       "serve": "loom-serve --model=Qwen3-4B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "435ca576c642d67d50a8f00962a2835f04bbd322"
+      "source_revision": "3325aa6ee235a99e1d6efa57ff3a2ad2da8a26fa"
     }
   },
   "shared_request": {
@@ -839,6 +506,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-4B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "435ca576c642d67d50a8f00962a2835f04bbd322"
+    "source_revision": "3325aa6ee235a99e1d6efa57ff3a2ad2da8a26fa"
   }
 }

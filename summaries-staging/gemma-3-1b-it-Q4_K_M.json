@@ -3,7 +3,7 @@
   "checkpoint": "gemma-3-1b-it-Q4_K_M",
   "name": "gemma-3-1b-it",
   "repo": "loom-fun-staging/ggml-org-gemma-3-1b-it-loom",
-  "revision": "844e1a1100459bf32bffaf3d53fd491266c21b9a",
+  "revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297",
   "status": null,
   "license": "gemma",
   "service": {
@@ -36,10 +36,10 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "n/a",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -150,18 +150,22 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": null,
-      "source": null,
+      "date": "2026-11-17",
+      "source": {
+        "kind": "devlab",
+        "run": "44088689861",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909384"
+      },
       "metrics": {
         "decode": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 194.5,
+          "llamacpp": 168.3,
+          "speedup": 1.16
         },
         "decode_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 189.0,
+          "llamacpp": 163.7,
+          "speedup": 1.15
         },
         "decode_32k": {
           "loom": null,
@@ -169,24 +173,24 @@
           "speedup": null
         },
         "prefill_1k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 10677.3,
+          "llamacpp": 7862.6,
+          "speedup": 1.36
         },
         "prefill_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 11739.8,
+          "llamacpp": 8211.8,
+          "speedup": 1.43
         },
         "prefill_8k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 11932.0,
+          "llamacpp": 8974.7,
+          "speedup": 1.33
         },
         "prefill_16k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 11008.0,
+          "llamacpp": 8213.0,
+          "speedup": 1.34
         },
         "prefill_32k": {
           "loom": null,
@@ -194,73 +198,31 @@
           "speedup": null
         },
         "streams4": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 672.5,
+          "llamacpp": 446.8,
+          "speedup": 1.51
         }
       }
     },
-    "programs_sha256": "396f9528ab700f2d35cee9973ad43a16d54f751cd04c52599b1a2cb9bf2f366e",
-    "historical_programs": [
-      {
-        "date": "2026-11-17",
-        "source": {
-          "kind": "devlab",
-          "run": "44088689861",
-          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909384"
-        },
-        "programs_sha256": "fbf5b682b82d831ec2ef1faa12c6e2fecf13793731625d5b563e776673c92c2b",
-        "program_identity": "recorded",
-        "metrics": {
-          "decode": {
-            "loom": 194.5,
-            "baseline": 168.3
-          },
-          "decode_2k": {
-            "loom": 189.0,
-            "baseline": 163.7
-          },
-          "prefill_16k": {
-            "loom": 11008.0,
-            "baseline": 8213.0
-          },
-          "prefill_1k": {
-            "loom": 10677.3,
-            "baseline": 7862.6
-          },
-          "prefill_2k": {
-            "loom": 11739.8,
-            "baseline": 8211.8
-          },
-          "prefill_8k": {
-            "loom": 11932.0,
-            "baseline": 8974.7
-          },
-          "streams4": {
-            "loom": 672.5,
-            "baseline": 446.8
-          }
-        }
-      }
-    ]
+    "programs_sha256": "fbf5b682b82d831ec2ef1faa12c6e2fecf13793731625d5b563e776673c92c2b"
   },
   "gates": {
     "summary": {
-      "pass": 0,
+      "pass": 5,
       "fail": 0,
-      "unknown": 6,
+      "unknown": 1,
       "n/a": 5
     },
     "status": {
-      "kernel_tests": "unknown",
-      "golden": "unknown",
-      "compare": "unknown",
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
       "vision": "n/a",
-      "consistency": "unknown",
+      "consistency": "pass",
       "spec": "n/a",
       "agent": "n/a",
       "agent_think_off": "n/a",
-      "sampling": "unknown",
+      "sampling": "pass",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -376,20 +338,20 @@
           "spec_acceptance"
         ],
         "devlab": {
-          "date": "2026-11-23",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "45260618966",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45260618966/job/137994068151"
+            "run": "45588058952",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45588058952/job/139114739174"
           },
           "metrics": {
             "decode": {
-              "loom": 400.8,
+              "loom": 397.8,
               "llamacpp": 221.0,
-              "speedup": 1.81
+              "speedup": 1.8
             },
             "decode_2k": {
-              "loom": 378.3,
+              "loom": 377.9,
               "llamacpp": 217.8,
               "speedup": 1.74
             },
@@ -399,22 +361,22 @@
               "speedup": null
             },
             "prefill_1k": {
-              "loom": 29106.8,
+              "loom": 29007.2,
               "llamacpp": 14669.1,
               "speedup": 1.98
             },
             "prefill_2k": {
-              "loom": 31668.4,
+              "loom": 31580.1,
               "llamacpp": 17810.0,
-              "speedup": 1.78
+              "speedup": 1.77
             },
             "prefill_8k": {
-              "loom": 32643.2,
+              "loom": 32771.6,
               "llamacpp": 21601.0,
-              "speedup": 1.51
+              "speedup": 1.52
             },
             "prefill_16k": {
-              "loom": 31939.7,
+              "loom": 32038.4,
               "llamacpp": 21741.2,
               "speedup": 1.47
             },
@@ -424,13 +386,13 @@
               "speedup": null
             },
             "streams4": {
-              "loom": 1427.5,
+              "loom": 1407.8,
               "llamacpp": 758.8,
-              "speedup": 1.88
+              "speedup": 1.86
             }
           }
         },
-        "programs_sha256": "396f9528ab700f2d35cee9973ad43a16d54f751cd04c52599b1a2cb9bf2f366e"
+        "programs_sha256": "fbf5b682b82d831ec2ef1faa12c6e2fecf13793731625d5b563e776673c92c2b"
       },
       "gates": {
         "summary": {
@@ -455,246 +417,12 @@
       }
     },
     "gfx1201-16gb": {
-      "state": null,
-      "remeasure": null,
+      "state": "not_measured",
+      "required_bytes": null,
+      "fits": true,
+      "shares_section_with": null,
       "memory_bytes": 15000000000,
-      "context_tokens": 32768,
-      "performance": {
-        "baselines": {
-          "vulkan": {
-            "args": "-ngl 99 -cram 0 -c 36864 -np 1",
-            "name": "llama.cpp",
-            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
-            "version": "llamacpp-vulkan/b12211",
-            "date": "2026-11-17",
-            "source": {
-              "kind": "machine",
-              "run": null,
-              "url": null,
-              "device": {
-                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
-                "gpu": "AMD Radeon RX 9070 XT",
-                "os": "Ubuntu 26.04"
-              }
-            },
-            "metrics": {
-              "decode": {
-                "llamacpp": 332.4
-              },
-              "decode_2k": {
-                "llamacpp": 324.7
-              },
-              "prefill_16k": {
-                "llamacpp": 23818.1
-              },
-              "prefill_1k": {
-                "llamacpp": 17026.4
-              },
-              "prefill_2k": {
-                "llamacpp": 19652.7
-              },
-              "prefill_8k": {
-                "llamacpp": 24287.1
-              },
-              "streams4": {
-                "llamacpp": 855.0
-              }
-            }
-          }
-        },
-        "date": null,
-        "llamacpp_build": "b1375",
-        "drafting": {
-          "loom": null,
-          "llamacpp": null
-        },
-        "source": null,
-        "metrics": {
-          "decode": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "decode_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "decode_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_1k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_8k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_16k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "prefill_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "streams4": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          },
-          "spec_acceptance": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
-          }
-        },
-        "not_applicable": [
-          "decode_32k",
-          "prefill_32k",
-          "spec_acceptance"
-        ],
-        "devlab": {
-          "date": null,
-          "source": null,
-          "metrics": {
-            "decode": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "decode_2k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "decode_32k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_1k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_2k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_8k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_16k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "prefill_32k": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            },
-            "streams4": {
-              "loom": null,
-              "llamacpp": null,
-              "speedup": null
-            }
-          }
-        },
-        "programs_sha256": "396f9528ab700f2d35cee9973ad43a16d54f751cd04c52599b1a2cb9bf2f366e",
-        "historical_programs": [
-          {
-            "date": "2026-11-17",
-            "source": {
-              "kind": "machine",
-              "run": null,
-              "url": null,
-              "device": {
-                "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
-                "gpu": "AMD Radeon RX 9070 XT",
-                "os": "Ubuntu 26.04"
-              },
-              "hrx_loom": {
-                "artifact_id": null,
-                "branch": "v0.2.0",
-                "hrx_loom": "0.2.0",
-                "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
-                "source": "pypi",
-                "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
-              }
-            },
-            "programs_sha256": "fbf5b682b82d831ec2ef1faa12c6e2fecf13793731625d5b563e776673c92c2b",
-            "program_identity": "recorded",
-            "metrics": {
-              "decode": {
-                "loom": 402.0,
-                "baseline": 211.3
-              },
-              "decode_2k": {
-                "loom": 380.5,
-                "baseline": 205.6
-              },
-              "prefill_16k": {
-                "loom": 31421.5,
-                "baseline": 21213.5
-              },
-              "prefill_1k": {
-                "loom": 28731.9,
-                "baseline": 15166.0
-              },
-              "prefill_2k": {
-                "loom": 32115.7,
-                "baseline": 18136.9
-              },
-              "prefill_8k": {
-                "loom": 32156.7,
-                "baseline": 21316.8
-              },
-              "streams4": {
-                "loom": 1435.1,
-                "baseline": 764.0
-              }
-            }
-          }
-        ]
-      },
-      "gates": {
-        "summary": {
-          "pass": 0,
-          "fail": 0,
-          "unknown": 6,
-          "n/a": 5
-        },
-        "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
-          "vision": "n/a",
-          "consistency": "unknown",
-          "spec": "n/a",
-          "agent": "n/a",
-          "agent_think_off": "n/a",
-          "sampling": "unknown",
-          "decision": "n/a",
-          "logits": "unknown"
-        }
-      }
+      "context_tokens": 32768
     }
   },
   "quickstart": {
@@ -716,7 +444,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "844e1a1100459bf32bffaf3d53fd491266c21b9a"
+      "source_revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297"
     },
     "radeon-r9700": {
       "blocks": [
@@ -736,7 +464,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat-r9700 --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "844e1a1100459bf32bffaf3d53fd491266c21b9a"
+      "source_revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -756,7 +484,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-gemma-3-1b-it-loom:chat-16gb --output=gemma-3-1b-it",
       "serve": "loom-serve --model=gemma-3-1b-it '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "844e1a1100459bf32bffaf3d53fd491266c21b9a"
+      "source_revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297"
     }
   },
   "shared_request": {
@@ -771,6 +499,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-3-1b-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "844e1a1100459bf32bffaf3d53fd491266c21b9a"
+    "source_revision": "6e8a759d6d88c04a4bd4368ea97a93bda398d297"
   }
 }

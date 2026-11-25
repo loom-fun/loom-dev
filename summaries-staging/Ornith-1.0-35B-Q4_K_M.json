@@ -3,7 +3,7 @@
   "checkpoint": "Ornith-1.0-35B-Q4_K_M",
   "name": "Ornith-1.0-35B",
   "repo": "loom-fun-staging/lmstudio-community-Ornith-1.0-35B-loom",
-  "revision": "a16e13988f98fcfa0ea89a49215365ed080b3cd0",
+  "revision": "a2f3dc9da5c40f4a9d04098de5e86f6f1d933155",
   "status": null,
   "license": "mit",
   "service": {
@@ -39,7 +39,7 @@
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
     "image_input": "yes",
@@ -157,125 +157,79 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": null,
-      "source": null,
+      "date": "2026-11-17",
+      "source": {
+        "kind": "devlab",
+        "run": "44088689861",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909898"
+      },
       "metrics": {
         "decode": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 75.1,
+          "llamacpp": 65.7,
+          "speedup": 1.14
         },
         "decode_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 72.1,
+          "llamacpp": 64.3,
+          "speedup": 1.12
         },
         "decode_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 56.7,
+          "llamacpp": 53.7,
+          "speedup": 1.06
         },
         "prefill_1k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 2309.5,
+          "llamacpp": 1268.2,
+          "speedup": 1.82
         },
         "prefill_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 2538.1,
+          "llamacpp": 1354.2,
+          "speedup": 1.87
         },
         "prefill_8k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 2726.9,
+          "llamacpp": 1360.3,
+          "speedup": 2.0
         },
         "prefill_16k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 2438.6,
+          "llamacpp": 1247.8,
+          "speedup": 1.95
         },
         "prefill_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 2111.3,
+          "llamacpp": 1058.2,
+          "speedup": 2.0
         },
         "streams4": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 173.8,
+          "llamacpp": 139.4,
+          "speedup": 1.25
         }
       }
     },
-    "programs_sha256": "e9367e522b6cf2cb111639962ee58b79126511d67788c19fb377cbfd66f18870",
-    "historical_programs": [
-      {
-        "date": "2026-11-17",
-        "source": {
-          "kind": "devlab",
-          "run": "44088689861",
-          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909898"
-        },
-        "programs_sha256": "b67f9f9426d1ea2748089a644b68d24077f7d7d56d9bfb98431fc190f7507f60",
-        "program_identity": "recorded",
-        "metrics": {
-          "decode": {
-            "loom": 75.1,
-            "baseline": 65.7
-          },
-          "decode_2k": {
-            "loom": 72.1,
-            "baseline": 64.3
-          },
-          "decode_32k": {
-            "loom": 56.7,
-            "baseline": 53.7
-          },
-          "prefill_16k": {
-            "loom": 2438.6,
-            "baseline": 1247.8
-          },
-          "prefill_1k": {
-            "loom": 2309.5,
-            "baseline": 1268.2
-          },
-          "prefill_2k": {
-            "loom": 2538.1,
-            "baseline": 1354.2
-          },
-          "prefill_32k": {
-            "loom": 2111.3,
-            "baseline": 1058.2
-          },
-          "prefill_8k": {
-            "loom": 2726.9,
-            "baseline": 1360.3
-          },
-          "streams4": {
-            "loom": 173.8,
-            "baseline": 139.4
-          }
-        }
-      }
-    ]
+    "programs_sha256": "b67f9f9426d1ea2748089a644b68d24077f7d7d56d9bfb98431fc190f7507f60"
   },
   "gates": {
     "summary": {
-      "pass": 0,
+      "pass": 8,
       "fail": 0,
-      "unknown": 9,
+      "unknown": 1,
       "n/a": 2
     },
     "status": {
-      "kernel_tests": "unknown",
-      "golden": "unknown",
-      "compare": "unknown",
-      "vision": "unknown",
-      "consistency": "unknown",
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
+      "vision": "pass",
+      "consistency": "pass",
       "spec": "n/a",
-      "agent": "unknown",
-      "agent_think_off": "unknown",
-      "sampling": "unknown",
+      "agent": "pass",
+      "agent_think_off": "pass",
+      "sampling": "pass",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -395,61 +349,61 @@
           "spec_acceptance"
         ],
         "devlab": {
-          "date": "2026-11-24",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "45275710722",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45275710722/job/138046833591"
+            "run": "45588058952",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45588058952/job/139114739179"
           },
           "metrics": {
             "decode": {
-              "loom": 150.6,
+              "loom": 150.0,
               "llamacpp": 102.9,
               "speedup": 1.46
             },
             "decode_2k": {
-              "loom": 143.2,
+              "loom": 143.3,
               "llamacpp": 99.7,
               "speedup": 1.44
             },
             "decode_32k": {
-              "loom": 123.3,
+              "loom": 123.1,
               "llamacpp": 87.4,
               "speedup": 1.41
             },
             "prefill_1k": {
-              "loom": 6615.2,
+              "loom": 6548.5,
               "llamacpp": 3298.1,
-              "speedup": 2.01
+              "speedup": 1.99
             },
             "prefill_2k": {
-              "loom": 6770.6,
+              "loom": 6694.5,
               "llamacpp": 3689.9,
-              "speedup": 1.83
+              "speedup": 1.81
             },
             "prefill_8k": {
-              "loom": 7295.9,
+              "loom": 7211.5,
               "llamacpp": 3946.8,
-              "speedup": 1.85
+              "speedup": 1.83
             },
             "prefill_16k": {
-              "loom": 6626.2,
+              "loom": 6556.5,
               "llamacpp": 3710.9,
-              "speedup": 1.79
+              "speedup": 1.77
             },
             "prefill_32k": {
-              "loom": 5750.5,
+              "loom": 5700.6,
               "llamacpp": 3319.8,
-              "speedup": 1.73
+              "speedup": 1.72
             },
             "streams4": {
-              "loom": 379.3,
+              "loom": 376.9,
               "llamacpp": 268.8,
-              "speedup": 1.41
+              "speedup": 1.4
             }
           }
         },
-        "programs_sha256": "e9367e522b6cf2cb111639962ee58b79126511d67788c19fb377cbfd66f18870"
+        "programs_sha256": "b67f9f9426d1ea2748089a644b68d24077f7d7d56d9bfb98431fc190f7507f60"
       },
       "gates": {
         "summary": {
@@ -493,7 +447,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/lmstudio-community-Ornith-1.0-35B-loom:chat --output=Ornith-1.0-35B",
       "serve": "loom-serve --model=Ornith-1.0-35B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "a16e13988f98fcfa0ea89a49215365ed080b3cd0"
+      "source_revision": "a2f3dc9da5c40f4a9d04098de5e86f6f1d933155"
     },
     "radeon-r9700": {
       "blocks": [
@@ -513,7 +467,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/lmstudio-community-Ornith-1.0-35B-loom:chat-r9700 --output=Ornith-1.0-35B",
       "serve": "loom-serve --model=Ornith-1.0-35B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "a16e13988f98fcfa0ea89a49215365ed080b3cd0"
+      "source_revision": "a2f3dc9da5c40f4a9d04098de5e86f6f1d933155"
     }
   },
   "shared_request": {
@@ -528,6 +482,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"ornith-ai/Ornith-1.0-35B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "a16e13988f98fcfa0ea89a49215365ed080b3cd0"
+    "source_revision": "a2f3dc9da5c40f4a9d04098de5e86f6f1d933155"
   }
 }
