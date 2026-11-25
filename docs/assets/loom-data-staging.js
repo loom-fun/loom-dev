@@ -3257,7 +3257,7 @@ window.LOOM_DATA = {
    "checkpoint": "gemma-4-31B-it-Q4_K_M",
    "name": "gemma-4-31B-it",
    "repo": "loom-fun-staging/unsloth-gemma-4-31B-it-loom",
-   "revision": "2e953b9c342104eb56c4a6a55fa9212beb89ddd8",
+   "revision": "33d95b2b9ffce38fe015562d54af7c4787f9717d",
    "status": null,
    "license": "mit",
    "service": {
@@ -3293,10 +3293,10 @@ window.LOOM_DATA = {
    },
    "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "no",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "no",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -3402,147 +3402,86 @@ window.LOOM_DATA = {
       "speedup": null
      },
      "spec_acceptance": {
-      "loom": null,
+      "loom": 0.48,
       "llamacpp": null,
       "speedup": null
      }
     },
     "not_applicable": [],
     "devlab": {
-     "date": null,
-     "source": null,
+     "date": "2026-11-17",
+     "source": {
+      "kind": "devlab",
+      "run": "44088715568",
+      "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088715568/job/134058001826"
+     },
      "metrics": {
       "decode": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 24.2,
+       "llamacpp": 16.1,
+       "speedup": 1.5
       },
       "decode_2k": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 18.3,
+       "llamacpp": 12.6,
+       "speedup": 1.45
       },
       "decode_32k": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 14.4,
+       "llamacpp": 8.9,
+       "speedup": 1.62
       },
       "prefill_1k": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 393.0,
+       "llamacpp": 266.5,
+       "speedup": 1.47
       },
       "prefill_2k": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 413.7,
+       "llamacpp": 274.4,
+       "speedup": 1.51
       },
       "prefill_8k": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 389.6,
+       "llamacpp": 267.1,
+       "speedup": 1.46
       },
       "prefill_16k": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 364.5,
+       "llamacpp": 238.2,
+       "speedup": 1.53
       },
       "prefill_32k": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 314.7,
+       "llamacpp": 195.2,
+       "speedup": 1.61
       },
       "streams4": {
-       "loom": null,
-       "llamacpp": null,
-       "speedup": null
+       "loom": 43.1,
+       "llamacpp": 33.6,
+       "speedup": 1.28
       }
      }
     },
-    "programs_sha256": "81a6af0f8ffccfd652ca1edc6f375cbe0be3a91a9282c38f32d9fa49f3aabc3e",
-    "historical_programs": [
-     {
-      "date": "2026-11-17",
-      "source": {
-       "kind": "devlab",
-       "run": "44088715568",
-       "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088715568/job/134058001826"
-      },
-      "programs_sha256": "a94d2a3e23c431b279124494629062db61f93917fd23e80deb2cc2037aef0f73",
-      "program_identity": "recorded",
-      "metrics": {
-       "decode": {
-        "loom": 24.2,
-        "baseline": 16.1
-       },
-       "decode_2k": {
-        "loom": 18.3,
-        "baseline": 12.6
-       },
-       "decode_32k": {
-        "loom": 14.4,
-        "baseline": 8.9
-       },
-       "prefill_16k": {
-        "loom": 364.5,
-        "baseline": 238.2
-       },
-       "prefill_1k": {
-        "loom": 393.0,
-        "baseline": 266.5
-       },
-       "prefill_2k": {
-        "loom": 413.7,
-        "baseline": 274.4
-       },
-       "prefill_32k": {
-        "loom": 314.7,
-        "baseline": 195.2
-       },
-       "prefill_8k": {
-        "loom": 389.6,
-        "baseline": 267.1
-       },
-       "streams4": {
-        "loom": 43.1,
-        "baseline": 33.6
-       }
-      }
-     },
-     {
-      "date": "2026-11-17",
-      "source": {
-       "kind": "devlab",
-       "run": "44088715568",
-       "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088715568/job/134058001826"
-      },
-      "programs_sha256": "a94d2a3e23c431b279124494629062db61f93917fd23e80deb2cc2037aef0f73",
-      "program_identity": "recorded",
-      "metrics": {
-       "spec_acceptance": {
-        "loom": 0.48
-       }
-      }
-     }
-    ]
+    "programs_sha256": "a94d2a3e23c431b279124494629062db61f93917fd23e80deb2cc2037aef0f73"
    },
    "gates": {
     "summary": {
-     "pass": 0,
+     "pass": 8,
      "fail": 0,
-     "unknown": 9,
+     "unknown": 1,
      "n/a": 2
     },
     "status": {
-     "kernel_tests": "unknown",
-     "golden": "unknown",
-     "compare": "unknown",
+     "kernel_tests": "pass",
+     "golden": "pass",
+     "compare": "pass",
      "vision": "n/a",
-     "consistency": "unknown",
-     "spec": "unknown",
-     "agent": "unknown",
-     "agent_think_off": "unknown",
-     "sampling": "unknown",
+     "consistency": "pass",
+     "spec": "pass",
+     "agent": "pass",
+     "agent_think_off": "pass",
+     "sampling": "pass",
      "decision": "n/a",
      "logits": "unknown"
     }
@@ -3660,22 +3599,22 @@ window.LOOM_DATA = {
       },
       "not_applicable": [],
       "devlab": {
-       "date": "2026-11-24",
+       "date": "2026-11-25",
        "source": {
         "kind": "devlab",
-        "run": "45275710722",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45275710722/job/138046836695"
+        "run": "45551320439",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45551320439/job/138992970363"
        },
        "metrics": {
         "decode": {
-         "loom": 62.6,
+         "loom": 62.4,
          "llamacpp": 43.2,
-         "speedup": 1.45
+         "speedup": 1.44
         },
         "decode_2k": {
-         "loom": 48.2,
+         "loom": 45.8,
          "llamacpp": 34.6,
-         "speedup": 1.39
+         "speedup": 1.32
         },
         "decode_32k": {
          "loom": null,
@@ -3683,14 +3622,14 @@ window.LOOM_DATA = {
          "speedup": null
         },
         "prefill_1k": {
-         "loom": 1328.7,
+         "loom": 1312.2,
          "llamacpp": 783.2,
-         "speedup": 1.7
+         "speedup": 1.68
         },
         "prefill_2k": {
-         "loom": 1384.5,
+         "loom": 1381.5,
          "llamacpp": 835.0,
-         "speedup": 1.66
+         "speedup": 1.65
         },
         "prefill_8k": {
          "loom": null,
@@ -3708,13 +3647,13 @@ window.LOOM_DATA = {
          "speedup": null
         },
         "streams4": {
-         "loom": 108.7,
+         "loom": 108.8,
          "llamacpp": 75.1,
          "speedup": 1.45
         }
        }
       },
-      "programs_sha256": "81a6af0f8ffccfd652ca1edc6f375cbe0be3a91a9282c38f32d9fa49f3aabc3e"
+      "programs_sha256": "a94d2a3e23c431b279124494629062db61f93917fd23e80deb2cc2037aef0f73"
      },
      "gates": {
       "summary": {
@@ -3758,7 +3697,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-31B-it-loom:chat --output=gemma-4-31B-it",
      "serve": "loom-serve --model=gemma-4-31B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "2e953b9c342104eb56c4a6a55fa9212beb89ddd8"
+     "source_revision": "33d95b2b9ffce38fe015562d54af7c4787f9717d"
     },
     "radeon-r9700": {
      "blocks": [
@@ -3778,7 +3717,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-31B-it-loom:chat-r9700 --output=gemma-4-31B-it",
      "serve": "loom-serve --model=gemma-4-31B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-     "source_revision": "2e953b9c342104eb56c4a6a55fa9212beb89ddd8"
+     "source_revision": "33d95b2b9ffce38fe015562d54af7c4787f9717d"
     }
    },
    "shared_request": {
@@ -3793,15 +3732,15 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-31B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "2e953b9c342104eb56c4a6a55fa9212beb89ddd8"
+    "source_revision": "33d95b2b9ffce38fe015562d54af7c4787f9717d"
    }
   },
   {
    "schema": "loom-summary/1",
    "checkpoint": "gemma-4-31B-it-qat-UD-Q4_K_XL",
    "name": "gemma-4-31B-it-qat",
-   "repo": "loom-fun/unsloth-gemma-4-31B-it-qat-loom",
-   "revision": "b6493f52da8802826d0d81631ab324d012fbaad8",
+   "repo": "loom-fun-staging/unsloth-gemma-4-31B-it-qat-loom",
+   "revision": "e90752fbd54c30fda4d3b71564ede53a64a8530f",
    "status": null,
    "license": "apache-2.0",
    "service": {
@@ -4135,29 +4074,29 @@ window.LOOM_DATA = {
         "speedup": null
        },
        "spec_acceptance": {
-        "loom": 0.64,
+        "loom": null,
         "llamacpp": null,
         "speedup": null
        }
       },
       "not_applicable": [],
       "devlab": {
-       "date": "2026-11-18",
+       "date": "2026-11-25",
        "source": {
         "kind": "devlab",
-        "run": "44406577436",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44406577436/job/135163412203"
+        "run": "45551320439",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45551320439/job/138992970344"
        },
        "metrics": {
         "decode": {
-         "loom": 79.3,
+         "loom": 78.5,
          "llamacpp": 61.1,
-         "speedup": 1.3
+         "speedup": 1.28
         },
         "decode_2k": {
-         "loom": 61.9,
+         "loom": 58.0,
          "llamacpp": 50.1,
-         "speedup": 1.24
+         "speedup": 1.16
         },
         "decode_32k": {
          "loom": null,
@@ -4165,19 +4104,19 @@ window.LOOM_DATA = {
          "speedup": null
         },
         "prefill_1k": {
-         "loom": 1320.6,
+         "loom": 1321.1,
          "llamacpp": 944.2,
          "speedup": 1.4
         },
         "prefill_2k": {
-         "loom": 1401.9,
+         "loom": 1375.8,
          "llamacpp": 1010.0,
-         "speedup": 1.39
+         "speedup": 1.36
         },
         "prefill_8k": {
-         "loom": 1338.3,
+         "loom": 1301.5,
          "llamacpp": 985.1,
-         "speedup": 1.36
+         "speedup": 1.32
         },
         "prefill_16k": {
          "loom": null,
@@ -4190,9 +4129,9 @@ window.LOOM_DATA = {
          "speedup": null
         },
         "streams4": {
-         "loom": 120.6,
+         "loom": 119.9,
          "llamacpp": 99.9,
-         "speedup": 1.21
+         "speedup": 1.2
         }
        }
       },
@@ -4236,17 +4175,17 @@ window.LOOM_DATA = {
       },
       {
        "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-qat-loom:chat --materialize=copy --output=gemma-4-31B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+       "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-31B-it-qat-loom:chat --output=gemma-4-31B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
       },
       {
        "kind": "text",
-       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 81,920 tokens per request (its native context is 262,144)."
+       "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 81,920 tokens per request (its native context is 262,144)."
       }
      ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-qat-loom:chat --materialize=copy --output=gemma-4-31B-it-qat-q4_0-unquantized",
-     "serve": "loom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "b6493f52da8802826d0d81631ab324d012fbaad8"
+     "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+     "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-31B-it-qat-loom:chat --output=gemma-4-31B-it-qat-q4_0-unquantized",
+     "serve": "loom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+     "source_revision": "e90752fbd54c30fda4d3b71564ede53a64a8530f"
     },
     "radeon-r9700": {
      "blocks": [
@@ -4256,17 +4195,17 @@ window.LOOM_DATA = {
       },
       {
        "kind": "code",
-       "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-31B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+       "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-31B-it-qat-loom:chat-r9700 --output=gemma-4-31B-it-qat-q4_0-unquantized\nloom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
       },
       {
        "kind": "text",
-       "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 10,240 tokens per request (its native context is 262,144)."
+       "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 10,240 tokens per request (its native context is 262,144)."
       }
      ],
-     "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-     "fetch": "loom-fetch huggingface:loom-fun/unsloth-gemma-4-31B-it-qat-loom:chat-r9700 --materialize=copy --output=gemma-4-31B-it-qat-q4_0-unquantized",
-     "serve": "loom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "b6493f52da8802826d0d81631ab324d012fbaad8"
+     "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+     "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gemma-4-31B-it-qat-loom:chat-r9700 --output=gemma-4-31B-it-qat-q4_0-unquantized",
+     "serve": "loom-serve --model=gemma-4-31B-it-qat-q4_0-unquantized '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+     "source_revision": "e90752fbd54c30fda4d3b71564ede53a64a8530f"
     }
    },
    "shared_request": {
@@ -4281,7 +4220,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-31B-it-qat-q4_0-unquantized\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "b6493f52da8802826d0d81631ab324d012fbaad8"
+    "source_revision": "e90752fbd54c30fda4d3b71564ede53a64a8530f"
    }
   },
   {
