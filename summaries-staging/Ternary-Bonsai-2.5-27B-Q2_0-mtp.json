@@ -3,7 +3,7 @@
   "checkpoint": "Ternary-Bonsai-2.5-27B-Q2_0-mtp",
   "name": "Ternary-Bonsai-2.5-27B",
   "repo": "loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom",
-  "revision": "a0c2ba3cccad880543ebf2578101b4fa346acfb6",
+  "revision": "84f070ce0790e92e9b32b5a4de83f64e47902926",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -24,7 +24,7 @@
   },
   "serve": {
     "device": "amdgpu",
-    "memory_bytes": 35000000000,
+    "memory_bytes": 39000000000,
     "context_tokens": 262144,
     "rows": 4,
     "max_tokens": 4096,
@@ -49,7 +49,7 @@
     "date": null,
     "llamacpp_build": "b1387",
     "drafting": {
-      "loom": null,
+      "loom": "MTP, depth 3",
       "llamacpp": "draft-mtp, n-max 3"
     },
     "source": null,
@@ -100,77 +100,75 @@
         "speedup": null
       },
       "spec_acceptance": {
-        "loom": null,
+        "loom": 0.6,
         "llamacpp": null,
         "speedup": null
       }
     },
-    "not_applicable": [
-      "spec_acceptance"
-    ],
+    "not_applicable": [],
     "devlab": {
       "date": "2026-11-25",
       "source": {
         "kind": "devlab",
-        "run": "45535242750",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45535242750"
+        "run": "45545014427",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45545014427"
       },
       "metrics": {
         "decode": {
-          "loom": 26.0,
-          "llamacpp": 34.1,
-          "speedup": 0.76
+          "loom": 44.7,
+          "llamacpp": 34.8,
+          "speedup": 1.28
         },
         "decode_2k": {
-          "loom": 25.1,
-          "llamacpp": 33.0,
-          "speedup": 0.76
+          "loom": 37.3,
+          "llamacpp": 32.8,
+          "speedup": 1.14
         },
         "decode_32k": {
-          "loom": 19.7,
-          "llamacpp": 28.4,
-          "speedup": 0.69
+          "loom": 30.5,
+          "llamacpp": 28.9,
+          "speedup": 1.06
         },
         "prefill_1k": {
-          "loom": 338.7,
-          "llamacpp": 322.4,
+          "loom": 348.9,
+          "llamacpp": 333.5,
           "speedup": 1.05
         },
         "prefill_2k": {
-          "loom": 340.9,
-          "llamacpp": 318.2,
+          "loom": 351.6,
+          "llamacpp": 329.2,
           "speedup": 1.07
         },
         "prefill_8k": {
-          "loom": 338.2,
-          "llamacpp": 314.2,
+          "loom": 349.6,
+          "llamacpp": 324.9,
           "speedup": 1.08
         },
         "prefill_16k": {
-          "loom": 326.6,
-          "llamacpp": 282.9,
-          "speedup": 1.15
+          "loom": 337.5,
+          "llamacpp": 291.5,
+          "speedup": 1.16
         },
         "prefill_32k": {
-          "loom": 305.6,
-          "llamacpp": 244.0,
-          "speedup": 1.25
+          "loom": 315.7,
+          "llamacpp": 251.1,
+          "speedup": 1.26
         },
         "streams4": {
-          "loom": 82.8,
-          "llamacpp": 62.7,
-          "speedup": 1.32
+          "loom": 80.2,
+          "llamacpp": 65.4,
+          "speedup": 1.23
         }
       }
     },
-    "programs_sha256": "d68e9a9c871125509e3c94450f16ecc958bd9162dd229b8f25f3c4b0db7dfe7c"
+    "programs_sha256": "ddf139e71c1fe1636b1f6ff7df3a94505d7c4787b477b8613778fe7472216768"
   },
   "gates": {
     "summary": {
-      "pass": 7,
+      "pass": 8,
       "fail": 0,
       "unknown": 1,
-      "n/a": 3
+      "n/a": 2
     },
     "status": {
       "kernel_tests": "pass",
@@ -178,7 +176,7 @@
       "compare": "pass",
       "vision": "n/a",
       "consistency": "pass",
-      "spec": "n/a",
+      "spec": "pass",
       "agent": "pass",
       "agent_think_off": "pass",
       "sampling": "pass",
@@ -204,7 +202,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom:chat --output=Ternary-Bonsai-2.5-27B",
       "serve": "loom-serve --model=Ternary-Bonsai-2.5-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "a0c2ba3cccad880543ebf2578101b4fa346acfb6"
+      "source_revision": "84f070ce0790e92e9b32b5a4de83f64e47902926"
     }
   },
   "shared_request": {
@@ -219,6 +217,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"prism-ml/Ternary-Bonsai-2.5-27B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "a0c2ba3cccad880543ebf2578101b4fa346acfb6"
+    "source_revision": "84f070ce0790e92e9b32b5a4de83f64e47902926"
   }
 }

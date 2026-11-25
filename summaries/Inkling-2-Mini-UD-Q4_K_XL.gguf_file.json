@@ -3,7 +3,7 @@
   "checkpoint": "Inkling-2-Mini-UD-Q4_K_XL.gguf_file",
   "name": "Inkling-2-Mini",
   "repo": "local/unsloth-Inkling-2-Mini-loom",
-  "revision": "6213fd3ce3a15ea2bab98d4adf09ec783c5ad5dc",
+  "revision": "3e70c21a617c3ced35e1151636ba75bcfafa62ea",
   "status": null,
   "license": "mit",
   "service": {
@@ -162,10 +162,10 @@
         }
       }
     },
-    "programs_sha256": "9296f3bbd0a0730aef9fd82c58b009973316b0f8d7f4b03b18b2b0ff0cce4abb",
+    "programs_sha256": "3386e2e959c5552c37803146beb5968e5c07b21be76d8747fe64e0ef6b4154c3",
     "historical_programs": [
       {
-        "date": "2026-11-22",
+        "date": "2026-11-23",
         "source": {
           "kind": "machine",
           "run": null,
@@ -184,33 +184,41 @@
             "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
           }
         },
-        "programs_sha256": "912bc5e135ade06ca8afeac48422fa75079fe62bb1cd530c612b165c1bc773de",
+        "programs_sha256": "f9326d4b5a9ff356d0f67dcb1a2437569e6ace03b28a3c9db80c9d6b6f62cc0f",
         "program_identity": "recorded",
         "metrics": {
           "decode": {
-            "loom": 42.8,
+            "loom": 42.6,
             "baseline": 14.9
           },
           "decode_2k": {
+            "loom": 39.4,
             "baseline": 11.3
           },
           "decode_32k": {
-            "loom": 32.4
+            "loom": 32.3
           },
           "prefill_16k": {
+            "loom": 1040.2,
             "baseline": 44.6
           },
           "prefill_1k": {
+            "loom": 937.1,
             "baseline": 57.6
           },
           "prefill_2k": {
+            "loom": 1094.5,
             "baseline": 53.6
           },
+          "prefill_32k": {
+            "loom": 867.2
+          },
           "prefill_8k": {
+            "loom": 1122.6,
             "baseline": 48.7
           },
           "streams4": {
-            "loom": 88.1
+            "loom": 95.7
           }
         }
       }
@@ -359,10 +367,10 @@
             }
           }
         },
-        "programs_sha256": "9296f3bbd0a0730aef9fd82c58b009973316b0f8d7f4b03b18b2b0ff0cce4abb",
+        "programs_sha256": "3386e2e959c5552c37803146beb5968e5c07b21be76d8747fe64e0ef6b4154c3",
         "historical_programs": [
           {
-            "date": "2026-11-22",
+            "date": "2026-11-24",
             "source": {
               "kind": "machine",
               "run": null,
@@ -381,33 +389,41 @@
                 "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
               }
             },
-            "programs_sha256": "912bc5e135ade06ca8afeac48422fa75079fe62bb1cd530c612b165c1bc773de",
+            "programs_sha256": "f9326d4b5a9ff356d0f67dcb1a2437569e6ace03b28a3c9db80c9d6b6f62cc0f",
             "program_identity": "recorded",
             "metrics": {
               "decode": {
-                "loom": 94.9,
+                "loom": 97.8,
                 "baseline": 14.9
               },
               "decode_2k": {
+                "loom": 90.0,
                 "baseline": 11.3
               },
               "decode_32k": {
-                "loom": 75.4
+                "loom": 76.3
               },
               "prefill_16k": {
+                "loom": 2932.0,
                 "baseline": 44.6
               },
               "prefill_1k": {
+                "loom": 2670.0,
                 "baseline": 57.6
               },
               "prefill_2k": {
+                "loom": 3132.1,
                 "baseline": 53.6
               },
+              "prefill_32k": {
+                "loom": 2342.0
+              },
               "prefill_8k": {
+                "loom": 3239.3,
                 "baseline": 48.7
               },
               "streams4": {
-                "loom": 213.2
+                "loom": 226.8
               }
             }
           }
@@ -455,7 +471,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat --materialize=copy --output=unsloth-Inkling-2-Mini-loom",
       "serve": "loom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "6213fd3ce3a15ea2bab98d4adf09ec783c5ad5dc"
+      "source_revision": "3e70c21a617c3ced35e1151636ba75bcfafa62ea"
     },
     "radeon-r9700": {
       "blocks": [
@@ -475,7 +491,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:local/unsloth-Inkling-2-Mini-loom:chat-r9700 --materialize=copy --output=unsloth-Inkling-2-Mini-loom",
       "serve": "loom-serve --model=unsloth-Inkling-2-Mini-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "6213fd3ce3a15ea2bab98d4adf09ec783c5ad5dc"
+      "source_revision": "3e70c21a617c3ced35e1151636ba75bcfafa62ea"
     }
   },
   "shared_request": {
@@ -490,6 +506,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"thinkingmachines/Inkling-2-Mini\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"none\"}'"
       }
     ],
-    "source_revision": "6213fd3ce3a15ea2bab98d4adf09ec783c5ad5dc"
+    "source_revision": "3e70c21a617c3ced35e1151636ba75bcfafa62ea"
   }
 }

@@ -3,7 +3,7 @@
   "checkpoint": "gpt-oss-20b-Q4_K_M",
   "name": "gpt-oss-20b",
   "repo": "loom-fun-staging/unsloth-gpt-oss-20b-loom",
-  "revision": "5fe3771473325fe47dd11dee212e546a4f0e0a3a",
+  "revision": "b02ae1775adb2b1539d084e2f6d97f19b112192c",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -345,55 +345,55 @@
           "spec_acceptance"
         ],
         "devlab": {
-          "date": "2026-11-17",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "43993265378",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993265378/job/133739002146"
+            "run": "45551320439",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45551320439/job/138992970616"
           },
           "metrics": {
             "decode": {
-              "loom": 198.8,
+              "loom": 197.6,
               "llamacpp": 150.6,
-              "speedup": 1.32
+              "speedup": 1.31
             },
             "decode_2k": {
-              "loom": 184.8,
+              "loom": 184.1,
               "llamacpp": 142.1,
               "speedup": 1.3
             },
             "decode_32k": {
-              "loom": 125.8,
+              "loom": 126.2,
               "llamacpp": 126.5,
-              "speedup": 0.99
+              "speedup": 1.0
             },
             "prefill_1k": {
-              "loom": 6208.8,
+              "loom": 6135.6,
               "llamacpp": 4896.4,
-              "speedup": 1.27
+              "speedup": 1.25
             },
             "prefill_2k": {
-              "loom": 6764.0,
+              "loom": 6744.0,
               "llamacpp": 5374.2,
-              "speedup": 1.26
+              "speedup": 1.25
             },
             "prefill_8k": {
-              "loom": 6900.6,
+              "loom": 6883.4,
               "llamacpp": 5459.1,
               "speedup": 1.26
             },
             "prefill_16k": {
-              "loom": 6401.6,
+              "loom": 6382.8,
               "llamacpp": 5111.1,
               "speedup": 1.25
             },
             "prefill_32k": {
-              "loom": 5513.7,
+              "loom": 5503.4,
               "llamacpp": 4367.5,
               "speedup": 1.26
             },
             "streams4": {
-              "loom": 352.3,
+              "loom": 351.5,
               "llamacpp": 325.9,
               "speedup": 1.08
             }
@@ -627,7 +627,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gpt-oss-20b-loom:chat --output=gpt-oss-20b",
       "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "5fe3771473325fe47dd11dee212e546a4f0e0a3a"
+      "source_revision": "b02ae1775adb2b1539d084e2f6d97f19b112192c"
     },
     "radeon-r9700": {
       "blocks": [
@@ -647,7 +647,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gpt-oss-20b-loom:chat --output=gpt-oss-20b",
       "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "5fe3771473325fe47dd11dee212e546a4f0e0a3a"
+      "source_revision": "b02ae1775adb2b1539d084e2f6d97f19b112192c"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -667,7 +667,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-gpt-oss-20b-loom:chat-16gb --output=gpt-oss-20b",
       "serve": "loom-serve --model=gpt-oss-20b '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "5fe3771473325fe47dd11dee212e546a4f0e0a3a"
+      "source_revision": "b02ae1775adb2b1539d084e2f6d97f19b112192c"
     }
   },
   "shared_request": {
@@ -682,6 +682,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"openai/gpt-oss-20b\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"reasoning_effort\": \"low\"}'"
       }
     ],
-    "source_revision": "5fe3771473325fe47dd11dee212e546a4f0e0a3a"
+    "source_revision": "b02ae1775adb2b1539d084e2f6d97f19b112192c"
   }
 }
