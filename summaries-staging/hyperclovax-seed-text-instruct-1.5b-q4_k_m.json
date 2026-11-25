@@ -2,8 +2,8 @@
   "schema": "loom-summary/1",
   "checkpoint": "hyperclovax-seed-text-instruct-1.5b-q4_k_m",
   "name": "HyperCLOVAX-SEED-Text-Instruct-1.5B-Q4_K_M",
-  "repo": "loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
-  "revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc",
+  "repo": "loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom",
+  "revision": "4c2c61a830182049d08d2cba7c9a872cfb993d35",
   "status": null,
   "license": "mit",
   "service": {
@@ -30,16 +30,16 @@
     "max_tokens": 4096,
     "presets": [
       "chat",
-      "chat-16gb",
-      "chat-r9700"
+      "chat-r9700",
+      "chat-16gb"
     ]
   },
   "features": {
     "api": "yes",
-    "audio": "unknown",
+    "audio": "n/a",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "unknown",
+    "image_input": "n/a",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -154,125 +154,79 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": null,
-      "source": null,
+      "date": "2026-11-17",
+      "source": {
+        "kind": "devlab",
+        "run": "44088689861",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909512"
+      },
       "metrics": {
         "decode": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 168.8,
+          "llamacpp": 155.6,
+          "speedup": 1.08
         },
         "decode_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 142.5,
+          "llamacpp": 134.0,
+          "speedup": 1.06
         },
         "decode_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 50.6,
+          "llamacpp": 49.8,
+          "speedup": 1.02
         },
         "prefill_1k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 7422.9,
+          "llamacpp": 5377.2,
+          "speedup": 1.38
         },
         "prefill_2k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 7088.6,
+          "llamacpp": 5389.1,
+          "speedup": 1.32
         },
         "prefill_8k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 6385.0,
+          "llamacpp": 4493.7,
+          "speedup": 1.42
         },
         "prefill_16k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 4920.1,
+          "llamacpp": 3472.5,
+          "speedup": 1.42
         },
         "prefill_32k": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 3467.9,
+          "llamacpp": 2307.5,
+          "speedup": 1.5
         },
         "streams4": {
-          "loom": null,
-          "llamacpp": null,
-          "speedup": null
+          "loom": 587.6,
+          "llamacpp": 434.4,
+          "speedup": 1.35
         }
       }
     },
-    "programs_sha256": "f23b2b439341e59c28d8e59d44783c017c58b1d1c85fd82df00d74eb115c323e",
-    "historical_programs": [
-      {
-        "date": "2026-11-17",
-        "source": {
-          "kind": "devlab",
-          "run": "44088689861",
-          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088689861/job/134057909512"
-        },
-        "programs_sha256": "e4184377323e3d9bbe2bf58d66abdb805b36beb6bba7fba222ed9675d415f874",
-        "program_identity": "recorded",
-        "metrics": {
-          "decode": {
-            "loom": 168.8,
-            "baseline": 155.6
-          },
-          "decode_2k": {
-            "loom": 142.5,
-            "baseline": 134.0
-          },
-          "decode_32k": {
-            "loom": 50.6,
-            "baseline": 49.8
-          },
-          "prefill_16k": {
-            "loom": 4920.1,
-            "baseline": 3472.5
-          },
-          "prefill_1k": {
-            "loom": 7422.9,
-            "baseline": 5377.2
-          },
-          "prefill_2k": {
-            "loom": 7088.6,
-            "baseline": 5389.1
-          },
-          "prefill_32k": {
-            "loom": 3467.9,
-            "baseline": 2307.5
-          },
-          "prefill_8k": {
-            "loom": 6385.0,
-            "baseline": 4493.7
-          },
-          "streams4": {
-            "loom": 587.6,
-            "baseline": 434.4
-          }
-        }
-      }
-    ]
+    "programs_sha256": "e4184377323e3d9bbe2bf58d66abdb805b36beb6bba7fba222ed9675d415f874"
   },
   "gates": {
     "summary": {
-      "pass": 0,
+      "pass": 5,
       "fail": 0,
-      "unknown": 6,
+      "unknown": 1,
       "n/a": 5
     },
     "status": {
-      "kernel_tests": "unknown",
-      "golden": "unknown",
-      "compare": "unknown",
+      "kernel_tests": "pass",
+      "golden": "pass",
+      "compare": "pass",
       "vision": "n/a",
-      "consistency": "unknown",
+      "consistency": "pass",
       "spec": "n/a",
       "agent": "n/a",
       "agent_think_off": "n/a",
-      "sampling": "unknown",
+      "sampling": "pass",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -392,61 +346,61 @@
           "spec_acceptance"
         ],
         "devlab": {
-          "date": "2026-11-23",
+          "date": "2026-11-17",
           "source": {
             "kind": "devlab",
-            "run": "45275710722",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45275710722/job/138046833022"
+            "run": "43993245028",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993245028/job/133738926320"
           },
           "metrics": {
             "decode": {
-              "loom": 364.6,
+              "loom": 375.9,
               "llamacpp": 297.7,
-              "speedup": 1.22
+              "speedup": 1.26
             },
             "decode_2k": {
-              "loom": 295.5,
+              "loom": 302.6,
               "llamacpp": 262.5,
-              "speedup": 1.13
+              "speedup": 1.15
             },
             "decode_32k": {
-              "loom": 121.8,
+              "loom": 122.6,
               "llamacpp": 110.4,
-              "speedup": 1.1
+              "speedup": 1.11
             },
             "prefill_1k": {
-              "loom": 21783.3,
+              "loom": 22595.3,
               "llamacpp": 16946.6,
-              "speedup": 1.29
+              "speedup": 1.33
             },
             "prefill_2k": {
-              "loom": 23833.7,
+              "loom": 24221.3,
               "llamacpp": 17267.5,
-              "speedup": 1.38
+              "speedup": 1.4
             },
             "prefill_8k": {
-              "loom": 21488.7,
+              "loom": 21563.0,
               "llamacpp": 14521.4,
               "speedup": 1.48
             },
             "prefill_16k": {
-              "loom": 16907.7,
+              "loom": 16970.3,
               "llamacpp": 11471.7,
-              "speedup": 1.47
+              "speedup": 1.48
             },
             "prefill_32k": {
-              "loom": 11851.0,
+              "loom": 11908.3,
               "llamacpp": 8077.5,
               "speedup": 1.47
             },
             "streams4": {
-              "loom": 1331.4,
+              "loom": 1350.8,
               "llamacpp": 745.2,
-              "speedup": 1.79
+              "speedup": 1.81
             }
           }
         },
-        "programs_sha256": "f23b2b439341e59c28d8e59d44783c017c58b1d1c85fd82df00d74eb115c323e"
+        "programs_sha256": "e4184377323e3d9bbe2bf58d66abdb805b36beb6bba7fba222ed9675d415f874"
       },
       "gates": {
         "summary": {
@@ -524,58 +478,75 @@
             }
           }
         },
-        "date": null,
+        "date": "2026-11-18",
         "llamacpp_build": "b1375",
         "drafting": {
           "loom": null,
           "llamacpp": null
         },
-        "source": null,
+        "source": {
+          "kind": "machine",
+          "run": null,
+          "url": null,
+          "device": {
+            "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+            "gpu": "AMD Radeon RX 9070 XT",
+            "os": "Ubuntu 26.04"
+          },
+          "hrx_loom": {
+            "artifact_id": null,
+            "branch": "v0.2.0",
+            "hrx_loom": "0.2.0",
+            "hrx_system_sha": "0cd370f2baaa0cfef47cc23007f1a109906f8a52",
+            "source": "pypi",
+            "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
+          }
+        },
         "metrics": {
           "decode": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 363.1,
+            "llamacpp": 283.2,
+            "speedup": 1.28
           },
           "decode_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 293.7,
+            "llamacpp": 253.2,
+            "speedup": 1.16
           },
           "decode_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 119.2,
+            "llamacpp": 114.3,
+            "speedup": 1.04
           },
           "prefill_1k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 21581.6,
+            "llamacpp": 17152.9,
+            "speedup": 1.26
           },
           "prefill_2k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 23634.1,
+            "llamacpp": 17365.2,
+            "speedup": 1.36
           },
           "prefill_8k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 19798.2,
+            "llamacpp": 14778.8,
+            "speedup": 1.34
           },
           "prefill_16k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 14442.7,
+            "llamacpp": 11219.2,
+            "speedup": 1.29
           },
           "prefill_32k": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 11522.8,
+            "llamacpp": 7814.4,
+            "speedup": 1.47
           },
           "streams4": {
-            "loom": null,
-            "llamacpp": null,
-            "speedup": null
+            "loom": 1333.5,
+            "llamacpp": 748.4,
+            "speedup": 1.78
           },
           "spec_acceptance": {
             "loom": null,
@@ -637,10 +608,11 @@
             }
           }
         },
-        "programs_sha256": "f23b2b439341e59c28d8e59d44783c017c58b1d1c85fd82df00d74eb115c323e",
-        "historical_programs": [
+        "programs_sha256": "e4184377323e3d9bbe2bf58d66abdb805b36beb6bba7fba222ed9675d415f874",
+        "named_machine_sources": [
           {
             "date": "2026-11-18",
+            "programs_sha256": "e4184377323e3d9bbe2bf58d66abdb805b36beb6bba7fba222ed9675d415f874",
             "source": {
               "kind": "machine",
               "run": null,
@@ -658,67 +630,27 @@
                 "source": "pypi",
                 "wheel_sha256": "5148f9e3a264af400ec4bae38bd7b06bf551d28cc33b7a61d67f7bcefa590438"
               }
-            },
-            "programs_sha256": "e4184377323e3d9bbe2bf58d66abdb805b36beb6bba7fba222ed9675d415f874",
-            "program_identity": "recorded",
-            "metrics": {
-              "decode": {
-                "loom": 363.1,
-                "baseline": 283.2
-              },
-              "decode_2k": {
-                "loom": 293.7,
-                "baseline": 253.2
-              },
-              "decode_32k": {
-                "loom": 119.2,
-                "baseline": 114.3
-              },
-              "prefill_16k": {
-                "loom": 14442.7,
-                "baseline": 11219.2
-              },
-              "prefill_1k": {
-                "loom": 21581.6,
-                "baseline": 17152.9
-              },
-              "prefill_2k": {
-                "loom": 23634.1,
-                "baseline": 17365.2
-              },
-              "prefill_32k": {
-                "loom": 11522.8,
-                "baseline": 7814.4
-              },
-              "prefill_8k": {
-                "loom": 19798.2,
-                "baseline": 14778.8
-              },
-              "streams4": {
-                "loom": 1333.5,
-                "baseline": 748.4
-              }
             }
           }
         ]
       },
       "gates": {
         "summary": {
-          "pass": 0,
+          "pass": 5,
           "fail": 0,
-          "unknown": 6,
+          "unknown": 1,
           "n/a": 5
         },
         "status": {
-          "kernel_tests": "unknown",
-          "golden": "unknown",
-          "compare": "unknown",
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
           "vision": "n/a",
-          "consistency": "unknown",
+          "consistency": "pass",
           "spec": "n/a",
           "agent": "n/a",
           "agent_think_off": "n/a",
-          "sampling": "unknown",
+          "sampling": "pass",
           "decision": "n/a",
           "logits": "unknown"
         }
@@ -734,17 +666,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
         },
         {
           "kind": "text",
-          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
-      "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc"
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
+      "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "4c2c61a830182049d08d2cba7c9a872cfb993d35"
     },
     "radeon-r9700": {
       "blocks": [
@@ -754,17 +686,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
         },
         {
           "kind": "text",
-          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
-      "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc"
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-r9700 --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
+      "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
+      "source_revision": "4c2c61a830182049d08d2cba7c9a872cfb993d35"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -774,17 +706,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib"
+          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B\nloom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload"
         },
         {
           "kind": "text",
-          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory."
+          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--memory_bytes` sets the serving memory budget for this GPU.\n- `--state_slab_bytes` sets the allocation slab size for state memory.\n- `--weight_slab_bytes` sets the allocation slab size for weight memory.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun-staging/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
-      "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc"
+      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun/rippertnt-HyperCLOVAX-SEED-Text-Instruct-1.5B-loom:chat-16gb --materialize=copy --output=HyperCLOVAX-SEED-Text-Instruct-1.5B",
+      "serve": "loom-serve --model=HyperCLOVAX-SEED-Text-Instruct-1.5B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib --parameter_mode=preload",
+      "source_revision": "4c2c61a830182049d08d2cba7c9a872cfb993d35"
     }
   },
   "shared_request": {
@@ -799,6 +731,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "d7a55107ffeed49def553693d16e5c0ea4e257fc"
+    "source_revision": "4c2c61a830182049d08d2cba7c9a872cfb993d35"
   }
 }

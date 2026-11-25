@@ -3,7 +3,7 @@
   "checkpoint": "LFM3-Omni-2B-Q4_K_M",
   "name": "LFM3-Omni-2B",
   "repo": "loom-fun-staging/ggml-org-LFM3-Omni-2B-loom",
-  "revision": "460aaef3a2ccd15d560afd17c560abfb60d56d65",
+  "revision": "2984b95a4a21aa69064431b02dab8b3268a317fd",
   "status": null,
   "license": "mit",
   "service": {
@@ -154,57 +154,57 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-17",
+      "date": "2026-11-25",
       "source": {
         "kind": "devlab",
-        "run": "44088677167",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088677167/job/134057871324"
+        "run": "45545290357",
+        "url": "https://github.com/loom-fun/loom-skills/actions/runs/45545290357/job/138973377190"
       },
       "metrics": {
         "decode": {
-          "loom": 170.2,
+          "loom": 168.5,
           "llamacpp": 148.1,
-          "speedup": 1.15
-        },
-        "decode_2k": {
-          "loom": 162.8,
-          "llamacpp": 143.2,
           "speedup": 1.14
         },
+        "decode_2k": {
+          "loom": 160.8,
+          "llamacpp": 143.2,
+          "speedup": 1.12
+        },
         "decode_32k": {
-          "loom": 123.6,
+          "loom": 126.7,
           "llamacpp": 113.6,
-          "speedup": 1.09
+          "speedup": 1.12
         },
         "prefill_1k": {
-          "loom": 7546.1,
+          "loom": 7410.4,
           "llamacpp": 5223.7,
-          "speedup": 1.44
+          "speedup": 1.42
         },
         "prefill_2k": {
-          "loom": 7120.8,
+          "loom": 7010.1,
           "llamacpp": 5428.4,
-          "speedup": 1.31
+          "speedup": 1.29
         },
         "prefill_8k": {
-          "loom": 7365.5,
+          "loom": 7279.6,
           "llamacpp": 5565.7,
-          "speedup": 1.32
-        },
-        "prefill_16k": {
-          "loom": 6665.4,
-          "llamacpp": 5098.9,
           "speedup": 1.31
         },
+        "prefill_16k": {
+          "loom": 6607.6,
+          "llamacpp": 5098.9,
+          "speedup": 1.3
+        },
         "prefill_32k": {
-          "loom": 5744.2,
+          "loom": 5685.9,
           "llamacpp": 4329.9,
-          "speedup": 1.33
+          "speedup": 1.31
         },
         "streams4": {
-          "loom": 608.1,
+          "loom": 571.3,
           "llamacpp": 396.2,
-          "speedup": 1.53
+          "speedup": 1.44
         }
       }
     },
@@ -452,7 +452,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "460aaef3a2ccd15d560afd17c560abfb60d56d65"
+      "source_revision": "2984b95a4a21aa69064431b02dab8b3268a317fd"
     },
     "radeon-r9700": {
       "blocks": [
@@ -472,7 +472,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat-r9700 --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "460aaef3a2ccd15d560afd17c560abfb60d56d65"
+      "source_revision": "2984b95a4a21aa69064431b02dab8b3268a317fd"
     },
     "gfx1201-16gb": {
       "blocks": [
@@ -492,7 +492,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/ggml-org-LFM3-Omni-2B-loom:chat-16gb --output=LFM3-Omni-2B",
       "serve": "loom-serve --model=LFM3-Omni-2B '--device=amdgpu://?completion_spin_ns=4294967295' --memory_bytes=15000000000 --state_slab_bytes=4mib --weight_slab_bytes=64mib",
-      "source_revision": "460aaef3a2ccd15d560afd17c560abfb60d56d65"
+      "source_revision": "2984b95a4a21aa69064431b02dab8b3268a317fd"
     }
   },
   "shared_request": {
@@ -507,6 +507,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"LiquidAI/LFM3-Omni-2B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "460aaef3a2ccd15d560afd17c560abfb60d56d65"
+    "source_revision": "2984b95a4a21aa69064431b02dab8b3268a317fd"
   }
 }
