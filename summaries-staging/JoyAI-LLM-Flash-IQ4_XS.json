@@ -3,7 +3,7 @@
   "checkpoint": "JoyAI-LLM-Flash-IQ4_XS",
   "name": "JoyAI-LLM-Flash",
   "repo": "loom-fun-staging/jdopensource-JoyAI-LLM-Flash-loom",
-  "revision": "f59909944f40ffa69833d5ad34a42897918e917b",
+  "revision": "658aacc2220f2ba8ea5aeb6c238ac9505fe370a6",
   "status": null,
   "license": "mit",
   "service": {
@@ -204,7 +204,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/jdopensource-JoyAI-LLM-Flash-loom:chat --output=JoyAI-LLM-Flash-loom",
       "serve": "loom-serve --model=JoyAI-LLM-Flash-loom '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "f59909944f40ffa69833d5ad34a42897918e917b"
+      "source_revision": "658aacc2220f2ba8ea5aeb6c238ac9505fe370a6"
     }
   },
   "shared_request": {
@@ -219,6 +219,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"jdopensource/JoyAI-LLM-Flash\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "f59909944f40ffa69833d5ad34a42897918e917b"
+    "source_revision": "658aacc2220f2ba8ea5aeb6c238ac9505fe370a6"
   }
 }

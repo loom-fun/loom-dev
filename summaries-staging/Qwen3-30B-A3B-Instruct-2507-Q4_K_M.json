@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3-30B-A3B-Instruct-2507-Q4_K_M",
   "name": "Qwen3-30B-A3B-Instruct-2507",
   "repo": "loom-fun-staging/unsloth-Qwen3-30B-A3B-Instruct-2507-loom",
-  "revision": "cee2399ebbff769e4656b24af92d529edac333d2",
+  "revision": "dd4b60bc404f59c55d588efe7c7170d46fd596a5",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -35,10 +35,10 @@
   },
   "features": {
     "api": "yes",
-    "audio": "n/a",
+    "audio": "unknown",
     "concurrency": "yes",
     "context": "yes",
-    "image_input": "n/a",
+    "image_input": "unknown",
     "max_output_tokens": "yes",
     "reasoning_effort": "n/a",
     "sampling": "yes",
@@ -153,79 +153,125 @@
       "spec_acceptance"
     ],
     "devlab": {
-      "date": "2026-11-17",
-      "source": {
-        "kind": "devlab",
-        "run": "44088702163",
-        "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088702163/job/134057955417"
-      },
+      "date": null,
+      "source": null,
       "metrics": {
         "decode": {
-          "loom": 85.8,
-          "llamacpp": 76.5,
-          "speedup": 1.12
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "decode_2k": {
-          "loom": 71.5,
-          "llamacpp": 70.3,
-          "speedup": 1.02
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "decode_32k": {
-          "loom": 36.5,
-          "llamacpp": 36.4,
-          "speedup": 1.0
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_1k": {
-          "loom": 2482.6,
-          "llamacpp": 1489.4,
-          "speedup": 1.67
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_2k": {
-          "loom": 2397.6,
-          "llamacpp": 1492.4,
-          "speedup": 1.61
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_8k": {
-          "loom": 2063.0,
-          "llamacpp": 1240.8,
-          "speedup": 1.66
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_16k": {
-          "loom": 1496.4,
-          "llamacpp": 946.7,
-          "speedup": 1.58
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "prefill_32k": {
-          "loom": 930.7,
-          "llamacpp": 634.8,
-          "speedup": 1.47
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         },
         "streams4": {
-          "loom": 182.1,
-          "llamacpp": 151.9,
-          "speedup": 1.2
+          "loom": null,
+          "llamacpp": null,
+          "speedup": null
         }
       }
     },
-    "programs_sha256": "09e2b605bcb1c65d5a8b11aa8d23893b61de0d25bc959b1863a39fb40d1f3e13"
+    "programs_sha256": "795c7bb7e62e7a09ba2aa3c379f275f3dee762aab334c0e15f45b3bfa52f5f87",
+    "historical_programs": [
+      {
+        "date": "2026-11-17",
+        "source": {
+          "kind": "devlab",
+          "run": "44088702163",
+          "url": "https://github.com/loom-fun/loom-skills/actions/runs/44088702163/job/134057955417"
+        },
+        "programs_sha256": "09e2b605bcb1c65d5a8b11aa8d23893b61de0d25bc959b1863a39fb40d1f3e13",
+        "program_identity": "recorded",
+        "metrics": {
+          "decode": {
+            "loom": 85.8,
+            "baseline": 76.5
+          },
+          "decode_2k": {
+            "loom": 71.5,
+            "baseline": 70.3
+          },
+          "decode_32k": {
+            "loom": 36.5,
+            "baseline": 36.4
+          },
+          "prefill_16k": {
+            "loom": 1496.4,
+            "baseline": 946.7
+          },
+          "prefill_1k": {
+            "loom": 2482.6,
+            "baseline": 1489.4
+          },
+          "prefill_2k": {
+            "loom": 2397.6,
+            "baseline": 1492.4
+          },
+          "prefill_32k": {
+            "loom": 930.7,
+            "baseline": 634.8
+          },
+          "prefill_8k": {
+            "loom": 2063.0,
+            "baseline": 1240.8
+          },
+          "streams4": {
+            "loom": 182.1,
+            "baseline": 151.9
+          }
+        }
+      }
+    ]
   },
   "gates": {
     "summary": {
-      "pass": 6,
+      "pass": 0,
       "fail": 0,
-      "unknown": 1,
+      "unknown": 7,
       "n/a": 4
     },
     "status": {
-      "kernel_tests": "pass",
-      "golden": "pass",
-      "compare": "pass",
+      "kernel_tests": "unknown",
+      "golden": "unknown",
+      "compare": "unknown",
       "vision": "n/a",
-      "consistency": "pass",
+      "consistency": "unknown",
       "spec": "n/a",
-      "agent": "pass",
+      "agent": "unknown",
       "agent_think_off": "n/a",
-      "sampling": "pass",
+      "sampling": "unknown",
       "decision": "n/a",
       "logits": "unknown"
     }
@@ -348,12 +394,12 @@
           "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "45603237455",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45603237455/job/139167425524"
+            "run": "45664737074",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45664737074/job/139383810872"
           },
           "metrics": {
             "decode": {
-              "loom": 175.5,
+              "loom": 175.4,
               "llamacpp": 124.4,
               "speedup": 1.41
             },
@@ -368,38 +414,38 @@
               "speedup": 0.95
             },
             "prefill_1k": {
-              "loom": 6962.0,
+              "loom": 7300.0,
               "llamacpp": 4301.8,
-              "speedup": 1.62
+              "speedup": 1.7
             },
             "prefill_2k": {
-              "loom": 7352.8,
+              "loom": 7668.8,
               "llamacpp": 4364.0,
-              "speedup": 1.68
+              "speedup": 1.76
             },
             "prefill_8k": {
-              "loom": 6434.6,
+              "loom": 6653.2,
               "llamacpp": 3674.8,
-              "speedup": 1.75
+              "speedup": 1.81
             },
             "prefill_16k": {
-              "loom": 4970.5,
+              "loom": 5098.3,
               "llamacpp": 2911.0,
-              "speedup": 1.71
+              "speedup": 1.75
             },
             "prefill_32k": {
-              "loom": 3259.2,
+              "loom": 3320.0,
               "llamacpp": 2060.0,
-              "speedup": 1.58
+              "speedup": 1.61
             },
             "streams4": {
-              "loom": 405.0,
+              "loom": 405.9,
               "llamacpp": 315.9,
               "speedup": 1.28
             }
           }
         },
-        "programs_sha256": "09e2b605bcb1c65d5a8b11aa8d23893b61de0d25bc959b1863a39fb40d1f3e13"
+        "programs_sha256": "795c7bb7e62e7a09ba2aa3c379f275f3dee762aab334c0e15f45b3bfa52f5f87"
       },
       "gates": {
         "summary": {
@@ -443,7 +489,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3-30B-A3B-Instruct-2507-loom:chat --output=Qwen3-30B-A3B-Instruct-2507",
       "serve": "loom-serve --model=Qwen3-30B-A3B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "cee2399ebbff769e4656b24af92d529edac333d2"
+      "source_revision": "dd4b60bc404f59c55d588efe7c7170d46fd596a5"
     },
     "radeon-r9700": {
       "blocks": [
@@ -463,7 +509,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/unsloth-Qwen3-30B-A3B-Instruct-2507-loom:chat-r9700 --output=Qwen3-30B-A3B-Instruct-2507",
       "serve": "loom-serve --model=Qwen3-30B-A3B-Instruct-2507 '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "cee2399ebbff769e4656b24af92d529edac333d2"
+      "source_revision": "dd4b60bc404f59c55d588efe7c7170d46fd596a5"
     }
   },
   "shared_request": {
@@ -478,6 +524,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3-30B-A3B-Instruct-2507\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}]}'"
       }
     ],
-    "source_revision": "cee2399ebbff769e4656b24af92d529edac333d2"
+    "source_revision": "dd4b60bc404f59c55d588efe7c7170d46fd596a5"
   }
 }
