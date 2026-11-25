@@ -53,6 +53,7 @@
     // the same grid cell (only the selected one visible), so the hero keeps the height of the longest on a switch.
     if (qs) {
       const alts = f => `<span class="gpu-alts">${LOOM.GPUS.map(g => `<span class="gpu-alt${g.id === LOOM.GPU.id ? ' on' : ''}"><span class="p">$ </span><span class="s">${LOOM.esc(f(g).split(' ')[0])}</span>${LOOM.esc(f(g).slice(f(g).indexOf(' ')))}</span>`).join('')}</span>`;
+      el('heroInstall').innerHTML = alts(g => LOOM.installCmd(qs, g));
       el('heroFetch').innerHTML = alts(g => LOOM.fetchCmd(qs, g));
       el('heroServe').innerHTML = alts(g => LOOM.serveCmd(qs, g));
     }

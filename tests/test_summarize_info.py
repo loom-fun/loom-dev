@@ -325,6 +325,19 @@ class QuickstartSource(unittest.TestCase):
             if 'stock host' in text:
                 self.assertIn('systemd-run', str(out[gpu]['blocks']))
 
+    def test_sdk030_quickstart(self):
+        # A Loom SDK 0.3.0 card (staging Qwen3-0.6B, namespace as promoted): the default fetch materialization and no
+        # preload parameter mode, on every GPU block.
+        from pathlib import Path
+        text = Path(HERE, 'quickstart_cards/unsloth-Qwen3-0.6B-sdk030.md').read_text(encoding='utf-8')
+        out = S.quickstart(text, 'strix-halo')
+        self.assertEqual(sorted(out), ['gfx1201-16gb', 'radeon-r9700', 'strix-halo'])
+        for q in out.values():
+            self.assertEqual(q['install'], 'pipx install "hrx-loom[hf]==0.3.0"')
+            self.assertNotIn('--materialize', q['fetch'])
+            self.assertNotIn('--parameter_mode', q['serve'])
+            self.assertTrue(q['fetch'].startswith('loom-fetch huggingface:loom-fun/unsloth-Qwen3-0.6B-loom:chat'))
+
     def test_shared_request_notes_and_section_boundary(self):
         from pathlib import Path
         text = Path(HERE, 'quickstart_cards/shared-request.md').read_text(encoding='utf-8')

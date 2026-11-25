@@ -6,7 +6,7 @@ The homepage and model drawers render these source blocks. The homepage's three 
 
 There is no SDK, output path, request body, flag, preset or memory-budget fallback. Missing or incomplete extraction shows an unavailable message and source link. Old summaries with only preset/argument fragments also fail visibly until regenerated. Changing a published card flows through the scheduled summary/data refresh without editing frontend code.
 
-`tests/quickstart_cards/` contains Quick start excerpts read from the public loom-fun cards on 2026-11-17: Qwen3-0.6B (GPU details), Ornith-1.5-122B and Flash-Next (single GPU with stock-host notes), and Quark AWQ MXFP4 (single GPU with legacy SDK and explicit model.json path). Tests cover preserved notes, GPU isolation, incomplete extraction, escaped output, and card SDK/path/flag/request changes flowing into rendered output.
+`tests/quickstart_cards/` contains Quick start excerpts read from the public loom-fun cards on 2026-11-17: Qwen3-0.6B (GPU details), Ornith-1.5-122B and Flash-Next (single GPU with stock-host notes), and Quark AWQ MXFP4 (single GPU with legacy SDK and explicit model.json path). `unsloth-Qwen3-0.6B-sdk030.md` is the Loom SDK 0.3.0 Quick start of the staging Qwen3-0.6B card (2026-11-24, namespace as promoted): default fetch materialization, no preload mode. Tests cover preserved notes, GPU isolation, incomplete extraction, escaped output, and card SDK/path/flag/request changes flowing into rendered output.
 
 Run `python3 -m unittest discover -s tests` and `node --test tests/test_baselines.js`.
 
