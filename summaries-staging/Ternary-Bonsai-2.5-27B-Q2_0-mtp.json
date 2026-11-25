@@ -3,7 +3,7 @@
   "checkpoint": "Ternary-Bonsai-2.5-27B-Q2_0-mtp",
   "name": "Ternary-Bonsai-2.5-27B",
   "repo": "loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom",
-  "revision": "84f070ce0790e92e9b32b5a4de83f64e47902926",
+  "revision": "8452a253f979742aafa7f44a133c1c042daeb275",
   "status": null,
   "license": "apache-2.0",
   "service": {
@@ -186,10 +186,203 @@
   },
   "primary_device": "strix-halo",
   "remeasure": null,
-  "devices": {},
+  "devices": {
+    "radeon-r9700": {
+      "state": null,
+      "remeasure": null,
+      "memory_bytes": 30000000000,
+      "context_tokens": 262144,
+      "performance": {
+        "baselines": {
+          "vulkan": {
+            "args": "-ngl 99 -cram 0 --spec-type draft-mtp --spec-draft-n-max 3 -c 36864 -np 1",
+            "name": "llama.cpp",
+            "sha256": "9759acd293d3738f39d3ceed740bd3125d87dfb492ef8c4f00114d3393d37942",
+            "version": "llamacpp-vulkan/b12211",
+            "date": "2026-11-25",
+            "source": {
+              "kind": "devlab",
+              "run": "45582278639",
+              "url": "https://github.com/loom-fun/loom-skills/actions/runs/45582278639/job/139228295649"
+            },
+            "metrics": {
+              "decode": {
+                "llamacpp": 75.4
+              },
+              "decode_2k": {
+                "llamacpp": 72.2
+              },
+              "decode_32k": {
+                "llamacpp": 60.9
+              },
+              "prefill_16k": {
+                "llamacpp": 857.2
+              },
+              "prefill_1k": {
+                "llamacpp": 819.2
+              },
+              "prefill_2k": {
+                "llamacpp": 857.4
+              },
+              "prefill_32k": {
+                "llamacpp": 790.3
+              },
+              "prefill_8k": {
+                "llamacpp": 892.5
+              },
+              "streams4": {
+                "llamacpp": 143.4
+              }
+            }
+          }
+        },
+        "date": null,
+        "llamacpp_build": "b1387",
+        "drafting": {
+          "loom": "MTP, depth 3",
+          "llamacpp": "draft-mtp, n-max 3"
+        },
+        "source": null,
+        "metrics": {
+          "decode": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "decode_2k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "decode_32k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_1k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_2k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_8k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_16k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "prefill_32k": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "streams4": {
+            "loom": null,
+            "llamacpp": null,
+            "speedup": null
+          },
+          "spec_acceptance": {
+            "loom": 0.6,
+            "llamacpp": null,
+            "speedup": null
+          }
+        },
+        "not_applicable": [],
+        "devlab": {
+          "date": "2026-11-25",
+          "source": {
+            "kind": "devlab",
+            "run": "45582278639",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45582278639/job/139228295649"
+          },
+          "metrics": {
+            "decode": {
+              "loom": 102.4,
+              "llamacpp": 70.7,
+              "speedup": 1.45
+            },
+            "decode_2k": {
+              "loom": 90.2,
+              "llamacpp": 67.0,
+              "speedup": 1.35
+            },
+            "decode_32k": {
+              "loom": 65.5,
+              "llamacpp": 56.7,
+              "speedup": 1.16
+            },
+            "prefill_1k": {
+              "loom": 953.5,
+              "llamacpp": 1208.6,
+              "speedup": 0.79
+            },
+            "prefill_2k": {
+              "loom": 964.2,
+              "llamacpp": 1281.9,
+              "speedup": 0.75
+            },
+            "prefill_8k": {
+              "loom": 967.9,
+              "llamacpp": 1321.5,
+              "speedup": 0.73
+            },
+            "prefill_16k": {
+              "loom": 945.0,
+              "llamacpp": 1263.2,
+              "speedup": 0.75
+            },
+            "prefill_32k": {
+              "loom": 904.0,
+              "llamacpp": 1144.2,
+              "speedup": 0.79
+            },
+            "streams4": {
+              "loom": 196.1,
+              "llamacpp": 131.9,
+              "speedup": 1.49
+            }
+          }
+        },
+        "programs_sha256": "ddf139e71c1fe1636b1f6ff7df3a94505d7c4787b477b8613778fe7472216768"
+      },
+      "gates": {
+        "summary": {
+          "pass": 8,
+          "fail": 0,
+          "unknown": 1,
+          "n/a": 2
+        },
+        "status": {
+          "kernel_tests": "pass",
+          "golden": "pass",
+          "compare": "pass",
+          "vision": "n/a",
+          "consistency": "pass",
+          "spec": "pass",
+          "agent": "pass",
+          "agent_think_off": "pass",
+          "sampling": "pass",
+          "decision": "n/a",
+          "logits": "unknown"
+        }
+      }
+    }
+  },
   "quickstart": {
     "strix-halo": {
       "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
         {
           "kind": "code",
           "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom:chat --output=Ternary-Bonsai-2.5-27B\nloom-serve --model=Ternary-Bonsai-2.5-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
@@ -202,7 +395,27 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom:chat --output=Ternary-Bonsai-2.5-27B",
       "serve": "loom-serve --model=Ternary-Bonsai-2.5-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
-      "source_revision": "84f070ce0790e92e9b32b5a4de83f64e47902926"
+      "source_revision": "8452a253f979742aafa7f44a133c1c042daeb275"
+    },
+    "radeon-r9700": {
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Open your GPU and copy its commands."
+        },
+        {
+          "kind": "code",
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom:chat --output=Ternary-Bonsai-2.5-27B\nloom-serve --model=Ternary-Bonsai-2.5-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
+        },
+        {
+          "kind": "text",
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 262,144 tokens per request (its native context is 262,144)."
+        }
+      ],
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/prism-ml-Ternary-Bonsai-2.5-27B-loom:chat --output=Ternary-Bonsai-2.5-27B",
+      "serve": "loom-serve --model=Ternary-Bonsai-2.5-27B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "8452a253f979742aafa7f44a133c1c042daeb275"
     }
   },
   "shared_request": {
@@ -217,6 +430,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"prism-ml/Ternary-Bonsai-2.5-27B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "84f070ce0790e92e9b32b5a4de83f64e47902926"
+    "source_revision": "8452a253f979742aafa7f44a133c1c042daeb275"
   }
 }

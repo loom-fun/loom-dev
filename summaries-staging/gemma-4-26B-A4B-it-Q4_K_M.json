@@ -2,8 +2,8 @@
   "schema": "loom-summary/1",
   "checkpoint": "gemma-4-26B-A4B-it-Q4_K_M",
   "name": "gemma-4-26B-A4B-it",
-  "repo": "loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom",
-  "revision": "8e38a53b5883c74b02a6304eeeacf447e09a685a",
+  "repo": "loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom",
+  "revision": "3757d44a77283cbc49f1ff9f90878d538faa8d93",
   "status": null,
   "license": "mit",
   "service": {
@@ -338,29 +338,29 @@
             "speedup": null
           },
           "spec_acceptance": {
-            "loom": 0.63,
+            "loom": null,
             "llamacpp": null,
             "speedup": null
           }
         },
         "not_applicable": [],
         "devlab": {
-          "date": "2026-11-17",
+          "date": "2026-11-25",
           "source": {
             "kind": "devlab",
-            "run": "43993245028",
-            "url": "https://github.com/loom-fun/loom-skills/actions/runs/43993245028/job/133738926337"
+            "run": "45588058952",
+            "url": "https://github.com/loom-fun/loom-skills/actions/runs/45588058952/job/139114739059"
           },
           "metrics": {
             "decode": {
-              "loom": 152.3,
+              "loom": 148.4,
               "llamacpp": 72.2,
-              "speedup": 2.11
+              "speedup": 2.06
             },
             "decode_2k": {
-              "loom": 128.5,
+              "loom": 123.1,
               "llamacpp": 69.2,
-              "speedup": 1.86
+              "speedup": 1.78
             },
             "decode_32k": {
               "loom": null,
@@ -368,24 +368,24 @@
               "speedup": null
             },
             "prefill_1k": {
-              "loom": 6515.0,
+              "loom": 6240.4,
               "llamacpp": 3187.3,
-              "speedup": 2.04
+              "speedup": 1.96
             },
             "prefill_2k": {
-              "loom": 7173.0,
+              "loom": 6704.6,
               "llamacpp": 3488.0,
-              "speedup": 2.06
+              "speedup": 1.92
             },
             "prefill_8k": {
-              "loom": 7043.5,
+              "loom": 6485.9,
               "llamacpp": 3538.6,
-              "speedup": 1.99
+              "speedup": 1.83
             },
             "prefill_16k": {
-              "loom": 6545.1,
+              "loom": 6036.4,
               "llamacpp": 3053.2,
-              "speedup": 2.14
+              "speedup": 1.98
             },
             "prefill_32k": {
               "loom": null,
@@ -393,9 +393,9 @@
               "speedup": null
             },
             "streams4": {
-              "loom": 359.1,
+              "loom": 351.7,
               "llamacpp": 274.7,
-              "speedup": 1.31
+              "speedup": 1.28
             }
           }
         },
@@ -433,17 +433,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it\nloom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom:chat --output=gemma-4-26B-A4B-it\nloom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat --materialize=copy --output=gemma-4-26B-A4B-it",
-      "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "8e38a53b5883c74b02a6304eeeacf447e09a685a"
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom:chat --output=gemma-4-26B-A4B-it",
+      "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "3757d44a77283cbc49f1ff9f90878d538faa8d93"
     },
     "radeon-r9700": {
       "blocks": [
@@ -453,17 +453,17 @@
         },
         {
           "kind": "code",
-          "text": "pipx install \"hrx-loom[hf]==0.2.0\"\nloom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it\nloom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload"
+          "text": "pipx install \"hrx-loom[hf]==0.3.0\"\nloom-fetch huggingface:loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom:chat-r9700 --output=gemma-4-26B-A4B-it\nloom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed"
         },
         {
           "kind": "text",
-          "text": "- `--materialize=copy` puts copies of the fetched package files in the output directory.\n- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n- `--parameter_mode=preload` only changes how the weights are loaded on the host, so the performance rows were measured without it unless their job served with it.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 26,624 tokens per request (its native context is 262,144)."
+          "text": "- `completion_spin_ns=4294967295` enables active waiting for GPU completions (uses CPU while GPU work is in flight); the card's performance measurements use this setting.\n- `--pool_backing=fixed` commits the preset's memory pool up front instead of growing elastic backing.\n\nOn this GPU, the package's preset sizes the memory pool (`--pool_backing=fixed` commits it up front): this package serves up to 26,624 tokens per request (its native context is 262,144)."
         }
       ],
-      "install": "pipx install \"hrx-loom[hf]==0.2.0\"",
-      "fetch": "loom-fetch huggingface:loom-fun/lmstudio-community-gemma-4-26B-A4B-it-loom:chat-r9700 --materialize=copy --output=gemma-4-26B-A4B-it",
-      "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "8e38a53b5883c74b02a6304eeeacf447e09a685a"
+      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
+      "fetch": "loom-fetch huggingface:loom-fun-staging/lmstudio-community-gemma-4-26B-A4B-it-loom:chat-r9700 --output=gemma-4-26B-A4B-it",
+      "serve": "loom-serve --model=gemma-4-26B-A4B-it '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed",
+      "source_revision": "3757d44a77283cbc49f1ff9f90878d538faa8d93"
     }
   },
   "shared_request": {
@@ -478,6 +478,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"google/gemma-4-26B-A4B-it\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "8e38a53b5883c74b02a6304eeeacf447e09a685a"
+    "source_revision": "3757d44a77283cbc49f1ff9f90878d538faa8d93"
   }
 }
