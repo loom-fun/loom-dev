@@ -29449,7 +29449,7 @@ window.LOOM_DATA = {
    "checkpoint": "Qwen3.5-35B-A3B-Q4_K_M",
    "name": "Qwen3.5-35B-A3B",
    "repo": "loom-fun/unsloth-Qwen3.5-35B-A3B-loom",
-   "revision": "fa4a0ea8bd58c39374f88a5bded30fa1e2289e8c",
+   "revision": "6ba0850d177cad4de5f442b5f53a0665ad0fc170",
    "status": null,
    "license": null,
    "service": {
@@ -29655,7 +29655,7 @@ window.LOOM_DATA = {
       }
      }
     },
-    "programs_sha256": "b01da23ecb4f122226c8417a3bfe4df3b19baa5b6a104ecec38fa376a6dd2db2",
+    "programs_sha256": "af69346ffaa8bb62dba47b42ac0c2020de09c891036f2fca05f73b02c84726a1",
     "historical_programs": [
      {
       "date": "2026-11-17",
@@ -29869,6 +29869,66 @@ window.LOOM_DATA = {
         "loom": 0.56
        }
       }
+     },
+     {
+      "date": "2026-11-26",
+      "source": {
+       "kind": "local",
+       "run": null,
+       "url": null
+      },
+      "programs_sha256": "b01da23ecb4f122226c8417a3bfe4df3b19baa5b6a104ecec38fa376a6dd2db2",
+      "program_identity": "recorded",
+      "metrics": {
+       "spec_acceptance": {
+        "loom": 0.56
+       }
+      }
+     },
+     {
+      "date": "2026-11-26",
+      "source": {
+       "kind": "local",
+       "run": null,
+       "url": null
+      },
+      "programs_sha256": "b01da23ecb4f122226c8417a3bfe4df3b19baa5b6a104ecec38fa376a6dd2db2",
+      "program_identity": "recorded",
+      "metrics": {
+       "spec_acceptance": {
+        "loom": 0.56
+       }
+      }
+     },
+     {
+      "date": "2026-11-26",
+      "source": {
+       "kind": "local",
+       "run": null,
+       "url": null
+      },
+      "programs_sha256": "b01da23ecb4f122226c8417a3bfe4df3b19baa5b6a104ecec38fa376a6dd2db2",
+      "program_identity": "recorded",
+      "metrics": {
+       "spec_acceptance": {
+        "loom": 0.56
+       }
+      }
+     },
+     {
+      "date": "2026-11-26",
+      "source": {
+       "kind": "local",
+       "run": null,
+       "url": null
+      },
+      "programs_sha256": "80c96234ee684d9f7684dff86912fb6e89aaa868a7530003d21a8ab53a635fee",
+      "program_identity": "recorded",
+      "metrics": {
+       "spec_acceptance": {
+        "loom": 0.56
+       }
+      }
      }
     ]
    },
@@ -30056,7 +30116,7 @@ window.LOOM_DATA = {
         }
        }
       },
-      "programs_sha256": "b01da23ecb4f122226c8417a3bfe4df3b19baa5b6a104ecec38fa376a6dd2db2",
+      "programs_sha256": "af69346ffaa8bb62dba47b42ac0c2020de09c891036f2fca05f73b02c84726a1",
       "historical_programs": [
        {
         "date": "2026-11-17",
@@ -30165,7 +30225,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-35B-A3B-loom:chat --materialize=copy --output=Qwen3.5-35B-A3B",
      "serve": "loom-serve --model=Qwen3.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "fa4a0ea8bd58c39374f88a5bded30fa1e2289e8c"
+     "source_revision": "6ba0850d177cad4de5f442b5f53a0665ad0fc170"
     },
     "radeon-r9700": {
      "blocks": [
@@ -30185,7 +30245,7 @@ window.LOOM_DATA = {
      "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
      "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-35B-A3B-loom:chat-r9700 --materialize=copy --output=Qwen3.5-35B-A3B",
      "serve": "loom-serve --model=Qwen3.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-     "source_revision": "fa4a0ea8bd58c39374f88a5bded30fa1e2289e8c"
+     "source_revision": "6ba0850d177cad4de5f442b5f53a0665ad0fc170"
     }
    },
    "shared_request": {
@@ -30200,7 +30260,7 @@ window.LOOM_DATA = {
       "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-35B-A3B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
      }
     ],
-    "source_revision": "fa4a0ea8bd58c39374f88a5bded30fa1e2289e8c"
+    "source_revision": "6ba0850d177cad4de5f442b5f53a0665ad0fc170"
    }
   },
   {
