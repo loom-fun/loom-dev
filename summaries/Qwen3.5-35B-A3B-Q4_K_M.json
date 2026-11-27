@@ -3,7 +3,7 @@
   "checkpoint": "Qwen3.5-35B-A3B-Q4_K_M",
   "name": "Qwen3.5-35B-A3B",
   "repo": "loom-fun/unsloth-Qwen3.5-35B-A3B-loom",
-  "revision": "6ba0850d177cad4de5f442b5f53a0665ad0fc170",
+  "revision": "e8c4a2c7c053919fb48b5300160e9a6878fd26d1",
   "status": null,
   "license": null,
   "service": {
@@ -98,58 +98,73 @@
         }
       }
     },
-    "date": null,
+    "date": "2026-11-27",
     "llamacpp_build": "b1374",
     "drafting": {
       "loom": "DFlash, depth 3",
       "llamacpp": "draft-dflash, n-max 7"
     },
-    "source": null,
+    "source": {
+      "kind": "machine",
+      "run": "halo3-t136",
+      "url": null,
+      "device": {
+        "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+        "gpu": "AMD Radeon 8060S Graphics",
+        "os": "Ubuntu 24.04.4 LTS"
+      },
+      "hrx_loom": {
+        "hrx_loom": "0.3.0",
+        "hrx_system_sha": "e2c41a720363911c04606ce0f4417e2d55630352",
+        "source": "pypi",
+        "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
+      }
+    },
     "metrics": {
       "decode": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 101.7,
+        "llamacpp": 53.2,
+        "speedup": 1.91
       },
       "decode_2k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 86.3,
+        "llamacpp": 53.5,
+        "speedup": 1.61
       },
       "decode_32k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 57.6,
+        "llamacpp": 44.5,
+        "speedup": 1.29
       },
       "prefill_1k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 2684.4,
+        "llamacpp": 1268.7,
+        "speedup": 2.12
       },
       "prefill_2k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 2885.7,
+        "llamacpp": 1359.0,
+        "speedup": 2.12
       },
       "prefill_8k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 3198.4,
+        "llamacpp": 1365.1,
+        "speedup": 2.34
       },
       "prefill_16k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 2916.4,
+        "llamacpp": 1256.3,
+        "speedup": 2.32
       },
       "prefill_32k": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 2554.6,
+        "llamacpp": 1072.2,
+        "speedup": 2.38
       },
       "streams4": {
-        "loom": null,
-        "llamacpp": null,
-        "speedup": null
+        "loom": 174.9,
+        "llamacpp": 127.1,
+        "speedup": 1.38
       },
       "spec_acceptance": {
         "loom": 0.56,
@@ -209,7 +224,29 @@
         }
       }
     },
-    "programs_sha256": "af69346ffaa8bb62dba47b42ac0c2020de09c891036f2fca05f73b02c84726a1",
+    "programs_sha256": "aee3f1ea8918a0d527614acf72372e722eef803cc76ec21b1faf71a319acd9d3",
+    "named_machine_sources": [
+      {
+        "date": "2026-11-27",
+        "programs_sha256": "aee3f1ea8918a0d527614acf72372e722eef803cc76ec21b1faf71a319acd9d3",
+        "source": {
+          "kind": "machine",
+          "run": "halo3-t136",
+          "url": null,
+          "device": {
+            "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+            "gpu": "AMD Radeon 8060S Graphics",
+            "os": "Ubuntu 24.04.4 LTS"
+          },
+          "hrx_loom": {
+            "hrx_loom": "0.3.0",
+            "hrx_system_sha": "e2c41a720363911c04606ce0f4417e2d55630352",
+            "source": "pypi",
+            "wheel_sha256": "6252bb0df262351175bdb2c4aaca22ffa63d80d791659aa4d2fa5c92a0af426f"
+          }
+        }
+      }
+    ],
     "historical_programs": [
       {
         "date": "2026-11-17",
@@ -483,6 +520,51 @@
             "loom": 0.56
           }
         }
+      },
+      {
+        "date": "2026-11-26",
+        "source": {
+          "kind": "local",
+          "run": null,
+          "url": null
+        },
+        "programs_sha256": "af69346ffaa8bb62dba47b42ac0c2020de09c891036f2fca05f73b02c84726a1",
+        "program_identity": "recorded",
+        "metrics": {
+          "spec_acceptance": {
+            "loom": 0.56
+          }
+        }
+      },
+      {
+        "date": "2026-11-26",
+        "source": {
+          "kind": "local",
+          "run": null,
+          "url": null
+        },
+        "programs_sha256": "3c7996aab47b03ad260e27171ddec9db69f87fda8630f90a90f0d2801ecbab16",
+        "program_identity": "recorded",
+        "metrics": {
+          "spec_acceptance": {
+            "loom": 0.56
+          }
+        }
+      },
+      {
+        "date": "2026-11-26",
+        "source": {
+          "kind": "local",
+          "run": null,
+          "url": null
+        },
+        "programs_sha256": "b31393ae1bb69b110d25ff8397aa01e8976332d2b395f7b2959b7d3ba0fbe944",
+        "program_identity": "recorded",
+        "metrics": {
+          "spec_acceptance": {
+            "loom": 0.56
+          }
+        }
       }
     ]
   },
@@ -670,7 +752,7 @@
             }
           }
         },
-        "programs_sha256": "af69346ffaa8bb62dba47b42ac0c2020de09c891036f2fca05f73b02c84726a1",
+        "programs_sha256": "aee3f1ea8918a0d527614acf72372e722eef803cc76ec21b1faf71a319acd9d3",
         "historical_programs": [
           {
             "date": "2026-11-17",
@@ -779,7 +861,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-35B-A3B-loom:chat --materialize=copy --output=Qwen3.5-35B-A3B",
       "serve": "loom-serve --model=Qwen3.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "6ba0850d177cad4de5f442b5f53a0665ad0fc170"
+      "source_revision": "e8c4a2c7c053919fb48b5300160e9a6878fd26d1"
     },
     "radeon-r9700": {
       "blocks": [
@@ -799,7 +881,7 @@
       "install": "pipx install \"hrx-loom[hf]==0.3.0\"",
       "fetch": "loom-fetch huggingface:loom-fun/unsloth-Qwen3.5-35B-A3B-loom:chat-r9700 --materialize=copy --output=Qwen3.5-35B-A3B",
       "serve": "loom-serve --model=Qwen3.5-35B-A3B '--device=amdgpu://?completion_spin_ns=4294967295' --pool_backing=fixed --parameter_mode=preload",
-      "source_revision": "6ba0850d177cad4de5f442b5f53a0665ad0fc170"
+      "source_revision": "e8c4a2c7c053919fb48b5300160e9a6878fd26d1"
     }
   },
   "shared_request": {
@@ -814,6 +896,6 @@
         "text": "curl http://127.0.0.1:8080/v1/chat/completions \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"model\": \"Qwen/Qwen3.5-35B-A3B\", \"messages\": [{\"role\": \"user\", \"content\": \"Hello\"}], \"chat_template_kwargs\": {\"enable_thinking\": false}}'"
       }
     ],
-    "source_revision": "6ba0850d177cad4de5f442b5f53a0665ad0fc170"
+    "source_revision": "e8c4a2c7c053919fb48b5300160e9a6878fd26d1"
   }
 }
